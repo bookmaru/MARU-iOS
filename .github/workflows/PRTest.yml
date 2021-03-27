@@ -8,14 +8,23 @@ jobs:
     runs-on: macOS-latest 
     env: 
       XC_VERSION: ${{ '12.5' }} 
-      XC_PROJECT: ${{ 'MARU.xcodeproj' }}
+      XC_PROJECT: ${{ 'MARU.xcworkspace' }}
       XC_SCHEME: ${{ 'kr.maru' }} 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
-      - name: Select latest Xcode 
-        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
-      - uses: actions/checkout@v2 
-      - name: Run Unit and UI Tests 
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Select latest Xcode
+        run: "sudo xcode-select -s /Applications/Xcode.app"
+      - name: list
+        run: "ls"
+      - name: pwd
+        run: "pwd"
+      - name: cocoapod install
+        run: "sudo gem install cocoapods"
+      - name: Pod install
+        run: "pod install"
+      - name: Run Unit and UI Tests
         run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
 
