@@ -1,21 +1,27 @@
 name: PR_Actions
 
 on: pull_request
-jobs: 
-# This workflow contains a single job called "tests" 
-  tests: 
-  # The type of runner that the job will run on 
-    runs-on: macOS-latest 
-    env: 
-      XC_VERSION: ${{ '12.5' }} 
-      XC_PROJECT: ${{ 'MARU.xcodeproj' }}
-      XC_SCHEME: ${{ 'kr.maru' }} 
+jobs:
+# This workflow contains a single job called "tests"
+  tests:
+  # The type of runner that the job will run on
+    runs-on: macOS-latest
+    env:
+      XC_VERSION: ${{ '12.5' }}
+      XC_PROJECT: ${{ 'MARU.xcworkspace' }}
+      XC_SCHEME: ${{ 'kr.maru' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
-      - name: Select latest Xcode 
-        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app" 
-      - uses: actions/checkout@v2 
-      - name: Run Unit and UI Tests 
-        run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
-
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Select latest Xcode
+        run: "sudo xcode-select -s /Applications/Xcode.app"
+      - name: install cocoapod
+        run: "sudo gem install cocoapods"
+      - name: pod install
+        working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
+        run: "pod install"
+      - name: Run Unit and UI Tests
+        working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
+        run: xcodebuild test -workspace MARU.xcworkspace -scheme 'MARU' -destination 'platform=iOS Simulator,name=iPhone 11'
