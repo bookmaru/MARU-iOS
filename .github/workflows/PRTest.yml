@@ -22,5 +22,7 @@ jobs:
       - name: pwd
         run: "pwd"
       - name: Run Unit and UI Tests
-        run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
+        run: xcodebuild test -workspace MARU.xcworkspace -scheme 'MARU' -destination 'platform=iOS Simulator,name=iPhone 11'
+
+#        run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
 
