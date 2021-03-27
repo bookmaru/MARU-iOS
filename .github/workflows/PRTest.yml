@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Select latest Xcode
         run: "sudo xcode-select -s /Applications/Xcode.app"
-      - name: list
+      - name: cd
+        run: "cd MARU"
+      - name: cd
         run: "cd MARU"
       - name: pwd
         run: "pwd"
