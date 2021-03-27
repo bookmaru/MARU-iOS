@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     filePath = Bundle.main.path(forResource: "GoogleService-Info-Dev", ofType: "plist")
     #endif
     guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
-      else { assert(false, "Couldn't load config file") }
+      else { return true }
     FirebaseApp.configure(options: fileopts)
 
     return true
