@@ -18,7 +18,7 @@ jobs:
       - name: Select latest Xcode
         run: "sudo xcode-select -s /Applications/Xcode.app"
       - name: list
-        run: "ls"
+        run: "cd MARU"
       - name: pwd
         run: "pwd"
       - name: cocoapod install
