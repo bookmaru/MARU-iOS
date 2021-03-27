@@ -25,8 +25,11 @@ extension UIView {
     return subviews
   }
 
-  func applyShadow(color: UIColor, alpha: Float,
-                   shadowX: CGFloat, shadowY: CGFloat, blur: CGFloat) {
+  func applyShadow(color: UIColor,
+                   alpha: Float,
+                   shadowX: CGFloat,
+                   shadowY: CGFloat,
+                   blur: CGFloat) {
     let shadowView = UIView()
     self.add(shadowView) {
       $0.snp.makeConstraints {
