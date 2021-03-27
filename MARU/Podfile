@@ -1,0 +1,44 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+target 'MARU' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  inhibit_all_warnings!
+
+  # Pods for MARU
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Gedatsu', configuration: %w(Debug)
+	pod 'KakaoSDKAuth'  # 카카오 로그인
+  pod 'KakaoSDKUser'  # 사용자 관리
+  pod 'Kingfisher'
+  pod 'Moya/RxSwift', '~> 14.0'
+  pod 'RxCocoa', '~> 5'
+  pod 'RxSocket.io'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'SwiftKeychainWrapper'
+  pod 'SwiftLint'
+  pod 'Then'
+
+  
+#  target 'MARUTests' do
+#  target 'MARUUITests' do
+
+#    pod 'RxBlocking', '5.0.0'
+#    pod 'RxTest', '5.0.0'
+#  end
+#  end
+
+end
+
+post_install do |pi|
+    pi.pods_project.targets.each do |t|
+        t.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        end
+    end
+end
+

@@ -3,52 +3,65 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56738E8FDEB538F6E55EFB18 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F336011352BF4087E84956 /* Pods_MARU.framework */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
-		C51CA7F7260D964E00CE4804 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F6260D964E00CE4804 /* ViewController.swift */; };
-		C51CA7FA260D964E00CE4804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7F8260D964E00CE4804 /* Main.storyboard */; };
+		C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F6260D964E00CE4804 /* LoginViewController.swift */; };
 		C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FB260D966000CE4804 /* Assets.xcassets */; };
 		C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */; };
-		C51CA80A260D966000CE4804 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA809260D966000CE4804 /* MARUTests.swift */; };
-		C51CA815260D966000CE4804 /* MARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA814260D966000CE4804 /* MARUUITests.swift */; };
+		C52E782A260F277F0087570E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7829260F277F0087570E /* BaseViewController.swift */; };
+		C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */; };
+		C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C55F1523260F3B74003D99D0 /* .swiftlint.yml */; };
+		C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */; };
+		C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1532260F3F2F003D99D0 /* SplashViewController.swift */; };
+		C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1537260F3FA4003D99D0 /* UIViewController+.swift */; };
+		C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F153B260F3FC8003D99D0 /* UICollectionView+.swift */; };
+		C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F153F260F3FDF003D99D0 /* ReusableView.swift */; };
+		C55F173B260F4418003D99D0 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F173A260F4418003D99D0 /* UIView+.swift */; };
+		C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F173D260F4443003D99D0 /* CALayer+.swift */; };
+		C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1740260F449A003D99D0 /* Enviroment.swift */; };
+		C55F1780260F46A5003D99D0 /* RIDIBatang.otf in Resources */ = {isa = PBXBuildFile; fileRef = C55F177F260F469E003D99D0 /* RIDIBatang.otf */; };
+		C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1782260F4703003D99D0 /* LoginViewModel.swift */; };
+		C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1785260F4727003D99D0 /* ViewModelType.swift */; };
+		C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F17EA260F48C5003D99D0 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C51CA806260D966000CE4804 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C51CA7E7260D964E00CE4804 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CA7EE260D964E00CE4804;
-			remoteInfo = MARU;
-		};
-		C51CA811260D966000CE4804 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C51CA7E7260D964E00CE4804 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CA7EE260D964E00CE4804;
-			remoteInfo = MARU;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		290C4FB137C5EBB09E6885DB /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
+		364D4FBA06237BA557EA4759 /* Pods-MARU-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARU-MARUTests/Pods-MARU-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABCF7A379D7D74399CF20D5C /* Pods_MARU_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C51CA7F6260D964E00CE4804 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C51CA7F9260D964E00CE4804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C51CA7F6260D964E00CE4804 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C51CA7FB260D966000CE4804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C51CA7FE260D966000CE4804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C51CA800260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C51CA805260D966000CE4804 /* MARUTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARUTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C51CA809260D966000CE4804 /* MARUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUTests.swift; sourceTree = "<group>"; };
-		C51CA80B260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C51CA810260D966000CE4804 /* MARUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C51CA814260D966000CE4804 /* MARUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUUITests.swift; sourceTree = "<group>"; };
-		C51CA816260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C52E7829260F277F0087570E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C530A68D1305AB4698C9FD74 /* Pods-MARU-MARUTests-MARUUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU-MARUTests-MARUUITests.release.xcconfig"; path = "Target Support Files/Pods-MARU-MARUTests-MARUUITests/Pods-MARU-MARUTests-MARUUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C55F1523260F3B74003D99D0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
+		C55F1532260F3F2F003D99D0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		C55F1537260F3FA4003D99D0 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		C55F153B260F3FC8003D99D0 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
+		C55F153F260F3FDF003D99D0 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		C55F173A260F4418003D99D0 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		C55F173D260F4443003D99D0 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		C55F1740260F449A003D99D0 /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
+		C55F177F260F469E003D99D0 /* RIDIBatang.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RIDIBatang.otf; sourceTree = "<group>"; };
+		C55F1782260F4703003D99D0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C55F1785260F4727003D99D0 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		C55F17EA260F48C5003D99D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C97032F5422872D7F9A1CC82 /* Pods-MARU-MARUTests-MARUUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU-MARUTests-MARUUITests.debug.xcconfig"; path = "Target Support Files/Pods-MARU-MARUTests-MARUUITests/Pods-MARU-MARUTests-MARUUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D2F336011352BF4087E84956 /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D596EC0869F2AF71C45A14B1 /* Pods-MARU-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARU-MARUTests/Pods-MARU-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
+		E62056FD50F075DE3F0EE5A6 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
+		FE5E9D9B7652D1806392E3F9 /* Pods_MARU_MARUTests_MARUUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU_MARUTests_MARUUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,42 +69,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA802260D966000CE4804 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA80D260D966000CE4804 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				56738E8FDEB538F6E55EFB18 /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8DCB7E7F0E109E2724345950 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E62056FD50F075DE3F0EE5A6 /* Pods-MARU.debug.xcconfig */,
+				290C4FB137C5EBB09E6885DB /* Pods-MARU.release.xcconfig */,
+				364D4FBA06237BA557EA4759 /* Pods-MARU-MARUTests.debug.xcconfig */,
+				D596EC0869F2AF71C45A14B1 /* Pods-MARU-MARUTests.release.xcconfig */,
+				C97032F5422872D7F9A1CC82 /* Pods-MARU-MARUTests-MARUUITests.debug.xcconfig */,
+				C530A68D1305AB4698C9FD74 /* Pods-MARU-MARUTests-MARUUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C51CA7E6260D964E00CE4804 = {
 			isa = PBXGroup;
 			children = (
+				C55F1523260F3B74003D99D0 /* .swiftlint.yml */,
 				C51CA7F1260D964E00CE4804 /* MARU */,
-				C51CA808260D966000CE4804 /* MARUTests */,
-				C51CA813260D966000CE4804 /* MARUUITests */,
 				C51CA7F0260D964E00CE4804 /* Products */,
+				8DCB7E7F0E109E2724345950 /* Pods */,
+				DD0273CD2C15A2928E8FF2ED /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		C51CA7F0260D964E00CE4804 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				C51CA7EF260D964E00CE4804 /* MARU.app */,
-				C51CA805260D966000CE4804 /* MARUTests.xctest */,
-				C51CA810260D966000CE4804 /* MARUUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,33 +113,150 @@
 		C51CA7F1260D964E00CE4804 /* MARU */ = {
 			isa = PBXGroup;
 			children = (
-				C51CA7F2260D964E00CE4804 /* AppDelegate.swift */,
-				C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */,
-				C51CA7F6260D964E00CE4804 /* ViewController.swift */,
-				C51CA7F8260D964E00CE4804 /* Main.storyboard */,
-				C51CA7FB260D966000CE4804 /* Assets.xcassets */,
-				C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */,
-				C51CA800260D966000CE4804 /* Info.plist */,
+				C52E781C260F27110087570E /* Global */,
+				C5DB34DA260F256A00F29FE1 /* Screens */,
 			);
 			path = MARU;
 			sourceTree = "<group>";
 		};
-		C51CA808260D966000CE4804 /* MARUTests */ = {
+		C52E781C260F27110087570E /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				C51CA809260D966000CE4804 /* MARUTests.swift */,
-				C51CA80B260D966000CE4804 /* Info.plist */,
+				C55F153E260F3FD1003D99D0 /* Protocol */,
+				C55F1536260F3F95003D99D0 /* Extensions */,
+				C52E7821260F27530087570E /* Resources */,
+				C52E7820260F27420087570E /* App */,
+				C55F152E260F3E62003D99D0 /* DevConfig */,
+				C5DB34D7260F255600F29FE1 /* Config */,
 			);
-			path = MARUTests;
+			path = Global;
 			sourceTree = "<group>";
 		};
-		C51CA813260D966000CE4804 /* MARUUITests */ = {
+		C52E7820260F27420087570E /* App */ = {
 			isa = PBXGroup;
 			children = (
-				C51CA814260D966000CE4804 /* MARUUITests.swift */,
-				C51CA816260D966000CE4804 /* Info.plist */,
+				C51CA7F2260D964E00CE4804 /* AppDelegate.swift */,
+				C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */,
 			);
-			path = MARUUITests;
+			path = App;
+			sourceTree = "<group>";
+		};
+		C52E7821260F27530087570E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C55F177E260F468C003D99D0 /* Font */,
+				C51CA7FB260D966000CE4804 /* Assets.xcassets */,
+				C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C52E7825260F27660087570E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C52E7827260F276D0087570E /* ViewModel */,
+				C52E7826260F276B0087570E /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C52E7826260F276B0087570E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C51CA7F6260D964E00CE4804 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C52E7827260F276D0087570E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C55F1782260F4703003D99D0 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C52E7828260F27760087570E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C52E7829260F277F0087570E /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C55F152E260F3E62003D99D0 /* DevConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */,
+			);
+			path = DevConfig;
+			sourceTree = "<group>";
+		};
+		C55F1531260F3F1B003D99D0 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C55F1532260F3F2F003D99D0 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		C55F1536260F3F95003D99D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C55F1537260F3FA4003D99D0 /* UIViewController+.swift */,
+				C55F153B260F3FC8003D99D0 /* UICollectionView+.swift */,
+				C55F173A260F4418003D99D0 /* UIView+.swift */,
+				C55F173D260F4443003D99D0 /* CALayer+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C55F153E260F3FD1003D99D0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C55F153F260F3FDF003D99D0 /* ReusableView.swift */,
+				C55F1785260F4727003D99D0 /* ViewModelType.swift */,
+				C55F17EA260F48C5003D99D0 /* ViewController.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C55F177E260F468C003D99D0 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C55F177F260F469E003D99D0 /* RIDIBatang.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		C5DB34D7260F255600F29FE1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */,
+				C51CA800260D966000CE4804 /* Info.plist */,
+				C55F1740260F449A003D99D0 /* Enviroment.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C5DB34DA260F256A00F29FE1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C52E7825260F27660087570E /* Login */,
+				C55F1531260F3F1B003D99D0 /* Splash */,
+				C52E7828260F27760087570E /* Base */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		DD0273CD2C15A2928E8FF2ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2F336011352BF4087E84956 /* Pods_MARU.framework */,
+				ABCF7A379D7D74399CF20D5C /* Pods_MARU_MARUTests.framework */,
+				FE5E9D9B7652D1806392E3F9 /* Pods_MARU_MARUTests_MARUUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,9 +266,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C51CA819260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARU" */;
 			buildPhases = (
+				5755FB0E70D956BD1CF009E2 /* [CP] Check Pods Manifest.lock */,
 				C51CA7EB260D964E00CE4804 /* Sources */,
 				C51CA7EC260D964E00CE4804 /* Frameworks */,
 				C51CA7ED260D964E00CE4804 /* Resources */,
+				C55F1526260F3BA9003D99D0 /* Lint Script */,
+				04D294E580F6A997671F1157 /* [CP] Embed Pods Frameworks */,
+				C55F1528260F3C12003D99D0 /* Firebase crashlytics */,
 			);
 			buildRules = (
 			);
@@ -147,42 +282,6 @@
 			productName = MARU;
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C51CA804260D966000CE4804 /* MARUTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C51CA81C260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARUTests" */;
-			buildPhases = (
-				C51CA801260D966000CE4804 /* Sources */,
-				C51CA802260D966000CE4804 /* Frameworks */,
-				C51CA803260D966000CE4804 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C51CA807260D966000CE4804 /* PBXTargetDependency */,
-			);
-			name = MARUTests;
-			productName = MARUTests;
-			productReference = C51CA805260D966000CE4804 /* MARUTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C51CA80F260D966000CE4804 /* MARUUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C51CA81F260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARUUITests" */;
-			buildPhases = (
-				C51CA80C260D966000CE4804 /* Sources */,
-				C51CA80D260D966000CE4804 /* Frameworks */,
-				C51CA80E260D966000CE4804 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C51CA812260D966000CE4804 /* PBXTargetDependency */,
-			);
-			name = MARUUITests;
-			productName = MARUUITests;
-			productReference = C51CA810260D966000CE4804 /* MARUUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -195,14 +294,6 @@
 				TargetAttributes = {
 					C51CA7EE260D964E00CE4804 = {
 						CreatedOnToolsVersion = 12.4;
-					};
-					C51CA804260D966000CE4804 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = C51CA7EE260D964E00CE4804;
-					};
-					C51CA80F260D966000CE4804 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = C51CA7EE260D964E00CE4804;
 					};
 				};
 			};
@@ -220,8 +311,6 @@
 			projectRoot = "";
 			targets = (
 				C51CA7EE260D964E00CE4804 /* MARU */,
-				C51CA804260D966000CE4804 /* MARUTests */,
-				C51CA80F260D966000CE4804 /* MARUUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -231,79 +320,120 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C55F1780260F46A5003D99D0 /* RIDIBatang.otf in Resources */,
+				C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */,
 				C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */,
+				C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */,
 				C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */,
-				C51CA7FA260D964E00CE4804 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA803260D966000CE4804 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA80E260D966000CE4804 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04D294E580F6A997671F1157 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5755FB0E70D956BD1CF009E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MARU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C55F1526260F3BA9003D99D0 /* Lint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Lint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		C55F1528260F3C12003D99D0 /* Firebase crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C51CA7EB260D964E00CE4804 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C51CA7F7260D964E00CE4804 /* ViewController.swift in Sources */,
+				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
+				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
+				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
+				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
+				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
+				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA801260D966000CE4804 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C51CA80A260D966000CE4804 /* MARUTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C51CA80C260D966000CE4804 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C51CA815260D966000CE4804 /* MARUUITests.swift in Sources */,
+				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
+				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
+				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
+				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
+				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
+				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		C51CA807260D966000CE4804 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CA7EE260D964E00CE4804 /* MARU */;
-			targetProxy = C51CA806260D966000CE4804 /* PBXContainerItemProxy */;
-		};
-		C51CA812260D966000CE4804 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CA7EE260D964E00CE4804 /* MARU */;
-			targetProxy = C51CA811260D966000CE4804 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		C51CA7F8260D964E00CE4804 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C51CA7F9260D964E00CE4804 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +496,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +551,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -433,123 +563,58 @@
 		};
 		C51CA81A260D966000CE4804 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62056FD50F075DE3F0EE5A6 /* Pods-MARU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "http://베이스유아르엘_dev";
+				BUNDLE_NAME = "마루_dev";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARU/Info.plist;
+				GCC_WARN_PEDANTIC = NO;
+				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARU;
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.dev;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
 		C51CA81B260D966000CE4804 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 290C4FB137C5EBB09E6885DB /* Pods-MARU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "http://베이스유아르엘";
+				BUNDLE_NAME = "마루";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARU/Info.plist;
+				GCC_WARN_PEDANTIC = NO;
+				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
+				INFOPLIST_OUTPUT_FORMAT = binary;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARU;
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.maru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		C51CA81D260D966000CE4804 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MARU.app/MARU";
-			};
-			name = Debug;
-		};
-		C51CA81E260D966000CE4804 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MARU.app/MARU";
-			};
-			name = Release;
-		};
-		C51CA820260D966000CE4804 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MARU;
-			};
-			name = Debug;
-		};
-		C51CA821260D966000CE4804 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MARU;
+				TARGETED_DEVICE_FAMILY = 1;
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};
@@ -570,24 +635,6 @@
 			buildConfigurations = (
 				C51CA81A260D966000CE4804 /* Debug */,
 				C51CA81B260D966000CE4804 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C51CA81C260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARUTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C51CA81D260D966000CE4804 /* Debug */,
-				C51CA81E260D966000CE4804 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C51CA81F260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARUUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C51CA820260D966000CE4804 /* Debug */,
-				C51CA821260D966000CE4804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
