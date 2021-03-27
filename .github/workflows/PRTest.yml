@@ -20,10 +20,10 @@ jobs:
       - name: cd
         run: "cd MARU"
       - name: cd
-        run: "cd MARU"
-      - name: pwd
+        working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
         run: "pwd"
       - name: Run Unit and UI Tests
+        working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
         run: xcodebuild test -workspace MARU.xcworkspace -scheme 'MARU' -destination 'platform=iOS Simulator,name=iPhone 11'
 
 #        run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
