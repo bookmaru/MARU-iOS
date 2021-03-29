@@ -7,13 +7,16 @@
 
 import UIKit
 
+import Then
+
 final class SplashViewController: BaseViewController {
+
+  private let textView = UITextView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    print(Enviroment.baseURL ?? "")
-
+    layout()
   }
 }
 

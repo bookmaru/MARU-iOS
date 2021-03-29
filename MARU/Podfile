@@ -12,7 +12,7 @@ target 'MARU' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'
   pod 'Gedatsu', configuration: %w(Debug)
-	pod 'KakaoSDKAuth'  # 카카오 로그인
+  pod 'KakaoSDKAuth'  # 카카오 로그인
   pod 'KakaoSDKUser'  # 사용자 관리
   pod 'Kingfisher'
   pod 'Moya/RxSwift', '~> 14.0'

@@ -19,7 +19,7 @@ final class LoginViewModel: ViewModelType {
   }
 
   func transform(input: Input) -> Output {
-
+    
     return Output()
   }
 
