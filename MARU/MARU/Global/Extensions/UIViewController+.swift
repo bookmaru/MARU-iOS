@@ -9,16 +9,16 @@ import UIKit
 
 extension UIViewController {
 
-    /// 🍞
-    /// - Parameters:
-    ///   - message: 메세지
-    ///   - isBottom: 토스트 메세지가 어디에 붙는지 지정을 해줍니다. ( true: top / false: bottom)
-    ///   - yAnchor: 토스트 메세지가 safeArea로부터 얼마나 떨어져있을지 설정해줍니다.
-    ///   - textColor: text color
-    ///   - textFont: text font
-    ///   - backgroundColor: background color
-    ///   - backgroundRadius: 테두리의 radius
-    ///   - duration: 지속 시간을 지정해줍니다.
+  /// 🍞
+  /// - Parameters:
+  ///   - message: 메세지
+  ///   - isBottom: 토스트 메세지가 어디에 붙는지 지정을 해줍니다. ( true: top / false: bottom)
+  ///   - yAnchor: 토스트 메세지가 safeArea로부터 얼마나 떨어져있을지 설정해줍니다.
+  ///   - textColor: text color
+  ///   - textFont: text font
+  ///   - backgroundColor: background color
+  ///   - backgroundRadius: 테두리의 radius
+  ///   - duration: 지속 시간을 지정해줍니다.
   func showToast(_ message: String,
                  isBottom: Bool = true,
                  yAnchor: CGFloat = 0,
@@ -39,16 +39,16 @@ extension UIViewController {
     label.alpha = 1.0
     label.clipsToBounds  =  true
 
-    self.view.addSubview(backgroundView)
-    self.view.addSubview(label)
+    view.addSubview(backgroundView)
+    view.addSubview(label)
 
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     if isBottom {
-      label.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
+      label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                     constant: -yAnchor).isActive = true
     } else {
-      label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
+      label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                  constant: yAnchor).isActive = true
     }
     label.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -71,7 +71,7 @@ extension UIViewController {
   }
 
   func setNavigationBar() {
-    guard let navigationBar = self.navigationController?.navigationBar else { return }
+    guard let navigationBar = navigationController?.navigationBar else { return }
     navigationBar.isTranslucent = true
     navigationBar.backgroundColor = .clear
     navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
