@@ -101,6 +101,9 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
+  - ReactorKit (2.1.1):
+    - RxSwift (~> 5.0)
+    - WeakMapTable (~> 1.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -118,6 +121,7 @@ PODS:
   - SwiftKeychainWrapper (4.0.1)
   - SwiftLint (0.42.0)
   - Then (2.7.0)
+  - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -128,6 +132,7 @@ DEPENDENCIES:
   - KakaoSDKUser
   - Kingfisher
   - Moya/RxSwift (~> 14.0)
+  - ReactorKit
   - RxCocoa (~> 5)
   - RxSocket.io
   - SnapKit (~> 5.0.0)
@@ -157,6 +162,7 @@ SPEC REPOS:
     - Moya
     - nanopb
     - PromisesObjC
+    - ReactorKit
     - RxCocoa
     - RxRelay
     - RxSocket.io
@@ -167,6 +173,7 @@ SPEC REPOS:
     - SwiftKeychainWrapper
     - SwiftLint
     - Then
+    - WeakMapTable
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -189,6 +196,7 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  ReactorKit: 6d894a20c3d508344320901cd8e386fde92df4b6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSocket.io: bf8fb8aed9148a53293c0360311733063917ce00
@@ -199,7 +207,8 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: d2f3e6b74f717084ee467125d8707eba1f7c5b8a
+PODFILE CHECKSUM: 41d6dcb5064eadb39b7034bc8bbf495229d81f1c
 
 COCOAPODS: 1.10.1
