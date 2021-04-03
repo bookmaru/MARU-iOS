@@ -7,23 +7,38 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-    
+    tabbar()
+  }
+}
 
-    /*
-    // MARK: - Navigation
+extension TabBarController {
+  private func tabbar() {
+    let mainView = MainViewController()
+    let mainViewTabItem = UITabBarItem(title: "메인",
+                                       image: UIImage(),
+                                       selectedImage: UIImage())
+    mainView.tabBarItem = mainViewTabItem
+    let mainViewController = UINavigationController(rootViewController: mainView)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    let meetView = MeetViewController()
+    let meetViewTabItem = UITabBarItem(title: "모임",
+                                       image: UIImage(),
+                                       selectedImage: UIImage())
+    meetView.tabBarItem = meetViewTabItem
+    let meetViewController = UINavigationController(rootViewController: meetView)
 
+    let libraryView = LibraryViewController()
+    let libraryViewTabItem = UITabBarItem(title: "서제",
+                                          image: UIImage(),
+                                          selectedImage: UIImage())
+    libraryView.tabBarItem = libraryViewTabItem
+    let libraryViewController = UINavigationController(rootViewController: libraryView)
+
+    viewControllers = [mainViewController, meetViewController, libraryViewController]
+  }
 }
