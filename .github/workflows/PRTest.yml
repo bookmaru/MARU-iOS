@@ -21,7 +21,11 @@ jobs:
         run: "sudo gem install cocoapods"
       - name: pod install
         working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
-        run: "pod install"
+        run: |
+        "pod install"
+      - name: pod install
+        working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
+        run: "pwd"
       - name: Run Unit and UI Tests
         working-directory: /Users/runner/work/MARU_iOS/MARU_iOS/MARU
         run: xcodebuild test -workspace MARU.xcworkspace -scheme 'MARU' -destination 'platform=iOS Simulator,name=iPhone 11'
