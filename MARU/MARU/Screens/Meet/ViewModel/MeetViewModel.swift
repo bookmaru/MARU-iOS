@@ -5,19 +5,28 @@
 //  Created by 오준현 on 2021/04/05.
 //
 
-final class MeetViewModel: ViewModelType {
+import ReactorKit
+import RxCocoa
+import RxSwift
 
-  struct Input {
+final class MeetViewModel: Reactor {
+  enum Action {
 
   }
 
-  struct Output {
+  enum Mutation {
 
   }
 
-  func transform(input: Input) -> Output {
-
-    return Output()
+  struct State {
+    var data: String
   }
 
+  let initialState = State()
+
+//  func mutate(action: Action) -> Observable<Mutation> {
+//    switch action {
+//
+//    }
+//  }
 }
