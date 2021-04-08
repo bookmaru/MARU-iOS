@@ -33,6 +33,7 @@
 		C55F1816260F4DC5003D99D0 /* MARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1815260F4DC5003D99D0 /* MARUUITests.swift */; };
 		C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1825260F4DD1003D99D0 /* MARUTests.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
+		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
@@ -90,6 +91,7 @@
 		C55F1825260F4DD1003D99D0 /* MARUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUTests.swift; sourceTree = "<group>"; };
 		C55F1827260F4DD1003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
 		C5ED1D8026188A2900F670EC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +344,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		C5E6E786261B33E300500370 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5E6E787261B33F000500370 /* MeetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C5ED1D6F2618893500F670EC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +363,7 @@
 		C5ED1D712618898900F670EC /* Meet */ = {
 			isa = PBXGroup;
 			children = (
+				C5E6E786261B33E300500370 /* ViewModel */,
 				C5ED1D742618899F00F670EC /* View */,
 			);
 			path = Meet;
@@ -613,6 +624,7 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
+				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
