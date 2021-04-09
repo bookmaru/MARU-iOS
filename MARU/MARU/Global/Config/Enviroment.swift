@@ -9,5 +9,8 @@ import Foundation
 
 struct Enviroment {
   // MARU Bundle Setting // BASE_URL 컬럼
-  static let baseURL = Bundle.main.infoDictionary?["BaseURL"] as? String
+  static var baseURL: String {
+    guard let url = Bundle.main.infoDictionary?["BaseURL"] as? String else { return "" }
+    return url
+  }
 }

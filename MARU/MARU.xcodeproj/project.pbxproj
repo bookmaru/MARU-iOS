@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */; };
+		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
 		C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F6260D964E00CE4804 /* LoginViewController.swift */; };
@@ -33,6 +34,7 @@
 		C55F1816260F4DC5003D99D0 /* MARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1815260F4DC5003D99D0 /* MARUUITests.swift */; };
 		C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1825260F4DD1003D99D0 /* MARUTests.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
+		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
@@ -59,6 +61,7 @@
 		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
 		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
+		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		C55F1825260F4DD1003D99D0 /* MARUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUTests.swift; sourceTree = "<group>"; };
 		C55F1827260F4DD1003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
 		C5ED1D8026188A2900F670EC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +140,14 @@
 				922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C510367626201B3900285A44 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C51CA7E6260D964E00CE4804 = {
@@ -342,6 +354,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		C5E6E786261B33E300500370 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5E6E787261B33F000500370 /* MeetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C5ED1D6F2618893500F670EC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +373,7 @@
 		C5ED1D712618898900F670EC /* Meet */ = {
 			isa = PBXGroup;
 			children = (
+				C5E6E786261B33E300500370 /* ViewModel */,
 				C5ED1D742618899F00F670EC /* View */,
 			);
 			path = Meet;
@@ -377,6 +398,7 @@
 		C5ED1D742618899F00F670EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C510367626201B3900285A44 /* Cells */,
 				C5ED1D7B261889C000F670EC /* MeetViewController.swift */,
 			);
 			path = View;
@@ -613,6 +635,7 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
+				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
@@ -625,6 +648,7 @@
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
+				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
