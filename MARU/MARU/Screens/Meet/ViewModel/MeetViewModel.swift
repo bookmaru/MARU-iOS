@@ -19,7 +19,7 @@ final class MeetViewModel: Reactor {
   }
 
   struct State {
-    var data: String
+
   }
 
   let initialState = State()
