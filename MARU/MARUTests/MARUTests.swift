@@ -6,7 +6,6 @@
 //
 
 import XCTest
-
 class MARUTests: XCTestCase {
 
   override func setUpWithError() throws {
