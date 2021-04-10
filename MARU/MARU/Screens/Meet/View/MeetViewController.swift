@@ -33,7 +33,9 @@ final class MeetViewController: BaseViewController {
     layout.minimumLineSpacing = 28
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .clear
-    collectionView.isPagingEnabled = true
+    collectionView.decelerationRate = .fast
+    collectionView.isPagingEnabled = false
+    collectionView.contentInsetAdjustmentBehavior = .never
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.register(MeetCollectionViewCell.self,
                             forCellWithReuseIdentifier: MeetCollectionViewCell.reuseIdentifier)
@@ -80,13 +82,11 @@ extension MeetViewController {
       $0.leading.equalToSuperview().offset(40)
       $0.top.equalTo(guideImageView.snp.bottom).offset(14)
     }
-
     collectionView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(guideLabel.snp.bottom).offset(31)
       $0.height.equalTo(421)
     }
-
   }
 
   func bind(reactor: MeetViewModel) {
@@ -99,38 +99,17 @@ extension MeetViewController {
 }
 
 extension MeetViewController: UIScrollViewDelegate {
-//  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-//                                 withVelocity velocity: CGPoint,
-//                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//
-//    guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-//    else { return }
-//
-//    let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-//    var offset = targetContentOffset.pointee
-//    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-//    var roundedIndex = round(index)
-//
-//    if scrollView.contentOffset.x > targetContentOffset.pointee.x {
-//      roundedIndex = floor(index)
-//    } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
-//      roundedIndex = ceil(index)
-//    } else {
-//      roundedIndex = round(index)
-//    }
-//
-//    if currentIndex > roundedIndex {
-//      currentIndex -= 1
-//      roundedIndex = currentIndex
-//    } else if currentIndex < roundedIndex {
-//      currentIndex += 1
-//      roundedIndex = currentIndex
-//    }
-//    offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
-//                     y: -scrollView.contentInset.top)
-//    targetContentOffset.pointee = offset
-//
-//  }
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                 withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let cellWidthIncludeSpacing = view.frame.width - 54
+    var offset = targetContentOffset.pointee
+    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludeSpacing
+    let roundedIndex: CGFloat = round(index)
+    offset = CGPoint(x: roundedIndex * cellWidthIncludeSpacing - scrollView.contentInset.left,
+                     y: scrollView.contentInset.top)
+    targetContentOffset.pointee = offset
+  }
 }
 
 extension MeetViewController: UICollectionViewDelegateFlowLayout {
