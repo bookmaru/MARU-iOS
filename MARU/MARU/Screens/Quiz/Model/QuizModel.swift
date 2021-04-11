@@ -10,7 +10,7 @@ import Foundation
 struct QuizModel: Codable {
   let quiz: [Quiz]
 }
-struct Quiz: Codable{
+struct Quiz: Codable {
   let quizContent: String
   let quizAnswer: String
 }

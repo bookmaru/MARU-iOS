@@ -57,8 +57,11 @@ extension QuizViewModel {
                    users: String) -> Bool {
     if quizAnswer == users {
       return true
-    } else {
+    }
+    if quizAnswer == users {
       return false
     }
+
+    return false
   }
 }

@@ -8,8 +8,9 @@
 import UIKit
 
 import Then
-class QuizContentView: UIView {
-  
+
+final class QuizContentView: UIView {
+
   private let quizMainLabel = UILabel().then {
     $0.textAlignment = .left
     $0.textColor = .black
@@ -36,7 +37,7 @@ class QuizContentView: UIView {
     $0.textAlignment = .center
     $0.font = UIFont.systemFont(ofSize: 13)
   }
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.applyShadow(color: UIColor(red: 0, green: 0, blue: 0),
@@ -45,9 +46,9 @@ class QuizContentView: UIView {
                      shadowY: 0,
                      blur: 6)
     applyConstraints()
-    
+
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
