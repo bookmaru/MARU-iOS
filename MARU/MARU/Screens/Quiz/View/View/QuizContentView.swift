@@ -33,14 +33,14 @@ final class QuizContentView: UIView {
     $0.textAlignment = .center
     $0.numberOfLines = 4
   }
-  private let timer = UILabel().then {
+  private let timerLabel = UILabel().then {
     $0.textAlignment = .center
     $0.font = UIFont.systemFont(ofSize: 13)
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.applyShadow(color: UIColor(red: 0, green: 0, blue: 0),
+    applyShadow(color: UIColor(red: 0, green: 0, blue: 0),
                      alpha: 0.1607843137254902,
                      shadowX: 0,
                      shadowY: 0,
@@ -57,10 +57,10 @@ final class QuizContentView: UIView {
 // MARK: - UI Layout
 extension QuizContentView {
   func applyConstraints() {
-    self.adds([
+    adds([
       quizMainLabel,
       quizSequence,
-      timer,
+      timerLabel,
       quizContent
     ])
     quizMainLabel.snp.makeConstraints { (make) in
@@ -71,7 +71,7 @@ extension QuizContentView {
       make.top.equalTo(self.snp.top).inset(29)
       make.leading.equalTo(quizMainLabel.snp.trailing).inset(-8)
     }
-    timer.snp.makeConstraints { (make) in
+    timerLabel.snp.makeConstraints { (make) in
       make.top.equalTo(self.snp.top).inset(22)
       make.trailing.equalTo(self.snp.trailing).inset(19)
       make.height.equalTo(31)
