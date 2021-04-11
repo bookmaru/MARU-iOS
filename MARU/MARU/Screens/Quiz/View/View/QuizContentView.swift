@@ -85,13 +85,13 @@ extension QuizContentView {
   }
 }
 extension QuizContentView {
-  func setQuizManiLabelText(text: String) {
+  func placeQuizManiLabelText(text: String) {
     quizMainLabel.text = text
   }
-  func setQuizSequence(numberString: String) {
+  func placeQuizSequence(numberString: String) {
     quizSequence.text = numberString + " of 5"
   }
-  func setQuizContentText(text: String) {
+  func placeQuizContentText(text: String) {
     quizContent.text = text
   }
 }
