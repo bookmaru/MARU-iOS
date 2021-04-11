@@ -15,5 +15,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '@5anniversary @psychehose @@profitjean'
+              body: '@5anniversary @psychehose @profitjean'
             })
