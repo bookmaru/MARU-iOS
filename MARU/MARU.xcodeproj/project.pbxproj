@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */; };
-		77569B6F2620CE20008BF77B /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
+		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
+		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77569B6E2620CE20008BF77B /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */,
+				2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,6 +174,8 @@
 			children = (
 				79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */,
 				922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */,
+				036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */,
+				1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -488,9 +497,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55F182A260F4DD1003D99D0 /* Build configuration list for PBXNativeTarget "MARUTests" */;
 			buildPhases = (
+				1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */,
 				C55F181F260F4DD1003D99D0 /* Sources */,
 				C55F1820260F4DD1003D99D0 /* Frameworks */,
 				C55F1821260F4DD1003D99D0 /* Resources */,
+				17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -575,6 +586,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MARUTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B9030BC511B36BF963278358 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -658,9 +708,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
-				77569B6F2620CE20008BF77B /* QuizViewModel.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
+				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
@@ -696,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */,
 				C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,6 +876,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -853,6 +905,7 @@
 				BUNDLE_NAME = "마루_dev";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36BC59Q598;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
@@ -882,6 +935,7 @@
 				BUNDLE_NAME = "마루";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36BC59Q598;
+				ENABLE_TESTABILITY = NO;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
@@ -942,6 +996,7 @@
 		};
 		C55F182B260F4DD1003D99D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -963,6 +1018,7 @@
 		};
 		C55F182C260F4DD1003D99D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
