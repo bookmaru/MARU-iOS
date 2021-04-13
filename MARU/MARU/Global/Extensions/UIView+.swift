@@ -28,17 +28,17 @@ extension UIView {
   func applyShadow(color: UIColor, alpha: Float,
                    shadowX: CGFloat, shadowY: CGFloat, blur: CGFloat) {
     let shadowView = UIView()
-    self.add(shadowView) {
+    add(shadowView) {
       $0.snp.makeConstraints {
         $0.edges.equalTo(self)
       }
     }
-    self.layer.masksToBounds = false
-    self.layer.applyShadow(color: color,
-                           alpha: alpha,
-                           shadowX: shadowX,
-                           shadowY: shadowY,
-                           blur: blur)
+    layer.masksToBounds = false
+    layer.applyShadow(color: color,
+                      alpha: alpha,
+                      shadowX: shadowX,
+                      shadowY: shadowY,
+                      blur: blur)
   }
 
 }
