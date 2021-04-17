@@ -39,6 +39,7 @@ final class MeetViewController: BaseViewController {
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.register(MeetCollectionViewCell.self,
                             forCellWithReuseIdentifier: MeetCollectionViewCell.reuseIdentifier)
+    collectionView.layer.masksToBounds = false
     return collectionView
   }()
 
@@ -48,7 +49,7 @@ final class MeetViewController: BaseViewController {
     return viewModel
   }()
 
-  private var data: Observable<[String]> = .just(["", "", "", "", "", "", ""])
+  private var data: Observable<[String]> = .just(["123", "123", "222"])
   var currentIndex: CGFloat = 0
 
   override func viewDidLoad() {
@@ -85,15 +86,16 @@ extension MeetViewController {
     collectionView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(guideLabel.snp.bottom).offset(31)
-      $0.height.equalTo(421)
+      $0.height.equalTo(421/812 * view.frame.height)
     }
   }
 
   func bind(reactor: MeetViewModel) {
-    data.bind(
-      to: collectionView.rx.items(cellIdentifier: "MeetCollectionViewCell"
-      )) { _, _, cell in
-      cell.backgroundColor = .blue
+    data.bind(to: collectionView.rx.items) { collectionView, item, model -> UICollectionViewCell in
+      let indexPath = IndexPath(item: item, section: 0)
+      let cell: MeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      print(model)
+      return cell
     }.disposed(by: disposeBag)
   }
 }
@@ -117,5 +119,13 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width - 82, height: collectionView.frame.height)
+  }
+}
+
+extension UIViewController {
+  func create<T>(_ setup: ((T) -> Void)) -> T where T: NSObject {
+    let obj = T()
+    setup(obj)
+    return obj
   }
 }
