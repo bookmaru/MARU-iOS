@@ -38,6 +38,9 @@
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
+		E22306EB262AC6E400B25CEA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EA262AC6E400B25CEA /* Image.swift */; };
+		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
+		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
 		C5ED1D8026188A2900F670EC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		E22306EA262AC6E400B25CEA /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
+		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +220,8 @@
 				C55F177E260F468C003D99D0 /* Font */,
 				C51CA7FB260D966000CE4804 /* Assets.xcassets */,
 				C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */,
+				E22306EA262AC6E400B25CEA /* Image.swift */,
+				E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 				C55F153B260F3FC8003D99D0 /* UICollectionView+.swift */,
 				C55F173A260F4418003D99D0 /* UIView+.swift */,
 				C55F173D260F4443003D99D0 /* CALayer+.swift */,
+				E22306F7262ACEBC00B25CEA /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -629,6 +638,7 @@
 			files = (
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
+				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
@@ -640,12 +650,14 @@
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
+				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
+				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,
