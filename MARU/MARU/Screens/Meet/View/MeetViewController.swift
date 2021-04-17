@@ -49,7 +49,7 @@ final class MeetViewController: BaseViewController {
     return viewModel
   }()
 
-  private var data: Observable<[String]> = .just(["123", "123", "222"])
+  private var data: Observable<[String]> = .just(["", "", ""])
   var currentIndex: CGFloat = 0
 
   override func viewDidLoad() {
