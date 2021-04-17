@@ -39,9 +39,17 @@ final class MeetViewController: BaseViewController {
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.register(MeetCollectionViewCell.self,
                             forCellWithReuseIdentifier: MeetCollectionViewCell.reuseIdentifier)
+    collectionView.register(EmptyMeetCollectionViewCell.self,
+                            forCellWithReuseIdentifier: EmptyMeetCollectionViewCell.reuseIdentifier)
     collectionView.layer.masksToBounds = false
     return collectionView
   }()
+
+  private let pageControl = UIPageControl().then {
+    $0.currentPageIndicatorTintColor = .cornflowerBlue
+    $0.pageIndicatorTintColor = .veryLightPinkThree
+    $0.numberOfPages = 3
+  }
 
   private let viewModel: MeetViewModel = {
     let viewModel = MeetViewModel()
@@ -50,7 +58,6 @@ final class MeetViewController: BaseViewController {
   }()
 
   private var data: Observable<[String]> = .just(["", "", ""])
-  var currentIndex: CGFloat = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,6 +81,7 @@ extension MeetViewController {
     }
     view.add(guideImageView)
     view.add(guideLabel)
+    view.add(pageControl)
     guideImageView.snp.makeConstraints {
       $0.leading.equalTo(view.safeAreaLayoutGuide).offset(40)
       $0.top.equalTo(view.safeAreaLayoutGuide).offset(62.9)
@@ -88,12 +96,16 @@ extension MeetViewController {
       $0.top.equalTo(guideLabel.snp.bottom).offset(31)
       $0.height.equalTo(421/812 * view.frame.height)
     }
+    pageControl.snp.makeConstraints {
+      $0.centerX.equalToSuperview()
+      $0.centerY.equalTo(collectionView.snp.bottom).offset(18)
+    }
   }
 
   func bind(reactor: MeetViewModel) {
     data.bind(to: collectionView.rx.items) { collectionView, item, model -> UICollectionViewCell in
       let indexPath = IndexPath(item: item, section: 0)
-      let cell: MeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      let cell: EmptyMeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       print(model)
       return cell
     }.disposed(by: disposeBag)
@@ -101,6 +113,14 @@ extension MeetViewController {
 }
 
 extension MeetViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let offSet = scrollView.contentOffset.x
+    let width = scrollView.frame.width
+    let horizontalCenter = width / 2
+
+    pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
+  }
+
   func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                  withVelocity velocity: CGPoint,
                                  targetContentOffset: UnsafeMutablePointer<CGPoint>) {
