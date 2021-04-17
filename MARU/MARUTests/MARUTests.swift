@@ -7,10 +7,13 @@
 
 import XCTest
 
-class MARUTests: XCTestCase {
+@testable import MARU
 
+class MARUTests: XCTestCase {
+  var testQuizViewModel = QuizViewModel()
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    testQuizViewModel = QuizViewModel()
   }
 
   override func tearDownWithError() throws {
@@ -27,6 +30,22 @@ class MARUTests: XCTestCase {
     measure {
       // Put the code you want to measure the time of here.
     }
+  }
+  func testQuiz1() {
+    let result = testQuizViewModel.checkAnswer(quizAnswer: "O", users: "X")
+    XCTAssertEqual(result, false, "incorrect")
+  }
+  func testQuiz2() {
+    let result = testQuizViewModel.checkAnswer(quizAnswer: "O", users: "O")
+    XCTAssertEqual(result, true, "Cincorrect")
+  }
+  func testQuiz3() {
+    let result = testQuizViewModel.checkAnswer(quizAnswer: "X", users: "O")
+    XCTAssertEqual(result, false, "incorrect")
+  }
+  func testQuiz4() {
+    let result = testQuizViewModel.checkAnswer(quizAnswer: "X", users: "X")
+    XCTAssertEqual(result, true, "incorrect")
   }
 
 }

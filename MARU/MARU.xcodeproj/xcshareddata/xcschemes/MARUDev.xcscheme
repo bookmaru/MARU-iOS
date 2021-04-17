@@ -22,13 +22,13 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C51CA804260D966000CE4804"
+               BlueprintIdentifier = "C55F1822260F4DD1003D99D0"
                BuildableName = "MARUTests.xctest"
                BlueprintName = "MARUTests"
                ReferencedContainer = "container:MARU.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C51CA80F260D966000CE4804"
+               BlueprintIdentifier = "C55F1812260F4DC5003D99D0"
                BuildableName = "MARUUITests.xctest"
                BlueprintName = "MARUUITests"
                ReferencedContainer = "container:MARU.xcodeproj">
