@@ -48,7 +48,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   private let leftQuoteImageView = UIImageView().then {
     $0.image = Image.leftQuotationMark
   }
-  private let contentLabel = VerticalTopAlignLabel().then {
+  private let contentLabel = VerticalAlignLabel().then {
     $0.font = RIDIBatangFont.medium.of(size: 12)
     $0.textAlignment = .center
     $0.numberOfLines = 3
@@ -218,25 +218,5 @@ extension MeetCollectionViewCell {
       $0.top.equalTo(nameLabel.snp.bottom).offset(8 / 421 * frame.height)
       $0.trailing.equalTo(chatCountContainerView.snp.leading).offset(-10)
     }
-  }
-}
-
-final class VerticalTopAlignLabel: UILabel {
-  override func drawText(in rect: CGRect) {
-    guard let labelText = text else { return super.drawText(in: rect) }
-    let attributedText = NSAttributedString(
-      string: labelText,
-      attributes: [NSAttributedString.Key.font: font!]
-    )
-    var newRect = rect
-    newRect.size.height = attributedText.boundingRect(
-      with: rect.size,
-      options: .usesLineFragmentOrigin,
-      context: nil
-    ).size.height
-    if numberOfLines != 0 {
-      newRect.size.height = min(newRect.size.height, CGFloat(numberOfLines) * font.lineHeight)
-    }
-    super.drawText(in: newRect)
   }
 }
