@@ -15,4 +15,6 @@ enum Image {
   static let loginLogo = UIImage(named: "loginLogo")
   static let bookImgBlack = UIImage(named: "bookImgBlack")
   static let bookmark = UIImage(named: "bookmark")
+  static let bookIconGray = UIImage(named: "bookIconGray")
+  static let plusIcon = UIImage(named: "plusIcon")
 }
