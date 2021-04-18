@@ -140,15 +140,15 @@ DEPENDENCIES:
   - Gedatsu
   - KakaoSDKAuth
   - KakaoSDKUser
-  - Kingfisher
+  - Kingfisher (~> 6.2.1)
   - Moya/RxSwift (~> 14.0)
-  - ReactorKit
+  - ReactorKit (~> 2.1.1)
   - RxCocoa (~> 5)
-  - RxSocket.io
+  - RxSocket.io (~> 1.0.5)
   - SnapKit (~> 5.0.0)
-  - SwiftKeychainWrapper
-  - SwiftLint
-  - Then
+  - SwiftKeychainWrapper (~> 4.0.1)
+  - SwiftLint (~> 0.43.1)
+  - Then (~> 2.7.0)
 
 SPEC REPOS:
   trunk:
@@ -219,6 +219,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: cb42abc4a4e07fe21cce0bc0dd7b713e9276e761
+PODFILE CHECKSUM: f04ecb19adaf575057378041be262cd59973b11c
 
 COCOAPODS: 1.10.1

@@ -14,15 +14,15 @@ target 'MARU' do
   pod 'Gedatsu', configuration: %w(Debug)
   pod 'KakaoSDKAuth'  # 카카오 로그인
   pod 'KakaoSDKUser'  # 사용자 관리
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 6.2.1'
   pod 'Moya/RxSwift', '~> 14.0'
-  pod 'ReactorKit'
-	pod 'RxCocoa', '~> 5'
-  pod 'RxSocket.io'
+  pod 'ReactorKit', '~> 2.1.1'
+  pod 'RxCocoa', '~> 5'
+  pod 'RxSocket.io', '~> 1.0.5'
   pod 'SnapKit', '~> 5.0.0'
-  pod 'SwiftKeychainWrapper'
-  pod 'SwiftLint'
-  pod 'Then'
+  pod 'SwiftKeychainWrapper', '~> 4.0.1'
+  pod 'SwiftLint', '~> 0.43.1'
+  pod 'Then', '~> 2.7.0'
 
   
   target 'MARUTests' do
