@@ -33,12 +33,23 @@ final class MeetViewController: BaseViewController {
     layout.minimumLineSpacing = 28
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .clear
-    collectionView.isPagingEnabled = true
+    collectionView.decelerationRate = .fast
+    collectionView.isPagingEnabled = false
+    collectionView.contentInsetAdjustmentBehavior = .never
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.register(MeetCollectionViewCell.self,
                             forCellWithReuseIdentifier: MeetCollectionViewCell.reuseIdentifier)
+    collectionView.register(EmptyMeetCollectionViewCell.self,
+                            forCellWithReuseIdentifier: EmptyMeetCollectionViewCell.reuseIdentifier)
+    collectionView.layer.masksToBounds = false
     return collectionView
   }()
+
+  private let pageControl = UIPageControl().then {
+    $0.currentPageIndicatorTintColor = .cornflowerBlue
+    $0.pageIndicatorTintColor = .veryLightPinkThree
+    $0.numberOfPages = 3
+  }
 
   private let viewModel: MeetViewModel = {
     let viewModel = MeetViewModel()
@@ -46,8 +57,7 @@ final class MeetViewController: BaseViewController {
     return viewModel
   }()
 
-  private var data: Observable<[String]> = .just(["", "", "", "", "", "", ""])
-  var currentIndex: CGFloat = 0
+  private var data: Observable<[String]> = .just(["", "", ""])
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -71,6 +81,7 @@ extension MeetViewController {
     }
     view.add(guideImageView)
     view.add(guideLabel)
+    view.add(pageControl)
     guideImageView.snp.makeConstraints {
       $0.leading.equalTo(view.safeAreaLayoutGuide).offset(40)
       $0.top.equalTo(view.safeAreaLayoutGuide).offset(62.9)
@@ -80,57 +91,47 @@ extension MeetViewController {
       $0.leading.equalToSuperview().offset(40)
       $0.top.equalTo(guideImageView.snp.bottom).offset(14)
     }
-
     collectionView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(guideLabel.snp.bottom).offset(31)
-      $0.height.equalTo(421)
+      $0.height.equalTo(421/812 * view.frame.height)
     }
-
+    pageControl.snp.makeConstraints {
+      $0.centerX.equalToSuperview()
+      $0.centerY.equalTo(collectionView.snp.bottom).offset(18)
+    }
   }
 
   func bind(reactor: MeetViewModel) {
-    data.bind(
-      to: collectionView.rx.items(cellIdentifier: "MeetCollectionViewCell"
-      )) { _, _, cell in
-      cell.backgroundColor = .blue
+    data.bind(to: collectionView.rx.items) { collectionView, item, model -> UICollectionViewCell in
+      let indexPath = IndexPath(item: item, section: 0)
+      let cell: EmptyMeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      print(model)
+      return cell
     }.disposed(by: disposeBag)
   }
 }
 
 extension MeetViewController: UIScrollViewDelegate {
-//  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-//                                 withVelocity velocity: CGPoint,
-//                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//
-//    guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-//    else { return }
-//
-//    let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-//    var offset = targetContentOffset.pointee
-//    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-//    var roundedIndex = round(index)
-//
-//    if scrollView.contentOffset.x > targetContentOffset.pointee.x {
-//      roundedIndex = floor(index)
-//    } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
-//      roundedIndex = ceil(index)
-//    } else {
-//      roundedIndex = round(index)
-//    }
-//
-//    if currentIndex > roundedIndex {
-//      currentIndex -= 1
-//      roundedIndex = currentIndex
-//    } else if currentIndex < roundedIndex {
-//      currentIndex += 1
-//      roundedIndex = currentIndex
-//    }
-//    offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left,
-//                     y: -scrollView.contentInset.top)
-//    targetContentOffset.pointee = offset
-//
-//  }
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let offSet = scrollView.contentOffset.x
+    let width = scrollView.frame.width
+    let horizontalCenter = width / 2
+
+    pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
+  }
+
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                 withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let cellWidthIncludeSpacing = view.frame.width - 54
+    var offset = targetContentOffset.pointee
+    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludeSpacing
+    let roundedIndex: CGFloat = round(index)
+    offset = CGPoint(x: roundedIndex * cellWidthIncludeSpacing - scrollView.contentInset.left,
+                     y: scrollView.contentInset.top)
+    targetContentOffset.pointee = offset
+  }
 }
 
 extension MeetViewController: UICollectionViewDelegateFlowLayout {
@@ -138,5 +139,13 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width - 82, height: collectionView.frame.height)
+  }
+}
+
+extension UIViewController {
+  func create<T>(_ setup: ((T) -> Void)) -> T where T: NSObject {
+    let obj = T()
+    setup(obj)
+    return obj
   }
 }
