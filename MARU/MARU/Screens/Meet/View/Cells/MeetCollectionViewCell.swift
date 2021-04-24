@@ -15,7 +15,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.image = UIImage()
   }
   private let gradientImageView = UIImageView().then {
-    $0.image = Image.meetGradient
+    $0.image = Image.gradientImage
   }
   private let bookTitleLabel = UILabel().then {
     $0.text = "제목"
@@ -46,7 +46,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.applyShadow(color: .black, alpha: 0.16, shadowX: 0, shadowY: 0, blur: 10)
   }
   private let leftQuoteImageView = UIImageView().then {
-    $0.image = Image.leftQuotationMark
+    $0.image = Image.quotationMarkLeft
   }
   private let contentLabel = VerticalAlignLabel().then {
     $0.font = RIDIBatangFont.medium.of(size: 12)
@@ -59,7 +59,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     """
   }
   private let rightQuoteImageView = UIImageView().then {
-    $0.image = Image.rightQuotationMark
+    $0.image = Image.quotationMarkRight
   }
   private let splitView = UIView().then {
     $0.backgroundColor = UIColor.brownishGrey.withAlphaComponent(0.11)
