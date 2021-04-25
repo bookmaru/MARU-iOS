@@ -70,6 +70,7 @@ final class MeetViewController: BaseViewController {
     super.viewWillAppear(animated)
 
     navigationController?.navigationBar.isHidden = true
+    tabBarController?.tabBar.isHidden = false
   }
 }
 
@@ -109,6 +110,14 @@ extension MeetViewController {
       print(model)
       return cell
     }.disposed(by: disposeBag)
+
+    collectionView.rx
+      .itemSelected
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        let viewController = ChatViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+      }).disposed(by: disposeBag)
   }
 }
 

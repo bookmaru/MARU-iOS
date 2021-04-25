@@ -25,6 +25,7 @@
 		C5332AD7260F5197007D7797 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332AD6260F5197007D7797 /* Model.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
+		C544282B2635ACBB00826E4F /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */; };
 		C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */; };
 		C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C55F1523260F3B74003D99D0 /* .swiftlint.yml */; };
 		C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */; };
@@ -95,6 +96,7 @@
 		C5332AD6260F5197007D7797 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C55F1523260F3B74003D99D0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
@@ -366,9 +368,18 @@
 		C5436FB1262F1FF100C2E1D3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C54428292635ACAA00826E4F /* Cell */,
 				C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C54428292635ACAA00826E4F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C55F152E260F3E62003D99D0 /* DevConfig */ = {
@@ -782,6 +793,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C544282B2635ACBB00826E4F /* ChatCollectionViewCell.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
