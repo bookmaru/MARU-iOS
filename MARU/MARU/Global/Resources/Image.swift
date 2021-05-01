@@ -9,12 +9,12 @@ import UIKit
 
 enum Image {
   static let appIcon = UIImage(named: "AppIcon")
-  static let bl = UIImage(named: "bl")
   static let blueO = UIImage(named: "blueO")
+  static let blueQuotationleft = UIImage(named: "blueQuotationleft")
+  static let blueQuotationRight = UIImage(named: "blueQuotationRight")
   static let bookIconGray = UIImage(named: "bookIconGray")
   static let bookImgBlack = UIImage(named: "bookImgBlack")
   static let bookmark = UIImage(named: "bookmark")
-  static let br = UIImage(named: "br")
   static let checkgray = UIImage(named: "checkgray")
   static let correct = UIImage(named: "correct")
   static let correctWhite = UIImage(named: "correctWhite")
