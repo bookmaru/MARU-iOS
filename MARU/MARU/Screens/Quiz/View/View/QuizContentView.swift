@@ -36,16 +36,13 @@ final class QuizContentView: UIView {
   private let timerLabel = UILabel().then {
     $0.textAlignment = .center
     $0.font = UIFont.systemFont(ofSize: 13)
+    $0.text = "30"
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    applyShadow(color: UIColor(red: 0, green: 0, blue: 0),
-                     alpha: 0.1607843137254902,
-                     shadowX: 0,
-                     shadowY: 0,
-                     blur: 6)
     applyConstraints()
+    applyQuizViewShadow()
 
   }
 
