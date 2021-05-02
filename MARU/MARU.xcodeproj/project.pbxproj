@@ -47,6 +47,7 @@
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
+		C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED5ADB263E73C100BA7D47 /* InputView.swift */; };
 		E22306EB262AC6E400B25CEA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EA262AC6E400B25CEA /* Image.swift */; };
 		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
@@ -122,6 +123,7 @@
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
 		C5ED1D8026188A2900F670EC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		C5ED5ADB263E73C100BA7D47 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		E22306EA262AC6E400B25CEA /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */,
+				C5ED5ADB263E73C100BA7D47 /* InputView.swift */,
 			);
 			path = CutsomUtil;
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
+				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
