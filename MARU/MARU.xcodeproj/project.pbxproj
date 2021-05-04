@@ -11,6 +11,10 @@
 		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
+		776AF4F02641A7060020D2D8 /* MainViewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4EF2641A7060020D2D8 /* MainViewCollectionView.swift */; };
+		776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */; };
+		776AF4F62641BADF0020D2D8 /* NewMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */; };
+		776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
@@ -75,6 +79,10 @@
 		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77569B6E2620CE20008BF77B /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		776AF4EF2641A7060020D2D8 /* MainViewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCollectionView.swift; sourceTree = "<group>"; };
+		776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruSearchView.swift; sourceTree = "<group>"; };
+		776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingCell.swift; sourceTree = "<group>"; };
+		776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCell.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +190,32 @@
 				77569B742620CE6C008BF77B /* QuizModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		776AF4EE2641A69F0020D2D8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				776AF4F42641BABA0020D2D8 /* Cells */,
+				776AF4EF2641A7060020D2D8 /* MainViewCollectionView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		776AF4F12641B0620020D2D8 /* CommonComponent */ = {
+			isa = PBXGroup;
+			children = (
+				776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */,
+			);
+			path = CommonComponent;
+			sourceTree = "<group>";
+		};
+		776AF4F42641BABA0020D2D8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */,
+				776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		77E150FC262328B5007BEBBF /* View */ = {
@@ -419,6 +453,7 @@
 		C5DB34DA260F256A00F29FE1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				776AF4F12641B0620020D2D8 /* CommonComponent */,
 				77569B642620CDE5008BF77B /* Quiz */,
 				C5ED1D722618899700F670EC /* Library */,
 				C5ED1D712618898900F670EC /* Meet */,
@@ -483,6 +518,7 @@
 		C5ED1D75261889A100F670EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				776AF4EE2641A69F0020D2D8 /* Component */,
 				C5ED1D76261889AC00F670EC /* MainViewController.swift */,
 			);
 			path = View;
@@ -756,8 +792,10 @@
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
+				776AF4F62641BADF0020D2D8 /* NewMeetingCell.swift in Sources */,
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
+				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
@@ -765,6 +803,7 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
+				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
@@ -782,6 +821,7 @@
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
+				776AF4F02641A7060020D2D8 /* MainViewCollectionView.swift in Sources */,
 				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,10 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import RxRelay
+
 final class QuizViewController: UIViewController {
   lazy var quizContentView = QuizContentView().then { _ in
   }
@@ -39,25 +43,28 @@ final class QuizViewController: UIViewController {
     $0.image = UIImage(named: "gray")
     $0.contentMode = .center
   }
-  let screenSize = UIScreen.main.bounds.size
-
+  private let screenSize = UIScreen.main.bounds.size
+  let bag = DisposeBag()
+  private let viewModel = QuizViewModel()
+  private let didTapButton = PublishSubject<Void>()
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     applyLayout()
+    bind()
   }
 
 }
 
 extension QuizViewController {
   private func applyLayout() {
-    self.view.adds([
+    view.adds([
       contentBackgroudView,
       quizContentView,
       correctButton,
       incorrectButton
     ])
-    self.view.adds([
+    view.adds([
       quizFirstCheckImageView,
       quizSecondCheckImageView,
       quizThirdCheckImageView,
@@ -117,5 +124,11 @@ extension QuizViewController {
   }
   // MARK: - 5월 3일 할 일
   private func bind() {
+    let didTapYesButton = correctButton.rx.tap.map { true }.asObservable()
+    let didTapNoButton = incorrectButton.rx.tap.map { false }.asObservable()
+    let output = viewModel.transform(input: .init(didTapYesButton: didTapYesButton, didTapNoButton: didTapNoButton))
+    output.result.drive(onNext: { result in
+      print("result \(result)")
+    }).disposed(by: bag)
   }
 }
