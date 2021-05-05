@@ -21,6 +21,8 @@
 		C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FB260D966000CE4804 /* Assets.xcassets */; };
 		C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */; };
 		C52E782A260F277F0087570E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7829260F277F0087570E /* BaseViewController.swift */; };
+		C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */; };
+		C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */; };
 		C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332ACA260F50EC007D7797 /* KeychainHandler.swift */; };
 		C5332AD7260F5197007D7797 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332AD6260F5197007D7797 /* Model.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
@@ -93,6 +95,8 @@
 		C51CA7FE260D966000CE4804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C51CA800260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C52E7829260F277F0087570E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5332ACA260F50EC007D7797 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C5332AD6260F5197007D7797 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 			isa = PBXGroup;
 			children = (
 				C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */,
+				C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */,
+				C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -809,6 +815,7 @@
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
+				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
@@ -821,6 +828,7 @@
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
