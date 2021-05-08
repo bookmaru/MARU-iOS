@@ -68,7 +68,16 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: 100)
+    let chatText = ""
+    let size = CGSize(width: 0, height: 0)
+    let option  = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    let estimatedFrame = NSString(string: chatText)
+      .boundingRect(with: size,
+                    options: option,
+                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
+                    context: nil)
+
+    return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
   }
 }
 
@@ -80,7 +89,7 @@ extension ChatViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: ChatCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.backgroundColor = UIColor.red.withAlphaComponent(0.3)
     if indexPath.item % 2 == 0 {
       cell.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
