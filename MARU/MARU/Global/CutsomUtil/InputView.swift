@@ -15,9 +15,11 @@ final class InputView: UIView {
 
   fileprivate let textView = UITextView().then {
     $0.font = UIFont.systemFont(ofSize: 16)
+    $0.layer.cornerRadius = 10
   }
+
   fileprivate let sendButton = UIButton().then {
-    $0.setImage(Image.blueO, for: .normal)
+    $0.setImage(Image.chatBtnSend, for: .normal)
     $0.layer.cornerRadius = 6
   }
 
@@ -34,16 +36,17 @@ final class InputView: UIView {
 
 extension InputView {
   private func layout() {
+    backgroundColor = .veryLightPinkThree
     add(textView) {
       $0.snp.makeConstraints {
-        $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 30))
+        $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 34))
       }
     }
     add(sendButton) {
       $0.snp.makeConstraints {
         $0.leading.equalTo(self.textView.snp.trailing).offset(4)
         $0.top.bottom.equalTo(self.textView)
-        $0.trailing.equalTo(self).offset(4)
+        $0.trailing.equalTo(self).offset(-4)
       }
     }
   }
