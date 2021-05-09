@@ -16,6 +16,7 @@ enum Image {
   static let bookImgBlack = UIImage(named: "bookImgBlack")
   static let bookmark = UIImage(named: "bookmark")
   static let checkgray = UIImage(named: "checkgray")
+  static let chatBtnSend = UIImage(named: "chatBtnSend")
   static let correct = UIImage(named: "correct")
   static let correctWhite = UIImage(named: "correctWhite")
   static let gradientImage = UIImage(named: "gradientImage")
