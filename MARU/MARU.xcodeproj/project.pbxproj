@@ -27,7 +27,6 @@
 		C5332AD7260F5197007D7797 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332AD6260F5197007D7797 /* Model.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
-		C544282B2635ACBB00826E4F /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */; };
 		C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */; };
 		C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C55F1523260F3B74003D99D0 /* .swiftlint.yml */; };
 		C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */; };
@@ -46,6 +45,7 @@
 		C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1825260F4DD1003D99D0 /* MARUTests.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
+		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
@@ -103,7 +103,6 @@
 		C5332AD6260F5197007D7797 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
-		C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C55F1523260F3B74003D99D0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		C55F1827260F4DD1003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +265,7 @@
 		C51CA7F1260D964E00CE4804 /* MARU */ = {
 			isa = PBXGroup;
 			children = (
+				C58F6A522646E9C600D8AA7C /* Network */,
 				C52E781C260F27110087570E /* Global */,
 				C5DB34DA260F256A00F29FE1 /* Screens */,
 			);
@@ -387,7 +388,6 @@
 		C54428292635ACAA00826E4F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				C544282A2635ACBB00826E4F /* ChatCollectionViewCell.swift */,
 				C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */,
 				C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */,
 			);
@@ -458,6 +458,14 @@
 				C55F1827260F4DD1003D99D0 /* Info.plist */,
 			);
 			path = MARUTests;
+			sourceTree = "<group>";
+		};
+		C58F6A522646E9C600D8AA7C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C58F6A532646E9D600D8AA7C /* NetworkService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		C5DB34D7260F255600F29FE1 /* Config */ = {
@@ -808,7 +816,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C544282B2635ACBB00826E4F /* ChatCollectionViewCell.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
@@ -818,6 +825,7 @@
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
+				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
