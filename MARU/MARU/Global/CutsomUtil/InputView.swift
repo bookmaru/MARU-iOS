@@ -23,30 +23,44 @@ final class InputView: UIView {
     $0.layer.cornerRadius = 6
   }
 
+  let disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     layout()
+    bindTextView()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
+  private func bindTextView() {
+    textView.rx.text.asDriver()
+      .drive(onNext: { [weak self] text in
+        guard let self = self, let text = text else { return }
+        let detectSpaceBar = text.split(separator: " ").count
+        self.sendButton.isEnabled = !text.isEmpty && detectSpaceBar != 0
+      }).disposed(by: disposeBag)
+  }
 }
 
 extension InputView {
   private func layout() {
     backgroundColor = .veryLightPinkThree
-    add(textView) {
-      $0.snp.makeConstraints {
-        $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 34))
-      }
-    }
     add(sendButton) {
       $0.snp.makeConstraints {
-        $0.leading.equalTo(self.textView.snp.trailing).offset(4)
-        $0.top.bottom.equalTo(self.textView)
-        $0.trailing.equalTo(self).offset(-4)
+        $0.width.height.equalTo(self.snp.height).offset(-2)
+        $0.bottom.equalToSuperview().inset(2)
+        $0.trailing.equalTo(self).offset(-2)
+      }
+    }
+    add(textView) {
+      $0.snp.makeConstraints {
+        $0.top.equalToSuperview().inset(6)
+        $0.leading.equalToSuperview().inset(10)
+        $0.trailing.equalTo(self.sendButton.snp.leading).inset(4)
+        $0.bottom.equalToSuperview().inset(6)
       }
     }
   }

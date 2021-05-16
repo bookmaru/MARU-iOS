@@ -61,7 +61,7 @@ extension ChatViewController {
     bindKeyboardNotification()
     bottomView.rx.didTapSendButton.subscribe(onNext: { text in
       print(text)
-    }).disposed(by: disposeBag)
+    }).disposed(by: bottomView.disposeBag)
   }
 }
 
