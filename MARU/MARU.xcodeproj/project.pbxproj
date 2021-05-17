@@ -3,16 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */; };
+		2CE0A62876F23AECD5BE1B9B /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC401AC1BEBE5725A47C61A /* Pods_MARU.framework */; };
 		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
+		A39AEBE417D9CC3EF29EAC79 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F46A8F737855B0AFF23022C /* Pods_MARUTests.framework */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
@@ -51,7 +52,9 @@
 		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
-		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
+		F2B39F9C263FFBA2003CDD84 /* MeetEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B39F9B263FFBA2003CDD84 /* MeetEntryModel.swift */; };
+		F2B39F9E26401D09003CDD84 /* MeetEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B39F9D26401D09003CDD84 /* MeetEntryViewController.swift */; };
+		F2B39FA126401EF5003CDD84 /* MeetEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B39FA026401EF5003CDD84 /* MeetEntryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,16 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
-		2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3081C10791665D4343CDCCC5 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
+		3F46A8F737855B0AFF23022C /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		658DF5689BAD3E5CD6B2C4E5 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
+		6AAC1E5BF6F08EDEA64E71FB /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6EC401AC1BEBE5725A47C61A /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77569B6E2620CE20008BF77B /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
-		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
-		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
+		BA89D8C015D14DF5DE169146 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,9 @@
 		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
+		F2B39F9B263FFBA2003CDD84 /* MeetEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetEntryModel.swift; sourceTree = "<group>"; };
+		F2B39F9D26401D09003CDD84 /* MeetEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetEntryViewController.swift; sourceTree = "<group>"; };
+		F2B39FA026401EF5003CDD84 /* MeetEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetEntryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */,
+				2CE0A62876F23AECD5BE1B9B /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,18 +154,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */,
+				A39AEBE417D9CC3EF29EAC79 /* Pods_MARUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46A4EB115B468DFC6C890F0D /* Frameworks */ = {
+		0A832423036996BB58AC6D81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */,
-				2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */,
+				6EC401AC1BEBE5725A47C61A /* Pods_MARU.framework */,
+				3F46A8F737855B0AFF23022C /* Pods_MARUTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,10 +216,10 @@
 		8DCB7E7F0E109E2724345950 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */,
-				922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */,
-				036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */,
-				1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */,
+				658DF5689BAD3E5CD6B2C4E5 /* Pods-MARU.debug.xcconfig */,
+				3081C10791665D4343CDCCC5 /* Pods-MARU.release.xcconfig */,
+				6AAC1E5BF6F08EDEA64E71FB /* Pods-MARUTests.debug.xcconfig */,
+				BA89D8C015D14DF5DE169146 /* Pods-MARUTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -236,7 +242,7 @@
 				C55F1814260F4DC5003D99D0 /* MARUUITests */,
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
-				46A4EB115B468DFC6C890F0D /* Frameworks */,
+				0A832423036996BB58AC6D81 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E6E787261B33F000500370 /* MeetViewModel.swift */,
+				F2B39FA026401EF5003CDD84 /* MeetEntryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -490,6 +497,7 @@
 		C5ED1D712618898900F670EC /* Meet */ = {
 			isa = PBXGroup;
 			children = (
+				F2B39F9F26401E94003CDD84 /* Model */,
 				C5E6E786261B33E300500370 /* ViewModel */,
 				C5ED1D742618899F00F670EC /* View */,
 			);
@@ -517,6 +525,7 @@
 			children = (
 				C510367626201B3900285A44 /* Cells */,
 				C5ED1D7B261889C000F670EC /* MeetViewController.swift */,
+				F2B39F9D26401D09003CDD84 /* MeetEntryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,6 +546,14 @@
 			path = CutsomUtil;
 			sourceTree = "<group>";
 		};
+		F2B39F9F26401E94003CDD84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2B39F9B263FFBA2003CDD84 /* MeetEntryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -544,13 +561,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C51CA819260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARU" */;
 			buildPhases = (
-				F8F223090045B5CCED54D5D4 /* [CP] Check Pods Manifest.lock */,
+				9491B1A1D2367C463B7A2CB8 /* [CP] Check Pods Manifest.lock */,
 				C51CA7EB260D964E00CE4804 /* Sources */,
 				C51CA7EC260D964E00CE4804 /* Frameworks */,
 				C51CA7ED260D964E00CE4804 /* Resources */,
 				C55F1526260F3BA9003D99D0 /* Lint Script */,
 				C55F1528260F3C12003D99D0 /* Firebase crashlytics */,
-				B9030BC511B36BF963278358 /* [CP] Embed Pods Frameworks */,
+				41D197C884DFBE962B91F1D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -583,11 +600,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55F182A260F4DD1003D99D0 /* Build configuration list for PBXNativeTarget "MARUTests" */;
 			buildPhases = (
-				1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */,
+				D6C6E6045A76186CB59DDB5B /* [CP] Check Pods Manifest.lock */,
 				C55F181F260F4DD1003D99D0 /* Sources */,
 				C55F1820260F4DD1003D99D0 /* Frameworks */,
 				C55F1821260F4DD1003D99D0 /* Resources */,
-				17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */,
+				827B95D8B4D9923B827C9790 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -672,7 +689,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */ = {
+		41D197C884DFBE962B91F1D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		827B95D8B4D9923B827C9790 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -689,7 +723,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */ = {
+		9491B1A1D2367C463B7A2CB8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -704,28 +738,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MARUTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MARU-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B9030BC511B36BF963278358 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C55F1526260F3BA9003D99D0 /* Lint Script */ = {
@@ -764,7 +781,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\nfi\n";
 		};
-		F8F223090045B5CCED54D5D4 /* [CP] Check Pods Manifest.lock */ = {
+		D6C6E6045A76186CB59DDB5B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -779,7 +796,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MARU-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MARUTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -801,11 +818,13 @@
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
+				F2B39F9E26401D09003CDD84 /* MeetEntryViewController.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
+				F2B39FA126401EF5003CDD84 /* MeetEntryViewModel.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
@@ -817,6 +836,7 @@
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				F2B39F9C263FFBA2003CDD84 /* MeetEntryModel.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
@@ -993,7 +1013,7 @@
 		};
 		C51CA81A260D966000CE4804 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */;
+			baseConfigurationReference = 658DF5689BAD3E5CD6B2C4E5 /* Pods-MARU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1023,7 +1043,7 @@
 		};
 		C51CA81B260D966000CE4804 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */;
+			baseConfigurationReference = 3081C10791665D4343CDCCC5 /* Pods-MARU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1092,7 +1112,7 @@
 		};
 		C55F182B260F4DD1003D99D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */;
+			baseConfigurationReference = 6AAC1E5BF6F08EDEA64E71FB /* Pods-MARUTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1114,7 +1134,7 @@
 		};
 		C55F182C260F4DD1003D99D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */;
+			baseConfigurationReference = BA89D8C015D14DF5DE169146 /* Pods-MARUTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
