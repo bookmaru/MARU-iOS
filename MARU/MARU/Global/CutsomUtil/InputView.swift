@@ -23,7 +23,7 @@ final class InputView: UIView {
     $0.layer.cornerRadius = 6
   }
 
-  let disposeBag = DisposeBag()
+  private let disposeBag = DisposeBag()
 
   override init(frame: CGRect) {
     super.init(frame: frame)
