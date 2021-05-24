@@ -10,17 +10,17 @@ import UIKit
 final class MainHeaderCell: UICollectionViewCell {
   static let identifier = "MainHeaderView"
 
-  let backImageView = UIImageView().then {
+  private let backImageView = UIImageView().then {
     $0.image = Image.picture
   }
-  let backImageViewScrim = UIView().then {
+  private let backImageViewScrim = UIView().then {
       $0.backgroundColor = UIColor.blackTwo
       $0.alpha = 0.5
   }
-  let bookLogoImageView = UIImageView().then {
+  private let bookLogoImageView = UIImageView().then {
     $0.image = Image.mainIcBook
   }
-  let commentLabel = UILabel().then {
+  private let commentLabel = UILabel().then {
       $0.numberOfLines = 2
       $0.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)
       $0.textColor = .white
@@ -28,11 +28,11 @@ final class MainHeaderCell: UICollectionViewCell {
   }
   lazy var searchBar = MaruSearchView(width: screenSize.width * 0.915,
                                       height: 38)
-  let mypageButton = UIButton().then {
+  private let mypageButton = UIButton().then {
     $0.setImage(Image.mainBtnMy, for: .normal)
   }
 
-  let screenSize = UIScreen.main.bounds.size
+  private let screenSize = UIScreen.main.bounds.size
 
   override init(frame: CGRect) {
     super.init(frame: frame)

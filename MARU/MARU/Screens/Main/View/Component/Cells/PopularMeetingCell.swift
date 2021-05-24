@@ -10,14 +10,14 @@ import RxSwift
 
 final class PopularMeetingCell: UICollectionViewCell {
   static let identifier = "PopularMeetingCell"
-  let bookImageView = UIImageView().then {
-      $0.backgroundColor = .yellow
+  private let bookImageView = UIImageView().then {
+      $0.backgroundColor = .gray
   }
-  var bookTitleLabel = UILabel().then {
+  private let bookTitleLabel = UILabel().then {
       $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.bold)
       $0.text = "gihi"
   }
-  let bookAuthorLabel = UILabel().then {
+  private let bookAuthorLabel = UILabel().then {
       $0.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.medium)
       $0.text = "이이이리리리"
   }

@@ -11,51 +11,51 @@ final class NewMeetingCell: UICollectionViewCell {
   // MARK: - UIComponent
   static let identifier = "NewMeetingCell"
 
-  let shadowView = UIView().then {
+  private let shadowView = UIView().then {
       $0.backgroundColor = .white
   }
 
-  let bookImageView = UIImageView().then {
-      $0.backgroundColor = .red
+  private let bookImageView = UIImageView().then {
+      $0.backgroundColor = .gray
   }
 
-  let bookTitleLabel = UILabel().then {
+  private let bookTitleLabel = UILabel().then {
       $0.text = "test1"
       $0.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.semibold)
       $0.textAlignment = .left
       $0.sizeToFit()
   }
 
-  let bookAuthorLabel = UILabel().then {
+  private let bookAuthorLabel = UILabel().then {
     $0.text = "test2"
     $0.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light)
     $0.textAlignment = .left
 
   }
 
-  let bookMeetingChiefLabel = UILabel().then {
+  private let bookMeetingChiefLabel = UILabel().then {
     $0.text = "test3"
     $0.textColor = .cornflowerBlue
     $0.textAlignment = .right
     $0.sizeToFit()
   }
 
-  let explainBox = UILabel().then {
+  private let explainBox = UILabel().then {
     $0.backgroundColor = .white
   }
 
-  let bookMeetingExplainementLabel = UILabel().then {
+  private let bookMeetingExplainementLabel = UILabel().then {
     $0.text = "test5"
     $0.textAlignment = .center
     $0.textColor = UIColor.black
     $0.numberOfLines = 3
   }
 
-  let leftQuotataionMarkImage = UIImageView().then {
+  private let leftQuotataionMarkImage = UIImageView().then {
     $0.image = UIImage(named: "qmarkLeft")
   }
 
-  let rightQuotataionMarkImage = UIImageView().then {
+  private let rightQuotataionMarkImage = UIImageView().then {
     $0.image = UIImage(named: "qmarkRight")
   }
 

@@ -12,7 +12,7 @@ import RxCocoa
 
 final class MainViewController: BaseViewController {
 
-  let mainCollectionView = MainViewCollectionView().then {
+  private let mainCollectionView = MainViewCollectionView().then {
     $0.backgroundColor = .white
     // Header
     $0.register(MainHeaderCell.self,
@@ -26,8 +26,8 @@ final class MainViewController: BaseViewController {
   // MARK: - Variable & Properties
 
   let screenSize = UIScreen.main.bounds.size
-  let style: UIStatusBarStyle = .lightContent
-  let bag = DisposeBag()
+  private let style: UIStatusBarStyle = .lightContent
+//  private let bag = DisposeBag()
 //  let viewModel = MainViewModel()
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -95,7 +95,6 @@ extension MainViewController: UICollectionViewDataSource {
               mainCollectionView.dequeueReusableCell(withReuseIdentifier: PopularMeetingCell.reuseIdentifier,
                                          for: indexPath) as? PopularMeetingCell else {
         return UICollectionViewCell() }
-      cell.backgroundColor = .red
       return cell
 
     case 2:
@@ -103,7 +102,6 @@ extension MainViewController: UICollectionViewDataSource {
               mainCollectionView.dequeueReusableCell(withReuseIdentifier: NewMeetingCell.reuseIdentifier,
                                                      for: indexPath) as? NewMeetingCell else {
         return UICollectionViewCell() }
-      cell.backgroundColor = .blue
       return cell
 
     default:
