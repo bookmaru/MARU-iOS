@@ -10,11 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SearchTextFieldDelegate {
+protocol SearchTextFieldDelegate: AnyObject {
   func enterTextField()
 }
 
-class MaruSearchView: UIView {
+final class MaruSearchView: UIView {
 
   let searchImage = UIImageView().then {
     $0.image = Image.mainIcSearch
@@ -29,7 +29,7 @@ class MaruSearchView: UIView {
   }
   var width: CGFloat
   var height: CGFloat
-  var delegate: SearchTextFieldDelegate?
+  weak var delegate: SearchTextFieldDelegate?
 
   init(width: CGFloat, height: CGFloat) {
     self.width = width
@@ -81,6 +81,6 @@ extension MaruSearchView {
     self.layer.shouldRasterize = true
   }
 }
-extension MaruSearchView: UITextFieldDelegate,SearchTextFieldDelegate  {
+extension MaruSearchView: UITextFieldDelegate, SearchTextFieldDelegate {
   func enterTextField() {}
   }
