@@ -51,7 +51,7 @@ final class MainViewCollectionView: UICollectionView {
   }
 
   static func generateSecondSection() -> NSCollectionLayoutSection {
-    let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(81),
+    let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(95),
                                           heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(8),
@@ -60,7 +60,7 @@ final class MainViewCollectionView: UICollectionView {
                                                      bottom: nil)
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                           heightDimension: .estimated(170))
+                                           heightDimension: .estimated(180))
 
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
@@ -81,7 +81,7 @@ final class MainViewCollectionView: UICollectionView {
                                                      bottom: nil)
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                           heightDimension: .absolute(110))
+                                           heightDimension: .absolute(142))
 
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
