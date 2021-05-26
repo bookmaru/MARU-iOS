@@ -8,7 +8,6 @@
 import UIKit
 
 final class MainHeaderCell: UICollectionViewCell {
-  static let identifier = "MainHeaderView"
 
   private let backImageView = UIImageView().then {
     $0.image = Image.picture
@@ -45,11 +44,11 @@ final class MainHeaderCell: UICollectionViewCell {
 
   private func applyLayout() {
     contentView.add(backImageView)
-    backImageView.add(backImageViewScrim)
-    backImageView.adds([mypageButton,
+    backImageView.adds([
+                        backImageViewScrim,
+                        mypageButton,
                         bookLogoImageView,
-                        commentLabel
-                        ])
+                        commentLabel])
     add(searchBar)
 
     backImageView.snp.makeConstraints { make in
@@ -82,7 +81,7 @@ final class MainHeaderCell: UICollectionViewCell {
     }
     searchBar.snp.makeConstraints { (make) in
       make.top.equalTo(commentLabel.snp.bottom).inset(-15)
-      make.leading.equalTo(self.snp.leading).inset(16)
+      make.leading.equalToSuperview().inset(16)
     }
   }
 

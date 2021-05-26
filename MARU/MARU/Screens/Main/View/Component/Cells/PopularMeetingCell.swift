@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 final class PopularMeetingCell: UICollectionViewCell {
-  static let identifier = "PopularMeetingCell"
   private let bookImageView = UIImageView().then {
       $0.backgroundColor = .gray
   }

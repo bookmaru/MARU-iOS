@@ -68,17 +68,16 @@ final class MaruSearchView: UIView {
 extension MaruSearchView {
 
   private func applyProperty() {
+    applyShadow(color: .black,
+                alpha: 0.1,
+                shadowX: 0,
+                shadowY: 0,
+                blur: 15/2)
+
     self.backgroundColor = .white
     self.layer.borderWidth = 1
     self.layer.cornerRadius = 8
     self.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-    self.layer.masksToBounds = true
-    self.layer.shadowColor = UIColor.black.cgColor
-    self.layer.shadowOffset = .zero
-    self.layer.shadowRadius = 15/2
-    self.layer.shadowOpacity = 1
-    self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-    self.layer.shouldRasterize = true
   }
 }
 extension MaruSearchView: UITextFieldDelegate, SearchTextFieldDelegate {

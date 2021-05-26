@@ -72,9 +72,6 @@ extension QuizViewController {
       quizFifthCheckImageView
     ])
 
-    contentBackgroudView.applyQuizViewShadow()
-    quizContentView.applyQuizViewShadow()
-
     correctButton.snp.makeConstraints { (make) in
       make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
       make.leading.equalTo(view.safeAreaLayoutGuide).inset(78)

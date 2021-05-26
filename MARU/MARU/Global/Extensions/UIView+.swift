@@ -40,16 +40,4 @@ extension UIView {
                       shadowY: shadowY,
                       blur: blur)
   }
-  func applyQuizViewShadow() {
-    self.backgroundColor = .white
-    self.layer.borderWidth = 0.5
-    self.layer.cornerRadius = 5
-    self.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-    self.layer.masksToBounds = false
-    self.layer.shadowColor = UIColor.black.cgColor
-    self.layer.shadowOffset = .zero
-    self.layer.shadowRadius = 1.5
-    self.layer.shadowOpacity = 0.2
-    self.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
-  }
 }

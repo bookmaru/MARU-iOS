@@ -9,7 +9,6 @@ import UIKit
 
 final class NewMeetingCell: UICollectionViewCell {
   // MARK: - UIComponent
-  static let identifier = "NewMeetingCell"
 
   private let shadowView = UIView().then {
       $0.backgroundColor = .white

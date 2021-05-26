@@ -42,7 +42,6 @@ final class QuizContentView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyConstraints()
-    applyQuizViewShadow()
 
   }
 
