@@ -41,8 +41,6 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.textColor = .cornflowerBlue
     $0.textAlignment = .right
     $0.font = .systemFont(ofSize: 10, weight: .bold)
-//    $0.adjustsFontSizeToFitWidth = true
-//    $0.sizeToFit()
   }
 
   private let explainBox = UILabel().then {
@@ -57,11 +55,11 @@ final class NewMeetingCell: UICollectionViewCell {
   }
 
   private let leftQuotataionMarkImage = UIImageView().then {
-    $0.image = UIImage(named: "qmarkLeft")
+    $0.image = Image.blueQuotationleft
   }
 
   private let rightQuotataionMarkImage = UIImageView().then {
-    $0.image = UIImage(named: "qmarkRight")
+    $0.image = Image.blueQuotationRight
   }
   private let remainPeriod = UILabel().then {
     $0.text = "test6"

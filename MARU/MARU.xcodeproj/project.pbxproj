@@ -926,11 +926,8 @@
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
-<<<<<<< HEAD
 				7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */,
-=======
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
->>>>>>> 3327b03791bd6d1f9e81836cedfa7ed07e036f47
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,

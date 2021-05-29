@@ -43,6 +43,10 @@ final class MainViewController: BaseViewController {
     mainCollectionView.dataSource = self
     applyLayout()
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: true)
+  }
 }
 
 extension MainViewController {
@@ -73,7 +77,7 @@ extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
 extension MainViewController: ButtonDelegate {
   func tapButton() {
     let target = MorePopularViewController()
-    self.present(target, animated: true, completion: nil)
+    self.navigationController?.pushViewController(target, animated: true)
   }
 }
 
