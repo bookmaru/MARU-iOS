@@ -9,7 +9,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import RxRelay
 
 final class QuizViewController: UIViewController {
   lazy var quizContentView = QuizContentView().then { _ in

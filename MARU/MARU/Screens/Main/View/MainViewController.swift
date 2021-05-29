@@ -15,11 +15,13 @@ final class MainViewController: BaseViewController {
   private let mainCollectionView = MainViewCollectionView().then {
     $0.backgroundColor = .white
     // Header
+    $0.register(SectionHeader.self,
+                forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
+                withReuseIdentifier: SectionHeader.reuseIdentifier)
     $0.register(MainHeaderCell.self,
                 forCellWithReuseIdentifier: MainHeaderCell.reuseIdentifier)
     $0.register(PopularMeetingCell.self,
                 forCellWithReuseIdentifier: PopularMeetingCell.reuseIdentifier)
-    // 아이덴파이어 수정
     $0.register(NewMeetingCell.self,
                 forCellWithReuseIdentifier: NewMeetingCell.reuseIdentifier )
   }
@@ -36,7 +38,6 @@ final class MainViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    searchBar.searchTextField.delegate = self
     mainCollectionView.contentInsetAdjustmentBehavior = .never
     mainCollectionView.delegate = self
     mainCollectionView.dataSource = self
@@ -52,8 +53,8 @@ extension MainViewController {
     mainCollectionView.dataSource = self
 
     view.add(mainCollectionView)
-    mainCollectionView.snp.makeConstraints { (make) in
 
+    mainCollectionView.snp.makeConstraints { (make) in
       make.top.equalTo(view.snp.top).inset(0)
       make.leading.equalTo(view.snp.leading).inset(0)
       make.trailing.equalTo(view.snp.trailing).inset(0)
@@ -63,11 +64,51 @@ extension MainViewController {
 }
 
 extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
-  func enterTextField() {}
-
+  func tapTextField() {
+    let target = MorePopularViewController()
+    view.hideKeyboard()
+    self.present(target, animated: true, completion: nil)
+  }
+}
+extension MainViewController: ButtonDelegate {
+  func tapButton() {
+    let target = MorePopularViewController()
+    self.present(target, animated: true, completion: nil)
+  }
 }
 
 extension MainViewController: UICollectionViewDataSource {
+
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+    switch indexPath.section {
+    case 1:
+      guard let header =
+              mainCollectionView.dequeueReusableSupplementaryView(ofKind: SectionHeader.sectionHeaderElementKind,
+                                                                  withReuseIdentifier: SectionHeader.reuseIdentifier,
+                                                                  for: indexPath) as? SectionHeader else {
+        return UICollectionReusableView() }
+      header.setupText(text: "지금 가장 인기 많은 모임은?")
+      header.hideButton(isHidden: true)
+      return header
+
+    case 2:
+      guard let header =
+              mainCollectionView.dequeueReusableSupplementaryView(ofKind: SectionHeader.sectionHeaderElementKind,
+                                                                  withReuseIdentifier: SectionHeader.reuseIdentifier,
+                                                                  for: indexPath) as? SectionHeader else {
+        return UICollectionReusableView() }
+      header.setupText(text: "지금 새로 나온 모임")
+      header.hideButton(isHidden: false)
+      header.delegate = self
+      return header
+
+    default:
+      return UICollectionReusableView()
+    }
+  }
+
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch section {
     case 0:
@@ -88,6 +129,7 @@ extension MainViewController: UICollectionViewDataSource {
               mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainHeaderCell.reuseIdentifier,
                                          for: indexPath) as? MainHeaderCell else {
         return UICollectionViewCell() }
+      cell.searchBar.delegate = self
       return cell
 
     case 1:

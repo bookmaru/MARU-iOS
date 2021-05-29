@@ -8,7 +8,6 @@
 import UIKit
 
 final class MainHeaderCell: UICollectionViewCell {
-
   private let backImageView = UIImageView().then {
     $0.image = Image.picture
   }
@@ -27,9 +26,6 @@ final class MainHeaderCell: UICollectionViewCell {
   }
   lazy var searchBar = MaruSearchView(width: screenSize.width * 0.915,
                                       height: 38)
-  private let mypageButton = UIButton().then {
-    $0.setImage(Image.mainBtnMy, for: .normal)
-  }
 
   private let screenSize = UIScreen.main.bounds.size
 
@@ -46,7 +42,6 @@ final class MainHeaderCell: UICollectionViewCell {
     contentView.add(backImageView)
     backImageView.adds([
                         backImageViewScrim,
-                        mypageButton,
                         bookLogoImageView,
                         commentLabel])
     add(searchBar)
@@ -59,12 +54,6 @@ final class MainHeaderCell: UICollectionViewCell {
     }
     backImageViewScrim.snp.makeConstraints { (make) in
       make.edges.equalTo(backImageView.snp.edges)
-    }
-    mypageButton.snp.makeConstraints { (make) in
-      make.top.equalTo(backImageView.snp.top).inset(56)
-      make.trailing.equalTo(backImageView.snp.trailing).inset(12)
-      make.height.equalTo(20)
-      make.width.equalTo(32)
     }
     bookLogoImageView.snp.makeConstraints { (make) in
       make.top.equalTo(backImageView.snp.top).inset(124)

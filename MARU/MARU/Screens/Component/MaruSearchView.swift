@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol SearchTextFieldDelegate: AnyObject {
-  func enterTextField()
+  func tapTextField()
 }
 
 final class MaruSearchView: UIView {
@@ -26,6 +26,7 @@ final class MaruSearchView: UIView {
     $0.tintColor = .black
     $0.textAlignment = .left
     $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.bold)
+    $0.addTarget(self, action: #selector(tapTextField), for: .editingDidBegin)
   }
   var width: CGFloat
   var height: CGFloat
@@ -81,5 +82,8 @@ extension MaruSearchView {
   }
 }
 extension MaruSearchView: UITextFieldDelegate, SearchTextFieldDelegate {
-  func enterTextField() {}
+  @objc func tapTextField() {
+    resignFirstResponder()
+    delegate?.tapTextField()
   }
+}
