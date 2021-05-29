@@ -31,21 +31,4 @@ class MARUTests: XCTestCase {
       // Put the code you want to measure the time of here.
     }
   }
-  func testQuiz1() {
-    let result = testQuizViewModel.checkAnswer(quizAnswer: "O", users: "X")
-    XCTAssertEqual(result, false, "incorrect")
-  }
-  func testQuiz2() {
-    let result = testQuizViewModel.checkAnswer(quizAnswer: "O", users: "O")
-    XCTAssertEqual(result, true, "Cincorrect")
-  }
-  func testQuiz3() {
-    let result = testQuizViewModel.checkAnswer(quizAnswer: "X", users: "O")
-    XCTAssertEqual(result, false, "incorrect")
-  }
-  func testQuiz4() {
-    let result = testQuizViewModel.checkAnswer(quizAnswer: "X", users: "X")
-    XCTAssertEqual(result, true, "incorrect")
-  }
-
 }

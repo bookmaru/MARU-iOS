@@ -32,30 +32,40 @@ final class QuizViewModel: ViewModelType {
                                    quiz5])
   // 화면에서 발생하는 이벤트
   struct Input {
+    let didTapYesButton: Observable<Bool>
+    let didTapNoButton: Observable<Bool>
+  }
 
-  }
   struct Output {
-    let quizContent: Driver<String>
-    let quizAnswer: Driver<String>
+    let result: Driver<QuizModel>
   }
+
   func transform(input: Input) -> Output {
-    guard let data = loadQuiz() else {
-      print("Error happen")
-      return Output(quizContent: .never(),
-                    quizAnswer: .never())
-    }
-    let quizContent = Driver<String>
-      .just(data.quiz[0].quizContent)
-    let quizAnswer = Driver<String>
-      .just(data.quiz[0].quizAnswer)
-    return Output(quizContent: quizContent,
-                  quizAnswer: quizAnswer)
+    let userAnswer = Observable.merge(input.didTapNoButton, input.didTapYesButton)
+      .map { answer -> Bool in
+        let userAnswer = answer ? true : false
+        return userAnswer
+      }
+
+    let result = userAnswer.map { answer -> QuizModel in
+      return self.quiz(answer: answer)
+    }.asDriver(onErrorJustReturn: .init(quiz: []))
+
+    return Output(result: result)
   }
 }
+
 extension QuizViewModel {
   private func loadQuiz() -> QuizModel? {
     let data = quiz as QuizModel
     return data
+  }
+
+  private func quiz(answer: Bool) -> QuizModel {
+    if answer == false {
+      return quiz
+    }
+    return quiz
   }
 
   func checkAnswer(quizAnswer: String,

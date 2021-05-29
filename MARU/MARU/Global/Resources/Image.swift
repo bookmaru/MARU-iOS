@@ -36,4 +36,5 @@ enum Image {
   static let searchIcScore = UIImage(named: "searchIcScore")
   static let wrongGray = UIImage(named: "wrongGray")
   static let wrongRed = UIImage(named: "wrongRed")
+  static let picture = UIImage(named: "picture")
 }
