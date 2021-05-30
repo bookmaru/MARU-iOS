@@ -69,7 +69,17 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.adjustsFontSizeToFitWidth = true
     $0.sizeToFit()
   }
-
+  // MARK: - RX로 교체할 수 있지 않을까?
+  
+  var viewMainModel: ViewMainModel? {
+    didSet {
+//      bookImageView.image = viewMainModel?.book.bookImage
+      bookTitleLabel.text = viewMainModel?.book.bookTitle
+      bookAuthorLabel.text = viewMainModel?.book.bookAuthor
+      bookMeetingChiefLabel.text = viewMainModel?.book.roomChief
+      bookMeetingExplainementLabel.text = viewMainModel?.book.bookComment
+    }
+  }
   // MARK: - Properties
 
   // MARK: - Override Init

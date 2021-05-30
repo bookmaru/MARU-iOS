@@ -20,7 +20,7 @@
 		776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */; };
 		776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D06E22657F7EB007CD99B /* MainHeaderCell.swift */; };
 		7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MorePopularViewController.swift */; };
-		77B718EE26470CBC0005B129 /* ViewMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* ViewMain.swift */; };
+		77B718EE26470CBC0005B129 /* ViewMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* ViewMainModel.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
@@ -102,7 +102,7 @@
 		776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCell.swift; sourceTree = "<group>"; };
 		776D06E22657F7EB007CD99B /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
-		77B718ED26470CBC0005B129 /* ViewMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMain.swift; sourceTree = "<group>"; };
+		77B718ED26470CBC0005B129 /* ViewMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMainModel.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				776320442646B35900293D1C /* Book.swift */,
-				77B718ED26470CBC0005B129 /* ViewMain.swift */,
+				77B718ED26470CBC0005B129 /* ViewMainModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -904,7 +904,7 @@
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
-				77B718EE26470CBC0005B129 /* ViewMain.swift in Sources */,
+				77B718EE26470CBC0005B129 /* ViewMainModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
@@ -1121,7 +1121,7 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1151,7 +1151,7 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = MARU/Global/Config/Info.plist;
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
