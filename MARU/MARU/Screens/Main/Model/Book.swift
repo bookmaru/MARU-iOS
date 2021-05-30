@@ -15,5 +15,3 @@ struct Book: Codable {
   let roomChief: String
   let category: String
 }
-
-

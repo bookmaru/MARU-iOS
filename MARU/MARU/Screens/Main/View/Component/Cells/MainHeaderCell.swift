@@ -41,7 +41,8 @@ final class MainHeaderCell: UICollectionViewCell {
   private func applyLayout() {
     contentView.add(backImageView)
     backImageView.adds([
-      backImageViewScrim,bookLogoImageView,
+      backImageViewScrim,
+      bookLogoImageView,
       commentLabel
     ])
     add(searchBar)

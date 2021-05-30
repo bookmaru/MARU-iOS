@@ -33,13 +33,29 @@ class MorePopularViewController: BaseViewController, UICollectionViewDelegate {
 
   private let screenSize = UIScreen.main.bounds.size
   
-  var all : [ViewMainModel] = [
-    ViewMainModel.init(book: Book.init(bookImage: "", bookTitle: "A", bookAuthor: "A", bookComment: "A", roomChief: "A", category: "A1")),
-    ViewMainModel.init(book: Book.init(bookImage: "", bookTitle: "B", bookAuthor: "B", bookComment: "B", roomChief: "B", category: "B2")),
-    ViewMainModel.init(book: Book.init(bookImage: "", bookTitle: "C", bookAuthor: "C", bookComment: "C", roomChief: "C", category: "C3"))]
+  var allModel: [ViewMainModel] = [
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: "A1")),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "B",
+                                       bookAuthor: "B",
+                                       bookComment: "B",
+                                       roomChief: "B",
+                                       category: "B2")),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: "C3"))
+  ]
   var categoryFilter: String?
   
-  typealias DataSource = UICollectionViewDiffableDataSource<Section,ViewMainModel>
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, ViewMainModel>
   typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ViewMainModel>
 
   override func viewDidLoad() {
@@ -166,25 +182,25 @@ extension MorePopularViewController {
   
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
-      collectionView: collectionView, cellProvider: { (collectionView, indexPath, viewMainModel) -> UICollectionViewCell? in
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewMeetingCell.reuseIdentifier, for: indexPath) as? NewMeetingCell
+      collectionView: collectionView,
+      cellProvider: { (collectionView, indexPath, viewMainModel) -> UICollectionViewCell? in
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewMeetingCell.reuseIdentifier,
+                                                      for: indexPath) as? NewMeetingCell
         cell?.viewMainModel = viewMainModel
         return cell
       })
+
     return dataSource
   }
+
   func applySnapshot(animatingDifferences: Bool = true) {
     // 2
     var snapshot = Snapshot()
     // 3
     snapshot.appendSections([.main])
-    // 4
-//    sections.forEach { section in
-//      snapshot.appendItems(section.videos, toSection: section)
-//    }
-    // 5
-    snapshot.appendItems(all)
+
+    snapshot.appendItems(allModel)
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }
 }
@@ -196,4 +212,3 @@ extension MorePopularViewController {
     }
   }
 }
-
