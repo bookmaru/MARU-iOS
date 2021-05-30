@@ -9,7 +9,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import RxRelay
 
 final class QuizViewController: UIViewController {
   lazy var quizContentView = QuizContentView().then { _ in
@@ -44,7 +43,7 @@ final class QuizViewController: UIViewController {
     $0.contentMode = .center
   }
   private let screenSize = UIScreen.main.bounds.size
-  let bag = DisposeBag()
+  let disposebag = DisposeBag()
   private let viewModel = QuizViewModel()
   private let didTapButton = PublishSubject<Void>()
   override func viewDidLoad() {
@@ -71,9 +70,6 @@ extension QuizViewController {
       quizFourthCheckImageView,
       quizFifthCheckImageView
     ])
-
-    contentBackgroudView.applyQuizViewShadow()
-    quizContentView.applyQuizViewShadow()
 
     correctButton.snp.makeConstraints { (make) in
       make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
@@ -129,6 +125,6 @@ extension QuizViewController {
     let output = viewModel.transform(input: .init(didTapYesButton: didTapYesButton, didTapNoButton: didTapNoButton))
     output.result.drive(onNext: { result in
       print("result \(result)")
-    }).disposed(by: bag)
+    }).disposed(by: disposebag)
   }
 }

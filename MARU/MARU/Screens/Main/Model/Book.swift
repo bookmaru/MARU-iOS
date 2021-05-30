@@ -8,9 +8,9 @@
 import Foundation
 
 struct Book: Codable {
-  var bookImage: String
-  var bookTitle: String
-  var bookAuthor: String
-  var bookComment: String
-  var roomChief: String
+  let bookImage: String
+  let bookTitle: String
+  let bookAuthor: String
+  let bookComment: String
+  let roomChief: String
 }

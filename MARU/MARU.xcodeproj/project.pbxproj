@@ -10,6 +10,7 @@
 		3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */; };
 		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774BDE7226609B9800B97CC6 /* SectionHeader.swift */; };
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		776320452646B35900293D1C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776320442646B35900293D1C /* Book.swift */; };
 		776320482646B60E00293D1C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776320472646B60E00293D1C /* MainViewModel.swift */; };
@@ -18,6 +19,7 @@
 		776AF4F62641BADF0020D2D8 /* NewMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */; };
 		776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */; };
 		776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D06E22657F7EB007CD99B /* MainHeaderCell.swift */; };
+		7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MorePopularViewController.swift */; };
 		77B718EE26470CBC0005B129 /* ViewMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* ViewMain.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
@@ -89,6 +91,7 @@
 		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		774BDE7226609B9800B97CC6 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		77569B6E2620CE20008BF77B /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		776320442646B35900293D1C /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingCell.swift; sourceTree = "<group>"; };
 		776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCell.swift; sourceTree = "<group>"; };
 		776D06E22657F7EB007CD99B /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
+		7784BB3726622B5D00B636EE /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* ViewMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMain.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
@@ -260,9 +264,10 @@
 		776AF4F42641BABA0020D2D8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */,
 				776D06E22657F7EB007CD99B /* MainHeaderCell.swift */,
+				776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */,
 				776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */,
+				774BDE7226609B9800B97CC6 /* SectionHeader.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -619,6 +624,7 @@
 			children = (
 				776AF4EE2641A69F0020D2D8 /* Component */,
 				C5ED1D76261889AC00F670EC /* MainViewController.swift */,
+				7784BB3726622B5D00B636EE /* MorePopularViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -900,6 +906,7 @@
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				77B718EE26470CBC0005B129 /* ViewMain.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
+				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
@@ -919,6 +926,7 @@
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
+				7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,

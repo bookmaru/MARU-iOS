@@ -9,17 +9,17 @@ import UIKit
 import RxSwift
 
 final class PopularMeetingCell: UICollectionViewCell {
-  static let identifier = "PopularMeetingCell"
   private let bookImageView = UIImageView().then {
-      $0.backgroundColor = .gray
+    $0.backgroundColor = .gray
+    $0.layer.cornerRadius = 5
   }
   private let bookTitleLabel = UILabel().then {
-      $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.bold)
-      $0.text = "gihi"
+    $0.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+    $0.text = "gihi"
   }
   private let bookAuthorLabel = UILabel().then {
-      $0.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.medium)
-      $0.text = "이이이리리리"
+    $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+    $0.text = "이이이리리리"
   }
 
   // MARK: - Override Init

@@ -9,27 +9,30 @@ import UIKit
 
 final class NewMeetingCell: UICollectionViewCell {
   // MARK: - UIComponent
-  static let identifier = "NewMeetingCell"
 
   private let shadowView = UIView().then {
-      $0.backgroundColor = .white
+    $0.backgroundColor = .white
+    $0.layer.cornerRadius = 5
   }
 
   private let bookImageView = UIImageView().then {
-      $0.backgroundColor = .gray
+    $0.backgroundColor = .clear
+    $0.image = Image.testImage
   }
 
   private let bookTitleLabel = UILabel().then {
-      $0.text = "test1"
-      $0.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.semibold)
-      $0.textAlignment = .left
-      $0.sizeToFit()
+    $0.text = "test1"
+    $0.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.semibold)
+    $0.textAlignment = .left
+//    $0.sizeToFit()
   }
 
   private let bookAuthorLabel = UILabel().then {
     $0.text = "test2"
     $0.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light)
     $0.textAlignment = .left
+    $0.adjustsFontSizeToFitWidth = true
+    $0.sizeToFit()
 
   }
 
@@ -37,7 +40,7 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.text = "test3"
     $0.textColor = .cornflowerBlue
     $0.textAlignment = .right
-    $0.sizeToFit()
+    $0.font = .systemFont(ofSize: 10, weight: .bold)
   }
 
   private let explainBox = UILabel().then {
@@ -51,12 +54,20 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.numberOfLines = 3
   }
 
-  private let leftQuotataionMarkImage = UIImageView().then {
-    $0.image = UIImage(named: "qmarkLeft")
+  private let leftQuotataionMarkImageView = UIImageView().then {
+    $0.image = Image.blueQuotationleft
   }
 
-  private let rightQuotataionMarkImage = UIImageView().then {
-    $0.image = UIImage(named: "qmarkRight")
+  private let rightQuotataionMarkImageView = UIImageView().then {
+    $0.image = Image.blueQuotationRight
+  }
+  private let remainPeriodLabel = UILabel().then {
+    $0.text = "test6"
+    $0.textAlignment = .left
+    $0.textColor = UIColor.mainBlue
+    $0.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+    $0.adjustsFontSizeToFitWidth = true
+    $0.sizeToFit()
   }
 
   // MARK: - Properties
@@ -75,15 +86,20 @@ final class NewMeetingCell: UICollectionViewCell {
   private func applyLayout() {
 
     add(shadowView)
-    shadowView.adds([bookImageView,
-                     bookTitleLabel,
-                     bookAuthorLabel,
-                     bookMeetingChiefLabel,
-                     explainBox])
+    shadowView.adds([
+      bookImageView,
+      bookTitleLabel,
+      remainPeriodLabel,
+      bookAuthorLabel,
+      bookMeetingChiefLabel,
+      explainBox
+    ])
 
-    explainBox.adds([bookMeetingExplainementLabel,
-                     leftQuotataionMarkImage,
-                     rightQuotataionMarkImage])
+    explainBox.adds([
+      bookMeetingExplainementLabel,
+      leftQuotataionMarkImageView,
+      rightQuotataionMarkImageView
+    ])
 
     // MARK: - AutoLayOut Set
 
@@ -98,7 +114,7 @@ final class NewMeetingCell: UICollectionViewCell {
       make.top.equalTo(shadowView.snp.top).inset(0)
       make.leading.equalTo(shadowView.snp.leading).inset(0)
       make.bottom.equalTo(shadowView.snp.bottom).inset(0)
-      make.width.equalTo(80)
+      make.width.equalTo(96)
     }
 
     bookTitleLabel.snp.makeConstraints { ( make ) in
@@ -107,27 +123,31 @@ final class NewMeetingCell: UICollectionViewCell {
       make.width.lessThanOrEqualTo(shadowView.snp.width)
       make.height.equalTo(13)
     }
+    remainPeriodLabel.snp.makeConstraints { (make) in
+      make.centerY.equalTo(bookTitleLabel.snp.centerY)
+      make.trailing.equalTo(shadowView.snp.trailing).inset(11)
+    }
 
     bookAuthorLabel.snp.makeConstraints { ( make ) in
-      make.top.equalTo(shadowView.snp.top).inset(12)
-      make.leading.equalTo(bookTitleLabel.snp.trailing).inset(-3)
+      make.top.equalTo(bookTitleLabel.snp.bottom).inset(-3)
+      make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
       make.height.equalTo(12)
     }
 
     explainBox.snp.makeConstraints { ( make ) in
-      make.top.equalTo(bookTitleLabel.snp.bottom).inset(-9)
+      make.top.equalTo(bookAuthorLabel.snp.bottom).inset(-12)
       make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
       make.trailing.equalTo(shadowView.snp.trailing).inset(12)
-      make.height.equalTo(49)
+      make.height.equalTo(61)
     }
 
-    leftQuotataionMarkImage.snp.makeConstraints { ( make ) in
+    leftQuotataionMarkImageView.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.top).inset(0)
       make.leading.equalTo(explainBox.snp.leading).inset(0)
       make.width.equalTo(8)
       make.height.equalTo(7)
     }
-    rightQuotataionMarkImage.snp.makeConstraints { ( make ) in
+    rightQuotataionMarkImageView.snp.makeConstraints { ( make ) in
       make.bottom.equalTo(explainBox.snp.bottom).inset(0)
       make.trailing.equalTo(explainBox.snp.trailing).inset(0)
       make.width.equalTo(8)
@@ -136,26 +156,22 @@ final class NewMeetingCell: UICollectionViewCell {
     bookMeetingExplainementLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.top).inset(0)
       make.bottom.equalTo(explainBox.snp.bottom).inset(0)
-      make.leading.equalTo(leftQuotataionMarkImage.snp.trailing).inset(-5)
-      make.trailing.equalTo(rightQuotataionMarkImage.snp.leading).inset(0)
+      make.leading.equalTo(leftQuotataionMarkImageView.snp.trailing).inset(-5)
+      make.trailing.equalTo(rightQuotataionMarkImageView.snp.leading).inset(0)
     }
     bookMeetingChiefLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.bottom).inset(-8)
       make.trailing.equalTo(shadowView.snp.trailing).inset(12)
-      make.height.equalTo(11)
+      make.height.equalTo(12)
       make.width.equalTo(200)
     }
   }
 
   private func applyShadow() {
-    shadowView.layer.masksToBounds = true
-    shadowView.layer.cornerRadius = 8
-    shadowView.layer.borderWidth = 0.5
-    shadowView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-    shadowView.layer.shadowColor = UIColor.black.cgColor
-    shadowView.layer.shadowOffset = .zero
-    shadowView.layer.shadowRadius = 1.5
-    shadowView.layer.shadowOpacity = 0.28
-    shadowView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+    shadowView.applyShadow(color: .black,
+                alpha: 0.28,
+                shadowX: 0,
+                shadowY: 0,
+                blur: 15/2)
   }
 }

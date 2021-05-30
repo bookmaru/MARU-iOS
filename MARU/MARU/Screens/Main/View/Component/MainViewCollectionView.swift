@@ -46,12 +46,19 @@ final class MainViewCollectionView: UICollectionView {
     group.edgeSpacing = .none
 
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = .init(top: 0, leading: 0, bottom: 35, trailing: 0)
+    section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
     return section
   }
 
   static func generateSecondSection() -> NSCollectionLayoutSection {
-    let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(81),
+
+    let headerFooterSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
+                                                 heightDimension: .estimated(36))
+    let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+        layoutSize: headerFooterSize,
+        elementKind: elementKindSectionHeader, alignment: .top)
+
+    let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(95),
                                           heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(8),
@@ -60,18 +67,25 @@ final class MainViewCollectionView: UICollectionView {
                                                      bottom: nil)
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                           heightDimension: .estimated(170))
+                                           heightDimension: .estimated(180))
 
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
 
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = .init(top: 0, leading: 8, bottom: 35, trailing: 8)
+    section.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
     section.orthogonalScrollingBehavior = .continuous
+    section.boundarySupplementaryItems = [sectionHeader]
     return section
   }
 
   static func generateThirdSection() -> NSCollectionLayoutSection {
+
+    let headerFooterSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
+                                                 heightDimension: .estimated(36))
+    let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+        layoutSize: headerFooterSize,
+        elementKind: elementKindSectionHeader, alignment: .top)
     let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                           heightDimension: .fractionalHeight(1))
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -81,7 +95,7 @@ final class MainViewCollectionView: UICollectionView {
                                                      bottom: nil)
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                           heightDimension: .absolute(110))
+                                           heightDimension: .absolute(142))
 
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
@@ -89,6 +103,7 @@ final class MainViewCollectionView: UICollectionView {
 
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+    section.boundarySupplementaryItems = [sectionHeader]
     return section
   }
 
