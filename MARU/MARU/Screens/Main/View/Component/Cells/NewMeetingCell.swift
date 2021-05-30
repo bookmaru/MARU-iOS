@@ -54,14 +54,14 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.numberOfLines = 3
   }
 
-  private let leftQuotataionMarkImage = UIImageView().then {
+  private let leftQuotataionMarkImageView = UIImageView().then {
     $0.image = Image.blueQuotationleft
   }
 
-  private let rightQuotataionMarkImage = UIImageView().then {
+  private let rightQuotataionMarkImageView = UIImageView().then {
     $0.image = Image.blueQuotationRight
   }
-  private let remainPeriod = UILabel().then {
+  private let remainPeriodLabel = UILabel().then {
     $0.text = "test6"
     $0.textAlignment = .left
     $0.textColor = UIColor.mainBlue
@@ -87,17 +87,19 @@ final class NewMeetingCell: UICollectionViewCell {
 
     add(shadowView)
     shadowView.adds([
-                      bookImageView,
-                      bookTitleLabel,
-                      remainPeriod,
-                      bookAuthorLabel,
-                      bookMeetingChiefLabel,
-                      explainBox])
+      bookImageView,
+      bookTitleLabel,
+      remainPeriodLabel,
+      bookAuthorLabel,
+      bookMeetingChiefLabel,
+      explainBox
+    ])
 
     explainBox.adds([
-                      bookMeetingExplainementLabel,
-                      leftQuotataionMarkImage,
-                      rightQuotataionMarkImage])
+      bookMeetingExplainementLabel,
+      leftQuotataionMarkImageView,
+      rightQuotataionMarkImageView
+    ])
 
     // MARK: - AutoLayOut Set
 
@@ -121,7 +123,7 @@ final class NewMeetingCell: UICollectionViewCell {
       make.width.lessThanOrEqualTo(shadowView.snp.width)
       make.height.equalTo(13)
     }
-    remainPeriod.snp.makeConstraints { (make) in
+    remainPeriodLabel.snp.makeConstraints { (make) in
       make.centerY.equalTo(bookTitleLabel.snp.centerY)
       make.trailing.equalTo(shadowView.snp.trailing).inset(11)
     }
@@ -139,13 +141,13 @@ final class NewMeetingCell: UICollectionViewCell {
       make.height.equalTo(61)
     }
 
-    leftQuotataionMarkImage.snp.makeConstraints { ( make ) in
+    leftQuotataionMarkImageView.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.top).inset(0)
       make.leading.equalTo(explainBox.snp.leading).inset(0)
       make.width.equalTo(8)
       make.height.equalTo(7)
     }
-    rightQuotataionMarkImage.snp.makeConstraints { ( make ) in
+    rightQuotataionMarkImageView.snp.makeConstraints { ( make ) in
       make.bottom.equalTo(explainBox.snp.bottom).inset(0)
       make.trailing.equalTo(explainBox.snp.trailing).inset(0)
       make.width.equalTo(8)
@@ -154,8 +156,8 @@ final class NewMeetingCell: UICollectionViewCell {
     bookMeetingExplainementLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.top).inset(0)
       make.bottom.equalTo(explainBox.snp.bottom).inset(0)
-      make.leading.equalTo(leftQuotataionMarkImage.snp.trailing).inset(-5)
-      make.trailing.equalTo(rightQuotataionMarkImage.snp.leading).inset(0)
+      make.leading.equalTo(leftQuotataionMarkImageView.snp.trailing).inset(-5)
+      make.trailing.equalTo(rightQuotataionMarkImageView.snp.leading).inset(0)
     }
     bookMeetingChiefLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(explainBox.snp.bottom).inset(-8)

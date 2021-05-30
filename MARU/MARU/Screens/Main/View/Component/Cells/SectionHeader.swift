@@ -13,13 +13,13 @@ protocol ButtonDelegate: AnyObject {
 final class SectionHeader: UICollectionReusableView {
   static let sectionHeaderElementKind = "section-header-element-kind"
 
-  let label = UILabel().then {
+  let titleLabel = UILabel().then {
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
     $0.font = .systemFont(ofSize: 17, weight: .bold)
     $0.text = "defalut"
   }
-  let button = UIButton().then {
+  let moveButton = UIButton().then {
     $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
                                                                     renderingMode: .alwaysOriginal),
                 for: .normal)
@@ -37,25 +37,25 @@ final class SectionHeader: UICollectionReusableView {
 }
 extension SectionHeader {
     func configure() {
-      add(label)
-      add(button)
+      add(titleLabel)
+      add(moveButton)
 
-      label.snp.makeConstraints { make in
+      titleLabel.snp.makeConstraints { make in
         make.leading.equalToSuperview()
         make.centerY.equalToSuperview()
       }
-      button.snp.makeConstraints { make in
-        make.leading.equalTo(label.snp.trailing).inset(-5)
+      moveButton.snp.makeConstraints { make in
+        make.leading.equalTo(titleLabel.snp.trailing).inset(-5)
         make.centerY.equalToSuperview()
         make.size.equalTo(CGSize(width: 19, height: 19))
       }
 
     }
   func hideButton(isHidden: Bool) {
-    button.isHidden = isHidden
+    moveButton.isHidden = isHidden
   }
   func setupText(text: String) {
-    label.text = text
+    titleLabel.text = text
   }
 }
 

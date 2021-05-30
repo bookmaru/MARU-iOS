@@ -43,7 +43,7 @@ final class QuizViewController: UIViewController {
     $0.contentMode = .center
   }
   private let screenSize = UIScreen.main.bounds.size
-  let bag = DisposeBag()
+  let disposebag = DisposeBag()
   private let viewModel = QuizViewModel()
   private let didTapButton = PublishSubject<Void>()
   override func viewDidLoad() {

@@ -23,7 +23,7 @@ final class MainViewController: BaseViewController {
     $0.register(PopularMeetingCell.self,
                 forCellWithReuseIdentifier: PopularMeetingCell.reuseIdentifier)
     $0.register(NewMeetingCell.self,
-                forCellWithReuseIdentifier: NewMeetingCell.reuseIdentifier )
+                forCellWithReuseIdentifier: NewMeetingCell.reuseIdentifier)
   }
   // MARK: - Variable & Properties
 
@@ -131,7 +131,7 @@ extension MainViewController: UICollectionViewDataSource {
     case 0:
       guard let cell =
               mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainHeaderCell.reuseIdentifier,
-                                         for: indexPath) as? MainHeaderCell else {
+                                                     for: indexPath) as? MainHeaderCell else {
         return UICollectionViewCell() }
       cell.searchBar.delegate = self
       return cell
@@ -139,7 +139,7 @@ extension MainViewController: UICollectionViewDataSource {
     case 1:
       guard let cell =
               mainCollectionView.dequeueReusableCell(withReuseIdentifier: PopularMeetingCell.reuseIdentifier,
-                                         for: indexPath) as? PopularMeetingCell else {
+                                                     for: indexPath) as? PopularMeetingCell else {
         return UICollectionViewCell() }
       return cell
 
