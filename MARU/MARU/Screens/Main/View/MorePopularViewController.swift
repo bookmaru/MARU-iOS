@@ -7,54 +7,153 @@
 
 import UIKit
 
-class MorePopularViewController: BaseViewController, UICollectionViewDelegate {
+class MorePopularViewController: BaseViewController {
 
   enum Section {
       case main
   }
+  enum Category: Int {
+    case all = 0
+    case art
+    case literal
+    case science
+    case philosophy
+  }
 
-  let titleLabel = UILabel().then {
-    $0.adjustsFontSizeToFitWidth = true
+  let titleButton = UIButton().then {
     $0.sizeToFit()
-    $0.textAlignment = .left
-    $0.font = .systemFont(ofSize: 17, weight: .bold)
-    $0.textColor = .black
-    $0.text = "지금 새로나온 모임"
+    $0.titleLabel?.textAlignment = .left
+    $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+    $0.setTitleColor(.black, for: .normal)
+    $0.setTitle("지금 새로나온 모임", for: .normal)
+    $0.backgroundColor = .white
+    $0.addTarget(self, action: #selector(didTapTitleButton), for: .touchUpInside)
   }
 
   var allButton: UIButton = UIButton()
   var artButton: UIButton = UIButton()
   var literalButton: UIButton = UIButton()
   var scienceButton: UIButton = UIButton()
-  var philisophyButton: UIButton = UIButton()
+  var philosophyButton: UIButton = UIButton()
 
   private lazy var dataSource = configureDataSource()
   private var collectionView: UICollectionView! = nil
 
   private let screenSize = UIScreen.main.bounds.size
-  
+
   var allModel: [ViewMainModel] = [
     ViewMainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
-                                       category: "A1")),
+                                       category: 1)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: 1)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: 1)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: 1)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: 1)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "A",
+                                       bookAuthor: "A",
+                                       bookComment: "A",
+                                       roomChief: "A",
+                                       category: 1)),
     ViewMainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "B",
                                        bookAuthor: "B",
                                        bookComment: "B",
                                        roomChief: "B",
-                                       category: "B2")),
+                                       category: 2)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "B",
+                                       bookAuthor: "B",
+                                       bookComment: "B",
+                                       roomChief: "B",
+                                       category: 2)),
     ViewMainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
-                                       category: "C3"))
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3)),
+    ViewMainModel.init(book: Book.init(bookImage: "",
+                                       bookTitle: "C",
+                                       bookAuthor: "C",
+                                       bookComment: "C",
+                                       roomChief: "C",
+                                       category: 3))
   ]
+
   var categoryFilter: String?
-  
+
   typealias DataSource = UICollectionViewDiffableDataSource<Section, ViewMainModel>
   typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ViewMainModel>
 
@@ -69,16 +168,37 @@ class MorePopularViewController: BaseViewController, UICollectionViewDelegate {
     ])
     applyLayout()
     applySnapshot(animatingDifferences: false)
-//    configureDataSource()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
+    self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    self.navigationController?.navigationBar.isTranslucent = false
+
+  }
+
+  @objc func performQuery(sender: UIButton) {
+    switch sender.tag {
+    case 0:
+      applySnapshot(animatingDifferences: true)
+
+    default:
+      var snapshot = Snapshot()
+      let books = allModel.filter({ $0.book.category == sender.tag})
+      snapshot.appendSections([.main])
+      snapshot.appendItems(books)
+      dataSource.apply(snapshot, animatingDifferences: true)
+    }
+  }
+  @objc func didTapTitleButton() {
+    collectionView.setContentOffset(.zero, animated: true)
   }
 }
-
+  // MARK: - Layout
 extension MorePopularViewController {
     /// - Tag: create CollectionView Layout
+
   private func createLayout() -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { [self] (_, _) in
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -103,70 +223,71 @@ extension MorePopularViewController {
 
     return layout
   }
-}
 
-extension MorePopularViewController {
-    private func applyLayout() {
-      collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-      collectionView.backgroundColor = .white
-      collectionView.delegate = self
-      collectionView.register(cell: NewMeetingCell.self)
-      
-      view.adds([
-        titleLabel,
-        allButton,
-        artButton,
-        literalButton,
-        scienceButton,
-        philisophyButton,
-        collectionView
-      ])
-      
-      titleLabel.snp.makeConstraints { (make) in
-        make.top.equalTo(view.safeAreaLayoutGuide).inset(0)
-        make.leading.equalToSuperview().inset(20)
-        make.height.equalTo(20)
-      }
+  private func applyLayout() {
+    collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    collectionView.backgroundColor = .white
+    collectionView.delegate = self
+    collectionView.register(cell: NewMeetingCell.self)
 
-      allButton.snp.makeConstraints { (make) in
-        make.top.equalTo(titleLabel.snp.bottom).inset(-8)
-        make.leading.equalToSuperview().inset(20)
-      }
+    view.adds([
+      titleButton,
+      allButton,
+      artButton,
+      literalButton,
+      scienceButton,
+      philosophyButton,
+      collectionView
+    ])
 
-      artButton.snp.makeConstraints { (make) in
-        make.centerY.equalTo(allButton.snp.centerY)
-        make.leading.equalTo(allButton.snp.trailing).inset(-5)
-      }
-
-      literalButton.snp.makeConstraints { (make) in
-        make.centerY.equalTo(allButton.snp.centerY)
-        make.leading.equalTo(artButton.snp.trailing).inset(-5)
-      }
-
-      scienceButton.snp.makeConstraints { (make) in
-        make.centerY.equalTo(allButton.snp.centerY)
-        make.leading.equalTo(literalButton.snp.trailing).inset(-5)
-      }
-      
-      philisophyButton.snp.makeConstraints { (make) in
-        make.centerY.equalTo(allButton.snp.centerY)
-        make.leading.equalTo(scienceButton.snp.trailing).inset(-5)
-      }
-      
-      collectionView.snp.makeConstraints { (make) in
-        make.top.equalTo(allButton.snp.bottom).inset(-14)
-        make.leading.equalToSuperview()
-        make.trailing.equalToSuperview()
-        make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-      }
+    titleButton.snp.makeConstraints { (make) in
+      make.top.equalTo(view.safeAreaLayoutGuide).inset(0)
+      make.leading.equalToSuperview().inset(20)
+      make.height.equalTo(20)
     }
+
+    allButton.snp.makeConstraints { (make) in
+      make.top.equalTo(titleButton.snp.bottom).inset(-8)
+      make.leading.equalToSuperview().inset(20)
+    }
+
+    artButton.snp.makeConstraints { (make) in
+      make.centerY.equalTo(allButton.snp.centerY)
+      make.leading.equalTo(allButton.snp.trailing).inset(-5)
+    }
+
+    literalButton.snp.makeConstraints { (make) in
+      make.centerY.equalTo(allButton.snp.centerY)
+      make.leading.equalTo(artButton.snp.trailing).inset(-5)
+    }
+
+    scienceButton.snp.makeConstraints { (make) in
+      make.centerY.equalTo(allButton.snp.centerY)
+      make.leading.equalTo(literalButton.snp.trailing).inset(-5)
+    }
+
+    philosophyButton.snp.makeConstraints { (make) in
+      make.centerY.equalTo(allButton.snp.centerY)
+      make.leading.equalTo(scienceButton.snp.trailing).inset(-5)
+    }
+
+    collectionView.snp.makeConstraints { (make) in
+      make.top.equalTo(allButton.snp.bottom).inset(-14)
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+    }
+  }
+}
+  // MARK: - DataSource
+extension MorePopularViewController {
 
   private func setupButton(title: [String]) {
     [allButton,
      artButton,
      literalButton,
      scienceButton,
-     philisophyButton].enumerated().forEach { index, button in
+     philosophyButton].enumerated().forEach { index, button in
       button.backgroundColor = .white
       button.layer.borderWidth = 1
       button.layer.borderColor = UIColor.veryLightPinkFour.cgColor
@@ -177,9 +298,11 @@ extension MorePopularViewController {
       button.setTitleColor(.brownGreyThree, for: .normal)
       button.titleLabel?.textAlignment = .center
       button.setTitle(title[index], for: .normal)
+      button.tag = index
+      button.addTarget(self, action: #selector(performQuery), for: .touchUpInside)
      }
   }
-  
+
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
       collectionView: collectionView,
@@ -204,8 +327,9 @@ extension MorePopularViewController {
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }
 }
+  // MARK: 나중에 써야해서 남겨놓습니다.
 
-extension MorePopularViewController {
+extension MorePopularViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let viewMainModel = dataSource.itemIdentifier(for: indexPath) else {
       return

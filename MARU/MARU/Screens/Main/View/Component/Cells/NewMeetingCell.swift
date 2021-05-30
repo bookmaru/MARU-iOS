@@ -70,7 +70,7 @@ final class NewMeetingCell: UICollectionViewCell {
     $0.sizeToFit()
   }
   // MARK: - RX로 교체할 수 있지 않을까?
-  
+
   var viewMainModel: ViewMainModel? {
     didSet {
 //      bookImageView.image = viewMainModel?.book.bookImage

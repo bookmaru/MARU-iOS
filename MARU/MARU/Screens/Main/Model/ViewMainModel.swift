@@ -11,7 +11,7 @@ struct ViewMainModel: Hashable {
 
   let identifier = UUID()
   var book: Book
-  
+
   init(book: Book) {
     self.book = book
   }

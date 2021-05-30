@@ -28,10 +28,15 @@ extension BaseViewController {
   }
   private func setNavigationItems() {
     if navigationController?.children.count ?? 0 > 1 {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(didBack))
+      let backImage = UIImage(systemName:
+                                "chevron.backward")?
+        .withTintColor(.black)
+        .withRenderingMode(.alwaysOriginal)
+
+      let backButton = UIBarButtonItem(image: backImage,
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(didBack))
         navigationItem.leftBarButtonItem = backButton
       }
   }
