@@ -125,6 +125,6 @@ extension QuizViewController {
     let output = viewModel.transform(input: .init(didTapYesButton: didTapYesButton, didTapNoButton: didTapNoButton))
     output.result.drive(onNext: { result in
       print("result \(result)")
-    }).disposed(by: bag)
+    }).disposed(by: disposebag)
   }
 }
