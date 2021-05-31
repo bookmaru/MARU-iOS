@@ -13,4 +13,5 @@ struct Book: Codable {
   let bookAuthor: String
   let bookComment: String
   let roomChief: String
+  let category: Int
 }

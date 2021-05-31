@@ -45,6 +45,15 @@ extension UIColor {
     )
   }
 
+  func as1ptImage() -> UIImage {
+    UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+    setFill()
+    UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+    let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+    UIGraphicsEndImageContext()
+    return image
+  }
+
   @nonobjc class var black: UIColor {
     return UIColor(white: 52.0 / 255.0, alpha: 1.0)
   }
@@ -102,6 +111,12 @@ extension UIColor {
   }
   @nonobjc class var mainBlue: UIColor {
       return UIColor(red: 65.0 / 255.0, green: 105.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
+    }
+  @nonobjc class var brownGreyThree: UIColor {
+      return UIColor(white: 132.0 / 255.0, alpha: 1.0)
+    }
+  @nonobjc class var veryLightPinkFour: UIColor {
+      return UIColor(white: 220.0 / 255.0, alpha: 1.0)
     }
 
 }
