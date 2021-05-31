@@ -1,12 +1,13 @@
-name: pull-request
+name: "Auto Assign"
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [assigned]
+
 jobs:
-  assign:
+  assign_reviewer:
     runs-on: ubuntu-latest
     steps:
-      - uses: delivery-much/actions-assigner@v1
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          team-reviewers: bookmaru/ios
+    - uses: shufo/auto-assign-reviewer-by-assignee@v1.1.0
+      with:
+        config: '.github/auto-assigner.yml'
+        token: ${{ secrets.GITHUB_TOKEN }}
