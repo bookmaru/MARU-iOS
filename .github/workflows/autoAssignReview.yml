@@ -1,17 +1,12 @@
-name: "Assign Reviewers"
-on:  
+name: pull-request
+on:
   pull_request:
-    types: [opened, ready_for_review]
-     
+    types: [opened, reopened]
 jobs:
-  assign-reviewers:
+  assign:
     runs-on: ubuntu-latest
     steps:
-    - name: "Assign Team and Persons"
-      uses: rowi1de/auto-assign-review-teams@v1.0.1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        teams: "ios"         # only works for GitHub Organisation/Teams
-        persons: "profitjean, psychehose"              # add individual persons here 
-        include-draft: false            # Draft PRs will be skipped (default: false)
-        skip-with-manual-reviewers: 3   # Skip this action, if the number of reviwers was already assigned (default: 0)
+      - uses: delivery-much/actions-assigner@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          team-reviewers: iOS
