@@ -20,6 +20,8 @@
 		776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */; };
 		776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D06E22657F7EB007CD99B /* MainHeaderCell.swift */; };
 		7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MorePopularViewController.swift */; };
+		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
+		77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */; };
 		77B718EE26470CBC0005B129 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* MainModel.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
@@ -102,6 +104,8 @@
 		776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCell.swift; sourceTree = "<group>"; };
 		776D06E22657F7EB007CD99B /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
+		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
+		77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
@@ -268,6 +272,15 @@
 				776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */,
 				776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */,
 				774BDE7226609B9800B97CC6 /* SectionHeader.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		77B27BC22664C12C008E315C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				77B27BC32664C16B008E315C /* LibraryDebateCell.swift */,
+				77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -605,6 +618,7 @@
 		C5ED1D732618899D00F670EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				77B27BC22664C12C008E315C /* Cells */,
 				C5ED1D8026188A2900F670EC /* LibraryViewController.swift */,
 			);
 			path = View;
@@ -916,9 +930,11 @@
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
+				77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
+				77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */,
 				776320482646B60E00293D1C /* MainViewModel.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,

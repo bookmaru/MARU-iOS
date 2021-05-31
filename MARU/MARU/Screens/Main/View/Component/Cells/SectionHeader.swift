@@ -25,6 +25,15 @@ final class SectionHeader: UICollectionReusableView {
                 for: .normal)
     $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
   }
+  
+  // MARK: - Library Cell에서 쓰일거임.
+
+  let plusButton = UIButton().then {
+    $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
+                                                                    renderingMode: .alwaysOriginal),
+                for: .normal)
+    $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+  }
   weak var delegate: ButtonDelegate?
 
   override init(frame: CGRect) {
