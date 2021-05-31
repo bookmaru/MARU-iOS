@@ -13,4 +13,4 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         teams: "iOS"         # only works for GitHub Organisation/Teams
         include-draft: false            # Draft PRs will be skipped (default: false)
-        skip-with-manual-reviewers: 0   # Skip this action, if the number of reviwers was already assigned (default: 0)
+        skip-with-manual-reviewers: 3   # Skip this action, if the number of reviwers was already assigned (default: 0)
