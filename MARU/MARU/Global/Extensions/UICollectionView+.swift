@@ -43,4 +43,11 @@ extension UICollectionView {
   func restore() {
     self.backgroundView = nil
   }
+
+  func register<T>(
+    cell: T.Type,
+    forCellWithReuseIdentifier reuseIdentifier: String = T.reuseIdentifier
+  ) where T: UICollectionViewCell {
+      register(cell, forCellWithReuseIdentifier: reuseIdentifier)
+  }
 }

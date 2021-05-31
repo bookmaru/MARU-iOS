@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
     super.viewDidLoad()
 
     defaultUI()
+    setNavigationItems()
   }
 
 }
@@ -24,5 +25,22 @@ class BaseViewController: UIViewController {
 extension BaseViewController {
   private func defaultUI() {
     view.backgroundColor = .white
+  }
+  private func setNavigationItems() {
+    if navigationController?.children.count ?? 0 > 1 {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(didBack))
+        navigationItem.leftBarButtonItem = backButton
+      }
+  }
+
+  func setNavigationBar(isHidden: Bool) {
+    navigationController?.setNavigationBarHidden(isHidden, animated: false)
+  }
+
+  @objc func didBack() {
+    navigationController?.popViewController(animated: true)
   }
 }

@@ -19,7 +19,7 @@ final class QuizContentView: UIView {
     $0.adjustsFontSizeToFitWidth = true
     $0.text = "default"
   }
-  private let quizSequence = UILabel().then {
+  private let quizSequenceLabel = UILabel().then {
     $0.textAlignment = .left
     $0.textColor = .black22
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
@@ -27,7 +27,7 @@ final class QuizContentView: UIView {
     $0.adjustsFontSizeToFitWidth = true
     $0.text = "n of 5"
   }
-  private let quizContent =  UILabel().then {
+  private let quizContentLabel =  UILabel().then {
     $0.text = "가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사"
     $0.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light)
     $0.textAlignment = .center
@@ -36,15 +36,11 @@ final class QuizContentView: UIView {
   private let timerLabel = UILabel().then {
     $0.textAlignment = .center
     $0.font = UIFont.systemFont(ofSize: 13)
+    $0.text = "30"
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    applyShadow(color: UIColor(red: 0, green: 0, blue: 0),
-                     alpha: 0.1607843137254902,
-                     shadowX: 0,
-                     shadowY: 0,
-                     blur: 6)
     applyConstraints()
 
   }
@@ -59,15 +55,15 @@ extension QuizContentView {
   func applyConstraints() {
     adds([
       quizMainLabel,
-      quizSequence,
+      quizSequenceLabel,
       timerLabel,
-      quizContent
+      quizContentLabel
     ])
     quizMainLabel.snp.makeConstraints { (make) in
       make.top.equalTo(self.snp.top).inset(23)
       make.leading.equalTo(self.snp.leading).inset(23)
     }
-    quizSequence.snp.makeConstraints { (make) in
+    quizSequenceLabel.snp.makeConstraints { (make) in
       make.top.equalTo(self.snp.top).inset(29)
       make.leading.equalTo(quizMainLabel.snp.trailing).inset(-8)
     }
@@ -77,7 +73,7 @@ extension QuizContentView {
       make.height.equalTo(31)
       make.width.equalTo(31)
     }
-    quizContent.snp.makeConstraints { (make) in
+    quizContentLabel.snp.makeConstraints { (make) in
       make.top.equalTo(self.snp.top).inset(133)
       make.leading.equalTo(self.snp.leading).inset(23)
       make.trailing.equalTo(self.snp.trailing).inset(23)
@@ -89,9 +85,9 @@ extension QuizContentView {
     quizMainLabel.text = text
   }
   func placeQuizSequence(numberString: String) {
-    quizSequence.text = numberString + " of 5"
+    quizSequenceLabel.text = numberString + " of 5"
   }
   func placeQuizContentText(text: String) {
-    quizContent.text = text
+    quizContentLabel.text = text
   }
 }
