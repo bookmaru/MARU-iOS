@@ -11,7 +11,6 @@ jobs:
       uses: rowi1de/auto-assign-review-teams@v1.0.1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        teams: "iOS"         # only works for GitHub Organisation/Teams
-        persons: "profitjean"
+        teams: "bookmaru/ios"         # only works for GitHub Organisation/Teams
         include-draft: false            # Draft PRs will be skipped (default: false)
         skip-with-manual-reviewers: 3   # Skip this action, if the number of reviwers was already assigned (default: 0)
