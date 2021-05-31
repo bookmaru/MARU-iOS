@@ -13,7 +13,6 @@ import RxCocoa
 import SnapKit
 
 final class MeetEntryViewController: BaseViewController {
-  
   private let bookImageView = UIImageView().then {
     $0.image = UIImage(named: "gradientImage")
   }
@@ -64,13 +63,24 @@ final class MeetEntryViewController: BaseViewController {
     $0.text = "소개 문구"
     $0.numberOfLines = 3
   }
-
+  
+  private let disposeBag = DisposeBag()
+  private let viewModel = MeetEntryViewModel()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
 }
+
 
 extension MeetEntryViewController {
   
   func constraints() {
-    
+    view.add(bookImageView)
+    view
+  }
+  func bind() {
+    let output = viewModel.transform(input: .init(entryButton: entryButton))
   }
 }
 
