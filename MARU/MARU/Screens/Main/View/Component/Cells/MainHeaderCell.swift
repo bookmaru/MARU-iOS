@@ -11,7 +11,7 @@ final class MainHeaderCell: UICollectionViewCell {
   private let backImageView = UIImageView().then {
     $0.image = Image.picture
   }
-  private let backImageViewScrim = UIView().then {
+  private let backImageViewScrimView = UIView().then {
       $0.backgroundColor = UIColor.blackTwo
       $0.alpha = 0.5
   }
@@ -41,7 +41,7 @@ final class MainHeaderCell: UICollectionViewCell {
   private func applyLayout() {
     contentView.add(backImageView)
     backImageView.adds([
-      backImageViewScrim,
+      backImageViewScrimView,
       bookLogoImageView,
       commentLabel
     ])
@@ -53,7 +53,7 @@ final class MainHeaderCell: UICollectionViewCell {
       make.trailing.equalTo(self.snp.trailing)
       make.height.equalTo(270)
     }
-    backImageViewScrim.snp.makeConstraints { (make) in
+    backImageViewScrimView.snp.makeConstraints { (make) in
       make.edges.equalTo(backImageView.snp.edges)
     }
     bookLogoImageView.snp.makeConstraints { (make) in

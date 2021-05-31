@@ -41,110 +41,110 @@ class MorePopularViewController: BaseViewController {
 
   private let screenSize = UIScreen.main.bounds.size
 
-  var allModel: [ViewMainModel] = [
-    ViewMainModel.init(book: Book.init(bookImage: "",
+  var allModel: [MainModel] = [
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "A",
                                        bookAuthor: "A",
                                        bookComment: "A",
                                        roomChief: "A",
                                        category: 1)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "B",
                                        bookAuthor: "B",
                                        bookComment: "B",
                                        roomChief: "B",
                                        category: 2)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "B",
                                        bookAuthor: "B",
                                        bookComment: "B",
                                        roomChief: "B",
                                        category: 2)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
                                        roomChief: "C",
                                        category: 3)),
-    ViewMainModel.init(book: Book.init(bookImage: "",
+    MainModel.init(book: Book.init(bookImage: "",
                                        bookTitle: "C",
                                        bookAuthor: "C",
                                        bookComment: "C",
@@ -154,18 +154,12 @@ class MorePopularViewController: BaseViewController {
 
   var categoryFilter: String?
 
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, ViewMainModel>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ViewMainModel>
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, MainModel>
+  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupButton(title: [
-      "전체",
-      "예술",
-      "문학",
-      "자연과학",
-      "철학"
-    ])
+    setupButton(title: ["전체", "예술", "문학", "자연과학", "철학"])
     applyLayout()
     applySnapshot(animatingDifferences: false)
   }
@@ -306,11 +300,11 @@ extension MorePopularViewController {
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
       collectionView: collectionView,
-      cellProvider: { (collectionView, indexPath, viewMainModel) -> UICollectionViewCell? in
+      cellProvider: { (collectionView, indexPath, mainModel) -> UICollectionViewCell? in
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewMeetingCell.reuseIdentifier,
                                                       for: indexPath) as? NewMeetingCell
-        cell?.viewMainModel = viewMainModel
+        cell?.mainModel = mainModel
         return cell
       })
 
@@ -331,7 +325,7 @@ extension MorePopularViewController {
 
 extension MorePopularViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let viewMainModel = dataSource.itemIdentifier(for: indexPath) else {
+    guard let mainModel = dataSource.itemIdentifier(for: indexPath) else {
       return
     }
   }

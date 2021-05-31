@@ -71,13 +71,13 @@ final class NewMeetingCell: UICollectionViewCell {
   }
   // MARK: - RX로 교체할 수 있지 않을까?
 
-  var viewMainModel: ViewMainModel? {
+  var mainModel: MainModel? {
     didSet {
 //      bookImageView.image = viewMainModel?.book.bookImage
-      bookTitleLabel.text = viewMainModel?.book.bookTitle
-      bookAuthorLabel.text = viewMainModel?.book.bookAuthor
-      bookMeetingChiefLabel.text = viewMainModel?.book.roomChief
-      bookMeetingExplainementLabel.text = viewMainModel?.book.bookComment
+      bookTitleLabel.text = mainModel?.book.bookTitle
+      bookAuthorLabel.text = mainModel?.book.bookAuthor
+      bookMeetingChiefLabel.text = mainModel?.book.roomChief
+      bookMeetingExplainementLabel.text = mainModel?.book.bookComment
     }
   }
   // MARK: - Properties
