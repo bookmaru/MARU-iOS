@@ -39,7 +39,7 @@ final class LibraryViewController: BaseViewController {
     $0.layer.cornerRadius = 19
   }
   let screenSize = UIScreen.main.bounds.size
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 //    view.backgroundColor = .
@@ -58,12 +58,16 @@ extension LibraryViewController {
     let layout = UICollectionViewCompositionalLayout { (sectionNumber, _) in
 
       if sectionNumber == 1 {
-        let itemSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
+                                              heightDimension: .estimated(85))
 
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(5),
+                                                         top: nil,
+                                                         trailing: .fixed(5),
+                                                         bottom: nil)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.915),
                                                heightDimension: .fractionalHeight(1/2))
 
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
@@ -71,53 +75,67 @@ extension LibraryViewController {
 
         
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                        leading: 5,
+                                                        bottom: 0,
+                                                        trailing: 5)
+        section.orthogonalScrollingBehavior = .continuous
         return section
       }
-      if sectionNumber == 2 {
+      else {
 
-        let itemSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
+                                              heightDimension: .estimated(85))
+        
 
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(5),
+                                                         top: nil,
+                                                         trailing: .fixed(5),
+                                                         bottom: nil)
+
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.915),
                                                heightDimension: .fractionalHeight(1/2))
 
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                        leading: 5,
+                                                        bottom: 0,
+                                                        trailing: 5)
+        section.orthogonalScrollingBehavior = .continuous
         return section
       }
-      
     }
     return layout
   }
-  private func creatDiaryLayout() -> UICollectionViewCompositionalLayout {
-    let layout = UICollectionViewCompositionalLayout { (_, _) in
-
-        let itemSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
-
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-                                               heightDimension: .fractionalHeight(1/2))
-
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-
-        
-        let section = NSCollectionLayoutSection(group: group)
-        return section
-    }
-    return layout
-  }
+//  private func creatDiaryLayout() -> UICollectionViewCompositionalLayout {
+//    let layout = UICollectionViewCompositionalLayout { (_, _) in
+//
+//      let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
+//                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
+//
+//      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//
+//      let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
+//                                               heightDimension: .fractionalHeight(1/2))
+//
+//      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+//                                                       subitems: [item])
+//
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        return section
+//    }
+//    return layout
+//  }
 }
 
 extension LibraryViewController {
-  
+
   private func applyLayout() {
     debateCollectionView = UICollectionView(frame: .zero, collectionViewLayout: creatDebateLayout())
     debateCollectionView.register(LibraryDebateCell.self,
@@ -125,7 +143,7 @@ extension LibraryViewController {
     debateCollectionView.register(SectionHeader.self,
                             forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
                             withReuseIdentifier: SectionHeader.reuseIdentifier)
-    
+
     debateCollectionView.delegate = self
 
     view.adds([
@@ -160,12 +178,12 @@ extension LibraryViewController {
     diaryButton.snp.makeConstraints { make in
     }
     debateCollectionView.snp.makeConstraints { make in
-      
+
     }
     addBookButton.snp.makeConstraints { make in
       make.size.equalTo(CGSize(width: 38, height: 38))
     }
-    
+
   }
 }
 
