@@ -35,14 +35,15 @@ extension SplashViewController: ViewControllerType {
       $0.width.equalTo(86)
       $0.height.equalTo(117)
     }
-    imageView.image = UIImage(named: "loginLogo")
+    imageView.image = Image.loginLogo
   }
 }
 
 extension SplashViewController {
   private func moveTo() {
-    let tab = TabBarController()
-    tab.modalPresentationStyle = .overFullScreen
-    present(tab, animated: false, completion: nil)
+//    let tab = TabBarController()
+    let viewController = OnboardingViewController()
+    viewController.modalPresentationStyle = .overFullScreen
+    present(viewController, animated: false)
   }
 }
