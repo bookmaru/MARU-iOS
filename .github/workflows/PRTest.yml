@@ -1,10 +1,7 @@
 name: PR_Actions
 
 on: pull_request
-  branches:
-    - feature/*
-    - develop
-    - ci/*
+
 jobs:
 # This workflow contains a single job called "tests"
   tests:
