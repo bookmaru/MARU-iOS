@@ -37,6 +37,9 @@
 		C5332AD7260F5197007D7797 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332AD6260F5197007D7797 /* Model.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
+		C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21BE266B616900D5D953 /* OnboardingViewController.swift */; };
+		C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */; };
+		C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */; };
 		C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */; };
 		C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C55F1523260F3B74003D99D0 /* .swiftlint.yml */; };
 		C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */; };
@@ -123,6 +126,9 @@
 		C5332AD6260F5197007D7797 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C55E21BE266B616900D5D953 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C55F1523260F3B74003D99D0 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C55F152B260F3E52003D99D0 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
@@ -467,6 +473,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C55E21BD266B615100D5D953 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C5BF82192675B1930074BF25 /* Cell */,
+				C55E21BE266B616900D5D953 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		C55F152E260F3E62003D99D0 /* DevConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +556,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		C5BF82192675B1930074BF25 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */,
+				C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C5DB34D7260F255600F29FE1 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,6 +586,7 @@
 				C5ED1D6F2618893500F670EC /* Main */,
 				C52E7825260F27660087570E /* Login */,
 				C55F1531260F3F1B003D99D0 /* Splash */,
+				C55E21BD266B615100D5D953 /* Onboarding */,
 				C52E7828260F27760087570E /* Base */,
 			);
 			path = Screens;
@@ -907,6 +932,7 @@
 				77B718EE26470CBC0005B129 /* MainModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
+				C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
@@ -914,6 +940,7 @@
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
+				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
@@ -931,6 +958,7 @@
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
+				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
 				C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */,
