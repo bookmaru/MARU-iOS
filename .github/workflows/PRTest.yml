@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Select latest Xcode
         run: "sudo xcode-select -s /Applications/Xcode.app"
-      #- name: install cocoapod
-      #  run: "sudo gem install cocoapods"
-      #- name: pod install
-      #  working-directory: /Users/runner/work/MARU-iOS/MARU-iOS/MARU
-      #  run: "pod install"
+      - name: install cocoapod
+        run: "sudo gem install cocoapods"
+      - name: pod install
+        working-directory: /Users/runner/work/MARU-iOS/MARU-iOS/MARU
+        run: "pod install"
       - uses: actions/cache@v1
         with:
           path: Pods
