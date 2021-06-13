@@ -476,9 +476,8 @@
 		C55E21BD266B615100D5D953 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				C5BF82192675B1930074BF25 /* Cell */,
 				C55E21BE266B616900D5D953 /* OnboardingViewController.swift */,
-				C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */,
-				C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -555,6 +554,15 @@
 				C58F6A532646E9D600D8AA7C /* NetworkService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C5BF82192675B1930074BF25 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */,
+				C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C5DB34D7260F255600F29FE1 /* Config */ = {
