@@ -10,28 +10,41 @@ import UIKit
 final class LibraryViewController: BaseViewController {
 
   let profileBackgroundView = UIView().then {
-    $0.backgroundColor = .white
+    $0.backgroundColor = .blue
   }
 
-  let profileImageView = UIImageView().then { _ in
+  let profileImageView = UIImageView().then {
+    $0.sizeToFit()
+    $0.backgroundColor = .red
   }
   let mygradeLabel = UILabel().then {
     $0.numberOfLines = 2
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
   }
-  let preferenceButton = UIButton().then { _ in
+  
+  let preferenceButton = UIButton().then {
+    $0.sizeToFit()
+    $0.backgroundColor = .yellow
   }
+  let writeButton = UIButton().then {
+    $0.backgroundColor = .gray
+  }
+
   let debateButton = UIButton().then {
     $0.sizeToFit()
     $0.setTitle("토론", for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+    $0.setTitleColor(.blue, for: .normal)
   }
+
   let diaryButton = UIButton().then {
     $0.sizeToFit()
     $0.setTitle("독서일기", for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+    $0.setTitleColor(.blue, for: .normal)
   }
+
   var debateCollectionView: UICollectionView! = nil
   var diaryCollectionView: UICollectionView! = nil
   let addBookButton = UIButton().then {
@@ -42,7 +55,7 @@ final class LibraryViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    view.backgroundColor = .
+    applyLayout()
 
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -50,8 +63,9 @@ final class LibraryViewController: BaseViewController {
     setNavigationBar(isHidden: true)
   }
 }
-//
+
 // MARK: Collection View Layout
+
 extension LibraryViewController {
 
   private func creatDebateLayout() -> UICollectionViewCompositionalLayout {
@@ -73,7 +87,6 @@ extension LibraryViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
 
-        
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                         leading: 5,
@@ -81,19 +94,15 @@ extension LibraryViewController {
                                                         trailing: 5)
         section.orthogonalScrollingBehavior = .continuous
         return section
-      }
-      else {
+      } else {
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
                                               heightDimension: .estimated(85))
-        
-
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(5),
                                                          top: nil,
                                                          trailing: .fixed(5),
                                                          bottom: nil)
-
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.915),
                                                heightDimension: .fractionalHeight(1/2))
@@ -152,21 +161,26 @@ extension LibraryViewController {
     ])
 
     profileBackgroundView.adds([
+      preferenceButton,
       profileImageView,
       mygradeLabel,
-      preferenceButton,
+      writeButton,
       debateButton,
       diaryButton
     ])
 
-    debateCollectionView.add(addBookButton)
+//    debateCollectionView.add(addBookButton)
 
     profileBackgroundView.snp.makeConstraints { make in
       make.width.equalTo(screenSize.width)
+      make.top.equalTo(view.safeAreaLayoutGuide).inset(0)
+      make.height.equalTo(screenSize.height * (0.2803))
     }
 
     profileImageView.snp.makeConstraints { make in
       make.size.equalTo(CGSize(width: 66, height: 66))
+      make.leading.equalToSuperview().inset(20)
+      make.top.equalToSuperview().inset(70)
     }
     mygradeLabel.snp.makeConstraints { make in
     }
