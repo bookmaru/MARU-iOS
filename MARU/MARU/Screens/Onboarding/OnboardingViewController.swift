@@ -105,8 +105,12 @@ extension OnboardingViewController {
     let output = viewModel.transform(input: input)
 
     output.didLogin
-      .drive(onNext: { str in
-        print(str)
+      .drive(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        // to do 어떤 뷰를 누르든 뷰 전환만 일어남 추후 수정 예정
+        let viewController = TabBarController()
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: false)
       })
       .disposed(by: disposeBag)
 
@@ -161,7 +165,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
   func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-      
+      print(appleIDCredential)
     }
   }
 }
