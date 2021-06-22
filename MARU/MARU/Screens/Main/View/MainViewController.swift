@@ -83,6 +83,11 @@ extension MainViewController: ButtonDelegate {
 
 extension MainViewController: UICollectionViewDataSource {
 
+  // collectionView cell 선택 시 모임 입장 화면으로 넘어가는 코드 임의로 연결
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let target = JoinViewController()
+    self.navigationController?.pushViewController(target, animated: true)
+  }
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {

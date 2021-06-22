@@ -70,6 +70,8 @@
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
 		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
+		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
+		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +164,8 @@
 		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
+		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,13 +202,6 @@
 				2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		774119072647F27F000372CF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		77569B642620CDE5008BF77B /* Quiz */ = {
@@ -343,7 +340,6 @@
 		C51CA7F1260D964E00CE4804 /* MARU */ = {
 			isa = PBXGroup;
 			children = (
-				774119072647F27F000372CF /* Model */,
 				C58F6A522646E9C600D8AA7C /* Network */,
 				C52E781C260F27110087570E /* Global */,
 				C5DB34DA260F256A00F29FE1 /* Screens */,
@@ -588,6 +584,7 @@
 				C55F1531260F3F1B003D99D0 /* Splash */,
 				C55E21BD266B615100D5D953 /* Onboarding */,
 				C52E7828260F27760087570E /* Base */,
+				F2F0C6582680767C00F8061A /* Join */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -661,6 +658,23 @@
 				C5ED5ADB263E73C100BA7D47 /* InputView.swift */,
 			);
 			path = CutsomUtil;
+			sourceTree = "<group>";
+		};
+		F2F0C6582680767C00F8061A /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				F2F0C6592680769800F8061A /* View */,
+			);
+			path = Join;
+			sourceTree = "<group>";
+		};
+		F2F0C6592680769800F8061A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2F0C6562680767500F8061A /* JoinViewController.swift */,
+				F2F0C65A2680C32600F8061A /* JoinContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -941,6 +955,7 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
+				F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
@@ -967,6 +982,7 @@
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
+				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				776AF4F02641A7060020D2D8 /* MainViewCollectionView.swift in Sources */,
 				C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */,
