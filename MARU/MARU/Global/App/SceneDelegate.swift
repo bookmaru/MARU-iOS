@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,24 +25,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     self.window = window
   }
 
-  func sceneDidDisconnect(_ scene: UIScene) {
-
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+      if let url = URLContexts.first?.url,
+         AuthApi.isKakaoTalkLoginUrl(url) {
+        _ = AuthController.handleOpenUrl(url: url)
+        print("Scene Delegate Kakao")
+      }
   }
 
-  func sceneDidBecomeActive(_ scene: UIScene) {
+  func sceneDidDisconnect(_ scene: UIScene) { }
 
-  }
+  func sceneDidBecomeActive(_ scene: UIScene) { }
 
-  func sceneWillResignActive(_ scene: UIScene) {
+  func sceneWillResignActive(_ scene: UIScene) { }
 
-  }
+  func sceneWillEnterForeground(_ scene: UIScene) { }
 
-  func sceneWillEnterForeground(_ scene: UIScene) {
-
-  }
-
-  func sceneDidEnterBackground(_ scene: UIScene) {
-
-  }
+  func sceneDidEnterBackground(_ scene: UIScene) { }
 
 }
