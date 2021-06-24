@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class OnboardingViewController: BaseViewController {
   typealias Cell = OnboardingCollectionViewCell
   typealias LoginCell = OnboardingLoginCollectionViewCell
+  typealias ViewModel = OnboardingViewModel
 
   private let welcomeLabel: UILabel = {
     let label = UILabel()
@@ -36,6 +40,11 @@ final class OnboardingViewController: BaseViewController {
     collectionView.register(cell: LoginCell.self)
     return collectionView
   }()
+
+  private let didTapAppleLoginButton = PublishSubject<Void>()
+  private let didTapKakaoLoginButton = PublishSubject<Void>()
+
+  private let viewModel = ViewModel()
 
   private let guide: [String] = [
     """
@@ -65,6 +74,7 @@ final class OnboardingViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+    bind()
   }
 }
 
@@ -84,6 +94,38 @@ extension OnboardingViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
+
+  private func bind() {
+    let viewDidLoadPublisher = PublishSubject<Void>()
+    let input = ViewModel.Input(
+      viewDidLoad: viewDidLoadPublisher,
+      didTapAppleLogin: didTapAppleLoginButton,
+      didTapKakaoLoginButton: didTapKakaoLoginButton
+    )
+    let output = viewModel.transform(input: input)
+
+    output.didLogin
+      .drive(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        // to do 어떤 뷰를 누르든 뷰 전환만 일어남 추후 수정 예정
+        let viewController = TabBarController()
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: false)
+      })
+      .disposed(by: disposeBag)
+
+    output.isInitialUser
+      .drive(onNext: { [weak self] isInitialUser in
+        guard let self = self else { return }
+        if isInitialUser {
+          let index = IndexPath(item: 2, section: 0)
+          self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+        }
+      })
+      .disposed(by: disposeBag)
+
+    viewDidLoadPublisher.onNext(())
+  }
 }
 
 extension OnboardingViewController: UICollectionViewDelegateFlowLayout {}
@@ -99,11 +141,31 @@ extension OnboardingViewController: UICollectionViewDataSource {
     let item = indexPath.item
     if item == 2 {
       let cell: LoginCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+
+      cell.bind(guide: guide[item])
+
+      cell.rx.didTapAppleLoginButton
+        .bind(to: didTapAppleLoginButton)
+        .disposed(by: cell.disposeBag)
+
+      cell.rx.didTapKakaoLoginButton
+        .bind(to: didTapKakaoLoginButton)
+        .disposed(by: cell.disposeBag)
+
       return cell
     } else {
       let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.bind(guide: guide[item], subGuide: subGuide[item])
       return cell
+    }
+  }
+}
+
+extension OnboardingViewController: ASAuthorizationControllerDelegate {
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithAuthorization authorization: ASAuthorization) {
+    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+      print(appleIDCredential)
     }
   }
 }

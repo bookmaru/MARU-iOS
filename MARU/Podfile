@@ -8,6 +8,7 @@ target 'MARU' do
   inhibit_all_warnings!
 
   # Pods for MARU
+	pod 'DuctTape'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'

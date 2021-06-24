@@ -41,8 +41,8 @@ extension SplashViewController: ViewControllerType {
 
 extension SplashViewController {
   private func moveTo() {
-    let viewController = TabBarController()
-//    let viewController = OnboardingViewController()
+//    let viewController = TabBarController()
+    let viewController = OnboardingViewController()
     viewController.modalPresentationStyle = .fullScreen
     present(viewController, animated: false)
   }

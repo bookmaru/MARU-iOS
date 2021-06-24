@@ -30,6 +30,8 @@
 		C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F6260D964E00CE4804 /* LoginViewController.swift */; };
 		C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FB260D966000CE4804 /* Assets.xcassets */; };
 		C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */; };
+		C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */; };
+		C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B34AC268211040053FE45 /* UserDefaultHandler.swift */; };
 		C52E782A260F277F0087570E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7829260F277F0087570E /* BaseViewController.swift */; };
 		C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */; };
 		C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */; };
@@ -121,6 +123,8 @@
 		C51CA7FB260D966000CE4804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C51CA7FE260D966000CE4804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C51CA800260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		C52B34AC268211040053FE45 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		C52E7829260F277F0087570E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherChatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -422,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				C5332ACA260F50EC007D7797 /* KeychainHandler.swift */,
+				C52B34AC268211040053FE45 /* UserDefaultHandler.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 			children = (
 				C5BF82192675B1930074BF25 /* Cell */,
 				C55E21BE266B616900D5D953 /* OnboardingViewController.swift */,
+				C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -944,6 +950,7 @@
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				77B718EE26470CBC0005B129 /* MainModel.swift in Sources */,
+				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
 				C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */,
@@ -966,6 +973,7 @@
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
+				C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */,
