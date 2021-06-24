@@ -31,9 +31,12 @@ final class OnboardingViewModel: ViewModelType {
       .asDriver(onErrorJustReturn: false)
 
     let didLogin = input.didTapLoginButton
-      .map { type, token -> Bool in
-        print(type, token)
-        return true
+      .map { _, token -> Bool in
+        if token != "" {
+          KeychainHandler.shared.accessToken = token
+          return true
+        }
+        return false
       }.asDriver(onErrorJustReturn: false)
 
     return Output(isInitialUser: isInitialUser, didLogin: didLogin)
