@@ -11,13 +11,12 @@ import RxSwift
 final class OnboardingViewModel: ViewModelType {
   struct Input {
     let viewDidLoad: PublishSubject<Void>
-    let didTapAppleLogin: PublishSubject<Void>
-    let didTapKakaoLoginButton: PublishSubject<Void>
+    let didTapLoginButton: PublishSubject<(AuthType, String)>
   }
 
   struct Output {
     let isInitialUser: Driver<Bool>
-    let didLogin: Driver<String>
+    let didLogin: Driver<Bool>
   }
 
   func transform(input: Input) -> Output {
@@ -31,22 +30,13 @@ final class OnboardingViewModel: ViewModelType {
       }
       .asDriver(onErrorJustReturn: false)
 
-    let appleLogin = input.didTapAppleLogin
-      .map { "apple" }
-      .asDriver(onErrorJustReturn: "")
-
-    let kakaoLogin = input.didTapKakaoLoginButton
-      .map { "kakao" }
-      .asDriver(onErrorJustReturn: "")
-
-    let didLogin = Driver.combineLatest(appleLogin, kakaoLogin)
-      .map { apple, kakao -> String in
-        if apple != "" {
-          return apple
-        }
-        return kakao
-      }
+    let didLogin = input.didTapLoginButton
+      .map { type, token -> Bool in
+        print(type, token)
+        return true
+      }.asDriver(onErrorJustReturn: false)
 
     return Output(isInitialUser: isInitialUser, didLogin: didLogin)
   }
+
 }
