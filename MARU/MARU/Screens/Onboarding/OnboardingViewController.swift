@@ -11,6 +11,9 @@ import AuthenticationServices
 import SnapKit
 import RxSwift
 import RxCocoa
+import KakaoSDKAuth
+import KakaoSDKCommon
+import KakaoSDKUser
 
 final class OnboardingViewController: BaseViewController {
   typealias Cell = OnboardingCollectionViewCell
@@ -41,8 +44,7 @@ final class OnboardingViewController: BaseViewController {
     return collectionView
   }()
 
-  private let didTapAppleLoginButton = PublishSubject<Void>()
-  private let didTapKakaoLoginButton = PublishSubject<Void>()
+  private let didTapLoginButton = PublishSubject<(AuthType, String)>()
 
   private let viewModel = ViewModel()
 
@@ -99,15 +101,14 @@ extension OnboardingViewController {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = ViewModel.Input(
       viewDidLoad: viewDidLoadPublisher,
-      didTapAppleLogin: didTapAppleLoginButton,
-      didTapKakaoLoginButton: didTapKakaoLoginButton
+      didTapLoginButton: didTapLoginButton
     )
     let output = viewModel.transform(input: input)
 
     output.didLogin
-      .drive(onNext: { [weak self] _ in
-        guard let self = self else { return }
-        // to do 어떤 뷰를 누르든 뷰 전환만 일어남 추후 수정 예정
+      .drive(onNext: { [weak self] isLogin in
+        guard let self = self,
+              isLogin else { return }
         let viewController = TabBarController()
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: false)
@@ -125,6 +126,23 @@ extension OnboardingViewController {
       .disposed(by: disposeBag)
 
     viewDidLoadPublisher.onNext(())
+  }
+
+  private func kakaoLogin() {
+    UserApi.shared.loginWithKakaoAccount { [weak self] kakaoResponse, error in
+      guard let self = self,
+            error == nil,
+            let token = kakaoResponse?.accessToken
+      else { return }
+
+      NetworkService.shared.auth
+        .auth(type: .kakao, token: token)
+        .map { response -> (AuthType, String) in
+          return (.kakao, response.data?.accessToken ?? "")
+        }
+        .bind(to: self.didTapLoginButton)
+        .disposed(by: self.disposeBag)
+    }
   }
 }
 
@@ -145,11 +163,19 @@ extension OnboardingViewController: UICollectionViewDataSource {
       cell.bind(guide: guide[item])
 
       cell.rx.didTapAppleLoginButton
-        .bind(to: didTapAppleLoginButton)
+        .subscribe(onNext: {
+          let appleIdRequest = ASAuthorizationAppleIDProvider().createRequest()
+          let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest])
+          controller.delegate = self
+          controller.presentationContextProvider = self
+          controller.performRequests()
+        })
         .disposed(by: cell.disposeBag)
 
       cell.rx.didTapKakaoLoginButton
-        .bind(to: didTapKakaoLoginButton)
+        .subscribe(onNext: { [weak self] _ in
+          self?.kakaoLogin()
+        })
         .disposed(by: cell.disposeBag)
 
       return cell
@@ -164,8 +190,15 @@ extension OnboardingViewController: UICollectionViewDataSource {
 extension OnboardingViewController: ASAuthorizationControllerDelegate {
   func authorizationController(controller: ASAuthorizationController,
                                didCompleteWithAuthorization authorization: ASAuthorization) {
-    if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-      print(appleIDCredential)
-    }
+    guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+          let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
+    else { return }
+    didTapLoginButton.onNext((.apple, identifyToken))
+  }
+}
+
+extension OnboardingViewController: ASAuthorizationControllerPresentationContextProviding {
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return self.view.window!
   }
 }

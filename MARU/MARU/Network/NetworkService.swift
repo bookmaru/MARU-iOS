@@ -8,5 +8,7 @@
 final class NetworkService {
   static let shared = NetworkService()
 
-  init() {}
+  private init() {}
+
+  let auth = AuthService()
 }
