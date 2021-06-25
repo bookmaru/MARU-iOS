@@ -58,6 +58,7 @@
 		C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F17EA260F48C5003D99D0 /* ViewController.swift */; };
 		C55F1816260F4DC5003D99D0 /* MARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1815260F4DC5003D99D0 /* MARUUITests.swift */; };
 		C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1825260F4DD1003D99D0 /* MARUTests.swift */; };
+		C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568A67D268637FA00CEF5AD /* CertificationViewController.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -162,6 +163,7 @@
 		C55F1823260F4DD1003D99D0 /* MARUTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARUTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55F1825260F4DD1003D99D0 /* MARUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUTests.swift; sourceTree = "<group>"; };
 		C55F1827260F4DD1003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C568A67D268637FA00CEF5AD /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				C5BF82192675B1930074BF25 /* Cell */,
 				C55E21BE266B616900D5D953 /* OnboardingViewController.swift */,
 				C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */,
+				C568A67D268637FA00CEF5AD /* CertificationViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1063,6 +1066,7 @@
 				776AF4F02641A7060020D2D8 /* MainViewCollectionView.swift in Sources */,
 				C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */,
 				C5A3DB142684E43E007355D1 /* Auth.swift in Sources */,
+				C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */,
 				C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */,
 				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,
 			);

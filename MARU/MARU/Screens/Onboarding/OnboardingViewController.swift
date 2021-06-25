@@ -163,7 +163,8 @@ extension OnboardingViewController: UICollectionViewDataSource {
       cell.bind(guide: guide[item])
 
       cell.rx.didTapAppleLoginButton
-        .subscribe(onNext: {
+        .subscribe(onNext: { [weak self] _ in
+          guard let self = self else { return }
           let appleIdRequest = ASAuthorizationAppleIDProvider().createRequest()
           let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest])
           controller.delegate = self
