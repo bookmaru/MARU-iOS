@@ -38,7 +38,7 @@ final class NewMeetingCell: UICollectionViewCell {
 
   private let bookMeetingChiefLabel = UILabel().then {
     $0.text = "test3"
-    $0.textColor = .cornflowerBlue
+    $0.textColor = .mainBlue
     $0.textAlignment = .right
     $0.font = .systemFont(ofSize: 10, weight: .bold)
   }

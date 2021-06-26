@@ -35,7 +35,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     let text = "토론이 6일 남았습니다."
     let attributedString = NSMutableAttributedString(string: text)
     attributedString.addAttribute(
-      .foregroundColor, value: UIColor.cornflowerBlue, range: (text as NSString).range(of: "6")
+      .foregroundColor, value: UIColor.mainBlue, range: (text as NSString).range(of: "6")
     )
     $0.attributedText = attributedString
     $0.font = .boldSystemFont(ofSize: 15)
@@ -79,7 +79,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.textColor = UIColor.black.withAlphaComponent(0.4)
   }
   private let chatCountContainerView = UIView().then {
-    $0.backgroundColor = .cornflowerBlue
+    $0.backgroundColor = .mainBlue
     $0.layer.cornerRadius = 8
   }
   private let chatCountLabel = UILabel().then {

@@ -57,69 +57,56 @@ extension UIColor {
   @nonobjc class var black: UIColor {
     return UIColor(white: 52.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var veryLightPink: UIColor {
     return UIColor(white: 209.0 / 255.0, alpha: 1.0)
   }
-
-  @nonobjc class var veryLightPinkTwo: UIColor {
+  @nonobjc class var ligthGray: UIColor {
     return UIColor(white: 235.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var brownishGrey: UIColor {
     return UIColor(white: 112.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var blackTwo: UIColor {
     return UIColor(white: 44.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var orangeyRed: UIColor {
     return UIColor(red: 1.0, green: 60.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0)
   }
-
-  @nonobjc class var pastelRed: UIColor {
+  @nonobjc class var negative: UIColor {
     return UIColor(red: 224.0 / 255.0, green: 83.0 / 255.0, blue: 78.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var brownGrey: UIColor {
     return UIColor(white: 178.0 / 255.0, alpha: 1.0)
   }
-
-  @nonobjc class var menuBarWhite: UIColor {
+  @nonobjc class var bgLightgray: UIColor {
     return UIColor(white: 250.0 / 255.0, alpha: 1.0)
   }
-
-  @nonobjc class var cornflowerBlue: UIColor {
+  @nonobjc class var mainBlue: UIColor {
     return UIColor(red: 65.0 / 255.0, green: 105.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var white: UIColor {
     return UIColor(white: 1.0, alpha: 1.0)
   }
-
   @nonobjc class var brownGreyTwo: UIColor {
     return UIColor(white: 159.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var veryLightPinkThree: UIColor {
     return UIColor(white: 240.0 / 255.0, alpha: 1.0)
   }
-
   @nonobjc class var black22: UIColor {
     return UIColor(white: 34.0 / 255.0, alpha: 0.22)
   }
-  @nonobjc class var mainBlue: UIColor {
-      return UIColor(red: 65.0 / 255.0, green: 105.0 / 255.0, blue: 225.0 / 255.0, alpha: 1.0)
-    }
-  @nonobjc class var brownGreyThree: UIColor {
-      return UIColor(white: 132.0 / 255.0, alpha: 1.0)
-    }
   @nonobjc class var veryLightPinkFour: UIColor {
-      return UIColor(white: 220.0 / 255.0, alpha: 1.0)
-    }
-  @nonobjc class var brownGreyFour: UIColor {
-      return UIColor(white: 130.0 / 255.0, alpha: 1.0)
-    }
 
+    return UIColor(white: 220.0 / 255.0, alpha: 1.0)
+  }
+  @nonobjc class var brownGreyThree: UIColor {
+    return UIColor(white: 132.0 / 255.0, alpha: 1.0)
+  }
+  @nonobjc class var brownGreyFour: UIColor {
+    return UIColor(white: 130.0 / 255.0, alpha: 1.0)
+  }
+  @nonobjc class var subText: UIColor {
+    return UIColor(white: 194.0 / 255.0, alpha: 1.0)
+  }
 }

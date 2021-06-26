@@ -1,0 +1,11 @@
+5anniversary:
+  - profitjean
+  - psychehose
+# you can set multiple reviewers
+psychehose:
+  - profitjean
+  - 5anniversary
+# you can use regexp to match assignee
+profitjean:
+  - 5anniversary
+  - psychehose

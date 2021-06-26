@@ -25,7 +25,7 @@ final class EmptyMeetCollectionViewCell: UICollectionViewCell {
   private let addButton = UIButton().then {
     $0.setImage(Image.plusIcon, for: .normal)
     $0.setTitle("   모임 열기", for: .normal)
-    $0.setTitleColor(.cornflowerBlue, for: .normal)
+    $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = .boldSystemFont(ofSize: 13)
   }
 

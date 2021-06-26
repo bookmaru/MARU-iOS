@@ -38,4 +38,5 @@ enum Image {
   static let wrongRed = UIImage(named: "wrongRed")
   static let picture = UIImage(named: "picture")
   static let testImage = UIImage(named: "testimage")
+  static let maruBlueLogo = UIImage(named: "maru_blue_logo")
 }

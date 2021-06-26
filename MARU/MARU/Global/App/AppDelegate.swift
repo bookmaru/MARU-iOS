@@ -8,6 +8,7 @@
 import UIKit
 
 import Firebase
+import KakaoSDKCommon
 #if DEBUG
 import Gedatsu
 #endif
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
       else { return true }
     FirebaseApp.configure(options: fileopts)
+    KakaoSDKCommon.initSDK(appKey: "887e05e96dc176857e11b18c6bf97969")
 
     return true
   }

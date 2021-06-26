@@ -46,7 +46,7 @@ final class MeetViewController: BaseViewController {
   }()
 
   private let pageControl = UIPageControl().then {
-    $0.currentPageIndicatorTintColor = .cornflowerBlue
+    $0.currentPageIndicatorTintColor = .mainBlue
     $0.pageIndicatorTintColor = .veryLightPinkThree
     $0.numberOfPages = 3
   }
