@@ -109,7 +109,7 @@ extension OnboardingViewController {
       .drive(onNext: { [weak self] isLogin in
         guard let self = self,
               isLogin else { return }
-        let viewController = TabBarController()
+        let viewController = CertificationViewController()
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: false)
       })
@@ -117,11 +117,11 @@ extension OnboardingViewController {
 
     output.isInitialUser
       .drive(onNext: { [weak self] isInitialUser in
-        guard let self = self else { return }
-        if isInitialUser {
-          let index = IndexPath(item: 2, section: 0)
-          self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
-        }
+        guard let self = self,
+              isInitialUser
+        else { return }
+        let index = IndexPath(item: 2, section: 0)
+        self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
       })
       .disposed(by: disposeBag)
 

@@ -47,12 +47,12 @@ final class CertificationViewController: BaseViewController {
     .textColor(.subText)
   private let bornYearPicker: UIPickerView = UIPickerView()
   private let submitButton: UIButton = UIButton()
-  
+
   init() {
     super.init(nibName: nil, bundle: nil)
     render()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -77,5 +77,10 @@ extension CertificationViewController {
       bornYearPicker,
       submitButton
     ])
+    maruLogoImageView.snp.makeConstraints {
+      $0.centerX.equalToSuperview()
+      $0.top.equalToSuperview().offset(64)
+      $0.size.equalTo(CGSize(width: 36, height: 56))
+    }
   }
 }
