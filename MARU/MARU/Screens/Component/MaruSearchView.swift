@@ -83,7 +83,6 @@ extension MaruSearchView {
 }
 extension MaruSearchView: UITextFieldDelegate, SearchTextFieldDelegate {
   @objc func tapTextField() {
-    resignFirstResponder()
     delegate?.tapTextField()
   }
 }

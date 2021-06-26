@@ -19,6 +19,7 @@
 		776AF4F62641BADF0020D2D8 /* NewMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */; };
 		776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */; };
 		776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D06E22657F7EB007CD99B /* MainHeaderCell.swift */; };
+		776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776FB8C92687086300F024F1 /* RecentSearchViewController.swift */; };
 		7784BB3826622B5D00B636EE /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MorePopularViewController.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
 		77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */; };
@@ -103,6 +104,7 @@
 		776AF4F52641BADF0020D2D8 /* NewMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingCell.swift; sourceTree = "<group>"; };
 		776AF4F72641BAF30020D2D8 /* PopularMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCell.swift; sourceTree = "<group>"; };
 		776D06E22657F7EB007CD99B /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
+		776FB8C92687086300F024F1 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
 		77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				776AF4EE2641A69F0020D2D8 /* Component */,
 				C5ED1D76261889AC00F670EC /* MainViewController.swift */,
 				7784BB3726622B5D00B636EE /* MorePopularViewController.swift */,
+				776FB8C92687086300F024F1 /* RecentSearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
+				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
 				77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,

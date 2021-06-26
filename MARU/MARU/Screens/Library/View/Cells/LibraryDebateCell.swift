@@ -9,9 +9,10 @@ import UIKit
 
 final class LibraryDebateCell: UICollectionViewCell {
 
-  private let bookImageView = UIImageView().then {
+  let bookImageView = UIImageView().then {
     $0.backgroundColor = .gray
     $0.layer.cornerRadius = 5
+    $0.image = Image.testImage
   }
 
   // MARK: - Override Init
@@ -19,6 +20,7 @@ final class LibraryDebateCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
+    backgroundColor = .red
   }
 
   required init?(coder: NSCoder) {
@@ -28,7 +30,10 @@ final class LibraryDebateCell: UICollectionViewCell {
     contentView.add(bookImageView)
 
     bookImageView.snp.makeConstraints { (make) in
-      make.edges.equalToSuperview()
+      make.top.equalToSuperview()
+      make.bottom.equalToSuperview()
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
     }
   }
 }
