@@ -70,6 +70,8 @@
 		C5A3DB142684E43E007355D1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB132684E43E007355D1 /* Auth.swift */; };
 		C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
+		C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA0268735E200F01C26 /* ScreenSize.swift */; };
+		C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA22687361600F01C26 /* CGFloat+.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -176,6 +178,8 @@
 		C5A3DB132684E43E007355D1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaNetworkLogger.swift; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C5B16BA0268735E200F01C26 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		C5B16BA22687361600F01C26 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -528,6 +532,7 @@
 				C55F173D260F4443003D99D0 /* CALayer+.swift */,
 				E22306F7262ACEBC00B25CEA /* UIColor+.swift */,
 				C58F6A4E2646CFB000D8AA7C /* Int+.swift */,
+				C5B16BA22687361600F01C26 /* CGFloat+.swift */,
 				C58F6A502646D05A00D8AA7C /* String+.swift */,
 			);
 			path = Extensions;
@@ -728,6 +733,7 @@
 			children = (
 				E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */,
 				C5ED5ADB263E73C100BA7D47 /* InputView.swift */,
+				C5B16BA0268735E200F01C26 /* ScreenSize.swift */,
 			);
 			path = CutsomUtil;
 			sourceTree = "<group>";
@@ -1005,9 +1011,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
+				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
 				776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */,
