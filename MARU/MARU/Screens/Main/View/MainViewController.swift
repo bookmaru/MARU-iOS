@@ -69,9 +69,10 @@ extension MainViewController {
 
 extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
   func tapTextField() {
-    let target = MorePopularViewController()
+    let target = RecentSearchViewController()
+    resignFirstResponder()
     view.hideKeyboard()
-    self.present(target, animated: true, completion: nil)
+    self.navigationController?.pushViewController(target, animated: true)
   }
 }
 extension MainViewController: ButtonDelegate {
@@ -99,7 +100,7 @@ extension MainViewController: UICollectionViewDataSource {
                                                                   for: indexPath) as? SectionHeader else {
         return UICollectionReusableView() }
       header.setupText(text: "지금 가장 인기 많은 모임은?")
-      header.hideButton(isHidden: true)
+      header.hideMoveButton(isHidden: true)
       return header
 
     case 2:
@@ -109,7 +110,7 @@ extension MainViewController: UICollectionViewDataSource {
                                                                   for: indexPath) as? SectionHeader else {
         return UICollectionReusableView() }
       header.setupText(text: "지금 새로 나온 모임")
-      header.hideButton(isHidden: false)
+      header.hideMoveButton(isHidden: false)
       header.delegate = self
       return header
 
