@@ -14,7 +14,6 @@ final class MainViewController: BaseViewController {
 
   private let mainCollectionView = MainViewCollectionView().then {
     $0.backgroundColor = .white
-    // Header
     $0.register(SectionHeader.self,
                 forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
                 withReuseIdentifier: SectionHeader.reuseIdentifier)
@@ -27,7 +26,7 @@ final class MainViewController: BaseViewController {
   }
   // MARK: - Variable & Properties
 
-  let screenSize = UIScreen.main.bounds.size
+  private let screenSize = UIScreen.main.bounds.size
   private let style: UIStatusBarStyle = .lightContent
 //  private let bag = DisposeBag()
 //  let viewModel = MainViewModel()
@@ -48,7 +47,7 @@ final class MainViewController: BaseViewController {
     setNavigationBar(isHidden: true)
   }
 }
-
+  /// - TAG: View Layout
 extension MainViewController {
   private func applyLayout() {
 
