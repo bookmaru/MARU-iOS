@@ -10,6 +10,8 @@
 		3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */; };
 		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		774262EE26899825008F9CAE /* MoreWasDebateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262ED26899825008F9CAE /* MoreWasDebateViewController.swift */; };
+		774262F126899C95008F9CAE /* LibraryBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262F026899C95008F9CAE /* LibraryBook.swift */; };
 		774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774BDE7226609B9800B97CC6 /* SectionHeader.swift */; };
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		776320452646B35900293D1C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776320442646B35900293D1C /* Book.swift */; };
@@ -111,6 +113,8 @@
 		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CE16988EFDC8A9F29E8ABFB /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		774262ED26899825008F9CAE /* MoreWasDebateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreWasDebateViewController.swift; sourceTree = "<group>"; };
+		774262F026899C95008F9CAE /* LibraryBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBook.swift; sourceTree = "<group>"; };
 		774BDE7226609B9800B97CC6 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		77569B6E2620CE20008BF77B /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
@@ -233,6 +237,14 @@
 				2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		774262EF26899C48008F9CAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				774262F026899C95008F9CAE /* LibraryBook.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		77569B642620CDE5008BF77B /* Quiz */ = {
@@ -711,6 +723,7 @@
 		C5ED1D722618899700F670EC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
 			);
 			path = Library;
@@ -721,6 +734,7 @@
 			children = (
 				77B27BC22664C12C008E315C /* Cells */,
 				C5ED1D8026188A2900F670EC /* LibraryViewController.swift */,
+				774262ED26899825008F9CAE /* MoreWasDebateViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1032,6 +1046,7 @@
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
+				774262EE26899825008F9CAE /* MoreWasDebateViewController.swift in Sources */,
 				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
@@ -1068,6 +1083,7 @@
 				776320482646B60E00293D1C /* MainViewModel.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
+				774262F126899C95008F9CAE /* LibraryBook.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */,
