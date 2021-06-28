@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MoreWasDebateViewController: BaseViewController {
+final class MoreWasDebateViewController: BaseViewController {
   enum Section {
     case main
   }
@@ -16,8 +16,11 @@ class MoreWasDebateViewController: BaseViewController {
 
   private var collectionView: UICollectionView! = nil
   private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryBook>! = nil
+  private var initData = LibraryBook.initData
   override func viewDidLoad() {
     super.viewDidLoad()
+    configureHierarchy()
+    configureDataSource()
   }
 }
 extension MoreWasDebateViewController {
@@ -31,7 +34,7 @@ extension MoreWasDebateViewController {
                                            heightDimension: .absolute(142))
     let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
     group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil, top: nil, trailing: nil, bottom: .fixed(23))
-    
+
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                     leading: 20,
@@ -45,13 +48,39 @@ extension MoreWasDebateViewController {
 extension MoreWasDebateViewController {
   private func configureHierarchy() {
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-    collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    view.addSubview(collectionView)
+
+    view.add(collectionView) {
+      $0.snp.makeConstraints { make in
+        make.top.equalToSuperview()
+        make.bottom.equalToSuperview()
+        make.leading.equalToSuperview()
+        make.trailing.equalToSuperview()
+      }
+    }
+
+    collectionView.backgroundColor = .clear
     collectionView.delegate = self
   }
-  
+  private func configureDataSource() {
+    let cellRegistration = UICollectionView
+      .CellRegistration<WasDebateCell, LibraryBook> {_, _, _ in
+
+      }
+
+    dataSource = UICollectionViewDiffableDataSource<Section, LibraryBook>(
+    collectionView: collectionView,
+      cellProvider: { collectionView, indexPath, libraryBook in
+        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
+                                                            for: indexPath,
+                                                            item: libraryBook)
+      })
+
+    var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryBook>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(initData)
+    dataSource.apply(snapshot, animatingDifferences: false)
+  }
 }
 
 extension MoreWasDebateViewController: UICollectionViewDelegate {
-  
 }

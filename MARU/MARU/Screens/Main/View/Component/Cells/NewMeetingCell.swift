@@ -179,9 +179,9 @@ final class NewMeetingCell: UICollectionViewCell {
 
   private func applyShadow() {
     shadowView.applyShadow(color: .black,
-                alpha: 0.28,
-                shadowX: 0,
-                shadowY: 0,
-                blur: 15/2)
+                           alpha: 0.28,
+                           shadowX: 0,
+                           shadowY: 0,
+                           blur: 15/2)
   }
 }

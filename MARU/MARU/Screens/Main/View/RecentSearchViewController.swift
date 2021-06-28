@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentSearchViewController: BaseViewController {
+final class RecentSearchViewController: BaseViewController {
   enum Section {
     case main
   }

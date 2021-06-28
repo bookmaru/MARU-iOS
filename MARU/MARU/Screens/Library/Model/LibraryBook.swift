@@ -31,7 +31,7 @@ struct LibraryBook: Hashable {
 }
   // MARK: - 임시데이터 생성
 extension LibraryBook {
-  static var tempData: [LibraryBook] = [
+  static var initData: [LibraryBook] = [
     LibraryBook(bookImage: "",
                 bookTitle: "이러지마",
                 bookAuthor: "그러지마"),

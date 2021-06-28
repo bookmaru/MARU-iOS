@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MorePopularViewController: BaseViewController {
+final class MorePopularViewController: BaseViewController {
 
   enum Section {
     case main
