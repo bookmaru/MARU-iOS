@@ -13,13 +13,13 @@ protocol ButtonDelegate: AnyObject {
 final class SectionHeader: UICollectionReusableView {
   static let sectionHeaderElementKind = "section-header-element-kind"
 
-  let titleLabel = UILabel().then {
+  private let titleLabel = UILabel().then {
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
     $0.font = .systemFont(ofSize: 17, weight: .bold)
     $0.text = "defalut"
   }
-  let moveButton = UIButton().then {
+  private let moveButton = UIButton().then {
     $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
                                                                     renderingMode: .alwaysOriginal),
                 for: .normal)
@@ -27,7 +27,7 @@ final class SectionHeader: UICollectionReusableView {
   }
   // MARK: - Library Cell에서 쓰일거임.
 
-  let plusButton = UIButton().then {
+  private let plusButton = UIButton().then {
     $0.setImage(UIImage(systemName: "plus")?
                   .withTintColor(.black, renderingMode: .alwaysOriginal)
                   .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)),
