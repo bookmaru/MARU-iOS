@@ -1,5 +1,5 @@
 //
-//  NewMeetingCell.swift
+//  MeetingListCell.swift
 //  MARU
 //
 //  Created by psychehose on 2021/05/05.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewMeetingCell: UICollectionViewCell {
+final class MeetingListCell: UICollectionViewCell {
   // MARK: - UIComponent
 
   private let shadowView = UIView().then {

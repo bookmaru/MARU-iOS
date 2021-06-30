@@ -235,7 +235,7 @@ extension RecentSearchViewController {
   }
 
   private func configureResultDataSource() {
-    let cellRegistration = UICollectionView.CellRegistration<NewMeetingCell, MainModel> { (_, _, _) in
+    let cellRegistration = UICollectionView.CellRegistration<MeetingListCell, MainModel> { (_, _, _) in
       // Populate the cell with our item description.
     }
     resultDataSource

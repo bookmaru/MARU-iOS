@@ -53,9 +53,9 @@ final class WasDebateCell: UICollectionViewCell {
                                             right: 9)
     return button
   }()
-  
+
   // MARK: - RX로 교체할 수 있지 않을까?
-  
+
   var libraryBook: LibraryBook? {
     didSet {
 //      bookImageView.image = libraryBook?.bookImage

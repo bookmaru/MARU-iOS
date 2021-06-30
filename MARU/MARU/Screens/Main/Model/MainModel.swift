@@ -16,9 +16,9 @@ struct MainModel: Hashable {
     self.book = book
   }
   func hash(into hasher: inout Hasher) {
-    // 2
     hasher.combine(identifier)
   }
+
   static func == (lhs: MainModel, rhs: MainModel) -> Bool {
     lhs.identifier == rhs.identifier
   }

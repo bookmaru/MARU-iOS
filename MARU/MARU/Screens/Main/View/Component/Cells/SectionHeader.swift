@@ -25,21 +25,12 @@ final class SectionHeader: UICollectionReusableView {
                 for: .normal)
     $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
   }
-  // MARK: - Library Cell에서 쓰일거임.
 
-  private let plusButton = UIButton().then {
-    $0.setImage(UIImage(systemName: "plus")?
-                  .withTintColor(.black, renderingMode: .alwaysOriginal)
-                  .withConfiguration(UIImage.SymbolConfiguration(weight: .bold)),
-                for: .normal)
-    $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-  }
   weak var delegate: ButtonDelegate?
 
   override init(frame: CGRect) {
     super.init(frame: frame)
     configure()
-    plusButton.isHidden = true
   }
   required init?(coder: NSCoder) {
     fatalError()
@@ -49,29 +40,20 @@ extension SectionHeader {
     func configure() {
       add(titleLabel)
       add(moveButton)
-      add(plusButton)
 
       titleLabel.snp.makeConstraints { make in
         make.leading.equalToSuperview()
         make.centerY.equalToSuperview()
       }
       moveButton.snp.makeConstraints { make in
-        make.leading.equalTo(titleLabel.snp.trailing).inset(-5)
-        make.centerY.equalToSuperview()
-        make.size.equalTo(CGSize(width: 19, height: 19))
-      }
-      plusButton.snp.makeConstraints { make in
         make.trailing.equalToSuperview().inset(0)
         make.centerY.equalToSuperview()
         make.size.equalTo(CGSize(width: 19, height: 19))
       }
-
     }
+
   func hideMoveButton(isHidden: Bool) {
     moveButton.isHidden = isHidden
-  }
-  func hidePlusButton(isHidden: Bool = true) {
-    plusButton.isHidden = isHidden
   }
   func setupText(text: String) {
     titleLabel.text = text
