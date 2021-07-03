@@ -7,7 +7,7 @@
 
 import UIKit
 protocol ButtonDelegate: AnyObject {
-  func tapButton()
+  func tapButtonInHeader()
 }
 
 final class SectionHeader: UICollectionReusableView {
@@ -23,7 +23,7 @@ final class SectionHeader: UICollectionReusableView {
     $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
                                                                     renderingMode: .alwaysOriginal),
                 for: .normal)
-    $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    $0.addTarget(self, action: #selector(tapButtonInHeader), for: .touchUpInside)
   }
 
   weak var delegate: ButtonDelegate?
@@ -61,7 +61,7 @@ extension SectionHeader {
 }
 
 extension SectionHeader: ButtonDelegate {
-  @objc func tapButton() {
-    delegate?.tapButton()
+  @objc func tapButtonInHeader() {
+    delegate?.tapButtonInHeader()
   }
 }

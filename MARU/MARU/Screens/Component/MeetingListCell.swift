@@ -17,6 +17,7 @@ final class MeetingListCell: UICollectionViewCell {
 
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .clear
+    $0.layer.cornerRadius = 5
     $0.image = Image.testImage
   }
 
@@ -121,9 +122,9 @@ final class MeetingListCell: UICollectionViewCell {
     }
 
     bookImageView.snp.makeConstraints { ( make ) in
-      make.top.equalTo(shadowView.snp.top).inset(0)
-      make.leading.equalTo(shadowView.snp.leading).inset(0)
-      make.bottom.equalTo(shadowView.snp.bottom).inset(0)
+      make.top.equalTo(shadowView.snp.top)
+      make.leading.equalTo(shadowView.snp.leading)
+      make.bottom.equalTo(shadowView.snp.bottom)
       make.width.equalTo(96)
     }
 

@@ -47,52 +47,13 @@ final class RecentSearchViewController: BaseViewController {
   private var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
   private var resultDataSource: UICollectionViewDiffableDataSource<Section, MainModel>!
 
-  var allModel: [MainModel] = [
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1))
-  ]
+  private var initData = MainModel.initMainData
 
   override func viewDidLoad() {
     super.viewDidLoad()
     configureLayout()
     configureDataSource()
     configureResultDataSource()
-    searchListCollectionView.contentInsetAdjustmentBehavior = .never
-    resultCollectionView.contentInsetAdjustmentBehavior = .never
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -119,38 +80,14 @@ extension RecentSearchViewController {
     return UICollectionViewCompositionalLayout.list(using: config)
   }
 
-  private func createResultLayout() -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { [self] (_, _) in
-      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                            heightDimension: .fractionalHeight(1))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-      item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                       top: nil,
-                                                       trailing: nil,
-                                                       bottom: nil)
-
-      let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                             heightDimension: .absolute(142))
-      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                     subitems: [item])
-      group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                        top: nil,
-                                                        trailing: nil,
-                                                        bottom: .fixed(23))
-
-      let section = NSCollectionLayoutSection(group: group)
-      section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
-      return section
-    }
-    return layout
-  }
-
   private func configureLayout() {
     searchListCollectionView = UICollectionView(frame: .zero,
                                                 collectionViewLayout: createListLayout())
     searchListCollectionView.delegate = self
     resultCollectionView = UICollectionView(frame: .zero,
-                                            collectionViewLayout: createResultLayout())
+                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+    searchListCollectionView.contentInsetAdjustmentBehavior = .never
+    resultCollectionView.contentInsetAdjustmentBehavior = .never
     resultCollectionView.delegate = self
     searchListCollectionView.backgroundColor = .white
     resultCollectionView.backgroundColor = .white
@@ -249,7 +186,7 @@ extension RecentSearchViewController {
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(allModel)
+    snapshot.appendItems(initData)
     resultDataSource.apply(snapshot, animatingDifferences: false)
   }
 }

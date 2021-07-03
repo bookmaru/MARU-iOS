@@ -56,7 +56,7 @@ final class WasDebateCell: UICollectionViewCell {
 
   // MARK: - RX로 교체할 수 있지 않을까?
 
-  var libraryBook: LibraryBook? {
+  var libraryBook: LibraryModel? {
     didSet {
 //      bookImageView.image = libraryBook?.bookImage
       bookTitleLabel.text = libraryBook?.bookTitle

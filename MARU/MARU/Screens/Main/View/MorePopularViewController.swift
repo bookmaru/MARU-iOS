@@ -13,11 +13,9 @@ class MorePopularViewController: BaseViewController {
     case main
   }
 
-  let screenSize = UIScreen.main.bounds.size
-
   private var collectionView: UICollectionView! = nil
-  private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryBook>! = nil
-  private var initData = LibraryBook.initData
+  private var dataSource: UICollectionViewDiffableDataSource<Section, MainModel>! = nil
+  private var initData = MainModel.initMainData
   override func viewDidLoad() {
     super.viewDidLoad()
     configureHierarchy()
@@ -27,8 +25,11 @@ class MorePopularViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    navigationController?.navigationBar.barTintColor = .white
   }
 }
+
 extension MorePopularViewController {
   /// - TAG: Layout
   private func configureHierarchy() {
@@ -36,7 +37,7 @@ extension MorePopularViewController {
                                       collectionViewLayout: MaruListCollectionViewLayout.createLayout())
     view.add(collectionView) {
       $0.snp.makeConstraints { make in
-        make.top.equalToSuperview()
+        make.top.equalToSuperview().inset(15)
         make.bottom.equalToSuperview()
         make.leading.equalToSuperview()
         make.trailing.equalToSuperview()
@@ -49,11 +50,10 @@ extension MorePopularViewController {
 
   private func configureDataSource() {
     let cellRegistration = UICollectionView
-      .CellRegistration<WasDebateCell, LibraryBook> {_, _, _ in
-
+      .CellRegistration<MeetingListCell, MainModel> {_, _, _ in
       }
 
-    dataSource = UICollectionViewDiffableDataSource<Section, LibraryBook>(
+    dataSource = UICollectionViewDiffableDataSource<Section, MainModel>(
     collectionView: collectionView,
       cellProvider: { collectionView, indexPath, libraryBook in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
@@ -61,7 +61,7 @@ extension MorePopularViewController {
                                                             item: libraryBook)
       })
 
-    var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryBook>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
     snapshot.appendSections([.main])
     snapshot.appendItems(initData)
     dataSource.apply(snapshot, animatingDifferences: false)

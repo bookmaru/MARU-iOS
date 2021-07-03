@@ -15,8 +15,8 @@ final class MoreWasDebateViewController: BaseViewController {
   let screenSize = UIScreen.main.bounds.size
 
   private var collectionView: UICollectionView! = nil
-  private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryBook>! = nil
-  private var initData = LibraryBook.initData
+  private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryModel>! = nil
+  private var initData = LibraryModel.initData
   override func viewDidLoad() {
     super.viewDidLoad()
     configureHierarchy()
@@ -63,11 +63,11 @@ extension MoreWasDebateViewController {
   }
   private func configureDataSource() {
     let cellRegistration = UICollectionView
-      .CellRegistration<WasDebateCell, LibraryBook> {_, _, _ in
+      .CellRegistration<WasDebateCell, LibraryModel> {_, _, _ in
 
       }
 
-    dataSource = UICollectionViewDiffableDataSource<Section, LibraryBook>(
+    dataSource = UICollectionViewDiffableDataSource<Section, LibraryModel>(
     collectionView: collectionView,
       cellProvider: { collectionView, indexPath, libraryBook in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
@@ -75,7 +75,7 @@ extension MoreWasDebateViewController {
                                                             item: libraryBook)
       })
 
-    var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryBook>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryModel>()
     snapshot.appendSections([.main])
     snapshot.appendItems(initData)
     dataSource.apply(snapshot, animatingDifferences: false)

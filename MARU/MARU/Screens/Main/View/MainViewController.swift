@@ -19,7 +19,7 @@ final class MainViewController: BaseViewController {
 //  let viewModel = MainViewModel()
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
-          return self.style
+    return self.style
   }
 
   override func viewDidLoad() {
@@ -62,27 +62,20 @@ extension MainViewController {
 
 extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
   func tapTextField() {
-    let target = RecentSearchViewController()
+    let targetViewController = RecentSearchViewController()
     resignFirstResponder()
     view.hideKeyboard()
-    self.navigationController?.pushViewController(target, animated: true)
+    self.navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
 extension MainViewController: ButtonDelegate {
-  func tapButton() {
-    let target = MoreNewViewController()
-    self.navigationController?.pushViewController(target, animated: true)
+  func tapButtonInHeader() {
+    let targetViewController = MoreNewViewController()
+    targetViewController.navigationItem.title = "지금 새로 나온 모임"
+    self.navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
-
 extension MainViewController: UICollectionViewDataSource {
-
-  // collectionView cell 선택 시 모임 입장 화면으로 넘어가는 코드 임의로 연결
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let target = MorePopularViewController()
-    self.navigationController?.pushViewController(target, animated: true)
-  }
-
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
@@ -159,8 +152,28 @@ extension MainViewController: UICollectionViewDataSource {
     return 3
   }
 }
-  // MARK: - Sticky Header.
+
 extension MainViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    switch indexPath.section {
+    case 0:
+      break
+
+    case 1:
+      let targetViewController = MorePopularViewController()
+      guard let cell = collectionView.cellForItem(at: indexPath) as? PopularMeetingCell else { return }
+      targetViewController.navigationItem.title = cell.name()
+      self.navigationController?.pushViewController(targetViewController, animated: true)
+
+    case 2:
+      break
+
+    default:
+      break
+    }
+  }
+
+  // MARK: - Sticky Header.
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.contentOffset.y < 0 {
       scrollView.isScrollEnabled = false
@@ -169,7 +182,7 @@ extension MainViewController: UICollectionViewDelegate {
     scrollView.isScrollEnabled = true
   }
 }
-
+  /// - TAG: Collection View Layout
 extension MainViewController {
   private func createLayout() -> UICollectionViewCompositionalLayout {
     return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
@@ -190,7 +203,7 @@ extension MainViewController {
     item.edgeSpacing = .none
 
     let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                           heightDimension: .absolute(300))
+                                           heightDimension: .absolute(screenSize.height * 0.340))
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
     group.edgeSpacing = .none
