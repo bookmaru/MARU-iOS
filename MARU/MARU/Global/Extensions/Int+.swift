@@ -12,8 +12,8 @@ extension Int {
     "\(self)"
   }
 
-  var calculatedWidth: CGFloat { CGFloat(self / 375) * ScreenSize.width }
+  var calculatedWidth: CGFloat { CGFloat(self) * ScreenSize.width / 375 }
 
-  var calculatedHeight: CGFloat { CGFloat(self / 667) * ScreenSize.height }
+  var calculatedHeight: CGFloat { CGFloat(self) * ScreenSize.height / 667 }
 
 }

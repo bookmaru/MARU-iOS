@@ -25,9 +25,14 @@ final class JoinViewController: BaseViewController {
     $0.textColor = .white
   }
   private let leftTimeLabel = UILabel().then {
-    $0.text = "토론이 1-7일 남았습니다."
-    $0.font = .boldSystemFont(ofSize: 15)
     $0.textColor = .white
+    let text = "토론이 1일 남았습니다."
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttribute(
+      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "1")
+    )
+    $0.attributedText = attributedString
+    $0.font = .boldSystemFont(ofSize: 15)
   }
   private let contentView = UIView().then {
     $0.backgroundColor = .white
@@ -45,16 +50,33 @@ final class JoinViewController: BaseViewController {
     $0.image = Image.searchIcMember
   }
   private let leadScoreLabel = UILabel().then {
-    $0.text = "방장 평점 5.0"
-    $0.font = .systemFont(ofSize: 13, weight: .bold)
+    $0.text = "방장 평점"
+    $0.font = .systemFont(ofSize: 10, weight: .medium)
+    $0.textAlignment = .left
+    $0.textColor = .mainBlue
+  }
+  private let scoreStateLabel = UILabel().then {
+    $0.text = "5.0"
+    $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.textAlignment = .left
     $0.textColor = .mainBlue
   }
   private let participantLabel = UILabel().then {
-    $0.text = "현재 인원 5/5"
-    $0.font = .systemFont(ofSize: 13, weight: .bold)
+    $0.text = "현재 인원"
+    $0.font = .systemFont(ofSize: 10, weight: .medium)
     $0.textAlignment = .left
     $0.textColor = .mainBlue
+  }
+  private let partyStateLabel = UILabel().then {
+    $0.textColor = .mainBlue
+    let text = "3/5"
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttribute(
+      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
+    )
+    $0.attributedText = attributedString
+    $0.font = .systemFont(ofSize: 13, weight: .semibold)
+    $0.textAlignment = .left
   }
   private let leftQuoteImageView = UIImageView().then {
     $0.image = Image.quotationMarkLeft
@@ -63,23 +85,21 @@ final class JoinViewController: BaseViewController {
     $0.font = RIDIBatangFont.medium.of(size: 12)
     $0.textAlignment = .center
     $0.numberOfLines = 3
-    $0.text = """
-    식물책표지가되게예쁘네네네네네네
-    무슨내용일까까까가가가가가가가가
-    와랄랄라와랄랄라와랄랄라와랄라라
-    """
+    $0.text = "식물책표지가되게예쁘네네네네네네무슨내용일까까까가가가가가가가가와랄랄라와랄랄라와랄랄라와랄라라"
   }
   private let rightQuoteImageView = UIImageView().then {
     $0.image = Image.quotationMarkRight
   }
   private let entryButton = UIButton().then {
     $0.backgroundColor = .mainBlue
+    $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
     $0.setTitle("참여하기", for: .normal)
     $0.setTitleColor(.white, for: .normal)
   }
   override func viewDidLoad() {
     super.viewDidLoad()
     setLayout()
+    setGradientViewLayout()
     // Do any additional setup after loading the view.
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -132,17 +152,70 @@ extension JoinViewController {
       make.height.equalTo(18)
       make.bottom.equalTo(gradientImageView).offset(-16)
     }
+  }
+  private func setGradientViewLayout() {
     contentView.adds([
       leadNameLabel,
       bookIconImageView,
       partyImageView,
+      partyStateLabel,
       leadScoreLabel,
+      scoreStateLabel,
       participantLabel,
       leftQuoteImageView,
       contentLabel,
       rightQuoteImageView
     ])
-  }
-  private func setGradientViewLayout() {
+    leadNameLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview().offset(17)
+      $0.top.equalToSuperview().offset(17)
+    }
+    bookIconImageView.snp.makeConstraints {
+      $0.top.equalTo(leadNameLabel)
+      $0.width.equalTo(9)
+      $0.height.equalTo(9)
+    }
+    leadScoreLabel.snp.makeConstraints {
+      $0.top.equalTo(bookIconImageView)
+      $0.leading.equalTo(bookIconImageView.snp.trailing).offset(4)
+    }
+    scoreStateLabel.snp.makeConstraints {
+      $0.top.equalTo(bookIconImageView)
+      $0.leading.equalTo(leadScoreLabel.snp.trailing).offset(4)
+      $0.trailing.equalToSuperview().offset(-17)
+    }
+    partyImageView.snp.makeConstraints {
+      $0.top.equalTo(bookIconImageView.snp.bottom).offset(4)
+      $0.width.equalTo(9)
+      $0.height.equalTo(9)
+    }
+    participantLabel.snp.makeConstraints {
+      $0.top.equalTo(partyImageView)
+      $0.leading.equalTo(partyImageView.snp.trailing).offset(4)
+    }
+    partyStateLabel.snp.makeConstraints {
+      $0.top.equalTo(partyImageView)
+      $0.leading.equalTo(participantLabel.snp.trailing).offset(4)
+      $0.trailing.equalToSuperview().offset(-17)
+    }
+    leftQuoteImageView.snp.makeConstraints {
+      $0.top.equalTo(leadNameLabel.snp.bottom).offset(44)
+      $0.leading.equalTo(leadNameLabel)
+      $0.width.equalTo(7)
+      $0.height.equalTo(7)
+    }
+    contentLabel.snp.makeConstraints {
+      $0.top.equalTo(partyImageView.snp.bottom).offset(39)
+      $0.leading.equalTo(leftQuoteImageView.snp.trailing).offset(20)
+      $0.width.equalTo(185)
+      $0.height.equalTo(60)
+    }
+    rightQuoteImageView.snp.makeConstraints {
+      $0.leading.equalTo(contentLabel.snp.trailing).offset(20)
+      $0.trailing.equalTo(partyStateLabel)
+      $0.width.equalTo(7)
+      $0.height.equalTo(7)
+      $0.top.equalTo(partyStateLabel.snp.bottom).offset(70)
+    }
   }
 }

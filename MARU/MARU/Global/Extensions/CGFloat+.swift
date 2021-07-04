@@ -9,7 +9,7 @@ import UIKit
 
 extension CGFloat {
 
-  var calculatedWidth: CGFloat { self / 375 * ScreenSize.width }
+  var calculatedWidth: CGFloat { self * ScreenSize.width / 375 }
 
-  var calculatedHeight: CGFloat { self / 667 * ScreenSize.height }
+  var calculatedHeight: CGFloat { self * ScreenSize.height / 667 }
 }
