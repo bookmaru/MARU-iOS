@@ -57,6 +57,8 @@ final class PopularMeetingCell: UICollectionViewCell {
       make.width.equalTo(contentView.snp.width)
       make.height.equalTo(10)
     }
-
+  }
+  func name() -> String? {
+    return bookTitleLabel.text
   }
 }
