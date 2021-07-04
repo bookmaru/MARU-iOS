@@ -12,17 +12,12 @@ final class RecentSearchViewController: BaseViewController {
     case main
   }
 
-  lazy var searchView = MaruSearchView(width: screenSize.width * 0.787,
-                                       height: screenSize.height * 0.055).then {
-                                        $0.delegate = self
-                                       }
-  private let searchButton = UIButton().then {
-    $0.sizeToFit()
-    $0.setTitle("검색", for: .normal)
-    $0.setTitleColor(.black, for: .normal)
-    $0.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-    $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-  }
+  private let searchBar: UISearchBar = UISearchBar()
+
+  private lazy var searchButton = UIBarButtonItem(title: "취소",
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(didTapCancleButton))
 
   private let recentSearchLabel = UILabel().then {
     $0.sizeToFit()
@@ -40,7 +35,7 @@ final class RecentSearchViewController: BaseViewController {
     $0.alpha = 0.29
     $0.font = .systemFont(ofSize: 12, weight: .bold)
   }
-
+  private let emptyView = EmptytMeetingView()
   private let screenSize = UIScreen.main.bounds.size
   private var searchListCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView! = nil
@@ -51,6 +46,7 @@ final class RecentSearchViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setNavigationBar(isHidden: false)
     configureLayout()
     configureDataSource()
     configureResultDataSource()
@@ -58,16 +54,32 @@ final class RecentSearchViewController: BaseViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
-    setNavigationBar(isHidden: false)
     self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     self.navigationController?.navigationBar.isTranslucent = false
+    configureSearchBar()
   }
 
-  @objc func didTapButton() {
-    remakeLayout()
-    searchView.searchTextField.resignFirstResponder()
+  @objc
+  private func didTapCancleButton() {
+    self.navigationController?.popViewController(animated: true)
   }
+}
 
+extension RecentSearchViewController {
+  func configureSearchBar() {
+    searchBar.delegate = self
+    self.navigationItem.leftBarButtonItem = nil
+    self.navigationItem.hidesBackButton = true
+    self.navigationItem.titleView = searchBar
+    searchButton.tintColor = .black
+    self.navigationItem.rightBarButtonItem = searchButton
+    searchBar.placeholder = "검색을 해주세요"
+  }
+}
+extension RecentSearchViewController: UISearchBarDelegate {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    print("Okay let's search")
+  }
 }
 
 extension RecentSearchViewController {
@@ -92,34 +104,23 @@ extension RecentSearchViewController {
     searchListCollectionView.backgroundColor = .white
     resultCollectionView.backgroundColor = .white
     resultCollectionView.isHidden = true
+    searchListCollectionView.isHidden = true
 
-    view.add(searchView) {
-      $0.snp.makeConstraints { make in
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(5)
-        make.leading.equalToSuperview().inset(20)
-      }
-    }
-    view.add(searchButton) {
-      $0.snp.makeConstraints { make in
-        make.centerY.equalTo(self.searchView.snp.centerY)
-        make.trailing.equalToSuperview().inset(12)
-      }
-    }
     view.add(recentSearchLabel) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.searchView.snp.bottom).inset(-17)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(17)
         make.leading.equalToSuperview().inset(20)
       }
     }
     view.add(deleteLabel) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.searchView.snp.bottom).inset(-22)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(22)
         make.trailing.equalToSuperview().inset(20)
       }
     }
     view.add(searchListCollectionView) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.searchView.snp.bottom).inset(-49)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(49)
         make.leading.equalToSuperview().inset(27)
         make.trailing.equalToSuperview().inset(27)
         make.bottom.equalToSuperview()
@@ -127,10 +128,18 @@ extension RecentSearchViewController {
     }
     view.add(resultCollectionView) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.searchView.snp.bottom).inset(-16)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(16)
         make.leading.equalToSuperview()
         make.trailing.equalToSuperview()
         make.bottom.equalToSuperview()
+      }
+    }
+    view.add(emptyView) {
+      $0.snp.makeConstraints { make in
+        make.leading.equalToSuperview()
+        make.trailing.equalToSuperview()
+        make.height.equalTo(self.screenSize.height * 0.108)
+        make.centerY.equalTo(self.view.safeAreaLayoutGuide)
       }
     }
   }
@@ -199,5 +208,74 @@ extension RecentSearchViewController: UICollectionViewDelegate {
 extension RecentSearchViewController: SearchTextFieldDelegate, UITextFieldDelegate {
   func tapTextField() {
     backLayout()
+  }
+}
+
+final class EmptytMeetingView: UIView {
+  private let emptyLabel: UILabel = {
+    let label = UILabel()
+    label.text =
+    """
+    이 책은 지금 개설된 모임이 없어요.
+    방장이 되어 직접 모임을 만들어보세요!
+    """
+    label.textAlignment = .center
+    label.font = .systemFont(ofSize: 13, weight: .medium)
+    label.textColor = .black
+    label.alpha = 0.22
+    label.numberOfLines = 2
+    return label
+  }()
+
+  private let openMeetingButton: UIButton = {
+    let button = UIButton()
+    button.contentEdgeInsets = UIEdgeInsets(top: 5,
+                                            left: 10,
+                                            bottom: 5,
+                                            right: 10)
+    let text = " 모임 열기"
+    let imageAttachment = NSTextAttachment()
+    imageAttachment.image = UIImage(systemName: "plus")?
+      .withTintColor(.mainBlue)
+      .withRenderingMode(.alwaysOriginal)
+
+    let multipleAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 13, weight: .bold),
+      .foregroundColor: UIColor.mainBlue
+    ]
+
+    let attributeString =  NSMutableAttributedString(attachment: imageAttachment)
+    attributeString.append(NSAttributedString(string: text,
+                                              attributes: multipleAttributes))
+    button.setAttributedTitle(attributeString, for: .normal)
+
+    button.layer.borderWidth = 1
+    button.layer.borderColor = UIColor.mainBlue.cgColor
+    button.layer.cornerRadius = 13
+
+    return button
+  }()
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    configureLayout()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  private func configureLayout() {
+    add(emptyLabel) {
+      $0.snp.makeConstraints { make in
+        make.top.equalToSuperview()
+        make.centerX.equalToSuperview()
+      }
+    }
+    add(openMeetingButton) {
+      $0.snp.makeConstraints { make in
+        make.top.equalTo(self.emptyLabel.snp.bottom).inset(-13)
+        make.centerX.equalToSuperview()
+      }
+    }
   }
 }
