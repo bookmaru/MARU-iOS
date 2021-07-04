@@ -14,24 +14,22 @@ final class LibraryViewController: BaseViewController {
     case willDebate
   }
 
-  let profileBackgroundView = UIView().then {
+  private let profileBackgroundView = UIView().then {
     $0.backgroundColor = .white
   }
-
-  let profileImageView = UIImageView().then {
+  private let profileImageView = UIImageView().then {
     $0.sizeToFit()
     $0.backgroundColor = .red
     $0.layer.cornerRadius = ($0.bounds.width/2)
   }
-  let myNameGradeLabel = UILabel().then {
+  private let myNameGradeLabel = UILabel().then {
     $0.numberOfLines = 2
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
     $0.text = "유진\n방장 평점 4.5"
     $0.font = .systemFont(ofSize: 18, weight: .bold)
   }
-
-  let preferenceButton = UIButton().then {
+  private let preferenceButton = UIButton().then {
     $0.sizeToFit()
     $0.backgroundColor = .white
     $0.setImage(UIImage(systemName: "gearshape")?
@@ -39,8 +37,7 @@ final class LibraryViewController: BaseViewController {
                   .withTintColor(.brownGreyFour, renderingMode: .alwaysOriginal),
                 for: .normal)
   }
-
-  let writeButton = UIButton().then {
+  private let writeButton = UIButton().then {
     $0.sizeToFit()
     $0.backgroundColor = .white
     $0.setImage(UIImage(systemName: "pencil")?
@@ -50,8 +47,7 @@ final class LibraryViewController: BaseViewController {
     $0.layer.cornerRadius = 18
     $0.applyShadow(color: .black, alpha: 0.1, shadowX: 0, shadowY: 0, blur: 15)
   }
-
-  let debateButton = UIButton().then {
+  private let debateButton = UIButton().then {
     $0.tag = 0
     $0.sizeToFit()
     $0.setTitle("토론", for: .normal)
@@ -62,13 +58,11 @@ final class LibraryViewController: BaseViewController {
     $0.addTarget(self, action: #selector(didTapDebateOrDiaryButton(_ :)), for: .touchUpInside)
     $0.isSelected = true
   }
-
-  let debateLine = UIView().then {
+  private let debateLine = UIView().then {
     $0.backgroundColor = .blue
     $0.alpha = 1
   }
-
-  let diaryButton = UIButton().then {
+  private let diaryButton = UIButton().then {
     $0.tag = 1
     $0.sizeToFit()
     $0.setTitle("독서일기", for: .normal)
@@ -78,145 +72,144 @@ final class LibraryViewController: BaseViewController {
     $0.contentEdgeInsets.bottom = 13
     $0.addTarget(self, action: #selector(didTapDebateOrDiaryButton(_ :)), for: .touchUpInside)
   }
-  let diaryLine = UIView().then {
+  private let diaryLine = UIView().then {
     $0.backgroundColor = .brownishGrey
     $0.alpha = 0.1
   }
-
-  var debateCollectionView: UICollectionView! = nil
-  var diaryCollectionView: UICollectionView! = nil
-  var dataSource: UICollectionViewDiffableDataSource<Section, MainModel>! = nil
-  let screenSize = UIScreen.main.bounds.size
+  private var debateCollectionView: UICollectionView! = nil
+  private var diaryCollectionView: UICollectionView! = nil
+  private var dataSource: UICollectionViewDiffableDataSource<Section, MainModel>! = nil
+  private let screenSize = UIScreen.main.bounds.size
 
   var allModel: [MainModel] = [
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "B",
-                                       bookAuthor: "B",
-                                       bookComment: "B",
-                                       roomChief: "B",
-                                       category: 2)),
+                                   bookTitle: "B",
+                                   bookAuthor: "B",
+                                   bookComment: "B",
+                                   roomChief: "B",
+                                   category: 2)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "B",
-                                       bookAuthor: "B",
-                                       bookComment: "B",
-                                       roomChief: "B",
-                                       category: 2)),
+                                   bookTitle: "B",
+                                   bookAuthor: "B",
+                                   bookComment: "B",
+                                   roomChief: "B",
+                                   category: 2)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3))
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3))
   ]
   var allModel2: [MainModel] = [
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1))
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1))
   ]
 
   override func viewDidLoad() {
@@ -269,17 +262,16 @@ final class LibraryViewController: BaseViewController {
 extension LibraryViewController {
 
   /// - TAG: Collection View Layout
-
   private func creatDebateLayout() -> UICollectionViewCompositionalLayout {
     let layout = UICollectionViewCompositionalLayout { ( sectionNumber, _ ) in
 
       if sectionNumber == 0 {
-        let headerFooterSize = NSCollectionLayoutSize(widthDimension:
-                                                        .estimated(self.screenSize.width * 0.915),
-                                                     heightDimension: .estimated(20))
+        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .estimated(self.screenSize.width * 0.915),
+                                                      heightDimension: .estimated(20))
 
+        // MARK: - SectionHeader는 Main Cell에서 만든 것을 재활용하는 것.
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerFooterSize,
+          layoutSize: headerFooterSize,
           elementKind: SectionHeader.sectionHeaderElementKind, alignment: .top)
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(57),
@@ -310,10 +302,10 @@ extension LibraryViewController {
 
         let headerFooterSize = NSCollectionLayoutSize(widthDimension:
                                                         .estimated(self.screenSize.width * 0.915),
-                                                     heightDimension: .estimated(20))
+                                                      heightDimension: .estimated(20))
 
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerFooterSize,
+          layoutSize: headerFooterSize,
           elementKind: SectionHeader.sectionHeaderElementKind, alignment: .top)
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(57),
@@ -342,26 +334,26 @@ extension LibraryViewController {
     }
     return layout
   }
-//  private func creatDiaryLayout() -> UICollectionViewCompositionalLayout {
-//    let layout = UICollectionViewCompositionalLayout { (_, _) in
-//
-//      let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
-//                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
-//
-//      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//
-//      let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-//                                               heightDimension: .fractionalHeight(1/2))
-//
-//      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-//                                                       subitems: [item])
-//
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        return section
-//    }
-//    return layout
-//  }
+  //  private func creatDiaryLayout() -> UICollectionViewCompositionalLayout {
+  //    let layout = UICollectionViewCompositionalLayout { (_, _) in
+  //
+  //      let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
+  //                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
+  //
+  //      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+  //
+  //      let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
+  //                                               heightDimension: .fractionalHeight(1/2))
+  //
+  //      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+  //                                                       subitems: [item])
+  //
+  //
+  //        let section = NSCollectionLayoutSection(group: group)
+  //        return section
+  //    }
+  //    return layout
+  //  }
 }
 
 extension LibraryViewController {
@@ -369,15 +361,12 @@ extension LibraryViewController {
   private func applyLayout() {
     debateCollectionView = UICollectionView(frame: .zero, collectionViewLayout: creatDebateLayout())
     debateCollectionView.delegate = self
-
     debateCollectionView.register(LibraryDebateCell.self,
-                            forCellWithReuseIdentifier: LibraryDebateCell.reuseIdentifier)
-
+                                  forCellWithReuseIdentifier: LibraryDebateCell.reuseIdentifier)
     debateCollectionView.register(SectionHeader.self,
-                            forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
-                            withReuseIdentifier: SectionHeader.reuseIdentifier)
+                                  forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
+                                  withReuseIdentifier: SectionHeader.reuseIdentifier)
     debateCollectionView.backgroundColor = .white
-
     view.adds([
       profileBackgroundView,
       debateCollectionView
@@ -462,7 +451,7 @@ extension LibraryViewController {
   private func configureDataSource() {
 
     let cellRegistration = UICollectionView.CellRegistration<LibraryDebateCell, MainModel> { (_, _, _) in
-        // Populate the cell with our item description.
+      // Populate the cell with our item description.
 
     }
     let headerRegistration = UICollectionView.SupplementaryRegistration
@@ -498,7 +487,6 @@ extension LibraryViewController {
     snapshot.appendSections([.wasDebate, .willDebate])
     snapshot.appendItems(allModel, toSection: .wasDebate)
     snapshot.appendItems(allModel2, toSection: .willDebate)
-
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }
 }

@@ -10,8 +10,9 @@ import UIKit
 class MorePopularViewController: BaseViewController {
 
   enum Section {
-      case main
+    case main
   }
+
   enum Category: Int {
     case all = 0
     case art
@@ -20,7 +21,7 @@ class MorePopularViewController: BaseViewController {
     case philosophy
   }
 
-  let titleButton = UIButton().then {
+  private let titleButton = UIButton().then {
     $0.sizeToFit()
     $0.titleLabel?.textAlignment = .left
     $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
@@ -30,129 +31,128 @@ class MorePopularViewController: BaseViewController {
     $0.addTarget(self, action: #selector(didTapTitleButton), for: .touchUpInside)
   }
 
-  var allButton: UIButton = UIButton()
-  var artButton: UIButton = UIButton()
-  var literalButton: UIButton = UIButton()
-  var scienceButton: UIButton = UIButton()
-  var philosophyButton: UIButton = UIButton()
+  private var allButton: UIButton = UIButton()
+  private var artButton: UIButton = UIButton()
+  private var literalButton: UIButton = UIButton()
+  private var scienceButton: UIButton = UIButton()
+  private var philosophyButton: UIButton = UIButton()
 
   private lazy var dataSource = configureDataSource()
   private var collectionView: UICollectionView! = nil
-
   private let screenSize = UIScreen.main.bounds.size
 
   var allModel: [MainModel] = [
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "B",
-                                       bookAuthor: "B",
-                                       bookComment: "B",
-                                       roomChief: "B",
-                                       category: 2)),
+                                   bookTitle: "B",
+                                   bookAuthor: "B",
+                                   bookComment: "B",
+                                   roomChief: "B",
+                                   category: 2)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "B",
-                                       bookAuthor: "B",
-                                       bookComment: "B",
-                                       roomChief: "B",
-                                       category: 2)),
+                                   bookTitle: "B",
+                                   bookAuthor: "B",
+                                   bookComment: "B",
+                                   roomChief: "B",
+                                   category: 2)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3)),
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "C",
-                                       bookAuthor: "C",
-                                       bookComment: "C",
-                                       roomChief: "C",
-                                       category: 3))
+                                   bookTitle: "C",
+                                   bookAuthor: "C",
+                                   bookComment: "C",
+                                   roomChief: "C",
+                                   category: 3))
   ]
 
-  var categoryFilter: String?
+  private var categoryFilter: String?
 
   typealias DataSource = UICollectionViewDiffableDataSource<Section, MainModel>
   typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>
@@ -169,7 +169,6 @@ class MorePopularViewController: BaseViewController {
     setNavigationBar(isHidden: false)
     self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     self.navigationController?.navigationBar.isTranslucent = false
-
   }
 
   @objc func performQuery(sender: UIButton) {
@@ -189,35 +188,59 @@ class MorePopularViewController: BaseViewController {
     collectionView.setContentOffset(.zero, animated: true)
   }
 }
-  // MARK: - Layout
+
+// MARK: - Method Helper
 extension MorePopularViewController {
-    /// - Tag: create CollectionView Layout
+
+  private func setupButton(title: [String]) {
+    [allButton,
+     artButton,
+     literalButton,
+     scienceButton,
+     philosophyButton].enumerated().forEach { index, button in
+      button.backgroundColor = .white
+      button.layer.borderWidth = 1
+      button.layer.borderColor = UIColor.veryLightPinkFour.cgColor
+      button.layer.cornerRadius = 14
+      button.sizeToFit()
+      button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+      button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+      button.setTitleColor(.brownGreyThree, for: .normal)
+      button.titleLabel?.textAlignment = .center
+      button.setTitle(title[index], for: .normal)
+      button.tag = index
+      button.addTarget(self, action: #selector(performQuery), for: .touchUpInside)
+     }
+  }
+}
+
+extension MorePopularViewController {
+  /// - Tag: create CollectionView Layout
 
   private func createLayout() -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { [self] (_, _) in
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                         top: nil,
-                                                         trailing: nil,
-                                                         bottom: nil)
+      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                            heightDimension: .fractionalHeight(1))
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
+                                                       top: nil,
+                                                       trailing: nil,
+                                                       bottom: nil)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                               heightDimension: .absolute(142))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil, top: nil, trailing: nil, bottom: .fixed(23))
+      let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
+                                             heightDimension: .absolute(142))
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                     subitems: [item])
+      group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil, top: nil, trailing: nil, bottom: .fixed(23))
 
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
-        return section
-
+      let section = NSCollectionLayoutSection(group: group)
+      section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+      return section
     }
-
     return layout
   }
 
+  /// - TAG: View Layout
   private func applyLayout() {
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     collectionView.backgroundColor = .white
@@ -273,30 +296,10 @@ extension MorePopularViewController {
     }
   }
 }
-  // MARK: - DataSource
+
 extension MorePopularViewController {
 
-  private func setupButton(title: [String]) {
-    [allButton,
-     artButton,
-     literalButton,
-     scienceButton,
-     philosophyButton].enumerated().forEach { index, button in
-      button.backgroundColor = .white
-      button.layer.borderWidth = 1
-      button.layer.borderColor = UIColor.veryLightPinkFour.cgColor
-      button.layer.cornerRadius = 14
-      button.sizeToFit()
-      button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
-      button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
-      button.setTitleColor(.brownGreyThree, for: .normal)
-      button.titleLabel?.textAlignment = .center
-      button.setTitle(title[index], for: .normal)
-      button.tag = index
-      button.addTarget(self, action: #selector(performQuery), for: .touchUpInside)
-     }
-  }
-
+  /// - TAG: DataSource
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
       collectionView: collectionView,
@@ -316,12 +319,11 @@ extension MorePopularViewController {
     var snapshot = Snapshot()
     // 3
     snapshot.appendSections([.main])
-
     snapshot.appendItems(allModel)
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }
 }
-  // MARK: 나중에 써야해서 남겨놓습니다.
+// MARK: 나중에 써야해서 남겨놓습니다.
 
 extension MorePopularViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

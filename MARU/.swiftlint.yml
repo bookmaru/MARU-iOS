@@ -1,6 +1,7 @@
 disabled_rules:
 - file_length
 - function_body_length
+- type_body_length
 
 excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
   - Pods

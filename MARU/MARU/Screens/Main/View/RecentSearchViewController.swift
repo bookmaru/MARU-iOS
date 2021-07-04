@@ -14,9 +14,9 @@ class RecentSearchViewController: BaseViewController {
 
   lazy var searchView = MaruSearchView(width: screenSize.width * 0.787,
                                        height: screenSize.height * 0.055).then {
-                                        $0.searchTextField.delegate = self
-  }
-  let searchButton = UIButton().then {
+                                        $0.delegate = self
+                                       }
+  private let searchButton = UIButton().then {
     $0.sizeToFit()
     $0.setTitle("검색", for: .normal)
     $0.setTitleColor(.black, for: .normal)
@@ -24,7 +24,7 @@ class RecentSearchViewController: BaseViewController {
     $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
   }
 
-  let recentSearchLabel = UILabel().then {
+  private let recentSearchLabel = UILabel().then {
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
     $0.text = "최근 검색어"
@@ -32,7 +32,7 @@ class RecentSearchViewController: BaseViewController {
     $0.font = .systemFont(ofSize: 13, weight: .bold)
   }
 
-  let deleteLabel = UILabel().then {
+  private let deleteLabel = UILabel().then {
     $0.sizeToFit()
     $0.adjustsFontSizeToFitWidth = true
     $0.text = "전체 삭제"
@@ -41,48 +41,49 @@ class RecentSearchViewController: BaseViewController {
     $0.font = .systemFont(ofSize: 12, weight: .bold)
   }
 
-  var searchListCollectionView: UICollectionView! = nil
-  var resultCollectionView: UICollectionView! = nil
-  var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
-  var resultDataSource: UICollectionViewDiffableDataSource<Section, MainModel>!
-  let screenSize = UIScreen.main.bounds.size
+  private let screenSize = UIScreen.main.bounds.size
+  private var searchListCollectionView: UICollectionView! = nil
+  private var resultCollectionView: UICollectionView! = nil
+  private var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
+  private var resultDataSource: UICollectionViewDiffableDataSource<Section, MainModel>!
+
   var allModel: [MainModel] = [
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1)),
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1)),
     MainModel.init(book: Book.init(bookImage: "",
-                                       bookTitle: "A",
-                                       bookAuthor: "A",
-                                       bookComment: "A",
-                                       roomChief: "A",
-                                       category: 1))
+                                   bookTitle: "A",
+                                   bookAuthor: "A",
+                                   bookComment: "A",
+                                   roomChief: "A",
+                                   category: 1))
   ]
 
   override func viewDidLoad() {
@@ -92,7 +93,6 @@ class RecentSearchViewController: BaseViewController {
     configureResultDataSource()
     searchListCollectionView.contentInsetAdjustmentBehavior = .never
     resultCollectionView.contentInsetAdjustmentBehavior = .never
-    searchView.delegate = self
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -100,8 +100,8 @@ class RecentSearchViewController: BaseViewController {
     setNavigationBar(isHidden: false)
     self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     self.navigationController?.navigationBar.isTranslucent = false
-
   }
+
   @objc func didTapButton() {
     remakeLayout()
     searchView.searchTextField.resignFirstResponder()
@@ -114,46 +114,41 @@ extension RecentSearchViewController {
   /// - TAG: collectionView Layout
 
   private func createListLayout() -> UICollectionViewLayout {
-
     var config = UICollectionLayoutListConfiguration(appearance: .plain)
     config.showsSeparators = false
-
     return UICollectionViewCompositionalLayout.list(using: config)
   }
 
   private func createResultLayout() -> UICollectionViewLayout {
-
     let layout = UICollectionViewCompositionalLayout { [self] (_, _) in
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                         top: nil,
-                                                         trailing: nil,
-                                                         bottom: nil)
+      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                            heightDimension: .fractionalHeight(1))
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
+                                                       top: nil,
+                                                       trailing: nil,
+                                                       bottom: nil)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
-                                               heightDimension: .absolute(142))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                          top: nil,
-                                                          trailing: nil,
-                                                          bottom: .fixed(23))
+      let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.915),
+                                             heightDimension: .absolute(142))
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                     subitems: [item])
+      group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
+                                                        top: nil,
+                                                        trailing: nil,
+                                                        bottom: .fixed(23))
 
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
-        return section
+      let section = NSCollectionLayoutSection(group: group)
+      section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+      return section
     }
     return layout
   }
 
   private func configureLayout() {
-
     searchListCollectionView = UICollectionView(frame: .zero,
                                                 collectionViewLayout: createListLayout())
     searchListCollectionView.delegate = self
-
     resultCollectionView = UICollectionView(frame: .zero,
                                             collectionViewLayout: createResultLayout())
     resultCollectionView.delegate = self
@@ -163,7 +158,7 @@ extension RecentSearchViewController {
 
     view.add(searchView) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.view.safeAreaLayoutGuide)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(5)
         make.leading.equalToSuperview().inset(20)
       }
     }
@@ -179,7 +174,6 @@ extension RecentSearchViewController {
         make.leading.equalToSuperview().inset(20)
       }
     }
-
     view.add(deleteLabel) {
       $0.snp.makeConstraints { make in
         make.top.equalTo(self.searchView.snp.bottom).inset(-22)
@@ -216,21 +210,6 @@ extension RecentSearchViewController {
     deleteLabel.isHidden = false
     searchListCollectionView.isHidden = false
     resultCollectionView.isHidden = true
-
-//    recentSearchLabel.snp.remakeConstraints { make in
-//      make.top.equalTo(self.searchView.snp.bottom).inset(-17)
-//      make.leading.equalToSuperview().inset(20)
-//    }
-//    deleteLabel.snp.remakeConstraints { make in
-//      make.top.equalTo(self.searchView.snp.bottom).inset(-22)
-//      make.trailing.equalToSuperview().inset(20)
-//    }
-//    searchListCollectionView.snp.remakeConstraints { make in
-//      make.top.equalTo(self.searchView.snp.bottom).inset(-49)
-//      make.leading.equalToSuperview().inset(27)
-//      make.trailing.equalToSuperview().inset(27)
-//      make.bottom.equalToSuperview()
-//    }
   }
 }
 
@@ -242,23 +221,22 @@ extension RecentSearchViewController {
         var content = cell.defaultContentConfiguration()
         content.text = item
         cell.contentConfiguration = content
-    }
+      }
     recentDataSource =
-      UICollectionViewDiffableDataSource<Section, String>(collectionView: searchListCollectionView,
-                                                          cellProvider: { (collectionView, indexPath, string )
-                                                            -> UICollectionViewCell in
-
-      return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: string)
-    })
+      UICollectionViewDiffableDataSource<Section, String>(
+        collectionView: searchListCollectionView,
+        cellProvider: {(collectionView, indexPath, string) -> UICollectionViewCell in
+          return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: string)})
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
     snapshot.appendSections([.main])
     snapshot.appendItems(["살려줘", "노르웨이의 숲", "물리의 정석", "라라룰"])
     recentDataSource.apply(snapshot, animatingDifferences: false)
   }
+
   private func configureResultDataSource() {
     let cellRegistration = UICollectionView.CellRegistration<NewMeetingCell, MainModel> { (_, _, _) in
-        // Populate the cell with our item description.
+      // Populate the cell with our item description.
     }
     resultDataSource
       = UICollectionViewDiffableDataSource<Section, MainModel>(
@@ -268,24 +246,17 @@ extension RecentSearchViewController {
                                                             for: indexPath,
                                                             item: identifier)
       }
+
     var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
     snapshot.appendSections([.main])
     snapshot.appendItems(allModel)
     resultDataSource.apply(snapshot, animatingDifferences: false)
   }
-//  func applySnapshot(animatingDifferences: Bool = true) {
-//    var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
-//    snapshot.appendSections([.wasDebate, .willDebate])
-//    snapshot.appendItems(allModel, toSection: .wasDebate)
-//    snapshot.appendItems(allModel2, toSection: .willDebate)
-//
-//    dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-//  }
 }
 extension RecentSearchViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-    }
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    collectionView.deselectItem(at: indexPath, animated: true)
+  }
 }
 
 extension RecentSearchViewController: SearchTextFieldDelegate, UITextFieldDelegate {

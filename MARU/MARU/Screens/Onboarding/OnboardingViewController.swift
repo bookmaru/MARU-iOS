@@ -109,7 +109,7 @@ extension OnboardingViewController {
       .drive(onNext: { [weak self] isLogin in
         guard let self = self,
               isLogin else { return }
-        let viewController = CertificationViewController()
+        let viewController = TabBarController()
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: false)
       })
