@@ -19,21 +19,28 @@ final class LibraryViewController: BaseViewController {
   }
   private let profileImageView = UIImageView().then {
     $0.sizeToFit()
-    $0.backgroundColor = .red
-    $0.layer.cornerRadius = ($0.bounds.width/2)
+    $0.image = Image.appIcon
+    $0.backgroundColor = .white
   }
-  private let myNameGradeLabel = UILabel().then {
+  private let myNameLabel = UILabel().then {
     $0.numberOfLines = 2
-    $0.sizeToFit()
-    $0.adjustsFontSizeToFitWidth = true
-    $0.text = "유진\n방장 평점 4.5"
-    $0.font = .systemFont(ofSize: 18, weight: .bold)
+    $0.text = "유진"
+    $0.font = .systemFont(ofSize: 16, weight: .bold)
+  }
+  private let gradeLabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 12, weight: .regular)
+    $0.textColor = .gray
+    let attributeString = NSMutableAttributedString(string: "방장 평점 4.5")
+    let multipleAttribute: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 12, weight: .heavy)
+    ]
+    attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
+    $0.attributedText = attributeString
   }
   private let preferenceButton = UIButton().then {
-    $0.sizeToFit()
     $0.backgroundColor = .white
     $0.setImage(UIImage(systemName: "gearshape")?
-                  .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .heavy))
+                  .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
                   .withTintColor(.brownGreyFour, renderingMode: .alwaysOriginal),
                 for: .normal)
   }
@@ -41,10 +48,12 @@ final class LibraryViewController: BaseViewController {
     $0.sizeToFit()
     $0.backgroundColor = .white
     $0.setImage(UIImage(systemName: "pencil")?
-                  .withConfiguration(UIImage.SymbolConfiguration(pointSize: 21, weight: .black))
-                  .withTintColor(.brownGreyFour, renderingMode: .alwaysOriginal),
+                  .withConfiguration(UIImage.SymbolConfiguration(pointSize: 10, weight: .regular))
+                  .withTintColor(.lightGray,
+                                 renderingMode: .alwaysOriginal),
                 for: .normal)
-    $0.layer.cornerRadius = 18
+    $0.layer.borderWidth = 1
+    $0.layer.borderColor = UIColor.lightGray.cgColor
     $0.applyShadow(color: .black, alpha: 0.1, shadowX: 0, shadowY: 0, blur: 15)
   }
   private let debateButton = UIButton().then {
@@ -78,139 +87,11 @@ final class LibraryViewController: BaseViewController {
   }
   private var debateCollectionView: UICollectionView! = nil
   private var diaryCollectionView: UICollectionView! = nil
-  private var dataSource: UICollectionViewDiffableDataSource<Section, MainModel>! = nil
+  private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryModel>! = nil
   private let screenSize = UIScreen.main.bounds.size
 
-  var allModel: [MainModel] = [
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "B",
-                                   bookAuthor: "B",
-                                   bookComment: "B",
-                                   roomChief: "B",
-                                   category: 2)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "B",
-                                   bookAuthor: "B",
-                                   bookComment: "B",
-                                   roomChief: "B",
-                                   category: 2)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3))
-  ]
-  var allModel2: [MainModel] = [
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1))
-  ]
+  var allModel = LibraryModel.initData
+  var allModel2 = LibraryModel.initData2
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -222,6 +103,11 @@ final class LibraryViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+  }
+  override func viewWillLayoutSubviews() {
+    profileImageView.clipsToBounds = true
+    profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+    writeButton.layer.cornerRadius = writeButton.bounds.height / 2
   }
 
   @objc func didTapDebateOrDiaryButton(_ sender: UIButton) {
@@ -375,7 +261,8 @@ extension LibraryViewController {
     profileBackgroundView.adds([
       preferenceButton,
       profileImageView,
-      myNameGradeLabel,
+      myNameLabel,
+      gradeLabel,
       writeButton,
       debateButton,
       diaryButton
@@ -392,27 +279,28 @@ extension LibraryViewController {
     }
 
     profileImageView.snp.makeConstraints { make in
-      make.size.equalTo(CGSize(width: 66, height: 66))
-      make.leading.equalToSuperview().inset(30)
-      make.top.equalToSuperview().inset(74)
+      make.size.equalTo(CGSize(width: 75, height: 75))
+      make.centerX.equalToSuperview()
+      make.top.equalToSuperview().inset(44)
     }
-
-    myNameGradeLabel.snp.makeConstraints { make in
-      make.leading.equalTo(profileImageView.snp.trailing).inset(-18)
-      make.top.equalToSuperview().inset(74)
+    myNameLabel.snp.makeConstraints { make in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(profileImageView.snp.bottom).inset(-12)
+    }
+    gradeLabel.snp.makeConstraints { make in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(myNameLabel.snp.bottom).inset(-8)
     }
     writeButton.snp.makeConstraints { make in
-      make.trailing.equalToSuperview().inset(30)
-      make.size.equalTo(CGSize(width: 36, height: 36))
-      make.centerY.equalTo(profileImageView.snp.centerY)
+      make.trailing.equalTo(profileImageView.snp.trailing)
+      make.size.equalTo(CGSize(width: 19, height: 19))
+      make.bottom.equalTo(profileImageView.snp.bottom)
     }
-
     preferenceButton.snp.makeConstraints { make in
-      make.size.equalTo(CGSize(width: 15, height: 15))
-      make.top.equalToSuperview().inset(12)
-      make.trailing.equalToSuperview().inset(20)
+      make.size.equalTo(CGSize(width: 40, height: 40))
+      make.top.equalToSuperview().inset(4)
+      make.trailing.equalToSuperview().inset(10)
     }
-
     debateButton.snp.makeConstraints { make in
       make.width.equalTo(screenSize.width/2)
       make.bottom.equalToSuperview()
@@ -450,7 +338,7 @@ extension LibraryViewController {
 extension LibraryViewController {
   private func configureDataSource() {
 
-    let cellRegistration = UICollectionView.CellRegistration<LibraryDebateCell, MainModel> { (_, _, _) in
+    let cellRegistration = UICollectionView.CellRegistration<LibraryDebateCell, LibraryModel> { (_, _, _) in
       // Populate the cell with our item description.
 
     }
@@ -458,16 +346,16 @@ extension LibraryViewController {
     <SectionHeader>(elementKind: SectionHeader.sectionHeaderElementKind) { (supplementaryView, _, indexPath) in
       if indexPath.section == 0 {
         supplementaryView.hideMoveButton(isHidden: false)
-        supplementaryView.setupText(text: "참여했던 토론방")
+        supplementaryView.setupText(text: "담아둔 모임")
 
       } else {
         supplementaryView.hideMoveButton(isHidden: false)
-        supplementaryView.setupText(text: "담아둔 토론하고 싶은 책")
+        supplementaryView.setupText(text: "모임하고 싶은 책")
       }
     }
 
     dataSource
-      = UICollectionViewDiffableDataSource<Section, MainModel>(
+      = UICollectionViewDiffableDataSource<Section, LibraryModel>(
         collectionView: debateCollectionView
       ) {(collectionView, indexPath, identifier) -> UICollectionViewCell? in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
@@ -481,7 +369,7 @@ extension LibraryViewController {
   }
 
   func applySnapshot(animatingDifferences: Bool = true) {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryModel>()
     snapshot.appendSections([.wasDebate, .willDebate])
     snapshot.appendItems(allModel, toSection: .wasDebate)
     snapshot.appendItems(allModel2, toSection: .willDebate)

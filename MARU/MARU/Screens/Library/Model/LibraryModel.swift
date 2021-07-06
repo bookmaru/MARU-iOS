@@ -51,4 +51,24 @@ extension LibraryModel {
                 bookTitle: "이러지마5",
                 bookAuthor: "그러지마5")
   ]
+  static var initData2: [LibraryModel] = [
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마",
+                bookAuthor: "그러지마"),
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마1",
+                bookAuthor: "그러지마1"),
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마2",
+                bookAuthor: "그러지마2"),
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마3",
+                bookAuthor: "그러지마3"),
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마4",
+                bookAuthor: "그러지마4"),
+    LibraryModel(bookImage: "",
+                bookTitle: "이러지마5",
+                bookAuthor: "그러지마5")
+  ]
 }
