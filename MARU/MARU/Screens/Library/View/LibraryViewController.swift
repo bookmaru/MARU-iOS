@@ -458,12 +458,10 @@ extension LibraryViewController {
     <SectionHeader>(elementKind: SectionHeader.sectionHeaderElementKind) { (supplementaryView, _, indexPath) in
       if indexPath.section == 0 {
         supplementaryView.hideMoveButton(isHidden: false)
-        supplementaryView.hidePlusButton(isHidden: false)
         supplementaryView.setupText(text: "참여했던 토론방")
 
       } else {
         supplementaryView.hideMoveButton(isHidden: false)
-        supplementaryView.hidePlusButton(isHidden: false)
         supplementaryView.setupText(text: "담아둔 토론하고 싶은 책")
       }
     }

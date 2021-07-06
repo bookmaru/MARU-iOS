@@ -1,5 +1,5 @@
 //
-//  NewMeetingCell.swift
+//  MeetingListCell.swift
 //  MARU
 //
 //  Created by psychehose on 2021/05/05.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewMeetingCell: UICollectionViewCell {
+final class MeetingListCell: UICollectionViewCell {
   // MARK: - UIComponent
 
   private let shadowView = UIView().then {
@@ -17,6 +17,7 @@ final class NewMeetingCell: UICollectionViewCell {
 
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .clear
+    $0.layer.cornerRadius = 5
     $0.image = Image.testImage
   }
 
@@ -121,9 +122,9 @@ final class NewMeetingCell: UICollectionViewCell {
     }
 
     bookImageView.snp.makeConstraints { ( make ) in
-      make.top.equalTo(shadowView.snp.top).inset(0)
-      make.leading.equalTo(shadowView.snp.leading).inset(0)
-      make.bottom.equalTo(shadowView.snp.bottom).inset(0)
+      make.top.equalTo(shadowView.snp.top)
+      make.leading.equalTo(shadowView.snp.leading)
+      make.bottom.equalTo(shadowView.snp.bottom)
       make.width.equalTo(96)
     }
 
@@ -179,9 +180,9 @@ final class NewMeetingCell: UICollectionViewCell {
 
   private func applyShadow() {
     shadowView.applyShadow(color: .black,
-                alpha: 0.28,
-                shadowX: 0,
-                shadowY: 0,
-                blur: 15/2)
+                           alpha: 0.28,
+                           shadowX: 0,
+                           shadowY: 0,
+                           blur: 15/2)
   }
 }

@@ -51,16 +51,16 @@ final class MaruSearchView: UIView {
     self.heightAnchor.constraint(equalToConstant: height).isActive = true
 
     searchImage.snp.makeConstraints { make in
-      make.top.equalTo(self.snp.top).inset(11)
-      make.leading.equalTo(self.snp.leading).inset(10)
-      make.height.equalTo(16)
-      make.width.equalTo(16)
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(self.snp.leading).inset(6)
+      make.height.equalTo(20)
+      make.width.equalTo(20)
     }
     searchTextField.snp.makeConstraints { make in
-      make.top.equalTo(self.snp.top).inset(11)
-      make.leading.equalTo(searchImage.snp.trailing).inset(-8)
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(searchImage.snp.trailing).inset(-5)
       make.trailing.equalTo(self.snp.trailing)
-      make.height.equalTo(16)
+      make.height.equalTo(15)
     }
 
   }
