@@ -14,9 +14,9 @@ enum AuthType {
   var description: String {
     switch self {
     case .apple:
-      return "APPLE"
+      return "apple"
     case .kakao:
-      return "KAKAO"
+      return "kakao"
     }
   }
 }
@@ -33,10 +33,10 @@ extension AuthRouter: TargetType {
 
   var path: String {
     switch self {
-    case .auth:
-      return "/api/v2/login/"
+    case .auth(let type, _):
+      return "/api/v2/login/\(type.description)"
     case .nicknameCheck(let nickname):
-      return "/api/v2/nickname/\(nickname)"
+      return "/api/v2/nickname/check/\(nickname)"
     }
   }
 
@@ -52,24 +52,18 @@ extension AuthRouter: TargetType {
   var sampleData: Data { Data() }
 
   var task: Task {
-    switch self {
-    case let .auth(type, token):
-      let body: [String: Any] = [
-        "socialType": type.description,
-        "accessToken": token
-      ]
-      return .requestCompositeParameters(
-        bodyParameters: body,
-        bodyEncoding: JSONEncoding.default,
-        urlParameters: .init()
-      )
-
-    case .nicknameCheck:
-      return .requestPlain
-    }
+    return .requestPlain
   }
 
   var headers: [String: String]? {
-    return ["Content-Type": "application/json"]
+    switch self {
+    case let .auth(_, token):
+      return [
+        "Content-Type": "application/json",
+        "accessToken": token
+      ]
+    default:
+      return ["Content-Type": "application/json"]
+    }
   }
 }
