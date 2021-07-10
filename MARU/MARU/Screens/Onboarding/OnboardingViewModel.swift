@@ -37,7 +37,8 @@ final class OnboardingViewModel: ViewModelType {
           return true
         }
         return false
-      }.asDriver(onErrorJustReturn: false)
+      }
+      .asDriver(onErrorJustReturn: false)
 
     return Output(isInitialUser: isInitialUser, didLogin: didLogin)
   }

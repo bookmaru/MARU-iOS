@@ -21,4 +21,11 @@ final class AuthService: AuthServiceType {
       .asObservable()
       .map(BaseReponseType<Auth>.self)
   }
+
+  func nickname(name: String) -> Observable<BaseReponseType<Int>> {
+    return router.rx
+      .request(.nicknameCheck(name))
+      .asObservable()
+      .map(BaseReponseType.self)
+  }
 }

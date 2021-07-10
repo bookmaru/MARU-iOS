@@ -491,7 +491,7 @@ extension LibraryViewController {
 
 extension LibraryViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let mainModel = dataSource.itemIdentifier(for: indexPath) else {
+    guard dataSource.itemIdentifier(for: indexPath) != nil else {
       return
     }
   }

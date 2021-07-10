@@ -39,4 +39,9 @@ enum Image {
   static let picture = UIImage(named: "picture")
   static let testImage = UIImage(named: "testimage")
   static let maruBlueLogo = UIImage(named: "maru_blue_logo")
+  static let illustMainBigIos01 = UIImage(named: "illustMainBigIos01")
+  static let illustMainBigIos02 = UIImage(named: "illustMainBigIos02")
+  static let illustMainBigIos03 = UIImage(named: "illustMainBigIos03")
+  static let apple = UIImage(named: "apple")
+  static let kakao = UIImage(named: "kakao")
 }
