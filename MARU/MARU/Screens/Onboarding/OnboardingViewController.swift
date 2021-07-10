@@ -44,6 +44,14 @@ final class OnboardingViewController: BaseViewController {
     return collectionView
   }()
 
+  private let pageControl: UIPageControl = {
+    let pageControl = UIPageControl()
+    pageControl.numberOfPages = 3
+    pageControl.currentPageIndicatorTintColor = .mainBlue
+    pageControl.pageIndicatorTintColor = .veryLightPink
+    return pageControl
+  }()
+
   private let didTapLoginButton = PublishSubject<(AuthType, String)>()
 
   private let viewModel = ViewModel()
@@ -72,6 +80,10 @@ final class OnboardingViewController: BaseViewController {
     진정한 자아를 찾아보세요.
     """
   ]
+  private let image: [UIImage?] = [
+    Image.illustMainBigIos01,
+    Image.illustMainBigIos02
+  ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,11 +98,17 @@ extension OnboardingViewController {
     collectionView.snp.makeConstraints {
       $0.top.equalToSuperview().offset(78)
       $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-      $0.bottom.equalToSuperview().offset(-96)
+      $0.bottom.equalToSuperview().offset(-96.calculatedHeight)
+      print(-96.calculatedHeight)
     }
     view.add(welcomeLabel)
     welcomeLabel.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide).offset(44)
+      $0.centerX.equalToSuperview()
+    }
+    view.add(pageControl)
+    pageControl.snp.makeConstraints {
+      $0.top.equalTo(collectionView.snp.bottom)
       $0.centerX.equalToSuperview()
     }
     collectionView.delegate = self
@@ -146,6 +164,13 @@ extension OnboardingViewController {
   }
 }
 
+extension OnboardingViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+    pageControl.currentPage = pageIndex
+  }
+}
+
 extension OnboardingViewController: UICollectionViewDelegateFlowLayout {}
 
 extension OnboardingViewController: UICollectionViewDataSource {
@@ -182,7 +207,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
       return cell
     } else {
       let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.bind(guide: guide[item], subGuide: subGuide[item])
+      cell.bind(guide: guide[item], subGuide: subGuide[item], image: image[item])
       return cell
     }
   }
