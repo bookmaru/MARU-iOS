@@ -15,62 +15,73 @@ import DuctTape
 final class CertificationViewController: BaseViewController {
 
   private let maruLogoImageView = UIImageView(image: Image.maruBlueLogo)
-  private let guideLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 15, weight: .bold))
-    .text("마루가 더 나은 서비스 제공을 위해 달려가고 있어요!")
-  private let subGuideLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 11, weight: .medium))
-    .text(
-      """
+  private let guideLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 15, weight: .bold)
+    $0.text = "마루가 더 나은 서비스 제공을 위해 달려가고 있어요!"
+  }
+  private let subGuideLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 11, weight: .medium)
+    $0.text = """
       계속 진행하면 MARU의 서비스 약관, 개인정보보호정책에
       동의한 것으로 간주됩니다.
       """
-    )
-    .textColor(.subText)
-    .numberOfLines(2)
-  private let nicknameLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 14, weight: .bold))
-    .text("닉네임")
-  private let nicknameNecessaryLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 14, weight: .bold))
-    .text("*")
-    .textColor(.negative)
+    $0.textColor = .subText
+    $0.numberOfLines = 2
+  }
+  private let nicknameLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+    $0.text = "닉네임"
+  }
+  private let nicknameNecessaryLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+    $0.text = "*"
+    $0.textColor = .negative
+  }
   private let nicknameContainerView: UIView = UIView()
-  private let nicknameTextField: UITextField = UITextField().ductTape
-    .font(.systemFont(ofSize: 13, weight: .semibold))
-    .placeholder("13글자 이하의 닉네임을 입력해주세요.")
-  private let nicknameResponseLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 13, weight: .medium))
-    .textColor(.subText)
-    .isHidden(true)
-  private let genderLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 14, weight: .bold))
-    .text("성별")
-  private let genderChoiceLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 10, weight: .semibold))
-    .text("(선택)")
-    .textColor(.subText)
+  private let nicknameTextField: UITextField = UITextField().then {
+    $0.font = .systemFont(ofSize: 13, weight: .semibold)
+    $0.placeholder = "13글자 이하의 닉네임을 입력해주세요."
+  }
+  private let nicknameResponseLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 13, weight: .medium)
+    $0.textColor = .subText
+    $0.isHidden = true
+  }
+  private let genderLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+    $0.text = "성별"
+  }
+  private let genderChoiceLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 10, weight: .semibold)
+    $0.text = "(선택)"
+    $0.textColor = .subText
+  }
   private let maleButton: GenderRadioButton = GenderRadioButton(title: "남자")
   private let femaleButton: GenderRadioButton = GenderRadioButton(title: "여자")
-  private let bornYearLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 14, weight: .bold))
-    .text("태어난 년도")
-  private let bornYearChoiceLabel: UILabel = UILabel().ductTape
-    .font(.systemFont(ofSize: 10, weight: .semibold))
-    .text("(선택)")
-    .textColor(.subText)
+  private let bornYearLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 14, weight: .bold)
+    $0.text = "태어난 년도"
+  }
+  private let bornYearChoiceLabel: UILabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 10, weight: .semibold)
+    $0.text = "(선택)"
+    $0.textColor = .subText
+  }
   private let bornYearPicker: UIPickerView = UIPickerView()
-  private let submitButton: UIButton = UIButton().then {
+  private let submitButton: GenderRadioButton = GenderRadioButton(title: "회원가입").then {
     $0.backgroundColor = .subText
-    $0.setTitle("회원가입", for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
+    $0.isEnabled = false
   }
 
-  private let years: [Int] = [Int](1900...2021)
+  private var years: [Int] = []
+
+  private var userInformation: UserInformation = .init(birth: nil, gender: nil, nickname: "")
 
   init() {
     super.init(nibName: nil, bundle: nil)
+    self.years = [Int](1900...calculateYear())
   }
 
   override func viewDidLoad() {
