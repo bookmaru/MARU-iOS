@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import SnapKit
-import DuctTape
 
 final class CertificationViewController: BaseViewController {
 
