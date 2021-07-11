@@ -21,7 +21,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
 
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .red
+    imageView.contentMode = .center
     return imageView
   }()
 
@@ -45,9 +45,10 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
 
 extension OnboardingCollectionViewCell {
 
-  func bind(guide: String, subGuide: String) {
+  func bind(guide: String, subGuide: String, image: UIImage?) {
     guideLabel.text = guide
     subGuideLabel.text = subGuide
+    imageView.image = image
   }
 
   private func render() {

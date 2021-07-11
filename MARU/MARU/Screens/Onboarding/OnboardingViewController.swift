@@ -44,7 +44,15 @@ final class OnboardingViewController: BaseViewController {
     return collectionView
   }()
 
-  private let didTapLoginButton = PublishSubject<(AuthType, String)>()
+  private let pageControl: UIPageControl = {
+    let pageControl = UIPageControl()
+    pageControl.numberOfPages = 3
+    pageControl.currentPageIndicatorTintColor = .mainBlue
+    pageControl.pageIndicatorTintColor = .veryLightPink
+    return pageControl
+  }()
+
+  private let didTapLoginButton = PublishSubject<(String, Int)>()
 
   private let viewModel = ViewModel()
 
@@ -72,6 +80,10 @@ final class OnboardingViewController: BaseViewController {
     진정한 자아를 찾아보세요.
     """
   ]
+  private let image: [UIImage?] = [
+    Image.illustMainBigIos01,
+    Image.illustMainBigIos02
+  ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,11 +98,16 @@ extension OnboardingViewController {
     collectionView.snp.makeConstraints {
       $0.top.equalToSuperview().offset(78)
       $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-      $0.bottom.equalToSuperview().offset(-96)
+      $0.bottom.equalToSuperview().offset(-96.calculatedHeight)
     }
     view.add(welcomeLabel)
     welcomeLabel.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide).offset(44)
+      $0.centerX.equalToSuperview()
+    }
+    view.add(pageControl)
+    pageControl.snp.makeConstraints {
+      $0.top.equalTo(collectionView.snp.bottom)
       $0.centerX.equalToSuperview()
     }
     collectionView.delegate = self
@@ -106,10 +123,10 @@ extension OnboardingViewController {
     let output = viewModel.transform(input: input)
 
     output.didLogin
-      .drive(onNext: { [weak self] isLogin in
+      .drive(onNext: { [weak self] viewController in
         guard let self = self,
-              isLogin else { return }
-        let viewController = TabBarController()
+              let viewController = viewController
+        else { return }
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: false)
       })
@@ -137,12 +154,19 @@ extension OnboardingViewController {
 
       NetworkService.shared.auth
         .auth(type: .kakao, token: token)
-        .map { response -> (AuthType, String) in
-          return (.kakao, response.data?.accessToken ?? "")
+        .map { response -> (String, Int) in
+          return (response.data?.accessToken ?? "", response.status)
         }
         .bind(to: self.didTapLoginButton)
         .disposed(by: self.disposeBag)
     }
+  }
+}
+
+extension OnboardingViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+    pageControl.currentPage = pageIndex
   }
 }
 
@@ -182,7 +206,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
       return cell
     } else {
       let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.bind(guide: guide[item], subGuide: subGuide[item])
+      cell.bind(guide: guide[item], subGuide: subGuide[item], image: image[item])
       return cell
     }
   }
@@ -194,7 +218,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
           let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
     else { return }
-    didTapLoginButton.onNext((.apple, identifyToken))
+    print(identifyToken)
   }
 }
 

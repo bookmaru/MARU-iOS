@@ -21,7 +21,7 @@ final class OnboardingLoginCollectionViewCell: UICollectionViewCell {
 
   private let imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = .red
+    imageView.image = Image.illustMainBigIos03
     return imageView
   }()
 
@@ -47,13 +47,13 @@ final class OnboardingLoginCollectionViewCell: UICollectionViewCell {
 
   fileprivate let kakaoLoginButton: UIButton = {
     let button = UIButton()
-    button.backgroundColor = .yellow
+    button.setBackgroundImage(Image.kakao, for: .normal)
     return button
   }()
 
   fileprivate let appleLoginButton: UIButton = {
     let button = UIButton()
-    button.backgroundColor = .black
+    button.setBackgroundImage(Image.apple, for: .normal)
     return button
   }()
 

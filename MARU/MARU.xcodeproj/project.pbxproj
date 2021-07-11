@@ -44,6 +44,7 @@
 		C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */; };
 		C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332ACA260F50EC007D7797 /* KeychainHandler.swift */; };
 		C5332AD7260F5197007D7797 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332AD6260F5197007D7797 /* Model.swift */; };
+		C53FE048269AA533005ED467 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FE047269AA533005ED467 /* UserInformation.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
 		C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21BE266B616900D5D953 /* OnboardingViewController.swift */; };
@@ -73,7 +74,6 @@
 		C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */; };
 		C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */; };
 		C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0F2684DCEE007355D1 /* AuthService.swift */; };
-		C5A3DB122684E01E007355D1 /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB112684E01E007355D1 /* DTO.swift */; };
 		C5A3DB142684E43E007355D1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB132684E43E007355D1 /* Auth.swift */; };
 		C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
@@ -154,6 +154,7 @@
 		C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5332ACA260F50EC007D7797 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C5332AD6260F5197007D7797 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C53FE047269AA533005ED467 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		C55E21BE266B616900D5D953 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +189,6 @@
 		C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailResponseType.swift; sourceTree = "<group>"; };
 		C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReponseType.swift; sourceTree = "<group>"; };
 		C5A3DB0F2684DCEE007355D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		C5A3DB112684E01E007355D1 /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		C5A3DB132684E43E007355D1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaNetworkLogger.swift; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -637,7 +637,7 @@
 		C5A3DB042684D91A007355D1 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				C5A3DB112684E01E007355D1 /* DTO.swift */,
+				C53FE047269AA533005ED467 /* UserInformation.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1066,7 +1066,6 @@
 				77B718EE26470CBC0005B129 /* MainModel.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
-				C5A3DB122684E01E007355D1 /* DTO.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
 				C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
@@ -1109,6 +1108,7 @@
 				C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
+				C53FE048269AA533005ED467 /* UserInformation.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,

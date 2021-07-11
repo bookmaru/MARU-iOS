@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.4.2)
-  - DuctTape (0.2.0)
   - Firebase (8.0.0):
     - Firebase/Core (= 8.0.0)
   - Firebase/Analytics (8.0.0):
@@ -154,7 +153,6 @@ PODS:
   - WeakMapTable (1.2.0)
 
 DEPENDENCIES:
-  - DuctTape
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -175,7 +173,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - DuctTape
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -209,7 +206,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
-  DuctTape: 6bd715ccb50e505540191687277b8df4bdb48dce
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
@@ -241,6 +237,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: e42f11c96cb9263516caecd80ed0b9343640406a
+PODFILE CHECKSUM: f04ecb19adaf575057378041be262cd59973b11c
 
 COCOAPODS: 1.10.1

@@ -24,6 +24,7 @@ enum AuthType {
 enum AuthRouter {
   case auth(type: AuthType, token: String)
   case nicknameCheck(String)
+  case information(information: UserInformation)
 }
 
 extension AuthRouter: TargetType {
@@ -37,12 +38,14 @@ extension AuthRouter: TargetType {
       return "/api/v2/login/\(type.description)"
     case .nicknameCheck(let nickname):
       return "/api/v2/nickname/check/\(nickname)"
+    case .information:
+      return "/api/v2/signup"
     }
   }
 
   var method: Method {
     switch self {
-    case .auth:
+    case .auth, .information:
       return .post
     case .nicknameCheck:
       return .get
@@ -52,7 +55,23 @@ extension AuthRouter: TargetType {
   var sampleData: Data { Data() }
 
   var task: Task {
-    return .requestPlain
+    switch self {
+    case let .information(information):
+      var body: [String: Any] = [:]
+      if let birth = information.birth {
+        body["birth"] = birth
+      }
+      if let gender = information.gender {
+        body["gender"] = gender
+      }
+      body["nickname"] = information.nickname
+      return .requestCompositeParameters(
+        bodyParameters: body,
+        bodyEncoding: JSONEncoding.default,
+        urlParameters: .init())
+    default:
+      return .requestPlain
+    }
   }
 
   var headers: [String: String]? {
@@ -63,7 +82,10 @@ extension AuthRouter: TargetType {
         "accessToken": token
       ]
     default:
-      return ["Content-Type": "application/json"]
+      return [
+        "Content-Type": "application/json",
+        "accessToken": KeychainHandler.shared.accessToken
+      ]
     }
   }
 }

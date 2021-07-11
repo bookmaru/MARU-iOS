@@ -68,4 +68,9 @@ extension MorePopularViewController {
   }
 }
 extension MorePopularViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard dataSource.itemIdentifier(for: indexPath) != nil else {
+      return
+    }
+  }
 }
