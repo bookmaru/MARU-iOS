@@ -96,16 +96,43 @@ final class CertificationViewController: BaseViewController {
 
   private func bind() {
     nicknameTextField.rx.text
-      .subscribe(onNext: { [weak self] text in
+      .do { [weak self] text in
         guard let self = self,
               let text = text
         else { return }
-        if text.count != 0 || text.count > 13 {
-          NetworkService.shared.auth.nickname(name: text)
-            .subscribe(onNext: { response in
-              print(response)
-            }).disposed(by: self.disposeBag)
+        if text.count == 0 {
           self.nicknameResponseLabel.isHidden = true
+          self.submitButton.isSelected = false
+          self.submitButton.isEnabled = false
+        } else if text.count > 13 {
+          self.nicknameResponseLabel.isHidden = false
+          self.nicknameResponseLabel.textColor = .negative
+          self.nicknameResponseLabel.text = "13자리 이하의 닉네임만 설정가능합니다."
+          self.submitButton.isSelected = false
+          self.submitButton.isEnabled = false
+        } else {
+          self.nicknameResponseLabel.isHidden = false
+        }
+      }
+      .filter { text -> Bool in
+        guard let count = text?.count else { return false }
+        if count != 0 && count < 13 { return true }
+        return false
+      }
+      .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status } }
+      .subscribe(onNext: { [weak self] statusCode in
+        guard let self = self else { return }
+        if statusCode == 200 {
+          self.nicknameResponseLabel.textColor = .subText
+          self.nicknameResponseLabel.text = "사용 가능한 닉네임입니다."
+          self.submitButton.isSelected = true
+          self.submitButton.isEnabled = true
+          self.userInformation.nickname = self.nicknameTextField.text ?? ""
+        } else {
+          self.nicknameResponseLabel.textColor = .negative
+          self.nicknameResponseLabel.text = "이미 존재하는 이름입니다."
+          self.submitButton.isSelected = false
+          self.submitButton.isEnabled = false
         }
       })
       .disposed(by: disposeBag)
@@ -115,6 +142,7 @@ final class CertificationViewController: BaseViewController {
         guard let self = self else { return }
         self.maleButton.isSelected = !self.maleButton.isSelected
         self.femaleButton.isSelected = !self.maleButton.isSelected
+        self.userInformation.gender = "남자"
       })
       .disposed(by: disposeBag)
 
@@ -123,12 +151,28 @@ final class CertificationViewController: BaseViewController {
         guard let self = self else { return }
         self.femaleButton.isSelected = !self.femaleButton.isSelected
         self.maleButton.isSelected = !self.femaleButton.isSelected
+        self.userInformation.gender = "여자"
+      })
+      .disposed(by: disposeBag)
+
+    submitButton.rx.tap
+      .flatMap { _ in
+        return NetworkService.shared.auth.information(information: self.userInformation).map { $0.status }
+      }
+      .subscribe(onNext: { response in
+        print(response)
       })
       .disposed(by: disposeBag)
 
     bornYearPicker.delegate = self
     bornYearPicker.dataSource = self
-    bornYearPicker.selectRow(98, inComponent: 0, animated: false)
+    bornYearPicker.selectRow(calculateYear() - 1900 - 24, inComponent: 0, animated: false)
+  }
+
+  private func calculateYear() -> Int {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy"
+    return formatter.string(from: Date()).intValue
   }
 }
 
@@ -142,6 +186,7 @@ extension CertificationViewController {
       nicknameNecessaryLabel,
       nicknameContainerView,
       nicknameTextField,
+      nicknameResponseLabel,
       genderLabel,
       genderChoiceLabel,
       maleButton,
@@ -185,6 +230,10 @@ extension CertificationViewController {
       $0.leading.equalTo(nicknameLabel.snp.trailing)
       $0.top.equalTo(subGuideLabel.snp.bottom).offset(28)
     }
+    nicknameResponseLabel.snp.makeConstraints {
+      $0.top.equalTo(nicknameContainerView.snp.bottom).offset(4)
+      $0.leading.equalTo(nicknameTextField)
+    }
     genderLabel.snp.makeConstraints {
       $0.leading.equalTo(nicknameLabel).offset(2)
       $0.top.equalTo(nicknameContainerView.snp.bottom).offset(32)
@@ -223,9 +272,7 @@ extension CertificationViewController {
   }
 }
 
-extension CertificationViewController: UIPickerViewDelegate {
-
-}
+extension CertificationViewController: UIPickerViewDelegate { }
 
 extension CertificationViewController: UIPickerViewDataSource {
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -235,7 +282,7 @@ extension CertificationViewController: UIPickerViewDataSource {
     return years[row].string
   }
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
+    userInformation.birth = years[row]
   }
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1

@@ -52,7 +52,7 @@ final class OnboardingViewController: BaseViewController {
     return pageControl
   }()
 
-  private let didTapLoginButton = PublishSubject<(AuthType, String)>()
+  private let didTapLoginButton = PublishSubject<(String, Int)>()
 
   private let viewModel = ViewModel()
 
@@ -124,10 +124,10 @@ extension OnboardingViewController {
     let output = viewModel.transform(input: input)
 
     output.didLogin
-      .drive(onNext: { [weak self] isLogin in
+      .drive(onNext: { [weak self] viewController in
         guard let self = self,
-              isLogin else { return }
-        let viewController = TabBarController()
+              let viewController = viewController
+        else { return }
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: false)
       })
@@ -155,8 +155,8 @@ extension OnboardingViewController {
 
       NetworkService.shared.auth
         .auth(type: .kakao, token: token)
-        .map { response -> (AuthType, String) in
-          return (.kakao, response.data?.accessToken ?? "")
+        .map { response -> (String, Int) in
+          return (response.data?.accessToken ?? "", response.status)
         }
         .bind(to: self.didTapLoginButton)
         .disposed(by: self.disposeBag)
@@ -219,7 +219,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
           let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
     else { return }
-    didTapLoginButton.onNext((.apple, identifyToken))
+    print(identifyToken)
   }
 }
 
