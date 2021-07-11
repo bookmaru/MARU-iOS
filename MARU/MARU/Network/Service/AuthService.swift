@@ -13,7 +13,7 @@ protocol AuthServiceType {
 }
 
 final class AuthService: AuthServiceType {
-  private let router = MoyaProvider<AuthRouter>()
+  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Auth>> {
     return router.rx
@@ -25,6 +25,13 @@ final class AuthService: AuthServiceType {
   func nickname(name: String) -> Observable<BaseReponseType<Int>> {
     return router.rx
       .request(.nicknameCheck(name))
+      .asObservable()
+      .map(BaseReponseType.self)
+  }
+
+  func information(information: UserInformation) -> Observable<BaseReponseType<Int>> {
+    return router.rx
+      .request(.information(information: information))
       .asObservable()
       .map(BaseReponseType.self)
   }
