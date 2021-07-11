@@ -99,7 +99,6 @@ extension OnboardingViewController {
       $0.top.equalToSuperview().offset(78)
       $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
       $0.bottom.equalToSuperview().offset(-96.calculatedHeight)
-      print(-96.calculatedHeight)
     }
     view.add(welcomeLabel)
     welcomeLabel.snp.makeConstraints {
