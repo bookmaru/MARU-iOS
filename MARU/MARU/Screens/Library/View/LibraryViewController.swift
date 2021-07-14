@@ -10,7 +10,7 @@ import UIKit
 final class LibraryViewController: BaseViewController {
 
   enum Section {
-    case wasDebate
+    case meetingHeld
     case willDebate
   }
 
@@ -144,6 +144,18 @@ final class LibraryViewController: BaseViewController {
     }
   }
 }
+extension LibraryViewController: ButtonDelegate {
+  func didPressButtonInHeader(_ tag: Int) {
+    switch tag {
+    case 0:
+      let targetViewController = MeetingHeldViewController()
+      targetViewController.navigationItem.title = "담아둔 모임"
+      self.navigationController?.pushViewController(targetViewController, animated: true)
+    default:
+      return
+    }
+  }
+}
 
 extension LibraryViewController {
 
@@ -220,26 +232,6 @@ extension LibraryViewController {
     }
     return layout
   }
-  //  private func creatDiaryLayout() -> UICollectionViewCompositionalLayout {
-  //    let layout = UICollectionViewCompositionalLayout { (_, _) in
-  //
-  //      let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(57),
-  //                                              heightDimension: <#T##NSCollectionLayoutDimension#>)
-  //
-  //      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-  //
-  //      let groupSize = NSCollectionLayoutSize(widthDimension: <#T##NSCollectionLayoutDimension#>,
-  //                                               heightDimension: .fractionalHeight(1/2))
-  //
-  //      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-  //                                                       subitems: [item])
-  //
-  //
-  //        let section = NSCollectionLayoutSection(group: group)
-  //        return section
-  //    }
-  //    return layout
-  //  }
 }
 
 extension LibraryViewController {
@@ -340,14 +332,16 @@ extension LibraryViewController {
 
     let cellRegistration = UICollectionView.CellRegistration<LibraryDebateCell, LibraryModel> { (_, _, _) in
       // Populate the cell with our item description.
-
     }
     let headerRegistration = UICollectionView.SupplementaryRegistration
     <SectionHeader>(elementKind: SectionHeader.sectionHeaderElementKind) { (supplementaryView, _, indexPath) in
+
+      supplementaryView.delegate = self
+      supplementaryView.setupButtonTag(itemNumber: indexPath.section)
+
       if indexPath.section == 0 {
         supplementaryView.hideMoveButton(isHidden: false)
         supplementaryView.setupText(text: "담아둔 모임")
-
       } else {
         supplementaryView.hideMoveButton(isHidden: false)
         supplementaryView.setupText(text: "모임하고 싶은 책")
@@ -370,8 +364,8 @@ extension LibraryViewController {
 
   func applySnapshot(animatingDifferences: Bool = true) {
     var snapshot = NSDiffableDataSourceSnapshot<Section, LibraryModel>()
-    snapshot.appendSections([.wasDebate, .willDebate])
-    snapshot.appendItems(allModel, toSection: .wasDebate)
+    snapshot.appendSections([.meetingHeld, .willDebate])
+    snapshot.appendItems(allModel, toSection: .meetingHeld)
     snapshot.appendItems(allModel2, toSection: .willDebate)
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }

@@ -9,14 +9,15 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxViewController
 
 final class MainViewController: BaseViewController {
 
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
   private let style: UIStatusBarStyle = .lightContent
-//  private let bag = DisposeBag()
-//  let viewModel = MainViewModel()
+  private let disposBag = DisposeBag()
+  private let viewModel = MainViewModel()
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return self.style
@@ -25,10 +26,34 @@ final class MainViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureHirarchy()
+    bind()
+//    NetworkService.shared.home.getPopular()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+  }
+}
+extension MainViewController {
+  private func bind() {
+    print("Call bind() in MainVC ")
+    let firstLoad = rx.viewWillAppear
+      .take(1)
+      .map {_ in ()}
+
+    let reload = collectionView.refreshControl?.rx
+      .controlEvent(.valueChanged)
+      .map { _ in () } ?? Observable.just(())
+
+    let load = Observable.merge([firstLoad, reload])
+
+    let input = MainViewModel.Input(fetchPopularMeeting: load)
+    let output = viewModel.transform(input: input)
+    output.allPopularMeetings
+      .subscribe(onNext: {
+        print($0)
+      })
+      .disposed(by: disposeBag)
   }
 }
   /// - TAG: View Layout
@@ -69,7 +94,7 @@ extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
   }
 }
 extension MainViewController: ButtonDelegate {
-  func tapButtonInHeader() {
+  func didPressButtonInHeader(_ tag: Int) {
     let targetViewController = MoreNewViewController()
     targetViewController.navigationItem.title = "지금 새로 나온 모임"
     self.navigationController?.pushViewController(targetViewController, animated: true)

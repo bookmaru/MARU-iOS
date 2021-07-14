@@ -10,11 +10,33 @@ import Foundation
 struct MainModel: Hashable {
 
   let identifier = UUID()
-  var book: Book
 
-  init(book: Book) {
-    self.book = book
+  let isbn: Int
+  let title: String
+  let author: String
+  let imageUrl: String
+  let category: String
+
+  init(_ book: Book) {
+    self.isbn = book.isbn
+    self.title = book.title
+    self.author = book.author
+    self.imageUrl = book.imageUrl
+    self.category = book.category
   }
+  init(isbn: Int,
+       title: String,
+       author: String,
+       imageUrl: String,
+       category: String) {
+
+    self.isbn = isbn
+    self.title = title
+    self.author = author
+    self.imageUrl = imageUrl
+    self.category = category
+  }
+
   func hash(into hasher: inout Hasher) {
     hasher.combine(identifier)
   }
@@ -26,113 +48,10 @@ struct MainModel: Hashable {
 
 extension MainModel {
   static var initMainData: [MainModel] = [
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "A",
-                                   bookAuthor: "A",
-                                   bookComment: "A",
-                                   roomChief: "A",
-                                   category: 1)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "B",
-                                   bookAuthor: "B",
-                                   bookComment: "B",
-                                   roomChief: "B",
-                                   category: 2)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "B",
-                                   bookAuthor: "B",
-                                   bookComment: "B",
-                                   roomChief: "B",
-                                   category: 2)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3)),
-    MainModel.init(book: Book.init(bookImage: "",
-                                   bookTitle: "C",
-                                   bookAuthor: "C",
-                                   bookComment: "C",
-                                   roomChief: "C",
-                                   category: 3))
+    MainModel.init(Book.init(isbn: 1,
+                             title: "test",
+                             author: "test",
+                             imageUrl: "test",
+                             category: "test"))
   ]
 }

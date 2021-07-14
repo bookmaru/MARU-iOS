@@ -51,9 +51,13 @@ final class WasDebateCell: UICollectionViewCell {
                                             left: 9,
                                             bottom: 5,
                                             right: 9)
+    button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+    button.isEnabled = true
+    button.isUserInteractionEnabled = true
     return button
   }()
 
+  weak var buttonDelegate: ButtonDelegate?
   // MARK: - RX로 교체할 수 있지 않을까?
 
   var libraryBook: LibraryModel? {
@@ -72,6 +76,15 @@ final class WasDebateCell: UICollectionViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  @objc func didTapButton(_ sender: UIButton) {
+    buttonDelegate?.didPressButtonInHeader(sender.tag)
+    print("dddsss")
+  }
+  func setupButtonTag(itemNumber: Int) {
+    evaluateButton.tag = itemNumber
+  }
+
   private func configureHierarchy() {
     add(shadowView)
     shadowView.adds([

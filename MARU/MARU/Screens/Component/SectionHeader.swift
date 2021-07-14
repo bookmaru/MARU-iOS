@@ -7,7 +7,7 @@
 
 import UIKit
 protocol ButtonDelegate: AnyObject {
-  func tapButtonInHeader()
+  func didPressButtonInHeader(_ tag: Int)
 }
 
 final class SectionHeader: UICollectionReusableView {
@@ -23,7 +23,7 @@ final class SectionHeader: UICollectionReusableView {
     $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
                                                                     renderingMode: .alwaysOriginal),
                 for: .normal)
-    $0.addTarget(self, action: #selector(tapButtonInHeader), for: .touchUpInside)
+    $0.addTarget(self, action: #selector(tapButtonInHeader(_:)), for: .touchUpInside)
   }
 
   weak var delegate: ButtonDelegate?
@@ -58,10 +58,13 @@ extension SectionHeader {
   func setupText(text: String) {
     titleLabel.text = text
   }
+  func setupButtonTag(itemNumber: Int) {
+    moveButton.tag = itemNumber
+  }
 }
 
-extension SectionHeader: ButtonDelegate {
-  @objc func tapButtonInHeader() {
-    delegate?.tapButtonInHeader()
+extension SectionHeader {
+  @objc func tapButtonInHeader(_ sender: UIButton) {
+    delegate?.didPressButtonInHeader(sender.tag)
   }
 }

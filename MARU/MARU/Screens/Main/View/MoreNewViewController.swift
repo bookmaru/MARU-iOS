@@ -58,10 +58,10 @@ final class MoreNewViewController: BaseViewController {
       applySnapshot(animatingDifferences: true)
 
     default:
-      var snapshot = Snapshot()
-      let books = initData.filter({ $0.book.category == sender.tag})
-      snapshot.appendSections([.main])
-      snapshot.appendItems(books)
+      let snapshot = Snapshot()
+//      let books = initData.filter({ $0.book.category == sender.tag})
+//      snapshot.appendSections([.main])
+//      snapshot.appendItems(books)
       dataSource.apply(snapshot, animatingDifferences: true)
     }
   }
@@ -157,7 +157,7 @@ extension MoreNewViewController {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                       for: indexPath) as? MeetingListCell
-        cell?.mainModel = mainModel
+//        cell?.mainModel = mainModel
         return cell
       })
 
