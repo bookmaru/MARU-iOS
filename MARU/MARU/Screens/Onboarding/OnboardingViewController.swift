@@ -154,9 +154,7 @@ extension OnboardingViewController {
 
       NetworkService.shared.auth
         .auth(type: .kakao, token: token)
-        .map { response -> (String, Int) in
-          return (response.data?.accessToken ?? "", response.status)
-        }
+        .map { ($0.data?.accessToken ?? "", $0.status) }
         .bind(to: self.didTapLoginButton)
         .disposed(by: self.disposeBag)
     }
@@ -218,7 +216,11 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
           let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
     else { return }
-    print(identifyToken)
+    NetworkService.shared.auth
+      .auth(type: .apple, token: identifyToken)
+      .map { ($0.data?.accessToken ?? "", $0.status) }
+      .bind(to: didTapLoginButton)
+      .disposed(by: disposeBag)
   }
 }
 
