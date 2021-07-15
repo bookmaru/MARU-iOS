@@ -11,7 +11,7 @@ import RxSwift
 final class OnboardingViewModel: ViewModelType {
   struct Input {
     let viewDidLoad: PublishSubject<Void>
-    let didTapLoginButton: PublishSubject<(String, Int)>
+    let didTapLoginButton: PublishSubject<(AuthType, String)>
   }
 
   struct Output {
@@ -31,15 +31,17 @@ final class OnboardingViewModel: ViewModelType {
       .asDriver(onErrorJustReturn: false)
 
     let didLogin = input.didTapLoginButton
-      .map { token, statusCode -> UIViewController? in
-        if token != "" {
+      .flatMap { NetworkService.shared.auth.auth(type: $0.0, token: $0.1) }
+      .map { response -> UIViewController? in
+        if let token = response.data?.accessToken,
+           token != "" {
           KeychainHandler.shared.accessToken = token
         }
-        if statusCode == 200 {
-          return CertificationViewController()
-        }
-        if statusCode == 201 {
+        if response.status == 200 {
           return TabBarController()
+        }
+        if response.status == 201 {
+          return CertificationViewController()
         }
         return nil
       }
