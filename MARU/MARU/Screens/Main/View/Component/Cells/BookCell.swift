@@ -8,7 +8,8 @@
 import UIKit
 import RxSwift
 
-final class PopularMeetingCell: UICollectionViewCell {
+
+final class BookCell: UICollectionViewCell {
   private var disposeBag = DisposeBag()
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .white
