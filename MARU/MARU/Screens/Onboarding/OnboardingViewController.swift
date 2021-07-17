@@ -52,7 +52,7 @@ final class OnboardingViewController: BaseViewController {
     return pageControl
   }()
 
-  private let didTapLoginButton = PublishSubject<(String, Int)>()
+  private let didTapLoginButton = PublishSubject<(AuthType, String)>()
 
   private let viewModel = ViewModel()
 
@@ -151,14 +151,7 @@ extension OnboardingViewController {
             error == nil,
             let token = kakaoResponse?.accessToken
       else { return }
-
-      NetworkService.shared.auth
-        .auth(type: .kakao, token: token)
-        .map { response -> (String, Int) in
-          return (response.data?.accessToken ?? "", response.status)
-        }
-        .bind(to: self.didTapLoginButton)
-        .disposed(by: self.disposeBag)
+      self.didTapLoginButton.onNext((.kakao, token))
     }
   }
 }
@@ -218,7 +211,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
     guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
           let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
     else { return }
-    print(identifyToken)
+    didTapLoginButton.onNext((.apple, identifyToken))
   }
 }
 

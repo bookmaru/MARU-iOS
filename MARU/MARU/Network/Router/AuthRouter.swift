@@ -35,7 +35,7 @@ extension AuthRouter: TargetType {
   var path: String {
     switch self {
     case .auth(let type, _):
-      return "/api/v2/login/\(type.description)"
+      return "/api/v2/social/login/\(type.description)"
     case .nicknameCheck(let nickname):
       return "/api/v2/nickname/check/\(nickname)"
     case .information:
