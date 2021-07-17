@@ -31,12 +31,12 @@ final class MoreNewViewController: BaseViewController {
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
 
-  private var initData = MainModel.initMainData
+  private var initData = BookModel.initMainData
 
   private var categoryFilter: String?
 
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, MainModel>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, BookModel>
+  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,10 +58,10 @@ final class MoreNewViewController: BaseViewController {
       applySnapshot(animatingDifferences: true)
 
     default:
-      var snapshot = Snapshot()
-      let books = initData.filter({ $0.book.category == sender.tag})
-      snapshot.appendSections([.main])
-      snapshot.appendItems(books)
+      let snapshot = Snapshot()
+//      let books = initData.filter({ $0.book.category == sender.tag})
+//      snapshot.appendSections([.main])
+//      snapshot.appendItems(books)
       dataSource.apply(snapshot, animatingDifferences: true)
     }
   }
@@ -153,11 +153,11 @@ extension MoreNewViewController {
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
       collectionView: collectionView,
-      cellProvider: { (collectionView, indexPath, mainModel) -> UICollectionViewCell? in
+      cellProvider: { (collectionView, indexPath, _) -> UICollectionViewCell? in
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                       for: indexPath) as? MeetingListCell
-        cell?.mainModel = mainModel
+//        cell?.mainModel = mainModel
         return cell
       })
 

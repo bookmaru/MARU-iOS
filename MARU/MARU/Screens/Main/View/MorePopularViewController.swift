@@ -14,8 +14,8 @@ class MorePopularViewController: BaseViewController {
   }
 
   private var collectionView: UICollectionView! = nil
-  private var dataSource: UICollectionViewDiffableDataSource<Section, MainModel>! = nil
-  private var initData = MainModel.initMainData
+  private var dataSource: UICollectionViewDiffableDataSource<Section, BookModel>! = nil
+  private var initData = BookModel.initMainData
   override func viewDidLoad() {
     super.viewDidLoad()
     configureHierarchy()
@@ -50,10 +50,10 @@ extension MorePopularViewController {
 
   private func configureDataSource() {
     let cellRegistration = UICollectionView
-      .CellRegistration<MeetingListCell, MainModel> {_, _, _ in
+      .CellRegistration<MeetingListCell, BookModel> {_, _, _ in
       }
 
-    dataSource = UICollectionViewDiffableDataSource<Section, MainModel>(
+    dataSource = UICollectionViewDiffableDataSource<Section, BookModel>(
     collectionView: collectionView,
       cellProvider: { collectionView, indexPath, libraryBook in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
@@ -61,7 +61,7 @@ extension MorePopularViewController {
                                                             item: libraryBook)
       })
 
-    var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>()
     snapshot.appendSections([.main])
     snapshot.appendItems(initData)
     dataSource.apply(snapshot, animatingDifferences: false)

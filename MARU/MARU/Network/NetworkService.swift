@@ -11,4 +11,5 @@ final class NetworkService {
   private init() {}
 
   let auth = AuthService()
+  let home = HomeService()
 }

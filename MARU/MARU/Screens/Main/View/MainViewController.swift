@@ -9,14 +9,17 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxViewController
 
 final class MainViewController: BaseViewController {
 
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
   private let style: UIStatusBarStyle = .lightContent
-//  private let bag = DisposeBag()
-//  let viewModel = MainViewModel()
+  private let disposBag = DisposeBag()
+  private let viewModel = MainViewModel()
+  private var popularMeetings: [BookModel] = []
+  private var newMeetings: [MeetingModel] = []
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return self.style
@@ -25,10 +28,43 @@ final class MainViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureHirarchy()
+    bind()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+  }
+}
+
+extension MainViewController {
+
+  private func bind() {
+    let firstLoad = rx.viewWillAppear
+      .take(1)
+      .map {_ in ()}
+
+    let input = MainViewModel.Input(fetch: Observable.merge(firstLoad))
+    let output = viewModel.transform(input: input)
+
+    output.allPopularMeetings
+      .subscribe(onNext: {
+        self.popularMeetings = $0
+        self.collectionView.reloadSections(IndexSet(integer: 1))
+      })
+      .disposed(by: disposeBag)
+
+    output.allNewMeetings
+      .subscribe(onNext: {
+        self.newMeetings = $0
+        self.collectionView.reloadSections(IndexSet(integer: 2))
+      })
+      .disposed(by: disposBag)
+
+    output.errorMessage
+      .subscribe(onNext: {
+        print($0)
+      })
+      .disposed(by: disposBag)
   }
 }
   /// - TAG: View Layout
@@ -59,7 +95,7 @@ extension MainViewController {
     }
   }
 }
-
+  /// - TAG: Tap Text Field Delegate.
 extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
   func tapTextField() {
     let targetViewController = RecentSearchViewController()
@@ -68,14 +104,16 @@ extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
     self.navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
+  /// - TAG: Left Header Button Tap Action
 extension MainViewController: ButtonDelegate {
-  func tapButtonInHeader() {
+  func didPressButtonInHeader(_ tag: Int) {
     let targetViewController = MoreNewViewController()
     targetViewController.navigationItem.title = "지금 새로 나온 모임"
     self.navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
 extension MainViewController: UICollectionViewDataSource {
+  /// - TAG: Header Info.
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
@@ -105,20 +143,20 @@ extension MainViewController: UICollectionViewDataSource {
       return UICollectionReusableView()
     }
   }
-
+  /// - TAG: Item Number
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch section {
     case 0:
       return 1
     case 1:
-      return 8
+      return popularMeetings.count
     case 2:
-      return 10
+      return newMeetings.count
     default:
       return 0
     }
   }
-
+  /// - TAG: Cell Info
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch indexPath.section {
     case 0:
@@ -134,6 +172,7 @@ extension MainViewController: UICollectionViewDataSource {
               collectionView.dequeueReusableCell(withReuseIdentifier: PopularMeetingCell.reuseIdentifier,
                                                      for: indexPath) as? PopularMeetingCell else {
         return UICollectionViewCell() }
+      cell.onData?.onNext(popularMeetings[indexPath.item])
       return cell
 
     case 2:
@@ -141,6 +180,7 @@ extension MainViewController: UICollectionViewDataSource {
               collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                      for: indexPath) as? MeetingListCell else {
         return UICollectionViewCell() }
+      cell.onData?.onNext(newMeetings[indexPath.item])
       return cell
 
     default:
@@ -173,7 +213,7 @@ extension MainViewController: UICollectionViewDelegate {
     }
   }
 
-  // MARK: - Sticky Header.
+  /// - TAG: Sticky Header
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.contentOffset.y < 0 {
       scrollView.isScrollEnabled = false
@@ -182,7 +222,7 @@ extension MainViewController: UICollectionViewDelegate {
     scrollView.isScrollEnabled = true
   }
 }
-  /// - TAG: Collection View Layout
+  // MARK: - Collection View Layout
 extension MainViewController {
   private func createLayout() -> UICollectionViewCompositionalLayout {
     return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
