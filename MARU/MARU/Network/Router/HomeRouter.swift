@@ -21,7 +21,7 @@ extension HomeRouter: TargetType {
     case .getPopular:
       return "api/v2/book/group/most"
     case .getNew:
-      return ""
+      return "api/v2/group/new"
     }
   }
 

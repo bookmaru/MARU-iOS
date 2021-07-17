@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MainModel: Hashable {
+struct BookModel: Hashable {
 
   let identifier = UUID()
 
@@ -41,14 +41,14 @@ struct MainModel: Hashable {
     hasher.combine(identifier)
   }
 
-  static func == (lhs: MainModel, rhs: MainModel) -> Bool {
+  static func == (lhs: BookModel, rhs: BookModel) -> Bool {
     lhs.identifier == rhs.identifier
   }
 }
 
-extension MainModel {
-  static var initMainData: [MainModel] = [
-    MainModel.init(Book.init(isbn: 1,
+extension BookModel {
+  static var initMainData: [BookModel] = [
+    BookModel.init(Book.init(isbn: 1,
                              title: "test",
                              author: "test",
                              imageUrl: "test",

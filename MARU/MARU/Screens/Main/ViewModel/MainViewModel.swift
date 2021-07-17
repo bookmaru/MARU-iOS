@@ -12,18 +12,50 @@ final class MainViewModel: ViewModelType {
   let disposeBag = DisposeBag()
 
   struct Input {
-    let fetchPopularMeeting: Observable<Void>
+    let fetch: Observable<Void>
   }
   struct Output {
-    let allPopularMeetings: Observable<[MainModel]>
-//    let errorMessage: Observable<NSError>
+    let allPopularMeetings: Observable<[BookModel]>
+    let allNewMeetings: Observable<[MeetingModel]>
+    let errorMessage: Observable<Error>
   }
 
   func transform(input: Input) -> Output {
-    let abc  = input.fetchPopularMeeting
+
+    let errorMessage = PublishSubject<Error>()
+
+    let allPopularMeetings  = input.fetch
       .flatMap(NetworkService.shared.home.getPopular)
-      .map {$0.data?.books.map { MainModel($0)}}
+      .map {response -> BaseReponseType<Books> in
+
+        guard 200 ..< 300 ~= response.status  else {
+          throw NSError.init(domain: "Detect Error in Fetching Popular meetings",
+                             code: -1, userInfo: nil)
+        }
+        return response
+      }
+      .do(onError: { err in errorMessage.onNext(err)})
+      .map {$0.data?.books.map { BookModel($0)}}
       .map {$0!}
-    return Output(allPopularMeetings: abc)
+      .catchErrorJustReturn([])
+
+    let allNewMeetings = input.fetch
+      .flatMap(NetworkService.shared.home.getNew)
+      .map {response -> BaseReponseType<Groups> in
+
+        guard 200 ..< 300 ~= response.status  else {
+          throw NSError.init(domain: "Detect Error in Fetching New meetings",
+                             code: -1, userInfo: nil)
+        }
+        return response
+      }
+      .do(onError: { err in errorMessage.onNext(err)})
+      .map {$0.data?.groups.map { MeetingModel($0)}}
+      .map {$0!}
+      .catchErrorJustReturn([])
+
+    return Output(allPopularMeetings: allPopularMeetings,
+                  allNewMeetings: allNewMeetings,
+                  errorMessage: errorMessage)
   }
 }

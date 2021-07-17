@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class MeetingListCell: UICollectionViewCell {
-  // MARK: - UIComponent
+  private let cellDisposeBag = DisposeBag()
+  private var disposeBag = DisposeBag()
 
   private let shadowView = UIView().then {
     $0.backgroundColor = .white
@@ -25,7 +27,6 @@ final class MeetingListCell: UICollectionViewCell {
     $0.text = "test1"
     $0.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.semibold)
     $0.textAlignment = .left
-//    $0.sizeToFit()
   }
 
   private let bookAuthorLabel = UILabel().then {
@@ -33,8 +34,6 @@ final class MeetingListCell: UICollectionViewCell {
     $0.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight.light)
     $0.textAlignment = .left
     $0.adjustsFontSizeToFitWidth = true
-    $0.sizeToFit()
-
   }
 
   private let bookMeetingChiefLabel = UILabel().then {
@@ -52,6 +51,7 @@ final class MeetingListCell: UICollectionViewCell {
     $0.text = "test5"
     $0.textAlignment = .center
     $0.textColor = UIColor.black
+    $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.numberOfLines = 3
   }
 
@@ -62,37 +62,63 @@ final class MeetingListCell: UICollectionViewCell {
   private let rightQuotataionMarkImageView = UIImageView().then {
     $0.image = Image.blueQuotationRight
   }
+
   private let remainPeriodLabel = UILabel().then {
     $0.text = "test6"
     $0.textAlignment = .left
     $0.textColor = UIColor.mainBlue
     $0.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
     $0.adjustsFontSizeToFitWidth = true
-    $0.sizeToFit()
   }
-  // MARK: - RX로 교체할 수 있지 않을까?
 
-//  var mainModel: MainModel? {
-//    didSet {
-//      bookImageView.image = viewMainModel?.book.bookImage
-//      bookTitleLabel.text = mainModel?.book.bookTitle
-//      bookAuthorLabel.text = mainModel?.book.bookAuthor
-//      bookMeetingChiefLabel.text = mainModel?.book.roomChief
-//      bookMeetingExplainementLabel.text = mainModel?.book.bookComment
-//    }
-//  }
-  // MARK: - Properties
+  private var bookImage: UIImage! {
+    didSet {
+      bookImageView.image = bookImage
+    }
+  }
 
-  // MARK: - Override Init
+  var onData: AnyObserver<MeetingModel>?
 
   override init(frame: CGRect) {
       super.init(frame: frame)
     applyLayout()
     applyShadow()
+    bind()
   }
 
   required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
+  }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
+
+  private func bind() {
+    let newMeetingData = PublishSubject<MeetingModel>()
+    onData = newMeetingData.asObserver()
+
+    newMeetingData
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [self] model in
+        self.bookMeetingExplainementLabel.text = model.description
+        self.bookAuthorLabel.text = model.author
+        self.bookTitleLabel.text = model.title
+        self.bookMeetingChiefLabel.text = model.nickname
+
+        let url = URL(string: model.image)
+        do {
+          if let url = url {
+            let data = try Data(contentsOf: url)
+            bookImage = UIImage(data: data)
+          }
+        } catch let error {
+          debugPrint("Error ::\(error)")
+          bookImage = Image.testImage
+        }
+      })
+      .disposed(by: cellDisposeBag)
   }
   private func applyLayout() {
 

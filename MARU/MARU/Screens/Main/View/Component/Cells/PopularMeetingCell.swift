@@ -9,8 +9,10 @@ import UIKit
 import RxSwift
 
 final class PopularMeetingCell: UICollectionViewCell {
+  private let cellDisposeBag = DisposeBag()
+  private var disposeBag = DisposeBag()
   private let bookImageView = UIImageView().then {
-    $0.backgroundColor = .gray
+    $0.backgroundColor = .white
     $0.layer.cornerRadius = 5
   }
   private let bookTitleLabel = UILabel().then {
@@ -21,16 +23,51 @@ final class PopularMeetingCell: UICollectionViewCell {
     $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
     $0.text = "이이이리리리"
   }
-
+  private var bookImage: UIImage! {
+    didSet {
+      bookImageView.image = bookImage
+    }
+  }
+  var onData: AnyObserver<BookModel>?
   // MARK: - Override Init
 
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
+    bind()
   }
-
   required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
+  }
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
+
+  private func bind() {
+    let bookModelData = PublishSubject<BookModel>()
+    onData = bookModelData.asObserver()
+    bookModelData
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [self] model in
+        bookTitleLabel.text = model.title
+        bookAuthorLabel.text = model.author
+
+        let url = URL(string: model.imageUrl)
+
+        do {
+          if let url = url {
+            let data = try Data(contentsOf: url)
+            bookImage = UIImage(data: data)
+            print(model.isbn, model.imageUrl)
+          }
+
+        } catch let error {
+          debugPrint("ERRor ::\(error)")
+          bookImage = Image.testImage
+        }
+      })
+      .disposed(by: cellDisposeBag)
   }
   private func applyLayout() {
     add(bookImageView)

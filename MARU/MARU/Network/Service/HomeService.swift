@@ -10,6 +10,7 @@ import RxSwift
 
 protocol HomeServiceType {
   func getPopular() -> Observable<BaseReponseType<Books>>
+  func getNew() -> Observable<BaseReponseType<Groups>>
 }
 
 final class HomeService: HomeServiceType {
@@ -20,5 +21,11 @@ final class HomeService: HomeServiceType {
       .request(.getPopular)
       .asObservable()
       .map(BaseReponseType<Books>.self)
+  }
+  func getNew() -> Observable<BaseReponseType<Groups>> {
+    return router.rx
+      .request(.getNew)
+      .asObservable()
+      .map(BaseReponseType<Groups>.self)
   }
 }

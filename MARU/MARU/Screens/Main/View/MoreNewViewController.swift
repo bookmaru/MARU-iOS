@@ -31,12 +31,12 @@ final class MoreNewViewController: BaseViewController {
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
 
-  private var initData = MainModel.initMainData
+  private var initData = BookModel.initMainData
 
   private var categoryFilter: String?
 
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, MainModel>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, BookModel>
+  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -153,7 +153,7 @@ extension MoreNewViewController {
   private func configureDataSource() -> DataSource {
     let dataSource = DataSource(
       collectionView: collectionView,
-      cellProvider: { (collectionView, indexPath, mainModel) -> UICollectionViewCell? in
+      cellProvider: { (collectionView, indexPath, _) -> UICollectionViewCell? in
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                       for: indexPath) as? MeetingListCell

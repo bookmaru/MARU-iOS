@@ -13,6 +13,8 @@
 		7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712E437269889D80076F8E5 /* HomeRouter.swift */; };
 		771B85CA262186D3009ECF72 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		773E22DD26A01BBC002B9F52 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DC26A01BBC002B9F52 /* Group.swift */; };
+		773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DE26A01E4E002B9F52 /* MeetingModel.swift */; };
 		774262EE26899825008F9CAE /* MeetingHeldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262ED26899825008F9CAE /* MeetingHeldViewController.swift */; };
 		774262F126899C95008F9CAE /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262F026899C95008F9CAE /* LibraryModel.swift */; };
 		774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262F2268A6699008F9CAE /* WasDebateCell.swift */; };
@@ -28,7 +30,7 @@
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
 		77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */; };
-		77B718EE26470CBC0005B129 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* MainModel.swift */; };
+		77B718EE26470CBC0005B129 /* PopularBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* PopularBookModel.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
@@ -120,6 +122,8 @@
 		77013C26268C0BFC004271E6 /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
 		77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7712E437269889D80076F8E5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		773E22DC26A01BBC002B9F52 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		773E22DE26A01E4E002B9F52 /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
 		774262ED26899825008F9CAE /* MeetingHeldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingHeldViewController.swift; sourceTree = "<group>"; };
 		774262F026899C95008F9CAE /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
 		774262F2268A6699008F9CAE /* WasDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasDebateCell.swift; sourceTree = "<group>"; };
@@ -136,7 +140,7 @@
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
 		77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
-		77B718ED26470CBC0005B129 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		77B718ED26470CBC0005B129 /* PopularBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBookModel.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
@@ -284,7 +288,6 @@
 		776320432646B31600293D1C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				77B718ED26470CBC0005B129 /* MainModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -643,6 +646,8 @@
 			isa = PBXGroup;
 			children = (
 				C53FE047269AA533005ED467 /* UserInformation.swift */,
+				77B718ED26470CBC0005B129 /* PopularBookModel.swift */,
+				773E22DE26A01E4E002B9F52 /* MeetingModel.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */,
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
+				773E22DC26A01BBC002B9F52 /* Group.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1069,7 +1075,7 @@
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
-				77B718EE26470CBC0005B129 /* MainModel.swift in Sources */,
+				77B718EE26470CBC0005B129 /* PopularBookModel.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
@@ -1117,12 +1123,14 @@
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				C53FE048269AA533005ED467 /* UserInformation.swift in Sources */,
+				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
+				773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */,
 				77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */,
 				C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */,
 				C5A3DB142684E43E007355D1 /* Auth.swift in Sources */,

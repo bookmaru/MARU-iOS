@@ -40,9 +40,9 @@ final class RecentSearchViewController: BaseViewController {
   private var searchListCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView! = nil
   private var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
-  private var resultDataSource: UICollectionViewDiffableDataSource<Section, MainModel>!
+  private var resultDataSource: UICollectionViewDiffableDataSource<Section, BookModel>!
 
-  private var initData = MainModel.initMainData
+  private var initData = BookModel.initMainData
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -181,11 +181,11 @@ extension RecentSearchViewController {
   }
 
   private func configureResultDataSource() {
-    let cellRegistration = UICollectionView.CellRegistration<MeetingListCell, MainModel> { (_, _, _) in
+    let cellRegistration = UICollectionView.CellRegistration<MeetingListCell, BookModel> { (_, _, _) in
       // Populate the cell with our item description.
     }
     resultDataSource
-      = UICollectionViewDiffableDataSource<Section, MainModel>(
+      = UICollectionViewDiffableDataSource<Section, BookModel>(
         collectionView: resultCollectionView
       ) { (collectionView, indexPath, identifier ) -> UICollectionViewCell? in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
@@ -193,7 +193,7 @@ extension RecentSearchViewController {
                                                             item: identifier)
       }
 
-    var snapshot = NSDiffableDataSourceSnapshot<Section, MainModel>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>()
     snapshot.appendSections([.main])
     snapshot.appendItems(initData)
     resultDataSource.apply(snapshot, animatingDifferences: false)
