@@ -9,7 +9,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import RxViewController
 
 final class MainViewController: BaseViewController {
 
@@ -39,7 +38,7 @@ final class MainViewController: BaseViewController {
 extension MainViewController {
 
   private func bind() {
-    let firstLoad = rx.viewWillAppear
+    let firstLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
       .take(1)
       .map {_ in ()}
 
@@ -101,7 +100,7 @@ extension MainViewController: SearchTextFieldDelegate, UITextFieldDelegate {
     let targetViewController = RecentSearchViewController()
     resignFirstResponder()
     view.hideKeyboard()
-    self.navigationController?.pushViewController(targetViewController, animated: true)
+    navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
   /// - TAG: Left Header Button Tap Action
@@ -109,7 +108,7 @@ extension MainViewController: ButtonDelegate {
   func didPressButtonInHeader(_ tag: Int) {
     let targetViewController = MoreNewViewController()
     targetViewController.navigationItem.title = "지금 새로 나온 모임"
-    self.navigationController?.pushViewController(targetViewController, animated: true)
+    navigationController?.pushViewController(targetViewController, animated: true)
   }
 }
 extension MainViewController: UICollectionViewDataSource {
@@ -203,7 +202,7 @@ extension MainViewController: UICollectionViewDelegate {
       let targetViewController = MorePopularViewController()
       guard let cell = collectionView.cellForItem(at: indexPath) as? PopularMeetingCell else { return }
       targetViewController.navigationItem.title = cell.name()
-      self.navigationController?.pushViewController(targetViewController, animated: true)
+      navigationController?.pushViewController(targetViewController, animated: true)
 
     case 2:
       break

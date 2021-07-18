@@ -8,9 +8,6 @@
 import Foundation
 
 struct BookModel: Hashable {
-
-  let identifier = UUID()
-
   let isbn: Int
   let title: String
   let author: String
@@ -38,11 +35,11 @@ struct BookModel: Hashable {
   }
 
   func hash(into hasher: inout Hasher) {
-    hasher.combine(identifier)
+    hasher.combine(isbn)
   }
 
   static func == (lhs: BookModel, rhs: BookModel) -> Bool {
-    lhs.identifier == rhs.identifier
+    lhs.isbn == rhs.isbn
   }
 }
 

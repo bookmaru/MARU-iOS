@@ -8,7 +8,6 @@
 import Foundation
 
 struct MeetingModel: Hashable {
-  let identifier = UUID()
   let discussionGroupId: Int
   let description: String
   let createdAt: String
@@ -44,9 +43,9 @@ struct MeetingModel: Hashable {
   }
 
   func hash(into hasher: inout Hasher) {
-    hasher.combine(identifier)
+    hasher.combine(discussionGroupId)
   }
   static func == (lhs: MeetingModel, rhs: MeetingModel) -> Bool {
-    lhs.identifier == rhs.identifier
+    lhs.discussionGroupId == rhs.discussionGroupId
   }
 }
