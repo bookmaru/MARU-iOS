@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 final class PopularMeetingCell: UICollectionViewCell {
-  private let cellDisposeBag = DisposeBag()
   private var disposeBag = DisposeBag()
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .white
@@ -67,7 +66,7 @@ final class PopularMeetingCell: UICollectionViewCell {
           bookImage = Image.testImage
         }
       })
-      .disposed(by: cellDisposeBag)
+      .disposed(by: disposeBag)
   }
   private func applyLayout() {
     add(bookImageView)

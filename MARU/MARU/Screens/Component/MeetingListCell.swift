@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 final class MeetingListCell: UICollectionViewCell {
-  private let cellDisposeBag = DisposeBag()
   private var disposeBag = DisposeBag()
 
   private let shadowView = UIView().then {
@@ -118,7 +117,7 @@ final class MeetingListCell: UICollectionViewCell {
           bookImage = Image.testImage
         }
       })
-      .disposed(by: cellDisposeBag)
+      .disposed(by: disposeBag)
   }
   private func applyLayout() {
 

@@ -19,7 +19,6 @@ target 'MARU' do
   pod 'ReactorKit', '~> 2.1.1'
   pod 'RxCocoa', '~> 5'
   pod 'RxSocket.io', '~> 1.0.5'
-  pod 'RxViewController'
   pod 'SnapKit', '~> 5.0.0'
   pod 'SwiftKeychainWrapper', '~> 4.0.1'
   pod 'SwiftLint', '~> 0.43.1'
