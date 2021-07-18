@@ -762,9 +762,9 @@
 			children = (
 				776AF4EE2641A69F0020D2D8 /* Component */,
 				C5ED1D76261889AC00F670EC /* MainViewController.swift */,
+				776FB8C92687086300F024F1 /* RecentSearchViewController.swift */,
 				77013C26268C0BFC004271E6 /* MorePopularViewController.swift */,
 				7784BB3726622B5D00B636EE /* MoreNewViewController.swift */,
-				776FB8C92687086300F024F1 /* RecentSearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
