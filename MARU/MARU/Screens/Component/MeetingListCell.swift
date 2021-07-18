@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 final class MeetingListCell: UICollectionViewCell {
-  private var disposeBag = DisposeBag()
 
   private let shadowView = UIView().then {
     $0.backgroundColor = .white
@@ -76,13 +75,10 @@ final class MeetingListCell: UICollectionViewCell {
     }
   }
 
-  var onData: AnyObserver<MeetingModel>?
-
   override init(frame: CGRect) {
       super.init(frame: frame)
     applyLayout()
     applyShadow()
-    bind()
   }
 
   required init?(coder: NSCoder) {
@@ -91,33 +87,31 @@ final class MeetingListCell: UICollectionViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    disposeBag = DisposeBag()
+    bookMeetingExplainementLabel.text = ""
+    bookAuthorLabel.text = ""
+    bookTitleLabel.text = ""
+    bookMeetingChiefLabel.text = ""
+    bookImage = UIImage()
   }
 
-  private func bind() {
-    let newMeetingData = PublishSubject<MeetingModel>()
-    onData = newMeetingData.asObserver()
+  func bind(_ meetingModel: MeetingModel) {
+    bookMeetingExplainementLabel.text = meetingModel.description
+    bookAuthorLabel.text = meetingModel.author
+    bookTitleLabel.text = meetingModel.title
+    bookMeetingChiefLabel.text = meetingModel.nickname
 
-    newMeetingData
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [self] model in
-        self.bookMeetingExplainementLabel.text = model.description
-        self.bookAuthorLabel.text = model.author
-        self.bookTitleLabel.text = model.title
-        self.bookMeetingChiefLabel.text = model.nickname
+    let url = URL(string: meetingModel.image)
 
-        let url = URL(string: model.image)
-        do {
-          if let url = url {
-            let data = try Data(contentsOf: url)
-            bookImage = UIImage(data: data)
-          }
-        } catch let error {
-          debugPrint("Error ::\(error)")
-          bookImage = Image.testImage
-        }
-      })
-      .disposed(by: disposeBag)
+    do {
+      if let url = url {
+        let data = try Data(contentsOf: url)
+        bookImage = UIImage(data: data)
+        print(meetingModel.image)
+      }
+    } catch let error {
+      debugPrint("ERRor ::\(error)")
+      bookImage = Image.testImage
+    }
   }
   private func applyLayout() {
 

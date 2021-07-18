@@ -304,6 +304,7 @@
 		776AF4F12641B0620020D2D8 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				776AF4F72641BAF30020D2D8 /* BookCell.swift */,
 				776AF4F52641BADF0020D2D8 /* MeetingListCell.swift */,
 				77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */,
 				776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */,
@@ -316,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				776D06E22657F7EB007CD99B /* MainHeaderCell.swift */,
-				776AF4F72641BAF30020D2D8 /* BookCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

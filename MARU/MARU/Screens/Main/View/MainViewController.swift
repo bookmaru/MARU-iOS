@@ -171,7 +171,7 @@ extension MainViewController: UICollectionViewDataSource {
               collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseIdentifier,
                                                      for: indexPath) as? BookCell else {
         return UICollectionViewCell() }
-      cell.onData?.onNext(popularBooks[indexPath.item])
+      cell.bind(popularBooks[indexPath.item])
       return cell
 
     case 2:
@@ -179,7 +179,7 @@ extension MainViewController: UICollectionViewDataSource {
               collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                      for: indexPath) as? MeetingListCell else {
         return UICollectionViewCell() }
-      cell.onData?.onNext(newMeetings[indexPath.item])
+      cell.bind(newMeetings[indexPath.item])
       return cell
 
     default:
