@@ -6,5 +6,11 @@
 //
 
 struct Auth: Codable {
-  let accessToken: String
+  let accessToken: String?
+  let socialID: String?
+
+  enum CodingKeys: String, CodingKey {
+    case accessToken = "accessToken"
+    case socialID = "socialId"
+  }
 }

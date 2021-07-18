@@ -29,10 +29,10 @@ final class AuthService: AuthServiceType {
       .map(BaseReponseType.self)
   }
 
-  func information(information: UserInformation) -> Observable<BaseReponseType<Int>> {
+  func information(information: UserInformation) -> Observable<BaseReponseType<Auth>> {
     return router.rx
       .request(.information(information: information))
       .asObservable()
-      .map(BaseReponseType.self)
+      .map(BaseReponseType<Auth>.self)
   }
 }
