@@ -9,4 +9,6 @@ struct UserInformation: Codable {
   var birth: Int?
   var gender: String?
   var nickname: String
+  var socialID: String
+  var socialType: String
 }
