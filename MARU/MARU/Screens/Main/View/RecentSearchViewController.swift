@@ -49,7 +49,7 @@ final class RecentSearchViewController: BaseViewController {
   private let screenSize = UIScreen.main.bounds.size
   private var searchListCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView! = nil
-  private var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
+  private var searchListDataSource: UICollectionViewDiffableDataSource<Section, String>!
   private var resultDataSource: UICollectionViewDiffableDataSource<Section, BookModel>!
 
   private var viewModel =  RecentSearchViewModel()
@@ -60,7 +60,6 @@ final class RecentSearchViewController: BaseViewController {
     super.viewDidLoad()
     setNavigationBar(isHidden: false)
     configureLayout()
-    configureDataSource()
     configureResultDataSource()
     bind()
   }
@@ -104,8 +103,17 @@ final class RecentSearchViewController: BaseViewController {
       }
       .disposed(by: disposeBag)
 
+    output.delete
+      .drive()
+      .disposed(by: disposeBag)
+
     output.keyword
       .drive { print($0) }
+      .disposed(by: disposeBag)
+    output.keywordList
+      .drive {
+        self.configureSearchListDataSource($0)
+      }
       .disposed(by: disposeBag)
   }
 }
@@ -198,14 +206,15 @@ extension RecentSearchViewController {
 
 extension RecentSearchViewController {
   /// - TAG: DataSource
-  private func configureDataSource() {
+  private func configureSearchListDataSource(_ items: [String]) {
     let cellRegistration = UICollectionView
       .CellRegistration<UICollectionViewListCell, String> { (cell, _, item) in
         var content = cell.defaultContentConfiguration()
         content.text = item
         cell.contentConfiguration = content
       }
-    recentDataSource =
+
+    searchListDataSource =
       UICollectionViewDiffableDataSource<Section, String>(
         collectionView: searchListCollectionView,
         cellProvider: {(collectionView, indexPath, string) -> UICollectionViewCell in
@@ -213,8 +222,8 @@ extension RecentSearchViewController {
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(["살려줘", "노르웨이의 숲", "물리의 정석", "라라룰"])
-    recentDataSource.apply(snapshot, animatingDifferences: false)
+    snapshot.appendItems(items)
+    searchListDataSource.apply(snapshot, animatingDifferences: false)
   }
 
   private func configureResultDataSource() {
