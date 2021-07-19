@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,8 @@
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
+		77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* OrderedCollections */; };
+		77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* Collections */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
@@ -224,6 +226,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */,
+				77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */,
 				3BF7FD28D773FAA1F4281C08 /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +826,10 @@
 			dependencies = (
 			);
 			name = MARU;
+			packageProductDependencies = (
+				77EC8AE926A5E030001CDA10 /* OrderedCollections */,
+				77EC8AEB26A5E030001CDA10 /* Collections */,
+			);
 			productName = MARU;
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
 			productType = "com.apple.product-type.application";
@@ -895,6 +903,9 @@
 				Base,
 			);
 			mainGroup = C51CA7E6260D964E00CE4804;
+			packageReferences = (
+				77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = C51CA7F0260D964E00CE4804 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1486,6 +1497,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77EC8AE926A5E030001CDA10 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		77EC8AEB26A5E030001CDA10 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C51CA7E7260D964E00CE4804 /* Project object */;
 }

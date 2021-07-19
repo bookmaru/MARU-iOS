@@ -9,9 +9,9 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import OrderedCollections
 
 final class RecentSearchViewModel: ViewModelType {
-
   private var savedKeywordList: [String] = []
 
   struct Input {
@@ -44,8 +44,12 @@ final class RecentSearchViewModel: ViewModelType {
       .asDriver()
 
     let keyword = input.tapSearchButton.withLatestFrom(input.writeText)
-      .do(onNext: { [self] in
-        savedKeywordList.append($0)
+      .distinctUntilChanged()
+//      .debounce(RxTimeInterval.microseconds(5))
+      .do(onNext: { [self] keyword in
+        var orderSet = OrderedSet(savedKeywordList).subtracting([keyword])
+        orderSet.insert(keyword, at: 0)
+        savedKeywordList = Array(orderSet)
       })
       .asDriver()
 

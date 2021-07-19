@@ -80,10 +80,6 @@ final class RecentSearchViewController: BaseViewController {
       .map {_ in () }
       .asDriver(onErrorJustReturn: ())
 
-//    let input = RecentSearchViewModel.Input(viewTrigger: Driver.merge(viewWillAppear),
-//                                            cancleTrigger: searchButton.rx.tap.asDriver(),
-//                                            deleteTrigger: deleteButton.rx.tap.asDriver(),
-//                                            enterTextField: searchBar.rx.text.orEmpty.asDriver())
     let input = RecentSearchViewModel.Input(
       viewTrigger: Driver.merge(viewWillAppear),
       tapCancleButton: canclehButton.rx.tap.asDriver(),
