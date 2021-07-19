@@ -29,7 +29,6 @@
 		776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776FB8C92687086300F024F1 /* RecentSearchViewController.swift */; };
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
-		77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */; };
 		77B718EE26470CBC0005B129 /* PopularBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* PopularBookModel.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
@@ -93,6 +92,8 @@
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
 		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
+		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
+		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -139,7 +140,6 @@
 		776FB8C92687086300F024F1 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
-		77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* PopularBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBookModel.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +211,8 @@
 		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
+		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
+		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -325,8 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				77B27BC32664C16B008E315C /* LibraryDebateCell.swift */,
-				77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */,
 				774262F2268A6699008F9CAE /* WasDebateCell.swift */,
+				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -565,6 +567,7 @@
 				C58F6A4E2646CFB000D8AA7C /* Int+.swift */,
 				C5B16BA22687361600F01C26 /* CGFloat+.swift */,
 				C58F6A502646D05A00D8AA7C /* String+.swift */,
+				F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
+				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
@@ -1084,7 +1088,7 @@
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
-				77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */,
+				F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */,
 				C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
