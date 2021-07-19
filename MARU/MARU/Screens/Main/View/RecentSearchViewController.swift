@@ -7,40 +7,52 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class RecentSearchViewController: BaseViewController {
   enum Section {
     case main
   }
+  private let searchBar: UISearchBar = {
+    let searchBar = UISearchBar()
+    searchBar.placeholder = "검색을 해주세요"
+    return searchBar
+  }()
 
-  private let searchBar: UISearchBar = UISearchBar()
+  private var canclehButton: UIBarButtonItem = {
+    let canclehButton = UIBarButtonItem()
+    canclehButton.tintColor = .black
+    canclehButton.title = "취소"
+    return canclehButton
+  }()
 
-  private lazy var searchButton = UIBarButtonItem(title: "취소",
-                                                  style: .plain,
-                                                  target: self,
-                                                  action: #selector(didTapCancleButton))
+  private let recentSearchLabel: UILabel = {
+    let recentSearchLabel = UILabel()
+    recentSearchLabel.text = "최근 검색어"
+    recentSearchLabel.textColor = .mainBlue
+    recentSearchLabel.font = .systemFont(ofSize: 13, weight: .bold)
+    return recentSearchLabel
+  }()
 
-  private let recentSearchLabel = UILabel().then {
-    $0.sizeToFit()
-    $0.adjustsFontSizeToFitWidth = true
-    $0.text = "최근 검색어"
-    $0.textColor = .mainBlue
-    $0.font = .systemFont(ofSize: 13, weight: .bold)
-  }
+  private let deleteButton: UIButton = {
+    let deleteButton = UIButton()
+    deleteButton.setTitle("전체 삭제", for: .normal)
+    deleteButton.setTitleColor(.black, for: .normal)
+    deleteButton.setTitleColor(.black22, for: .highlighted)
+    deleteButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
+    deleteButton.alpha = 0.29
+    return deleteButton
+  }()
 
-  private let deleteLabel = UILabel().then {
-    $0.sizeToFit()
-    $0.adjustsFontSizeToFitWidth = true
-    $0.text = "전체 삭제"
-    $0.textColor = .black
-    $0.alpha = 0.29
-    $0.font = .systemFont(ofSize: 12, weight: .bold)
-  }
   private let emptyView = EmptytMeetingView()
   private let screenSize = UIScreen.main.bounds.size
   private var searchListCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView! = nil
   private var recentDataSource: UICollectionViewDiffableDataSource<Section, String>!
   private var resultDataSource: UICollectionViewDiffableDataSource<Section, BookModel>!
+
+  private var viewModel =  RecentSearchViewModel()
 
   private var initData = BookModel.initMainData
 
@@ -50,6 +62,7 @@ final class RecentSearchViewController: BaseViewController {
     configureLayout()
     configureDataSource()
     configureResultDataSource()
+    bind()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -63,25 +76,48 @@ final class RecentSearchViewController: BaseViewController {
   private func didTapCancleButton() {
     self.navigationController?.popViewController(animated: true)
   }
+  private func bind() {
+    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
+      .map {_ in () }
+      .asDriver(onErrorJustReturn: ())
+
+//    let input = RecentSearchViewModel.Input(viewTrigger: Driver.merge(viewWillAppear),
+//                                            cancleTrigger: searchButton.rx.tap.asDriver(),
+//                                            deleteTrigger: deleteButton.rx.tap.asDriver(),
+//                                            enterTextField: searchBar.rx.text.orEmpty.asDriver())
+    let input = RecentSearchViewModel.Input(
+      viewTrigger: Driver.merge(viewWillAppear),
+      tapCancleButton: canclehButton.rx.tap.asDriver(),
+      tapDeleteButton: deleteButton.rx.tap.asDriver(),
+      writeText: searchBar.rx.text.orEmpty.asDriver(),
+      tapSearchButton: searchBar.rx.searchButtonClicked.asDriver()
+    )
+
+    let output = viewModel.transform(input: input)
+
+    output.cancle
+      .drive {
+        if $0 {
+          self.view.hideKeyboard()
+          self.navigationController?.popViewController(animated: true)
+        }
+      }
+      .disposed(by: disposeBag)
+
+    output.keyword
+      .drive { print($0) }
+      .disposed(by: disposeBag)
+  }
 }
 
 extension RecentSearchViewController {
-  func configureSearchBar() {
-    searchBar.delegate = self
-    self.navigationItem.leftBarButtonItem = nil
-    self.navigationItem.hidesBackButton = true
-    self.navigationItem.titleView = searchBar
-    searchButton.tintColor = .black
-    self.navigationItem.rightBarButtonItem = searchButton
-    searchBar.placeholder = "검색을 해주세요"
+  private func configureSearchBar() {
+    navigationItem.leftBarButtonItem = nil
+    navigationItem.hidesBackButton = true
+    navigationItem.titleView = searchBar
+    navigationItem.rightBarButtonItem = canclehButton
   }
 }
-extension RecentSearchViewController: UISearchBarDelegate {
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    print("Okay let's search")
-  }
-}
-
 extension RecentSearchViewController {
 
   /// - TAG: collectionView Layout
@@ -104,7 +140,8 @@ extension RecentSearchViewController {
     searchListCollectionView.backgroundColor = .white
     resultCollectionView.backgroundColor = .white
     resultCollectionView.isHidden = true
-    searchListCollectionView.isHidden = true
+    searchListCollectionView.isHidden = false
+    emptyView.isHidden = true
 
     view.add(recentSearchLabel) {
       $0.snp.makeConstraints { make in
@@ -112,7 +149,7 @@ extension RecentSearchViewController {
         make.leading.equalToSuperview().inset(20)
       }
     }
-    view.add(deleteLabel) {
+    view.add(deleteButton) {
       $0.snp.makeConstraints { make in
         make.top.equalTo(self.view.safeAreaLayoutGuide).inset(22)
         make.trailing.equalToSuperview().inset(20)
@@ -146,14 +183,14 @@ extension RecentSearchViewController {
 
   private func remakeLayout() {
     searchListCollectionView.isHidden = true
-    deleteLabel.isHidden = true
+    deleteButton.isHidden = true
     recentSearchLabel.isHidden = true
     resultCollectionView.isHidden = false
   }
 
   private func backLayout() {
     recentSearchLabel.isHidden = false
-    deleteLabel.isHidden = false
+    deleteButton.isHidden = false
     searchListCollectionView.isHidden = false
     resultCollectionView.isHidden = true
   }
