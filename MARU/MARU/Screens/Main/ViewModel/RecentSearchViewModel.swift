@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import OrderedCollections
 
+import RealmSwift
 import RxSwift
 import RxCocoa
-import OrderedCollections
 
 final class RecentSearchViewModel: ViewModelType {
   private var savedKeywordList: [String] = []
@@ -59,7 +60,6 @@ final class RecentSearchViewModel: ViewModelType {
         return self.savedKeywordList
       }
       .asDriver()
-
     return Output(cancle: cancle,
                   delete: delete,
                   keyword: keyword,
