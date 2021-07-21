@@ -50,6 +50,7 @@
 		C53FE048269AA533005ED467 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FE047269AA533005ED467 /* UserInformation.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
+		C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B6FDF26A80CF5009ACE85 /* GradientView.swift */; };
 		C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21BE266B616900D5D953 /* OnboardingViewController.swift */; };
 		C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */; };
 		C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */; };
@@ -165,6 +166,7 @@
 		C53FE047269AA533005ED467 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C55B6FDF26A80CF5009ACE85 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		C55E21BE266B616900D5D953 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 				E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */,
 				C5ED5ADB263E73C100BA7D47 /* InputView.swift */,
 				C5B16BA0268735E200F01C26 /* ScreenSize.swift */,
+				C55B6FDF26A80CF5009ACE85 /* GradientView.swift */,
 			);
 			path = CutsomUtil;
 			sourceTree = "<group>";
@@ -1110,6 +1113,7 @@
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
