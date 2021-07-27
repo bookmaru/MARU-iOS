@@ -41,9 +41,7 @@ final class RecentSearchViewModel: ViewModelType {
 
   func transform(input: Input) -> Output {
 
-    let load = Driver.merge(input.viewTrigger,
-                            input.tapDeleteButton,
-                            input.tapSearchButton) // 확인으로 tapSearch 넣어놓은 것.
+    let load = Driver.merge(input.viewTrigger) // 확인으로 tapSearch 넣어놓은 것.
       .map { [self] _  ->  Results<RecentSearchKeyword> in
         return realm.objects(RecentSearchKeyword.self).sorted(byKeyPath: "created",
                                                               ascending: false)

@@ -111,7 +111,9 @@ final class RecentSearchViewController: BaseViewController {
       .disposed(by: disposeBag)
 
     output.delete
-      .drive()
+      .drive(onNext: {
+        self.configureSearchListDataSource([])
+      })
       .disposed(by: disposeBag)
 
     output.keyword
