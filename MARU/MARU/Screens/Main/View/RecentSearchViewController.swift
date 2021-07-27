@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RealmSwift
 import RxSwift
 import RxCocoa
 
@@ -90,6 +91,16 @@ final class RecentSearchViewController: BaseViewController {
 
     let output = viewModel.transform(input: input)
 
+    output.load
+      .drive {
+        var recentKeywords: [String] = []
+        $0.forEach { recentKeyword in
+          recentKeywords.append(recentKeyword.keyword)
+        }
+        self.configureSearchListDataSource(recentKeywords)
+      }
+      .disposed(by: disposeBag)
+
     output.cancle
       .drive {
         if $0 {
@@ -107,11 +118,6 @@ final class RecentSearchViewController: BaseViewController {
       .drive { print($0) }
       .disposed(by: disposeBag)
 
-    output.keywordList
-      .drive {
-        self.configureSearchListDataSource($0)
-      }
-      .disposed(by: disposeBag)
   }
 }
 

@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 
 final class RecentSearchViewModel: ViewModelType {
-  private var savedKeywordList: [String] = []
+  var realm: Realm!
 
   struct Input {
     let viewTrigger: Driver<Void>
@@ -24,14 +24,32 @@ final class RecentSearchViewModel: ViewModelType {
   }
 
   struct Output {
-//    let fetching: Driver<Bool>
+    let load: Driver<Results<RecentSearchKeyword>>
     let cancle: Driver<Bool>
     let delete: Driver<Void>
-//    let error: Driver<Error>
     let keyword: Driver<String>
-    let keywordList: Driver<[String]>
   }
+
+  init() {
+
+    do {
+      self.realm = try Realm()
+    } catch let err as NSError {
+      print(err)
+    }
+  }
+
   func transform(input: Input) -> Output {
+
+    let load = Driver.merge(input.viewTrigger,
+                            input.tapDeleteButton,
+                            input.tapSearchButton) // 확인으로 tapSearch 넣어놓은 것.
+      .map { [self] _  ->  Results<RecentSearchKeyword> in
+        return realm.objects(RecentSearchKeyword.self).sorted(byKeyPath: "created",
+                                                              ascending: false)
+      }
+      .asDriver()
+
     let cancle = input.tapCancleButton
       .map { () in
         return true
@@ -39,30 +57,36 @@ final class RecentSearchViewModel: ViewModelType {
       .asDriver()
 
     let delete = input.tapDeleteButton
-      .do(onNext: {
-        self.savedKeywordList.removeAll()
+      .do(onNext: { [self] in
+        do {
+          try realm.write {
+            realm.deleteAll()
+          }
+        } catch let err as NSError {
+          print(err)
+        }
       })
       .asDriver()
 
     let keyword = input.tapSearchButton.withLatestFrom(input.writeText)
       .distinctUntilChanged()
-//      .debounce(RxTimeInterval.microseconds(5))
+      .debounce(RxTimeInterval.microseconds(5))
       .do(onNext: { [self] keyword in
-        var orderSet = OrderedSet(savedKeywordList).subtracting([keyword])
-        orderSet.insert(keyword, at: 0)
-        savedKeywordList = Array(orderSet)
+        let keywordObject = RecentSearchKeyword()
+        keywordObject.keyword = keyword
+        do {
+          try self.realm.write {
+            realm.add(keywordObject, update: .modified)
+          }
+        } catch let err as NSError {
+          print(err)
+        }
       })
       .asDriver()
 
-    let keywordList = Driver.merge(input.tapDeleteButton,
-                                   input.tapSearchButton)
-      .map { _ in
-        return self.savedKeywordList
-      }
-      .asDriver()
-    return Output(cancle: cancle,
+    return Output(load: load,
+                  cancle: cancle,
                   delete: delete,
-                  keyword: keyword,
-                  keywordList: keywordList)
+                  keyword: keyword)
   }
 }
