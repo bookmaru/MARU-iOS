@@ -21,7 +21,12 @@ final class LibraryTitleCell: UICollectionViewCell {
     $0.setImage(Image.correct, for: .normal)
     $0.isHidden = true
   }
-
+  fileprivate var title: String {
+    didSet {
+      titleLabel.text = title
+    }
+  }
+  var disposeBag = DisposeBag()
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -31,6 +36,10 @@ final class LibraryTitleCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
   private func render() {
     contentView.add(titleLabel) { label in
       label.snp.makeConstraints {
@@ -58,6 +67,12 @@ extension Reactive where Base: LibraryTitleCell {
   var addButtonIsHiddenBinder: Binder<Bool> {
     return Binder(base) { base, isHiddenButton in
       base.addButton.isHidden = isHiddenButton
+    }
+  }
+  
+  var titleBinder: Binder<String> {
+    return Binder(base) { base, title in
+      base.title = title
     }
   }
 }

@@ -101,6 +101,7 @@
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
+		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -227,6 +228,7 @@
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
+		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				774262F026899C95008F9CAE /* LibraryModel.swift */,
+				F2B4A09126B67AC000F02FB5 /* Library.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */,
+				F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */,
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,

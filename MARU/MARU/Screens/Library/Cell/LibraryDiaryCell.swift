@@ -52,6 +52,7 @@ final class LibraryDiaryCell: UICollectionViewCell {
     $0.textAlignment = .left
   }
 
+  var disposeBag = DisposeBag()
   fileprivate var data: String = "" {
     didSet {
 
@@ -67,6 +68,10 @@ final class LibraryDiaryCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
   private func render() {
     contentView.add(diaryCellView)
     diaryCellView.adds([
