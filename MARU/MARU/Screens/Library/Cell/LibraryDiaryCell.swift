@@ -58,7 +58,7 @@ final class LibraryDiaryCell: UICollectionViewCell {
 
     }
   }
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()

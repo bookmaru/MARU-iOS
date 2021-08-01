@@ -87,6 +87,12 @@
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
 		C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA0268735E200F01C26 /* ScreenSize.swift */; };
 		C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA22687361600F01C26 /* CGFloat+.swift */; };
+		C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */; };
+		C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */; };
+		C5B9B99E26B68BAD00D07974 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99D26B68BAD00D07974 /* DiaryService.swift */; };
+		C5B9B9A026B68DEA00D07974 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99F26B68DEA00D07974 /* User.swift */; };
+		C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A126B6902E00D07974 /* BookRouter.swift */; };
+		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -215,6 +221,12 @@
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5B16BA0268735E200F01C26 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		C5B16BA22687361600F01C26 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewModel.swift; sourceTree = "<group>"; };
+		C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRouter.swift; sourceTree = "<group>"; };
+		C5B9B99D26B68BAD00D07974 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
+		C5B9B99F26B68DEA00D07974 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C5B9B9A126B6902E00D07974 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
+		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -642,6 +654,8 @@
 			children = (
 				C5A3DB0F2684DCEE007355D1 /* AuthService.swift */,
 				77C6DD7C26989ABE004F06ED /* HomeService.swift */,
+				C5B9B99D26B68BAD00D07974 /* DiaryService.swift */,
+				C5B9B9A326B6906100D07974 /* BookService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -651,6 +665,8 @@
 			children = (
 				C5A3DB072684D966007355D1 /* AuthRouter.swift */,
 				7712E437269889D80076F8E5 /* HomeRouter.swift */,
+				C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */,
+				C5B9B9A126B6902E00D07974 /* BookRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -673,6 +689,7 @@
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
 				773E22DC26A01BBC002B9F52 /* Group.swift */,
+				C5B9B99F26B68DEA00D07974 /* User.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -767,6 +784,7 @@
 				C5ACA4B926B662F50089C50C /* Cell */,
 				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
+				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 			);
 			path = Library;
@@ -1091,6 +1109,7 @@
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
+				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
@@ -1114,6 +1133,7 @@
 				C5ACA4BB26B663250089C50C /* MyLibraryCell.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
+				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
@@ -1131,6 +1151,7 @@
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
 				77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */,
 				77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */,
+				C5B9B99E26B68BAD00D07974 /* DiaryService.swift in Sources */,
 				776320482646B60E00293D1C /* MainViewModel.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
@@ -1147,12 +1168,14 @@
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */,
 				C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
+				C5B9B9A026B68DEA00D07974 /* User.swift in Sources */,
 				C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
@@ -1165,6 +1188,7 @@
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
+				C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */,
 				77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */,

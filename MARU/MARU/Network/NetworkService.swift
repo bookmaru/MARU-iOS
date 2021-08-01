@@ -12,4 +12,6 @@ final class NetworkService {
 
   let auth = AuthService()
   let home = HomeService()
+  let diary = DiaryService()
+  let book = BookService()
 }

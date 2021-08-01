@@ -21,7 +21,7 @@ final class LibraryTitleCell: UICollectionViewCell {
     $0.setImage(Image.correct, for: .normal)
     $0.isHidden = true
   }
-  fileprivate var title: String {
+  fileprivate var title: String? {
     didSet {
       titleLabel.text = title
     }
@@ -69,7 +69,7 @@ extension Reactive where Base: LibraryTitleCell {
       base.addButton.isHidden = isHiddenButton
     }
   }
-  
+
   var titleBinder: Binder<String> {
     return Binder(base) { base, title in
       base.title = title

@@ -32,7 +32,7 @@ extension TabBarController {
     meetView.tabBarItem = meetViewTabItem
     let meetViewController = UINavigationController(rootViewController: meetView)
 
-    let libraryView = LibraryViewController()
+    let libraryView = MyLibraryViewController()
     let libraryViewTabItem = UITabBarItem(title: "서재",
                                           image: UIImage(),
                                           selectedImage: UIImage())
