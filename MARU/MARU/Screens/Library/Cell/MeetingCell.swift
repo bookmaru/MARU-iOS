@@ -17,9 +17,11 @@ final class MeetingCell: UICollectionViewCell {
     super.init(frame: frame)
     render()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   private func render() {
     contentView.add(imageView) { view in
       view.snp.makeConstraints {
