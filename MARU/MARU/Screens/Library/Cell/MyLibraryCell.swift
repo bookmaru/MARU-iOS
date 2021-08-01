@@ -14,6 +14,7 @@ final class MyLibraryCell: UICollectionViewCell {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(cell: MeetingCell.self)
     return collectionView
   }()
 

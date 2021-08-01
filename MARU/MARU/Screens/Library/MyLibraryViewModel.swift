@@ -24,6 +24,8 @@ final class MyLibraryViewModel {
     let viewDidLoad = input.viewDidLoadPublisher.share()
 
     let user = viewDidLoad
+      // map 사용하지 않는 이유 -> observable type으로 리턴되므로 이중으로 감싸진 형태
+      // 따라서 flatmap 사용
       .flatMap { NetworkService.shared.auth.user() }
       .map { response -> User? in
         return response.data

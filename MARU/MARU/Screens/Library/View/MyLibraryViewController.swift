@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 final class MyLibraryViewController: BaseViewController {
 
@@ -15,9 +17,12 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    collectionView.register(cell: LibraryTitleCell.self)
+    collectionView.register(cell: MyLibraryCell.self)
+    collectionView.register(cell: LibraryDiaryCell.self)
     return collectionView
   }()
-
+  private let viewModel = MyLibraryViewModel()
   private var data: [Library] = [] {
     didSet {
       collectionView.reloadData()
@@ -41,7 +46,15 @@ final class MyLibraryViewController: BaseViewController {
   }
 
   private func bind() {
-
+    let viewDidLoadPublisher = PublishSubject<Void>()
+    let output = viewModel.transform(input: MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher))
+    output.data
+      .drive(onNext: { [weak self] data in
+        guard let self = self else { return }
+        self.data = data
+      })
+      .disposed(by: disposeBag)
+    viewDidLoadPublisher.onNext(())
   }
 }
 
