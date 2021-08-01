@@ -150,11 +150,3 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
     return CGSize(width: view.frame.width - 82, height: collectionView.frame.height)
   }
 }
-
-extension UIViewController {
-  func create<T>(_ setup: ((T) -> Void)) -> T where T: NSObject {
-    let obj = T()
-    setup(obj)
-    return obj
-  }
-}

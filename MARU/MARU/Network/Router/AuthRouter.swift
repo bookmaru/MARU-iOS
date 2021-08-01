@@ -70,7 +70,8 @@ extension AuthRouter: TargetType {
       return .requestCompositeParameters(
         bodyParameters: body,
         bodyEncoding: JSONEncoding.default,
-        urlParameters: .init())
+        urlParameters: .init()
+      )
     default:
       return .requestPlain
     }
@@ -85,8 +86,7 @@ extension AuthRouter: TargetType {
       ]
     default:
       return [
-        "Content-Type": "application/json",
-        "accessToken": KeychainHandler.shared.accessToken
+        "Content-Type": "application/json"
       ]
     }
   }

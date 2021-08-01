@@ -9,16 +9,17 @@ import UIKit
 import SnapKit
 
 final class MyLibraryViewController: UIViewController {
-  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     return collectionView
   }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
   }
+
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -28,8 +29,8 @@ final class MyLibraryViewController: UIViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
-  
 }
+
 extension MyLibraryViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     <#code#>
@@ -38,6 +39,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     <#code#>
   }
 }
-extension MyLibraryViewController: UICollectionViewDelegateFlowLayout{
+
+extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
   
 }
