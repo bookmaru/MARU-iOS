@@ -14,10 +14,12 @@ final class MyLibraryHeaderView: UICollectionReusableView {
 
   private let profileImageView = UIImageView().then {
     $0.image = Image.appIcon
+    $0.layer.cornerRadius = 75/2
   }
 
   private let changeProfileButton = UIButton().then {
     $0.setImage(Image.correct, for: .normal)
+    $0.layer.cornerRadius = 20/2
   }
 
   private let usernameLabel = UILabel().then {
