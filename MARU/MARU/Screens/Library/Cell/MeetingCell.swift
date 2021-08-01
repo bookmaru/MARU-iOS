@@ -10,9 +10,9 @@ import RxCocoa
 import RxSwift
 
 final class MeetingCell: UICollectionViewCell {
-  
+
   fileprivate let imageView = UIImageView()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()

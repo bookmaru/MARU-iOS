@@ -83,6 +83,7 @@
 		C5ACA4BB26B663250089C50C /* MyLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */; };
 		C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */; };
 		C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */; };
+		C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
 		C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA0268735E200F01C26 /* ScreenSize.swift */; };
 		C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA22687361600F01C26 /* CGFloat+.swift */; };
@@ -209,6 +210,7 @@
 		C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCell.swift; sourceTree = "<group>"; };
 		C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryHeaderView.swift; sourceTree = "<group>"; };
 		C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
+		C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTitleCell.swift; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5B16BA0268735E200F01C26 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		C5B16BA22687361600F01C26 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
@@ -340,7 +342,6 @@
 			children = (
 				77B27BC32664C16B008E315C /* LibraryDebateCell.swift */,
 				774262F2268A6699008F9CAE /* WasDebateCell.swift */,
-				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -688,6 +689,8 @@
 				C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */,
 				C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */,
 				C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */,
+				C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */,
+				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
+				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
 				77B718EE26470CBC0005B129 /* PopularBookModel.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,

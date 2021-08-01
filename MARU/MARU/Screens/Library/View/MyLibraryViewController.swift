@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class MyLibraryViewController: UIViewController {
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -33,13 +34,13 @@ final class MyLibraryViewController: UIViewController {
 
 extension MyLibraryViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    <#code#>
+    return 0
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    <#code#>
+    return UICollectionViewCell()
   }
 }
 
 extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
-  
+
 }

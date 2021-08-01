@@ -42,7 +42,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     super.init(frame: frame)
     render()
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
