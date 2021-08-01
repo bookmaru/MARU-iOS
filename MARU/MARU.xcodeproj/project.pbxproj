@@ -95,6 +95,7 @@
 		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
+		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -215,6 +216,7 @@
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -739,6 +741,7 @@
 			children = (
 				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
+				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 			files = (
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
+				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
