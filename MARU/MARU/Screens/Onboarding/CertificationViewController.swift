@@ -67,7 +67,7 @@ final class CertificationViewController: BaseViewController {
     $0.textColor = .subText
   }
   private let bornYearPicker: UIPickerView = UIPickerView()
-  private let submitButton: GenderRadioButton = GenderRadioButton(title: "회원가입").then {
+  private let submitButton: SubmitButton = SubmitButton(title: "회원가입").then {
     $0.backgroundColor = .subText
     $0.setTitleColor(.white, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
@@ -76,24 +76,44 @@ final class CertificationViewController: BaseViewController {
 
   private var years: [Int] = []
 
-  private var userInformation: UserInformation = .init(birth: nil, gender: nil, nickname: "")
+  private var userInformation: UserInformation
 
-  init() {
-    super.init(nibName: nil, bundle: nil)
+  init(socialID: String, socialType: String) {
+    self.userInformation = UserInformation(
+      birth: nil,
+      gender: nil,
+      nickname: "",
+      socialID: socialID,
+      socialType: socialType
+    )
+    super.init()
     self.years = [Int](1900...calculateYear())
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    render()
-    bind()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    render()
+    bind()
+    pickerView()
+  }
+
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+
+  private func pickerView() {
+    bornYearPicker.delegate = self
+    bornYearPicker.dataSource = self
+    bornYearPicker.selectRow(calculateYear() - 1900 - 24, inComponent: 0, animated: false)
+  }
+
   private func bind() {
+    buttonBind()
+
     nicknameTextField.rx.text
       .do { [weak self] text in
         guard let self = self,
@@ -135,7 +155,9 @@ final class CertificationViewController: BaseViewController {
         }
       })
       .disposed(by: disposeBag)
+  }
 
+  private func buttonBind() {
     maleButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
@@ -155,17 +177,21 @@ final class CertificationViewController: BaseViewController {
       .disposed(by: disposeBag)
 
     submitButton.rx.tap
-      .flatMap { _ in
-        return NetworkService.shared.auth.information(information: self.userInformation).map { $0.status }
-      }
+      .flatMap { NetworkService.shared.auth.information(information: self.userInformation) }
       .subscribe(onNext: { response in
-        print(response)
+        if let token = response.data?.accessToken {
+          KeychainHandler.shared.accessToken = token
+        }
+        if response.status == 201 {
+          let viewController = TabBarController()
+          viewController.modalPresentationStyle = .fullScreen
+          if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            delegate.window?.rootViewController = viewController
+          }
+          self.present(viewController, animated: false)
+        }
       })
       .disposed(by: disposeBag)
-
-    bornYearPicker.delegate = self
-    bornYearPicker.dataSource = self
-    bornYearPicker.selectRow(calculateYear() - 1900 - 24, inComponent: 0, animated: false)
   }
 
   private func calculateYear() -> Int {
@@ -308,6 +334,41 @@ private class GenderRadioButton: UIButton {
     super.init(frame: .zero)
     setTitleColor(.white, for: .selected)
     setTitleColor(.subText, for: .normal)
+    layer.borderColor = UIColor.subText.cgColor
+    layer.borderWidth = 0.5
+    layer.cornerRadius = 3
+    titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
+  }
+
+  convenience init(title: String) {
+    self.init()
+
+    setTitle(title, for: .normal)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+private class SubmitButton: UIButton {
+  override var isSelected: Bool {
+    didSet {
+      if isSelected {
+        backgroundColor = .mainBlue
+        layer.borderColor = UIColor.clear.cgColor
+        layer.borderWidth = 0
+      } else {
+        backgroundColor = .subText
+        layer.borderColor = UIColor.subText.cgColor
+        layer.borderWidth = 0.5
+      }
+    }
+  }
+
+  override init(frame: CGRect) {
+    super.init(frame: .zero)
+    setTitleColor(.white, for: .selected)
     layer.borderColor = UIColor.subText.cgColor
     layer.borderWidth = 0.5
     layer.cornerRadius = 3

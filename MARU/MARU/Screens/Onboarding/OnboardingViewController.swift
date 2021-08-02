@@ -53,6 +53,7 @@ final class OnboardingViewController: BaseViewController {
   }()
 
   private let didTapLoginButton = PublishSubject<(AuthType, String)>()
+  private let authType = PublishSubject<AuthType>()
 
   private let viewModel = ViewModel()
 
@@ -118,16 +119,19 @@ extension OnboardingViewController {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = ViewModel.Input(
       viewDidLoad: viewDidLoadPublisher,
-      didTapLoginButton: didTapLoginButton
+      didTapLoginButton: didTapLoginButton,
+      authType: authType
     )
     let output = viewModel.transform(input: input)
 
     output.didLogin
       .drive(onNext: { [weak self] viewController in
         guard let self = self,
-              let viewController = viewController
+              let viewController = viewController,
+              let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         else { return }
         viewController.modalPresentationStyle = .fullScreen
+        delegate.window?.rootViewController = viewController
         self.present(viewController, animated: false)
       })
       .disposed(by: disposeBag)
@@ -152,6 +156,7 @@ extension OnboardingViewController {
             let token = kakaoResponse?.accessToken
       else { return }
       self.didTapLoginButton.onNext((.kakao, token))
+      self.authType.onNext(.kakao)
     }
   }
 }
@@ -212,6 +217,7 @@ extension OnboardingViewController: ASAuthorizationControllerDelegate {
           let identifyToken = String(data: appleIDCredential.identityToken ?? Data(), encoding: .utf8)
     else { return }
     didTapLoginButton.onNext((.apple, identifyToken))
+    authType.onNext(.apple)
   }
 }
 

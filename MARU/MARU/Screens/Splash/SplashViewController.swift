@@ -41,8 +41,16 @@ extension SplashViewController: ViewControllerType {
 
 extension SplashViewController {
   private func moveTo() {
-    let viewController = OnboardingViewController()
+    let viewController: UIViewController
+    if KeychainHandler.shared.accessToken != "Key is empty" {
+      viewController = TabBarController()
+    } else {
+      viewController = OnboardingViewController()
+    }
     viewController.modalPresentationStyle = .fullScreen
+    if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+      delegate.window?.rootViewController = viewController
+    }
     present(viewController, animated: false)
   }
 }

@@ -89,7 +89,7 @@ extension OnboardingLoginCollectionViewCell {
       view.snp.makeConstraints {
         $0.top.equalTo(self.guideLabel.snp.bottom).offset(26)
         $0.centerX.equalToSuperview()
-        $0.size.equalTo(248)
+        $0.size.equalTo(248.calculatedWidth)
       }
     }
     contentView.add(loginGuideLabel) { label in
@@ -119,14 +119,14 @@ extension OnboardingLoginCollectionViewCell {
       button.snp.makeConstraints {
         $0.leading.trailing.equalTo(self.imageView)
         $0.top.equalTo(self.loginGuideLabel.snp.bottom).offset(14)
-        $0.height.equalTo(39)
+        $0.height.equalTo(39.calculatedWidth)
       }
     }
     contentView.add(appleLoginButton) { button in
       button.snp.makeConstraints {
         $0.leading.trailing.equalTo(self.imageView)
         $0.top.equalTo(self.kakaoLoginButton.snp.bottom).offset(9)
-        $0.height.equalTo(39)
+        $0.height.equalTo(39.calculatedWidth)
       }
     }
   }

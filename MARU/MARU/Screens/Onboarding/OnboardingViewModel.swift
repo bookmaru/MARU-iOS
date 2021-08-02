@@ -12,6 +12,7 @@ final class OnboardingViewModel: ViewModelType {
   struct Input {
     let viewDidLoad: PublishSubject<Void>
     let didTapLoginButton: PublishSubject<(AuthType, String)>
+    let authType: PublishSubject<AuthType>
   }
 
   struct Output {
@@ -30,9 +31,11 @@ final class OnboardingViewModel: ViewModelType {
       }
       .asDriver(onErrorJustReturn: false)
 
-    let didLogin = input.didTapLoginButton
+    let loginService = input.didTapLoginButton
       .flatMap { NetworkService.shared.auth.auth(type: $0.0, token: $0.1) }
-      .map { response -> UIViewController? in
+
+    let didLogin = Observable.combineLatest(loginService, input.authType)
+      .map { response, auth -> UIViewController? in
         if let token = response.data?.accessToken,
            token != "" {
           KeychainHandler.shared.accessToken = token
@@ -41,7 +44,8 @@ final class OnboardingViewModel: ViewModelType {
           return TabBarController()
         }
         if response.status == 201 {
-          return CertificationViewController()
+          guard let socialID = response.data?.socialID else { return nil }
+          return CertificationViewController(socialID: socialID, socialType: auth.description)
         }
         return nil
       }

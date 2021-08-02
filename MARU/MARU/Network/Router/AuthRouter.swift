@@ -64,6 +64,8 @@ extension AuthRouter: TargetType {
       if let gender = information.gender {
         body["gender"] = gender
       }
+      body["socialId"] = information.socialID
+      body["socialType"] = information.socialType
       body["nickname"] = information.nickname
       return .requestCompositeParameters(
         bodyParameters: body,

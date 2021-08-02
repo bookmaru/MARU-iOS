@@ -85,8 +85,23 @@ final class LibraryViewController: BaseViewController {
     $0.backgroundColor = .brownishGrey
     $0.alpha = 0.1
   }
+  // MARK: - 독서일기 Tableview header 요소
+  private let headerView = UIView().then {
+    $0.backgroundColor = .white
+  }
+  private let headerLabel = UILabel().then {
+    $0.text = "내 일기장"
+    $0.font = .systemFont(ofSize: 17, weight: .bold)
+  }
+  private let addButton = UIButton().then {
+    $0.setImage(UIImage(named: "group874"), for: .normal)
+  }
+  private var diaryTableView = UITableView().then {
+    $0.register(LibraryDiaryCell.self, forCellReuseIdentifier: LibraryDiaryCell.reuseIdentifier)
+    $0.separatorStyle = .none
+    $0.backgroundColor = .white
+  }
   private var debateCollectionView: UICollectionView! = nil
-  private var diaryCollectionView: UICollectionView! = nil
   private var dataSource: UICollectionViewDiffableDataSource<Section, LibraryModel>! = nil
   private let screenSize = UIScreen.main.bounds.size
 
@@ -120,6 +135,9 @@ final class LibraryViewController: BaseViewController {
       case 0:
         buttons[0].isSelected = true
         buttons[1].isSelected = false
+        debateCollectionView.isHidden = false
+        diaryTableView.isHidden = true
+        headerView.isHidden = true
         transferLine.addAnimations {
           self.debateLine.backgroundColor = .blue
           self.debateLine.alpha = 1
@@ -129,7 +147,9 @@ final class LibraryViewController: BaseViewController {
       case 1:
         buttons[0].isSelected = false
         buttons[1].isSelected = true
-
+        debateCollectionView.isHidden = true
+        diaryTableView.isHidden = false
+        headerView.isHidden = false
         transferLine.addAnimations {
           self.debateLine.backgroundColor = .brownishGrey
           self.debateLine.alpha = 0.1
@@ -158,7 +178,6 @@ extension LibraryViewController: ButtonDelegate {
 }
 
 extension LibraryViewController {
-
   /// - TAG: Collection View Layout
   private func creatDebateLayout() -> UICollectionViewCompositionalLayout {
     let layout = UICollectionViewCompositionalLayout { ( sectionNumber, _ ) in
@@ -245,9 +264,17 @@ extension LibraryViewController {
                                   forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
                                   withReuseIdentifier: SectionHeader.reuseIdentifier)
     debateCollectionView.backgroundColor = .white
+    // MARK: - 독서일기 TableView datasource, delegate 처리
+    diaryTableView.delegate = self
+    diaryTableView.dataSource = self
+    // MARK: - TableView hidden 처리
+    headerView.isHidden = true
+    diaryTableView.isHidden = true
     view.adds([
       profileBackgroundView,
-      debateCollectionView
+      debateCollectionView,
+      headerView,
+      diaryTableView
     ])
 
     profileBackgroundView.adds([
@@ -263,13 +290,16 @@ extension LibraryViewController {
     debateButton.add(debateLine)
     diaryButton.add(diaryLine)
 
+    headerView.adds([
+      headerLabel,
+      addButton
+    ])
     profileBackgroundView.snp.makeConstraints { make in
       make.width.equalTo(screenSize.width)
       make.top.equalTo(view.safeAreaLayoutGuide).inset(0)
       make.height.equalTo(screenSize.height * (0.328))
       make.leading.equalTo(view.safeAreaLayoutGuide)
     }
-
     profileImageView.snp.makeConstraints { make in
       make.size.equalTo(CGSize(width: 75, height: 75))
       make.centerX.equalToSuperview()
@@ -324,6 +354,29 @@ extension LibraryViewController {
       make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
       make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
     }
+    // MARK: - View Layout : TableView(독서일기)
+    headerView.snp.makeConstraints { make in
+      make.top.equalTo(profileBackgroundView.snp.bottom).inset(-10)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+      make.height.equalTo(50)
+    }
+    headerLabel.snp.makeConstraints { make in
+      make.top.equalTo(headerView).offset(20)
+      make.leading.equalTo(headerView).offset(20)
+    }
+    addButton.snp.makeConstraints { make in
+      make.top.equalTo(headerView).offset(9)
+      make.trailing.equalTo(headerView).offset(-11)
+      make.width.equalTo(40)
+      make.height.equalTo(40)
+    }
+    diaryTableView.snp.makeConstraints { make in
+      make.top.equalTo(headerView.snp.bottom).offset(21)
+      make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+      make.bottom.equalTo(view.safeAreaLayoutGuide)
+    }
   }
 }
 
@@ -377,4 +430,22 @@ extension LibraryViewController: UICollectionViewDelegate {
       return
     }
   }
+}
+// MARK: - 독서일기 TableView datasource, delegate
+extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: LibraryDiaryCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.awakeFromNib()
+    return cell
+  }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 225
+  }
+  //  diaryCell 선택 시 일기내용화면으로 전환
+  //  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  //
+  //  }
 }
