@@ -12,4 +12,5 @@ final class NetworkService {
 
   let auth = AuthService()
   let home = HomeService()
+  let search = SearchService()
 }

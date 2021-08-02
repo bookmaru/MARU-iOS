@@ -27,6 +27,9 @@
 		776AF4F62641BADF0020D2D8 /* MeetingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F52641BADF0020D2D8 /* MeetingListCell.swift */; };
 		776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* BookCell.swift */; };
 		776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D06E22657F7EB007CD99B /* MainHeaderCell.swift */; };
+		776E525726B1206A00D2C5FA /* ResultSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */; };
+		776E525926B1254500D2C5FA /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525826B1254500D2C5FA /* SearchRouter.swift */; };
+		776E525B26B1255600D2C5FA /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525A26B1255600D2C5FA /* SearchService.swift */; };
 		776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776FB8C92687086300F024F1 /* RecentSearchViewController.swift */; };
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779319C226A40519005F359E /* RecentSearchKeyword.swift */; };
@@ -34,6 +37,7 @@
 		77B27BC62664CDF8008E315C /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */; };
 		77B718EE26470CBC0005B129 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* BookModel.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
+		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* OrderedCollections */; };
@@ -141,6 +145,9 @@
 		776AF4F52641BADF0020D2D8 /* MeetingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingListCell.swift; sourceTree = "<group>"; };
 		776AF4F72641BAF30020D2D8 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		776D06E22657F7EB007CD99B /* MainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderCell.swift; sourceTree = "<group>"; };
+		776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewModel.swift; sourceTree = "<group>"; };
+		776E525826B1254500D2C5FA /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		776E525A26B1255600D2C5FA /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchService.swift; path = MARU/Network/Router/SearchService.swift; sourceTree = SOURCE_ROOT; };
 		776FB8C92687086300F024F1 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		779319C226A40519005F359E /* RecentSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeyword.swift; sourceTree = "<group>"; };
@@ -148,6 +155,7 @@
 		77B27BC52664CDF8008E315C /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +306,7 @@
 			children = (
 				776320472646B60E00293D1C /* MainViewModel.swift */,
 				7717EC9326A437E200888826 /* RecentSearchViewModel.swift */,
+				776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -631,6 +640,7 @@
 			children = (
 				C5A3DB0F2684DCEE007355D1 /* AuthService.swift */,
 				77C6DD7C26989ABE004F06ED /* HomeService.swift */,
+				776E525A26B1255600D2C5FA /* SearchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -640,6 +650,7 @@
 			children = (
 				C5A3DB072684D966007355D1 /* AuthRouter.swift */,
 				7712E437269889D80076F8E5 /* HomeRouter.swift */,
+				776E525826B1254500D2C5FA /* SearchRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -773,6 +784,7 @@
 				776AF4EE2641A69F0020D2D8 /* Component */,
 				C5ED1D76261889AC00F670EC /* MainViewController.swift */,
 				776FB8C92687086300F024F1 /* RecentSearchViewController.swift */,
+				77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */,
 				77013C26268C0BFC004271E6 /* MorePopularViewController.swift */,
 				7784BB3726622B5D00B636EE /* MoreNewViewController.swift */,
 			);
@@ -1115,9 +1127,11 @@
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				774262F126899C95008F9CAE /* LibraryModel.swift in Sources */,
 				7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */,
+				77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */,
+				776E525926B1254500D2C5FA /* SearchRouter.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */,
@@ -1135,6 +1149,7 @@
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				C53FE048269AA533005ED467 /* UserInformation.swift in Sources */,
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
+				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
@@ -1147,6 +1162,7 @@
 				C5A3DB142684E43E007355D1 /* Auth.swift in Sources */,
 				C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */,
 				C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */,
+				776E525726B1206A00D2C5FA /* ResultSearchViewModel.swift in Sources */,
 				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
