@@ -25,6 +25,7 @@ enum AuthRouter {
   case auth(type: AuthType, token: String)
   case nicknameCheck(String)
   case information(information: UserInformation)
+  case user
 }
 
 extension AuthRouter: TargetType {
@@ -40,6 +41,8 @@ extension AuthRouter: TargetType {
       return "/api/v2/nickname/check/\(nickname)"
     case .information:
       return "/api/v2/signup"
+    case .user:
+      return "/api/v2/user"
     }
   }
 
@@ -47,7 +50,7 @@ extension AuthRouter: TargetType {
     switch self {
     case .auth, .information:
       return .post
-    case .nicknameCheck:
+    default:
       return .get
     }
   }
@@ -70,7 +73,8 @@ extension AuthRouter: TargetType {
       return .requestCompositeParameters(
         bodyParameters: body,
         bodyEncoding: JSONEncoding.default,
-        urlParameters: .init())
+        urlParameters: .init()
+      )
     default:
       return .requestPlain
     }
@@ -85,8 +89,7 @@ extension AuthRouter: TargetType {
       ]
     default:
       return [
-        "Content-Type": "application/json",
-        "accessToken": KeychainHandler.shared.accessToken
+        "Content-Type": "application/json"
       ]
     }
   }

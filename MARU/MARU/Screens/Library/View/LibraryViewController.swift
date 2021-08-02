@@ -437,9 +437,9 @@ extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
     return 3
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: LibraryDiaryCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.awakeFromNib()
-    return cell
+//    let cell: LibraryDiaryCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+//    cell.awakeFromNib()
+    return UITableViewCell()
   }
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 225

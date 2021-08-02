@@ -10,6 +10,9 @@ import RxSwift
 
 protocol AuthServiceType {
   func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Auth>>
+  func nickname(name: String) -> Observable<BaseReponseType<Int>>
+  func information(information: UserInformation) -> Observable<BaseReponseType<Auth>>
+  func user() -> Observable<BaseReponseType<User>>
 }
 
 final class AuthService: AuthServiceType {
@@ -34,5 +37,12 @@ final class AuthService: AuthServiceType {
       .request(.information(information: information))
       .asObservable()
       .map(BaseReponseType<Auth>.self)
+  }
+
+  func user() -> Observable<BaseReponseType<User>> {
+    return router.rx
+      .request(.user)
+      .asObservable()
+      .map(BaseReponseType<User>.self)
   }
 }

@@ -80,9 +80,19 @@
 		C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0F2684DCEE007355D1 /* AuthService.swift */; };
 		C5A3DB142684E43E007355D1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB132684E43E007355D1 /* Auth.swift */; };
 		C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */; };
+		C5ACA4BB26B663250089C50C /* MyLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */; };
+		C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */; };
+		C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */; };
+		C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */; };
 		C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B00F1D261887FF00911788 /* TabBarController.swift */; };
 		C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA0268735E200F01C26 /* ScreenSize.swift */; };
 		C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B16BA22687361600F01C26 /* CGFloat+.swift */; };
+		C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */; };
+		C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */; };
+		C5B9B99E26B68BAD00D07974 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99D26B68BAD00D07974 /* DiaryService.swift */; };
+		C5B9B9A026B68DEA00D07974 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99F26B68DEA00D07974 /* User.swift */; };
+		C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A126B6902E00D07974 /* BookRouter.swift */; };
+		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -95,6 +105,9 @@
 		E354F18DDF1FDEEB3BBD062E /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D32DD52EE10905E1C82507D /* Pods_MARUTests.framework */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
+		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
+		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
+		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -201,9 +214,19 @@
 		C5A3DB0F2684DCEE007355D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C5A3DB132684E43E007355D1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaNetworkLogger.swift; sourceTree = "<group>"; };
+		C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCell.swift; sourceTree = "<group>"; };
+		C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryHeaderView.swift; sourceTree = "<group>"; };
+		C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
+		C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTitleCell.swift; sourceTree = "<group>"; };
 		C5B00F1D261887FF00911788 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5B16BA0268735E200F01C26 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		C5B16BA22687361600F01C26 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryViewModel.swift; sourceTree = "<group>"; };
+		C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRouter.swift; sourceTree = "<group>"; };
+		C5B9B99D26B68BAD00D07974 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
+		C5B9B99F26B68DEA00D07974 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C5B9B9A126B6902E00D07974 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
+		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +238,9 @@
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
+		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
+		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				774262F026899C95008F9CAE /* LibraryModel.swift */,
+				F2B4A09126B67AC000F02FB5 /* Library.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,7 +357,6 @@
 			children = (
 				77B27BC32664C16B008E315C /* LibraryDebateCell.swift */,
 				774262F2268A6699008F9CAE /* WasDebateCell.swift */,
-				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -570,6 +596,7 @@
 				C5B16BA22687361600F01C26 /* CGFloat+.swift */,
 				C58F6A502646D05A00D8AA7C /* String+.swift */,
 				F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */,
+				F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -627,6 +654,8 @@
 			children = (
 				C5A3DB0F2684DCEE007355D1 /* AuthService.swift */,
 				77C6DD7C26989ABE004F06ED /* HomeService.swift */,
+				C5B9B99D26B68BAD00D07974 /* DiaryService.swift */,
+				C5B9B9A326B6906100D07974 /* BookService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -636,6 +665,8 @@
 			children = (
 				C5A3DB072684D966007355D1 /* AuthRouter.swift */,
 				7712E437269889D80076F8E5 /* HomeRouter.swift */,
+				C5B9B99B26B68A6300D07974 /* DiaryRouter.swift */,
+				C5B9B9A126B6902E00D07974 /* BookRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -658,6 +689,7 @@
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
 				773E22DC26A01BBC002B9F52 /* Group.swift */,
+				C5B9B99F26B68DEA00D07974 /* User.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -669,6 +701,18 @@
 				C5A3DB042684D91A007355D1 /* DTO */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C5ACA4B926B662F50089C50C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C5ACA4BA26B663250089C50C /* MyLibraryCell.swift */,
+				C5ACA4BC26B663760089C50C /* MyLibraryHeaderView.swift */,
+				C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */,
+				C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */,
+				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C5BF82192675B1930074BF25 /* Cell */ = {
@@ -737,8 +781,11 @@
 		C5ED1D722618899700F670EC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				C5ACA4B926B662F50089C50C /* Cell */,
 				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
+				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
+				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1060,7 +1107,9 @@
 			files = (
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
+				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
 				C51CA7F7260D964E00CE4804 /* LoginViewController.swift in Sources */,
+				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
@@ -1074,14 +1123,17 @@
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
+				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
 				77B718EE26470CBC0005B129 /* PopularBookModel.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
 				C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
+				C5ACA4BB26B663250089C50C /* MyLibraryCell.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
+				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
@@ -1093,11 +1145,13 @@
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
 				F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */,
 				C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */,
+				C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
 				77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */,
 				77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */,
+				C5B9B99E26B68BAD00D07974 /* DiaryService.swift in Sources */,
 				776320482646B60E00293D1C /* MainViewModel.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
@@ -1109,26 +1163,32 @@
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */,
+				F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */,
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */,
 				C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
+				C5B9B9A026B68DEA00D07974 /* User.swift in Sources */,
 				C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				C53FE048269AA533005ED467 /* UserInformation.swift in Sources */,
+				C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */,
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
+				F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
+				C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */,
 				77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */,
