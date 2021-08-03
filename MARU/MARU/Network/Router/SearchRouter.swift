@@ -18,7 +18,7 @@ extension SearchRouter: TargetType {
   var path: String {
     switch self {
     case .search:
-      return "api/v2/book/search/"
+      return "api/v2/group/search/"
     }
   }
 
@@ -34,7 +34,7 @@ extension SearchRouter: TargetType {
   var task: Task {
     switch self {
     case let .search(queryString):
-      return .requestParameters(parameters: [ "title": queryString],
+      return .requestParameters(parameters: ["title": queryString],
                                 encoding: URLEncoding.queryString)
     }
   }

@@ -91,6 +91,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookAuthorLabel.text = ""
     bookTitleLabel.text = ""
     bookMeetingChiefLabel.text = ""
+    remainPeriodLabel.text = ""
     bookImage = UIImage()
   }
 
@@ -99,6 +100,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookAuthorLabel.text = meetingModel.author
     bookTitleLabel.text = meetingModel.title
     bookMeetingChiefLabel.text = meetingModel.nickname
+    remainPeriodLabel.text = "\(meetingModel.remainingDay)" + "일 남음"
 
     let url = URL(string: meetingModel.image)
 

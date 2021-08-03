@@ -21,11 +21,11 @@ final class RecentSearchViewController: BaseViewController {
     return searchBar
   }()
 
-  private var canclehButton: UIBarButtonItem = {
-    let canclehButton = UIBarButtonItem()
-    canclehButton.tintColor = .black
-    canclehButton.title = "취소"
-    return canclehButton
+  private var cancelButton: UIBarButtonItem = {
+    let cancelButton = UIBarButtonItem()
+    cancelButton.tintColor = .black
+    cancelButton.title = "취소"
+    return cancelButton
   }()
 
   private let recentSearchLabel: UILabel = {
@@ -51,7 +51,7 @@ final class RecentSearchViewController: BaseViewController {
   private var searchListDataSource: UICollectionViewDiffableDataSource<Section, String>!
 
   private var viewModel =  RecentSearchViewModel()
-
+  private let tapListCell = PublishSubject<String>()
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBar(isHidden: false)
@@ -73,10 +73,11 @@ final class RecentSearchViewController: BaseViewController {
 
     let input = RecentSearchViewModel.Input(
       viewTrigger: Driver.merge(viewWillAppear),
-      tapCancleButton: canclehButton.rx.tap.asDriver(),
+      tapCancelButton: cancelButton.rx.tap.asDriver(),
       tapDeleteButton: deleteButton.rx.tap.asDriver(),
       writeText: searchBar.rx.text.orEmpty.asDriver(),
-      tapSearchButton: searchBar.rx.searchButtonClicked.asDriver()
+      tapSearchButton: searchBar.rx.searchButtonClicked.asDriver(),
+      tapListCell: tapListCell.asDriver(onErrorJustReturn: "")
     )
 
     let output = viewModel.transform(input: input)
@@ -91,7 +92,7 @@ final class RecentSearchViewController: BaseViewController {
       }
       .disposed(by: disposeBag)
 
-    output.cancle
+    output.cancel
       .drive { [self] in
         if $0 {
           view.hideKeyboard()
@@ -109,7 +110,9 @@ final class RecentSearchViewController: BaseViewController {
     output.keyword
       .drive { [self] in
         print($0)
+        searchBar.text = ""
         let resultSearchViewController = ResultSearchViewController()
+        resultSearchViewController.transferKeyword(keyword: $0)
         navigationController?.pushViewController(resultSearchViewController, animated: false)
       }
       .disposed(by: disposeBag)
@@ -122,7 +125,7 @@ extension RecentSearchViewController {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
     navigationItem.titleView = searchBar
-    navigationItem.rightBarButtonItem = canclehButton
+    navigationItem.rightBarButtonItem = cancelButton
   }
 }
 extension RecentSearchViewController {
@@ -191,5 +194,9 @@ extension RecentSearchViewController {
 extension RecentSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
+    guard let searchKeyword = searchListDataSource.itemIdentifier(for: indexPath) else {
+      return
+    }
+    tapListCell.onNext(searchKeyword)
   }
 }

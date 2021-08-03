@@ -13,19 +13,20 @@ import RxSwift
 import RxCocoa
 
 final class RecentSearchViewModel: ViewModelType {
-  var realm: Realm!
+  private var realm: Realm!
 
   struct Input {
     let viewTrigger: Driver<Void>
-    let tapCancleButton: Driver<Void>
+    let tapCancelButton: Driver<Void>
     let tapDeleteButton: Driver<Void>
     let writeText: Driver<String>
     let tapSearchButton: Driver<Void>
+    let tapListCell: Driver<String>
   }
 
   struct Output {
     let load: Driver<Results<RecentSearchKeyword>>
-    let cancle: Driver<Bool>
+    let cancel: Driver<Bool>
     let delete: Driver<Void>
     let keyword: Driver<String>
   }
@@ -41,14 +42,14 @@ final class RecentSearchViewModel: ViewModelType {
 
   func transform(input: Input) -> Output {
 
-    let load = Driver.merge(input.viewTrigger) // 확인으로 tapSearch 넣어놓은 것.
-      .map { [self] _  ->  Results<RecentSearchKeyword> in
-        return realm.objects(RecentSearchKeyword.self).sorted(byKeyPath: "created",
-                                                              ascending: false)
+    let load = Driver.merge(input.viewTrigger)
+      .map { [weak self] _  ->  Results<RecentSearchKeyword> in
+        return (self!.realm.objects(RecentSearchKeyword.self).sorted(byKeyPath: "created",
+                                                                     ascending: false))
       }
       .asDriver()
 
-    let cancle = input.tapCancleButton
+    let cancel = input.tapCancelButton
       .map { () in
         return true
       }
@@ -66,24 +67,27 @@ final class RecentSearchViewModel: ViewModelType {
       })
       .asDriver()
 
-    let keyword = input.tapSearchButton.withLatestFrom(input.writeText)
-      .distinctUntilChanged()
-      .debounce(RxTimeInterval.microseconds(5))
-      .do(onNext: { [self] keyword in
-        let keywordObject = RecentSearchKeyword()
-        keywordObject.keyword = keyword
-        do {
-          try self.realm.write {
-            realm.add(keywordObject, update: .modified)
-          }
-        } catch let err as NSError {
-          print(err)
+    let keyword = Driver.merge(
+      input.tapSearchButton.withLatestFrom(input.writeText),
+      input.tapListCell
+    )
+    .debounce(RxTimeInterval.microseconds(5))
+    .do(onNext: { [self] keyword in
+      print(keyword)
+      let keywordObject = RecentSearchKeyword()
+      keywordObject.keyword = keyword
+      do {
+        try self.realm.write {
+          realm.add(keywordObject, update: .modified)
         }
-      })
-      .asDriver()
+      } catch let err as NSError {
+        print(err)
+      }
+    })
+    .asDriver()
 
     return Output(load: load,
-                  cancle: cancle,
+                  cancel: cancel,
                   delete: delete,
                   keyword: keyword)
   }
