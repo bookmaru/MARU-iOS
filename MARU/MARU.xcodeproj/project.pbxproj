@@ -34,6 +34,7 @@
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
+		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -161,6 +162,7 @@
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
 		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
+		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 				C58F6A502646D05A00D8AA7C /* String+.swift */,
 				F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */,
 				F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */,
+				C50DBC7426BD881B00B5585A /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* PopularMeetingCell.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
+				C50DBC7526BD881B00B5585A /* Date+.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
 				77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */,
 				77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */,

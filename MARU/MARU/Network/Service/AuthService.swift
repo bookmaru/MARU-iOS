@@ -9,20 +9,21 @@ import Moya
 import RxSwift
 
 protocol AuthServiceType {
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Auth>>
+  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Token>>
   func nickname(name: String) -> Observable<BaseReponseType<Int>>
-  func information(information: UserInformation) -> Observable<BaseReponseType<Auth>>
+  func information(information: UserInformation) -> Observable<BaseReponseType<Token>>
+  func refresh() -> Observable<BaseReponseType<Token>>
   func user() -> Observable<BaseReponseType<User>>
 }
 
 final class AuthService: AuthServiceType {
   private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Auth>> {
+  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Token>> {
     return router.rx
       .request(.auth(type: type, token: token))
       .asObservable()
-      .map(BaseReponseType<Auth>.self)
+      .map(BaseReponseType<Token>.self)
   }
 
   func nickname(name: String) -> Observable<BaseReponseType<Int>> {
@@ -32,11 +33,18 @@ final class AuthService: AuthServiceType {
       .map(BaseReponseType.self)
   }
 
-  func information(information: UserInformation) -> Observable<BaseReponseType<Auth>> {
+  func information(information: UserInformation) -> Observable<BaseReponseType<Token>> {
     return router.rx
       .request(.information(information: information))
       .asObservable()
-      .map(BaseReponseType<Auth>.self)
+      .map(BaseReponseType<Token>.self)
+  }
+
+  func refresh() -> Observable<BaseReponseType<Token>> {
+    return router.rx
+      .request(.refresh)
+      .asObservable()
+      .map(BaseReponseType<Token>.self)
   }
 
   func user() -> Observable<BaseReponseType<User>> {

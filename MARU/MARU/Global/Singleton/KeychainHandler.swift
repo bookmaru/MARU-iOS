@@ -13,7 +13,9 @@ struct KeychainHandler {
 
   private let keychain = KeychainWrapper.standard
   private let accessTokenKey = "accessToken"
+  private let accessTokenExpiredAtKey = "accessTokenExpiredAt"
   private let refreshTokenKey = "refreshToken"
+  private let refreshTokenExpiredAtKey = "refreshTokenExpiredAt"
 
   var accessToken: String {
     get {
@@ -21,6 +23,15 @@ struct KeychainHandler {
     }
     set {
       keychain.set(newValue, forKey: accessTokenKey)
+    }
+  }
+
+  var accessTokenExpiredAt: String {
+    get {
+      return keychain.string(forKey: accessTokenExpiredAtKey) ?? "Key is empty"
+    }
+    set {
+      keychain.set(newValue, forKey: accessTokenExpiredAtKey)
     }
   }
 
@@ -32,10 +43,21 @@ struct KeychainHandler {
       keychain.set(newValue, forKey: refreshTokenKey)
     }
   }
+  
+  var refreshTokenExpiredAt: String {
+    get {
+      return keychain.string(forKey: refreshTokenExpiredAtKey) ?? "Key is empty"
+    }
+    set {
+      keychain.set(newValue, forKey: refreshTokenExpiredAtKey)
+    }
+  }
 
   func logout() {
     keychain.remove(forKey: KeychainWrapper.Key(rawValue: accessTokenKey))
+    keychain.remove(forKey: KeychainWrapper.Key(rawValue: accessTokenExpiredAtKey))
     keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenKey))
+    keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenExpiredAtKey))
   }
 
   func removeAllKeys() {

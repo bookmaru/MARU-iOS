@@ -41,16 +41,48 @@ extension SplashViewController: ViewControllerType {
 
 extension SplashViewController {
   private func moveTo() {
-    let viewController: UIViewController
-    if KeychainHandler.shared.accessToken != "Key is empty" {
-      viewController = TabBarController()
-    } else {
-      viewController = OnboardingViewController()
-    }
+    let viewController = tokenCalculate()
     viewController.modalPresentationStyle = .fullScreen
     if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
       delegate.window?.rootViewController = viewController
     }
     present(viewController, animated: false)
+  }
+
+  private func tokenCalculate() -> UIViewController {
+    if KeychainHandler.shared.accessToken != "Key is empty",
+       !KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
+      return TabBarController()
+    }
+    if KeychainHandler.shared.accessToken != "Key is empty",
+       KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
+      var viewController: UIViewController = TabBarController()
+      NetworkService.shared.auth.refresh()
+        .subscribe(onNext: { response in
+          let token = response.data?.token
+          if let accessToken = token?.accessToken,
+             let accessTokenExpiredAt = token?.accessTokenExpiredAt,
+             let refreshToken = token?.refreshToken,
+             let refreshTokenExpiredAt = token?.refreshTokenExpiredAt,
+             accessToken != "" {
+            KeychainHandler.shared.accessToken = accessToken
+            KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
+            KeychainHandler.shared.refreshToken = refreshToken
+            KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
+          }
+          if response.status == 200 {
+            viewController = TabBarController()
+          } else {
+            viewController = OnboardingViewController()
+          }
+        })
+        .disposed(by: disposeBag)
+      return viewController
+    }
+    if KeychainHandler.shared.refreshToken != "Key is empty",
+       !KeychainHandler.shared.refreshTokenExpiredAt.date.isExpired {
+      return OnboardingViewController()
+    }
+    return OnboardingViewController()
   }
 }

@@ -179,8 +179,15 @@ final class CertificationViewController: BaseViewController {
     submitButton.rx.tap
       .flatMap { NetworkService.shared.auth.information(information: self.userInformation) }
       .subscribe(onNext: { response in
-        if let token = response.data?.accessToken {
-          KeychainHandler.shared.accessToken = token
+        let token = response.data?.token
+        if let accessToken = token?.accessToken,
+           let accessTokenExpiredAt = token?.accessTokenExpiredAt,
+           let refreshToken = token?.refreshToken,
+           let refreshTokenExpiredAt = token?.refreshTokenExpiredAt {
+          KeychainHandler.shared.accessToken = accessToken
+          KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
+          KeychainHandler.shared.refreshToken = refreshToken
+          KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
         }
         if response.status == 201 {
           let viewController = TabBarController()
