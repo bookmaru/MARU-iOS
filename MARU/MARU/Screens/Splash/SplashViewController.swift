@@ -54,7 +54,7 @@ extension SplashViewController {
        !KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
       return TabBarController()
     }
-    if KeychainHandler.shared.accessToken != "Key is empty",
+    if KeychainHandler.shared.accessTokenExpiredAt != "Key is empty",
        KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
       var viewController: UIViewController = TabBarController()
       NetworkService.shared.auth.refresh()
