@@ -11,6 +11,7 @@ struct MeetingModel: Hashable {
   let discussionGroupId: Int
   let description: String
   let createdAt: String
+  let remainingDay: Int
   let title: String
   let image: String
   let author: String
@@ -20,6 +21,7 @@ struct MeetingModel: Hashable {
     self.discussionGroupId = group.discussionGroupId
     self.description = group.description
     self.createdAt = group.createdAt
+    self.remainingDay = group.remainingDay
     self.title = group.title
     self.image = group.image
     self.author = group.author
@@ -29,6 +31,7 @@ struct MeetingModel: Hashable {
   init(discussionGroupId: Int,
        description: String,
        createdAt: String,
+       remainingDay: Int,
        title: String,
        image: String,
        author: String,
@@ -37,6 +40,7 @@ struct MeetingModel: Hashable {
     self.description = description
     self.author = author
     self.createdAt = createdAt
+    self.remainingDay = remainingDay
     self.title = title
     self.image = image
     self.nickname = nickname

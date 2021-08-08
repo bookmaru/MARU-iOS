@@ -133,6 +133,11 @@ PODS:
   - ReactorKit (2.1.1):
     - RxSwift (~> 5.0)
     - WeakMapTable (~> 1.1)
+  - Realm (10.10.0):
+    - Realm/Headers (= 10.10.0)
+  - Realm/Headers (10.10.0)
+  - RealmSwift (10.10.0):
+    - Realm (= 10.10.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -166,6 +171,7 @@ DEPENDENCIES:
   - Kingfisher (~> 6.2.1)
   - Moya/RxSwift (~> 14.0)
   - ReactorKit (~> 2.1.1)
+  - RealmSwift
   - RxCocoa (~> 5)
   - RxGesture
   - RxSocket.io (~> 1.0.5)
@@ -196,6 +202,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - ReactorKit
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxGesture
     - RxRelay
@@ -230,6 +238,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactorKit: 6d894a20c3d508344320901cd8e386fde92df4b6
+  Realm: f501df41a4222c67850c77cf135d472192ecf294
+  RealmSwift: c69aadfc7db0d60075178d037c2f34ada73d5201
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -243,6 +253,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: baf3f429bbede4b22bb5d626282c79657c695242
+PODFILE CHECKSUM: eaf1d8445450d592f0b2f4a5e06333f1b230c815
 
 COCOAPODS: 1.10.1

@@ -17,7 +17,7 @@ final class MainViewController: BaseViewController {
   private let style: UIStatusBarStyle = .lightContent
   private let disposBag = DisposeBag()
   private let viewModel = MainViewModel()
-  private var popularMeetings: [BookModel] = []
+  private var popularBooks: [BookModel] = []
   private var newMeetings: [MeetingModel] = []
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -47,7 +47,7 @@ extension MainViewController {
 
     output.allPopularMeetings
       .subscribe(onNext: {
-        self.popularMeetings = $0
+        self.popularBooks = $0
         self.collectionView.reloadSections(IndexSet(integer: 1))
       })
       .disposed(by: disposeBag)
@@ -79,8 +79,8 @@ extension MainViewController {
                 withReuseIdentifier: SectionHeader.reuseIdentifier)
     collectionView.register(MainHeaderCell.self,
                 forCellWithReuseIdentifier: MainHeaderCell.reuseIdentifier)
-    collectionView.register(PopularMeetingCell.self,
-                forCellWithReuseIdentifier: PopularMeetingCell.reuseIdentifier)
+    collectionView.register(BookCell.self,
+                forCellWithReuseIdentifier: BookCell.reuseIdentifier)
     collectionView.register(MeetingListCell.self,
                 forCellWithReuseIdentifier: MeetingListCell.reuseIdentifier)
 
@@ -148,7 +148,7 @@ extension MainViewController: UICollectionViewDataSource {
     case 0:
       return 1
     case 1:
-      return popularMeetings.count
+      return popularBooks.count
     case 2:
       return newMeetings.count
     default:
@@ -168,10 +168,10 @@ extension MainViewController: UICollectionViewDataSource {
 
     case 1:
       guard let cell =
-              collectionView.dequeueReusableCell(withReuseIdentifier: PopularMeetingCell.reuseIdentifier,
-                                                     for: indexPath) as? PopularMeetingCell else {
+              collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseIdentifier,
+                                                     for: indexPath) as? BookCell else {
         return UICollectionViewCell() }
-      cell.onData?.onNext(popularMeetings[indexPath.item])
+      cell.bind(popularBooks[indexPath.item])
       return cell
 
     case 2:
@@ -179,7 +179,7 @@ extension MainViewController: UICollectionViewDataSource {
               collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
                                                      for: indexPath) as? MeetingListCell else {
         return UICollectionViewCell() }
-      cell.onData?.onNext(newMeetings[indexPath.item])
+      cell.bind(newMeetings[indexPath.item])
       return cell
 
     default:
@@ -200,7 +200,7 @@ extension MainViewController: UICollectionViewDelegate {
 
     case 1:
       let targetViewController = MorePopularViewController()
-      guard let cell = collectionView.cellForItem(at: indexPath) as? PopularMeetingCell else { return }
+      guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell else { return }
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
 

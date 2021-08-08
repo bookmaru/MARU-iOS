@@ -12,6 +12,7 @@ struct Group: Codable {
   let description: String
   let createdAt: String
   let title: String
+  let remainingDay: Int
   let image: String
   let author: String
   let nickname: String

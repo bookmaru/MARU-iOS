@@ -24,6 +24,7 @@ target 'MARU' do
   pod 'SwiftKeychainWrapper', '~> 4.0.1'
   pod 'SwiftLint', '~> 0.43.1'
   pod 'Then', '~> 2.7.0'
+  pod 'RealmSwift'
 
   
   target 'MARUTests' do
