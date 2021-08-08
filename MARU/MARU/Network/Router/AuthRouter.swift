@@ -25,6 +25,7 @@ enum AuthRouter {
   case auth(type: AuthType, token: String)
   case nicknameCheck(String)
   case information(information: UserInformation)
+  case refresh
   case user
 }
 
@@ -41,6 +42,8 @@ extension AuthRouter: TargetType {
       return "/api/v2/nickname/check/\(nickname)"
     case .information:
       return "/api/v2/signup"
+    case .refresh:
+      return "/api/v2/token/refresh"
     case .user:
       return "/api/v2/user"
     }
@@ -48,7 +51,7 @@ extension AuthRouter: TargetType {
 
   var method: Method {
     switch self {
-    case .auth, .information:
+    case .auth, .information, .refresh:
       return .post
     default:
       return .get
@@ -86,6 +89,11 @@ extension AuthRouter: TargetType {
       return [
         "Content-Type": "application/json",
         "accessToken": token
+      ]
+    case .refresh:
+      return [
+        "Content-Type": "application/json",
+        "RefreshToken": KeychainHandler.shared.refreshToken
       ]
     default:
       return [
