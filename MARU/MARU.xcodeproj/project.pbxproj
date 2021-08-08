@@ -35,6 +35,8 @@
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
+		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
+		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -163,6 +165,8 @@
 		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -389,6 +393,15 @@
 				1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C50DBC6F26BD77DE00B5585A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C50DBC7026BD77F500B5585A /* SettingViewController.swift */,
+				C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		C510367626201B3900285A44 /* Cells */ = {
@@ -740,6 +753,7 @@
 		C5DB34DA260F256A00F29FE1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C50DBC6F26BD77DE00B5585A /* Setting */,
 				776AF4F12641B0620020D2D8 /* Component */,
 				C5436FAE262F1FBD00C2E1D3 /* Chat */,
 				77569B642620CDE5008BF77B /* Quiz */,
@@ -1134,6 +1148,7 @@
 				C55E21C3266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift in Sources */,
 				77569B752620CE6C008BF77B /* QuizModel.swift in Sources */,
 				C5ACA4BB26B663250089C50C /* MyLibraryCell.swift in Sources */,
+				C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
@@ -1179,6 +1194,7 @@
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C55F1783260F4703003D99D0 /* LoginViewModel.swift in Sources */,
+				C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */,
 				C5B9B9A026B68DEA00D07974 /* User.swift in Sources */,
 				C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */,
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
