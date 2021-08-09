@@ -28,12 +28,13 @@ final class MainViewModel: ViewModelType {
       .map { response -> BaseReponseType<Books> in
 
         guard 200 ..< 300 ~= response.status else {
-          throw NSError.init(domain: "Detect Error in Fetching Popular meetings",
-                             code: -1, userInfo: nil)
+          errorMessage.onNext(
+            MaruError.serverError(response.status)
+          )
+          return response
         }
         return response
       }
-      .do(onError: { err in errorMessage.onNext(err) })
       .map { $0.data?.books.map { BookModel($0)} }
       .map { bookModel -> [BookModel] in
         guard let bookModel = bookModel else { return [] }

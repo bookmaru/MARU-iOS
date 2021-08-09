@@ -33,13 +33,13 @@ final class ResultSearchViewModel: ViewModelType {
       .map { response -> BaseReponseType<Groups> in
 
         guard 200 ..< 300 ~= response.status else {
-          throw NSError.init(domain: "Detect Error in Fetching Search meetings",
-                             code: -1, userInfo: nil)
+          errorMessage.onNext(
+            MaruError.serverError(response.status)
+          )
+          return response
         }
         return response
       }
-
-      .do(onError: { err in errorMessage.onNext(err) })
       .map { $0.data?.groups.map { MeetingModel($0)} }
       .map { meetingModel -> [MeetingModel] in
         guard let meetingModel = meetingModel else { return [] }

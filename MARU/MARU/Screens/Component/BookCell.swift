@@ -38,7 +38,7 @@ final class BookCell: UICollectionViewCell {
     super.prepareForReuse()
     bookTitleLabel.text = ""
     bookAuthorLabel.text = ""
-    bookImage = UIImage()
+    bookImage = Image.testImage
   }
 
   func bind(_ bookModel: BookModel) {
@@ -50,10 +50,8 @@ final class BookCell: UICollectionViewCell {
       if let url = url {
         let data = try Data(contentsOf: url)
         bookImage = UIImage(data: data)
-        print(bookModel.isbn, bookModel.imageUrl)
       }
-    } catch let error {
-      debugPrint("ERRor ::\(error)")
+    } catch _ {
       bookImage = Image.testImage
     }
   }

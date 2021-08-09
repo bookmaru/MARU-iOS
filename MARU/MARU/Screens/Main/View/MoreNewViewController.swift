@@ -7,75 +7,238 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class MoreNewViewController: BaseViewController {
 
-  enum Section {
-    case main
-  }
-
-  enum Category: Int {
-    case all = 0
+  enum Category {
+    case all
     case art
     case literal
-    case science
+    case language
     case philosophy
+    case socialScience
+    case pureScience
+    case technicalScience
+    case history
+    case religion
+    case etc
+
+    func simpleDescription() -> String {
+      switch self {
+      case .all: return "전체"
+      case .art: return "예술"
+      case .literal: return "문학"
+      case .language: return "어학"
+      case .philosophy: return "철학/심리학/윤리학"
+      case .socialScience: return "사회과학"
+      case .pureScience: return "순수과학"
+      case .technicalScience: return "기술과학"
+      case .history: return "역사/지리/관광"
+      case .religion: return "종교"
+      case .etc: return "그 외"
+      }
+    }
   }
 
+  private var buttonScrollView: UIScrollView = UIScrollView()
   private var allButton: UIButton = UIButton()
   private var artButton: UIButton = UIButton()
   private var literalButton: UIButton = UIButton()
-  private var scienceButton: UIButton = UIButton()
+  private var languageButton: UIButton = UIButton()
   private var philosophyButton: UIButton = UIButton()
-
-  private lazy var dataSource = configureDataSource()
+  private var socialScienceButton: UIButton = UIButton()
+  private var pureScienceButton: UIButton = UIButton()
+  private var technicalScienceButton: UIButton = UIButton()
+  private var historyButton: UIButton = UIButton()
+  private var religionButton: UIButton = UIButton()
+  private var etcButton: UIButton = UIButton()
+  private var activatorView: UIActivityIndicatorView = UIActivityIndicatorView()
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
-
-  private var initData = BookModel.initMainData
-
-  private var categoryFilter: String?
-
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, BookModel>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>
+  private var showFooter: Bool = false
+  private let didScrollBottom = PublishSubject<(Bool, Int?)>()
+  private var currentGroupCount: Int?
+  private var meetingList: [MeetingModel] = []
+  private var viewModel = MoreNewViewModel()
+  private lazy var allButtons: [UIButton] = [
+    allButton,
+    artButton,
+    literalButton,
+    languageButton,
+    philosophyButton,
+    socialScienceButton,
+    pureScienceButton,
+    technicalScienceButton,
+    historyButton,
+    religionButton,
+    etcButton
+  ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupButton(title: ["전체", "예술", "문학", "자연과학", "철학"])
-    applyLayout()
-    applySnapshot(animatingDifferences: false)
+    setupIndicatorView()
+    setupButton()
+    configureHierarchy()
+    bind()
   }
-
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
-    self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
-    self.navigationController?.navigationBar.isTranslucent = false
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    navigationController?.navigationBar.isTranslucent = false
+    tabBarController?.tabBar.isHidden = true
   }
 
-  @objc func performQuery(sender: UIButton) {
-    switch sender.tag {
-    case 0:
-      applySnapshot(animatingDifferences: true)
+  private func bind() {
+    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
+      .map { _ in () }
+    let category = Category.self
 
-    default:
-      let snapshot = Snapshot()
-//      let books = initData.filter({ $0.book.category == sender.tag})
-//      snapshot.appendSections([.main])
-//      snapshot.appendItems(books)
-      dataSource.apply(snapshot, animatingDifferences: true)
-    }
+    let firstTapCategory = Observable.merge([
+      Observable.combineLatest(
+        allButton.rx.tap.asObservable(),
+        Observable.just(category.all.simpleDescription())
+      ),
+      Observable.combineLatest(
+        artButton.rx.tap.asObservable(),
+        Observable.just(category.art.simpleDescription())
+      ),
+      Observable.combineLatest(
+        literalButton.rx.tap.asObservable(),
+        Observable.just(category.literal.simpleDescription())
+      ),
+      Observable.combineLatest(
+        languageButton.rx.tap.asObservable(),
+        Observable.just(category.language.simpleDescription())
+      ),
+      Observable.combineLatest(
+        philosophyButton.rx.tap.asObservable(),
+        Observable.just(category.philosophy.simpleDescription())
+      )
+    ])
+    let secondTapCategory = Observable.merge([
+      Observable.combineLatest(
+        socialScienceButton.rx.tap.asObservable(),
+        Observable.just(category.socialScience.simpleDescription())
+      ),
+      Observable.combineLatest(
+        pureScienceButton.rx.tap.asObservable(),
+        Observable.just(category.pureScience.simpleDescription())
+      ),
+      Observable.combineLatest(
+        technicalScienceButton.rx.tap.asObservable(),
+        Observable.just(category.technicalScience.simpleDescription())
+      ),
+      Observable.combineLatest(
+        historyButton.rx.tap.asObservable(),
+        Observable.just(category.history.simpleDescription())
+      ),
+      Observable.combineLatest(
+        religionButton.rx.tap.asObservable(),
+        Observable.just(category.religion.simpleDescription())
+      ),
+      Observable.combineLatest(
+        etcButton.rx.tap.asObservable(),
+        Observable.just(category.etc.simpleDescription())
+      )
+    ])
+    let tapCategoryButton = Observable.merge(firstTapCategory, secondTapCategory)
+
+    let input = MoreNewViewModel.Input(
+      viewTrigger: viewWillAppear,
+      tapCategoryButton: tapCategoryButton,
+      didScrollBottom: didScrollBottom.asObservable()
+    )
+
+    let output = viewModel.transform(input: input)
+
+    output.load
+      .drive { [weak self] in
+        self?.meetingList = $0
+        self?.currentGroupCount = $0.count
+        self?.collectionView.reloadData()
+        self?.activatorView.stopAnimating()
+        self?.collectionView.isHidden = false
+      }
+      .disposed(by: disposeBag)
+
+    output.filter
+      .drive(onNext: { [weak self]  in
+        self?.meetingList = $0
+        self?.currentGroupCount = $0.count
+        self?.collectionView.reloadData()
+      })
+      .disposed(by: disposeBag)
+
+    output.fetchMore
+      .drive(onNext: { [weak self] in
+        self?.showFooter = true
+        self?.stopUserInteraction()
+        self?.collectionView.collectionViewLayout.invalidateLayout()
+        self?.collectionView.scrollToSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                                       at: IndexPath(item: 0, section: 0),
+                                                       at: .bottom,
+                                                       animated: true)
+        self?.meetingList = $0
+        self?.currentGroupCount = $0.count
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+          self?.showFooter = false
+          self?.collectionView.isUserInteractionEnabled = true
+          self?.collectionView.reloadData()
+          self?.startUserInteraction()
+        }
+      })
+      .disposed(by: disposeBag)
+    output.errorMessage
+      .subscribe {
+        debugPrint("error: \($0)")
+      }
+      .disposed(by: disposeBag)
   }
 }
 
 // MARK: - Method Helper
 extension MoreNewViewController {
+  private func stopUserInteraction() {
+    collectionView.isUserInteractionEnabled = false
+    allButtons.forEach { $0.isUserInteractionEnabled = false }
+  }
+  private func startUserInteraction() {
+    collectionView.isUserInteractionEnabled = true
+    allButtons.forEach { $0.isUserInteractionEnabled = true }
+  }
+  @objc private func didTapButton(_ sender: UIButton) {
+    allButtons
+      .forEach {
+        if $0 != sender {
+          $0.isSelected = false
+        }
+        if $0 == sender {
+          $0.isSelected = true
+        }
+      }
+  }
+  private func setupIndicatorView() {
+    activatorView.startAnimating()
+    activatorView.hidesWhenStopped = true
+  }
 
-  private func setupButton(title: [String]) {
-    [allButton,
-     artButton,
-     literalButton,
-     scienceButton,
-     philosophyButton]
+  private func setupButton() {
+    let titles: [String] = [
+      "전체",
+      "예술",
+      "문학",
+      "어학",
+      "철학/심리",
+      "사회과학",
+      "순수과학",
+      "기술과학",
+      "역사/지질",
+      "종교",
+      "기타"]
+    allButtons
       .enumerated().forEach { index, button in
         button.backgroundColor = .white
         button.layer.borderWidth = 1
@@ -85,61 +248,130 @@ extension MoreNewViewController {
         button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
         button.setTitleColor(.brownGreyThree, for: .normal)
+        button.setTitleColor(.white, for: .selected)
+        button.setBackgroundColor(color: .clear, forState: .normal)
+        button.setBackgroundColor(color: .mainBlue, forState: .selected)
         button.titleLabel?.textAlignment = .center
-        button.setTitle(title[index], for: .normal)
+        button.setTitle(titles[index], for: .normal)
         button.tag = index
-        button.addTarget(self, action: #selector(performQuery), for: .touchUpInside)
-     }
+        button.addTarget(self, action: #selector(didTapButton(_ :)), for: .touchUpInside)
+      }
+    allButton.isSelected = true
   }
 }
-
+  // MARK: - Scroll Delegate (about FetchMore)
+extension MoreNewViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if scrollView == collectionView {
+      if scrollView.contentOffset.y > collectionView.contentSize.height - collectionView.frame.height + 100 {
+        guard let currentGroupCount = currentGroupCount  else {
+          return
+        }
+        didScrollBottom.onNext((true, currentGroupCount))
+      }
+    }
+  }
+}
 extension MoreNewViewController {
   /// - Tag: create CollectionView Layout
+  /// - Tag: Set CollectionView Properties
+  /// - Tag: View Layout
+  private func configureHierarchy() {
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
 
-  /// - TAG: View Layout
-  private func applyLayout() {
     collectionView = UICollectionView(frame: .zero,
-                                      collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+                                      collectionViewLayout: layout)
+    collectionView.alwaysBounceVertical = true
     collectionView.backgroundColor = .white
     collectionView.delegate = self
+    collectionView.dataSource = self
     collectionView.register(cell: MeetingListCell.self)
+    collectionView.register(IndicatorFooter.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                            withReuseIdentifier: IndicatorFooter.reuseIdentifier)
+    collectionView.isHidden = true
+
+    buttonScrollView.contentSize = CGSize(width: 2 * screenSize.width, height: 30)
+    buttonScrollView.showsHorizontalScrollIndicator = false
+
+    activatorView.isHidden = false
 
     view.adds([
-      allButton,
-      artButton,
-      literalButton,
-      scienceButton,
-      philosophyButton,
+      activatorView,
+      buttonScrollView,
       collectionView
     ])
 
+    buttonScrollView.adds([
+      allButton,
+      artButton,
+      literalButton,
+      languageButton,
+      philosophyButton,
+      socialScienceButton,
+      pureScienceButton,
+      technicalScienceButton,
+      historyButton,
+      religionButton,
+      etcButton
+    ])
+
+    activatorView.snp.makeConstraints { make in
+      make.center.equalTo(view.safeAreaLayoutGuide.snp.center).inset(40)
+    }
+    buttonScrollView.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.height.equalTo(50)
+    }
     allButton.snp.makeConstraints { (make) in
-      make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+      make.centerY.equalToSuperview()
       make.leading.equalToSuperview().inset(20)
     }
-
     artButton.snp.makeConstraints { (make) in
-      make.centerY.equalTo(allButton.snp.centerY)
+      make.centerY.equalToSuperview()
       make.leading.equalTo(allButton.snp.trailing).inset(-5)
     }
-
     literalButton.snp.makeConstraints { (make) in
-      make.centerY.equalTo(allButton.snp.centerY)
+      make.centerY.equalToSuperview()
       make.leading.equalTo(artButton.snp.trailing).inset(-5)
     }
-
-    scienceButton.snp.makeConstraints { (make) in
-      make.centerY.equalTo(allButton.snp.centerY)
+    languageButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
       make.leading.equalTo(literalButton.snp.trailing).inset(-5)
     }
-
     philosophyButton.snp.makeConstraints { (make) in
-      make.centerY.equalTo(allButton.snp.centerY)
-      make.leading.equalTo(scienceButton.snp.trailing).inset(-5)
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(languageButton.snp.trailing).inset(-5)
     }
-
+    socialScienceButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(philosophyButton.snp.trailing).inset(-5)
+    }
+    pureScienceButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(socialScienceButton.snp.trailing).inset(-5)
+    }
+    technicalScienceButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(pureScienceButton.snp.trailing).inset(-5)
+    }
+    historyButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(technicalScienceButton.snp.trailing).inset(-5)
+    }
+    religionButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(historyButton.snp.trailing).inset(-5)
+    }
+    etcButton.snp.makeConstraints { (make) in
+      make.centerY.equalToSuperview()
+      make.leading.equalTo(religionButton.snp.trailing).inset(-5)
+    }
     collectionView.snp.makeConstraints { (make) in
-      make.top.equalTo(allButton.snp.bottom).inset(-14)
+      make.top.equalTo(buttonScrollView.snp.bottom).inset(-15)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
       make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -147,38 +379,65 @@ extension MoreNewViewController {
   }
 }
 
-extension MoreNewViewController {
+extension MoreNewViewController: UICollectionViewDataSource {
 
-  /// - TAG: DataSource
-  private func configureDataSource() -> DataSource {
-    let dataSource = DataSource(
-      collectionView: collectionView,
-      cellProvider: { (collectionView, indexPath, _) -> UICollectionViewCell? in
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
-                                                      for: indexPath) as? MeetingListCell
-//        cell?.mainModel = mainModel
-        return cell
-      })
-
-    return dataSource
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return meetingList.count
   }
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MeetingListCell.reuseIdentifier,
+            for: indexPath) as? MeetingListCell else { return UICollectionViewCell() }
 
-  func applySnapshot(animatingDifferences: Bool = true) {
-    // 2
-    var snapshot = Snapshot()
-    // 3
-    snapshot.appendSections([.main])
-    snapshot.appendItems(initData)
-    dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    cell.bind(meetingList[indexPath.item])
+    return cell
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+
+    guard let footer = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: IndicatorFooter.reuseIdentifier,
+            for: indexPath) as? IndicatorFooter else {
+      return UICollectionReusableView() }
+
+    footer.indicatorView.startAnimating()
+    return footer
   }
 }
-// MARK: 나중에 써야해서 남겨놓습니다.
+extension MoreNewViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForFooterInSection section: Int) -> CGSize {
+    if showFooter == true {
+      return CGSize(width: collectionView.frame.width, height: 100)
+    } else {
+      return CGSize(width: 0, height: 0)
+    }
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: screenSize.width * 0.895, height: 142)
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 15
+  }
+}
 
 extension MoreNewViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let mainModel = dataSource.itemIdentifier(for: indexPath) else {
-      return
-    }
+    guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell else { return }
+    let discussionGroupId = cell.getDiscussionGroupId()
+    // MARK: 여기에서 모임 입장 뷰로 이동.
+    print(discussionGroupId)
   }
 }

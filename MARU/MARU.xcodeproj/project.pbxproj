@@ -24,6 +24,7 @@
 		77569B752620CE6C008BF77B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B742620CE6C008BF77B /* QuizModel.swift */; };
 		776320452646B35900293D1C /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776320442646B35900293D1C /* Book.swift */; };
 		776320482646B60E00293D1C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776320472646B60E00293D1C /* MainViewModel.swift */; };
+		7766ACF126C8908D00D98A0C /* MaruError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766ACF026C8908D00D98A0C /* MaruError.swift */; };
 		776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */; };
 		776AF4F62641BADF0020D2D8 /* MeetingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F52641BADF0020D2D8 /* MeetingListCell.swift */; };
 		776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776AF4F72641BAF30020D2D8 /* BookCell.swift */; };
@@ -31,21 +32,24 @@
 		776E525726B1206A00D2C5FA /* ResultSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */; };
 		776E525926B1254500D2C5FA /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525826B1254500D2C5FA /* SearchRouter.swift */; };
 		776E525B26B1255600D2C5FA /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525A26B1255600D2C5FA /* SearchService.swift */; };
+		776EE52E26C43B1000A50A3E /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776EE52D26C43B1000A50A3E /* UIButton+.swift */; };
 		776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776FB8C92687086300F024F1 /* RecentSearchViewController.swift */; };
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779319C226A40519005F359E /* RecentSearchKeyword.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
+		77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */; };
 		77B718EE26470CBC0005B129 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* BookModel.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
+		77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
-		77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */; };
-		77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */; };
+		77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* OrderedCollections */; };
+		77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* Collections */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
-		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
+		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -157,6 +161,7 @@
 		77569B742620CE6C008BF77B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		776320442646B35900293D1C /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		776320472646B60E00293D1C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7766ACF026C8908D00D98A0C /* MaruError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruError.swift; sourceTree = "<group>"; };
 		776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruSearchView.swift; sourceTree = "<group>"; };
 		776AF4F52641BADF0020D2D8 /* MeetingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingListCell.swift; sourceTree = "<group>"; };
 		776AF4F72641BAF30020D2D8 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
@@ -164,13 +169,16 @@
 		776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewModel.swift; sourceTree = "<group>"; };
 		776E525826B1254500D2C5FA /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		776E525A26B1255600D2C5FA /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchService.swift; path = MARU/Network/Router/SearchService.swift; sourceTree = SOURCE_ROOT; };
+		776EE52D26C43B1000A50A3E /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		776FB8C92687086300F024F1 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		779319C226A40519005F359E /* RecentSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeyword.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
+		77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorFooter.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
+		77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewModel.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,9 +186,9 @@
 		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
-		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,8 +278,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */,
-				77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */,
+				77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */,
+				77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */,
 				5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,8 +343,17 @@
 				776320472646B60E00293D1C /* MainViewModel.swift */,
 				7717EC9326A437E200888826 /* RecentSearchViewModel.swift */,
 				776E525626B1206A00D2C5FA /* ResultSearchViewModel.swift */,
+				77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7766ACEF26C8907400D98A0C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				7766ACF026C8908D00D98A0C /* MaruError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		776AF4EE2641A69F0020D2D8 /* Component */ = {
@@ -355,6 +372,7 @@
 				77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */,
 				776AF4F22641B0BE0020D2D8 /* MaruSearchView.swift */,
 				774BDE7226609B9800B97CC6 /* SectionHeader.swift */,
+				77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -374,6 +392,15 @@
 				774262F2268A6699008F9CAE /* WasDebateCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		77CCB35D26C17FE200D9EAE8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
+				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		77E150FC262328B5007BEBBF /* View */ = {
@@ -404,7 +431,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-
 		C50DBC6F26BD77DE00B5585A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +458,7 @@
 				C55F1814260F4DC5003D99D0 /* MARUUITests */,
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
-				9D2C0FC022603C85042F21E8 /* Frameworks */,
+				77CCB35D26C17FE200D9EAE8 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -462,6 +488,7 @@
 		C52E781C260F27110087570E /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				7766ACEF26C8907400D98A0C /* Error */,
 				E22306FC262AD92300B25CEA /* CutsomUtil */,
 				C5332AD2260F5158007D7797 /* Model */,
 				C5332AC9260F50CB007D7797 /* Singleton */,
@@ -623,6 +650,7 @@
 				F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */,
 				F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */,
 				C50DBC7426BD881B00B5585A /* Date+.swift */,
+				776EE52D26C43B1000A50A3E /* UIButton+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -901,8 +929,8 @@
 			);
 			name = MARU;
 			packageProductDependencies = (
-				77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */,
-				77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */,
+				77EC8AE926A5E030001CDA10 /* OrderedCollections */,
+				77EC8AEB26A5E030001CDA10 /* Collections */,
 			);
 			productName = MARU;
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
@@ -978,7 +1006,7 @@
 			);
 			mainGroup = C51CA7E6260D964E00CE4804;
 			packageReferences = (
-				77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */,
+				77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = C51CA7F0260D964E00CE4804 /* Products */;
 			projectDirPath = "";
@@ -1161,6 +1189,7 @@
 				776AF4F62641BADF0020D2D8 /* MeetingListCell.swift in Sources */,
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
+				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				77B718EE26470CBC0005B129 /* BookModel.swift in Sources */,
@@ -1177,6 +1206,7 @@
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
+				77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
@@ -1206,6 +1236,7 @@
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */,
 				776E525926B1254500D2C5FA /* SearchRouter.swift in Sources */,
+				776EE52E26C43B1000A50A3E /* UIButton+.swift in Sources */,
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */,
@@ -1215,6 +1246,7 @@
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */,
+				7766ACF126C8908D00D98A0C /* MaruError.swift in Sources */,
 				C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */,
 				C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
@@ -1597,7 +1629,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */ = {
+		77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections";
 			requirement = {
@@ -1608,14 +1640,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */ = {
+		77EC8AE926A5E030001CDA10 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
-		77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */ = {
+		77EC8AEB26A5E030001CDA10 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
 /* End XCSwiftPackageProductDependency section */

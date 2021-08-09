@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MeetingModel: Hashable {
+struct MeetingModel: Hashable, Equatable {
   let discussionGroupId: Int
   let description: String
   let createdAt: String
@@ -16,8 +16,9 @@ struct MeetingModel: Hashable {
   let image: String
   let author: String
   let nickname: String
+  let category: String
 
-  init(_ group: Group) {
+  init(_ group: Group, _ category: String = "") {
     self.discussionGroupId = group.discussionGroupId
     self.description = group.description
     self.createdAt = group.createdAt
@@ -26,6 +27,7 @@ struct MeetingModel: Hashable {
     self.image = group.image
     self.author = group.author
     self.nickname = group.nickname
+    self.category = category
   }
 
   init(discussionGroupId: Int,
@@ -35,7 +37,8 @@ struct MeetingModel: Hashable {
        title: String,
        image: String,
        author: String,
-       nickname: String) {
+       nickname: String,
+       category: String) {
     self.discussionGroupId = discussionGroupId
     self.description = description
     self.author = author
@@ -44,6 +47,7 @@ struct MeetingModel: Hashable {
     self.title = title
     self.image = image
     self.nickname = nickname
+    self.category = category
   }
 
   func hash(into hasher: inout Hasher) {
