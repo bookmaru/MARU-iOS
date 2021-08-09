@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04F05E86C19EDA674DD5EC67 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */; };
+		2C56B29181A6A578A8EA7210 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */; };
 		5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2E418099594CD3937D3B5C /* Pods_MARU.framework */; };
+		768BE31F8D8F08E140FF0AAD /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */; };
 		77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C26268C0BFC004271E6 /* MorePopularViewController.swift */; };
 		77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */; };
 		7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712E437269889D80076F8E5 /* HomeRouter.swift */; };
@@ -43,9 +45,9 @@
 		77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */; };
 		77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
-		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
+		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -143,6 +145,7 @@
 /* Begin PBXFileReference section */
 		036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
+		4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77013C26268C0BFC004271E6 /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
 		77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7712E437269889D80076F8E5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -177,10 +180,11 @@
 		8D2E418099594CD3937D3B5C /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
-		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
+		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */,
 				77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */,
 				5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */,
+				768BE31F8D8F08E140FF0AAD /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F05E86C19EDA674DD5EC67 /* Pods_MARUTests.framework in Frameworks */,
+				2C56B29181A6A578A8EA7210 /* Pods_MARUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +399,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		80C7264D95B9E12BBE16FC68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */,
+				C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8DCB7E7F0E109E2724345950 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,7 +419,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-
 		C50DBC6F26BD77DE00B5585A /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +446,7 @@
 				C55F1814260F4DC5003D99D0 /* MARUUITests */,
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
-				9D2C0FC022603C85042F21E8 /* Frameworks */,
+				80C7264D95B9E12BBE16FC68 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

@@ -43,6 +43,7 @@ struct KeychainHandler {
       keychain.set(newValue, forKey: refreshTokenKey)
     }
   }
+
   var refreshTokenExpiredAt: String {
     get {
       return keychain.string(forKey: refreshTokenExpiredAtKey) ?? "Key is empty"
