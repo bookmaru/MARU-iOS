@@ -18,7 +18,6 @@ class MorePopularViewController: BaseViewController {
 
   private var collectionView: UICollectionView! = nil
   private var dataSource: UICollectionViewDiffableDataSource<Section, MeetingModel>! = nil
-  var titleString: String?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +38,7 @@ class MorePopularViewController: BaseViewController {
       .map { _ in () }
 
     _ = viewTrigger
-      .flatMap { [self] in NetworkService.shared.groupSearch.search(queryString: titleString!) }
+      .flatMap { [self] in NetworkService.shared.groupSearch.search(queryString: navigationItem.title ?? "") }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(domain: "Detect Error in Fetching Search meetings",

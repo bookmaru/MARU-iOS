@@ -202,7 +202,6 @@ extension MainViewController: UICollectionViewDelegate {
       let targetViewController = MorePopularViewController()
       guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell else { return }
       targetViewController.navigationItem.title = cell.name()
-      targetViewController.titleString = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
 
     case 2:
