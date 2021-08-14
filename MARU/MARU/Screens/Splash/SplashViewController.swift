@@ -51,6 +51,7 @@ extension SplashViewController {
 
   private func tokenCalculate() -> UIViewController {
     if KeychainHandler.shared.accessToken != "Key is empty",
+       KeychainHandler.shared.accessTokenExpiredAt != "Key is empty",
        !KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
       return TabBarController()
     }
@@ -80,6 +81,7 @@ extension SplashViewController {
       return viewController
     }
     if KeychainHandler.shared.refreshToken != "Key is empty",
+       KeychainHandler.shared.refreshTokenExpiredAt != "Key is empty",
        !KeychainHandler.shared.refreshTokenExpiredAt.date.isExpired {
       return OnboardingViewController()
     }
