@@ -11,6 +11,7 @@ final class ChatViewController: BaseViewController {
   typealias ViewModel = ChatViewModel
   typealias MyChatCell = MyChatCollectionViewCell
   typealias OtherChatCell = OtherChatCollectionViewCell
+  typealias OtherProfileChatCell = OtherProfileChatCollectionViewCell
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -19,11 +20,68 @@ final class ChatViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MyChatCell.self)
     collectionView.register(cell: OtherChatCell.self)
-    collectionView.backgroundColor = .white
+    collectionView.register(cell: OtherProfileChatCell.self)
+    collectionView.backgroundColor = .bgLightgray
     return collectionView
   }()
 
+  private var data: [Chat] = [
+    .message(data: .init(profileImage: nil, name: nil, message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "344545너무 오래 갈때 56"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "2234")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "123123")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    ))
+  ] {
+    didSet { collectionView.reloadData() }
+  }
+
   private let bottomView = InputView()
+
+  private let viewModel = ChatViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,7 +94,6 @@ final class ChatViewController: BaseViewController {
     navigationController?.navigationBar.isHidden = false
     tabBarController?.tabBar.isHidden = true
   }
-
 }
 
 extension ChatViewController {
@@ -61,8 +118,9 @@ extension ChatViewController {
     bindKeyboardNotification()
     bottomView.rx.didTapSendButton
       .subscribe(onNext: { text in
-      print(text)
-    }).disposed(by: disposeBag)
+        print(text)
+      })
+      .disposed(by: disposeBag)
   }
 }
 
@@ -70,33 +128,39 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let chatText = ""
-    let size = CGSize(width: 0, height: 0)
-    let option  = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-    let estimatedFrame = NSString(string: chatText)
-      .boundingRect(with: size,
-                    options: option,
-                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
-                    context: nil)
-
-    return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
+    return CGSize(width: view.frame.width, height: data[indexPath.item].cellHeight)
   }
 }
 
 extension ChatViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return data.count
   }
 
-  func collectionView(_ collectionView: UICollectionView,
-                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.backgroundColor = UIColor.red.withAlphaComponent(0.3)
-    if indexPath.item % 2 == 0 {
-      cell.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    switch data[indexPath.item] {
+    case .message(let data):
+      let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
+
+    case .otherMessage(let data):
+      let cell: OtherChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
+
+    case .otherProfile(let data):
+      let cell: OtherProfileChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
     }
-    return cell
   }
 }
 

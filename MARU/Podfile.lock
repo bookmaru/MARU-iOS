@@ -146,15 +146,11 @@ PODS:
     - RxSwift (~> 5.1)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
-  - RxSocket.io (1.0.5):
-    - RxCocoa
-    - RxSwift
-    - Socket.IO-Client-Swift
   - RxSwift (5.1.2)
   - SnapKit (5.0.1)
-  - Socket.IO-Client-Swift (16.0.1):
-    - Starscream (~> 4.0)
-  - Starscream (4.0.4)
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
   - SwiftKeychainWrapper (4.0.1)
   - SwiftLint (0.43.1)
   - Then (2.7.0)
@@ -174,8 +170,8 @@ DEPENDENCIES:
   - RealmSwift
   - RxCocoa (~> 5)
   - RxGesture
-  - RxSocket.io (~> 1.0.5)
   - SnapKit (~> 5.0.0)
+  - Socket.IO-Client-Swift (~> 15.2.0)
   - SwiftKeychainWrapper (~> 4.0.1)
   - SwiftLint (~> 0.43.1)
   - Then (~> 2.7.0)
@@ -207,7 +203,6 @@ SPEC REPOS:
     - RxCocoa
     - RxGesture
     - RxRelay
-    - RxSocket.io
     - RxSwift
     - SnapKit
     - Socket.IO-Client-Swift
@@ -243,16 +238,15 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSocket.io: bf8fb8aed9148a53293c0360311733063917ce00
   RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: eaf1d8445450d592f0b2f4a5e06333f1b230c815
+PODFILE CHECKSUM: 6ad23487bea09765e49aabace052d9fb9b288648
 
 COCOAPODS: 1.10.1
