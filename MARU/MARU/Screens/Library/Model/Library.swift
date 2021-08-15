@@ -9,17 +9,17 @@ import UIKit
 
 enum Library {
   case title(title: String, isHidden: Bool)
-  case meeting(bookCase:BookCase)
-  case diary([String])
+  case meeting([String])
+  case diary(diary:Diary)
 
   var count: Int {
     switch self {
     case .title:
       return 1
     case .meeting(let data):
-      return data.bookcase.count
-    case .diary(let data):
       return data.count
+    case .diary(let data):
+      return data.diaries.count
     }
   }
 

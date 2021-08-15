@@ -9,18 +9,18 @@ import Moya
 import RxSwift
 
 protocol BookServiceType {
-  func bookList() -> Observable<BaseReponseType<BookCase>>
+  func bookList() -> Observable<BaseReponseType<[String]>>
   func getGroup() -> Observable<BaseReponseType<[String]>>
 }
 
 final class BookService: BookServiceType {
   private let router = MoyaProvider<BookRouter>(plugins: [NetworkLoggerPlugin()])
 
-  func bookList() -> Observable<BaseReponseType<BookCase>> {
+  func bookList() -> Observable<BaseReponseType<[String]>> {
     return router.rx
       .request(.get)
       .asObservable()
-      .map(BaseReponseType<BookCase>.self)
+      .map(BaseReponseType<[String]>.self)
   }
   func getGroup() -> Observable<BaseReponseType<[String]>> {
     return router.rx

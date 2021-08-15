@@ -9,18 +9,18 @@ import Moya
 import RxSwift
 
 protocol DiaryServiceType {
-  func getDiaryList() -> Observable<BaseReponseType<[String]>>
+  func getDiaryList() -> Observable<BaseReponseType<Diary>>
   func getDiary() -> Observable<BaseReponseType<String>>
 }
 
 final class DiaryService: DiaryServiceType {
   private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin()])
 
-  func getDiaryList() -> Observable<BaseReponseType<[String]>> {
+  func getDiaryList() -> Observable<BaseReponseType<Diary>> {
     router.rx
       .request(.list)
       .asObservable()
-      .map(BaseReponseType<[String]>.self)
+      .map(BaseReponseType<Diary>.self)
   }
 
   func getDiary() -> Observable<BaseReponseType<String>> {

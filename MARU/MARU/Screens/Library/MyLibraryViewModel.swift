@@ -33,14 +33,15 @@ final class MyLibraryViewModel {
       .asDriver(onErrorJustReturn: nil)
     // 책 리스트
     let bookList = viewDidLoad
-      .flatMap { NetworkService.shared.book.bookList() }
-      .map { response -> BookCase? in
+      .flatMap {
+        NetworkService.shared.book.bookList() }
+      .map { response -> [String]? in
         return response.data
       }
     // 일기 리스트
     let diaryList = viewDidLoad
       .flatMap { NetworkService.shared.diary.getDiaryList() }
-      .map { response -> [String]? in
+      .map { response -> Diary? in
         return response.data
       }
     // 모임 리스트
@@ -54,11 +55,12 @@ final class MyLibraryViewModel {
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
         library.append(.title(title: "모임하고 싶은 책", isHidden: true))
-        library.append(.meeting(bookList))
+        library.append(.meeting(bookList ?? []))
+        // 강제 옵셔널은 임시로 걸어놨어요 고칠 예정입니다.
         library.append(.title(title: "담아둔 모임", isHidden: true))
-        //library.append(.meeting(bookGroup ?? []))
+        library.append(.meeting(bookGroup ?? []))
         library.append(.title(title: "내 일기장", isHidden: false))
-        library.append(.diary(diary ?? []))
+        library.append(.diary(diary: diary!))
         return library
       }
       .asDriver(onErrorJustReturn: [])
