@@ -17,6 +17,7 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    
     collectionView.register(cell: LibraryTitleCell.self)
     collectionView.register(cell: MyLibraryCell.self)
     collectionView.register(cell: LibraryDiaryCell.self)
@@ -60,6 +61,15 @@ final class MyLibraryViewController: BaseViewController {
 
 extension MyLibraryViewController: UICollectionViewDataSource {
 
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    switch kind {
+      case UICollectionView.elementKindSectionHeader:
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyLibraryHeaderView.registerId, for: indexPath)
+        return headerView
+      default:
+        assert(false,"wrong")
+    }
+  }
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return data.count
   }
@@ -83,11 +93,11 @@ extension MyLibraryViewController: UICollectionViewDataSource {
 
       return cell
 
-    case let .meeting(data):
+    case let .meeting(bookCase):
 
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
 
-      cell.rx.binder.onNext(data)
+      cell.rx.binder.onNext(data[indexPath.item])
 
       return cell
 
@@ -109,6 +119,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
 }
 
 extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
+  
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {

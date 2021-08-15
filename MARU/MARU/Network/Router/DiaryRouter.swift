@@ -67,6 +67,8 @@ extension DiaryRouter: TargetType {
   }
 
   var headers: [String: String]? {
-    return ["Content-Type": "aplication/json"]
+    return ["Content-Type": "aplication/json",
+            "accessToken": KeychainHandler.shared.accessToken
+    ]
   }
 }

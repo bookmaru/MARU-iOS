@@ -2,7 +2,7 @@
 //  UserInformation.swift
 //  MARU
 //
-//  Created by 오준현 on 2021/07/11.
+//  Created by 이윤진 on 2021/08/15.
 //
 
 struct UserInformation: Codable {

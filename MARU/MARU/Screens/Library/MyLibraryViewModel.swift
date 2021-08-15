@@ -22,7 +22,7 @@ final class MyLibraryViewModel {
   func transform(input: Input) -> Output {
 
     let viewDidLoad = input.viewDidLoadPublisher.share()
-
+    // 프로필 정보에 해당하는 부분
     let user = viewDidLoad
       // map 사용하지 않는 이유 -> observable type으로 리턴되므로 이중으로 감싸진 형태
       // 따라서 flatmap 사용
@@ -31,19 +31,19 @@ final class MyLibraryViewModel {
         return response.data
       }
       .asDriver(onErrorJustReturn: nil)
-
+    // 책 리스트
     let bookList = viewDidLoad
       .flatMap { NetworkService.shared.book.bookList() }
-      .map { response -> [String]? in
+      .map { response -> BookCase? in
         return response.data
       }
-
+    // 일기 리스트
     let diaryList = viewDidLoad
       .flatMap { NetworkService.shared.diary.getDiaryList() }
       .map { response -> [String]? in
         return response.data
       }
-
+    // 모임 리스트
     let bookGroup = viewDidLoad
       .flatMap { NetworkService.shared.book.getGroup() }
       .map { response -> [String]? in
@@ -54,9 +54,9 @@ final class MyLibraryViewModel {
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
         library.append(.title(title: "모임하고 싶은 책", isHidden: true))
-        library.append(.meeting(bookList ?? []))
+        library.append(.meeting(bookList))
         library.append(.title(title: "담아둔 모임", isHidden: true))
-        library.append(.meeting(bookGroup ?? []))
+        //library.append(.meeting(bookGroup ?? []))
         library.append(.title(title: "내 일기장", isHidden: false))
         library.append(.diary(diary ?? []))
         return library

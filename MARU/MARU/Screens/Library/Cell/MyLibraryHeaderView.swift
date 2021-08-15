@@ -12,6 +12,7 @@ import Then
 
 final class MyLibraryHeaderView: UICollectionReusableView {
 
+  static let registerId = "headerView"
   private let profileImageView = UIImageView().then {
     $0.image = Image.appIcon
     $0.layer.cornerRadius = 75/2
