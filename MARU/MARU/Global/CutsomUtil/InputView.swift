@@ -82,10 +82,11 @@ extension InputView: UITextViewDelegate {}
 
 extension Reactive where Base: InputView {
   var didTapSendButton: Observable<String> {
-    return base.sendButton.rx.tap.map {
-      guard let text = base.textView.text else { return "" }
-      base.textView.text = nil
-      return text
-    }.asObservable()
+    return base.sendButton.rx.tap
+      .map {
+        guard let text = base.textView.text else { return "" }
+        base.textView.text = nil
+        return text
+      }
   }
 }
