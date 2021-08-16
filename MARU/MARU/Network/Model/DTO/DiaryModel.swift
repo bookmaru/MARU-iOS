@@ -6,7 +6,7 @@
 //
 
 struct Diary: Codable {
-  let diaries:[Diaries]
+  let diaries: [Diaries]
 }
 
 struct Diaries: Codable {
@@ -16,4 +16,16 @@ struct Diaries: Codable {
   let bookTitle: String
   let bookAuthor: String
   let bookImage: String
+}
+
+struct DiaryInfo: Codable {
+  let diaryId: Int
+  let diaryTitle: String
+  let content: String
+  let createdAt: String
+  let bookTitle: String
+  let bookAuthor: String
+  let bookImage: String
+  let nickName: String
+  let profileImage: String
 }

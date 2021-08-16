@@ -17,7 +17,7 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(MyLibraryHeaderView.self,forSupplementaryViewOfKind:
+    collectionView.register(MyLibraryHeaderView.self, forSupplementaryViewOfKind:
                               MyLibraryHeaderView.sectionHeaderElementKind,
                             withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
     collectionView.register(cell: LibraryTitleCell.self)

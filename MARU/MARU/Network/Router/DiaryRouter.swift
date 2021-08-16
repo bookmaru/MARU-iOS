@@ -10,9 +10,9 @@ import Moya
 enum DiaryRouter {
   case list
   case post
-  case get
-  case edit
-  case delete
+  case get(Int)
+  case edit(Int)
+  case delete(Int)
 }
 
 extension DiaryRouter: TargetType {
@@ -25,12 +25,12 @@ extension DiaryRouter: TargetType {
       return "/api/v2/diary"
     case .post:
       return "/api/v2/diary"
-    case .get:
-      return "/api/v2/diary"
-    case .edit:
-      return "/api/v2/diary"
-    case .delete:
-      return "/api/v2/diary"
+    case .get(let diaryId):
+      return "/api/v2/diary/\(diaryId)"
+    case .edit(let diaryId):
+      return "/api/v2/diary/\(diaryId)"
+    case .delete(let diaryId):
+      return "/api/v2/diary/\(diaryId)"
     }
   }
 

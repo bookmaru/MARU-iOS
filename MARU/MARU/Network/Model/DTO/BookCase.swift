@@ -5,7 +5,6 @@
 //  Created by 이윤진 on 2021/08/15.
 //
 
-// v2/bookcase 전용
 struct Case: Codable {
   let bookcaseId: Int
   let isbn: String

@@ -10,7 +10,7 @@ import UIKit
 enum Library {
   case title(title: String, isHidden: Bool)
   case meeting([String])
-  case diary(diary:Diary)
+  case diary(diary: Diary)
 
   var count: Int {
     switch self {
