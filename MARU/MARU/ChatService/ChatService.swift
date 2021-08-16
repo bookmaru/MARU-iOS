@@ -56,10 +56,16 @@ extension ChatService: StompClientLibDelegate {
     withHeader header: [String: String]?,
     withDestination destination: String
   ) {
-    dump(jsonBody)
-    dump(stringBody)
-    dump(header)
-    dump(destination)
+    guard let json = jsonBody as? [String: Any] else { return }
+
+    let chat = ChatDAO(
+      chatID: json["id"] as? Int ?? nil,
+      type: json["type"] as? String ?? nil,
+      content: json["content"] as? String ?? nil,
+      sender: json["sender"] as? String ?? nil
+    )
+
+    receive.onNext(chat)
   }
 
   func stompClientDidDisconnect(client: StompClientLib!) {
