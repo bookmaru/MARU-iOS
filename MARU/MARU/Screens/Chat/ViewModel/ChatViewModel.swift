@@ -54,7 +54,7 @@ enum Chat {
 
 final class ChatViewModel {
 
-  private let chatService = ChatService(roomIndex: "")
+  private let chatService = ChatService(roomIndex: "1")
 
   struct Input {
 
