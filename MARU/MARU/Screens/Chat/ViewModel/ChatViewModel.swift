@@ -8,16 +8,16 @@
 import RxCocoa
 import RxSwift
 
-struct ChatDAO {
+struct ChatDTO {
   let profileImage: String?
   let name: String?
   let message: String?
 }
 
 enum Chat {
-  case message(data: ChatDAO)
-  case otherProfile(data: ChatDAO)
-  case otherMessage(data: ChatDAO)
+  case message(data: ChatDTO)
+  case otherProfile(data: ChatDTO)
+  case otherMessage(data: ChatDTO)
 
   var cellHeight: CGFloat {
     switch self {

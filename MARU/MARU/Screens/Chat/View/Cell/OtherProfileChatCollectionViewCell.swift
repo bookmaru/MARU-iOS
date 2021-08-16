@@ -34,7 +34,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
     $0.layer.borderColor = UIColor.ligthGray.cgColor
   }
 
-  fileprivate var data: ChatDAO = .init(profileImage: nil, name: nil, message: nil) {
+  fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
     didSet {
       nameLabel.text = "안유댕"
       chatLabel.text = data.message
@@ -84,7 +84,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: OtherProfileChatCollectionViewCell {
-  var dataBinder: Binder<ChatDAO> {
+  var dataBinder: Binder<ChatDTO> {
     return Binder(base) { base, data in
       base.data = data
     }
