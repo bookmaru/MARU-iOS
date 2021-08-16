@@ -10,17 +10,33 @@ import RxSwift
 
 final class ChatService {
 
-  private let roomIndex: String
+  private let roomIndex: Int
 
   let baseURL = "ws://3.36.251.65:8081/ws/websocket"
   let socket = StompClientLib()
-  let topic = "/topic/public/1"
-  let destination = "/app/chat.sendMessage/1"
+  let topic: String
+  let destination: String
+  let message: Observable<String>
+  let receive: PublishSubject<ChatDAO>
+  let disposeBag = DisposeBag()
 
-  init(roomIndex: String) {
+  init(
+    roomIndex: Int,
+    messagePublisher: Observable<String>,
+    receivePublisher: PublishSubject<ChatDAO>
+  ) {
     self.roomIndex = roomIndex
-
+    self.message = messagePublisher
+    self.receive = receivePublisher
+    topic = "/topic/public/\(roomIndex)"
+    destination = "/app/chat.sendMessage/\(roomIndex)"
     register()
+
+    message.subscribe(onNext: { message in
+      let chat = ["id": "1", "type": "CHAT", "content": message, "sender": "마루"]
+      self.socket.sendJSONForDict(dict: chat as AnyObject, toDestination: self.destination)
+    })
+    .disposed(by: disposeBag)
   }
 
   private func register() {
