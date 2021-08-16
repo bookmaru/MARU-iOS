@@ -51,9 +51,9 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
     contentView.add(chatBubbleView)
     contentView.add(chatLabel) { label in
       label.snp.makeConstraints {
-        $0.top.equalToSuperview().offset(9)
+        $0.top.equalToSuperview().inset(9)
         $0.trailing.equalToSuperview().inset(34)
-        $0.width.lessThanOrEqualToSuperview().inset(30)
+        $0.width.lessThanOrEqualToSuperview().inset(50)
       }
     }
     chatBubbleView.snp.makeConstraints {

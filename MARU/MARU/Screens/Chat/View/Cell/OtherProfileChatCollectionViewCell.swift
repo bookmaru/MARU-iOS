@@ -73,7 +73,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
       label.snp.makeConstraints {
         $0.top.equalTo(self.nameLabel.snp.bottom).offset(14)
         $0.leading.equalTo(self.profileImageView.snp.trailing).offset(16)
-        $0.trailing.lessThanOrEqualTo(self.contentView).inset(30)
+        $0.trailing.lessThanOrEqualTo(self.contentView).inset(60)
       }
     }
     chatBubbleView.snp.makeConstraints {

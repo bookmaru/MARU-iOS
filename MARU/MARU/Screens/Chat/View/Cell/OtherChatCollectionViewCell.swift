@@ -49,7 +49,7 @@ final class OtherChatCollectionViewCell: UICollectionViewCell {
       label.snp.makeConstraints {
         $0.top.equalToSuperview().offset(9)
         $0.leading.equalToSuperview().offset(66)
-        $0.trailing.lessThanOrEqualTo(self.contentView).inset(30)
+        $0.trailing.lessThanOrEqualTo(self.contentView).inset(60)
       }
     }
     chatBubbleView.snp.makeConstraints {

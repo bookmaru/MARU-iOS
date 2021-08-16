@@ -23,7 +23,7 @@ enum Chat {
     switch self {
     case .message(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 140, height: .zero),
+        with: CGSize(width: ScreenSize.width - 60, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
@@ -32,7 +32,7 @@ enum Chat {
 
     case .otherProfile(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 140, height: .zero),
+        with: CGSize(width: ScreenSize.width - 60, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
@@ -41,7 +41,7 @@ enum Chat {
 
     case .otherMessage(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 140, height: .zero),
+        with: CGSize(width: ScreenSize.width - 60, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil

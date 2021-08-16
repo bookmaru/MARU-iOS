@@ -28,11 +28,8 @@ final class ChatViewController: BaseViewController {
   private var data: [Chat] = [
     .message(data: .init(profileImage: nil, name: nil, message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어")),
     .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    )),
+    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
+    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
     .message(data: .init(profileImage: nil, name: nil, message: "123")),
     .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
     .otherMessage(data: .init(
@@ -93,6 +90,15 @@ final class ChatViewController: BaseViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.isHidden = false
     tabBarController?.tabBar.isHidden = true
+    scrollToBottom()
+  }
+
+  private func scrollToBottom(_ animated: Bool = false) {
+    DispatchQueue.main.async {
+      let lastItem = self.data.count - 1
+      let indexPath = IndexPath(row: 0, section: lastItem)
+      self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: animated)
+    }
   }
 }
 
@@ -117,8 +123,10 @@ extension ChatViewController {
   private func bind() {
     bindKeyboardNotification()
     bottomView.rx.didTapSendButton
-      .subscribe(onNext: { text in
-        print(text)
+      .subscribe(onNext: { [weak self] text in
+        guard let self = self else { return }
+        self.data.append(.message(data: .init(profileImage: nil, name: nil, message: text)))
+        self.scrollToBottom()
       })
       .disposed(by: disposeBag)
   }
@@ -128,21 +136,79 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: data[indexPath.item].cellHeight)
+    return CGSize(width: view.frame.width, height: data[indexPath.section].cellHeight)
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    insetForSectionAt section: Int
+  ) -> UIEdgeInsets {
+    if section != 0 {
+      let prevSection = data[section - 1]
+      let currentSection = data[section]
+      switch currentSection {
+      case .message:
+        return calculateMessage(prevMessage: prevSection)
+      case .otherMessage:
+        return calculateOtherMessage(prevMessage: prevSection)
+      case .otherProfile:
+        return calculateOtherProfile(prevMessage: prevSection)
+      }
+    }
+    return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+  }
+
+  private func calculateMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
+  }
+
+  private func calculateOtherMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
+  }
+
+  private func calculateOtherProfile(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
   }
 }
 
 extension ChatViewController: UICollectionViewDataSource {
+
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return data.count
+  }
+
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return data.count
+    return 1
   }
 
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    switch data[indexPath.item] {
+    switch data[indexPath.section] {
     case .message(let data):
       let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.dataBinder.onNext(data)
@@ -189,7 +255,8 @@ extension ChatViewController {
                        animations: {
                         self.view.layoutIfNeeded()
         })
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
 
     NotificationCenter.default.rx
       .notification(UIResponder.keyboardWillHideNotification)
@@ -211,7 +278,8 @@ extension ChatViewController {
                        animations: {
                         self.view.layoutIfNeeded()
         })
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
   }
 
   private func bottomPadding() -> CGFloat? {
