@@ -18,7 +18,7 @@ target 'MARU' do
   pod 'Moya/RxSwift', '~> 14.0'
   pod 'ReactorKit', '~> 2.1.1'
   pod 'RxCocoa', '~> 5'
-  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
+  pod 'StompClientLib'
   pod 'RxGesture'
   pod 'SnapKit', '~> 5.0.0'
   pod 'SwiftKeychainWrapper', '~> 4.0.1'
