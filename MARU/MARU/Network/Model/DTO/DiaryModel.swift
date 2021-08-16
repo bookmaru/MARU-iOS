@@ -5,11 +5,11 @@
 //  Created by 이윤진 on 2021/08/16.
 //
 
-struct Diary: Codable {
-  let diaries: [Diaries]
+struct Diaries: Codable {
+  let diaries: [Diary]
 }
 
-struct Diaries: Codable {
+struct Diary: Codable {
   let diaryId: Int
   let diaryTitle: String
   let createdAt: String

@@ -103,7 +103,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         })
         .disposed(by: cell.disposeBag)
 
-      cell.rx.dataBinder.onNext([data])
+      cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
 
       return cell
     }

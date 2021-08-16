@@ -41,7 +41,7 @@ final class MyLibraryViewModel {
     // 일기 리스트
     let diaryList = viewDidLoad
       .flatMap { NetworkService.shared.diary.getDiaryList() }
-      .map { response -> Diary? in
+      .map { response -> Diaries? in
         return response.data
       }
     // 모임 리스트

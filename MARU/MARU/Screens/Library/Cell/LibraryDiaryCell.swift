@@ -53,12 +53,13 @@ final class LibraryDiaryCell: UICollectionViewCell {
   }
 
   var disposeBag = DisposeBag()
-//  fileprivate var data: Diary = [] {
-//    didSet {
-//
-//    }
-//  }
-  var data: [Diary] = []
+  fileprivate var data: Diary? {
+    didSet {
+      diaryDateLabel.text = data?.createdAt
+      // 데이터 받아오는대로 값 넣어주기
+    }
+  }
+  //var data: [Diary] = []
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -132,7 +133,7 @@ extension Reactive where Base: LibraryDiaryCell {
       .asObservable()
   }
 
-  var dataBinder: Binder<[Diary]> {
+  var dataBinder: Binder<Diary> {
     return Binder(base) { base, data in
       base.data = data
     }
