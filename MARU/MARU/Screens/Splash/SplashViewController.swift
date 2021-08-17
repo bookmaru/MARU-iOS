@@ -22,7 +22,7 @@ final class SplashViewController: BaseViewController {
 
 extension SplashViewController: ViewControllerType {
   func bind() {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
       self.moveTo()
     }
   }
@@ -56,7 +56,7 @@ extension SplashViewController {
       return TabBarController()
     }
     if KeychainHandler.shared.accessTokenExpiredAt != "Key is empty",
-       KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
+       !KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
       var viewController: UIViewController = TabBarController()
       NetworkService.shared.auth.refresh()
         .subscribe(onNext: { response in
