@@ -36,7 +36,7 @@ final class OnboardingViewModel: ViewModelType {
 
     let didLogin = Observable.combineLatest(loginService, input.authType)
       .map { response, auth -> UIViewController? in
-        let token = response.data?.token
+        let token = response.data
         if let accessToken = token?.accessToken,
            let accessTokenExpiredAt = token?.accessTokenExpiredAt,
            let refreshToken = token?.refreshToken,
