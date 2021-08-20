@@ -42,8 +42,8 @@
 		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
-		77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */; };
-		77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */; };
+		77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AE926A5E030001CDA10 /* OrderedCollections */; };
+		77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 77EC8AEB26A5E030001CDA10 /* Collections */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
@@ -56,6 +56,7 @@
 		C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */; };
 		C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */; };
 		C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B34AC268211040053FE45 /* UserDefaultHandler.swift */; };
+		C52E6C5426CA8F0C00279FB2 /* ChatDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E6C5326CA8F0C00279FB2 /* ChatDAO.swift */; };
 		C52E782A260F277F0087570E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52E7829260F277F0087570E /* BaseViewController.swift */; };
 		C52F9F702642719E007C73B7 /* MyChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */; };
 		C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */; };
@@ -88,6 +89,8 @@
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
+		C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59BCBC026C81F3A00C84163 /* ChatService.swift */; };
+		C59BCBC326C8398600C84163 /* OtherProfileChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59BCBC226C8398600C84163 /* OtherProfileChatCollectionViewCell.swift */; };
 		C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB072684D966007355D1 /* AuthRouter.swift */; };
 		C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */; };
 		C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */; };
@@ -195,6 +198,7 @@
 		C51CA800260D966000CE4804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C52B34AA26820FA00053FE45 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		C52B34AC268211040053FE45 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		C52E6C5326CA8F0C00279FB2 /* ChatDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDAO.swift; sourceTree = "<group>"; };
 		C52E7829260F277F0087570E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherChatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C59BCBC026C81F3A00C84163 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		C59BCBC226C8398600C84163 /* OtherProfileChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5A3DAFF2684CD58007355D1 /* MARU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MARU.entitlements; sourceTree = "<group>"; };
 		C5A3DB072684D966007355D1 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailResponseType.swift; sourceTree = "<group>"; };
@@ -274,8 +280,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77EC8AEC26A5E030001CDA10 /* BuildFile in Frameworks */,
-				77EC8AEA26A5E030001CDA10 /* BuildFile in Frameworks */,
+				77EC8AEC26A5E030001CDA10 /* Collections in Frameworks */,
+				77EC8AEA26A5E030001CDA10 /* OrderedCollections in Frameworks */,
 				5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */,
 				768BE31F8D8F08E140FF0AAD /* Pods_MARU.framework in Frameworks */,
 			);
@@ -447,6 +453,7 @@
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
 				80C7264D95B9E12BBE16FC68 /* Frameworks */,
+				C59BCBBE26C81E7A00C84163 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -467,6 +474,7 @@
 			children = (
 				C5A3DAFF2684CD58007355D1 /* MARU.entitlements */,
 				C58F6A522646E9C600D8AA7C /* Network */,
+				C59BCBBF26C81F2C00C84163 /* ChatService */,
 				C52E781C260F27110087570E /* Global */,
 				C5DB34DA260F256A00F29FE1 /* Screens */,
 			);
@@ -592,6 +600,7 @@
 			children = (
 				C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */,
 				C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */,
+				C59BCBC226C8398600C84163 /* OtherProfileChatCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -687,6 +696,24 @@
 				C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C59BCBBE26C81E7A00C84163 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
+				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		C59BCBBF26C81F2C00C84163 /* ChatService */ = {
+			isa = PBXGroup;
+			children = (
+				C59BCBC026C81F3A00C84163 /* ChatService.swift */,
+				C52E6C5326CA8F0C00279FB2 /* ChatDAO.swift */,
+			);
+			path = ChatService;
 			sourceTree = "<group>";
 		};
 		C5A3DB002684D8A4007355D1 /* Service */ = {
@@ -915,8 +942,8 @@
 			);
 			name = MARU;
 			packageProductDependencies = (
-				77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */,
-				77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */,
+				77EC8AE926A5E030001CDA10 /* OrderedCollections */,
+				77EC8AEB26A5E030001CDA10 /* Collections */,
 			);
 			productName = MARU;
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
@@ -992,7 +1019,7 @@
 			);
 			mainGroup = C51CA7E6260D964E00CE4804;
 			packageReferences = (
-				77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */,
+				77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = C51CA7F0260D964E00CE4804 /* Products */;
 			projectDirPath = "";
@@ -1167,6 +1194,7 @@
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
+				C52E6C5426CA8F0C00279FB2 /* ChatDAO.swift in Sources */,
 				774262EE26899825008F9CAE /* MeetingHeldViewController.swift in Sources */,
 				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
@@ -1189,6 +1217,7 @@
 				C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */,
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
+				C59BCBC326C8398600C84163 /* OtherProfileChatCollectionViewCell.swift in Sources */,
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
@@ -1226,6 +1255,7 @@
 				F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */,
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
+				C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */,
@@ -1611,7 +1641,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */ = {
+		77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections";
 			requirement = {
@@ -1622,14 +1652,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		77EC8AE926A5E030001CDA10 /* SwiftPackageProductDependency */ = {
+		77EC8AE926A5E030001CDA10 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
-		77EC8AEB26A5E030001CDA10 /* SwiftPackageProductDependency */ = {
+		77EC8AEB26A5E030001CDA10 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 77EC8AE826A5E02F001CDA10 /* RemoteSwiftPackageReference */;
+			package = 77EC8AE826A5E02F001CDA10 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
 /* End XCSwiftPackageProductDependency section */
