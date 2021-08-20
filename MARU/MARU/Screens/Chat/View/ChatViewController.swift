@@ -78,7 +78,22 @@ final class ChatViewController: BaseViewController {
 
   private let bottomView = InputView()
 
-  private let viewModel = ChatViewModel()
+  private let viewModel: ChatViewModel
+  private let roomIndex: Int
+
+  init(roomIndex: Int) {
+    self.viewModel = ChatViewModel(
+      roomIndex: roomIndex,
+      messagePublisher: bottomView.rx.didTapSendButton
+    )
+    self.roomIndex = roomIndex
+
+    super.init()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -122,11 +137,18 @@ extension ChatViewController {
 
   private func bind() {
     bindKeyboardNotification()
-    bottomView.rx.didTapSendButton
-      .subscribe(onNext: { [weak self] text in
-        guard let self = self else { return }
-        self.data.append(.message(data: .init(profileImage: nil, name: nil, message: text)))
-        self.scrollToBottom()
+
+    let input = ViewModel.Input()
+    let ouput = viewModel.transform(input: input)
+
+    ouput.chat
+      .drive(onNext: { chat in
+        self.data.append(chat)
+        let cov = self.collectionView
+        let offset = cov.contentSize.height - (cov.contentOffset.y + cov.frame.height)
+        if offset < 30 {
+          self.scrollToBottom(true)
+        }
       })
       .disposed(by: disposeBag)
   }

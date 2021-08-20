@@ -27,7 +27,7 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
     $0.layer.cornerRadius = 16
   }
 
-  fileprivate var data: ChatDAO = .init(profileImage: nil, name: nil, message: nil) {
+  fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
     didSet {
       chatLabel.text = data.message
       chatLabel.sizeToFit()
@@ -64,7 +64,7 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: MyChatCollectionViewCell {
-  var dataBinder: Binder<ChatDAO> {
+  var dataBinder: Binder<ChatDTO> {
     return Binder(base) { base, data in
       base.data = data
     }

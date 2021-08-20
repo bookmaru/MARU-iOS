@@ -8,16 +8,16 @@
 import RxCocoa
 import RxSwift
 
-struct ChatDAO {
+struct ChatDTO {
   let profileImage: String?
   let name: String?
   let message: String?
 }
 
 enum Chat {
-  case message(data: ChatDAO)
-  case otherProfile(data: ChatDAO)
-  case otherMessage(data: ChatDAO)
+  case message(data: ChatDTO)
+  case otherProfile(data: ChatDTO)
+  case otherMessage(data: ChatDTO)
 
   var cellHeight: CGFloat {
     switch self {
@@ -54,18 +54,28 @@ enum Chat {
 
 final class ChatViewModel {
 
-  private let chatService = ChatService(roomIndex: "1")
+  private let chatService: ChatService
+  private let roomIndex: Int
+  private let recivePublisher = PublishSubject<ChatDAO>()
+  private let messagePublisher: Observable<String>
+  let disposeBag = DisposeBag()
 
   struct Input {
 
   }
 
   struct Output {
-
+    let chat: Driver<Chat>
   }
 
-  init() {
-    print("ChatViewModel init")
+  init(roomIndex: Int, messagePublisher: Observable<String>) {
+    self.roomIndex = roomIndex
+    self.messagePublisher = messagePublisher
+    chatService = ChatService(
+      roomIndex: roomIndex,
+      messagePublisher: messagePublisher,
+      receivePublisher: recivePublisher
+    )
   }
 
   deinit {
@@ -73,7 +83,15 @@ final class ChatViewModel {
   }
 
   func transform(input: Input) -> Output {
+    let chat = recivePublisher
+      .map { chat -> Chat in
+        if chat.sender == "마루" {
+          return .message(data: ChatDTO(profileImage: nil, name: chat.sender, message: chat.content))
+        }
+        return .otherMessage(data: ChatDTO(profileImage: nil, name: chat.sender, message: chat.content))
+      }
+      .asDriver(onErrorJustReturn: .message(data: .init(profileImage: nil, name: nil, message: nil)))
 
-    return Output()
+    return Output(chat: chat)
   }
 }
