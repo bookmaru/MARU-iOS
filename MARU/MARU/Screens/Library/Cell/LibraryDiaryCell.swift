@@ -59,7 +59,6 @@ final class LibraryDiaryCell: UICollectionViewCell {
       // 데이터 받아오는대로 값 넣어주기
     }
   }
-  //var data: [Diary] = []
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()

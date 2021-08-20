@@ -21,7 +21,6 @@ class CreateQuiz1Cell: UITableViewCell {
   private let incorrectButton = UIButton().then {
     $0.setImage(UIImage(systemName: "incorrectRed"), for: .normal)
   }
-  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

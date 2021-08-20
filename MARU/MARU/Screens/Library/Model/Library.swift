@@ -11,7 +11,6 @@ enum Library {
   case title(title: String, isHidden: Bool)
   case meeting([String])
   case diary(diary: Diaries)
-  
   var count: Int {
     switch self {
     case .title:
@@ -22,7 +21,6 @@ enum Library {
       return data.diaries.count
     }
   }
-  
   var size: CGSize {
     switch self {
     case .title:

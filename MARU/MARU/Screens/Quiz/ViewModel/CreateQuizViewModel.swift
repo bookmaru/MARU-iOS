@@ -19,10 +19,7 @@ final class CreateQuizViewModel {
   struct Output {
     let didCreate: Driver<UIViewController>
   }
-  
 //  func transform(input: Input) -> Output {
 //    let didTapCorrectButton = 
 //  }
 }
-
-

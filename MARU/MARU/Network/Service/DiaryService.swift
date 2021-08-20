@@ -25,7 +25,7 @@ final class DiaryService: DiaryServiceType {
 
   func getDiary(diaryId: Int) -> Observable<BaseReponseType<DiaryInfo>> {
     return router.rx
-      .request(.get(diaryId))
+      .request(.get(diaryId: diaryId))
       .asObservable()
       .map(BaseReponseType<DiaryInfo>.self)
   }

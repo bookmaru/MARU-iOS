@@ -10,9 +10,9 @@ import Moya
 enum DiaryRouter {
   case list
   case post
-  case get(Int)
-  case edit(Int)
-  case delete(Int)
+  case get(diaryId: Int)
+  case edit(diaryId: Int)
+  case delete(diaryId: Int)
 }
 
 extension DiaryRouter: TargetType {
@@ -67,8 +67,9 @@ extension DiaryRouter: TargetType {
   }
 
   var headers: [String: String]? {
-    return ["Content-Type": "aplication/json",
-            "accessToken": KeychainHandler.shared.accessToken
+    return [
+      "Content-Type": "aplication/json",
+      "accessToken": KeychainHandler.shared.accessToken
     ]
   }
 }
