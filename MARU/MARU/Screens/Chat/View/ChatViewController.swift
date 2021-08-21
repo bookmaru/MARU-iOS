@@ -11,6 +11,7 @@ final class ChatViewController: BaseViewController {
   typealias ViewModel = ChatViewModel
   typealias MyChatCell = MyChatCollectionViewCell
   typealias OtherChatCell = OtherChatCollectionViewCell
+  typealias OtherProfileChatCell = OtherProfileChatCollectionViewCell
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -19,11 +20,80 @@ final class ChatViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MyChatCell.self)
     collectionView.register(cell: OtherChatCell.self)
-    collectionView.backgroundColor = .white
+    collectionView.register(cell: OtherProfileChatCell.self)
+    collectionView.backgroundColor = .bgLightgray
     return collectionView
   }()
 
+  private var data: [Chat] = [
+    .message(data: .init(profileImage: nil, name: nil, message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
+    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "344545너무 오래 갈때 56"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "2234")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "123123")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    )),
+    .message(data: .init(profileImage: nil, name: nil, message: "123")),
+    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
+    .otherMessage(data: .init(
+      profileImage: nil,
+      name: nil,
+      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
+    ))
+  ] {
+    didSet { collectionView.reloadData() }
+  }
+
   private let bottomView = InputView()
+
+  private let viewModel: ChatViewModel
+  private let roomIndex: Int
+
+  init(roomIndex: Int) {
+    self.viewModel = ChatViewModel(
+      roomIndex: roomIndex,
+      messagePublisher: bottomView.rx.didTapSendButton
+    )
+    self.roomIndex = roomIndex
+
+    super.init()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,8 +105,16 @@ final class ChatViewController: BaseViewController {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.isHidden = false
     tabBarController?.tabBar.isHidden = true
+    scrollToBottom()
   }
 
+  private func scrollToBottom(_ animated: Bool = false) {
+    DispatchQueue.main.async {
+      let lastItem = self.data.count - 1
+      let indexPath = IndexPath(row: 0, section: lastItem)
+      self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: animated)
+    }
+  }
 }
 
 extension ChatViewController {
@@ -59,10 +137,20 @@ extension ChatViewController {
 
   private func bind() {
     bindKeyboardNotification()
-    bottomView.rx.didTapSendButton
-      .subscribe(onNext: { text in
-      print(text)
-    }).disposed(by: disposeBag)
+
+    let input = ViewModel.Input()
+    let ouput = viewModel.transform(input: input)
+
+    ouput.chat
+      .drive(onNext: { chat in
+        self.data.append(chat)
+        let cov = self.collectionView
+        let offset = cov.contentSize.height - (cov.contentOffset.y + cov.frame.height)
+        if offset < 30 {
+          self.scrollToBottom(true)
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }
 
@@ -70,33 +158,97 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let chatText = ""
-    let size = CGSize(width: 0, height: 0)
-    let option  = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-    let estimatedFrame = NSString(string: chatText)
-      .boundingRect(with: size,
-                    options: option,
-                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
-                    context: nil)
+    return CGSize(width: view.frame.width, height: data[indexPath.section].cellHeight)
+  }
 
-    return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    insetForSectionAt section: Int
+  ) -> UIEdgeInsets {
+    if section != 0 {
+      let prevSection = data[section - 1]
+      let currentSection = data[section]
+      switch currentSection {
+      case .message:
+        return calculateMessage(prevMessage: prevSection)
+      case .otherMessage:
+        return calculateOtherMessage(prevMessage: prevSection)
+      case .otherProfile:
+        return calculateOtherProfile(prevMessage: prevSection)
+      }
+    }
+    return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+  }
+
+  private func calculateMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
+  }
+
+  private func calculateOtherMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
+  }
+
+  private func calculateOtherProfile(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    }
   }
 }
 
 extension ChatViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView,
-                      numberOfItemsInSection section: Int) -> Int {
-    return 10
+
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return data.count
   }
 
   func collectionView(_ collectionView: UICollectionView,
-                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.backgroundColor = UIColor.red.withAlphaComponent(0.3)
-    if indexPath.item % 2 == 0 {
-      cell.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+                      numberOfItemsInSection section: Int) -> Int {
+    return 1
+  }
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    switch data[indexPath.section] {
+    case .message(let data):
+      let cell: MyChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
+
+    case .otherMessage(let data):
+      let cell: OtherChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
+
+    case .otherProfile(let data):
+      let cell: OtherProfileChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.dataBinder.onNext(data)
+
+      return cell
     }
-    return cell
   }
 }
 
@@ -125,7 +277,8 @@ extension ChatViewController {
                        animations: {
                         self.view.layoutIfNeeded()
         })
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
 
     NotificationCenter.default.rx
       .notification(UIResponder.keyboardWillHideNotification)
@@ -147,7 +300,8 @@ extension ChatViewController {
                        animations: {
                         self.view.layoutIfNeeded()
         })
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
   }
 
   private func bottomPadding() -> CGFloat? {

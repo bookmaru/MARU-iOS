@@ -115,7 +115,7 @@ extension MeetViewController {
       .itemSelected
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-        let viewController = ChatViewController()
+        let viewController = ChatViewController(roomIndex: 1)
         self.navigationController?.pushViewController(viewController, animated: true)
       }).disposed(by: disposeBag)
   }
