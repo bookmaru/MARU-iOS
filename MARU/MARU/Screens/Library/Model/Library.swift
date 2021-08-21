@@ -10,8 +10,7 @@ import UIKit
 enum Library {
   case title(title: String, isHidden: Bool)
   case meeting([String])
-  case diary([String])
-
+  case diary(diary: Diaries)
   var count: Int {
     switch self {
     case .title:
@@ -19,10 +18,9 @@ enum Library {
     case .meeting(let data):
       return data.count
     case .diary(let data):
-      return data.count
+      return data.diaries.count
     }
   }
-
   var size: CGSize {
     switch self {
     case .title:

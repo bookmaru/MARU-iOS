@@ -17,6 +17,9 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    collectionView.register(MyLibraryHeaderView.self, forSupplementaryViewOfKind:
+                              MyLibraryHeaderView.sectionHeaderElementKind,
+                            withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
     collectionView.register(cell: LibraryTitleCell.self)
     collectionView.register(cell: MyLibraryCell.self)
     collectionView.register(cell: LibraryDiaryCell.self)
@@ -59,7 +62,6 @@ final class MyLibraryViewController: BaseViewController {
 }
 
 extension MyLibraryViewController: UICollectionViewDataSource {
-
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return data.count
   }
@@ -101,7 +103,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         })
         .disposed(by: cell.disposeBag)
 
-      cell.rx.dataBinder.onNext(data[indexPath.item])
+      cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
 
       return cell
     }
