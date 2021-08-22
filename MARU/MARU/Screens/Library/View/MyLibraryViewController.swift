@@ -11,13 +11,12 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryViewController: BaseViewController {
-
+  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    
     collectionView.register(cell: LibraryTitleCell.self)
     collectionView.register(cell: MyLibraryCell.self)
     collectionView.register(cell: LibraryDiaryCell.self)
@@ -29,13 +28,11 @@ final class MyLibraryViewController: BaseViewController {
       collectionView.reloadData()
     }
   }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
   }
-
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -45,7 +42,6 @@ final class MyLibraryViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
-
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let output = viewModel.transform(input: MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher))
@@ -63,11 +59,9 @@ extension MyLibraryViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return data.count
   }
-
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return data[section].count
   }
-
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
@@ -82,23 +76,16 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         .disposed(by: cell.disposeBag)
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
-
       return cell
-
     case let .meeting(data):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.binder.onNext(data.keepGroup[indexPath.item])
-      
       return cell
-      
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.binder.onNext(data.bookcase[indexPath.item])
-      
       return cell
-      
     case let .diary(data):
-
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.didTapContentView
         .subscribe(onNext: {
@@ -106,7 +93,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         })
         .disposed(by: cell.disposeBag)
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
-
       return cell
     }
   }
@@ -117,5 +103,14 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return data[indexPath.section].size
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    if let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: UICollectionView.elementKindSectionHeader,
+        withReuseIdentifier: MyLibraryHeaderView.registerId, for: indexPath) as? MyLibraryHeaderView {
+      return headerView
+    }
+    return UICollectionReusableView()
   }
 }
