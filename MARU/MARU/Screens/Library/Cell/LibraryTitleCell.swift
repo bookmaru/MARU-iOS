@@ -17,8 +17,8 @@ final class LibraryTitleCell: UICollectionViewCell {
     $0.font = .systemFont(ofSize: 17, weight: .bold)
   }
 
-  fileprivate let addButton = UIButton().then {
-    $0.setImage(Image.correct, for: .normal)
+  let addButton = UIButton().then {
+    $0.setImage(Image.group874, for: .normal)
     $0.isHidden = true
   }
   fileprivate var title: String? {

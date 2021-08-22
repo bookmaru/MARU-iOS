@@ -72,10 +72,12 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+      if titleText == "모임하고 싶은 책" {
+        cell.addButton.setImage(Image.group1038, for: .normal)
+      }
       cell.rx.didTapAddButton
         .subscribe(onNext: {
-
+          // 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
@@ -86,25 +88,24 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .meeting(data):
 
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
       cell.rx.binder.onNext(data.keepGroup[indexPath.item])
 
       return cell
+      
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.binder.onNext(data.bookcase[indexPath.item])
       
       return cell
+      
     case let .diary(data):
 
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
       cell.rx.didTapContentView
         .subscribe(onNext: {
-
+          // 일기 선택 후 -> 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
-
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
 
       return cell

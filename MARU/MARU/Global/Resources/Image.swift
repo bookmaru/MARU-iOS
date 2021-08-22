@@ -46,4 +46,6 @@ enum Image {
   static let kakao = UIImage(named: "kakao")
   static let union = UIImage(named: "union")
   static let rightArrow = UIImage(named: "rightArrow")
+  static let group874 = UIImage(named: "group874")
+  static let group1038 = UIImage(named: "group1038")
 }

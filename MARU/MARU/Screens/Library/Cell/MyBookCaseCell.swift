@@ -14,16 +14,13 @@ final class MyBookCaseCell: UICollectionViewCell {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    
     return collectionView
   }()
-  
   fileprivate var bookData: BookCase? {
     didSet {
       collectionView.reloadData()
     }
   }
-  
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()

@@ -57,7 +57,7 @@ final class MyLibraryViewModel {
         var library: [Library] = []
         library.append(.title(title: "담아둔 모임", isHidden: true))
         library.append(.meeting(meeting: bookGroup!))
-        library.append(.title(title: "모임하고 싶은 책", isHidden: true))
+        library.append(.title(title: "모임하고 싶은 책", isHidden: false))
         library.append(.book(book: bookList!))
         library.append(.title(title: "내 일기장", isHidden: false))
         library.append(.diary(diary: diary!))
