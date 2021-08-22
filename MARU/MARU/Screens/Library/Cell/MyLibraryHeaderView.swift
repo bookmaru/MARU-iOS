@@ -9,11 +9,11 @@ import UIKit
 
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class MyLibraryHeaderView: UICollectionReusableView {
-  
   static let registerId = "headerView"
-  static let sectionHeaderElementKind = "section-header-element-kind"
   private let profileImageView = UIImageView().then {
     $0.image = Image.appIcon
     $0.layer.cornerRadius = 75/2
@@ -38,6 +38,12 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     ]
     attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
     $0.attributedText = attributeString
+  }
+  var disposeBag = DisposeBag()
+  fileprivate var data: User? {
+    didSet {
+      usernameLabel.text = data?.user?.nickname
+    }
   }
 
   override init(frame: CGRect) {
@@ -74,6 +80,14 @@ final class MyLibraryHeaderView: UICollectionReusableView {
         $0.top.equalTo(self.usernameLabel.snp.bottom).offset(10)
         $0.centerX.equalToSuperview()
       }
+    }
+  }
+}
+
+extension Reactive where Base: MyLibraryHeaderView {
+  var profileBinder: Binder<User> {
+    return Binder(base) { base, data in
+      base.data = data
     }
   }
 }

@@ -11,18 +11,19 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryViewController: BaseViewController {
-  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(cell: LibraryTitleCell.self)
-    collectionView.register(cell: MyLibraryCell.self)
-    collectionView.register(cell: LibraryDiaryCell.self)
+    collectionView.register(MyLibraryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
+    collectionView.register(cell: LibraryTitleCell.self, forCellWithReuseIdentifier: LibraryTitleCell.reuseIdentifier)
+    collectionView.register(cell: MyLibraryCell.self, forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier)
+    collectionView.register(cell: LibraryDiaryCell.self, forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier)
     return collectionView
   }()
   private let viewModel = MyLibraryViewModel()
+  private var user: User?
   private var data: [Library] = [] {
     didSet {
       collectionView.reloadData()
@@ -34,6 +35,7 @@ final class MyLibraryViewController: BaseViewController {
     bind()
   }
   private func render() {
+
     view.add(collectionView) { view in
       view.snp.makeConstraints {
         $0.edges.equalToSuperview()
@@ -49,6 +51,12 @@ final class MyLibraryViewController: BaseViewController {
       .drive(onNext: { [weak self] data in
         guard let self = self else { return }
         self.data = data
+      })
+      .disposed(by: disposeBag)
+    output.user
+      .drive (onNext: { [weak self] user in
+        guard let self = self else { return }
+        self.user = user
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
@@ -108,7 +116,8 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if let headerView = collectionView.dequeueReusableSupplementaryView(
         ofKind: UICollectionView.elementKindSectionHeader,
-        withReuseIdentifier: MyLibraryHeaderView.registerId, for: indexPath) as? MyLibraryHeaderView {
+        withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {
+      headerView.rx.profileBinder.onNext(user!)
       return headerView
     }
     return UICollectionReusableView()
