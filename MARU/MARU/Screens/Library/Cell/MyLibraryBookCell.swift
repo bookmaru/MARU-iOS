@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryBookCell: UICollectionViewCell {
-  
   fileprivate let imageView = UIImageView()
 
   override init(frame: CGRect) {

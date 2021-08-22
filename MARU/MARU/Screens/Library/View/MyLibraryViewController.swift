@@ -86,10 +86,9 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       return cell
 
     case let .meeting(data):
-
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.binder.onNext(data.keepGroup[indexPath.item])
-
+      
       return cell
       
     case let .book(data):

@@ -24,7 +24,6 @@ class CreateQuizViewController: BaseViewController {
   private var footerLabel = UILabel().then {
     $0.text = "퀴즈 작성"
   }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
   }
