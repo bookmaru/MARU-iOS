@@ -22,57 +22,12 @@ final class ChatViewController: BaseViewController {
     collectionView.register(cell: OtherChatCell.self)
     collectionView.register(cell: OtherProfileChatCell.self)
     collectionView.backgroundColor = .bgLightgray
+    collectionView.contentInset.top = 10
+    collectionView.contentInset.bottom = 10
     return collectionView
   }()
 
-  private var data: [Chat] = [
-    .message(data: .init(profileImage: nil, name: nil, message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
-    .otherMessage(data: .init(profileImage: nil, name: nil, message: "1234561231521")),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    )),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "344545너무 오래 갈때 56"
-    )),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "2234")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    )),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "123123")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    )),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    )),
-    .message(data: .init(profileImage: nil, name: nil, message: "123")),
-    .otherProfile(data: .init(profileImage: nil, name: nil, message: "1231111321231543213215421")),
-    .otherMessage(data: .init(
-      profileImage: nil,
-      name: nil,
-      message: "123456123152136546312654651너무 오래 갈때 여어어어어엉어어엉어어"
-    ))
-  ] {
+  private var data: [Chat] = [] {
     didSet { collectionView.reloadData() }
   }
 
@@ -176,41 +131,49 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
         return calculateOtherMessage(prevMessage: prevSection)
       case .otherProfile:
         return calculateOtherProfile(prevMessage: prevSection)
+      case .error:
+        return .zero
       }
     }
-    return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
 
   private func calculateMessage(prevMessage: Chat) -> UIEdgeInsets {
     switch prevMessage {
     case .message:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherMessage:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
     case .otherProfile:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
     }
   }
 
   private func calculateOtherMessage(prevMessage: Chat) -> UIEdgeInsets {
     switch prevMessage {
     case .message:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherMessage:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherProfile:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
     }
   }
 
   private func calculateOtherProfile(prevMessage: Chat) -> UIEdgeInsets {
     switch prevMessage {
     case .message:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherMessage:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherProfile:
-      return UIEdgeInsets(top: 0, left: 0, bottom: 9, right: 0)
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
     }
   }
 }
@@ -248,6 +211,8 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.dataBinder.onNext(data)
 
       return cell
+    case .error:
+      return UICollectionViewCell()
     }
   }
 }

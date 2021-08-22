@@ -15,6 +15,7 @@ struct UserDefaultHandler {
   private let user = UserDefaults.standard
 
   private let isInitialUserKey = "isInitialUser"
+  private let userNameKey = "userName"
 
   var isInitalUserKey: Bool {
     get {
@@ -22,6 +23,15 @@ struct UserDefaultHandler {
     }
     set {
       return user.setValue(newValue, forKey: isInitialUserKey)
+    }
+  }
+
+  var userName: String? {
+    get {
+      return user.string(forKey: userNameKey)
+    }
+    set {
+      return user.setValue(newValue, forKey: userNameKey)
     }
   }
 }
