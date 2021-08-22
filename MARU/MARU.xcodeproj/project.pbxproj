@@ -125,7 +125,9 @@
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
-		F28E550826C8EFB900F083BD /* BookCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCase.swift */; };
+		F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCaseModel.swift */; };
+		F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */; };
+		F29FF4F026D26CFD00336AD5 /* MyLibraryBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */; };
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
@@ -277,7 +279,9 @@
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
-		F28E550726C8EFB900F083BD /* BookCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCase.swift; sourceTree = "<group>"; };
+		F28E550726C8EFB900F083BD /* BookCaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCaseModel.swift; sourceTree = "<group>"; };
+		F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookCaseCell.swift; sourceTree = "<group>"; };
+		F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryBookCell.swift; sourceTree = "<group>"; };
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -759,7 +763,7 @@
 				77B718ED26470CBC0005B129 /* BookModel.swift */,
 				773E22DE26A01E4E002B9F52 /* MeetingModel.swift */,
 				779319C226A40519005F359E /* RecentSearchKeyword.swift */,
-				F28E550726C8EFB900F083BD /* BookCase.swift */,
+				F28E550726C8EFB900F083BD /* BookCaseModel.swift */,
 				F223E3C726C8F8320039919A /* UserInformation.swift */,
 				F223E3C926C97A180039919A /* DiaryModel.swift */,
 			);
@@ -796,6 +800,8 @@
 				C5ACA4BE26B664FB0089C50C /* MeetingCell.swift */,
 				C5ACA4C026B673640089C50C /* LibraryTitleCell.swift */,
 				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
+				F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */,
+				F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -917,15 +923,6 @@
 				C55B6FDF26A80CF5009ACE85 /* GradientView.swift */,
 			);
 			path = CutsomUtil;
-			sourceTree = "<group>";
-		};
-		F2249F1826C0FF7C00F2C91F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
-				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		F22AB7C626CA82ED006CD9C0 /* Cell */ = {
@@ -1231,7 +1228,7 @@
 				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */,
-				F28E550826C8EFB900F083BD /* BookCase.swift in Sources */,
+				F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
 				776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */,
 				F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */,
@@ -1277,6 +1274,7 @@
 				C5B9B99E26B68BAD00D07974 /* DiaryService.swift in Sources */,
 				776320482646B60E00293D1C /* MainViewModel.swift in Sources */,
 				C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */,
+				F29FF4F026D26CFD00336AD5 /* MyLibraryBookCell.swift in Sources */,
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				774262F126899C95008F9CAE /* LibraryModel.swift in Sources */,
 				7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */,
@@ -1324,6 +1322,7 @@
 				C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */,
 				C5A3DB142684E43E007355D1 /* Auth.swift in Sources */,
 				C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */,
+				F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */,
 				C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */,
 				776E525726B1206A00D2C5FA /* ResultSearchViewModel.swift in Sources */,
 				C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */,

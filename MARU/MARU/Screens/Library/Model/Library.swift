@@ -9,14 +9,17 @@ import UIKit
 
 enum Library {
   case title(title: String, isHidden: Bool)
-  case meeting([String])
+  case meeting(meeting: KeepGroupModel)
+  case book(book: BookCaseModel)
   case diary(diary: Diaries)
   var count: Int {
     switch self {
     case .title:
       return 1
     case .meeting(let data):
-      return data.count
+      return data.keepGroup.count
+    case .book(let data):
+      return data.bookcase.count
     case .diary(let data):
       return data.diaries.count
     }
@@ -26,6 +29,8 @@ enum Library {
     case .title:
       return CGSize(width: ScreenSize.width, height: 60)
     case .meeting:
+      return CGSize(width: ScreenSize.width, height: 134)
+    case .book:
       return CGSize(width: ScreenSize.width, height: 134)
     case .diary:
       return CGSize(width: ScreenSize.width - 40, height: 204)

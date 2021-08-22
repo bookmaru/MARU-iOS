@@ -1,29 +1,29 @@
 //
-//  MyLibraryCell.swift
+//  MyBookCaseCell.swift
 //  MARU
 //
-//  Created by 오준현 on 2021/08/01.
+//  Created by 이윤진 on 2021/08/22.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class MyLibraryCell: UICollectionViewCell {
-
+final class MyBookCaseCell: UICollectionViewCell {
+  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.register(cell: MeetingCell.self)
+    
     return collectionView
   }()
-
-  fileprivate var groupData: KeepGroup? {
+  
+  fileprivate var bookData: BookCase? {
     didSet {
       collectionView.reloadData()
     }
   }
-
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -43,31 +43,29 @@ final class MyLibraryCell: UICollectionViewCell {
     collectionView.dataSource = self
   }
 }
-
-extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
+extension MyBookCaseCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: 30, height: 70)
   }
 }
-extension MyLibraryCell: UICollectionViewDataSource {
+extension MyBookCaseCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
     return 4
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell: MeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.rx.binder.onNext(groupData?.image ?? "")
+    let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.rx.binder.onNext(bookData?.imageUrl ?? "")
     return cell
   }
 }
-
-extension Reactive where Base: MyLibraryCell {
-  var binder: Binder<KeepGroup> {
+extension Reactive where Base: MyBookCaseCell {
+  var binder: Binder<BookCase> {
     return Binder(base) { base, data in
-      base.groupData = data
+      base.bookData = data
     }
   }
 }

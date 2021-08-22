@@ -31,11 +31,12 @@ final class MyLibraryViewModel {
         return response.data
       }
       .asDriver(onErrorJustReturn: nil)
-    // 책 리스트
+
+    // 모임하고 싶은 책 리스트
     let bookList = viewDidLoad
       .flatMap {
         NetworkService.shared.book.bookList() }
-      .map { response -> [String]? in
+      .map { response -> BookCaseModel? in
         return response.data
       }
     // 일기 리스트
@@ -47,20 +48,20 @@ final class MyLibraryViewModel {
     // 모임 리스트
     let bookGroup = viewDidLoad
       .flatMap { NetworkService.shared.book.getGroup() }
-      .map { response -> [String]? in
+      .map { response -> KeepGroupModel? in
         return response.data
       }
 
     let data = Observable.combineLatest(bookList, diaryList, bookGroup)
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
-        library.append(.title(title: "모임하고 싶은 책", isHidden: true))
-        library.append(.meeting(bookList ?? []))
-        // 강제 옵셔널은 임시로 걸어놨어요 고칠 예정입니다.
         library.append(.title(title: "담아둔 모임", isHidden: true))
-        library.append(.meeting(bookGroup ?? []))
+        library.append(.meeting(meeting: bookGroup!))
+        library.append(.title(title: "모임하고 싶은 책", isHidden: true))
+        library.append(.book(book: bookList!))
         library.append(.title(title: "내 일기장", isHidden: false))
         library.append(.diary(diary: diary!))
+        // 강제 옵셔널 처리 어떻게 해제할지 고민해야함.
         return library
       }
       .asDriver(onErrorJustReturn: [])

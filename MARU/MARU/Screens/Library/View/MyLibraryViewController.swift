@@ -17,9 +17,7 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(MyLibraryHeaderView.self, forSupplementaryViewOfKind:
-                              MyLibraryHeaderView.sectionHeaderElementKind,
-                            withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
+    
     collectionView.register(cell: LibraryTitleCell.self)
     collectionView.register(cell: MyLibraryCell.self)
     collectionView.register(cell: LibraryDiaryCell.self)
@@ -89,10 +87,14 @@ extension MyLibraryViewController: UICollectionViewDataSource {
 
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
 
-      cell.rx.binder.onNext(data)
+      cell.rx.binder.onNext(data.keepGroup[indexPath.item])
 
       return cell
-
+    case let .book(data):
+      let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      
+      return cell
     case let .diary(data):
 
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
