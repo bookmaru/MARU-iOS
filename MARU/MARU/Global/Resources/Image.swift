@@ -48,4 +48,6 @@ enum Image {
   static let rightArrow = UIImage(named: "rightArrow")
   static let group874 = UIImage(named: "group874")
   static let group1038 = UIImage(named: "group1038")
+  static let vector21 = UIImage(named: "vector21")
+  static let autoStories = UIImage(named: "autoStories")
 }

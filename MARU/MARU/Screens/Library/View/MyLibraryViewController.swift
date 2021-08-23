@@ -16,7 +16,9 @@ final class MyLibraryViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(MyLibraryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
+    collectionView.register(MyLibraryHeaderView.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
     collectionView.register(cell: LibraryTitleCell.self, forCellWithReuseIdentifier: LibraryTitleCell.reuseIdentifier)
     collectionView.register(cell: MyLibraryCell.self, forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier)
     collectionView.register(cell: LibraryDiaryCell.self, forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier)
@@ -54,7 +56,7 @@ final class MyLibraryViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
     output.user
-      .drive (onNext: { [weak self] user in
+      .drive(onNext: { [weak self] user in
         guard let self = self else { return }
         self.user = user
       })
@@ -85,14 +87,23 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
       return cell
-    case let .meeting(data):
+    // MARK: - 담아둔 모임
+    case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.rx.binder.onNext(data.keepGroup[indexPath.item])
+      cell.awakeFromNib()
+      cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
+      if keepGroupModel.keepGroup.count == 0 {
+        cell.noResultImageView.isHidden = false
+      } else {
+        cell.noResultImageView.isHidden = true
+      }
       return cell
+    // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.binder.onNext(data.bookcase[indexPath.item])
       return cell
+    // MARK: - 내 일기장
     case let .diary(data):
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.didTapContentView
@@ -100,6 +111,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
           // 일기 선택 후 -> 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
+      print("3트\(data.diaries[indexPath.item])")
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
       return cell
     }
@@ -113,7 +125,8 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     return data[indexPath.section].size
   }
   func collectionView(_ collectionView: UICollectionView,
-                      viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
     if let headerView = collectionView.dequeueReusableSupplementaryView(
         ofKind: UICollectionView.elementKindSectionHeader,
         withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {

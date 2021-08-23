@@ -11,16 +11,18 @@ import RxSwift
 
 final class MyLibraryBookCell: UICollectionViewCell {
   fileprivate let imageView = UIImageView()
-
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
   }
-
+  var disposeBag = DisposeBag()
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    disposeBag = DisposeBag()
+  }
   private func render() {
     contentView.add(imageView) { view in
       view.snp.makeConstraints {
