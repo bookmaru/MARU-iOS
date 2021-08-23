@@ -55,7 +55,7 @@ extension MyBookCaseCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.rx.binder.onNext(bookData?.imageUrl ?? "")
+    cell.rx.binder.onNext(bookData?.imageURL ?? "")
     return cell
   }
 }

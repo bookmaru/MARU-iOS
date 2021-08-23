@@ -10,11 +10,11 @@ struct BookCaseModel: Codable {
 }
 
 struct BookCase: Codable {
-  let bookcaseId: Int
+  let bookcaseID: Int
   let isbn: String
   let title: String
   let author: String
-  let imageUrl: String
+  let imageURL: String
 }
 
 struct KeepGroupModel: Codable {
@@ -22,13 +22,13 @@ struct KeepGroupModel: Codable {
 }
 
 struct KeepGroup: Codable {
-  let groupId: Int
+  let groupID: Int
   let image: String
   let title: String
   let author: String
   let description: String
-  let userId: Int
+  let userID: Int
   let nickName: String
   let leaderScore: Int
-  let meLeader: Bool
+  let isLeader: Bool
 }
