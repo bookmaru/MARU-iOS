@@ -36,6 +36,7 @@
 		776E525B26B1255600D2C5FA /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776E525A26B1255600D2C5FA /* SearchService.swift */; };
 		776EE52E26C43B1000A50A3E /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776EE52D26C43B1000A50A3E /* UIButton+.swift */; };
 		776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776FB8C92687086300F024F1 /* RecentSearchViewController.swift */; };
+		77847E8226D353420054742F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77847E8126D353420054742F /* Category.swift */; };
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779319C226A40519005F359E /* RecentSearchKeyword.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
@@ -174,6 +175,7 @@
 		776E525A26B1255600D2C5FA /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchService.swift; path = MARU/Network/Router/SearchService.swift; sourceTree = SOURCE_ROOT; };
 		776EE52D26C43B1000A50A3E /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		776FB8C92687086300F024F1 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
+		77847E8126D353420054742F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		779319C226A40519005F359E /* RecentSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeyword.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
@@ -391,6 +393,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		77847E8026D353310054742F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				77847E8126D353420054742F /* Category.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		77B27BC22664C12C008E315C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +514,7 @@
 		C52E781C260F27110087570E /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				77847E8026D353310054742F /* Enum */,
 				7766ACEF26C8907400D98A0C /* Error */,
 				E22306FC262AD92300B25CEA /* CutsomUtil */,
 				C5332AD2260F5158007D7797 /* Model */,
@@ -1210,6 +1221,7 @@
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				77B718EE26470CBC0005B129 /* BookModel.swift in Sources */,
 				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
+				77847E8226D353420054742F /* Category.swift in Sources */,
 				77B718EE26470CBC0005B129 /* BookModel.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,

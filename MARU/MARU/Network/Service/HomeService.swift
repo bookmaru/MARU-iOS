@@ -38,7 +38,7 @@ final class HomeService: HomeServiceType {
   }
   func getNewCategory(category: String, currentGroupCount: Int) -> Observable<BaseReponseType<Groups>> {
     return router.rx
-      .request(.getNewCategory(category, currentGroupCount))
+      .request(.getNewCategory(category: category, currentGroupCount: currentGroupCount))
       .asObservable()
       .map(BaseReponseType<Groups>.self)
   }

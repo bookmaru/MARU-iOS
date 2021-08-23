@@ -12,56 +12,26 @@ import RxCocoa
 
 final class MoreNewViewController: BaseViewController {
 
-  enum Category {
-    case all
-    case art
-    case literal
-    case language
-    case philosophy
-    case socialScience
-    case pureScience
-    case technicalScience
-    case history
-    case religion
-    case etc
-
-    func simpleDescription() -> String {
-      switch self {
-      case .all: return "전체"
-      case .art: return "예술"
-      case .literal: return "문학"
-      case .language: return "어학"
-      case .philosophy: return "철학/심리학/윤리학"
-      case .socialScience: return "사회과학"
-      case .pureScience: return "순수과학"
-      case .technicalScience: return "기술과학"
-      case .history: return "역사/지리/관광"
-      case .religion: return "종교"
-      case .etc: return "그 외"
-      }
-    }
-  }
-
-  private var buttonScrollView: UIScrollView = UIScrollView()
-  private var allButton: UIButton = UIButton()
-  private var artButton: UIButton = UIButton()
-  private var literalButton: UIButton = UIButton()
-  private var languageButton: UIButton = UIButton()
-  private var philosophyButton: UIButton = UIButton()
-  private var socialScienceButton: UIButton = UIButton()
-  private var pureScienceButton: UIButton = UIButton()
-  private var technicalScienceButton: UIButton = UIButton()
-  private var historyButton: UIButton = UIButton()
-  private var religionButton: UIButton = UIButton()
-  private var etcButton: UIButton = UIButton()
-  private var activatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+  private let buttonScrollView: UIScrollView = UIScrollView()
+  private let allButton: UIButton = UIButton()
+  private let artButton: UIButton = UIButton()
+  private let literalButton: UIButton = UIButton()
+  private let languageButton: UIButton = UIButton()
+  private let philosophyButton: UIButton = UIButton()
+  private let socialScienceButton: UIButton = UIButton()
+  private let pureScienceButton: UIButton = UIButton()
+  private let technicalScienceButton: UIButton = UIButton()
+  private let historyButton: UIButton = UIButton()
+  private let religionButton: UIButton = UIButton()
+  private let etcButton: UIButton = UIButton()
+  private let activatorView: UIActivityIndicatorView = UIActivityIndicatorView()
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
   private var showFooter: Bool = false
   private let didScrollBottom = PublishSubject<(Bool, Int?)>()
   private var currentGroupCount: Int?
   private var meetingList: [MeetingModel] = []
-  private var viewModel = MoreNewViewModel()
+  private let viewModel = MoreNewViewModel()
   private lazy var allButtons: [UIButton] = [
     allButton,
     artButton,
@@ -156,38 +126,41 @@ final class MoreNewViewController: BaseViewController {
 
     output.load
       .drive { [weak self] in
-        self?.meetingList = $0
-        self?.currentGroupCount = $0.count
-        self?.collectionView.reloadData()
-        self?.activatorView.stopAnimating()
-        self?.collectionView.isHidden = false
+        guard let self = self else { return }
+        self.meetingList = $0
+        self.currentGroupCount = $0.count
+        self.collectionView.reloadData()
+        self.activatorView.stopAnimating()
+        self.collectionView.isHidden = false
       }
       .disposed(by: disposeBag)
 
     output.filter
       .drive(onNext: { [weak self]  in
-        self?.meetingList = $0
-        self?.currentGroupCount = $0.count
-        self?.collectionView.reloadData()
+        guard let self = self else { return }
+        self.meetingList = $0
+        self.currentGroupCount = $0.count
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
 
     output.fetchMore
       .drive(onNext: { [weak self] in
-        self?.showFooter = true
-        self?.stopUserInteraction()
-        self?.collectionView.collectionViewLayout.invalidateLayout()
-        self?.collectionView.scrollToSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+        guard let self = self else { return }
+        self.showFooter = true
+        self.stopUserInteraction()
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.scrollToSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
                                                        at: IndexPath(item: 0, section: 0),
                                                        at: .bottom,
                                                        animated: true)
-        self?.meetingList = $0
-        self?.currentGroupCount = $0.count
+        self.meetingList = $0
+        self.currentGroupCount = $0.count
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-          self?.showFooter = false
-          self?.collectionView.isUserInteractionEnabled = true
-          self?.collectionView.reloadData()
-          self?.startUserInteraction()
+          self.showFooter = false
+          self.collectionView.isUserInteractionEnabled = true
+          self.collectionView.reloadData()
+          self.startUserInteraction()
         }
       })
       .disposed(by: disposeBag)
@@ -237,7 +210,8 @@ extension MoreNewViewController {
       "기술과학",
       "역사/지질",
       "종교",
-      "기타"]
+      "기타"
+    ]
     allButtons
       .enumerated().forEach { index, button in
         button.backgroundColor = .white
@@ -399,8 +373,10 @@ extension MoreNewViewController: UICollectionViewDataSource {
     guard let footer = collectionView.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: IndicatorFooter.reuseIdentifier,
-            for: indexPath) as? IndicatorFooter else {
-      return UICollectionReusableView() }
+            for: indexPath
+    ) as? IndicatorFooter else {
+      return UICollectionReusableView()
+    }
 
     footer.indicatorView.startAnimating()
     return footer
@@ -436,8 +412,8 @@ extension MoreNewViewController: UICollectionViewDelegateFlowLayout {
 extension MoreNewViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell else { return }
-    let discussionGroupId = cell.getDiscussionGroupId()
+    let discussionGroupID = cell.getDiscussionGroupID()
     // MARK: 여기에서 모임 입장 뷰로 이동.
-    print(discussionGroupId)
+    print(discussionGroupID)
   }
 }

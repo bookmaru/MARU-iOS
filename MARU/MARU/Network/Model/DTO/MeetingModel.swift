@@ -8,7 +8,7 @@
 import Foundation
 
 struct MeetingModel: Hashable, Equatable {
-  let discussionGroupId: Int
+  let discussionGroupID: Int
   let description: String
   let createdAt: String
   let remainingDay: Int
@@ -19,7 +19,7 @@ struct MeetingModel: Hashable, Equatable {
   let category: String
 
   init(_ group: Group, _ category: String = "") {
-    self.discussionGroupId = group.discussionGroupId
+    self.discussionGroupID = group.discussionGroupId
     self.description = group.description
     self.createdAt = group.createdAt
     self.remainingDay = group.remainingDay
@@ -39,7 +39,7 @@ struct MeetingModel: Hashable, Equatable {
        author: String,
        nickname: String,
        category: String) {
-    self.discussionGroupId = discussionGroupId
+    self.discussionGroupID = discussionGroupId
     self.description = description
     self.author = author
     self.createdAt = createdAt
@@ -51,9 +51,9 @@ struct MeetingModel: Hashable, Equatable {
   }
 
   func hash(into hasher: inout Hasher) {
-    hasher.combine(discussionGroupId)
+    hasher.combine(discussionGroupID)
   }
   static func == (lhs: MeetingModel, rhs: MeetingModel) -> Bool {
-    lhs.discussionGroupId == rhs.discussionGroupId
+    lhs.discussionGroupID == rhs.discussionGroupID
   }
 }

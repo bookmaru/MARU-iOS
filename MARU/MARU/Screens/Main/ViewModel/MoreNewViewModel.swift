@@ -42,13 +42,14 @@ final class MoreNewViewModel: ViewModelType {
         }
         return response
       }
-      .map {$0.data?.groupsByCategory }
+      .map { $0.data?.groupsByCategory }
       .map { groupsByCategory -> [GroupsByCategory] in
         guard let groupsByCategory = groupsByCategory else { return [] }
         return groupsByCategory
       }
       .map { $0.map { groupsByCategory in
-        groupsByCategory.groups.map { MeetingModel($0, groupsByCategory.category) }}
+        groupsByCategory.groups.map { MeetingModel($0, groupsByCategory.category) }
+        }
       }
       .map { $0.flatMap { $0 }}
       .do(onNext: {

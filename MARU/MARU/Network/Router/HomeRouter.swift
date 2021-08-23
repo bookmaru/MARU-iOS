@@ -11,7 +11,7 @@ enum HomeRouter {
   case getPopular
   case getNew
   case getNewAllCategory
-  case getNewCategory(String, Int)
+  case getNewCategory(category: String, currentGroupCount: Int)
 }
 
 extension HomeRouter: TargetType {
