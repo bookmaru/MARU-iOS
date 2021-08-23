@@ -137,45 +137,6 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
     }
     return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
-
-  private func calculateMessage(prevMessage: Chat) -> UIEdgeInsets {
-    switch prevMessage {
-    case .message:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .otherMessage:
-      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
-    case .otherProfile:
-      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
-    }
-  }
-
-  private func calculateOtherMessage(prevMessage: Chat) -> UIEdgeInsets {
-    switch prevMessage {
-    case .message:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .otherMessage:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .otherProfile:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
-    }
-  }
-
-  private func calculateOtherProfile(prevMessage: Chat) -> UIEdgeInsets {
-    switch prevMessage {
-    case .message:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .otherMessage:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .otherProfile:
-      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
-    }
-  }
 }
 
 extension ChatViewController: UICollectionViewDataSource {
@@ -299,5 +260,46 @@ extension ChatViewController {
           let keyboardFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
     else { return nil }
     return keyboardFrame.height
+  }
+}
+// MARK: 채팅 레이아웃 셀 UIEdgeInset
+extension ChatViewController {
+  private func calculateMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
+    }
+  }
+
+  private func calculateOtherMessage(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
+    }
+  }
+
+  private func calculateOtherProfile(prevMessage: Chat) -> UIEdgeInsets {
+    switch prevMessage {
+    case .message:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .otherMessage:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .otherProfile:
+      return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+    case .error:
+      return .zero
+    }
   }
 }
