@@ -14,6 +14,7 @@ final class MyLibraryViewController: BaseViewController {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    //  layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.register(MyLibraryHeaderView.self,
@@ -111,7 +112,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
           // 일기 선택 후 -> 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
-      print("3트\(data.diaries[indexPath.item])")
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
       return cell
     }
@@ -124,6 +124,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return data[indexPath.section].size
   }
+  // MARK: - headerview section 처리해주기
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
@@ -134,5 +135,11 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
       return headerView
     }
     return UICollectionReusableView()
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
+    
+    return CGSize(width: ScreenSize.width, height: 187)
   }
 }

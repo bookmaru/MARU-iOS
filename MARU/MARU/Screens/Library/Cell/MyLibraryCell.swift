@@ -15,6 +15,7 @@ final class MyLibraryCell: UICollectionViewCell {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MeetingCell.self, forCellWithReuseIdentifier: MeetingCell.reuseIdentifier)
+    collectionView.backgroundColor = .white
     return collectionView
   }()
   let noResultImageView = UIImageView().then {

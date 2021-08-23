@@ -58,13 +58,16 @@ final class MyLibraryViewModel {
         library.append(.title(title: "담아둔 모임", isHidden: true))
         guard let bookGroup = bookGroup else { return [] }
         library.append(.meeting(meeting: bookGroup))
+        // 임시 데이터 넣은 코드, 지우지 말아주세요.
+        /*  library.append(.meeting(meeting: .init(keepGroup: [.init(groupID: 3,
+            image: UIImage(named: "image120"), title: "aaa", author: "aaa", description: "aaa",
+            userID: 3, nickName: "aaa", leaderScore: 2, isLeader: false)]))) */
         library.append(.title(title: "모임하고 싶은 책", isHidden: false))
         guard let bookList = bookList else { return [] }
         library.append(.book(book: bookList))
         library.append(.title(title: "내 일기장", isHidden: false))
         guard let diary = diary else { return [] }
         library.append(.diary(diary: diary))
-        // 강제 옵셔널 처리 어떻게 해제할지 고민해야함.
         return library
       }
       .asDriver(onErrorJustReturn: [])
