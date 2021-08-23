@@ -23,7 +23,7 @@ struct KeepGroupModel: Codable {
 
 struct KeepGroup: Codable {
   let groupID: Int
-  let image: String
+  let image: String?
   let title: String
   let author: String
   let description: String

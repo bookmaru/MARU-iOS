@@ -17,9 +17,13 @@ enum Library {
     case .title:
       return 1
     case .meeting(let data):
+      if data.keepGroup.count == 0 {
+        return 1
+      } else {
+        return data.keepGroup.count
+      }
       // 데이터 값 안 들어올 경우 return 1로 처리해서 데이터가 없는 상태를 업데이트 해주자
       // 현재 유저는 서재 관련한 아무 데이터를 받아오고 오지 않아서 0개임.(빈 배열) 따라서 collectionview에서 카운트가 안되니 아무것도 안보이는것.
-      return data.keepGroup.count
     case .book(let data):
       return data.bookcase.count
     case .diary(let data):

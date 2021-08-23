@@ -38,7 +38,6 @@ final class MyLibraryViewController: BaseViewController {
     bind()
   }
   private func render() {
-
     view.add(collectionView) { view in
       view.snp.makeConstraints {
         $0.edges.equalToSuperview()
@@ -68,12 +67,16 @@ final class MyLibraryViewController: BaseViewController {
 
 extension MyLibraryViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
+    print("total\(data)")
+    print("dataCount\(data.count)")
     return data.count
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    print("numbOfItemsInSection\(data[section].count)")
     return data[section].count
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    print("section\(indexPath.section)")
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -92,11 +95,12 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.awakeFromNib()
-      cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
-      if keepGroupModel.keepGroup.count == 0 {
+      print("졸려\(data[indexPath.section].count)")
+      if data[indexPath.section].count == 1 {
         cell.noResultImageView.isHidden = false
       } else {
         cell.noResultImageView.isHidden = true
+        cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
       }
       return cell
     // MARK: - 모임하고 싶은 책
@@ -124,7 +128,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return data[indexPath.section].size
   }
-  // MARK: - headerview section 처리해주기
+  // MARK: - headerview section 처리해주기. size 지정도 필수이다.
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
@@ -139,7 +143,10 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       referenceSizeForHeaderInSection section: Int) -> CGSize {
-    
-    return CGSize(width: ScreenSize.width, height: 187)
+    if section == 0 {
+      return CGSize(width: ScreenSize.width, height: 187)
+    } else {
+      return CGSize.zero
+    }
   }
 }
