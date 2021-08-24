@@ -92,6 +92,7 @@
 		C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568A67D268637FA00CEF5AD /* CertificationViewController.swift */; };
 		C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1426D4CDD000D930BA /* GroupRouter.swift */; };
 		C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1626D4CDDA00D930BA /* GroupService.swift */; };
+		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -252,6 +253,7 @@
 		C568A67D268637FA00CEF5AD /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		C56CBC1426D4CDD000D930BA /* GroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRouter.swift; sourceTree = "<group>"; };
 		C56CBC1626D4CDDA00D930BA /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -746,6 +748,14 @@
 			path = MARUTests;
 			sourceTree = "<group>";
 		};
+		C56CBC1826D4E1FE00D930BA /* DataType */ = {
+			isa = PBXGroup;
+			children = (
+				C56CBC1926D4E20500D930BA /* MeetCase.swift */,
+			);
+			path = DataType;
+			sourceTree = "<group>";
+		};
 		C58F6A522646E9C600D8AA7C /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,6 +919,7 @@
 		C5ED1D712618898900F670EC /* Meet */ = {
 			isa = PBXGroup;
 			children = (
+				C56CBC1826D4E1FE00D930BA /* DataType */,
 				C5E6E786261B33E300500370 /* ViewModel */,
 				C5ED1D742618899F00F670EC /* View */,
 			);
@@ -1342,6 +1353,7 @@
 				C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
+				C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */,
 				C5B9B99C26B68A6300D07974 /* DiaryRouter.swift in Sources */,
 				7766ACF126C8908D00D98A0C /* MaruError.swift in Sources */,
 				C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */,
