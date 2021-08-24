@@ -109,7 +109,6 @@ final class RecentSearchViewController: BaseViewController {
 
     output.keyword
       .drive { [self] in
-        print($0)
         searchBar.text = ""
         let resultSearchViewController = ResultSearchViewController()
         resultSearchViewController.transferKeyword(keyword: $0)

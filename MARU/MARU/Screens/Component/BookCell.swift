@@ -20,7 +20,7 @@ final class BookCell: UICollectionViewCell {
     $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
     $0.text = "이이이리리리"
   }
-  private var bookImage: UIImage! {
+  private var bookImage: UIImage? {
     didSet {
       bookImageView.image = bookImage
     }
@@ -36,9 +36,9 @@ final class BookCell: UICollectionViewCell {
   }
   override func prepareForReuse() {
     super.prepareForReuse()
-    bookTitleLabel.text = ""
-    bookAuthorLabel.text = ""
-    bookImage = UIImage()
+    bookTitleLabel.text = nil
+    bookAuthorLabel.text = nil
+    bookImage = nil
   }
 
   func bind(_ bookModel: BookModel) {
@@ -50,10 +50,8 @@ final class BookCell: UICollectionViewCell {
       if let url = url {
         let data = try Data(contentsOf: url)
         bookImage = UIImage(data: data)
-        print(bookModel.isbn, bookModel.imageUrl)
       }
-    } catch let error {
-      debugPrint("ERRor ::\(error)")
+    } catch _ {
       bookImage = Image.testImage
     }
   }

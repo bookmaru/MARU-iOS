@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct MeetingModel: Hashable {
-  let discussionGroupId: Int
+struct MeetingModel: Hashable, Equatable {
+  let discussionGroupID: Int
   let description: String
   let createdAt: String
   let remainingDay: Int
@@ -16,9 +16,10 @@ struct MeetingModel: Hashable {
   let image: String
   let author: String
   let nickname: String
+  let category: String
 
-  init(_ group: Group) {
-    self.discussionGroupId = group.discussionGroupId
+  init(_ group: Group, _ category: String = "") {
+    self.discussionGroupID = group.discussionGroupId
     self.description = group.description
     self.createdAt = group.createdAt
     self.remainingDay = group.remainingDay
@@ -26,6 +27,7 @@ struct MeetingModel: Hashable {
     self.image = group.image
     self.author = group.author
     self.nickname = group.nickname
+    self.category = category
   }
 
   init(discussionGroupId: Int,
@@ -35,8 +37,9 @@ struct MeetingModel: Hashable {
        title: String,
        image: String,
        author: String,
-       nickname: String) {
-    self.discussionGroupId = discussionGroupId
+       nickname: String,
+       category: String) {
+    self.discussionGroupID = discussionGroupId
     self.description = description
     self.author = author
     self.createdAt = createdAt
@@ -44,12 +47,13 @@ struct MeetingModel: Hashable {
     self.title = title
     self.image = image
     self.nickname = nickname
+    self.category = category
   }
 
   func hash(into hasher: inout Hasher) {
-    hasher.combine(discussionGroupId)
+    hasher.combine(discussionGroupID)
   }
   static func == (lhs: MeetingModel, rhs: MeetingModel) -> Bool {
-    lhs.discussionGroupId == rhs.discussionGroupId
+    lhs.discussionGroupID == rhs.discussionGroupID
   }
 }
