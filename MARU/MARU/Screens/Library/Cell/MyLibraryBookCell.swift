@@ -1,23 +1,21 @@
 //
-//  MeetingCell.swift
+//  MyLibraryBookCell.swift
 //  MARU
 //
-//  Created by 오준현 on 2021/08/01.
+//  Created by 이윤진 on 2021/08/22.
 //
 
 import UIKit
 import RxCocoa
 import RxSwift
 
-final class MeetingCell: UICollectionViewCell {
-
+final class MyLibraryBookCell: UICollectionViewCell {
   fileprivate let imageView = UIImageView()
-  var disposeBag = DisposeBag()
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
   }
-
+  var disposeBag = DisposeBag()
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -34,7 +32,7 @@ final class MeetingCell: UICollectionViewCell {
   }
 }
 
-extension Reactive where Base: MeetingCell {
+extension Reactive where Base: MyLibraryBookCell {
   var binder: Binder<String> {
     return Binder(base) { base, string in
       base.imageView.setImage(from: string, UIImage())

@@ -95,6 +95,11 @@ extension AuthRouter: TargetType {
         "Content-Type": "application/json",
         "RefreshToken": KeychainHandler.shared.refreshToken
       ]
+    case .user:
+      return [
+        "Content-Type": "application/json",
+        "accessToken": KeychainHandler.shared.accessToken
+      ]
     default:
       return [
         "Content-Type": "application/json"

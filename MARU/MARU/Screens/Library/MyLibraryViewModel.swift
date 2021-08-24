@@ -31,11 +31,12 @@ final class MyLibraryViewModel {
         return response.data
       }
       .asDriver(onErrorJustReturn: nil)
-    // 책 리스트
+
+    // 모임하고 싶은 책 리스트
     let bookList = viewDidLoad
       .flatMap {
         NetworkService.shared.book.bookList() }
-      .map { response -> [String]? in
+      .map { response -> BookCaseModel? in
         return response.data
       }
     // 일기 리스트
@@ -47,20 +48,26 @@ final class MyLibraryViewModel {
     // 모임 리스트
     let bookGroup = viewDidLoad
       .flatMap { NetworkService.shared.book.getGroup() }
-      .map { response -> [String]? in
+      .map { response -> KeepGroupModel? in
         return response.data
       }
 
     let data = Observable.combineLatest(bookList, diaryList, bookGroup)
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
-        library.append(.title(title: "모임하고 싶은 책", isHidden: true))
-        library.append(.meeting(bookList ?? []))
-        // 강제 옵셔널은 임시로 걸어놨어요 고칠 예정입니다.
         library.append(.title(title: "담아둔 모임", isHidden: true))
-        library.append(.meeting(bookGroup ?? []))
+        guard let bookGroup = bookGroup else { return [] }
+        library.append(.meeting(meeting: bookGroup))
+        // 임시 데이터 넣은 코드, 지우지 말아주세요.
+        /* library.append(.meeting(meeting: .init(keepGroup: [.init(groupID: 3,
+            image: "image120", title: "aaa", author: "aaa", description: "aaa",
+            userID: 3, nickName: "aaa", leaderScore: 2, isLeader: false)]))) */
+        library.append(.title(title: "모임하고 싶은 책", isHidden: false))
+        guard let bookList = bookList else { return [] }
+        library.append(.book(book: bookList))
         library.append(.title(title: "내 일기장", isHidden: false))
-        library.append(.diary(diary: diary!))
+        guard let diary = diary else { return [] }
+        library.append(.diary(diary: diary))
         return library
       }
       .asDriver(onErrorJustReturn: [])

@@ -17,9 +17,9 @@ struct Diary: Codable {
   let bookAuthor: String
   let bookImage: String
 }
-
+// MARK: - 일기 1개에 대한 자세한 정보 get
 struct DiaryInfo: Codable {
-  let diaryId: Int
+  let diaryID: Int
   let diaryTitle: String
   let content: String
   let createdAt: String

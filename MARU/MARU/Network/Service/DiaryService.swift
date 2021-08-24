@@ -14,7 +14,7 @@ protocol DiaryServiceType {
 }
 
 final class DiaryService: DiaryServiceType {
-  private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin()])
+  private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func getDiaryList() -> Observable<BaseReponseType<Diaries>> {
     router.rx

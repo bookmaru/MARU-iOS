@@ -12,13 +12,15 @@ import RxSwift
 import RxCocoa
 
 final class LibraryTitleCell: UICollectionViewCell {
-
+  private let sectionLabelView = UIView().then {
+    $0.backgroundColor = .black
+  }
   private let titleLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 17, weight: .bold)
   }
 
-  fileprivate let addButton = UIButton().then {
-    $0.setImage(Image.correct, for: .normal)
+  let addButton = UIButton().then {
+    $0.setImage(Image.group874, for: .normal)
     $0.isHidden = true
   }
   fileprivate var title: String? {
@@ -41,10 +43,18 @@ final class LibraryTitleCell: UICollectionViewCell {
     disposeBag = DisposeBag()
   }
   private func render() {
+    contentView.add(sectionLabelView) { sectionView in
+      sectionView.snp.makeConstraints {
+        $0.width.equalTo(20)
+        $0.height.equalTo(3)
+        $0.top.equalToSuperview().offset(25)
+        $0.leading.equalToSuperview().offset(15)
+      }
+    }
     contentView.add(titleLabel) { label in
       label.snp.makeConstraints {
-        $0.leading.equalToSuperview().offset(20)
-        $0.top.equalToSuperview().offset(20)
+        $0.leading.equalToSuperview().offset(30)
+        $0.top.equalTo(self.sectionLabelView.snp.bottom).offset(9)
       }
     }
     contentView.add(addButton) { button in
