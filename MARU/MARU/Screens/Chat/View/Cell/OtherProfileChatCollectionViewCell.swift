@@ -36,7 +36,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
 
   fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
     didSet {
-      nameLabel.text = "안유댕"
+      nameLabel.text = data.name
       chatLabel.text = data.message
     }
   }

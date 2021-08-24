@@ -18,12 +18,13 @@ enum Chat {
   case message(data: ChatDTO)
   case otherProfile(data: ChatDTO)
   case otherMessage(data: ChatDTO)
+  case error
 
   var cellHeight: CGFloat {
     switch self {
     case .message(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 60, height: .zero),
+        with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
@@ -32,7 +33,7 @@ enum Chat {
 
     case .otherProfile(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 60, height: .zero),
+        with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
@@ -41,13 +42,15 @@ enum Chat {
 
     case .otherMessage(let data):
       return NSString(string: data.message ?? "").boundingRect(
-        with: CGSize(width: ScreenSize.width - 60, height: .zero),
+        with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
       )
       .height + 18
 
+    case .error:
+      return .zero
     }
   }
 }
@@ -58,6 +61,10 @@ final class ChatViewModel {
   private let roomIndex: Int
   private let recivePublisher = PublishSubject<ChatDAO>()
   private let messagePublisher: Observable<String>
+
+  private var prevChatSender: String?
+  private let userName = UserDefaultHandler.shared.userName
+
   let disposeBag = DisposeBag()
 
   struct Input {
@@ -84,14 +91,21 @@ final class ChatViewModel {
 
   func transform(input: Input) -> Output {
     let chat = recivePublisher
-      .map { chat -> Chat in
-        if chat.sender == "마루" {
-          return .message(data: ChatDTO(profileImage: nil, name: chat.sender, message: chat.content))
-        }
-        return .otherMessage(data: ChatDTO(profileImage: nil, name: chat.sender, message: chat.content))
-      }
-      .asDriver(onErrorJustReturn: .message(data: .init(profileImage: nil, name: nil, message: nil)))
+      .flatMap { self.chatModelGenerator(chat: $0) }
+      .asDriver(onErrorJustReturn: .error)
 
     return Output(chat: chat)
+  }
+
+  private func chatModelGenerator(chat: ChatDAO) -> Observable<Chat> {
+    let generatedChat = ChatDTO(profileImage: nil, name: chat.sender, message: chat.content)
+    if chat.sender == userName {
+      return .just(.message(data: generatedChat))
+    }
+    if prevChatSender == chat.sender {
+      return .just(.otherMessage(data: generatedChat))
+    }
+    prevChatSender = chat.sender
+    return .just(.otherProfile(data: generatedChat))
   }
 }

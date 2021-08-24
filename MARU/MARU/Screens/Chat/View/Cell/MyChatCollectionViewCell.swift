@@ -30,7 +30,7 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
   fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
     didSet {
       chatLabel.text = data.message
-      chatLabel.sizeToFit()
+//      chatLabel.sizeToFit()
     }
   }
 
