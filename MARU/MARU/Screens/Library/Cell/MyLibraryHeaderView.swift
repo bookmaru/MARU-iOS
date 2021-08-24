@@ -16,11 +16,11 @@ final class MyLibraryHeaderView: UICollectionReusableView {
   static let registerId = "headerView"
   private let profileImageView = UIImageView().then {
     $0.image = Image.appIcon
-    $0.layer.cornerRadius = 75/2
+    $0.layer.cornerRadius = 38
   }
 
   private let changeProfileButton = UIButton().then {
-    $0.setImage(Image.correct, for: .normal)
+    $0.setImage(Image.group1015, for: .normal)
     $0.layer.cornerRadius = 20/2
   }
 
@@ -39,11 +39,9 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
     $0.attributedText = attributeString
   }
-  
   private let changeSettingButton = UIButton().then {
-    $0.setImage(Image.correct, for: .normal)
+    $0.setImage(Image.group962, for: .normal)
   }
-  
   var disposeBag = DisposeBag()
   fileprivate var data: User? {
     didSet {
@@ -63,17 +61,24 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     disposeBag = DisposeBag()
   }
   private func render() {
+    add(changeSettingButton) { button in
+      button.snp.makeConstraints {
+        $0.top.equalToSuperview()
+        $0.trailing.equalToSuperview().offset(-10)
+        $0.size.equalTo(40)
+      }
+    }
     add(profileImageView) { view in
       view.snp.makeConstraints {
         $0.size.equalTo(75)
         $0.centerX.equalToSuperview()
-        $0.top.equalToSuperview()
+        $0.top.equalTo(self.changeSettingButton.snp.bottom).offset(0)
       }
     }
     add(changeProfileButton) { button in
       button.snp.makeConstraints {
         $0.size.equalTo(20)
-        $0.trailing.bottom.equalTo(self.profileImageView).inset(2)
+        $0.trailing.bottom.equalTo(self.profileImageView).inset(-5)
       }
     }
     add(usernameLabel) { label in

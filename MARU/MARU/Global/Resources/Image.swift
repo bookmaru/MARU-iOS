@@ -51,4 +51,6 @@ enum Image {
   static let vector21 = UIImage(named: "vector21")
   static let autoStories = UIImage(named: "autoStories")
   static let image120 = UIImage(named: "image120")
+  static let group962 = UIImage(named: "group962")
+  static let group1015 = UIImage(named: "group1015")
 }
