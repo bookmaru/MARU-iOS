@@ -12,13 +12,13 @@ final class ChatService {
 
   private let roomIndex: Int
 
-  let baseURL = "ws://3.36.251.65:8081/ws/websocket"
-  let socket = StompClientLib()
-  let topic: String
-  let destination: String
-  let message: Observable<String>
-  let receive: PublishSubject<ChatDAO>
-  let disposeBag = DisposeBag()
+  private let baseURL = Enviroment.socketURL
+  private let socket = StompClientLib()
+  private let topic: String
+  private let destination: String
+  private let message: Observable<String>
+  private let receive: PublishSubject<ChatDAO>
+  private let disposeBag = DisposeBag()
 
   init(
     roomIndex: Int,
@@ -40,9 +40,8 @@ final class ChatService {
   }
 
   private func register() {
-    let url = URL(string: baseURL)!
     socket.openSocketWithURLRequest(
-      request: NSURLRequest(url: url),
+      request: NSURLRequest(url: baseURL),
       delegate: self as StompClientLibDelegate
     )
   }
