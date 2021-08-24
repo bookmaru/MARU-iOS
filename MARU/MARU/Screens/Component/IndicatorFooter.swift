@@ -8,7 +8,7 @@
 import UIKit
 
 final class IndicatorFooter: UICollectionReusableView {
-  var indicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+  let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 
   override init(frame: CGRect) {
     super.init(frame: frame)
