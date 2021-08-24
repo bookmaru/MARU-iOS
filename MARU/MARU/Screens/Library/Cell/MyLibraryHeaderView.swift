@@ -39,6 +39,11 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
     $0.attributedText = attributeString
   }
+  
+  private let changeSettingButton = UIButton().then {
+    $0.setImage(Image.correct, for: .normal)
+  }
+  
   var disposeBag = DisposeBag()
   fileprivate var data: User? {
     didSet {

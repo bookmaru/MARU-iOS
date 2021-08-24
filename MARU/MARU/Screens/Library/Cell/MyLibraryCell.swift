@@ -19,7 +19,8 @@ final class MyLibraryCell: UICollectionViewCell {
     return collectionView
   }()
   let noResultImageView = UIImageView().then {
-    $0.image = Image.appIcon
+    $0.backgroundColor = .none
+    $0.image = Image.vector21
     $0.isHidden = true
   }
   let bookImage = UIImageView().then {
@@ -57,7 +58,7 @@ final class MyLibraryCell: UICollectionViewCell {
     }
     collectionView.add(noResultImageView) { imageView in
       imageView.snp.makeConstraints {
-        $0.edges.equalTo(self.collectionView)
+        $0.edges.equalTo(self.contentView)
       }
     }
     noResultImageView.add(bookImage) { image in
@@ -94,7 +95,11 @@ extension MyLibraryCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: MeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.awakeFromNib()
-    cell.rx.binder.onNext(groupData?.image ?? "")
+    if groupData == nil {
+      return cell
+    } else {
+      cell.rx.binder.onNext(groupData?.image ?? "")
+    }
     return cell
   }
 }

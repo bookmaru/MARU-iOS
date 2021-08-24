@@ -37,6 +37,10 @@ final class MyLibraryViewController: BaseViewController {
     render()
     bind()
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: true)
+  }
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -96,7 +100,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.awakeFromNib()
       print("졸려\(data[indexPath.section].count)")
-      if data[indexPath.section].count == 1 {
+      if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false
       } else {
         cell.noResultImageView.isHidden = true
@@ -136,6 +140,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
         ofKind: UICollectionView.elementKindSectionHeader,
         withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {
       headerView.rx.profileBinder.onNext(user!)
+      // 강제 옵셔널 처리 해결방법 고민해야함
       return headerView
     }
     return UICollectionReusableView()
