@@ -5,28 +5,37 @@
 //  Created by 오준현 on 2021/04/05.
 //
 
-import ReactorKit
 import RxCocoa
 import RxSwift
 
-final class MeetViewModel: Reactor {
-  enum Action {
+final class MeetViewModel {
 
+  struct Input {
+    let viewDidLoadPublisher: PublishSubject<Void>
   }
 
-  enum Mutation {
-
+  struct Output {
+    let group: Driver<[MeetCase]>
   }
 
-  struct State {
+  let disposeBag = DisposeBag()
+  func transform(input: Input) -> Output {
+    let output = input.viewDidLoadPublisher
+      .flatMap { NetworkService.shared.group.participateList() }
+      .map { $0.data.map { $0.groups } }
+      .compactMap { $0 }
+      .map { groups -> [MeetCase] in
+        if groups.isEmpty {
+          return [.empty]
+        }
+        let meet = groups.map { MeetCase.meet($0) }
+        if meet.count < 3 {
+          return meet + [.empty]
+        }
+        return meet
+      }
+      .asDriver(onErrorJustReturn: [])
 
+    return Output(group: output)
   }
-
-  let initialState = State()
-
-//  func mutate(action: Action) -> Observable<Mutation> {
-//    switch action {
-//
-//    }
-//  }
 }

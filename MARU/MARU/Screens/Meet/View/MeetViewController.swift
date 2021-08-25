@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 final class MeetViewController: BaseViewController {
+  typealias ViewModel = MeetViewModel
 
   private let guideImageView = UIImageView().then {
     $0.image = UIImage(named: "bookImgBlack")
@@ -51,19 +52,21 @@ final class MeetViewController: BaseViewController {
     $0.numberOfPages = 3
   }
 
-  private let viewModel: MeetViewModel = {
-    let viewModel = MeetViewModel()
+  private let viewModel = MeetViewModel()
 
-    return viewModel
-  }()
-
-  private var data: Observable<[String]> = .just(["", "", ""])
+  private var data: [MeetCase] = [] {
+    didSet {
+      collectionView.reloadData()
+      pageControl.numberOfPages = data.count
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     layout()
-    bind(reactor: viewModel)
+    bind()
+    setupCollectionView()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +78,7 @@ final class MeetViewController: BaseViewController {
 }
 
 extension MeetViewController {
-  func layout() {
+  private func layout() {
     view.add(collectionView) {
       $0.rx.setDelegate(self)
         .disposed(by: self.disposeBag)
@@ -103,21 +106,24 @@ extension MeetViewController {
     }
   }
 
-  func bind(reactor: MeetViewModel) {
-    data.bind(to: collectionView.rx.items) { collectionView, item, model -> UICollectionViewCell in
-      let indexPath = IndexPath(item: item, section: 0)
-      let cell: EmptyMeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      print(model)
-      return cell
-    }.disposed(by: disposeBag)
+  private func bind() {
+    let viewDidLoad = PublishSubject<Void>()
+    let input = ViewModel.Input(viewDidLoadPublisher: viewDidLoad)
+    let output = viewModel.transform(input: input)
 
-    collectionView.rx
-      .itemSelected
-      .subscribe(onNext: { [weak self] _ in
+    output.group
+      .drive(onNext: { [weak self] response in
         guard let self = self else { return }
-        let viewController = ChatViewController(roomIndex: 1)
-        self.navigationController?.pushViewController(viewController, animated: true)
-      }).disposed(by: disposeBag)
+        self.data = response
+      })
+      .disposed(by: disposeBag)
+
+    viewDidLoad.onNext(())
+  }
+
+  private func setupCollectionView() {
+    collectionView.delegate = self
+    collectionView.dataSource = self
   }
 }
 
@@ -143,7 +149,40 @@ extension MeetViewController: UIScrollViewDelegate {
   }
 }
 
+extension MeetViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return data.count
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    switch data[indexPath.section] {
+
+    case .empty:
+      let cell: EmptyMeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+
+      return cell
+
+    case .meet(let group):
+      let cell: MeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+
+      cell.rx.dataBinder.onNext(group)
+
+      return cell
+    }
+  }
+}
+
 extension MeetViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    switch data[indexPath.section] {
+    case .empty:
+      let viewController = ChatViewController(roomIndex: 1)
+      navigationController?.pushViewController(viewController, animated: true)
+    case .meet(let group):
+      let viewController = ChatViewController(roomIndex: group.discussionGroupId)
+      navigationController?.pushViewController(viewController, animated: true)
+    }
+  }
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
