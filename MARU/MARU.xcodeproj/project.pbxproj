@@ -139,6 +139,9 @@
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
+		F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */; };
+		F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */; };
+		F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -301,6 +304,9 @@
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewController.swift; sourceTree = "<group>"; };
+		F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewModel.swift; sourceTree = "<group>"; };
+		F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingCell.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -857,6 +863,7 @@
 				F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */,
 				F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */,
 				F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */,
+				F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -934,6 +941,7 @@
 				C5ED1D732618899D00F670EC /* View */,
 				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
+				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -944,6 +952,7 @@
 				77B27BC22664C12C008E315C /* Cells */,
 				C5ED1D8026188A2900F670EC /* LibraryViewController.swift */,
 				774262ED26899825008F9CAE /* MeetingHeldViewController.swift */,
+				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1285,6 +1294,7 @@
 				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
 				F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */,
+				F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */,
 				F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
 				776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */,
@@ -1313,6 +1323,7 @@
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
+				F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
@@ -1347,6 +1358,7 @@
 				C5332AD7260F5197007D7797 /* Model.swift in Sources */,
 				C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */,
 				C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */,
+				F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */,
 				F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */,
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
