@@ -18,13 +18,12 @@ extension BookRouter: TargetType {
   }
   var path: String {
     switch self {
-    case .get:
+    case .get: // 담아둔 모임
       return "/api/v2/bookcase"
-    case .group:
-      return "/api/v2/diary"
+    case .group: // 모임하고 싶은 책
+      return "/api/v2/bookcase/group"
     }
   }
-
   var method: Method {
     switch self {
     case .get:
@@ -33,9 +32,7 @@ extension BookRouter: TargetType {
       return .get
     }
   }
-
   var sampleData: Data { Data() }
-
   var task: Task {
     switch self {
     case .get:
@@ -44,8 +41,10 @@ extension BookRouter: TargetType {
       return .requestPlain
     }
   }
-
   var headers: [String: String]? {
-    return ["Content-Type": "aplication/json"]
+    return [
+      "Content-Type": "aplication/json",
+      "accessToken": KeychainHandler.shared.accessToken
+    ]
   }
 }

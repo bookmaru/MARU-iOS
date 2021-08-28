@@ -18,6 +18,12 @@ final class InputView: UIView {
     $0.layer.cornerRadius = 10
   }
 
+  private let contentView = UIView().then {
+    $0.layer.cornerRadius = 37 / 2
+    $0.layer.borderColor = UIColor.ligthGray.cgColor
+    $0.layer.borderWidth = 1
+  }
+
   fileprivate let sendButton = UIButton().then {
     $0.setImage(Image.chatBtnSend, for: .normal)
     $0.layer.cornerRadius = 6
@@ -41,24 +47,30 @@ final class InputView: UIView {
         guard let self = self, let text = text else { return }
         let detectSpaceBar = text.split(separator: " ").count
         self.sendButton.isEnabled = !text.isEmpty && detectSpaceBar != 0
-      }).disposed(by: disposeBag)
+      })
+      .disposed(by: disposeBag)
   }
 }
 
 extension InputView {
   private func layout() {
-    backgroundColor = .veryLightPinkThree
-    add(sendButton) {
+    add(contentView) {
       $0.snp.makeConstraints {
-        $0.width.height.equalTo(self.snp.height).offset(-2)
-        $0.bottom.equalToSuperview().inset(2)
-        $0.trailing.equalTo(self).offset(-2)
+        let inset = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 20)
+        $0.edges.equalToSuperview().inset(inset)
       }
     }
-    add(textView) {
+    contentView.add(sendButton) {
+      $0.snp.makeConstraints {
+        $0.width.height.equalTo(self.contentView.snp.height).offset(-2)
+        $0.bottom.equalToSuperview().inset(2)
+        $0.trailing.equalTo(self.contentView).offset(-2)
+      }
+    }
+    contentView.add(textView) {
       $0.snp.makeConstraints {
         $0.top.equalToSuperview().inset(6)
-        $0.leading.equalToSuperview().inset(10)
+        $0.leading.equalToSuperview().inset(8)
         $0.trailing.equalTo(self.sendButton.snp.leading).inset(4)
         $0.bottom.equalToSuperview().inset(6)
       }
@@ -70,10 +82,11 @@ extension InputView: UITextViewDelegate {}
 
 extension Reactive where Base: InputView {
   var didTapSendButton: Observable<String> {
-    return base.sendButton.rx.tap.map {
-      guard let text = base.textView.text else { return "" }
-      base.textView.text = nil
-      return text
-    }.asObservable()
+    return base.sendButton.rx.tap
+      .map {
+        guard let text = base.textView.text else { return "" }
+        base.textView.text = nil
+        return text
+      }
   }
 }

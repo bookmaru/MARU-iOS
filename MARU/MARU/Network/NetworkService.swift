@@ -16,4 +16,5 @@ final class NetworkService {
   let diary = DiaryService()
   let book = BookService()
   let quiz = QuizService()
+  let group = GroupService()
 }

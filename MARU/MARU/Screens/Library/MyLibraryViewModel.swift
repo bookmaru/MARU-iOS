@@ -22,7 +22,7 @@ final class MyLibraryViewModel {
   func transform(input: Input) -> Output {
 
     let viewDidLoad = input.viewDidLoadPublisher.share()
-
+    // 프로필 정보에 해당하는 부분
     let user = viewDidLoad
       // map 사용하지 않는 이유 -> observable type으로 리턴되므로 이중으로 감싸진 형태
       // 따라서 flatmap 사용
@@ -32,33 +32,42 @@ final class MyLibraryViewModel {
       }
       .asDriver(onErrorJustReturn: nil)
 
+    // 모임하고 싶은 책 리스트
     let bookList = viewDidLoad
-      .flatMap { NetworkService.shared.book.bookList() }
-      .map { response -> [String]? in
+      .flatMap {
+        NetworkService.shared.book.bookList() }
+      .map { response -> BookCaseModel? in
         return response.data
       }
-
+    // 일기 리스트
     let diaryList = viewDidLoad
       .flatMap { NetworkService.shared.diary.getDiaryList() }
-      .map { response -> [String]? in
+      .map { response -> Diaries? in
         return response.data
       }
-
+    // 모임 리스트
     let bookGroup = viewDidLoad
       .flatMap { NetworkService.shared.book.getGroup() }
-      .map { response -> [String]? in
+      .map { response -> KeepGroupModel? in
         return response.data
       }
 
     let data = Observable.combineLatest(bookList, diaryList, bookGroup)
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
-        library.append(.title(title: "모임하고 싶은 책", isHidden: true))
-        library.append(.meeting(bookList ?? []))
         library.append(.title(title: "담아둔 모임", isHidden: true))
-        library.append(.meeting(bookGroup ?? []))
+        guard let bookGroup = bookGroup else { return [] }
+        library.append(.meeting(meeting: bookGroup))
+        // 임시 데이터 넣은 코드, 지우지 말아주세요.
+        /* library.append(.meeting(meeting: .init(keepGroup: [.init(groupID: 3,
+            image: "image120", title: "aaa", author: "aaa", description: "aaa",
+            userID: 3, nickName: "aaa", leaderScore: 2, isLeader: false)]))) */
+        library.append(.title(title: "모임하고 싶은 책", isHidden: false))
+        guard let bookList = bookList else { return [] }
+        library.append(.book(book: bookList))
         library.append(.title(title: "내 일기장", isHidden: false))
-        library.append(.diary(diary ?? []))
+        guard let diary = diary else { return [] }
+        library.append(.diary(diary: diary))
         return library
       }
       .asDriver(onErrorJustReturn: [])

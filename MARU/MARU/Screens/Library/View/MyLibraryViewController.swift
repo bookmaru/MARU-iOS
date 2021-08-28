@@ -11,30 +11,36 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryViewController: BaseViewController {
-
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    //  layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(cell: LibraryTitleCell.self)
-    collectionView.register(cell: MyLibraryCell.self)
-    collectionView.register(cell: LibraryDiaryCell.self)
+    collectionView.register(MyLibraryHeaderView.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
+    collectionView.register(cell: LibraryTitleCell.self, forCellWithReuseIdentifier: LibraryTitleCell.reuseIdentifier)
+    collectionView.register(cell: MyLibraryCell.self, forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier)
+    collectionView.register(cell: LibraryDiaryCell.self, forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier)
     return collectionView
   }()
   private let viewModel = MyLibraryViewModel()
+  private var user: User?
   private var data: [Library] = [] {
     didSet {
       collectionView.reloadData()
     }
   }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
   }
-
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: true)
+  }
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -44,7 +50,6 @@ final class MyLibraryViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
-
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let output = viewModel.transform(input: MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher))
@@ -54,55 +59,68 @@ final class MyLibraryViewController: BaseViewController {
         self.data = data
       })
       .disposed(by: disposeBag)
+    output.user
+      .drive(onNext: { [weak self] user in
+        guard let self = self else { return }
+        self.user = user
+      })
+      .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
   }
 }
 
 extension MyLibraryViewController: UICollectionViewDataSource {
-
   func numberOfSections(in collectionView: UICollectionView) -> Int {
+    print("total\(data)")
+    print("dataCount\(data.count)")
     return data.count
   }
-
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    print("numbOfItemsInSection\(data[section].count)")
     return data[section].count
   }
-
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    print("section\(indexPath.section)")
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+      if titleText == "모임하고 싶은 책" {
+        cell.addButton.setImage(Image.group1038, for: .normal)
+      }
       cell.rx.didTapAddButton
         .subscribe(onNext: {
-
+          // 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
-
       return cell
-
-    case let .meeting(data):
-
+    // MARK: - 담아둔 모임
+    case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
-      cell.rx.binder.onNext(data)
-
+      cell.awakeFromNib()
+      print("졸려\(data[indexPath.section].count)")
+      if keepGroupModel.keepGroup.count == 0 {
+        cell.noResultImageView.isHidden = false
+      } else {
+        cell.noResultImageView.isHidden = true
+        cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
+      }
       return cell
-
+    // MARK: - 모임하고 싶은 책
+    case let .book(data):
+      let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      return cell
+    // MARK: - 내 일기장
     case let .diary(data):
-
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
       cell.rx.didTapContentView
         .subscribe(onNext: {
-
+          // 일기 선택 후 -> 화면 전환 영역
         })
         .disposed(by: cell.disposeBag)
-
-      cell.rx.dataBinder.onNext(data[indexPath.item])
-
+      cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
       return cell
     }
   }
@@ -113,5 +131,27 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     return data[indexPath.section].size
+  }
+  // MARK: - headerview section 처리해주기. size 지정도 필수이다.
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+    if let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: UICollectionView.elementKindSectionHeader,
+        withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {
+      headerView.rx.profileBinder.onNext(user!)
+      // 강제 옵셔널 처리 해결방법 고민해야함
+      return headerView
+    }
+    return UICollectionReusableView()
+  }
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForHeaderInSection section: Int) -> CGSize {
+    if section == 0 {
+      return CGSize(width: ScreenSize.width, height: 187)
+    } else {
+      return CGSize.zero
+    }
   }
 }

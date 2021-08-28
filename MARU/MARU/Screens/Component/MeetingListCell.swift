@@ -68,8 +68,9 @@ final class MeetingListCell: UICollectionViewCell {
     $0.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
     $0.adjustsFontSizeToFitWidth = true
   }
+  private var discussionGroupID = Int.min
 
-  private var bookImage: UIImage! {
+  private var bookImage: UIImage? {
     didSet {
       bookImageView.image = bookImage
     }
@@ -87,12 +88,12 @@ final class MeetingListCell: UICollectionViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    bookMeetingExplainementLabel.text = ""
-    bookAuthorLabel.text = ""
-    bookTitleLabel.text = ""
-    bookMeetingChiefLabel.text = ""
-    remainPeriodLabel.text = ""
-    bookImage = UIImage()
+    bookMeetingExplainementLabel.text = nil
+    bookAuthorLabel.text = nil
+    bookTitleLabel.text = nil
+    bookMeetingChiefLabel.text = nil
+    remainPeriodLabel.text = nil
+    bookImage = nil
   }
 
   func bind(_ meetingModel: MeetingModel) {
@@ -101,6 +102,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookTitleLabel.text = meetingModel.title
     bookMeetingChiefLabel.text = meetingModel.nickname
     remainPeriodLabel.text = "\(meetingModel.remainingDay)" + "일 남음"
+    discussionGroupID = meetingModel.discussionGroupID
 
     let url = URL(string: meetingModel.image)
 
@@ -108,10 +110,8 @@ final class MeetingListCell: UICollectionViewCell {
       if let url = url {
         let data = try Data(contentsOf: url)
         bookImage = UIImage(data: data)
-        print(meetingModel.image)
       }
-    } catch let error {
-      debugPrint("ERRor ::\(error)")
+    } catch _ {
       bookImage = Image.testImage
     }
   }
@@ -197,6 +197,9 @@ final class MeetingListCell: UICollectionViewCell {
       make.height.equalTo(12)
       make.width.equalTo(200)
     }
+  }
+  func getDiscussionGroupID() -> String {
+    return discussionGroupID.string
   }
 
   private func applyShadow() {

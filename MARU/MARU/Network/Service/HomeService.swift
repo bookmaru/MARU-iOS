@@ -11,6 +11,8 @@ import RxSwift
 protocol HomeServiceType {
   func getPopular() -> Observable<BaseReponseType<Books>>
   func getNew() -> Observable<BaseReponseType<Groups>>
+  func getNewAllCategory() -> Observable<BaseReponseType<GroupsByCategories>>
+  func getNewCategory(category: String, currentGroupCount: Int)-> Observable<BaseReponseType<Groups>>
 }
 
 final class HomeService: HomeServiceType {
@@ -25,6 +27,18 @@ final class HomeService: HomeServiceType {
   func getNew() -> Observable<BaseReponseType<Groups>> {
     return router.rx
       .request(.getNew)
+      .asObservable()
+      .map(BaseReponseType<Groups>.self)
+  }
+  func getNewAllCategory() -> Observable<BaseReponseType<GroupsByCategories>> {
+    return router.rx
+      .request(.getNewAllCategory)
+      .asObservable()
+      .map(BaseReponseType<GroupsByCategories>.self)
+  }
+  func getNewCategory(category: String, currentGroupCount: Int) -> Observable<BaseReponseType<Groups>> {
+    return router.rx
+      .request(.getNewCategory(category: category, currentGroupCount: currentGroupCount))
       .asObservable()
       .map(BaseReponseType<Groups>.self)
   }

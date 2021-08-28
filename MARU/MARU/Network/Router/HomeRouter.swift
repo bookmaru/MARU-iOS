@@ -10,6 +10,8 @@ import Moya
 enum HomeRouter {
   case getPopular
   case getNew
+  case getNewAllCategory
+  case getNewCategory(category: String, currentGroupCount: Int)
 }
 
 extension HomeRouter: TargetType {
@@ -22,6 +24,10 @@ extension HomeRouter: TargetType {
       return "api/v2/book/group/most"
     case .getNew:
       return "api/v2/group/new"
+    case .getNewAllCategory:
+      return "api/v2/group/new/category"
+    case .getNewCategory(_, _):
+      return "api/v2/group/new/specific-category"
     }
   }
 
@@ -30,6 +36,10 @@ extension HomeRouter: TargetType {
     case .getPopular:
       return .get
     case .getNew:
+      return .get
+    case .getNewAllCategory:
+      return .get
+    case .getNewCategory:
       return .get
     }
   }
@@ -42,9 +52,18 @@ extension HomeRouter: TargetType {
       return .requestPlain
     case .getNew:
       return .requestPlain
+    case .getNewAllCategory:
+      return .requestPlain
+    case .getNewCategory(let category, let currentGroupCount):
+      return .requestParameters(
+        parameters: [
+          "category": category,
+          "currentGroupCount": currentGroupCount
+        ],
+        encoding: URLEncoding.queryString
+      )
     }
   }
-
   var headers: [String: String]? {
     return ["Content-Type": "aplication/json"]
   }

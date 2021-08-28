@@ -8,6 +8,8 @@
 import UIKit
 
 import Then
+import RxCocoa
+import RxSwift
 
 final class MeetCollectionViewCell: UICollectionViewCell {
 
@@ -86,6 +88,14 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.text = "1"
     $0.font = .boldSystemFont(ofSize: 10)
     $0.textColor = .white
+  }
+  fileprivate var data: Group? {
+    didSet {
+      posterImageView.setImage(from: data?.image ?? "", UIImage())
+      authorNameLabel.text = data?.author
+      nameLabel.text = data?.nickname
+      contentLabel.text = data?.description
+    }
   }
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -217,6 +227,14 @@ extension MeetCollectionViewCell {
       $0.leading.equalTo(nameLabel)
       $0.top.equalTo(nameLabel.snp.bottom).offset(8 / 421 * frame.height)
       $0.trailing.equalTo(chatCountContainerView.snp.leading).offset(-10)
+    }
+  }
+}
+
+extension Reactive where Base: MeetCollectionViewCell {
+  var dataBinder: Binder<Group> {
+    return Binder(base) { base, data in
+      base.data = data
     }
   }
 }
