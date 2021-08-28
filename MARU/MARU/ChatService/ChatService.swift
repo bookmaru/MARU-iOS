@@ -19,6 +19,7 @@ final class ChatService {
   private let message: Observable<String>
   private let receive: PublishSubject<ChatDAO>
   private let disposeBag = DisposeBag()
+  private let userName = UserDefaultHandler.shared.userName
 
   init(
     roomIndex: Int,
@@ -32,8 +33,9 @@ final class ChatService {
     destination = "/app/chat.sendMessage/\(roomIndex)"
     register()
 
-    message.subscribe(onNext: { message in
-      let chat = ["id": "1", "type": "CHAT", "content": message, "sender": "마루"]
+    message.subscribe(onNext: { [weak self] message in
+      guard let self = self else { return }
+      let chat = ["id": "1", "type": "CHAT", "content": message, "sender": self.userName]
       self.socket.sendJSONForDict(dict: chat as AnyObject, toDestination: self.destination)
     })
     .disposed(by: disposeBag)
