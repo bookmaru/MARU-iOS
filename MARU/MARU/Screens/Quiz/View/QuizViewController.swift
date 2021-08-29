@@ -81,8 +81,8 @@ final class QuizViewController: BaseViewController {
         Observable.just(groupID)
       )
     let buttonAction = Driver.merge(
-      Driver.combineLatest(correctButton.rx.isBtnSelected.asDriver(), Driver.just("O")),
-      Driver.combineLatest(incorrectButton.rx.isBtnSelected.asDriver(), Driver.just("X"))
+      Driver.combineLatest(correctButton.rx.isButtonSelected.asDriver(), Driver.just("O")),
+      Driver.combineLatest(incorrectButton.rx.isButtonSelected.asDriver(), Driver.just("X"))
     )
 
     let input = QuizViewModel.Input(
@@ -138,12 +138,10 @@ final class QuizViewController: BaseViewController {
         self.quizContentView.stopTimer()
 
         if $0 == true {
-          print("Success")
           resultViewController.result = .success
           self.present(resultViewController, animated: false, completion: nil)
         }
         if $0 == false {
-          print("Failure")
           resultViewController.result = .failure
           self.quizContentView.stopTimer()
           self.present(resultViewController, animated: false, completion: nil)
@@ -258,7 +256,7 @@ extension QuizViewController: Timeout {
   }
 }
 extension Reactive where Base: UIButton {
-  var isBtnSelected: ControlProperty<Bool> {
+  var isButtonSelected: ControlProperty<Bool> {
     return base.rx.controlProperty(
       editingEvents: [.touchUpInside],
       getter: { $0.isSelected },

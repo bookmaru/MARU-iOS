@@ -14,7 +14,7 @@ enum QuizRouter {
 
 extension QuizRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
   var path: String {
     switch self {
@@ -38,9 +38,9 @@ extension QuizRouter: TargetType {
 
   var task: Task {
     switch self {
-    case .getQuiz(_):
+    case .getQuiz:
       return .requestPlain
-    case .checkQuiz(_, _):
+    case .checkQuiz:
       return .requestPlain
     }
   }

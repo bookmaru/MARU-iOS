@@ -44,6 +44,7 @@
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
 		77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */; };
 		77B718EE26470CBC0005B129 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B718ED26470CBC0005B129 /* BookModel.swift */; };
+		77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD85F326DBC3FB00A0C585 /* KeyMapper.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
 		77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */; };
@@ -199,6 +200,7 @@
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
 		77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorFooter.swift; sourceTree = "<group>"; };
 		77B718ED26470CBC0005B129 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		77BD85F326DBC3FB00A0C585 /* KeyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyMapper.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
 		77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewModel.swift; sourceTree = "<group>"; };
@@ -344,8 +346,6 @@
 		771A6FF226D0075B00381DC3 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
-				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -459,14 +459,6 @@
 				77847E7E26D339920054742F /* QuizResultViewController.swift */,
 				F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */,
 				F22AB7C626CA82ED006CD9C0 /* Cell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		77E151022623291B007BEBBF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				77E1510326232938007BEBBF /* QuizContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -790,8 +782,6 @@
 		C59BCBBE26C81E7A00C84163 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
-				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -999,6 +989,7 @@
 				C5ED5ADB263E73C100BA7D47 /* InputView.swift */,
 				C5B16BA0268735E200F01C26 /* ScreenSize.swift */,
 				C55B6FDF26A80CF5009ACE85 /* GradientView.swift */,
+				77BD85F326DBC3FB00A0C585 /* KeyMapper.swift */,
 			);
 			path = CutsomUtil;
 			sourceTree = "<group>";
@@ -1314,6 +1305,7 @@
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
+				77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				77B718EE26470CBC0005B129 /* BookModel.swift in Sources */,

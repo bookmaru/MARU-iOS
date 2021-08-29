@@ -38,7 +38,7 @@ final class QuizViewModel: ViewModelType {
 
     let load = input.viewTrigger
       .flatMap { NetworkService.shared.quiz.getQuiz(groupID: $0.1) }
-      .map { $0.data?.quizs }
+      .map { $0.data?.quizzes }
       .map { quizModel -> [Quiz] in
         guard let quizModel = quizModel else { return [] }
         return quizModel
