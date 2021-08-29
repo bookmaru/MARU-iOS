@@ -472,6 +472,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		77EE58C126DB1D0900FCE9DC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
+				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		80C7264D95B9E12BBE16FC68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (

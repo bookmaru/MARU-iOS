@@ -29,7 +29,7 @@ final class ResultSearchViewModel: ViewModelType {
     let errorMessage = PublishSubject<Error>()
 
     let result = input.viewTrigger
-      .flatMap { NetworkService.shared.groupSearch.search(queryString: input.keyword ?? "") }
+      .flatMap { NetworkService.shared.search.search(queryString: input.keyword ?? "") }
       .map { response -> BaseReponseType<Groups> in
 
         guard 200 ..< 300 ~= response.status else {

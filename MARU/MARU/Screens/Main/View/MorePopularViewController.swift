@@ -38,7 +38,7 @@ class MorePopularViewController: BaseViewController {
       .map { _ in () }
 
     _ = viewTrigger
-      .flatMap { [self] in NetworkService.shared.groupSearch.search(queryString: navigationItem.title ?? "") }
+      .flatMap { [self] in NetworkService.shared.search.search(queryString: navigationItem.title ?? "") }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(domain: "Detect Error in Fetching Search meetings",

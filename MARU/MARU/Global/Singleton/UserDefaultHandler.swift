@@ -16,6 +16,7 @@ struct UserDefaultHandler {
 
   private let isInitialUserKey = "isInitialUser"
   private let userNameKey = "userName"
+  private let userImageURLKey = "userImageURL"
 
   var isInitalUserKey: Bool {
     get {
@@ -32,6 +33,14 @@ struct UserDefaultHandler {
     }
     set {
       return user.setValue(newValue, forKey: userNameKey)
+    }
+  }
+  var userImageURL: String? {
+    get {
+      return user.string(forKey: userImageURLKey)
+    }
+    set {
+      return user.setValue(newValue, forKey: userImageURLKey)
     }
   }
 }

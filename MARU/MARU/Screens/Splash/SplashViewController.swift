@@ -57,14 +57,14 @@ extension SplashViewController {
     }
     if KeychainHandler.shared.accessTokenExpiredAt != "Key is empty",
        !KeychainHandler.shared.accessTokenExpiredAt.date.isExpired {
-      var viewController: UIViewController = TabBarController()
+      var viewController: UIViewController = OnboardingViewController()
       NetworkService.shared.auth.refresh()
         .subscribe(onNext: { response in
           let token = response.data?.token
-          if let accessToken = token?.accessToken,
-             let accessTokenExpiredAt = token?.accessTokenExpiredAt,
-             let refreshToken = token?.refreshToken,
-             let refreshTokenExpiredAt = token?.refreshTokenExpiredAt,
+          if let accessToken = token?.tokenResponseDTO.accessToken,
+             let accessTokenExpiredAt = token?.tokenResponseDTO.accessTokenExpiredAt,
+             let refreshToken = token?.tokenResponseDTO.refreshToken,
+             let refreshTokenExpiredAt = token?.tokenResponseDTO.refreshTokenExpiredAt,
              accessToken != "" {
             KeychainHandler.shared.accessToken = accessToken
             KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
