@@ -10,73 +10,114 @@ import RxSwift
 import RxCocoa
 
 final class QuizViewModel: ViewModelType {
-  var quiz1 = Quiz(quizContent: "문제1",
-                   quizAnswer: "O")
 
-  var quiz2 = Quiz(quizContent: "문제2",
-                   quizAnswer: "X")
-
-  var quiz3 = Quiz(quizContent: "문제3",
-                   quizAnswer: "X")
-
-  var quiz4 = Quiz(quizContent: "문제4",
-                   quizAnswer: "X")
-
-  var quiz5 = Quiz(quizContent: "문제5",
-                   quizAnswer: "O")
-
-  lazy var quiz = QuizModel(quiz: [quiz1,
-                                   quiz2,
-                                   quiz3,
-                                   quiz4,
-                                   quiz5])
-  // 화면에서 발생하는 이벤트
   struct Input {
-    let didTapYesButton: Observable<Bool>
-    let didTapNoButton: Observable<Bool>
+    let viewTrigger: Observable<(Void, Int)>
+    let tapButton: Driver<(Bool, String)>
+    let timeout: Driver<Void>
   }
 
   struct Output {
-    let result: Driver<QuizModel>
+    let load: Driver<[String]>
+    let judge: Driver<Void>
+    let timeout: Driver<Void>
+    let contentAndIndex: Driver<(String, Int, Bool)>
+    let checkMarker: Driver<(Bool, Int)>
+    let isPass: Driver<Bool>
   }
 
   func transform(input: Input) -> Output {
-    let userAnswer = Observable.merge(input.didTapNoButton, input.didTapYesButton)
-      .map { answer -> Bool in
-        let userAnswer = answer ? true : false
-        return userAnswer
+    var content: [String] = []
+    var answers: [String] = []
+
+    let checkMarker = PublishSubject<(Bool, Int)>()
+    let contentAndIndex = BehaviorRelay<(String, Int, Bool)>(value: ("", 0, false))
+    var passVar = true
+    let isPass = PublishSubject<Bool>()
+    var results: [Bool] = []
+
+    let load = input.viewTrigger
+      .flatMap { NetworkService.shared.quiz.getQuiz(groupID: $0.1) }
+      .map { $0.data?.quizzes }
+      .map { quizModel -> [Quiz] in
+        guard let quizModel = quizModel else { return [] }
+        return quizModel
       }
+      .do(onNext: {
+        answers = $0.map { $0.answer }
+        content = $0.map { $0.content }
+      })
+      .do(onNext: { _ in
+        contentAndIndex.accept((content[0], 0, true))
+      })
+      .map { $0.map { $0.content } }
+      .asDriver(onErrorJustReturn: [])
 
-    let result = userAnswer.map { answer -> QuizModel in
-      return self.quiz(answer: answer)
-    }.asDriver(onErrorJustReturn: .init(quiz: []))
+    let judge = input.tapButton
+      .filter { $0.0 }
+      .do(onNext: { _, button in
+        results.append(answers[contentAndIndex.value.1] == button)
+      })
+      .do(onNext: { _ in
+        checkMarker.onNext((results.last ?? false, results.count - 1 ))
+      })
+      .do(onNext: { _ in
+        if results.count >= 3 {
+          if results.filter({ $0 == true }).count >= 3 {
+            isPass.onNext(true)
+            passVar = false
+          }
+          if results.filter({ $0 == false }).count >= 3 {
+            isPass.onNext(false)
+            passVar = false
+          }
+        }
+      })
+      .delay(RxTimeInterval.milliseconds(500))
+      .do(onNext: { _ in
+        guard results.count < 5 else { return }
+        contentAndIndex.accept(
+          (content[results.count], results.count, passVar)
+        )
+      })
+      .map { _ in }
+      .asDriver()
 
-    return Output(result: result)
-  }
-}
+    let timeout = input.timeout
+      .do(onNext: { _ in
+        results.append(false)
+      })
+      .do(onNext: { _ in
+        checkMarker.onNext((results.last ?? false, results.count - 1 ))
+      })
+      .do(onNext: { _ in
+        if results.count >= 3 {
+          if results.filter({ $0 == true }).count >= 3 {
+            isPass.onNext(true)
+            passVar = false
+          }
+          if results.filter({ $0 == false }).count >= 3 {
+            isPass.onNext(false)
+            passVar = false
+          }
+        }
+      })
+      .delay(RxTimeInterval.milliseconds(500))
+      .do(onNext: { _ in
+        guard results.count < 5 else { return }
+        contentAndIndex.accept(
+          (content[results.count], results.count, passVar)
+        )
+      })
+      .asDriver()
 
-extension QuizViewModel {
-  private func loadQuiz() -> QuizModel? {
-    let data = quiz as QuizModel
-    return data
-  }
-
-  private func quiz(answer: Bool) -> QuizModel {
-    if answer == false {
-      return quiz
-    }
-    return quiz
-  }
-
-  func checkAnswer(quizAnswer: String,
-                   users: String) -> Bool {
-    if quizAnswer == users {
-      return true
-    }
-    if quizAnswer == users {
-      return false
-    }
-
-    return false
+    return Output(
+      load: load,
+      judge: judge,
+      timeout: timeout,
+      contentAndIndex: contentAndIndex.asDriver(),
+      checkMarker: checkMarker.asDriver(onErrorJustReturn: (false, 0)),
+      isPass: isPass.asDriver(onErrorJustReturn: false)
+    )
   }
 }

@@ -10,53 +10,185 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class QuizViewController: UIViewController {
-  lazy var quizContentView = QuizContentView().then { _ in
-  }
-  lazy var contentBackgroudView = UIView().then { _ in
-  }
-  let correctButton = UIButton().then {
-    $0.setImage(UIImage(named: "correctWhite"), for: .normal)
-  }
-  let incorrectButton = UIButton().then {
-    $0.setImage(UIImage(named: "incorrectWhite"), for: .normal)
-    $0.backgroundColor = .blue
-  }
-  let quizFirstCheckImageView = UIImageView().then {
-    $0.image = UIImage(named: "gray")
-    $0.contentMode = .center
-  }
-  let quizSecondCheckImageView = UIImageView().then {
-    $0.image = UIImage(named: "gray")
-    $0.contentMode = .center
-  }
-  let quizThirdCheckImageView = UIImageView().then {
-    $0.image = UIImage(named: "gray")
-    $0.contentMode = .center
-  }
-  let quizFourthCheckImageView = UIImageView().then {
-    $0.image = UIImage(named: "gray")
-    $0.contentMode = .center
-  }
-  let quizFifthCheckImageView = UIImageView().then {
-    $0.image = UIImage(named: "gray")
-    $0.contentMode = .center
-  }
-  private let screenSize = UIScreen.main.bounds.size
-  let disposebag = DisposeBag()
+final class QuizViewController: BaseViewController {
+  private let quizContentView = QuizContentView()
+  private let contentBackgroudView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.applyShadow(color: UIColor.black,
+                     alpha: 0.16,
+                     shadowX: 0,
+                     shadowY: 0,
+                     blur: 6)
+    return view
+  }()
+  private let correctButton: UIButton = {
+    let button = UIButton()
+    button.setImage(Image.normalO, for: .normal)
+    button.setImage(Image.tapO, for: .selected)
+    button.setImage(Image.tapO, for: .highlighted)
+    button.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
+    button.tag = 0
+    return button
+  }()
+  private let incorrectButton: UIButton = {
+    let button = UIButton()
+    button.setImage(Image.normalX, for: .normal)
+    button.setImage(Image.tapX, for: .selected)
+    button.setImage(Image.tapX, for: .highlighted)
+    button.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
+    button.tag = 1
+    return button
+  }()
+  private let firstMarkImageView = UIImageView()
+  private let secondMarkImageView = UIImageView()
+  private let thirdMarkImageView = UIImageView()
+  private let fourthMarkImageView = UIImageView()
+  private let fifthMarkImageView = UIImageView()
+  lazy private var markImageViews: [UIImageView] = [
+    firstMarkImageView,
+    secondMarkImageView,
+    thirdMarkImageView,
+    fourthMarkImageView,
+    fifthMarkImageView
+  ]
+  // 임시 설정
+  // 연결 때 바꿔주면 됨
+  private var groupID: Int = 200
   private let viewModel = QuizViewModel()
-  private let didTapButton = PublishSubject<Void>()
+  private var quizsContent: [String] = []
+  private let timeoutTrigger = PublishSubject<Void>()
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
-    applyLayout()
+    view.backgroundColor = .quizBackgroundColor
+    quizContentView.timerView.delegate = self
+    configureImageView()
+    configureLayout()
     bind()
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: true)
+  }
+  private func bind() {
+    let viewWillAppear = Observable
+      .combineLatest(
+        rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+          .asObservable()
+          .map { _ in }
+          .asObservable(),
+        Observable.just(groupID)
+      )
+    let buttonAction = Driver.merge(
+      Driver.combineLatest(correctButton.rx.isButtonSelected.asDriver(), Driver.just("O")),
+      Driver.combineLatest(incorrectButton.rx.isButtonSelected.asDriver(), Driver.just("X"))
+    )
 
+    let input = QuizViewModel.Input(
+      viewTrigger: viewWillAppear,
+      tapButton: buttonAction,
+      timeout: timeoutTrigger.asDriver(onErrorJustReturn: ())
+    )
+
+    let output = viewModel.transform(input: input)
+    output.load
+      .drive()
+      .disposed(by: disposeBag)
+
+    output.judge
+      .drive { [weak self] _ in
+        guard let self = self else { return }
+        self.deselectAllButton()
+        self.isEnabledAllButton(isUserInteractionEnabled: true)
+      }
+      .disposed(by: disposeBag)
+
+    output.timeout
+      .drive()
+      .disposed(by: disposeBag)
+
+    output.contentAndIndex
+      .drive(onNext: { [weak self] content, index, isTrue in
+        guard let self = self else { return }
+        if isTrue == true {
+          self.setupContentView(
+            content: content,
+            index: index
+          )
+          self.quizContentView.startTimer(time: 30)
+        }
+      })
+      .disposed(by: disposeBag)
+
+    output.checkMarker
+      .drive(onNext: { [weak self] solve, index in
+        guard let self = self else { return }
+        self.setupMarkImageView(index: index, isCorrect: solve)
+      })
+      .disposed(by: disposeBag)
+
+    output.isPass
+      .drive(onNext: { [weak self] in
+        guard let self = self else { return }
+        let resultViewController = QuizResultViewController()
+        resultViewController.modalPresentationStyle = .fullScreen
+        resultViewController.backgroundImage = self.view.asImage()
+        resultViewController.groupID = self.groupID
+        self.quizContentView.stopTimer()
+
+        if $0 == true {
+          resultViewController.result = .success
+          self.present(resultViewController, animated: false, completion: nil)
+        }
+        if $0 == false {
+          resultViewController.result = .failure
+          self.quizContentView.stopTimer()
+          self.present(resultViewController, animated: false, completion: nil)
+        }
+      })
+      .disposed(by: disposeBag)
+  }
 }
 
 extension QuizViewController {
-  private func applyLayout() {
+  private func setupMarkImageView(index: Int, isCorrect: Bool) {
+    if isCorrect {
+      markImageViews[index].image = Image.correct
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+        self?.markImageViews[index].image = Image.checkgray
+      })
+    } else {
+      markImageViews[index].image = Image.wrongRed
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+        self?.markImageViews[index].image = Image.wrongGray
+      })
+    }
+  }
+  private func setupContentView(content: String, index: Int) {
+    quizContentView.placeQuizContentText(text: content)
+    quizContentView.placeQuizSequence(numberString: (index + 1).string)
+    quizContentView.placeQuizNumberLabelText(numberString: (index + 1).string)
+  }
+
+  @objc
+  private func tapButton(_ sender: UIButton) {
+    sender.isSelected = true
+    isEnabledAllButton(isUserInteractionEnabled: false)
+  }
+  private func isEnabledAllButton(isUserInteractionEnabled: Bool) {
+    view.subviews.forEach({ ($0 as? UIButton)?.isUserInteractionEnabled = isUserInteractionEnabled })
+  }
+  private func deselectAllButton() {
+    view.subviews.forEach({ ($0 as? UIButton)?.isSelected = false })
+  }
+  private func configureImageView() {
+    markImageViews.forEach { imageView in
+      imageView.image = Image.gray
+    }
+  }
+
+  private func configureLayout() {
     view.adds([
       contentBackgroudView,
       quizContentView,
@@ -64,67 +196,71 @@ extension QuizViewController {
       incorrectButton
     ])
     view.adds([
-      quizFirstCheckImageView,
-      quizSecondCheckImageView,
-      quizThirdCheckImageView,
-      quizFourthCheckImageView,
-      quizFifthCheckImageView
+      firstMarkImageView,
+      secondMarkImageView,
+      thirdMarkImageView,
+      fourthMarkImageView,
+      fifthMarkImageView
     ])
 
     correctButton.snp.makeConstraints { (make) in
-      make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
-      make.leading.equalTo(view.safeAreaLayoutGuide).inset(78)
+      make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90.calculatedHeight)
+      make.trailing.equalTo(view.snp.centerX).offset(-20)
       make.size.equalTo(CGSize(width: 90, height: 90))
     }
     incorrectButton.snp.makeConstraints { (make) in
-      make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90)
-      make.trailing.equalTo(view.safeAreaLayoutGuide).inset(78)
+      make.bottom.equalTo(view.safeAreaLayoutGuide).inset(90.calculatedHeight)
+      make.leading.equalTo(view.snp.centerX).offset(20)
       make.size.equalTo(CGSize(width: 90, height: 90))
     }
     contentBackgroudView.snp.makeConstraints { (make) in
-      make.size.equalTo(CGSize(width: screenSize.width * (0.824),
-                               height: screenSize.height * (0.345)))
-      make.trailing.equalTo(view.snp.trailing).inset(screenSize.width * 0.061)
-      make.bottom.equalTo(correctButton.snp.top).inset(-60)
+      make.size.equalTo(CGSize(width: 309.calculatedWidth, height: 280.calculatedHeight))
+      make.trailing.equalToSuperview().inset(23)
+      make.bottom.equalTo(correctButton.snp.top).inset(-60.calculatedHeight)
     }
     quizContentView.snp.makeConstraints { (make) in
       make.size.equalTo(contentBackgroudView)
       make.trailing.equalTo(contentBackgroudView.snp.trailing).inset(10)
       make.bottom.equalTo(contentBackgroudView.snp.bottom).inset(10)
     }
-    quizThirdCheckImageView.snp.makeConstraints { ( make ) in
+    thirdMarkImageView.snp.makeConstraints { (make) in
       make.centerX.equalTo(view.snp.centerX)
       make.bottom.equalTo(quizContentView.snp.top).inset(-15)
       make.size.equalTo(CGSize(width: 20, height: 20))
     }
-    quizSecondCheckImageView.snp.makeConstraints { (make) in
+    secondMarkImageView.snp.makeConstraints { (make) in
       make.size.equalTo(CGSize(width: 20, height: 20))
-      make.centerY.equalTo(quizThirdCheckImageView.snp.centerY)
-      make.trailing.equalTo(quizThirdCheckImageView.snp.leading).inset(-2)
+      make.centerY.equalTo(thirdMarkImageView.snp.centerY)
+      make.trailing.equalTo(thirdMarkImageView.snp.leading).inset(-2)
     }
-    quizFourthCheckImageView.snp.makeConstraints { (make) in
+    fourthMarkImageView.snp.makeConstraints { (make) in
       make.size.equalTo(CGSize(width: 20, height: 20))
-      make.centerY.equalTo(quizThirdCheckImageView.snp.centerY)
-      make.leading.equalTo(quizThirdCheckImageView.snp.trailing).inset(-2)
+      make.centerY.equalTo(thirdMarkImageView.snp.centerY)
+      make.leading.equalTo(thirdMarkImageView.snp.trailing).inset(-2)
     }
-    quizFirstCheckImageView.snp.makeConstraints { (make) in
+    firstMarkImageView.snp.makeConstraints { (make) in
       make.size.equalTo(CGSize(width: 20, height: 20))
-      make.centerY.equalTo(quizThirdCheckImageView.snp.centerY)
-      make.trailing.equalTo(quizSecondCheckImageView.snp.leading).inset(-2)
+      make.centerY.equalTo(thirdMarkImageView.snp.centerY)
+      make.trailing.equalTo(secondMarkImageView.snp.leading).inset(-2)
     }
-    quizFifthCheckImageView.snp.makeConstraints { (make) in
+    fifthMarkImageView.snp.makeConstraints { (make) in
       make.size.equalTo(CGSize(width: 20, height: 20))
-      make.centerY.equalTo(quizThirdCheckImageView.snp.centerY)
-      make.leading.equalTo(quizFourthCheckImageView.snp.trailing).inset(-2)
+      make.centerY.equalTo(thirdMarkImageView.snp.centerY)
+      make.leading.equalTo(fourthMarkImageView.snp.trailing).inset(-2)
     }
   }
-  // MARK: - 5월 3일 할 일
-  private func bind() {
-    let didTapYesButton = correctButton.rx.tap.map { true }.asObservable()
-    let didTapNoButton = incorrectButton.rx.tap.map { false }.asObservable()
-    let output = viewModel.transform(input: .init(didTapYesButton: didTapYesButton, didTapNoButton: didTapNoButton))
-    output.result.drive(onNext: { result in
-      print("result \(result)")
-    }).disposed(by: disposebag)
+}
+extension QuizViewController: Timeout {
+  func timeout() {
+    timeoutTrigger.onNext(())
+  }
+}
+extension Reactive where Base: UIButton {
+  var isButtonSelected: ControlProperty<Bool> {
+    return base.rx.controlProperty(
+      editingEvents: [.touchUpInside],
+      getter: { $0.isSelected },
+      setter: { $0.isSelected = $1 }
+    )
   }
 }

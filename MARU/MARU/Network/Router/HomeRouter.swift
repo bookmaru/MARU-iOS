@@ -16,7 +16,7 @@ enum HomeRouter {
 
 extension HomeRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
   var path: String {
     switch self {
