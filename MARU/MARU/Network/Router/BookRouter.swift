@@ -19,9 +19,9 @@ extension BookRouter: TargetType {
   var path: String {
     switch self {
     case .get: // 담아둔 모임
-      return "/api/v2/bookcase"
+      return "bookcase"
     case .group: // 모임하고 싶은 책
-      return "/api/v2/bookcase/group"
+      return "bookcase/group"
     }
   }
   var method: Method {

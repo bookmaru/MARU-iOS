@@ -19,9 +19,9 @@ extension QuizRouter: TargetType {
   var path: String {
     switch self {
     case .getQuiz(let groupID):
-      return "api/v2/group/\(groupID)/quiz"
+      return "group/\(groupID)/quiz"
     case .checkQuiz(let groupID, let isEnter):
-      return "api/v2/group/\(groupID)/quiz/\(isEnter)"
+      return "group/\(groupID)/quiz/\(isEnter)"
     }
   }
 

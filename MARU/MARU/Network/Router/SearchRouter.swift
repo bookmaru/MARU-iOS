@@ -18,7 +18,7 @@ extension SearchRouter: TargetType {
   var path: String {
     switch self {
     case .search:
-      return "api/v2/group/search/"
+      return "group/search/"
     }
   }
 
