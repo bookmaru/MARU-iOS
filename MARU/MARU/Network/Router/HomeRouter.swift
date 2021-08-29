@@ -21,13 +21,13 @@ extension HomeRouter: TargetType {
   var path: String {
     switch self {
     case .getPopular:
-      return "api/v2/book/group/most"
+      return "book/group/most"
     case .getNew:
-      return "api/v2/group/new"
+      return "group/new"
     case .getNewAllCategory:
-      return "api/v2/group/new/category"
+      return "group/new/category"
     case .getNewCategory(_, _):
-      return "api/v2/group/new/specific-category"
+      return "group/new/specific-category"
     }
   }
 
