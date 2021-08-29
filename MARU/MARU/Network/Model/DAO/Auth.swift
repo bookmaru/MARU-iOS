@@ -6,6 +6,28 @@
 //
 
 struct Token: Codable {
+  let token: TokenDTO?
+  let socialID: String?
+
+  enum CodingKeys: String, CodingKey {
+    case token
+    case socialID = "socialId"
+  }
+}
+
+struct TokenDTO: Codable {
+  let tokenResponseDTO: Auth
+  let nickname: String?
+  let profileURL: String?
+
+  enum CodingKeys: String, CodingKey {
+    case tokenResponseDTO = "tokenResponseDto"
+    case nickname
+    case profileURL = "profileUrl"
+  }
+}
+
+struct SignupToken: Codable {
   let token: Auth
 }
 
@@ -14,13 +36,11 @@ struct Auth: Codable {
   let accessTokenExpiredAt: String?
   let refreshToken: String?
   let refreshTokenExpiredAt: String?
-  let socialID: String?
 
   enum CodingKeys: String, CodingKey {
-    case accessToken = "accessToken"
-    case accessTokenExpiredAt = "accessTokenExpiredAt"
-    case refreshToken = "refreshToken"
-    case refreshTokenExpiredAt = "refreshTokenExpiredAt"
-    case socialID = "socialId"
+    case accessToken
+    case accessTokenExpiredAt
+    case refreshToken
+    case refreshTokenExpiredAt
   }
 }

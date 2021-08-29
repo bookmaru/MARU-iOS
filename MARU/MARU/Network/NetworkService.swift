@@ -12,7 +12,7 @@ final class NetworkService {
 
   let auth = AuthService()
   let home = HomeService()
-  let groupSearch = SearchService()
+  let search = SearchService()
   let diary = DiaryService()
   let book = BookService()
   let group = GroupService()

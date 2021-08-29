@@ -188,6 +188,7 @@ final class CertificationViewController: BaseViewController {
           KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
           KeychainHandler.shared.refreshToken = refreshToken
           KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
+          UserDefaultHandler.shared.userName = self.userInformation.nickname
         }
         if response.status == 201 {
           let viewController = TabBarController()
