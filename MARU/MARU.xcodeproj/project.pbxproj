@@ -773,15 +773,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		C59BCBBE26C81E7A00C84163 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
-				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		C59BCBBF26C81F2C00C84163 /* ChatService */ = {
 			isa = PBXGroup;
 			children = (
