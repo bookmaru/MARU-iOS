@@ -10,8 +10,6 @@ import RxCocoa
 import RxSwift
 
 final class PastMeetingCell: UICollectionViewCell {
-  
-  
   fileprivate let shadowView = UIView().then {
     $0.backgroundColor = .white
     $0.applyShadow(color: .black, alpha: 0.15, shadowX: 0, shadowY: 2, blur: 5/2)
@@ -81,14 +79,13 @@ final class PastMeetingCell: UICollectionViewCell {
       bookTitleLabel,
       bookAuthorLabel,
       bookImageView,
-      meetingLeaderLabel,
+      meetingLeaderLabel
     ])
     explainBox.adds([
       explanationLabel,
       leftQuotataionImageView,
       rightQuotataionImageView
     ])
-    
     shadowView.snp.makeConstraints { view in
       view.top.equalTo(contentView.snp.top).offset(2)
       view.leading.equalTo(contentView).offset(2)

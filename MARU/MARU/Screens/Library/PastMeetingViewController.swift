@@ -26,6 +26,12 @@ final class PastMeetingViewController: BaseViewController {
     render()
     bind()
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: false)
+    navigationController?.navigationBar.barTintColor = .white
+    tabBarController?.tabBar.isHidden = true
+  }
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -52,12 +58,11 @@ extension PastMeetingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return data?.keepGroup.count ?? 0
   }
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.awakeFromNib()
     if data?.keepGroup[indexPath.item].isLeader == false {
-      cell.evaluateButton.isHidden == false
+      cell.evaluateButton.isHidden = false
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
           // 방장이 아닌 경우에는 방장 평가하도록 처리

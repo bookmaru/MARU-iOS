@@ -84,16 +84,29 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      if titleText == "모임하고 싶은 책" {
-        cell.addButton.setImage(Image.group1038, for: .normal)
-      }
-      cell.rx.didTapAddButton
-        .subscribe(onNext: {
-          // 화면 전환 영역
-        })
-        .disposed(by: cell.disposeBag)
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
+      if titleText == "담아둔 모임" {
+        cell.rx.didTapAddButton
+          .subscribe(onNext: {
+            let viewController = PastMeetingViewController()
+            viewController.navigationItem.title = titleText
+            self.navigationController?.pushViewController(viewController, animated: true)
+          })
+          .disposed(by: cell.disposeBag)
+      }
+      if titleText == "모임하고 싶은 책" {
+        cell.addButton.setImage(Image.group1038, for: .normal)
+        // 이후에 완성한 뷰로 연결시켜주기
+      }
+      
+      if titleText == "내 일기장" {
+        cell.rx.didTapAddButton
+          .subscribe(onNext: {
+            // 화면 전환 영역
+          })
+          .disposed(by: cell.disposeBag)
+      }
       return cell
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
