@@ -99,7 +99,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         cell.addButton.setImage(Image.group1038, for: .normal)
         // 이후에 완성한 뷰로 연결시켜주기
       }
-      
       if titleText == "내 일기장" {
         cell.rx.didTapAddButton
           .subscribe(onNext: {

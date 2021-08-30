@@ -942,6 +942,7 @@
 				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
+				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -952,7 +953,6 @@
 				77B27BC22664C12C008E315C /* Cells */,
 				C5ED1D8026188A2900F670EC /* LibraryViewController.swift */,
 				774262ED26899825008F9CAE /* MeetingHeldViewController.swift */,
-				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

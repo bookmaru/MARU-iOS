@@ -26,7 +26,7 @@ final class PastMeetingCell: UICollectionViewCell {
   fileprivate var bookImageView = UIImageView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 5
-    $0.image = Image.union
+    $0.image = Image.gradientImage
   }
   fileprivate var meetingLeaderLabel = UILabel().then {
     $0.text = "방장 이름"
@@ -58,7 +58,10 @@ final class PastMeetingCell: UICollectionViewCell {
   fileprivate var data: KeepGroup? {
     didSet {
       bookTitleLabel.text = data?.title
-      // 추가로 데이터 더 할당해주어야함!
+      bookAuthorLabel.text = data?.author
+      bookImageView.image = UIImage(named: data?.image ?? "group1015")
+      // id 정보 전달 방안 생각하기
+      explanationLabel.text = data?.description
     }
   }
   override init(frame: CGRect) {
@@ -87,33 +90,36 @@ final class PastMeetingCell: UICollectionViewCell {
       rightQuotataionImageView
     ])
     shadowView.snp.makeConstraints { view in
-      view.top.equalTo(contentView.snp.top).offset(2)
-      view.leading.equalTo(contentView).offset(2)
-      view.trailing.equalTo(contentView).offset(-2)
-      view.bottom.equalTo(contentView.snp.bottom).offset(-2)
+      view.top.equalTo(contentView).inset(2)
+      view.leading.equalTo(contentView).inset(2)
+      view.trailing.equalTo(contentView).inset(2)
+      view.bottom.equalTo(contentView).inset(2)
     }
     bookImageView.snp.makeConstraints { image in
-      image.top.equalTo(shadowView.snp.top).offset(0)
-      image.leading.equalTo(shadowView.snp.leading).offset(0)
-      image.bottom.equalTo(shadowView.snp.bottom).offset(0)
+      image.top.equalTo(shadowView.snp.top)
+      image.leading.equalTo(shadowView.snp.leading)
+      image.bottom.equalTo(shadowView.snp.bottom)
       image.width.equalTo(96)
     }
     bookTitleLabel.snp.makeConstraints { label in
-      label.top.equalTo(shadowView.snp.top).offset(10)
+      label.top.equalTo(shadowView).offset(10)
       label.leading.equalTo(bookImageView.snp.trailing).offset(12)
+      label.height.equalTo(16)
     }
     bookAuthorLabel.snp.makeConstraints { label in
       label.top.equalTo(bookTitleLabel.snp.bottom).offset(3)
       label.leading.equalTo(bookTitleLabel.snp.leading)
+      label.height.equalTo(13)
     }
     meetingLeaderLabel.snp.makeConstraints { label in
-      label.top.equalTo(shadowView.snp.top).offset(8)
-      label.trailing.equalTo(shadowView.snp.trailing).offset(-10)
+      label.top.equalTo(shadowView).offset(8)
+      label.trailing.equalTo(shadowView).offset(-10)
+      label.height.equalTo(13)
     }
     explainBox.snp.makeConstraints { view in
       view.top.equalTo(bookAuthorLabel.snp.bottom).offset(11)
       view.leading.equalTo(bookImageView.snp.trailing).offset(3)
-      view.trailing.equalTo(shadowView.snp.trailing).offset(-10)
+      view.trailing.equalTo(shadowView).offset(-10)
       view.height.equalTo(50)
     }
     leftQuotataionImageView.snp.makeConstraints { image in
@@ -122,12 +128,13 @@ final class PastMeetingCell: UICollectionViewCell {
       image.size.equalTo(8)
     }
     rightQuotataionImageView.snp.makeConstraints { image in
-      image.trailing.equalTo(explainBox.snp.trailing).offset(0)
-      image.bottom.equalTo(explainBox.snp.bottom).offset(0)
+      image.trailing.equalTo(explainBox).offset(0)
+      image.bottom.equalTo(explainBox).offset(0)
       image.size.equalTo(8)
     }
     explanationLabel.snp.makeConstraints { label in
-      label.top.equalTo(explainBox.snp.top).offset(3)
+      label.top.equalTo(explainBox).offset(2)
+      label.bottom.equalTo(explainBox).offset(-2)
       label.leading.equalTo(leftQuotataionImageView.snp.trailing).offset(23)
       label.trailing.equalTo(rightQuotataionImageView.snp.leading).offset(23)
     }
@@ -139,5 +146,10 @@ extension Reactive where Base: PastMeetingCell {
     return base.evaluateButton.rx.tap
       .map { return }
       .asObservable()
+  }
+  var dataBinder: Binder<KeepGroup> {
+    return Binder(base) { base, data in
+      base.data = data
+    }
   }
 }

@@ -26,7 +26,8 @@ final class PastMeetingViewModel {
     // nil로 반환해주니까 옵셔널처리 Ouput에서 해줘야
     let meetingList = viewDidLoad
       .map {
-        KeepGroupModel(keepGroup: [.init(groupID: 1, image: "", title: "sample", author: "sample", description: "sample", userID: 2, nickName: "sample", leaderScore: 3, isLeader: true)])
+        KeepGroupModel(keepGroup: [.init(groupID: 1, image: "", title: "sample", author: "sample", description: "sample", userID: 2, nickName: "sample", leaderScore: 3, isLeader: true),
+                                   .init(groupID: 1, image: "", title: "sample", author: "sample", description: "sample", userID: 4, nickName: "sample", leaderScore: 2, isLeader: true)])
       }
       .asDriver(onErrorJustReturn: nil)
     return Output(data: meetingList)

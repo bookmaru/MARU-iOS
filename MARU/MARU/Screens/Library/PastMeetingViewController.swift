@@ -63,6 +63,7 @@ extension PastMeetingViewController: UICollectionViewDataSource {
     cell.awakeFromNib()
     if data?.keepGroup[indexPath.item].isLeader == false {
       cell.evaluateButton.isHidden = false
+      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
           // 방장이 아닌 경우에는 방장 평가하도록 처리
@@ -76,7 +77,7 @@ extension PastMeetingViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ScreenSize.width, height: ScreenSize.height)
+    return CGSize(width: ScreenSize.width - 40, height: 145)
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     // cell tap action
