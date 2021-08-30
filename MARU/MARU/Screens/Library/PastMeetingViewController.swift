@@ -73,11 +73,11 @@ extension PastMeetingViewController: UICollectionViewDataSource {
   }
 }
 
-extension PastMeetingViewController: UICollectionViewDelegate {
+extension PastMeetingViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ScreenSize.width - 40, height: 145)
+    return CGSize(width: ScreenSize.width-40, height: 145)
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     // cell tap action

@@ -40,6 +40,7 @@ final class MyLibraryViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+    tabBarController?.tabBar.isHidden = false
   }
   private func render() {
     view.add(collectionView) { view in
@@ -110,7 +111,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.awakeFromNib()
       print("졸려\(data[indexPath.section].count)")
       if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false

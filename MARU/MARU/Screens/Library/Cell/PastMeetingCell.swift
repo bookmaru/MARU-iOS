@@ -38,7 +38,11 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.backgroundColor = .white
   }
   fileprivate let explanationLabel = UILabel().then {
-    $0.text = "책에 대해서 blahblah"
+    $0.text = """
+    식물책표지가되게예쁘네네네네네네
+    무슨내용일까까까가가가가가가가가
+    와랄랄라와랄랄라와랄랄라와랄라라
+    """
     $0.textAlignment = .center
     $0.textColor = UIColor.black
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
@@ -52,7 +56,7 @@ final class PastMeetingCell: UICollectionViewCell {
   }
   let evaluateButton = UIButton().then {
     $0.setImage(Image.invalidName, for: .normal)
-    $0.isHidden = true
+    $0.isHidden = false
   }
   var disposeBag = DisposeBag()
   fileprivate var data: KeepGroup? {
@@ -78,65 +82,67 @@ final class PastMeetingCell: UICollectionViewCell {
   private func render() {
     contentView.add(shadowView)
     shadowView.adds([
-      explainBox,
       bookTitleLabel,
       bookAuthorLabel,
       bookImageView,
-      meetingLeaderLabel
-    ])
-    explainBox.adds([
+      meetingLeaderLabel,
       explanationLabel,
       leftQuotataionImageView,
-      rightQuotataionImageView
+      rightQuotataionImageView,
+      evaluateButton
     ])
-    shadowView.snp.makeConstraints { view in
-      view.top.equalTo(contentView).inset(2)
-      view.leading.equalTo(contentView).inset(2)
-      view.trailing.equalTo(contentView).inset(2)
-      view.bottom.equalTo(contentView).inset(2)
+//    explainBox.adds([
+//      explanationLabel,
+//      leftQuotataionImageView,
+//      rightQuotataionImageView
+//    ])
+    shadowView.snp.makeConstraints { make in
+      make.top.equalTo(contentView).offset(3)
+      make.leading.equalTo(contentView).offset(3)
+      make.trailing.equalTo(contentView).offset(-3)
+      make.bottom.equalTo(contentView).offset(-10)
     }
-    bookImageView.snp.makeConstraints { image in
-      image.top.equalTo(shadowView.snp.top)
-      image.leading.equalTo(shadowView.snp.leading)
-      image.bottom.equalTo(shadowView.snp.bottom)
-      image.width.equalTo(96)
+    bookImageView.snp.makeConstraints { make in
+      make.top.equalTo(shadowView.snp.top)
+      make.leading.equalTo(shadowView.snp.leading)
+      make.bottom.equalTo(shadowView.snp.bottom)
+      make.width.equalTo(96)
     }
-    bookTitleLabel.snp.makeConstraints { label in
-      label.top.equalTo(shadowView).offset(10)
-      label.leading.equalTo(bookImageView.snp.trailing).offset(12)
-      label.height.equalTo(16)
+    bookTitleLabel.snp.makeConstraints { make in
+      make.top.equalTo(shadowView).offset(10)
+      make.leading.equalTo(bookImageView.snp.trailing).offset(12)
+      make.height.equalTo(16)
     }
-    bookAuthorLabel.snp.makeConstraints { label in
-      label.top.equalTo(bookTitleLabel.snp.bottom).offset(3)
-      label.leading.equalTo(bookTitleLabel.snp.leading)
-      label.height.equalTo(13)
+    bookAuthorLabel.snp.makeConstraints { make in
+      make.top.equalTo(bookTitleLabel.snp.bottom).offset(1)
+      make.leading.equalTo(bookTitleLabel.snp.leading)
+      make.height.equalTo(13)
     }
-    meetingLeaderLabel.snp.makeConstraints { label in
-      label.top.equalTo(shadowView).offset(8)
-      label.trailing.equalTo(shadowView).offset(-10)
-      label.height.equalTo(13)
+    meetingLeaderLabel.snp.makeConstraints { make in
+      make.top.equalTo(shadowView).offset(8)
+      make.trailing.equalTo(shadowView).offset(-10)
+      make.height.equalTo(13)
     }
-    explainBox.snp.makeConstraints { view in
-      view.top.equalTo(bookAuthorLabel.snp.bottom).offset(11)
-      view.leading.equalTo(bookImageView.snp.trailing).offset(3)
-      view.trailing.equalTo(shadowView).offset(-10)
-      view.height.equalTo(50)
+
+    leftQuotataionImageView.snp.makeConstraints { make in
+      make.top.equalTo(bookAuthorLabel.snp.bottom).offset(6)
+      make.leading.equalTo(bookAuthorLabel.snp.leading)
+      make.size.equalTo(8)
     }
-    leftQuotataionImageView.snp.makeConstraints { image in
-      image.top.equalTo(explainBox.snp.top).offset(0)
-      image.leading.equalTo(explainBox.snp.leading).offset(0)
-      image.size.equalTo(8)
+    rightQuotataionImageView.snp.makeConstraints { make in
+      make.trailing.equalTo(shadowView).offset(-10)
+      make.top.equalTo(shadowView).offset(90)
+      make.size.equalTo(8)
     }
-    rightQuotataionImageView.snp.makeConstraints { image in
-      image.trailing.equalTo(explainBox).offset(0)
-      image.bottom.equalTo(explainBox).offset(0)
-      image.size.equalTo(8)
+    explanationLabel.snp.makeConstraints { make in
+      make.top.equalTo(bookAuthorLabel.snp.bottom).offset(7)
+      make.leading.equalTo(leftQuotataionImageView.snp.trailing).offset(15)
+      make.width.equalTo(175)
     }
-    explanationLabel.snp.makeConstraints { label in
-      label.top.equalTo(explainBox).offset(2)
-      label.bottom.equalTo(explainBox).offset(-2)
-      label.leading.equalTo(leftQuotataionImageView.snp.trailing).offset(23)
-      label.trailing.equalTo(rightQuotataionImageView.snp.leading).offset(23)
+    evaluateButton.snp.makeConstraints { make in
+      make.trailing.equalTo(rightQuotataionImageView.snp.trailing)
+      make.top.equalTo(rightQuotataionImageView.snp.bottom).offset(6)
+      make.width.equalTo(68)
     }
   }
 }
