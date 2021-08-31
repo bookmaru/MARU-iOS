@@ -29,6 +29,7 @@ final class PastMeetingViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
     tabBarController?.tabBar.isHidden = true
   }
@@ -61,13 +62,21 @@ extension PastMeetingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.awakeFromNib()
-    if data?.keepGroup[indexPath.item].isLeader == false {
+    if data?.keepGroup[indexPath.item].isLeader == true {
+      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
+      cell.rx.didTapEvaluateButton
+        .subscribe(onNext: {
+          // 방장이 아닌 경우에는 방장 평가하도록 처리
+        })
+        .disposed(by: cell.disposeBag)
+    } else {
       cell.evaluateButton.isHidden = false
       cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
           // 방장이 아닌 경우에는 방장 평가하도록 처리
         })
+        .disposed(by: cell.disposeBag)
     }
     return cell
   }

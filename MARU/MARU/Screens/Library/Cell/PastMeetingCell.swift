@@ -16,12 +16,13 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.layer.cornerRadius = 5
   }
   fileprivate let bookTitleLabel = UILabel().then {
-    $0.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+    $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
     $0.text = "책 제목"
   }
   fileprivate let bookAuthorLabel = UILabel().then {
-    $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+    $0.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
     $0.text = "저자라벨"
+    $0.textColor = .subText
   }
   fileprivate var bookImageView = UIImageView().then {
     $0.backgroundColor = .white
@@ -32,10 +33,7 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.text = "방장 이름"
     $0.textColor = .brownishGrey // 수정 필.
     $0.textAlignment = .right
-    $0.font = .systemFont(ofSize: 10, weight: .bold)
-  }
-  fileprivate let explainBox = UILabel().then {
-    $0.backgroundColor = .white
+    $0.font = .systemFont(ofSize: 10, weight: .semibold)
   }
   fileprivate let explanationLabel = UILabel().then {
     $0.text = """
@@ -45,7 +43,7 @@ final class PastMeetingCell: UICollectionViewCell {
     """
     $0.textAlignment = .center
     $0.textColor = UIColor.black
-    $0.font = .systemFont(ofSize: 13, weight: .semibold)
+    $0.font = .systemFont(ofSize: 12, weight: .regular)
     $0.numberOfLines = 3
   }
   fileprivate let leftQuotataionImageView = UIImageView().then {
@@ -56,7 +54,7 @@ final class PastMeetingCell: UICollectionViewCell {
   }
   let evaluateButton = UIButton().then {
     $0.setImage(Image.invalidName, for: .normal)
-    $0.isHidden = false
+    $0.isHidden = true
   }
   var disposeBag = DisposeBag()
   fileprivate var data: KeepGroup? {
@@ -91,11 +89,6 @@ final class PastMeetingCell: UICollectionViewCell {
       rightQuotataionImageView,
       evaluateButton
     ])
-//    explainBox.adds([
-//      explanationLabel,
-//      leftQuotataionImageView,
-//      rightQuotataionImageView
-//    ])
     shadowView.snp.makeConstraints { make in
       make.top.equalTo(contentView).offset(3)
       make.leading.equalTo(contentView).offset(3)
