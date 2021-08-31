@@ -47,10 +47,10 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.numberOfLines = 3
   }
   fileprivate let leftQuotataionImageView = UIImageView().then {
-    $0.image = Image.blueQuotationleft
+    $0.image = Image.quotationMarkLeft
   }
   fileprivate let rightQuotataionImageView = UIImageView().then {
-    $0.image = Image.blueQuotationRight
+    $0.image = Image.quotationMarkRight
   }
   let evaluateButton = UIButton().then {
     $0.setImage(Image.invalidName, for: .normal)
