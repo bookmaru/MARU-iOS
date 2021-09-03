@@ -61,9 +61,8 @@ extension PastMeetingViewController: UICollectionViewDataSource {
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.awakeFromNib()
     if data?.keepGroup[indexPath.item].isLeader == true {
-      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
+      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
           // 방장이 아닌 경우에는 방장 평가하도록 처리
