@@ -9,6 +9,11 @@ import UIKit
 
 final class SettingViewController: BaseViewController {
 
+  override var hidesBottomBarWhenPushed: Bool {
+    get { navigationController?.topViewController == self }
+    set { super.hidesBottomBarWhenPushed = newValue }
+  }
+
   enum Preference: String {
     case notice = "공지사항"
     case info = "서비스 이용약관"
@@ -41,12 +46,7 @@ final class SettingViewController: BaseViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    tabBarController?.tabBar.isHidden = true
     setNavigation()
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
   }
 
   private func render() {

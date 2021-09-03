@@ -13,6 +13,11 @@ final class ChatViewController: BaseViewController {
   typealias OtherChatCell = OtherChatCollectionViewCell
   typealias OtherProfileChatCell = OtherProfileChatCollectionViewCell
 
+  override var hidesBottomBarWhenPushed: Bool {
+    get { navigationController?.topViewController == self }
+    set { super.hidesBottomBarWhenPushed = newValue }
+  }
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.minimumLineSpacing = 0
@@ -58,9 +63,8 @@ final class ChatViewController: BaseViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.isHidden = false
-    tabBarController?.tabBar.isHidden = true
     scrollToBottom()
+    setNavigation()
   }
 
   private func scrollToBottom(_ animated: Bool = false) {
@@ -70,7 +74,19 @@ final class ChatViewController: BaseViewController {
       self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: animated)
     }
   }
+
+  private func setNavigation() {
+    title = "책이름"
+    navigationController?.navigationBar.isHidden = false
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.shadowImage = UIImage()
+    navigationBar.isTranslucent = true
+  }
 }
+
+extension ChatViewController: UIGestureRecognizerDelegate { }
 
 extension ChatViewController {
   private func layout() {

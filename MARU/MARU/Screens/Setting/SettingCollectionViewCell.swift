@@ -13,7 +13,7 @@ final class SettingCollectionViewCell: UICollectionViewCell {
     $0.font = .systemFont(ofSize: 15, weight: .regular)
   }
   private let sepratorView = UIView().then {
-    $0.backgroundColor = .brownishGrey
+    $0.backgroundColor = .brownishGrey.withAlphaComponent(0.1)
   }
   private let arrowImageView = UIImageView(image: Image.rightArrow)
   override init(frame: CGRect) {
