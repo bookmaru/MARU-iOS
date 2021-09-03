@@ -9,21 +9,44 @@ import UIKit
 
 final class SettingViewController: BaseViewController {
 
+  enum Preference: String {
+    case notice = "공지사항"
+    case info = "서비스 이용약관"
+    case opensource = "오픈소스 라이선스"
+    case logout = "로그아웃"
+    case resign = "탈퇴하기"
+  }
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.itemSize = CGSize(width: ScreenSize.width, height: 49)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: SettingCollectionViewCell.self)
-    // 까맣게 나와서 배경색 지정했습니다
     collectionView.backgroundColor = .white
     return collectionView
   }()
 
-  private let row: [String] = ["공지사항", "서비스 이용약관", "오픈소스 라이선스", "로그아웃", "탈퇴하기"]
+  private let row: [Preference] = [
+    .notice,
+    .info,
+    .opensource,
+    .logout,
+    .resign
+  ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tabBarController?.tabBar.isHidden = true
+    setNavigation()
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
   }
 
   private func render() {
@@ -36,14 +59,49 @@ final class SettingViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
+
+  private func setNavigation() {
+    setNavigationBar(isHidden: false)
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.shadowImage = UIImage()
+    navigationBar.isTranslucent = true
+    navigationItem.title = "환경설정"
+    navigationBar.titleTextAttributes = [
+      NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .medium)
+    ]
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+  }
+
+  private func logout() {
+    KeychainHandler.shared.logout()
+    let viewController = OnboardingViewController()
+    viewController.modalPresentationStyle = .fullScreen
+    if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+      delegate.window?.rootViewController = viewController
+    }
+    present(viewController, animated: false)
+  }
 }
+
+extension SettingViewController: UIGestureRecognizerDelegate { }
 
 extension SettingViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-
+    switch row[indexPath.item] {
+    case .logout:
+      let alert = UIAlertController(title: "로그아웃을 하시겠나요...? 😥", message: "", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+        self.logout()
+      })
+      alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+      present(alert, animated: true)
+    default:
+      break
+    }
   }
 }
 
@@ -61,7 +119,7 @@ extension SettingViewController: UICollectionViewDataSource {
   ) -> UICollectionViewCell {
     let cell: SettingCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.separatorViewRow(row: indexPath.item)
-    cell.titleLabel(title: row[indexPath.item])
+    cell.titleLabel(title: row[indexPath.item].rawValue)
     return cell
   }
 }

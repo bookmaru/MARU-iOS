@@ -12,7 +12,7 @@ final class SettingCollectionViewCell: UICollectionViewCell {
   private let label = UILabel().then {
     $0.font = .systemFont(ofSize: 15, weight: .regular)
   }
-  private let sepraterView = UIView().then {
+  private let sepratorView = UIView().then {
     $0.backgroundColor = .brownishGrey
   }
   private let arrowImageView = UIImageView(image: Image.rightArrow)
@@ -27,16 +27,13 @@ final class SettingCollectionViewCell: UICollectionViewCell {
 
   private func render() {
     contentView.add(label)
-    contentView.add(sepraterView)
+    contentView.add(sepratorView)
     contentView.add(arrowImageView)
-    // 연결하면서 Cell파일 계속 터져서 확인해보니 add 빠뜨린 문제였음
-    // adds로 바꿔주세욥
-    // sepraterView 오타 -> separatorView
     label.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(20)
       $0.centerY.equalToSuperview()
     }
-    sepraterView.snp.makeConstraints {
+    sepratorView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview().inset(20)
       $0.top.equalToSuperview()
       $0.height.equalTo(1)
@@ -49,7 +46,7 @@ final class SettingCollectionViewCell: UICollectionViewCell {
   }
 
   func separatorViewRow(row: Int) {
-    sepraterView.isHidden = row == 0
+    sepratorView.isHidden = row == 0
   }
 
   func titleLabel(title: String) {
