@@ -55,7 +55,7 @@ final class MyLibraryViewModel {
     let data = Observable.combineLatest(bookList, diaryList, bookGroup)
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
-        library.append(.title(title: "담아둔 모임", isHidden: true))
+        library.append(.title(title: "담아둔 모임", isHidden: false))
         guard let bookGroup = bookGroup else { return [] }
         library.append(.meeting(meeting: bookGroup))
         // 임시 데이터 넣은 코드, 지우지 말아주세요.
