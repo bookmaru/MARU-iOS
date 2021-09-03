@@ -99,7 +99,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.awakeFromNib()
-      print("졸려\(data[indexPath.section].count)")
       if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false
       } else {
@@ -141,6 +140,13 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
         withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {
       headerView.rx.profileBinder.onNext(user!)
       // 강제 옵셔널 처리 해결방법 고민해야함
+      headerView.changeSettingButton.rx
+        .tap
+        .bind {
+          let viewController = SettingViewController()
+          self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        .disposed(by: headerView.disposeBag)
       return headerView
     }
     return UICollectionReusableView()
