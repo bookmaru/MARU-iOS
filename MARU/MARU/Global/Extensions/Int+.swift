@@ -16,4 +16,7 @@ extension Int {
 
   var calculatedHeight: CGFloat { CGFloat(self) * ScreenSize.height / 667 }
 
+  var radians: CGFloat {
+    return CGFloat(self) * .pi / 180
+  }
 }

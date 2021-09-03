@@ -16,18 +16,18 @@ enum HomeRouter {
 
 extension HomeRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
   var path: String {
     switch self {
     case .getPopular:
-      return "api/v2/book/group/most"
+      return "book/group/most"
     case .getNew:
-      return "api/v2/group/new"
+      return "group/new"
     case .getNewAllCategory:
-      return "api/v2/group/new/category"
+      return "group/new/category"
     case .getNewCategory(_, _):
-      return "api/v2/group/new/specific-category"
+      return "group/new/specific-category"
     }
   }
 

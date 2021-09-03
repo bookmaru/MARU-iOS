@@ -13,12 +13,12 @@ enum SearchRouter {
 
 extension SearchRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
   var path: String {
     switch self {
     case .search:
-      return "api/v2/group/search/"
+      return "group/search/"
     }
   }
 

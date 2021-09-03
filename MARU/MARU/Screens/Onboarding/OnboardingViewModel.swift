@@ -36,7 +36,7 @@ final class OnboardingViewModel: ViewModelType {
 
     let didLogin = Observable.combineLatest(loginService, input.authType)
       .map { response, auth -> UIViewController? in
-        let token = response.data
+        let token = response.data?.token?.tokenResponseDTO
         if let accessToken = token?.accessToken,
            let accessTokenExpiredAt = token?.accessTokenExpiredAt,
            let refreshToken = token?.refreshToken,
@@ -46,12 +46,14 @@ final class OnboardingViewModel: ViewModelType {
           KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
           KeychainHandler.shared.refreshToken = refreshToken
           KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
+          UserDefaultHandler.shared.userName = response.data?.token?.nickname
+          UserDefaultHandler.shared.userImageURL = response.data?.token?.profileURL
         }
         if response.status == 200 {
           return TabBarController()
         }
         if response.status == 201 {
-          guard let socialID = token?.socialID else { return nil }
+          guard let socialID = response.data?.socialID else { return nil }
           return CertificationViewController(socialID: socialID, socialType: auth.description)
         }
         return nil

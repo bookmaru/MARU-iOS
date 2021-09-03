@@ -14,6 +14,8 @@ final class SettingViewController: BaseViewController {
     layout.itemSize = CGSize(width: ScreenSize.width, height: 49)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: SettingCollectionViewCell.self)
+    // 까맣게 나와서 배경색 지정했습니다
+    collectionView.backgroundColor = .white
     return collectionView
   }()
 

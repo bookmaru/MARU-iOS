@@ -1,43 +1,46 @@
 //
-//  BookRouter.swift
+//  QuizRouter.swift
 //  MARU
 //
-//  Created by 오준현 on 2021/08/01.
+//  Created by psychehose on 2021/08/21.
 //
 
 import Moya
 
-enum BookRouter {
-  case get
-  case group
+enum QuizRouter {
+  case getQuiz(groupID: Int)
+  case checkQuiz(groupID: Int, isEnter: String)
 }
 
-extension BookRouter: TargetType {
+extension QuizRouter: TargetType {
   var baseURL: URL {
     return Enviroment.baseURL
   }
   var path: String {
     switch self {
-    case .get: // 담아둔 모임
-      return "bookcase"
-    case .group: // 모임하고 싶은 책
-      return "bookcase/group"
+    case .getQuiz(let groupID):
+      return "group/\(groupID)/quiz"
+    case .checkQuiz(let groupID, let isEnter):
+      return "group/\(groupID)/quiz/\(isEnter)"
     }
   }
+
   var method: Method {
     switch self {
-    case .get:
+    case .getQuiz:
       return .get
-    case .group:
-      return .get
+    case .checkQuiz:
+      return .post
     }
   }
+
   var sampleData: Data { Data() }
+
   var task: Task {
     switch self {
-    case .get:
+    case .getQuiz:
       return .requestPlain
-    case .group:
+    case .checkQuiz:
       return .requestPlain
     }
   }

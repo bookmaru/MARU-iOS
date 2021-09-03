@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import OrderedCollections
 
 import RealmSwift
 import RxSwift

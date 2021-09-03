@@ -28,6 +28,10 @@ final class SettingCollectionViewCell: UICollectionViewCell {
   private func render() {
     contentView.add(label)
     contentView.add(sepraterView)
+    contentView.add(arrowImageView)
+    // 연결하면서 Cell파일 계속 터져서 확인해보니 add 빠뜨린 문제였음
+    // adds로 바꿔주세욥
+    // sepraterView 오타 -> separatorView
     label.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(20)
       $0.centerY.equalToSuperview()
