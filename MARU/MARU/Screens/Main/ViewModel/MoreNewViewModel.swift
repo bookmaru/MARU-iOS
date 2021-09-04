@@ -17,6 +17,7 @@ final class MoreNewViewModel: ViewModelType {
     let tapCategoryButton: Observable<(Void, String)>
     let didScrollBottom: Observable<(Bool, Int?)>
   }
+
   struct Output {
     let load: Driver<[MeetingModel]>
     let filter: Driver<[MeetingModel]>
@@ -33,7 +34,6 @@ final class MoreNewViewModel: ViewModelType {
       .take(1)
       .flatMap(NetworkService.shared.home.getNewAllCategory)
       .map { response -> BaseReponseType<GroupsByCategories> in
-
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)
@@ -65,9 +65,8 @@ final class MoreNewViewModel: ViewModelType {
       .distinctUntilChanged()
       .withLatestFrom(allCategory)
       .map { meetingModels -> [MeetingModel] in
-        if filterString != "전체" {
-          return meetingModels.filter { $0.category == filterString }
-        } else { return meetingModels }
+        guard filterString != "전체" else { return meetingModels }
+        return meetingModels.filter { $0.category == filterString }
       }
       .map { $0 }
       .asDriver(onErrorJustReturn: [])
@@ -92,7 +91,7 @@ final class MoreNewViewModel: ViewModelType {
       }
       .do(onNext: {
         var alreadyThere = Set<MeetingModel>()
-        let uniqueMeetingModels = $0.compactMap { (meetingModel) -> MeetingModel? in
+        let uniqueMeetingModels = $0.compactMap { meetingModel -> MeetingModel? in
             guard !alreadyThere.contains(meetingModel) else { return nil }
             alreadyThere.insert(meetingModel)
             return meetingModel

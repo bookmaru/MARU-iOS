@@ -74,15 +74,23 @@ extension MainViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = .white
-    collectionView.register(SectionHeader.self,
-                forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
-                withReuseIdentifier: SectionHeader.reuseIdentifier)
-    collectionView.register(MainHeaderCell.self,
-                forCellWithReuseIdentifier: MainHeaderCell.reuseIdentifier)
-    collectionView.register(BookCell.self,
-                forCellWithReuseIdentifier: BookCell.reuseIdentifier)
-    collectionView.register(MeetingListCell.self,
-                forCellWithReuseIdentifier: MeetingListCell.reuseIdentifier)
+    collectionView.register(
+      SectionHeader.self,
+      forSupplementaryViewOfKind: SectionHeader.sectionHeaderElementKind,
+      withReuseIdentifier: SectionHeader.reuseIdentifier
+    )
+    collectionView.register(
+      MainHeaderCell.self,
+      forCellWithReuseIdentifier: MainHeaderCell.reuseIdentifier
+    )
+    collectionView.register(
+      BookCell.self,
+      forCellWithReuseIdentifier: BookCell.reuseIdentifier
+    )
+    collectionView.register(
+      MeetingListCell.self,
+      forCellWithReuseIdentifier: MeetingListCell.reuseIdentifier
+    )
 
     view.add(collectionView)
 
@@ -118,29 +126,30 @@ extension MainViewController: UICollectionViewDataSource {
                       at indexPath: IndexPath) -> UICollectionReusableView {
     switch indexPath.section {
     case 1:
-      guard let header =
-              collectionView.dequeueReusableSupplementaryView(ofKind: SectionHeader.sectionHeaderElementKind,
-                                                                  withReuseIdentifier: SectionHeader.reuseIdentifier,
-                                                                  for: indexPath) as? SectionHeader else {
-        return UICollectionReusableView() }
+      guard let header = collectionView.dequeueReusableSupplementaryView(
+              ofKind: SectionHeader.sectionHeaderElementKind,
+              withReuseIdentifier: SectionHeader.reuseIdentifier,
+              for: indexPath
+      ) as? SectionHeader else { break }
       header.setupText(text: "지금 가장 인기 많은 모임은?")
       header.hideMoveButton(isHidden: true)
       return header
 
     case 2:
-      guard let header =
-              collectionView.dequeueReusableSupplementaryView(ofKind: SectionHeader.sectionHeaderElementKind,
-                                                                  withReuseIdentifier: SectionHeader.reuseIdentifier,
-                                                                  for: indexPath) as? SectionHeader else {
-        return UICollectionReusableView() }
+      guard let header = collectionView.dequeueReusableSupplementaryView(
+              ofKind: SectionHeader.sectionHeaderElementKind,
+              withReuseIdentifier: SectionHeader.reuseIdentifier,
+              for: indexPath
+      ) as? SectionHeader else { break }
       header.setupText(text: "지금 새로 나온 모임")
       header.hideMoveButton(isHidden: false)
       header.delegate = self
       return header
 
     default:
-      return UICollectionReusableView()
+      break
     }
+    return UICollectionReusableView()
   }
   /// - TAG: Item Number
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -159,32 +168,33 @@ extension MainViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch indexPath.section {
     case 0:
-      guard let cell =
-              collectionView.dequeueReusableCell(withReuseIdentifier: MainHeaderCell.reuseIdentifier,
-                                                     for: indexPath) as? MainHeaderCell else {
-        return UICollectionViewCell() }
+      guard let cell = collectionView.dequeueReusableCell(
+              withReuseIdentifier: MainHeaderCell.reuseIdentifier,
+              for: indexPath
+      ) as? MainHeaderCell else { break }
       cell.searchBar.delegate = self
       return cell
 
     case 1:
-      guard let cell =
-              collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.reuseIdentifier,
-                                                     for: indexPath) as? BookCell else {
-        return UICollectionViewCell() }
+      guard let cell = collectionView.dequeueReusableCell(
+              withReuseIdentifier: BookCell.reuseIdentifier,
+              for: indexPath
+      ) as? BookCell else { break }
       cell.bind(popularBooks[indexPath.item])
       return cell
 
     case 2:
-      guard let cell =
-              collectionView.dequeueReusableCell(withReuseIdentifier: MeetingListCell.reuseIdentifier,
-                                                     for: indexPath) as? MeetingListCell else {
-        return UICollectionViewCell() }
+      guard let cell = collectionView.dequeueReusableCell(
+              withReuseIdentifier: MeetingListCell.reuseIdentifier,
+              for: indexPath
+      ) as? MeetingListCell else { break  }
       cell.bind(newMeetings[indexPath.item])
       return cell
 
     default:
-      return UICollectionViewCell()
+      break
     }
+    return UICollectionViewCell()
   }
 
   func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -195,18 +205,11 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch indexPath.section {
-    case 0:
-      break
-
     case 1:
-      let targetViewController = MorePopularViewController()
       guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell else { return }
+      let targetViewController = MorePopularViewController()
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
-
-    case 2:
-      break
-
     default:
       break
     }
@@ -217,32 +220,37 @@ extension MainViewController: UICollectionViewDelegate {
     if scrollView.contentOffset.y < 0 {
       scrollView.isScrollEnabled = false
       scrollView.bounds = view.bounds
+    } else {
+      scrollView.isScrollEnabled = true
     }
-    scrollView.isScrollEnabled = true
   }
 }
   // MARK: - Collection View Layout
 extension MainViewController {
   private func createLayout() -> UICollectionViewCompositionalLayout {
-    return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
-
+    return UICollectionViewCompositionalLayout { sectionNumber, _ -> NSCollectionLayoutSection? in
       if sectionNumber == 0 {
         return self.generateFirstSection()
-      } else if sectionNumber == 1 {
-        return self.generateSecondSection()
-      } else {
-        return self.generateThirdSection()
       }
+      if sectionNumber == 1 {
+        return self.generateSecondSection()
+      }
+      return self.generateThirdSection()
     }
   }
+
   private func generateFirstSection() -> NSCollectionLayoutSection {
-    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                          heightDimension: .fractionalHeight(1))
+    let itemSize = NSCollectionLayoutSize(
+      widthDimension: .fractionalWidth(1),
+      heightDimension: .fractionalHeight(1)
+    )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.edgeSpacing = .none
 
-    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                           heightDimension: .absolute(screenSize.height * 0.340))
+    let groupSize = NSCollectionLayoutSize(
+      widthDimension: .fractionalWidth(1),
+      heightDimension: .absolute(screenSize.height * 0.340)
+    )
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    subitems: [item])
     group.edgeSpacing = .none
@@ -253,25 +261,38 @@ extension MainViewController {
   }
 
   private func generateSecondSection() -> NSCollectionLayoutSection {
-    let headerFooterSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.893),
-                                                  heightDimension: .estimated(36))
+    let headerFooterSize = NSCollectionLayoutSize(
+      widthDimension: .estimated(screenSize.width * 0.893),
+      heightDimension: .estimated(36)
+    )
     let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
       layoutSize: headerFooterSize,
-      elementKind: SectionHeader.sectionHeaderElementKind, alignment: .top)
+      elementKind: SectionHeader.sectionHeaderElementKind,
+      alignment: .top
+    )
 
-    let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(95),
-                                          heightDimension: .fractionalHeight(1))
+    let itemSize = NSCollectionLayoutSize(
+      widthDimension: .absolute(95),
+      heightDimension: .fractionalHeight(1)
+    )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(8),
-                                                     top: nil,
-                                                     trailing: .fixed(8),
-                                                     bottom: nil)
 
-    let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.893),
-                                           heightDimension: .estimated(180))
+    item.edgeSpacing = NSCollectionLayoutEdgeSpacing(
+      leading: .fixed(8),
+      top: nil,
+      trailing: .fixed(8),
+      bottom: nil
+    )
 
-    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                   subitems: [item])
+    let groupSize = NSCollectionLayoutSize(
+      widthDimension: .estimated(screenSize.width * 0.893),
+      heightDimension: .estimated(180)
+    )
+
+    let group = NSCollectionLayoutGroup.horizontal(
+      layoutSize: groupSize,
+      subitems: [item]
+    )
 
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 8)
@@ -281,12 +302,15 @@ extension MainViewController {
   }
 
   private func generateThirdSection() -> NSCollectionLayoutSection {
-    let headerFooterSize = NSCollectionLayoutSize(widthDimension: .estimated(screenSize.width * 0.893),
-                                                  heightDimension: .estimated(36))
+    let headerFooterSize = NSCollectionLayoutSize(
+      widthDimension: .estimated(screenSize.width * 0.893),
+      heightDimension: .estimated(36)
+    )
     let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
       layoutSize: headerFooterSize,
-      elementKind: SectionHeader.sectionHeaderElementKind, alignment: .top)
-
+      elementKind: SectionHeader.sectionHeaderElementKind,
+      alignment: .top
+    )
     let section = MaruListCollectionViewLayout.createSection()
     section.boundarySupplementaryItems = [sectionHeader]
     return section

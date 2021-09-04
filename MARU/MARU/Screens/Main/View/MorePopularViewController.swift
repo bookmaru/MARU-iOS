@@ -38,7 +38,11 @@ class MorePopularViewController: BaseViewController {
       .map { _ in () }
 
     _ = viewTrigger
-      .flatMap { [self] in NetworkService.shared.search.search(queryString: navigationItem.title ?? "") }
+      .flatMap { [weak self] _ in
+        NetworkService.shared.search.search(
+          queryString: self?.navigationItem.title ?? ""
+        )
+      }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(domain: "Detect Error in Fetching Search meetings",
@@ -52,8 +56,9 @@ class MorePopularViewController: BaseViewController {
         return meetingModel
       }
       .asDriver(onErrorJustReturn: [])
-      .drive { [self] in
-        configureDataSource($0)
+      .drive { [weak self] in
+        guard let self = self else { return }
+        self.configureDataSource($0)
       }
       .disposed(by: disposeBag)
   }
@@ -62,8 +67,10 @@ class MorePopularViewController: BaseViewController {
 extension MorePopularViewController {
   /// - TAG: Layout
   private func configureHierarchy() {
-    collectionView = UICollectionView(frame: .zero,
-                                      collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+    collectionView = UICollectionView(
+      frame: .zero,
+      collectionViewLayout: MaruListCollectionViewLayout.createLayout()
+    )
     view.add(collectionView) {
       $0.snp.makeConstraints { make in
         make.top.equalToSuperview().inset(15)
@@ -79,17 +86,20 @@ extension MorePopularViewController {
 
   private func configureDataSource(_ items: [MeetingModel]) {
     let cellRegistration = UICollectionView
-      .CellRegistration<MeetingListCell, MeetingModel> {cell, _, meetingModel in
+      .CellRegistration<MeetingListCell, MeetingModel> { cell, _, meetingModel in
         cell.bind(meetingModel)
       }
 
     dataSource = UICollectionViewDiffableDataSource<Section, MeetingModel>(
-    collectionView: collectionView,
+      collectionView: collectionView,
       cellProvider: { collectionView, indexPath, identifier in
-        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                            for: indexPath,
-                                                            item: identifier)
-      })
+        return collectionView.dequeueConfiguredReusableCell(
+          using: cellRegistration,
+          for: indexPath,
+          item: identifier
+        )
+      }
+    )
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, MeetingModel>()
     snapshot.appendSections([.main])
@@ -98,11 +108,14 @@ extension MorePopularViewController {
   }
 }
 extension MorePopularViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
     guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else {
       return
     }
-    // 여기에 화면전환
+    // TODO: 여기에 화면전환
     print(meetingModel.discussionGroupID)
   }
 }

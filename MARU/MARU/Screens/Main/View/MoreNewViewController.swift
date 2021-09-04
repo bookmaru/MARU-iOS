@@ -185,12 +185,7 @@ extension MoreNewViewController {
   @objc private func didTapButton(_ sender: UIButton) {
     allButtons
       .forEach {
-        if $0 != sender {
-          $0.isSelected = false
-        }
-        if $0 == sender {
-          $0.isSelected = true
-        }
+        $0.isSelected = $0 == sender
       }
   }
   private func setupIndicatorView() {
@@ -236,14 +231,14 @@ extension MoreNewViewController {
   // MARK: - Scroll Delegate (about FetchMore)
 extension MoreNewViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if scrollView == collectionView {
-      if scrollView.contentOffset.y > collectionView.contentSize.height - collectionView.frame.height + 100 {
-        guard let currentGroupCount = currentGroupCount  else {
-          return
-        }
-        didScrollBottom.onNext((true, currentGroupCount))
-      }
-    }
+    guard let scrollView = collectionView else { return }
+    let contentOffsetY = scrollView.contentOffset.y
+    let collectionContentHeight = scrollView.contentSize.height
+    let collectionFramHeight = scrollView.frame.height
+    guard contentOffsetY > collectionContentHeight - collectionFramHeight + 100,
+          let currentGroupCount = currentGroupCount
+    else { return }
+    didScrollBottom.onNext((true, currentGroupCount))
   }
 }
 extension MoreNewViewController {
@@ -261,9 +256,11 @@ extension MoreNewViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.register(cell: MeetingListCell.self)
-    collectionView.register(IndicatorFooter.self,
-                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-                            withReuseIdentifier: IndicatorFooter.reuseIdentifier)
+    collectionView.register(
+      IndicatorFooter.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+      withReuseIdentifier: IndicatorFooter.reuseIdentifier
+    )
     collectionView.isHidden = true
 
     buttonScrollView.contentSize = CGSize(width: 2 * screenSize.width, height: 30)
@@ -355,21 +352,31 @@ extension MoreNewViewController {
 
 extension MoreNewViewController: UICollectionViewDataSource {
 
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return meetingList.count
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MeetingListCell.reuseIdentifier,
-            for: indexPath) as? MeetingListCell else { return UICollectionViewCell() }
+            for: indexPath
+    ) as? MeetingListCell else { return UICollectionViewCell() }
 
     cell.bind(meetingList[indexPath.item])
     return cell
   }
-  func collectionView(_ collectionView: UICollectionView,
-                      viewForSupplementaryElementOfKind kind: String,
-                      at indexPath: IndexPath) -> UICollectionReusableView {
 
+  func collectionView(
+    _ collectionView: UICollectionView,
+    viewForSupplementaryElementOfKind kind: String,
+    at indexPath: IndexPath
+  ) -> UICollectionReusableView {
     guard let footer = collectionView.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: IndicatorFooter.reuseIdentifier,
@@ -383,30 +390,39 @@ extension MoreNewViewController: UICollectionViewDataSource {
   }
 }
 extension MoreNewViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      referenceSizeForFooterInSection section: Int) -> CGSize {
-    if showFooter == true {
-      return CGSize(width: collectionView.frame.width, height: 100)
-    } else {
-      return CGSize(width: 0, height: 0)
-    }
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForFooterInSection section: Int
+  ) -> CGSize {
+    guard showFooter else { return .zero }
+    return CGSize(width: collectionView.frame.width, height: 100)
   }
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     return CGSize(width: screenSize.width * 0.895, height: 142)
   }
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      insetForSectionAt section: Int) -> UIEdgeInsets {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    insetForSectionAt section: Int
+  ) -> UIEdgeInsets {
     return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
   }
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    minimumInteritemSpacingForSectionAt section: Int
+  ) -> CGFloat {
     return 15
   }
+
 }
 
 extension MoreNewViewController: UICollectionViewDelegate {

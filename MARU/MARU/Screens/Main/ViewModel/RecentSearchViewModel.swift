@@ -31,7 +31,6 @@ final class RecentSearchViewModel: ViewModelType {
   }
 
   init() {
-
     do {
       self.realm = try Realm()
     } catch let err as NSError {
@@ -42,14 +41,14 @@ final class RecentSearchViewModel: ViewModelType {
   func transform(input: Input) -> Output {
 
     let load = Driver.merge(input.viewTrigger)
-      .map { [weak self] _  ->  Results<RecentSearchKeyword> in
-        return (self!.realm.objects(RecentSearchKeyword.self).sorted(byKeyPath: "created",
-                                                                     ascending: false))
+      .map { [weak self] _ -> Results<RecentSearchKeyword> in
+        return self!.realm.objects(RecentSearchKeyword.self)
+          .sorted(byKeyPath: "created", ascending: false)
       }
       .asDriver()
 
     let cancel = input.tapCancelButton
-      .map { () in
+      .map { _ in
         return true
       }
       .asDriver()

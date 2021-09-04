@@ -15,6 +15,7 @@ protocol OpenButtonDelegate: AnyObject {
 }
 
 final class ResultSearchViewController: BaseViewController, UISearchBarDelegate {
+
   enum Section {
     case main
   }
@@ -160,18 +161,19 @@ extension ResultSearchViewController {
 extension ResultSearchViewController {
   /// - TAG: DataSource
   private func configureResultDataSource(_ items: [MeetingModel]) {
-    let cellRegistration
-      = UICollectionView.CellRegistration<MeetingListCell, MeetingModel> { (cell, _, meetingModel) in
+    let cellRegistration = UICollectionView
+      .CellRegistration<MeetingListCell, MeetingModel> { cell, _, meetingModel in
         cell.bind(meetingModel)
-    }
-    resultDataSource
-      = UICollectionViewDiffableDataSource<Section, MeetingModel>(
-        collectionView: resultCollectionView
-      ) { (collectionView, indexPath, identifier ) -> UICollectionViewCell? in
-        return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                            for: indexPath,
-                                                            item: identifier)
       }
+    resultDataSource = UICollectionViewDiffableDataSource<Section, MeetingModel>(
+      collectionView: resultCollectionView
+    ) { collectionView, indexPath, identifier -> UICollectionViewCell? in
+      return collectionView.dequeueConfiguredReusableCell(
+        using: cellRegistration,
+        for: indexPath,
+        item: identifier
+      )
+    }
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, MeetingModel>()
     snapshot.appendSections([.main])
@@ -181,28 +183,28 @@ extension ResultSearchViewController {
 }
 extension ResultSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else {
-      return
-    }
-    // 여기에 화면전환
+    guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
+    // TODO: 여기에 화면전환
     print(meetingModel.discussionGroupID)
   }
 }
+
 extension ResultSearchViewController: OpenButtonDelegate {
   func didTapOpenButton() {
     print("tapped Open Button")
     // 여기에 화면 전환
   }
 }
-  // MARK: - Empty View
+
+// MARK: - Empty View
 final class EmptytMeetingView: UIView {
   private let emptyLabel: UILabel = {
     let label = UILabel()
     label.text =
       """
-    이 책은 지금 개설된 모임이 없어요.
-    방장이 되어 직접 모임을 만들어보세요!
-    """
+      이 책은 지금 개설된 모임이 없어요.
+      방장이 되어 직접 모임을 만들어보세요!
+      """
     label.textAlignment = .center
     label.font = .systemFont(ofSize: 13, weight: .medium)
     label.textColor = .black

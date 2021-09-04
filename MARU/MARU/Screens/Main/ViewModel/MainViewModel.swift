@@ -13,6 +13,7 @@ final class MainViewModel: ViewModelType {
   struct Input {
     let fetch: Observable<Void>
   }
+
   struct Output {
     let allPopularMeetings: Observable<[BookModel]>
     let allNewMeetings: Observable<[MeetingModel]>
@@ -20,13 +21,11 @@ final class MainViewModel: ViewModelType {
   }
 
   func transform(input: Input) -> Output {
-
     let errorMessage = PublishSubject<Error>()
 
     let allPopularMeetings = input.fetch
       .flatMap(NetworkService.shared.home.getPopular)
       .map { response -> BaseReponseType<Books> in
-
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)
@@ -45,10 +44,12 @@ final class MainViewModel: ViewModelType {
     let allNewMeetings = input.fetch
       .flatMap(NetworkService.shared.home.getNew)
       .map { response -> BaseReponseType<Groups> in
-
         guard 200 ..< 300 ~= response.status else {
-          throw NSError.init(domain: "Detect Error in Fetching New meetings",
-                             code: -1, userInfo: nil)
+          throw NSError.init(
+            domain: "Detect Error in Fetching New meetings",
+            code: -1,
+            userInfo: nil
+          )
         }
         return response
       }

@@ -12,9 +12,11 @@ import RxSwift
 import RxCocoa
 
 final class RecentSearchViewController: BaseViewController {
+
   enum Section {
     case main
   }
+
   private let searchBar: UISearchBar = {
     let searchBar = UISearchBar()
     searchBar.placeholder = "검색을 해주세요"
@@ -52,6 +54,7 @@ final class RecentSearchViewController: BaseViewController {
 
   private var viewModel =  RecentSearchViewModel()
   private let tapListCell = PublishSubject<String>()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBar(isHidden: false)
@@ -61,14 +64,14 @@ final class RecentSearchViewController: BaseViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
-    self.navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
-    self.navigationController?.navigationBar.isTranslucent = false
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    navigationController?.navigationBar.isTranslucent = false
     configureSearchBar()
   }
 
   private func bind() {
     let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
-      .map {_ in () }
+      .map { _ in () }
       .asDriver(onErrorJustReturn: ())
 
     let input = RecentSearchViewModel.Input(
@@ -83,36 +86,37 @@ final class RecentSearchViewController: BaseViewController {
     let output = viewModel.transform(input: input)
 
     output.load
-      .drive { [self] in
+      .drive { [weak self] in
+        guard let self = self else { return }
         var recentKeywords: [String] = []
         $0.forEach { recentKeyword in
           recentKeywords.append(recentKeyword.keyword)
         }
-        configureSearchListDataSource(recentKeywords)
+        self.configureSearchListDataSource(recentKeywords)
       }
       .disposed(by: disposeBag)
 
     output.cancel
-      .drive { [self] in
-        if $0 {
-          view.hideKeyboard()
-          navigationController?.popViewController(animated: true)
-        }
+      .drive { [weak self] in
+        guard let self = self, $0 else { return }
+        self.view.hideKeyboard()
+        self.navigationController?.popViewController(animated: true)
       }
       .disposed(by: disposeBag)
 
     output.delete
-      .drive(onNext: { [self] in
-        configureSearchListDataSource([])
+      .drive(onNext: { [weak self] in
+        self?.configureSearchListDataSource([])
       })
       .disposed(by: disposeBag)
 
     output.keyword
-      .drive { [self] in
-        searchBar.text = ""
+      .drive { [weak self] in
+        guard let self = self else { return }
+        self.searchBar.text = ""
         let resultSearchViewController = ResultSearchViewController()
         resultSearchViewController.transferKeyword(keyword: $0)
-        navigationController?.pushViewController(resultSearchViewController, animated: false)
+        self.navigationController?.pushViewController(resultSearchViewController, animated: false)
       }
       .disposed(by: disposeBag)
 
@@ -127,6 +131,7 @@ extension RecentSearchViewController {
     navigationItem.rightBarButtonItem = cancelButton
   }
 }
+
 extension RecentSearchViewController {
 
   /// - TAG: collectionView Layout
@@ -138,8 +143,10 @@ extension RecentSearchViewController {
   }
 
   private func configureLayout() {
-    searchListCollectionView = UICollectionView(frame: .zero,
-                                                collectionViewLayout: createListLayout())
+    searchListCollectionView = UICollectionView(
+      frame: .zero,
+      collectionViewLayout: createListLayout()
+    )
     searchListCollectionView.delegate = self
     searchListCollectionView.contentInsetAdjustmentBehavior = .never
     searchListCollectionView.backgroundColor = .white
@@ -172,17 +179,21 @@ extension RecentSearchViewController {
   /// - TAG: DataSource
   private func configureSearchListDataSource(_ items: [String]) {
     let cellRegistration = UICollectionView
-      .CellRegistration<UICollectionViewListCell, String> { (cell, _, item) in
+      .CellRegistration<UICollectionViewListCell, String> { cell, _, item in
         var content = cell.defaultContentConfiguration()
         content.text = item
         cell.contentConfiguration = content
       }
 
-    searchListDataSource =
-      UICollectionViewDiffableDataSource<Section, String>(
-        collectionView: searchListCollectionView,
-        cellProvider: {(collectionView, indexPath, string) -> UICollectionViewCell in
-          return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: string)})
+    searchListDataSource = UICollectionViewDiffableDataSource<Section, String>(
+      collectionView: searchListCollectionView,
+      cellProvider: { collectionView, indexPath, string -> UICollectionViewCell in
+        return collectionView.dequeueConfiguredReusableCell(
+          using: cellRegistration,
+          for: indexPath,
+          item: string)
+      }
+    )
 
     var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
     snapshot.appendSections([.main])
@@ -191,7 +202,10 @@ extension RecentSearchViewController {
   }
 }
 extension RecentSearchViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
     collectionView.deselectItem(at: indexPath, animated: true)
     guard let searchKeyword = searchListDataSource.itemIdentifier(for: indexPath) else {
       return
