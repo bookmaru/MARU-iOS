@@ -220,9 +220,8 @@ extension MainViewController: UICollectionViewDelegate {
     if scrollView.contentOffset.y < 0 {
       scrollView.isScrollEnabled = false
       scrollView.bounds = view.bounds
-    } else {
-      scrollView.isScrollEnabled = true
     }
+    scrollView.isScrollEnabled = true
   }
 }
   // MARK: - Collection View Layout

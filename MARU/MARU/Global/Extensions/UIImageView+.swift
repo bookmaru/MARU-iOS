@@ -20,21 +20,28 @@ extension UIImageView {
   }
 
   public func imageFromUrl(_ urlString: String?, defaultImgPath: String?) {
-    let tmpUrl: String?
-    if urlString == nil {
-      tmpUrl = ""
+    let tmpURL: String? = urlString == nil ? "" : urlString
+    if let url = tmpURL,
+       !url.isEmpty {
+      kf.setImage(
+        with: URL(string: url),
+        options: [
+          .transition(ImageTransition.fade(0.5)),
+          .backgroundDecode,
+          .alsoPrefetchToMemory,
+          .cacheMemoryOnly
+        ]
+      )
     } else {
-      tmpUrl = urlString
-    }
-    if let url = tmpUrl,
-       let defaultURL: String = defaultImgPath {
-      if url.isEmpty {
-        self.kf.setImage(with: URL(string: defaultURL),
-                         options: [.transition(ImageTransition.fade(0.5))])
-      } else {
-        self.kf.setImage(with: URL(string: url),
-                         options: [.transition(ImageTransition.fade(0.5))])
-      }
+      kf.setImage(
+        with: URL(string: defaultImgPath ?? ""),
+        options: [
+          .transition(ImageTransition.fade(0.5)),
+          .backgroundDecode,
+          .alsoPrefetchToMemory,
+          .cacheMemoryOnly
+        ]
+      )
     }
   }
 }
