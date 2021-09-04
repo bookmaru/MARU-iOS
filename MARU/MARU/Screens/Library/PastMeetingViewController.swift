@@ -44,23 +44,35 @@ final class PastMeetingViewController: BaseViewController {
   }
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
-    let output = viewModel.transfrom(input: PastMeetingViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher))
+    let input = PastMeetingViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
+    let output = viewModel.transfrom(input: input)
+
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
         self.data = data
       })
       .disposed(by: disposeBag)
+
     viewDidLoadPublisher.onNext(())
   }
 }
 
 extension PastMeetingViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return data?.keepGroup.count ?? 0
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    // MARK: 준현 - 여기서 isLeader값을 cell 안으로 넣어줘서 처리해도 좋을거같아요!
     if data?.keepGroup[indexPath.item].isLeader == true {
       cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
       cell.rx.didTapEvaluateButton
@@ -82,12 +94,18 @@ extension PastMeetingViewController: UICollectionViewDataSource {
 }
 
 extension PastMeetingViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     return CGSize(width: ScreenSize.width-40, height: 145)
   }
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
     // cell tap action
   }
 }

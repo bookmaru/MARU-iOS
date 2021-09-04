@@ -34,8 +34,10 @@ extension SearchRouter: TargetType {
   var task: Task {
     switch self {
     case let .search(queryString):
-      return .requestParameters(parameters: ["title": queryString],
-                                encoding: URLEncoding.queryString)
+      return .requestParameters(
+        parameters: ["title": queryString],
+        encoding: URLEncoding.queryString
+      )
     }
   }
   var headers: [String: String]? {

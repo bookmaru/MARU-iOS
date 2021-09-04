@@ -43,12 +43,13 @@ final class MaruSearchView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  private func setupView() {
-    self.adds([searchImage, searchTextField])
 
-    self.translatesAutoresizingMaskIntoConstraints = false
-    self.widthAnchor.constraint(equalToConstant: width).isActive = true
-    self.heightAnchor.constraint(equalToConstant: height).isActive = true
+  private func setupView() {
+    adds([searchImage, searchTextField])
+
+    translatesAutoresizingMaskIntoConstraints = false
+    widthAnchor.constraint(equalToConstant: width).isActive = true
+    heightAnchor.constraint(equalToConstant: height).isActive = true
 
     searchImage.snp.makeConstraints { make in
       make.centerY.equalToSuperview()
@@ -67,7 +68,6 @@ final class MaruSearchView: UIView {
 }
 
 extension MaruSearchView {
-
   private func applyProperty() {
     applyShadow(color: .black,
                 alpha: 0.1,
@@ -75,10 +75,10 @@ extension MaruSearchView {
                 shadowY: 0,
                 blur: 15/2)
 
-    self.backgroundColor = .white
-    self.layer.borderWidth = 1
-    self.layer.cornerRadius = 8
-    self.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+    backgroundColor = .white
+    layer.borderWidth = 1
+    layer.cornerRadius = 8
+    layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
   }
 }
 extension MaruSearchView: UITextFieldDelegate, SearchTextFieldDelegate {

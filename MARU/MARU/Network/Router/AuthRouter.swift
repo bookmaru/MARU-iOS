@@ -31,21 +31,21 @@ enum AuthRouter {
 
 extension AuthRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
 
   var path: String {
     switch self {
     case .auth(let type, _):
-      return "/api/v2/social/login/\(type.description)"
+      return "social/login/\(type.description)"
     case .nicknameCheck(let nickname):
-      return "/api/v2/nickname/check/\(nickname)"
+      return "nickname/check/\(nickname)"
     case .information:
-      return "/api/v2/signup"
+      return "signup"
     case .refresh:
-      return "/api/v2/token/refresh"
+      return "token/refresh"
     case .user:
-      return "/api/v2/user"
+      return "user"
     }
   }
 

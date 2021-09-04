@@ -41,7 +41,7 @@ extension UICollectionView {
   }
 
   func restore() {
-    self.backgroundView = nil
+    backgroundView = nil
   }
 
   func register<T>(
@@ -50,42 +50,44 @@ extension UICollectionView {
   ) where T: UICollectionViewCell {
       register(cell, forCellWithReuseIdentifier: reuseIdentifier)
   }
-  func scrollToSupplementaryView(ofKind kind: String,
-                                 at indexPath: IndexPath,
-                                 at scrollPosition: UICollectionView.ScrollPosition,
-                                 animated: Bool) {
-    self.layoutIfNeeded()
-    if let layoutAttributes = self.layoutAttributesForSupplementaryElement(ofKind: kind, at: indexPath) {
-      let viewOrigin = CGPoint(x: layoutAttributes.frame.origin.x, y: layoutAttributes.frame.origin.y)
-      var resultOffset: CGPoint = self.contentOffset
-      let layoutAttributeSize = layoutAttributes.frame.size
 
-      switch scrollPosition {
-      case UICollectionView.ScrollPosition.top:
-        resultOffset.y = viewOrigin.y - self.contentInset.top
+  func scrollToSupplementaryView(
+    ofKind kind: String,
+    at indexPath: IndexPath,
+    at scrollPosition: UICollectionView.ScrollPosition,
+    animated: Bool
+  ) {
 
-      case UICollectionView.ScrollPosition.left:
-        resultOffset.x = viewOrigin.x - self.contentInset.left
+    layoutIfNeeded()
+    guard let layoutAttributes = self.layoutAttributesForSupplementaryElement(ofKind: kind, at: indexPath)
+    else { return }
+    let viewOrigin = CGPoint(x: layoutAttributes.frame.origin.x, y: layoutAttributes.frame.origin.y)
+    var resultOffset: CGPoint = contentOffset
+    let layoutAttributeSize = layoutAttributes.frame.size
 
-      case UICollectionView.ScrollPosition.right:
-        resultOffset.x
-          = (viewOrigin.x - self.contentInset.left) - (self.frame.size.width - layoutAttributeSize.width)
+    switch scrollPosition {
+    case UICollectionView.ScrollPosition.top:
+      resultOffset.y = viewOrigin.y - contentInset.top
 
-      case UICollectionView.ScrollPosition.bottom:
-        resultOffset.y
-          = (viewOrigin.y - self.contentInset.top) - (self.frame.size.height - layoutAttributeSize.height)
+    case UICollectionView.ScrollPosition.left:
+      resultOffset.x = viewOrigin.x - contentInset.left
 
-      case UICollectionView.ScrollPosition.centeredVertically:
-        resultOffset.y
-          = (viewOrigin.y - self.contentInset.top) - (self.frame.size.height / 2 - layoutAttributeSize.height / 2)
+    case UICollectionView.ScrollPosition.right:
+      resultOffset.x = (viewOrigin.x - contentInset.left) - (frame.size.width - layoutAttributeSize.width)
 
-      case UICollectionView.ScrollPosition.centeredHorizontally:
-        resultOffset.x
-          = (viewOrigin.x - self.contentInset.left) - (self.frame.size.width / 2 - layoutAttributeSize.width / 2)
-      default:
-        break
-      }
-      self.scrollRectToVisible(CGRect(origin: resultOffset, size: self.frame.size), animated: animated)
+    case UICollectionView.ScrollPosition.bottom:
+      resultOffset.y = (viewOrigin.y - contentInset.top) - (frame.size.height - layoutAttributeSize.height)
+
+    case UICollectionView.ScrollPosition.centeredVertically:
+      resultOffset.y = (viewOrigin.y - contentInset.top) - (frame.size.height / 2 - layoutAttributeSize.height / 2)
+
+    case UICollectionView.ScrollPosition.centeredHorizontally:
+      resultOffset.x = (viewOrigin.x - contentInset.left) - (frame.size.width / 2 - layoutAttributeSize.width / 2)
+
+    default:
+      break
     }
+    let size = CGRect(origin: resultOffset, size: frame.size)
+    scrollRectToVisible(size, animated: animated)
   }
 }

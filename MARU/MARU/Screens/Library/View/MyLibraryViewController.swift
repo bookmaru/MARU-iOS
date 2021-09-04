@@ -17,12 +17,23 @@ final class MyLibraryViewController: BaseViewController {
     //  layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(MyLibraryHeaderView.self,
-                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                            withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier)
-    collectionView.register(cell: LibraryTitleCell.self, forCellWithReuseIdentifier: LibraryTitleCell.reuseIdentifier)
-    collectionView.register(cell: MyLibraryCell.self, forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier)
-    collectionView.register(cell: LibraryDiaryCell.self, forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier)
+    collectionView.register(
+      MyLibraryHeaderView.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier
+    )
+    collectionView.register(
+      cell: LibraryTitleCell.self,
+      forCellWithReuseIdentifier: LibraryTitleCell.reuseIdentifier
+    )
+    collectionView.register(
+      cell: MyLibraryCell.self,
+      forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier
+    )
+    collectionView.register(
+      cell: LibraryDiaryCell.self,
+      forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier
+    )
     return collectionView
   }()
   private let viewModel = MyLibraryViewModel()
@@ -42,6 +53,7 @@ final class MyLibraryViewController: BaseViewController {
     setNavigationBar(isHidden: true)
     tabBarController?.tabBar.isHidden = false
   }
+
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -51,21 +63,26 @@ final class MyLibraryViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
+
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
-    let output = viewModel.transform(input: MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher))
+    let input = MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
+    let output = viewModel.transform(input: input)
+
     output.data
       .drive(onNext: { [weak self] data in
         guard let self = self else { return }
         self.data = data
       })
       .disposed(by: disposeBag)
+
     output.user
       .drive(onNext: { [weak self] user in
         guard let self = self else { return }
         self.user = user
       })
       .disposed(by: disposeBag)
+
     viewDidLoadPublisher.onNext(())
   }
 }
@@ -148,29 +165,29 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
-    if let headerView = collectionView.dequeueReusableSupplementaryView(
+    guard let headerView = collectionView.dequeueReusableSupplementaryView(
         ofKind: UICollectionView.elementKindSectionHeader,
-        withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier, for: indexPath) as? MyLibraryHeaderView {
-      headerView.rx.profileBinder.onNext(user!)
-      // 강제 옵셔널 처리 해결방법 고민해야함
-      headerView.changeSettingButton.rx
-        .tap
-        .bind {
-          let viewController = SettingViewController()
-          self.navigationController?.pushViewController(viewController, animated: true)
-        }
-        .disposed(by: headerView.disposeBag)
-      return headerView
-    }
-    return UICollectionReusableView()
+        withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier,
+        for: indexPath
+    ) as? MyLibraryHeaderView,
+    // MARK: 이런식으로 옵셔널 처리를 하면... 될거에요
+    let user = user
+    else { return UICollectionReusableView() }
+    headerView.rx.profileBinder.onNext(user)
+    // 강제 옵셔널 처리 해결방법 고민해야함
+    headerView.changeSettingButton.rx.tap
+      .bind {
+        let viewController = SettingViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+      }
+      .disposed(by: headerView.disposeBag)
+    return headerView
   }
+
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       referenceSizeForHeaderInSection section: Int) -> CGSize {
-    if section == 0 {
-      return CGSize(width: ScreenSize.width, height: 187)
-    } else {
-      return CGSize.zero
-    }
+    guard section == 0 else { return .zero }
+    return CGSize(width: ScreenSize.width, height: 187)
   }
 }

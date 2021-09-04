@@ -17,20 +17,20 @@ enum DiaryRouter {
 
 extension DiaryRouter: TargetType {
   var baseURL: URL {
-    return URL(string: "http://3.36.251.65:8080")!
+    return Enviroment.baseURL
   }
   var path: String {
     switch self {
     case .list:
-      return "/api/v2/diary"
+      return "diary"
     case .post:
-      return "/api/v2/diary"
+      return "diary"
     case .get(let diaryId):
-      return "/api/v2/diary/\(diaryId)"
+      return "diary/\(diaryId)"
     case .edit(let diaryId):
-      return "/api/v2/diary/\(diaryId)"
+      return "diary/\(diaryId)"
     case .delete(let diaryId):
-      return "/api/v2/diary/\(diaryId)"
+      return "diary/\(diaryId)"
     }
   }
 

@@ -26,7 +26,7 @@ final class MyLibraryViewModel {
     let user = viewDidLoad
       // map 사용하지 않는 이유 -> observable type으로 리턴되므로 이중으로 감싸진 형태
       // 따라서 flatmap 사용
-      .flatMap { NetworkService.shared.auth.user() }
+      .flatMap(NetworkService.shared.auth.user)
       .map { response -> User? in
         return response.data
       }
@@ -34,20 +34,19 @@ final class MyLibraryViewModel {
 
     // 모임하고 싶은 책 리스트
     let bookList = viewDidLoad
-      .flatMap {
-        NetworkService.shared.book.bookList() }
+      .flatMap(NetworkService.shared.book.bookList)
       .map { response -> BookCaseModel? in
         return response.data
       }
     // 일기 리스트
     let diaryList = viewDidLoad
-      .flatMap { NetworkService.shared.diary.getDiaryList() }
+      .flatMap(NetworkService.shared.diary.getDiaryList)
       .map { response -> Diaries? in
         return response.data
       }
     // 모임 리스트
     let bookGroup = viewDidLoad
-      .flatMap { NetworkService.shared.book.getGroup() }
+      .flatMap(NetworkService.shared.book.getGroup)
       .map { response -> KeepGroupModel? in
         return response.data
       }

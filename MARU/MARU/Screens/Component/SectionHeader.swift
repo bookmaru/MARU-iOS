@@ -20,9 +20,8 @@ final class SectionHeader: UICollectionReusableView {
     $0.text = "defalut"
   }
   private let moveButton = UIButton().then {
-    $0.setImage(UIImage(systemName: "chevron.right")?.withTintColor(.black,
-                                                                    renderingMode: .alwaysOriginal),
-                for: .normal)
+    let image = UIImage(systemName: "chevron.right")
+    $0.setImage(image?.withTintColor(.black, renderingMode: .alwaysOriginal), for: .normal)
     $0.addTarget(self, action: #selector(tapButtonInHeader(_:)), for: .touchUpInside)
   }
 
