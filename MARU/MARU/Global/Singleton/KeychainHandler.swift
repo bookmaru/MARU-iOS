@@ -58,6 +58,8 @@ struct KeychainHandler {
     keychain.remove(forKey: KeychainWrapper.Key(rawValue: accessTokenExpiredAtKey))
     keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenKey))
     keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenExpiredAtKey))
+    UserDefaultHandler.shared.userName = nil
+    UserDefaultHandler.shared.userImageURL = nil
   }
 
   func removeAllKeys() {
