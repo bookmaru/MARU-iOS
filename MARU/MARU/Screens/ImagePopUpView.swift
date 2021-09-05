@@ -43,6 +43,75 @@ final class ImagePopUpView: UIViewController {
     $0.setTitle("확인", for: .normal)
     $0.setTitleColor(.white, for: .normal)
   }
+  var leaderName: String?
+  let disposeBag = DisposeBag()
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    render()
+  }
   
+}
+
+extension ImagePopUpView {
+  private func render() {
+    view.backgroundColor = .black.withAlphaComponent(0.7)
+    view.add(popUpView)
+    popUpView.adds([
+      titleLabel,
+      firstScoreButton,
+      secondScoreButton,
+      thirdScoreButton,
+      fourthScoreButton,
+      fifthScoreButton,
+      subTitleLabel,
+      submitButton
+    ])
+    popUpView.snp.makeConstraints { make in
+      make.centerX.equalToSuperview()
+      make.top.equalToSuperview().offset(200)
+      make.height.equalTo(220)
+      make.width.equalTo(252)
+    }
+    titleLabel.snp.makeConstraints { make in
+      make.centerX.equalTo(popUpView)
+      make.leading.equalTo(popUpView).offset(56)
+      make.top.equalTo(popUpView).offset(20)
+    }
+    firstScoreButton.snp.makeConstraints { make in
+      make.size.equalTo(30)
+      make.leading.equalTo(popUpView).offset(40)
+      make.top.equalTo(titleLabel.snp.bottom).offset(20)
+    }
+    secondScoreButton.snp.makeConstraints { make in
+      make.size.equalTo(30)
+      make.leading.equalTo(firstScoreButton.snp.trailing).offset(5)
+      make.top.equalTo(firstScoreButton.snp.top)
+    }
+    thirdScoreButton.snp.makeConstraints { make in
+      make.size.equalTo(30)
+      make.leading.equalTo(firstScoreButton.snp.trailing).offset(5)
+      make.top.equalTo(firstScoreButton.snp.top)
+    }
+    fourthScoreButton.snp.makeConstraints { make in
+      make.size.equalTo(30)
+      make.leading.equalTo(firstScoreButton.snp.trailing).offset(5)
+      make.top.equalTo(firstScoreButton.snp.top)
+    }
+    fifthScoreButton.snp.makeConstraints { make in
+      make.size.equalTo(30)
+      make.leading.equalTo(firstScoreButton.snp.trailing).offset(5)
+      make.top.equalTo(firstScoreButton.snp.top)
+    }
+    subTitleLabel.snp.makeConstraints { make in
+      make.top.equalTo(firstScoreButton.snp.bottom).offset(20)
+      make.centerX.equalTo(popUpView)
+    }
+    submitButton.snp.makeConstraints { make in
+      make.height.equalTo(50)
+      make.bottom.equalTo(popUpView).offset(0)
+      make.leading.equalTo(popUpView).offset(0)
+      make.trailing.equalTo(popUpView).offset(0)
+    }
+  }
 }
