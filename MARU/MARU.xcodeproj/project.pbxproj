@@ -134,7 +134,7 @@
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
 		F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */; };
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
-		F231C40726E2801C00642130 /* ImagePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* ImagePopUpView.swift */; };
+		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
 		F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCaseModel.swift */; };
@@ -306,7 +306,7 @@
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
 		F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuiz1Cell.swift; sourceTree = "<group>"; };
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
-		F231C40626E2801C00642130 /* ImagePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePopUpView.swift; sourceTree = "<group>"; };
+		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
 		F28E550726C8EFB900F083BD /* BookCaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCaseModel.swift; sourceTree = "<group>"; };
@@ -916,7 +916,7 @@
 				C55E21BD266B615100D5D953 /* Onboarding */,
 				C52E7828260F27760087570E /* Base */,
 				F2F0C6582680767C00F8061A /* Join */,
-				F231C40626E2801C00642130 /* ImagePopUpView.swift */,
+				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1325,7 +1325,7 @@
 				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
 				77847E8226D353420054742F /* Category.swift in Sources */,
 				77B718EE26470CBC0005B129 /* BookModel.swift in Sources */,
-				F231C40726E2801C00642130 /* ImagePopUpView.swift in Sources */,
+				F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */,
 				C52B34AB26820FA00053FE45 /* OnboardingViewModel.swift in Sources */,
 				771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */,
 				774BDE7326609B9800B97CC6 /* SectionHeader.swift in Sources */,
