@@ -37,7 +37,8 @@ extension TimerView {
       radius: 15,
       startAngle: -90.radians,
       endAngle: 270.radians,
-      clockwise: true).cgPath
+      clockwise: true
+    ).cgPath
     shapeLayer.strokeColor = UIColor.white.cgColor
     shapeLayer.fillColor = UIColor.clear.cgColor
     shapeLayer.lineWidth = 3
@@ -48,7 +49,8 @@ extension TimerView {
       radius: 15,
       startAngle: -90.radians,
       endAngle: 270.radians,
-      clockwise: true).cgPath
+      clockwise: true
+    ).cgPath
     timeLeftShapeLayer.strokeColor = UIColor.blue.cgColor
     timeLeftShapeLayer.fillColor = UIColor.clear.cgColor
     timeLeftShapeLayer.lineWidth = 3

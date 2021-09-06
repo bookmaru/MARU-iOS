@@ -40,9 +40,11 @@ extension UIView {
                       shadowY: shadowY,
                       blur: blur)
   }
+
   func hideKeyboard() {
     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
   }
+
   func asImage() -> UIImage {
     let renderer = UIGraphicsImageRenderer(bounds: bounds)
     return renderer.image(actions: { rendererContext in
