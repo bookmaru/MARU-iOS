@@ -111,7 +111,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.awakeFromNib()
       if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false
       } else {
