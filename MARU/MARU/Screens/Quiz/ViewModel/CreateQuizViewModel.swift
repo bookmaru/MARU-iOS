@@ -10,16 +10,15 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class CreateQuizViewModel {
+final class CreateQuizViewModel: ViewModelType {
 
   struct Input {
-    let viewdidLoad: PublishSubject<Void>
-    let didTapCorrectButton: PublishSubject<String>
+    let quizProblem: Observable<[String]>
+    let quizAnswer: Observable<[String]>
   }
   struct Output {
-    let didCreate: Driver<UIViewController>
   }
-//  func transform(input: Input) -> Output {
-//    let didTapCorrectButton = 
-//  }
+  func transform(input: Input) -> Output {
+    return Output()
+  }
 }

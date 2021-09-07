@@ -7,7 +7,10 @@
 
 import UIKit
 
-class CreateQuizViewController: BaseViewController {
+import RxSwift
+import RxCocoa
+
+final class CreateQuizViewController: BaseViewController {
 
   private var tableView: UITableView! = nil
   private let headerView: UIView = {
@@ -24,6 +27,13 @@ class CreateQuizViewController: BaseViewController {
     return view
   }()
   private let oneLinePlaceholder = "토론에 대한 소개를 70자 이내로 입력해주세요."
+
+  private var oneLineString: String?
+  private var quizzes = [String](repeating: "", count: 5)
+  private var answer = [String](repeating: "", count: 5)
+  private let triggerQuizProblem = PublishSubject<(String, Int)>()
+  private let triggerQuizAnswer = PublishSubject<(String, Int)>()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     configureComponent()
@@ -88,6 +98,22 @@ extension CreateQuizViewController: UITableViewDataSource {
       guard let cell = tableView.dequeueReusableCell(
               withIdentifier: CreateQuizCell.reuseIdentifier,
               for: indexPath) as? CreateQuizCell else { return UITableViewCell() }
+      cell.placeTextInQuizLabel(order: indexPath.item)
+
+      cell.quizTextView.rx.didChange.asObservable()
+        .flatMapLatest(cell.quizTextView.rx.text.orEmpty.asObservable)
+        .subscribe(onNext: { [weak self] quizProblem in
+          self?.triggerQuizProblem.onNext((quizProblem, indexPath.item))
+          print(quizProblem, indexPath.item)
+        })
+        .disposed(by: cell.disposeBag)
+
+      cell.rx.didTapButton
+        .subscribe(onNext: { [weak self] quizAnswer in
+          self?.triggerQuizAnswer.onNext((quizAnswer, indexPath.item))
+          print(quizAnswer, indexPath.item)
+        })
+        .disposed(by: cell.disposeBag)
       return cell
 
     default:
@@ -130,10 +156,6 @@ extension CreateQuizViewController: UITableViewDataSource {
   }
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     return UIView()
-  }
-  func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    tableView.deselectRow(at: indexPath, animated: false)
-    return nil
   }
 }
 

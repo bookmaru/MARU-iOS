@@ -7,13 +7,21 @@
 
 import UIKit
 
-class CreateQuizCell: UITableViewCell {
+import RxSwift
+import RxCocoa
 
+enum Action {
+  case tapO
+  case tapX
+}
+
+class CreateQuizCell: UITableViewCell {
+  var disposeBag = DisposeBag()
   private let quizLabel = UILabel()
   private let maskingView = UIView()
   let quizTextView = UITextView()
-  private let oButton = UIButton()
-  private let xButton = UIButton()
+  let oButton = UIButton()
+  let xButton = UIButton()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,11 +36,15 @@ class CreateQuizCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
+  override func prepareForReuse() {
+    quizLabel.text = nil
+    quizTextView.text = nil
+    disposeBag = DisposeBag()
+  }
 }
 extension CreateQuizCell {
   private func configureComponent() {
     quizLabel.font = .systemFont(ofSize: 25, weight: .medium)
-    quizLabel.text = "Quiz 1"
 
     maskingView.backgroundColor = .black22
     maskingView.layer.cornerRadius = 3
@@ -88,3 +100,56 @@ extension CreateQuizCell {
     }
   }
 }
+extension CreateQuizCell: UITextViewDelegate {
+}
+extension CreateQuizCell {
+  func placeTextInQuizLabel(order: Int) {
+    quizLabel.text = "Quiz " + "\(order + 1)"
+  }
+}
+
+extension Reactive where Base: CreateQuizCell {
+  var didTapButton: Observable<String> {
+    return Observable.merge(
+      base.oButton.rx.tap.map { Action.tapO },
+      base.xButton.rx.tap.map { Action.tapX }
+    )
+    .flatMapLatest({ action -> Observable<String> in
+      switch action {
+      case .tapO:
+        base.oButton.isSelected = true
+        base.xButton.isSelected = false
+        return Observable.just("O")
+      case .tapX:
+        base.oButton.isSelected = false
+        base.xButton.isSelected = true
+        return Observable.just("X")
+      }
+    })
+    .debug()
+  }
+}
+
+
+//
+//
+//extension Reactive where Base: CreateQuizCell {
+//  var didTapAddButton: Observable<Void> {
+//    return base.addButton.rx.tap
+//      .map { return }
+//      .asObservable()
+//  }
+//
+//  var addButtonIsHiddenBinder: Binder<Bool> {
+//    return Binder(base) { base, isHiddenButton in
+//      base.addButton.isHidden = isHiddenButton
+//    }
+//  }
+//
+//  var titleBinder: Binder<String> {
+//    return Binder(base) { base, title in
+//      base.title = title
+//    }
+//  }
+//}
+//
