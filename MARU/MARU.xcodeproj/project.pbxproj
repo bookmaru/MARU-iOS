@@ -117,6 +117,7 @@
 		C5B9B9A026B68DEA00D07974 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99F26B68DEA00D07974 /* User.swift */; };
 		C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A126B6902E00D07974 /* BookRouter.swift */; };
 		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
+		C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD9AB826E7905E00E9233A /* RealmService.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -286,6 +287,7 @@
 		C5B9B99F26B68DEA00D07974 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C5B9B9A126B6902E00D07974 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
 		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		C5CD9AB826E7905E00E9233A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 			children = (
 				C5A3DAFF2684CD58007355D1 /* MARU.entitlements */,
 				C58F6A522646E9C600D8AA7C /* Network */,
+				C5CD9AB726E7904E00E9233A /* RealmService */,
 				C59BCBBF26C81F2C00C84163 /* ChatService */,
 				C52E781C260F27110087570E /* Global */,
 				C5DB34DA260F256A00F29FE1 /* Screens */,
@@ -849,6 +852,14 @@
 				C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C5CD9AB726E7904E00E9233A /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD9AB826E7905E00E9233A /* RealmService.swift */,
+			);
+			path = RealmService;
 			sourceTree = "<group>";
 		};
 		C5DB34D7260F255600F29FE1 /* Config */ = {
@@ -1359,6 +1370,7 @@
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */,
+				C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
 				F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */,
@@ -1551,7 +1563,7 @@
 				BUNDLE_NAME = "마루_dev";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_WARN_PEDANTIC = NO;
@@ -1584,7 +1596,7 @@
 				BUNDLE_NAME = "마루";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTABILITY = NO;
 				GCC_WARN_PEDANTIC = NO;

@@ -44,7 +44,7 @@ final class ChatViewController: BaseViewController {
   init(roomIndex: Int) {
     self.viewModel = ChatViewModel(
       roomIndex: roomIndex,
-      messagePublisher: bottomView.rx.didTapSendButton
+      sendPublisher: bottomView.rx.didTapSendButton
     )
     self.roomIndex = roomIndex
 

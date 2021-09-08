@@ -56,11 +56,9 @@ enum Chat {
 }
 
 final class ChatViewModel {
-
-  private let chatService: ChatService
   private let roomIndex: Int
-  private let recivePublisher = PublishSubject<ChatDAO>()
-  private let messagePublisher: Observable<String>
+  private let recivePublisher: PublishSubject<ChatDAO>
+  private let sendPublisher: Observable<String>
 
   private var prevChatSender: String?
   private let userName = UserDefaultHandler.shared.userName
@@ -75,18 +73,17 @@ final class ChatViewModel {
     let chat: Driver<Chat>
   }
 
-  init(roomIndex: Int, messagePublisher: Observable<String>) {
+  init(roomIndex: Int, sendPublisher: Observable<String>) {
     self.roomIndex = roomIndex
-    self.messagePublisher = messagePublisher
-    chatService = ChatService(
+    self.sendPublisher = sendPublisher
+    self.recivePublisher = ChatService.shared.bind(
       roomIndex: roomIndex,
-      messagePublisher: messagePublisher,
-      receivePublisher: recivePublisher
+      sendPublisher: sendPublisher
     )
   }
 
   deinit {
-    print("ChatViewModel deinit")
+    ChatService.shared.clearMessageDisposeBag()
   }
 
   func transform(input: Input) -> Output {

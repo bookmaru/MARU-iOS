@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       else { return true }
     FirebaseApp.configure(options: fileopts)
     KakaoSDKCommon.initSDK(appKey: "887e05e96dc176857e11b18c6bf97969")
+    ChatService.shared.start()
 
     return true
   }

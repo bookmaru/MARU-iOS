@@ -20,14 +20,6 @@ final class OnboardingViewController: BaseViewController {
   typealias LoginCell = OnboardingLoginCollectionViewCell
   typealias ViewModel = OnboardingViewModel
 
-  private let welcomeLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Welcome!"
-    label.textColor = .mainBlue
-    label.font = .systemFont(ofSize: 14, weight: .heavy)
-    return label
-  }()
-
   private let collectionView: UICollectionView = {
     let size = UIScreen.main.bounds
     let layout = UICollectionViewFlowLayout()
@@ -100,11 +92,6 @@ extension OnboardingViewController {
       $0.top.equalToSuperview().offset(78)
       $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
       $0.bottom.equalToSuperview().offset(-96.calculatedHeight)
-    }
-    view.add(welcomeLabel)
-    welcomeLabel.snp.makeConstraints {
-      $0.top.equalTo(view.safeAreaLayoutGuide).offset(44)
-      $0.centerX.equalToSuperview()
     }
     view.add(pageControl)
     pageControl.snp.makeConstraints {
