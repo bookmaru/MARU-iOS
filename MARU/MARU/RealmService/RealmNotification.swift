@@ -6,18 +6,32 @@
 //
 
 import RealmSwift
+import RxSwift
 
-class RealmNotification<T: Object> {
+final class RealmNotification {
+  static let shared = RealmNotification()
+
   private var token: NotificationToken?
-  private var object: T?
+  private var object: RealmChat?
 
-  init() { }
+  private init() { }
 
-  func subscribeRealm(id: Int) {
+  func subscribeRealm(roomID: Int) {
 
   }
 
-  private func fetchObjectFromRealm(id: Int) -> T? {
-    return RealmService.shared.read()
+  func fetchObjectFromRealm(roomID: Int) -> PublishSubject<[RealmChat]> {
+    let chatPublisher = PublishSubject<[RealmChat]>()
+    token = RealmService.shared.read(roomID).observe { chages in
+      switch chages {
+      case let .update(chat, _, _, _):
+        let chats: [RealmChat] = chat.map { $0 }
+        print("asdasd token", chats)
+        chatPublisher.onNext(chats)
+      default:
+        break
+      }
+    }
+    return chatPublisher
   }
 }

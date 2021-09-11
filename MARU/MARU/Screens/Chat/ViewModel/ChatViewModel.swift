@@ -8,22 +8,15 @@
 import RxCocoa
 import RxSwift
 
-struct ChatDTO {
-  let profileImage: String?
-  let name: String?
-  let message: String?
-}
-
 enum Chat {
-  case message(data: ChatDTO)
-  case otherProfile(data: ChatDTO)
-  case otherMessage(data: ChatDTO)
-  case error
+  case message(data: RealmChat)
+  case otherProfile(data: RealmChat)
+  case otherMessage(data: RealmChat)
 
   var cellHeight: CGFloat {
     switch self {
     case .message(let data):
-      return NSString(string: data.message ?? "").boundingRect(
+      return NSString(string: data.content).boundingRect(
         with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
@@ -32,7 +25,7 @@ enum Chat {
       .height + 18
 
     case .otherProfile(let data):
-      return NSString(string: data.message ?? "").boundingRect(
+      return NSString(string: data.content).boundingRect(
         with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
@@ -41,23 +34,20 @@ enum Chat {
       .height + 18 + 13 + 5.5
 
     case .otherMessage(let data):
-      return NSString(string: data.message ?? "").boundingRect(
+      return NSString(string: data.content).boundingRect(
         with: CGSize(width: ScreenSize.width - 150, height: .zero),
         options: NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin),
         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)],
         context: nil
       )
       .height + 18
-
-    case .error:
-      return .zero
     }
   }
 }
 
 final class ChatViewModel {
   private let roomIndex: Int
-  private let recivePublisher: PublishSubject<ChatDAO>
+  private let recivePublisher = BehaviorSubject<[RealmChat]>(value: [])
   private let sendPublisher: Observable<String>
 
   private var prevChatSender: String?
@@ -65,18 +55,21 @@ final class ChatViewModel {
 
   let disposeBag = DisposeBag()
 
-  struct Input {
-
-  }
+  struct Input { }
 
   struct Output {
-    let chat: Driver<Chat>
+    let chat: Driver<[Chat]>
   }
 
   init(roomIndex: Int, sendPublisher: Observable<String>) {
     self.roomIndex = roomIndex
     self.sendPublisher = sendPublisher
-    self.recivePublisher = ChatService.shared.bind(
+
+    RealmNotification.shared.fetchObjectFromRealm(roomID: 1)
+      .bind(to: self.recivePublisher)
+      .disposed(by: disposeBag)
+
+    ChatService.shared.bind(
       roomIndex: roomIndex,
       sendPublisher: sendPublisher
     )
@@ -89,20 +82,27 @@ final class ChatViewModel {
   func transform(input: Input) -> Output {
     let chat = recivePublisher
       .flatMap { self.chatModelGenerator(chat: $0) }
-      .asDriver(onErrorJustReturn: .error)
+      .asDriver(onErrorJustReturn: [])
+
+    recivePublisher.onNext(RealmService.shared.oneTimeRead(roomIndex))
 
     return Output(chat: chat)
   }
 
-  private func chatModelGenerator(chat: ChatDAO) -> Observable<Chat> {
-    let generatedChat = ChatDTO(profileImage: nil, name: chat.sender, message: chat.content)
-    if chat.sender == userName {
-      return .just(.message(data: generatedChat))
+  private func chatModelGenerator(chat: [RealmChat]) -> Observable<[Chat]> {
+    return .just(chat.map { generator(chat: $0) })
+  }
+
+  private func generator(chat: RealmChat) -> Chat {
+    let generatedChat = chat
+    if chat.userName == userName {
+      prevChatSender = chat.userName
+      return .message(data: generatedChat)
     }
-    if prevChatSender == chat.sender {
-      return .just(.otherMessage(data: generatedChat))
+    if prevChatSender == chat.userName {
+      return .otherMessage(data: generatedChat)
     }
-    prevChatSender = chat.sender
-    return .just(.otherProfile(data: generatedChat))
+    prevChatSender = chat.userName
+    return .otherProfile(data: generatedChat)
   }
 }

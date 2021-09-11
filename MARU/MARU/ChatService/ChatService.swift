@@ -29,6 +29,7 @@ final class ChatService {
   private let receive = PublishSubject<ChatDAO>()
   private let disposeBag = DisposeBag()
   private let userName = UserDefaultHandler.shared.userName
+  var chatID = 1
 
   private var roomIndex: Int? {
     didSet {
@@ -66,20 +67,27 @@ final class ChatService {
   }
 
   private func enrolledRoomSubcribe() {
-
+    let roomIDList = RealmService.shared.findRoomID()
+    // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정
+    // TODO: 요 룸 없으면 구독하는것 지우기
+    if roomIDList.isEmpty {
+      subscribeRoom(roomIndex: 1)
+    } else {
+      roomIDList.forEach {
+        subscribeRoom(roomIndex: $0)
+      }
+    }
   }
 
   func bind(
     roomIndex: Int,
     sendPublisher: Observable<String>
-  ) -> PublishSubject<ChatDAO> {
+  ) {
     self.roomIndex = roomIndex
 
     sendPublisher
       .bind(to: message)
       .disposed(by: messageDisposeBag)
-
-    return receive
   }
 
   func subscribeRoom(roomIndex: Int) {
@@ -101,14 +109,17 @@ extension ChatService: StompClientLibDelegate {
   ) {
     guard let json = jsonBody as? [String: Any] else { return }
 
-    let chat = ChatDAO(
-      chatID: json["id"] as? Int ?? nil,
-      type: json["type"] as? String ?? nil,
-      content: json["content"] as? String ?? nil,
-      sender: json["sender"] as? String ?? nil
+    let realm = RealmChat(
+      chatID: chatID,
+      roomID: json["id"] as? Int ?? 0,
+      type: json["type"] as? String ?? "",
+      userName: json["sender"] as? String ?? "",
+      userImageURL: json["user_image_url"] as? String ?? "",
+      content: json["content"] as? String ?? "",
+      time: json["time"] as? String ?? ""
     )
-
-    receive.onNext(chat)
+    chatID += 1
+    RealmService.shared.write(realm)
   }
 
   func stompClientDidDisconnect(client: StompClientLib!) { }
@@ -123,13 +134,7 @@ extension ChatService: StompClientLibDelegate {
     client: StompClientLib!,
     withErrorMessage description: String,
     detailedErrorMessage message: String?
-  ) {
-    dump(client)
-    print(description)
-    dump(message)
-  }
+  ) { }
 
-  func serverDidSendPing() {
-    print("ping")
-  }
+  func serverDidSendPing() { }
 }
