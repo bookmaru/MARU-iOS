@@ -27,10 +27,9 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
     $0.layer.cornerRadius = 16
   }
 
-  fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
+  fileprivate var data: RealmChat = .init() {
     didSet {
-      chatLabel.text = data.message
-//      chatLabel.sizeToFit()
+      chatLabel.text = data.content
     }
   }
 
@@ -64,7 +63,7 @@ final class MyChatCollectionViewCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: MyChatCollectionViewCell {
-  var dataBinder: Binder<ChatDTO> {
+  var dataBinder: Binder<RealmChat> {
     return Binder(base) { base, data in
       base.data = data
     }

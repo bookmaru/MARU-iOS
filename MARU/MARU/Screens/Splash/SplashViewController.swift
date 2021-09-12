@@ -24,7 +24,6 @@ extension SplashViewController: ViewControllerType {
   func bind() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
       self.moveTo()
-      ChatService.shared.subscribeRoom(roomIndex: 1)
     }
   }
 

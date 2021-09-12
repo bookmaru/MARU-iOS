@@ -93,6 +93,8 @@
 		C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1426D4CDD000D930BA /* GroupRouter.swift */; };
 		C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1626D4CDDA00D930BA /* GroupService.swift */; };
 		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
+		C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37126EBA609001A2B54 /* RealmChat.swift */; };
+		C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -262,6 +264,8 @@
 		C56CBC1426D4CDD000D930BA /* GroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRouter.swift; sourceTree = "<group>"; };
 		C56CBC1626D4CDDA00D930BA /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
+		C57ED37126EBA609001A2B54 /* RealmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChat.swift; sourceTree = "<group>"; };
+		C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotification.swift; sourceTree = "<group>"; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -738,6 +742,14 @@
 			path = DataType;
 			sourceTree = "<group>";
 		};
+		C57ED37026EBA5A2001A2B54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C57ED37126EBA609001A2B54 /* RealmChat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C58F6A522646E9C600D8AA7C /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,7 +869,9 @@
 		C5CD9AB726E7904E00E9233A /* RealmService */ = {
 			isa = PBXGroup;
 			children = (
+				C57ED37026EBA5A2001A2B54 /* Model */,
 				C5CD9AB826E7905E00E9233A /* RealmService.swift */,
+				C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */,
 			);
 			path = RealmService;
 			sourceTree = "<group>";
@@ -1265,6 +1279,7 @@
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
+				C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */,
 				7717EC9426A437E200888826 /* RecentSearchViewModel.swift in Sources */,
 				77847E7F26D339920054742F /* QuizResultViewController.swift in Sources */,
 				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
@@ -1280,6 +1295,7 @@
 				F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */,
 				F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
+				C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */,
 				776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */,
 				771A6FF826D077E100381DC3 /* QuizService.swift in Sources */,
 				F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */,
