@@ -143,6 +143,8 @@
 		F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */; };
 		F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */; };
 		F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */; };
+		F2EA49DB26E88DEF0091C75A /* ProfileChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */; };
+		F2EA49DE26E88E7A0091C75A /* ProfileChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -312,6 +314,8 @@
 		F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewController.swift; sourceTree = "<group>"; };
 		F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewModel.swift; sourceTree = "<group>"; };
 		F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingCell.swift; sourceTree = "<group>"; };
+		F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewController.swift; sourceTree = "<group>"; };
+		F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewModel.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -875,7 +879,7 @@
 				C55E21BD266B615100D5D953 /* Onboarding */,
 				C52E7828260F27760087570E /* Base */,
 				F2F0C6582680767C00F8061A /* Join */,
-				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
+				F2EA49DC26E88E560091C75A /* Profile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -917,6 +921,7 @@
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
 				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
+				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -971,6 +976,31 @@
 				F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F2EA49DC26E88E560091C75A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DF26E88EA90091C75A /* View */,
+				F2EA49E026E88EAF0091C75A /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F2EA49DF26E88EA90091C75A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2EA49E026E88EAF0091C75A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F2F0C6582680767C00F8061A /* Join */ = {
@@ -1259,6 +1289,7 @@
 				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
+				F2EA49DB26E88DEF0091C75A /* ProfileChangeViewController.swift in Sources */,
 				C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
 				C52E6C5426CA8F0C00279FB2 /* ChatDAO.swift in Sources */,
@@ -1273,6 +1304,7 @@
 				771A6FF826D077E100381DC3 /* QuizService.swift in Sources */,
 				F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */,
 				776AF4F62641BADF0020D2D8 /* MeetingListCell.swift in Sources */,
+				F2EA49DE26E88E7A0091C75A /* ProfileChangeViewModel.swift in Sources */,
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,

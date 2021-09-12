@@ -173,7 +173,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     let user = user
     else { return UICollectionReusableView() }
     headerView.rx.profileBinder.onNext(user)
-    // 강제 옵셔널 처리 해결방법 고민해야함
+    // TODO: 강제 옵셔널 처리 해결방법 고민해야함
     headerView.changeSettingButton.rx.tap
       .bind {
         let viewController = SettingViewController()
