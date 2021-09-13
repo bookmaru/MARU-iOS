@@ -12,6 +12,16 @@ import RxCocoa
 
 final class CreateQuizViewController: BaseViewController {
 
+  init(bookModel: BookModel) {
+    self.bookModel = bookModel
+    super.init()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private let bookModel: BookModel
   private var tableView: UITableView! = nil
   private let headerView: UIView = {
     let view = UIView()
@@ -26,18 +36,71 @@ final class CreateQuizViewController: BaseViewController {
     }
     return view
   }()
+  private let cancelButton: UIButton = {
+    let cancelButton = UIButton()
+    cancelButton.tintColor = .black
+    cancelButton.setImage(
+      UIImage(systemName: "xmark")?
+        .withConfiguration(UIImage.SymbolConfiguration(weight: .medium)),
+      for: .normal
+    )
+    return cancelButton
+  }()
+  private let completeButton: UIButton = {
+    let completeButton = UIButton()
+    completeButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
+    completeButton.setTitleColor(.mainBlue, for: .normal)
+    completeButton.setTitleColor(.gray, for: .disabled)
+    completeButton.setTitle("완료", for: .normal)
+//    completeButton.isEnabled = false
+    return completeButton
+  }()
   private let oneLinePlaceholder = "토론에 대한 소개를 70자 이내로 입력해주세요."
-
   private var oneLineString: String?
-  private var quizzes = [String](repeating: "", count: 5)
-  private var answer = [String](repeating: "", count: 5)
   private let triggerQuizProblem = PublishSubject<(String, Int)>()
   private let triggerQuizAnswer = PublishSubject<(String, Int)>()
+  private let triggerDescription = PublishSubject<String>()
+//  private let viewModel = CreateQuizViewModel()
+  lazy var viewModel = CreateQuizViewModel(dependency: .init(bookModel: bookModel))
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    KeychainHandler.shared.accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjMzMjcyMzU3fQ.Az8sUq84buQSXK5y3jrXSiA6DybdAKZge-iz0Tzr-2M"
     configureComponent()
     configureLayout()
+    bind()
+  }
+  private func bind() {
+    let viewTrigger = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+      .map { _ in }
+      .asObservable()
+
+    let input = CreateQuizViewModel.Input(
+      viewTrigger: viewTrigger,
+      tapCancleButton: cancelButton.rx.tap.asObservable(),
+      tapCompleteButton: completeButton.rx.tap.asObservable(),
+      description: triggerDescription.asObservable(),
+      quizProblem: triggerQuizProblem.asObservable(),
+      quizAnswer: triggerQuizAnswer.asObservable()
+    )
+
+    let output = viewModel.transform(input: input)
+
+    output.description
+      .drive()
+      .disposed(by: disposeBag)
+    output.quizProblem
+      .drive()
+      .disposed(by: disposeBag)
+    output.quizAnswer
+      .drive()
+      .disposed(by: disposeBag)
+    output.didTapCancle
+      .drive()
+      .disposed(by: disposeBag)
+    output.didTapComplement
+      .drive()
+      .disposed(by: disposeBag)
   }
 }
 extension CreateQuizViewController {
@@ -59,6 +122,21 @@ extension CreateQuizViewController {
   }
   private func configureLayout() {
     view.addSubview(tableView)
+    view.adds([
+      cancelButton,
+      completeButton
+    ])
+
+    cancelButton.snp.makeConstraints { make in
+      make.size.equalTo(CGSize(width: 16, height: 16))
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(14.calculatedHeight)
+      make.leading.equalToSuperview().inset(17.calculatedWidth)
+    }
+    completeButton.snp.makeConstraints { make in
+      make.centerY.equalTo(cancelButton.snp.centerY)
+      make.trailing.equalToSuperview().inset(16.calculatedWidth)
+    }
+
     tableView.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(68.calculatedHeight)
       make.leading.equalToSuperview()
@@ -92,8 +170,15 @@ extension CreateQuizViewController: UITableViewDataSource {
       guard let cell = tableView.dequeueReusableCell(
               withIdentifier: BookContentCell.reuseIdentifier,
               for: indexPath) as? BookContentCell else { return UITableViewCell() }
-      return cell
 
+      cell.oneLineTextView.rx.didChange.asObservable()
+        .flatMapLatest(cell.oneLineTextView.rx.text.orEmpty.asObservable)
+        .subscribe(onNext: { [weak self] oneLineDescription in
+          self?.triggerDescription.onNext(oneLineDescription)
+          print(oneLineDescription)
+        })
+        .disposed(by: cell.disposeBag)
+      return cell
     case 1:
       guard let cell = tableView.dequeueReusableCell(
               withIdentifier: CreateQuizCell.reuseIdentifier,

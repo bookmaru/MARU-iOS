@@ -11,14 +11,86 @@ import RxSwift
 import RxCocoa
 
 final class CreateQuizViewModel: ViewModelType {
-
+  struct Dependency {
+    let bookModel: BookModel
+  }
   struct Input {
-    let quizProblem: Observable<[String]>
-    let quizAnswer: Observable<[String]>
+    let viewTrigger: Observable<Void>
+    let tapCancleButton: Observable<Void>
+    let tapCompleteButton: Observable<Void>
+    let description: Observable<String>
+    let quizProblem: Observable<(String, Int)>
+    let quizAnswer: Observable<(String, Int)>
   }
   struct Output {
+    let description: Driver<Void>
+    let quizProblem: Driver<Void>
+    let quizAnswer: Driver<Void>
+    let didTapCancle: Driver<Void>
+    let didTapComplement: Driver<Void>
   }
+  init(dependency: Dependency) {
+    self.bookModel = dependency.bookModel
+  }
+  let bookModel: BookModel
+
   func transform(input: Input) -> Output {
-    return Output()
+
+    var quizzes = [String](repeating: "", count: 5)
+    var answers = [String](repeating: "", count: 5)
+    var description: String = ""
+
+    let quizProblem = input.quizProblem
+      .do(onNext: { quiz, number in
+        quizzes[number] = quiz
+      })
+      .map { _ in () }
+      .asDriver(onErrorJustReturn: ())
+
+    let quizAnswer = input.quizAnswer
+      .do(onNext: { answer, number in
+        answers[number] = answer
+      })
+      .map { _ in () }
+      .asDriver(onErrorJustReturn: ())
+
+    let descript = input.description
+      .do(onNext: {
+        description = $0
+      })
+      .map { _ in () }
+      .asDriver(onErrorJustReturn: ())
+
+    let didTapCancle = input.tapCancleButton
+      .do(onNext: {
+        print(self.bookModel)
+        print(answers)
+        print(quizzes)
+      })
+      .asDriver(onErrorJustReturn: ())
+
+    let didTapComplement = input.tapCompleteButton
+      .flatMap { NetworkService.shared.quiz.createQuiz(
+        makeGroup: MakeGroup.init(
+          book: self.bookModel,
+          group: .init(isbn: self.bookModel.isbn, description: description),
+          question: Question.init(answer: answers, quiz: quizzes)
+        )
+      )
+      }
+      .map { $0 }
+      .do(onNext: {
+        print("dmdkdkdkdkdkdkdkdkkdkdkdk: \($0)")
+      })
+      .map { _ in () }
+      .asDriver(onErrorJustReturn: ())
+
+    return Output(
+      description: descript,
+      quizProblem: quizProblem,
+      quizAnswer: quizAnswer,
+      didTapCancle: didTapCancle,
+      didTapComplement: didTapComplement
+    )
   }
 }

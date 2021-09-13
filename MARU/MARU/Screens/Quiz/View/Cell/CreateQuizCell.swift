@@ -129,27 +129,3 @@ extension Reactive where Base: CreateQuizCell {
     .debug()
   }
 }
-
-
-//
-//
-//extension Reactive where Base: CreateQuizCell {
-//  var didTapAddButton: Observable<Void> {
-//    return base.addButton.rx.tap
-//      .map { return }
-//      .asObservable()
-//  }
-//
-//  var addButtonIsHiddenBinder: Binder<Bool> {
-//    return Binder(base) { base, isHiddenButton in
-//      base.addButton.isHidden = isHiddenButton
-//    }
-//  }
-//
-//  var titleBinder: Binder<String> {
-//    return Binder(base) { base, title in
-//      base.title = title
-//    }
-//  }
-//}
-//

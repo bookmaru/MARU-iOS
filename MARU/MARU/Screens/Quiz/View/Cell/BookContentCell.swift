@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 class BookContentCell: UITableViewCell {
 
   private let bookContentView = UIView()
@@ -14,7 +16,8 @@ class BookContentCell: UITableViewCell {
   private let bookNameLabel = UILabel()
   private let authorLabel = UILabel()
   private let oneLineIntroLabel = UILabel()
-  private let oneLineTextView = UITextView()
+  let oneLineTextView = UITextView()
+  var disposeBag = DisposeBag()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,6 +32,9 @@ class BookContentCell: UITableViewCell {
 
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
+  }
+  override func prepareForReuse() {
+    disposeBag = DisposeBag()
   }
 }
 extension BookContentCell {
