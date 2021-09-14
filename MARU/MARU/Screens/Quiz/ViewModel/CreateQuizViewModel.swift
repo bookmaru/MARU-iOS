@@ -62,6 +62,13 @@ final class CreateQuizViewModel: ViewModelType {
       .asDriver(onErrorJustReturn: ())
 
     let didTapCancle = input.tapCancleButton
+      // MARK: Test용으로 일단 남겨놓을게요.
+      .do(onNext: {
+        debugPrint(self.bookModel)
+        debugPrint(description)
+        debugPrint(quizzes)
+        debugPrint(answers)
+      })
       .asDriver(onErrorJustReturn: ())
 
     let didTapComplement = input.tapCompleteButton

@@ -52,7 +52,9 @@ final class CreateQuizViewController: BaseViewController {
     completeButton.setTitleColor(.mainBlue, for: .normal)
     completeButton.setTitleColor(.gray, for: .disabled)
     completeButton.setTitle("완료", for: .normal)
-//    completeButton.isEnabled = false
+
+    // TO DO: false로 바꾸고 모든 빈칸이 채워졌을 때, true로 바꾸는 거 추후에 구현
+    completeButton.isEnabled = true
     return completeButton
   }()
   private let oneLinePlaceholder = "토론에 대한 소개를 70자 이내로 입력해주세요."
@@ -94,9 +96,11 @@ final class CreateQuizViewController: BaseViewController {
     output.quizAnswer
       .drive()
       .disposed(by: disposeBag)
+    // TO DO: Cancle button 클릭시 dismiss
     output.didTapCancle
       .drive()
       .disposed(by: disposeBag)
+    // To do: Complement Click 채팅 화면으로 이동
     output.didTapComplement
       .drive()
       .disposed(by: disposeBag)
@@ -174,7 +178,6 @@ extension CreateQuizViewController: UITableViewDataSource {
         .flatMapLatest(cell.oneLineTextView.rx.text.orEmpty.asObservable)
         .subscribe(onNext: { [weak self] oneLineDescription in
           self?.triggerDescription.onNext(oneLineDescription)
-          print(oneLineDescription)
         })
         .disposed(by: cell.disposeBag)
       return cell
@@ -188,14 +191,12 @@ extension CreateQuizViewController: UITableViewDataSource {
         .flatMapLatest(cell.quizTextView.rx.text.orEmpty.asObservable)
         .subscribe(onNext: { [weak self] quizProblem in
           self?.triggerQuizProblem.onNext((quizProblem, indexPath.item))
-          print(quizProblem, indexPath.item)
         })
         .disposed(by: cell.disposeBag)
 
       cell.rx.didTapButton
         .subscribe(onNext: { [weak self] quizAnswer in
           self?.triggerQuizAnswer.onNext((quizAnswer, indexPath.item))
-          print(quizAnswer, indexPath.item)
         })
         .disposed(by: cell.disposeBag)
       return cell

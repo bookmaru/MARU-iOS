@@ -124,6 +124,5 @@ extension Reactive where Base: CreateQuizCell {
         return Observable.just("X")
       }
     })
-    .debug()
   }
 }
