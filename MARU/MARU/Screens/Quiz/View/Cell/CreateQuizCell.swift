@@ -37,8 +37,6 @@ class CreateQuizCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
   override func prepareForReuse() {
-    quizLabel.text = nil
-    quizTextView.text = nil
     disposeBag = DisposeBag()
   }
 }

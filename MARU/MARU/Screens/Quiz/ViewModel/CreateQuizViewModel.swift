@@ -62,11 +62,6 @@ final class CreateQuizViewModel: ViewModelType {
       .asDriver(onErrorJustReturn: ())
 
     let didTapCancle = input.tapCancleButton
-      .do(onNext: {
-        print(self.bookModel)
-        print(answers)
-        print(quizzes)
-      })
       .asDriver(onErrorJustReturn: ())
 
     let didTapComplement = input.tapCompleteButton
@@ -79,9 +74,6 @@ final class CreateQuizViewModel: ViewModelType {
       )
       }
       .map { $0 }
-      .do(onNext: {
-        print("dmdkdkdkdkdkdkdkdkkdkdkdk: \($0)")
-      })
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
 

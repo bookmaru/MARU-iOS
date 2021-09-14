@@ -44,11 +44,7 @@ extension QuizRouter: TargetType {
   var task: Task {
     switch self {
     case .createQuiz(let makeGroup):
-      let myencoder = JSONEncoder()
-      myencoder.outputFormatting = .prettyPrinted
-
-      guard let jsonData = try? myencoder.encode(makeGroup) else { return .requestPlain }
-      print("")
+      guard let jsonData = try? JSONEncoder().encode(makeGroup) else { return .requestPlain }
       return .requestCompositeData(bodyData: jsonData, urlParameters: .init())
     case .getQuiz:
       return .requestPlain

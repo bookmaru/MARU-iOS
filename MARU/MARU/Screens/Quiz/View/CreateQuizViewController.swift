@@ -60,7 +60,6 @@ final class CreateQuizViewController: BaseViewController {
   private let triggerQuizProblem = PublishSubject<(String, Int)>()
   private let triggerQuizAnswer = PublishSubject<(String, Int)>()
   private let triggerDescription = PublishSubject<String>()
-//  private let viewModel = CreateQuizViewModel()
   lazy var viewModel = CreateQuizViewModel(dependency: .init(bookModel: bookModel))
 
   override func viewDidLoad() {

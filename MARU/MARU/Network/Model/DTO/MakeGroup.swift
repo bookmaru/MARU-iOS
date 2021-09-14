@@ -25,12 +25,3 @@ struct Question: Codable {
 struct ResultMakeGroup: Codable {
   let makeGroup: Int
 }
-
-//extension MakeGroup {
-//  func encode(to encoder: Encoder) throws {
-//    var container = encoder.container(keyedBy: CodingKeys.self)
-//    try container.encode(book, forKey: .book)
-//    try container.encode(group, forKey: .group)
-//    try container.encode(question, forKey: .question)
-//  }
-//}
