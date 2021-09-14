@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   ) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     let window = UIWindow(windowScene: windowScene)
-//    window.rootViewController = SplashViewController()
-    window.rootViewController = CreateQuizViewController(bookModel: .init(isbn: 3, title: "string", author: "string", imageUrl: "string", category: "예술"))
+    window.rootViewController = SplashViewController()
     window.makeKeyAndVisible()
     self.window = window
   }
