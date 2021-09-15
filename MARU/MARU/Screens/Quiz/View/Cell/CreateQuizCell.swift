@@ -7,21 +7,17 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
-enum Action {
-  case tapO
-  case tapX
-}
+final class CreateQuizCell: UITableViewCell {
 
-class CreateQuizCell: UITableViewCell {
   var disposeBag = DisposeBag()
   private let quizLabel = UILabel()
   private let maskingView = UIView()
-  let quizTextView = UITextView()
-  let oButton = UIButton()
-  let xButton = UIButton()
+  fileprivate let quizTextView = UITextView()
+  fileprivate let oButton = UIButton()
+  fileprivate let xButton = UIButton()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,10 +27,6 @@ class CreateQuizCell: UITableViewCell {
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
   }
   override func prepareForReuse() {
     disposeBag = DisposeBag()
@@ -107,10 +99,16 @@ extension CreateQuizCell {
 }
 
 extension Reactive where Base: CreateQuizCell {
+
+  enum QuizAction {
+    case tapO
+    case tapX
+  }
+
   var didTapButton: Observable<String> {
     return Observable.merge(
-      base.oButton.rx.tap.map { Action.tapO },
-      base.xButton.rx.tap.map { Action.tapX }
+      base.oButton.rx.tap.map { QuizAction.tapO },
+      base.xButton.rx.tap.map { QuizAction.tapX }
     )
     .flatMapLatest({ action -> Observable<String> in
       switch action {
@@ -125,4 +123,10 @@ extension Reactive where Base: CreateQuizCell {
       }
     })
   }
+  var changeText: Observable<String> {
+    return base.quizTextView.rx.didChange
+      .flatMapLatest { base.quizTextView.rx.text.orEmpty }
+      .asObservable()
+  }
 }
+

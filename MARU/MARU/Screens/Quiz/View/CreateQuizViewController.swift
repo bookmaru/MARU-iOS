@@ -12,30 +12,8 @@ import RxCocoa
 
 final class CreateQuizViewController: BaseViewController {
 
-  init(bookModel: BookModel) {
-    self.bookModel = bookModel
-    super.init()
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
   private let bookModel: BookModel
   private var tableView: UITableView! = nil
-  private let headerView: UIView = {
-    let view = UIView()
-    let label = UILabel()
-    label.text = "퀴즈 작성"
-    label.font = .systemFont(ofSize: 13, weight: .bold)
-    view.add(label) {
-      $0.snp.makeConstraints { make in
-        make.bottom.equalToSuperview().inset(8)
-        make.leading.equalToSuperview().inset(16)
-      }
-    }
-    return view
-  }()
   private let cancelButton: UIButton = {
     let cancelButton = UIButton()
     cancelButton.tintColor = .black
@@ -64,9 +42,16 @@ final class CreateQuizViewController: BaseViewController {
   private let triggerDescription = PublishSubject<String>()
   lazy var viewModel = CreateQuizViewModel(dependency: .init(bookModel: bookModel))
 
+  init(bookModel: BookModel) {
+    self.bookModel = bookModel
+    super.init()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    KeychainHandler.shared.accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjMzMjcyMzU3fQ.Az8sUq84buQSXK5y3jrXSiA6DybdAKZge-iz0Tzr-2M"
     configureComponent()
     configureLayout()
     bind()
@@ -124,7 +109,7 @@ extension CreateQuizViewController {
     tableView.allowsSelection = false
   }
   private func configureLayout() {
-    view.addSubview(tableView)
+    view.add(tableView)
     view.adds([
       cancelButton,
       completeButton
@@ -172,10 +157,10 @@ extension CreateQuizViewController: UITableViewDataSource {
     case 0:
       guard let cell = tableView.dequeueReusableCell(
               withIdentifier: BookContentCell.reuseIdentifier,
-              for: indexPath) as? BookContentCell else { return UITableViewCell() }
+              for: indexPath
+      ) as? BookContentCell else { return UITableViewCell() }
 
-      cell.oneLineTextView.rx.didChange.asObservable()
-        .flatMapLatest(cell.oneLineTextView.rx.text.orEmpty.asObservable)
+      cell.rx.changeText
         .subscribe(onNext: { [weak self] oneLineDescription in
           self?.triggerDescription.onNext(oneLineDescription)
         })
@@ -184,11 +169,11 @@ extension CreateQuizViewController: UITableViewDataSource {
     case 1:
       guard let cell = tableView.dequeueReusableCell(
               withIdentifier: CreateQuizCell.reuseIdentifier,
-              for: indexPath) as? CreateQuizCell else { return UITableViewCell() }
+              for: indexPath
+      ) as? CreateQuizCell else { return UITableViewCell() }
       cell.placeTextInQuizLabel(order: indexPath.item)
 
-      cell.quizTextView.rx.didChange.asObservable()
-        .flatMapLatest(cell.quizTextView.rx.text.orEmpty.asObservable)
+      cell.rx.changeText
         .subscribe(onNext: { [weak self] quizProblem in
           self?.triggerQuizProblem.onNext((quizProblem, indexPath.item))
         })
@@ -237,6 +222,20 @@ extension CreateQuizViewController: UITableViewDataSource {
     }
   }
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+     let headerView: UIView = {
+      let view = UIView()
+      let label = UILabel()
+      label.text = "퀴즈 작성"
+      label.font = .systemFont(ofSize: 13, weight: .bold)
+      view.add(label) {
+        $0.snp.makeConstraints { make in
+          make.bottom.equalToSuperview().inset(8)
+          make.leading.equalToSuperview().inset(16)
+        }
+      }
+      return view
+    }()
     return headerView
   }
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

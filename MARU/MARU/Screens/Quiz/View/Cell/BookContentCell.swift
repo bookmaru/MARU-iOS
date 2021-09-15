@@ -9,14 +9,14 @@ import UIKit
 
 import RxSwift
 
-class BookContentCell: UITableViewCell {
+final class BookContentCell: UITableViewCell {
 
   private let bookContentView = UIView()
   private let bookImageView = UIImageView()
   private let bookNameLabel = UILabel()
   private let authorLabel = UILabel()
   private let oneLineIntroLabel = UILabel()
-  let oneLineTextView = UITextView()
+  fileprivate let oneLineTextView = UITextView()
   var disposeBag = DisposeBag()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,9 +30,6 @@ class BookContentCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-  }
   override func prepareForReuse() {
     disposeBag = DisposeBag()
   }
@@ -108,5 +105,12 @@ extension BookContentCell {
       make.leading.equalToSuperview().inset(16)
       make.top.equalTo(oneLineIntroLabel.snp.bottom).offset(7)
     }
+  }
+}
+extension Reactive where Base: BookContentCell {
+  var changeText: Observable<String> {
+    return base.oneLineTextView.rx.didChange
+      .flatMapLatest { base.oneLineTextView.rx.text.orEmpty }
+      .asObservable()
   }
 }

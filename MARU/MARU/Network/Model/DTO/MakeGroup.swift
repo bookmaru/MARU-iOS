@@ -6,7 +6,6 @@
 //
 
 import Foundation
-  // MARK: - POST
 struct MakeGroup: Codable {
   let book: BookModel
   let group: GroupDescription
@@ -21,7 +20,6 @@ struct Question: Codable {
   let answer: [String]
   let quiz: [String]
 }
-  // MARK: - GET
 struct ResultMakeGroup: Codable {
   let makeGroup: Int
 }

@@ -80,6 +80,7 @@ final class CreateQuizViewModel: ViewModelType {
         )
       )
       }
+      // MARK: - 여기서 화면전환 -> GroupID
       .map { $0 }
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
