@@ -19,6 +19,7 @@
 		771A6FF626D075F300381DC3 /* QuizRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A6FF526D075F300381DC3 /* QuizRouter.swift */; };
 		771A6FF826D077E100381DC3 /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A6FF726D077E100381DC3 /* QuizService.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		771C688626DDDDB30001AC49 /* BookContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C688526DDDDB30001AC49 /* BookContentCell.swift */; };
 		773E22DD26A01BBC002B9F52 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DC26A01BBC002B9F52 /* Group.swift */; };
 		773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DE26A01E4E002B9F52 /* MeetingModel.swift */; };
 		774262EE26899825008F9CAE /* MeetingHeldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262ED26899825008F9CAE /* MeetingHeldViewController.swift */; };
@@ -48,6 +49,7 @@
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
 		77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */; };
+		77DB3BE526EF4E9600E63050 /* MakeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB3BE426EF4E9600E63050 /* MakeGroup.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		77E3C83F26D522BD00CBF32D /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */; };
@@ -132,7 +134,7 @@
 		F223E3C826C8F8320039919A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C726C8F8320039919A /* UserInformation.swift */; };
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
-		F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */; };
+		F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */; };
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
 		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
@@ -178,6 +180,7 @@
 		771A6FF326D072EA00381DC3 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		771A6FF526D075F300381DC3 /* QuizRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRouter.swift; sourceTree = "<group>"; };
 		771A6FF726D077E100381DC3 /* QuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizService.swift; sourceTree = "<group>"; };
+		771C688526DDDDB30001AC49 /* BookContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentCell.swift; sourceTree = "<group>"; };
 		773E22DC26A01BBC002B9F52 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		773E22DE26A01E4E002B9F52 /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
 		774262ED26899825008F9CAE /* MeetingHeldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingHeldViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
 		77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewModel.swift; sourceTree = "<group>"; };
+		77DB3BE426EF4E9600E63050 /* MakeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroup.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultViewModel.swift; sourceTree = "<group>"; };
@@ -304,7 +308,7 @@
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
-		F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuiz1Cell.swift; sourceTree = "<group>"; };
+		F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizCell.swift; sourceTree = "<group>"; };
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
 		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
@@ -815,6 +819,7 @@
 				F28E550726C8EFB900F083BD /* BookCaseModel.swift */,
 				F223E3C726C8F8320039919A /* UserInformation.swift */,
 				F223E3C926C97A180039919A /* DiaryModel.swift */,
+				77DB3BE426EF4E9600E63050 /* MakeGroup.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -993,7 +998,8 @@
 		F22AB7C626CA82ED006CD9C0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */,
+				771C688526DDDDB30001AC49 /* BookContentCell.swift */,
+				F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1333,13 +1339,14 @@
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
-				F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */,
+				F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */,
 				F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */,
 				C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */,
 				771A6FF626D075F300381DC3 /* QuizRouter.swift in Sources */,
 				C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */,
+				77DB3BE526EF4E9600E63050 /* MakeGroup.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C50DBC7526BD881B00B5585A /* Date+.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
@@ -1365,6 +1372,7 @@
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */,
+				771C688626DDDDB30001AC49 /* BookContentCell.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */,

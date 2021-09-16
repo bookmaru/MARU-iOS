@@ -43,7 +43,7 @@ extension BookRouter: TargetType {
   }
   var headers: [String: String]? {
     return [
-      "Content-Type": "aplication/json",
+      "Content-Type": "application/json",
       "accessToken": KeychainHandler.shared.accessToken
     ]
   }
