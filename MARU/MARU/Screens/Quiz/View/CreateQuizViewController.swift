@@ -14,22 +14,26 @@ final class CreateQuizViewController: BaseViewController {
 
   private let bookModel: BookModel
   private var tableView: UITableView! = nil
-  private let cancelButton: UIButton = {
-    let cancelButton = UIButton()
+  private let cancelButton: UIBarButtonItem = {
+    let cancelButton = UIBarButtonItem()
     cancelButton.tintColor = .black
-    cancelButton.setImage(
-      UIImage(systemName: "xmark")?
-        .withConfiguration(UIImage.SymbolConfiguration(weight: .medium)),
-      for: .normal
-    )
+    cancelButton.image = UIImage(systemName: "xmark")?
+      .withConfiguration(UIImage.SymbolConfiguration(weight: .medium))
     return cancelButton
   }()
-  private let completeButton: UIButton = {
-    let completeButton = UIButton()
-    completeButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-    completeButton.setTitleColor(.mainBlue, for: .normal)
-    completeButton.setTitleColor(.gray, for: .disabled)
-    completeButton.setTitle("완료", for: .normal)
+  private let completeButton: UIBarButtonItem = {
+    let completeButton = UIBarButtonItem()
+    completeButton.title = "완료"
+    let normalAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 12, weight: .bold),
+      .foregroundColor: UIColor.mainBlue
+    ]
+    let disabledAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 12, weight: .bold),
+      .foregroundColor: UIColor.gray
+    ]
+    completeButton.setTitleTextAttributes(normalAttributes, for: .normal)
+    completeButton.setTitleTextAttributes(disabledAttributes, for: .disabled)
 
     // TO DO: false로 바꾸고 모든 빈칸이 채워졌을 때, true로 바꾸는 거 추후에 구현
     completeButton.isEnabled = true
@@ -55,6 +59,24 @@ final class CreateQuizViewController: BaseViewController {
     configureComponent()
     configureLayout()
     bind()
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    setNavigationBar(isHidden: false)
+    configureNavigationBar()
+  }
+  private func configureNavigationBar() {
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    navigationController?.navigationBar.isTranslucent = false
+
+    // MARK: - 이 두개는 왜 안되는 지 궁금해서, 뷰 전환 수정 할 때, 찾아보고 지우겠습니다.
+    /*
+     navigationController?.navigationItem.leftBarButtonItem = cancelButton
+     navigationController?.navigationItem.rightBarButtonItem = completeButton
+     */
+
+    navigationItem.leftBarButtonItem = cancelButton
+    navigationItem.rightBarButtonItem = completeButton
   }
   private func bind() {
     let viewTrigger = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
@@ -110,23 +132,8 @@ extension CreateQuizViewController {
   }
   private func configureLayout() {
     view.add(tableView)
-    view.adds([
-      cancelButton,
-      completeButton
-    ])
-
-    cancelButton.snp.makeConstraints { make in
-      make.size.equalTo(CGSize(width: 16, height: 16))
-      make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(14.calculatedHeight)
-      make.leading.equalToSuperview().inset(17.calculatedWidth)
-    }
-    completeButton.snp.makeConstraints { make in
-      make.centerY.equalTo(cancelButton.snp.centerY)
-      make.trailing.equalToSuperview().inset(16.calculatedWidth)
-    }
-
     tableView.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(68.calculatedHeight)
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
       make.bottom.equalTo(view.safeAreaInsets.bottom).inset(5)
