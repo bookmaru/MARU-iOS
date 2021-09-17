@@ -107,7 +107,6 @@ final class QuizViewController: BaseViewController {
     output.timeout
       .drive()
       .disposed(by: disposeBag)
-//    content, index, isTrue
     output.contentAndIndex
       .drive(onNext: { [weak self] contentAndIndex  in
         guard let self = self else { return }
