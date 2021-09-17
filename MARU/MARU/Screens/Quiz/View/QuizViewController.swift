@@ -107,14 +107,14 @@ final class QuizViewController: BaseViewController {
     output.timeout
       .drive()
       .disposed(by: disposeBag)
-
+//    content, index, isTrue
     output.contentAndIndex
-      .drive(onNext: { [weak self] content, index, isTrue in
+      .drive(onNext: { [weak self] contentAndIndex  in
         guard let self = self else { return }
-        if isTrue == true {
+        if contentAndIndex.isPass == true {
           self.setupContentView(
-            content: content,
-            index: index
+            content: contentAndIndex.content,
+            index: contentAndIndex.index
           )
           self.quizContentView.startTimer(time: 30)
         }
