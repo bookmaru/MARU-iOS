@@ -185,7 +185,6 @@ extension ResultSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
     // TODO: 여기에 화면전환
-    print(meetingModel.discussionGroupID)
   }
 }
 

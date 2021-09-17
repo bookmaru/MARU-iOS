@@ -17,6 +17,7 @@ struct Group: Codable {
   let author: String
   let nickname: String
 }
+
 struct Groups: Codable {
   let groups: [Group]
 

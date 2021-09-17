@@ -18,7 +18,6 @@ final class MeetViewModel {
     let group: Driver<[MeetCase]>
   }
 
-  let disposeBag = DisposeBag()
   func transform(input: Input) -> Output {
     let output = input.viewDidLoadPublisher
       .flatMap { NetworkService.shared.group.participateList() }

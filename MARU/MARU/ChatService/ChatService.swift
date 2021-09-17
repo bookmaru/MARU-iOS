@@ -12,14 +12,11 @@ final class ChatService {
   static var shared = ChatService()
 
   private init() {
-    print("chat service init")
     register()
     bindMessage()
   }
 
-  deinit {
-    print("chat service deinit")
-  }
+  deinit { }
 
   func start() { }
 

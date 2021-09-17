@@ -94,15 +94,14 @@ final class ChatViewModel {
   }
 
   private func generator(chat: RealmChat) -> Chat {
-    let generatedChat = chat
     if chat.userName == userName {
       prevChatSender = chat.userName
-      return .message(data: generatedChat)
+      return .message(data: chat)
     }
     if prevChatSender == chat.userName {
-      return .otherMessage(data: generatedChat)
+      return .otherMessage(data: chat)
     }
     prevChatSender = chat.userName
-    return .otherProfile(data: generatedChat)
+    return .otherProfile(data: chat)
   }
 }

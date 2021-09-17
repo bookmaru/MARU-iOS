@@ -50,7 +50,6 @@ extension MeetingHeldViewController {
     let cellRegistration = UICollectionView
       .CellRegistration<WasDebateCell, LibraryModel> {cell, indexPath, _ in
         cell.buttonDelegate = self
-        print("ddd")
         cell.setupButtonTag(itemNumber: indexPath.item)
       }
 
@@ -75,6 +74,5 @@ extension MeetingHeldViewController: UICollectionViewDelegate {
 extension MeetingHeldViewController: ButtonDelegate {
   func didPressButtonInHeader(_ tag: Int) {
     print("\(tag)")
-    print("ddddd")
   }
 }

@@ -71,7 +71,6 @@ final class RecentSearchViewModel: ViewModelType {
     )
     .debounce(RxTimeInterval.microseconds(5))
     .do(onNext: { [self] keyword in
-      print(keyword)
       let keywordObject = RecentSearchKeyword()
       keywordObject.keyword = keyword
       do {
