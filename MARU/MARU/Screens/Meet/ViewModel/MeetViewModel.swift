@@ -39,7 +39,8 @@ final class MeetViewModel {
       .map { [weak self] chat -> [RealmChat] in
         guard let self = self else { return [] }
         self.initialize = self.initialize.map { groupChat -> RealmChat in
-          if groupChat.chatID == chat?.chatID {
+          if groupChat.roomID == chat?.roomID,
+             groupChat.chatID < chat?.chatID ?? 0 {
             return chat ?? RealmChat()
           }
           return groupChat
