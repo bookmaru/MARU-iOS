@@ -61,11 +61,13 @@ final class ChatViewModel {
     let chat: Driver<[Chat]>
   }
 
+  private let realm: RealmNotification = .init()
+
   init(roomIndex: Int, sendPublisher: Observable<String>) {
     self.roomIndex = roomIndex
     self.sendPublisher = sendPublisher
 
-    RealmNotification.shared.fetchObjectFromRealm(roomID: 1)
+    realm.fetchObjectFromRealm(roomID: 1)
       .bind(to: self.recivePublisher)
       .disposed(by: disposeBag)
 

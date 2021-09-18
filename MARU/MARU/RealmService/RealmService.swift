@@ -15,6 +15,8 @@ final class RealmService {
     return realm
   }()
 
+  private var rooms: [Int] = []
+
   private init() { }
 
   func write(_ object: RealmChat) {
@@ -47,7 +49,8 @@ final class RealmService {
     roomIDs.forEach {
       setID.insert($0)
     }
-    return setID.map { $0 }
+    rooms = setID.map { $0 }
+    return rooms
   }
 
   func deleteRoom(roomID: Int) {
@@ -57,5 +60,26 @@ final class RealmService {
     try! realm.write {
       realm.delete(room)
     }
+  }
+
+  func getChatRoomsLast() -> Results<RealmChat> {
+    let filter = NSPredicate(format: "roomID IN %@", rooms)
+    let chats = realm.objects(RealmChat.self)
+      .filter(filter)
+    return chats
+  }
+
+  func getChatRoom() -> [RealmChat] {
+    var roomsChat: [RealmChat] = []
+
+    rooms.forEach {
+      guard let chat = realm.objects(RealmChat.self)
+        .filter("roomID == \($0)")
+        .last
+      else { return }
+      roomsChat += [chat]
+    }
+
+    return roomsChat
   }
 }
