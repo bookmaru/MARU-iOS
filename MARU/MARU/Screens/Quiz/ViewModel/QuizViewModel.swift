@@ -37,7 +37,6 @@ final class QuizViewModel: ViewModelType {
 
     let checkMarker = PublishSubject<(Bool, Int)>()
     let contentAndIndex = BehaviorRelay<ContentAndIndex>(value: ContentAndIndex(content: "", index: 0, isPass: false))
-//    let contentAndIndex = BehaviorRelay<(String, Int, Bool)>(value: ("", 0, false))
     var passVar = true
     let isPass = PublishSubject<Bool>()
     var results: [Bool] = []
