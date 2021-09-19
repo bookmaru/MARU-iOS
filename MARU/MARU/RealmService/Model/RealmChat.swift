@@ -10,6 +10,7 @@ import RealmSwift
 class RealmChat: Object, Codable {
   @objc dynamic var chatID: Int = 0
   @objc dynamic var roomID: Int = 0
+  @objc dynamic var userID: Int = 0
   @objc dynamic var type: String = ""
   @objc dynamic var userName: String = ""
   @objc dynamic var userImageURL: String = ""
@@ -23,6 +24,7 @@ class RealmChat: Object, Codable {
   convenience init(
     chatID: Int = 0,
     roomID: Int = 0,
+    userID: Int = 0,
     type: String = "CHAT",
     userName: String = "",
     userImageURL: String = "",
@@ -32,6 +34,7 @@ class RealmChat: Object, Codable {
     self.init()
     self.chatID = chatID
     self.roomID = roomID
+    self.userID = userID
     self.type = type
     self.userName = userName
     self.userImageURL = userImageURL

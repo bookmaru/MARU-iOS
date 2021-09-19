@@ -40,9 +40,9 @@ extension MainViewController {
   private func bind() {
     let firstLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
       .take(1)
-      .map {_ in ()}
+      .map { _ in () }
 
-    let input = MainViewModel.Input(fetch: Observable.merge(firstLoad))
+    let input = MainViewModel.Input(fetch: firstLoad)
     let output = viewModel.transform(input: input)
 
     output.allPopularMeetings

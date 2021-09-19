@@ -37,7 +37,7 @@ final class ChatService {
   }
   private var destination: String = ""
   private var topic: String = ""
-  var messageDisposeBag = DisposeBag()
+  private var messageDisposeBag = DisposeBag()
 
   private func register() {
     socket.openSocketWithURLRequest(
@@ -48,12 +48,18 @@ final class ChatService {
 
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
-      guard let self = self else { return }
-      let chat = [
-        "id": self.roomIndex?.string,
+      guard let self = self,
+            let roomID = self.roomIndex,
+            let userName = self.userName
+      else { return }
+      let chat: [String: Any] = [
+        "chatID": self.chatID,
+        "id": roomID,
+        "userID": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
-        "sender": self.userName
+        "sender": userName,
+        "time": self.time()
       ]
       self.socket.sendJSONForDict(
         dict: chat as AnyObject,
@@ -94,6 +100,15 @@ final class ChatService {
   func clearMessageDisposeBag() {
     messageDisposeBag = DisposeBag()
   }
+
+  func time() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let day = dateFormatter.string(from: Date())
+    dateFormatter.dateFormat = "HH:mm:ss"
+    let time = dateFormatter.string(from: Date())
+    return "\(day)T\(time).000+00:00"
+  }
 }
 
 extension ChatService: StompClientLibDelegate {
@@ -109,6 +124,7 @@ extension ChatService: StompClientLibDelegate {
     let realm = RealmChat(
       chatID: chatID,
       roomID: json["id"] as? Int ?? 0,
+      userID: json["userId"] as? Int ?? 1,
       type: json["type"] as? String ?? "",
       userName: json["sender"] as? String ?? "",
       userImageURL: json["user_image_url"] as? String ?? "",

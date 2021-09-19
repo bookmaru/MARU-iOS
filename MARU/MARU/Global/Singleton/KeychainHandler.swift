@@ -12,10 +12,20 @@ struct KeychainHandler {
   private init() {}
 
   private let keychain = KeychainWrapper.standard
+  private let userIDKey = "userID"
   private let accessTokenKey = "accessToken"
   private let accessTokenExpiredAtKey = "accessTokenExpiredAt"
   private let refreshTokenKey = "refreshToken"
   private let refreshTokenExpiredAtKey = "refreshTokenExpiredAt"
+
+  var userID: Int {
+    get {
+      return keychain.integer(forKey: userIDKey) ?? -1
+    }
+    set {
+      keychain.set(newValue, forKey: userIDKey)
+    }
+  }
 
   var accessToken: String {
     get {

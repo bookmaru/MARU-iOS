@@ -11,9 +11,14 @@ final class RealmService {
   static var shared = RealmService()
 
   private let realm: Realm = {
-    let realm = try! Realm()
+    var configuration = Realm.Configuration()
+    configuration.schemaVersion = 2
+    configuration.deleteRealmIfMigrationNeeded = true
+    let realm = try! Realm(configuration: configuration)
     return realm
   }()
+
+  private var rooms: [Int] = []
 
   private init() { }
 
@@ -47,7 +52,8 @@ final class RealmService {
     roomIDs.forEach {
       setID.insert($0)
     }
-    return setID.map { $0 }
+    rooms = setID.map { $0 }
+    return rooms
   }
 
   func deleteRoom(roomID: Int) {
@@ -57,5 +63,26 @@ final class RealmService {
     try! realm.write {
       realm.delete(room)
     }
+  }
+
+  func getChatRoomsLast() -> Results<RealmChat> {
+    let filter = NSPredicate(format: "roomID IN %@", rooms)
+    let chats = realm.objects(RealmChat.self)
+      .filter(filter)
+    return chats
+  }
+
+  func getChatRoom() -> [RealmChat] {
+    var roomsChat: [RealmChat] = []
+
+    rooms.forEach {
+      guard let chat = realm.objects(RealmChat.self)
+        .filter("roomID == \($0)")
+        .last
+      else { return }
+      roomsChat += [chat]
+    }
+
+    return roomsChat
   }
 }

@@ -20,12 +20,10 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.image = Image.gradientImage
   }
   private let bookTitleLabel = UILabel().then {
-    $0.text = "제목"
     $0.font = .boldSystemFont(ofSize: 15)
     $0.textColor = .white
   }
   private let authorNameLabel = UILabel().then {
-    $0.text = "이름"
     $0.font = .systemFont(ofSize: 11, weight: .medium)
     $0.textColor = .white
   }
@@ -54,11 +52,6 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.font = RIDIBatangFont.medium.of(size: 12)
     $0.textAlignment = .center
     $0.numberOfLines = 3
-    $0.text = """
-    타인이 나를 알아주지 않을 때 드는 감정은
-    외로움이고, 내가 나 자신을 알아주지 않을
-    때 드는 감정은 고독이다. 가나다라마바사
-    """
   }
   private let rightQuoteImageView = UIImageView().then {
     $0.image = Image.quotationMarkRight
@@ -67,16 +60,13 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.backgroundColor = UIColor.brownishGrey.withAlphaComponent(0.11)
   }
   private let nameLabel = UILabel().then {
-    $0.text = "이름"
     $0.font = .systemFont(ofSize: 12, weight: .medium)
   }
   private let timeLabel = UILabel().then {
-    $0.text = "40분 전"
     $0.font = .systemFont(ofSize: 10, weight: .medium)
     $0.textColor = .brownGreyTwo
   }
   private let chatLabel = UILabel().then {
-    $0.text = "content123123123123131223"
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = UIColor.black.withAlphaComponent(0.4)
   }
@@ -85,16 +75,17 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     $0.layer.cornerRadius = 8
   }
   private let chatCountLabel = UILabel().then {
-    $0.text = "1"
     $0.font = .boldSystemFont(ofSize: 10)
     $0.textColor = .white
   }
-  fileprivate var data: Group? {
+  fileprivate var data: GeneratedGroup? {
     didSet {
       posterImageView.setImage(from: data?.image ?? "", UIImage())
+      bookTitleLabel.text = data?.title
       authorNameLabel.text = data?.author
       nameLabel.text = data?.nickname
       contentLabel.text = data?.description
+      chatLabel.text = data?.message
     }
   }
   override init(frame: CGRect) {
@@ -232,7 +223,7 @@ extension MeetCollectionViewCell {
 }
 
 extension Reactive where Base: MeetCollectionViewCell {
-  var dataBinder: Binder<Group> {
+  var dataBinder: Binder<GeneratedGroup> {
     return Binder(base) { base, data in
       base.data = data
     }
