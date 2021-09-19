@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04F05E86C19EDA674DD5EC67 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */; };
-		2C56B29181A6A578A8EA7210 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */; };
-		5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2E418099594CD3937D3B5C /* Pods_MARU.framework */; };
-		768BE31F8D8F08E140FF0AAD /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */; };
+		54D8C75F2998858DB08CF431 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AD29A4EBA21D1F76A737B6 /* Pods_MARUTests.framework */; };
 		77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C26268C0BFC004271E6 /* MorePopularViewController.swift */; };
 		77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */; };
 		7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7712E437269889D80076F8E5 /* HomeRouter.swift */; };
@@ -19,6 +16,7 @@
 		771A6FF626D075F300381DC3 /* QuizRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A6FF526D075F300381DC3 /* QuizRouter.swift */; };
 		771A6FF826D077E100381DC3 /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A6FF726D077E100381DC3 /* QuizService.swift */; };
 		771B85DB26218874009ECF72 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77569B6E2620CE20008BF77B /* QuizViewModel.swift */; };
+		771C688626DDDDB30001AC49 /* BookContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C688526DDDDB30001AC49 /* BookContentCell.swift */; };
 		773E22DD26A01BBC002B9F52 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DC26A01BBC002B9F52 /* Group.swift */; };
 		773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E22DE26A01E4E002B9F52 /* MeetingModel.swift */; };
 		774262EE26899825008F9CAE /* MeetingHeldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774262ED26899825008F9CAE /* MeetingHeldViewController.swift */; };
@@ -48,10 +46,12 @@
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
 		77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */; };
 		77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */; };
+		77DB3BE526EF4E9600E63050 /* MakeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DB3BE426EF4E9600E63050 /* MakeGroup.swift */; };
 		77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E150FD262328D3007BEBBF /* QuizViewController.swift */; };
 		77E1510426232938007BEBBF /* QuizContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1510326232938007BEBBF /* QuizContentView.swift */; };
 		77E3C83F26D522BD00CBF32D /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */; };
 		77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C84026D6AE1600CBF32D /* TimerView.swift */; };
+		C50056AF26F4C5BF00078FBF /* GeneratedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
@@ -93,6 +93,8 @@
 		C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1426D4CDD000D930BA /* GroupRouter.swift */; };
 		C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1626D4CDDA00D930BA /* GroupService.swift */; };
 		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
+		C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37126EBA609001A2B54 /* RealmChat.swift */; };
+		C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -117,11 +119,13 @@
 		C5B9B9A026B68DEA00D07974 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B99F26B68DEA00D07974 /* User.swift */; };
 		C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A126B6902E00D07974 /* BookRouter.swift */; };
 		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
+		C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD9AB826E7905E00E9233A /* RealmService.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
 		C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D8026188A2900F670EC /* LibraryViewController.swift */; };
 		C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED5ADB263E73C100BA7D47 /* InputView.swift */; };
+		C76A5C510B9FD9D5162098C9 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B29AA8C2CEB6171D37AFFC /* Pods_MARU.framework */; };
 		E22306EB262AC6E400B25CEA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EA262AC6E400B25CEA /* Image.swift */; };
 		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
@@ -131,6 +135,7 @@
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
 		F228F3CE26EE061600215B76 /* BookFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */; };
 		F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */; };
+		F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */; };
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
 		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
@@ -172,9 +177,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
-		4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40AD29A4EBA21D1F76A737B6 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77013C26268C0BFC004271E6 /* MorePopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePopularViewController.swift; sourceTree = "<group>"; };
 		77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaruListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7712E437269889D80076F8E5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 		771A6FF326D072EA00381DC3 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		771A6FF526D075F300381DC3 /* QuizRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRouter.swift; sourceTree = "<group>"; };
 		771A6FF726D077E100381DC3 /* QuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizService.swift; sourceTree = "<group>"; };
+		771C688526DDDDB30001AC49 /* BookContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentCell.swift; sourceTree = "<group>"; };
 		773E22DC26A01BBC002B9F52 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		773E22DE26A01E4E002B9F52 /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
 		774262ED26899825008F9CAE /* MeetingHeldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingHeldViewController.swift; sourceTree = "<group>"; };
@@ -212,15 +216,15 @@
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		77CB3A0D26B068B100E03E7D /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
 		77CCB35E26C1987800D9EAE8 /* MoreNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewModel.swift; sourceTree = "<group>"; };
+		77DB3BE426EF4E9600E63050 /* MakeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeGroup.swift; sourceTree = "<group>"; };
 		77E150FD262328D3007BEBBF /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		77E1510326232938007BEBBF /* QuizContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentView.swift; sourceTree = "<group>"; };
 		77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultViewModel.swift; sourceTree = "<group>"; };
 		77E3C84026D6AE1600CBF32D /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
-		8D2E418099594CD3937D3B5C /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
-		B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A67908028B84034A4D03EE2 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
+		A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
+		B3FCF08063A4739DEBC2AE00 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
+		C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedGroup.swift; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 		C56CBC1426D4CDD000D930BA /* GroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRouter.swift; sourceTree = "<group>"; };
 		C56CBC1626D4CDDA00D930BA /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
+		C57ED37126EBA609001A2B54 /* RealmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChat.swift; sourceTree = "<group>"; };
+		C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotification.swift; sourceTree = "<group>"; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		C5B9B99F26B68DEA00D07974 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C5B9B9A126B6902E00D07974 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
 		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		C5CD9AB826E7905E00E9233A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -302,11 +309,13 @@
 		E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDIBatangFont.swift; sourceTree = "<group>"; };
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
+		EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
 		F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewController.swift; sourceTree = "<group>"; };
 		F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuiz1Cell.swift; sourceTree = "<group>"; };
+		F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizCell.swift; sourceTree = "<group>"; };
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
 		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
@@ -328,6 +337,7 @@
 		F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewModel.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
+		F3B29AA8C2CEB6171D37AFFC /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,8 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5748F65FF95056F5206B705B /* Pods_MARU.framework in Frameworks */,
-				768BE31F8D8F08E140FF0AAD /* Pods_MARU.framework in Frameworks */,
+				C76A5C510B9FD9D5162098C9 /* Pods_MARU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,14 +360,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F05E86C19EDA674DD5EC67 /* Pods_MARUTests.framework in Frameworks */,
-				2C56B29181A6A578A8EA7210 /* Pods_MARUTests.framework in Frameworks */,
+				54D8C75F2998858DB08CF431 /* Pods_MARUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E595436BBEBC5D7FACCC735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3B29AA8C2CEB6171D37AFFC /* Pods_MARU.framework */,
+				40AD29A4EBA21D1F76A737B6 /* Pods_MARUTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		771A6FF226D0075B00381DC3 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,28 +499,17 @@
 		77EE58C126DB1D0900FCE9DC /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				8D2E418099594CD3937D3B5C /* Pods_MARU.framework */,
-				B68011EB8810F3CA7846F306 /* Pods_MARUTests.framework */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		80C7264D95B9E12BBE16FC68 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4E93C0FE7988D9A139C973D5 /* Pods_MARU.framework */,
-				C427BDEADE83095FE526B136 /* Pods_MARUTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8DCB7E7F0E109E2724345950 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */,
-				922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */,
-				036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */,
-				1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */,
+				9A67908028B84034A4D03EE2 /* Pods-MARU.debug.xcconfig */,
+				B3FCF08063A4739DEBC2AE00 /* Pods-MARU.release.xcconfig */,
+				EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */,
+				A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -536,10 +542,10 @@
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
 				77CCB35D26C17FE200D9EAE8 /* Recovered References */,
-				80C7264D95B9E12BBE16FC68 /* Frameworks */,
 				771A6FF226D0075B00381DC3 /* Recovered References */,
 				C59BCBBE26C81E7A00C84163 /* Recovered References */,
 				77EE58C126DB1D0900FCE9DC /* Recovered References */,
+				1E595436BBEBC5D7FACCC735 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -560,6 +566,7 @@
 			children = (
 				C5A3DAFF2684CD58007355D1 /* MARU.entitlements */,
 				C58F6A522646E9C600D8AA7C /* Network */,
+				C5CD9AB726E7904E00E9233A /* RealmService */,
 				C59BCBBF26C81F2C00C84163 /* ChatService */,
 				C52E781C260F27110087570E /* Global */,
 				C5DB34DA260F256A00F29FE1 /* Screens */,
@@ -745,8 +752,17 @@
 			isa = PBXGroup;
 			children = (
 				C56CBC1926D4E20500D930BA /* MeetCase.swift */,
+				C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */,
 			);
 			path = DataType;
+			sourceTree = "<group>";
+		};
+		C57ED37026EBA5A2001A2B54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C57ED37126EBA609001A2B54 /* RealmChat.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C58F6A522646E9C600D8AA7C /* Network */ = {
@@ -814,6 +830,7 @@
 				F28E550726C8EFB900F083BD /* BookCaseModel.swift */,
 				F223E3C726C8F8320039919A /* UserInformation.swift */,
 				F223E3C926C97A180039919A /* DiaryModel.swift */,
+				77DB3BE426EF4E9600E63050 /* MakeGroup.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -865,6 +882,16 @@
 				C55E21C2266B7AD900D5D953 /* OnboardingLoginCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C5CD9AB726E7904E00E9233A /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				C57ED37026EBA5A2001A2B54 /* Model */,
+				C5CD9AB826E7905E00E9233A /* RealmService.swift */,
+				C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */,
+			);
+			path = RealmService;
 			sourceTree = "<group>";
 		};
 		C5DB34D7260F255600F29FE1 /* Config */ = {
@@ -988,7 +1015,8 @@
 		F22AB7C626CA82ED006CD9C0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */,
+				771C688526DDDDB30001AC49 /* BookContentCell.swift */,
+				F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1042,21 +1070,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C51CA819260D966000CE4804 /* Build configuration list for PBXNativeTarget "MARU" */;
 			buildPhases = (
-				F8F223090045B5CCED54D5D4 /* [CP] Check Pods Manifest.lock */,
+				2AE2908E2E49E590755F7D93 /* [CP] Check Pods Manifest.lock */,
 				C51CA7EB260D964E00CE4804 /* Sources */,
 				C51CA7EC260D964E00CE4804 /* Frameworks */,
 				C51CA7ED260D964E00CE4804 /* Resources */,
 				C55F1526260F3BA9003D99D0 /* Lint Script */,
 				C55F1528260F3C12003D99D0 /* Firebase crashlytics */,
-				B9030BC511B36BF963278358 /* [CP] Embed Pods Frameworks */,
+				241CC9C1B71BBE25E2279415 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MARU;
-			packageProductDependencies = (
-			);
 			productName = MARU;
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
 			productType = "com.apple.product-type.application";
@@ -1083,11 +1109,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55F182A260F4DD1003D99D0 /* Build configuration list for PBXNativeTarget "MARUTests" */;
 			buildPhases = (
-				1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */,
+				6ED252F8AC43F4D38411B050 /* [CP] Check Pods Manifest.lock */,
 				C55F181F260F4DD1003D99D0 /* Sources */,
 				C55F1820260F4DD1003D99D0 /* Frameworks */,
 				C55F1821260F4DD1003D99D0 /* Resources */,
-				17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */,
+				C807F37C2E791F76BA3FC16D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1130,8 +1156,6 @@
 				Base,
 			);
 			mainGroup = C51CA7E6260D964E00CE4804;
-			packageReferences = (
-			);
 			productRefGroup = C51CA7F0260D964E00CE4804 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1174,24 +1198,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17949F7A6752A1BF69545873 /* [CP] Embed Pods Frameworks */ = {
+		241CC9C1B71BBE25E2279415 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1CE56294AE06BFF8A020F520 /* [CP] Check Pods Manifest.lock */ = {
+		2AE2908E2E49E590755F7D93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MARU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6ED252F8AC43F4D38411B050 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1211,23 +1257,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B9030BC511B36BF963278358 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARU/Pods-MARU-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C55F1526260F3BA9003D99D0 /* Lint Script */ = {
@@ -1266,26 +1295,21 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\nfi\n";
 		};
-		F8F223090045B5CCED54D5D4 /* [CP] Check Pods Manifest.lock */ = {
+		C807F37C2E791F76BA3FC16D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MARU-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1299,6 +1323,7 @@
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
+				C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */,
 				7717EC9426A437E200888826 /* RecentSearchViewModel.swift in Sources */,
 				77847E7F26D339920054742F /* QuizResultViewController.swift in Sources */,
 				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
@@ -1315,6 +1340,7 @@
 				F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */,
 				F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */,
 				C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */,
+				C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */,
 				776D06E32657F7EB007CD99B /* MainHeaderCell.swift in Sources */,
 				771A6FF826D077E100381DC3 /* QuizService.swift in Sources */,
 				F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */,
@@ -1322,6 +1348,7 @@
 				F2EA49DE26E88E7A0091C75A /* ProfileChangeViewModel.swift in Sources */,
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
+				C50056AF26F4C5BF00078FBF /* GeneratedGroup.swift in Sources */,
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
 				77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
@@ -1354,13 +1381,14 @@
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
-				F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */,
+				F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */,
 				F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */,
 				C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */,
 				771A6FF626D075F300381DC3 /* QuizRouter.swift in Sources */,
 				C5ACA4BF26B664FB0089C50C /* MeetingCell.swift in Sources */,
 				776AF4F82641BAF30020D2D8 /* BookCell.swift in Sources */,
+				77DB3BE526EF4E9600E63050 /* MakeGroup.swift in Sources */,
 				E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */,
 				C50DBC7526BD881B00B5585A /* Date+.swift in Sources */,
 				C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */,
@@ -1387,6 +1415,7 @@
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */,
+				771C688626DDDDB30001AC49 /* BookContentCell.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
 				C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */,
@@ -1409,6 +1438,7 @@
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */,
+				C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
@@ -1595,7 +1625,7 @@
 		};
 		C51CA81A260D966000CE4804 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79D5BBDA0AAE6A7C06FC4A13 /* Pods-MARU.debug.xcconfig */;
+			baseConfigurationReference = 9A67908028B84034A4D03EE2 /* Pods-MARU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1603,7 +1633,7 @@
 				BUNDLE_NAME = "마루_dev";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_WARN_PEDANTIC = NO;
@@ -1628,7 +1658,7 @@
 		};
 		C51CA81B260D966000CE4804 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 922E74AB6EA270ECCE8CFC02 /* Pods-MARU.release.xcconfig */;
+			baseConfigurationReference = B3FCF08063A4739DEBC2AE00 /* Pods-MARU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1636,7 +1666,7 @@
 				BUNDLE_NAME = "마루";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTABILITY = NO;
 				GCC_WARN_PEDANTIC = NO;
@@ -1700,7 +1730,7 @@
 		};
 		C55F182B260F4DD1003D99D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 036D8ACE6D8AA02323CE13E3 /* Pods-MARUTests.debug.xcconfig */;
+			baseConfigurationReference = EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1722,7 +1752,7 @@
 		};
 		C55F182C260F4DD1003D99D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A3F6BF62C4F66E442A6B6D6 /* Pods-MARUTests.release.xcconfig */;
+			baseConfigurationReference = A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

@@ -168,7 +168,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 14.0)
   - ReactorKit (~> 2.1.1)
   - RealmSwift
-  - RxCocoa (~> 5)
+  - RxCocoa (~> 5.0)
   - RxGesture
   - SnapKit (~> 5.0.0)
   - StompClientLib
@@ -247,6 +247,6 @@ SPEC CHECKSUMS:
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
 
-PODFILE CHECKSUM: a94a1bd8ec81baa84014ad07c129eb266cf38d9a
+PODFILE CHECKSUM: c68fed8c612d840a9b44946553df0511c37388d7
 
 COCOAPODS: 1.10.1

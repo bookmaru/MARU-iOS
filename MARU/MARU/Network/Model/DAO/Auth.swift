@@ -17,11 +17,13 @@ struct Token: Codable {
 
 struct TokenDTO: Codable {
   let tokenResponseDTO: Auth
+  let userID: Int
   let nickname: String?
   let profileURL: String?
 
   enum CodingKeys: String, CodingKey {
     case tokenResponseDTO = "tokenResponseDto"
+    case userID = "userId"
     case nickname
     case profileURL = "profileUrl"
   }

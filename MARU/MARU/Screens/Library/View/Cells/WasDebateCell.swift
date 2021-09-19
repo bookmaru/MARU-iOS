@@ -79,7 +79,6 @@ final class WasDebateCell: UICollectionViewCell {
 
   @objc func didTapButton(_ sender: UIButton) {
     buttonDelegate?.didPressButtonInHeader(sender.tag)
-    print("dddsss")
   }
   func setupButtonTag(itemNumber: Int) {
     evaluateButton.tag = itemNumber

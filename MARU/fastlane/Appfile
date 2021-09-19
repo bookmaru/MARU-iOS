@@ -4,5 +4,6 @@ apple_id("jajk4375@daum.net") # Your Apple email address
 itc_team_id("121858315") # App Store Connect Team ID
 team_id("36BC59Q598") # Developer Portal Team ID
 
+
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile

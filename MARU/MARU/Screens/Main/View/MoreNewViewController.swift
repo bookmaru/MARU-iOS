@@ -430,6 +430,5 @@ extension MoreNewViewController: UICollectionViewDelegate {
     guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell else { return }
     let discussionGroupID = cell.getDiscussionGroupID()
     // MARK: 여기에서 모임 입장 뷰로 이동.
-    print(discussionGroupID)
   }
 }

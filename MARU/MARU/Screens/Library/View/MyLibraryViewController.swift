@@ -89,16 +89,12 @@ final class MyLibraryViewController: BaseViewController {
 
 extension MyLibraryViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    print("total\(data)")
-    print("dataCount\(data.count)")
     return data.count
   }
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    print("numbOfItemsInSection\(data[section].count)")
     return data[section].count
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    print("section\(indexPath.section)")
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)

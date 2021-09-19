@@ -10,6 +10,11 @@ import RxSwift
 import RxCocoa
 
 final class QuizViewModel: ViewModelType {
+  struct ContentAndIndex {
+    let content: String
+    let index: Int
+    let isPass: Bool
+  }
 
   struct Input {
     let viewTrigger: Observable<(Void, Int)>
@@ -21,7 +26,7 @@ final class QuizViewModel: ViewModelType {
     let load: Driver<[String]>
     let judge: Driver<Void>
     let timeout: Driver<Void>
-    let contentAndIndex: Driver<(String, Int, Bool)>
+    let contentAndIndex: Driver<ContentAndIndex>
     let checkMarker: Driver<(Bool, Int)>
     let isPass: Driver<Bool>
   }
@@ -31,7 +36,7 @@ final class QuizViewModel: ViewModelType {
     var answers: [String] = []
 
     let checkMarker = PublishSubject<(Bool, Int)>()
-    let contentAndIndex = BehaviorRelay<(String, Int, Bool)>(value: ("", 0, false))
+    let contentAndIndex = BehaviorRelay<ContentAndIndex>(value: ContentAndIndex(content: "", index: 0, isPass: false))
     var passVar = true
     let isPass = PublishSubject<Bool>()
     var results: [Bool] = []
@@ -48,7 +53,7 @@ final class QuizViewModel: ViewModelType {
         content = $0.map { $0.content }
       })
       .do(onNext: { _ in
-        contentAndIndex.accept((content[0], 0, true))
+        contentAndIndex.accept(ContentAndIndex(content: content[0], index: 0, isPass: true))
       })
       .map { $0.map { $0.content } }
       .asDriver(onErrorJustReturn: [])
@@ -56,7 +61,7 @@ final class QuizViewModel: ViewModelType {
     let judge = input.tapButton
       .filter { $0.0 }
       .do(onNext: { _, button in
-        results.append(answers[contentAndIndex.value.1] == button)
+        results.append(answers[contentAndIndex.value.index] == button)
       })
       .do(onNext: { _ in
         checkMarker.onNext((results.last ?? false, results.count - 1 ))
@@ -77,7 +82,7 @@ final class QuizViewModel: ViewModelType {
       .do(onNext: { _ in
         guard results.count < 5 else { return }
         contentAndIndex.accept(
-          (content[results.count], results.count, passVar)
+          ContentAndIndex(content: content[results.count], index: results.count, isPass: passVar)
         )
       })
       .map { _ in }
@@ -106,7 +111,7 @@ final class QuizViewModel: ViewModelType {
       .do(onNext: { _ in
         guard results.count < 5 else { return }
         contentAndIndex.accept(
-          (content[results.count], results.count, passVar)
+          ContentAndIndex(content: content[results.count], index: results.count, isPass: passVar)
         )
       })
       .asDriver()

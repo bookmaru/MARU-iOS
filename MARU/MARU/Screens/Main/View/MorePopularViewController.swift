@@ -116,6 +116,5 @@ extension MorePopularViewController: UICollectionViewDelegate {
       return
     }
     // TODO: 여기에 화면전환
-    print(meetingModel.discussionGroupID)
   }
 }

@@ -65,6 +65,6 @@ extension HomeRouter: TargetType {
     }
   }
   var headers: [String: String]? {
-    return ["Content-Type": "aplication/json"]
+    return ["Content-Type": "application/json"]
   }
 }

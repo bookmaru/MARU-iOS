@@ -7,5 +7,5 @@
 
 enum MeetCase {
   case empty
-  case meet(Group)
+  case meet(GeneratedGroup)
 }

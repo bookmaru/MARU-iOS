@@ -33,7 +33,9 @@ final class ChatViewController: BaseViewController {
   }()
 
   private var data: [Chat] = [] {
-    didSet { collectionView.reloadData() }
+    didSet {
+      collectionView.reloadData()
+    }
   }
 
   private let bottomView = InputView()
@@ -44,7 +46,7 @@ final class ChatViewController: BaseViewController {
   init(roomIndex: Int) {
     self.viewModel = ChatViewModel(
       roomIndex: roomIndex,
-      messagePublisher: bottomView.rx.didTapSendButton
+      sendPublisher: bottomView.rx.didTapSendButton
     )
     self.roomIndex = roomIndex
 
@@ -114,7 +116,7 @@ extension ChatViewController {
 
     ouput.chat
       .drive(onNext: { chat in
-        self.data.append(chat)
+        self.data = chat
         let cov = self.collectionView
         let offset = cov.contentSize.height - (cov.contentOffset.y + cov.frame.height)
         if offset < 30 {
@@ -147,8 +149,6 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
         return calculateOtherMessage(prevMessage: prevSection)
       case .otherProfile:
         return calculateOtherProfile(prevMessage: prevSection)
-      case .error:
-        return .zero
       }
     }
     return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -188,8 +188,6 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.dataBinder.onNext(data)
 
       return cell
-    case .error:
-      return UICollectionViewCell()
     }
   }
 }
@@ -288,8 +286,6 @@ extension ChatViewController {
       return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
     case .otherProfile:
       return UIEdgeInsets(top: 11, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
     }
   }
 
@@ -301,8 +297,6 @@ extension ChatViewController {
       return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherProfile:
       return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
     }
   }
 
@@ -314,8 +308,6 @@ extension ChatViewController {
       return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     case .otherProfile:
       return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-    case .error:
-      return .zero
     }
   }
 }

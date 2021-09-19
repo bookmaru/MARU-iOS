@@ -96,7 +96,6 @@ extension TimerView {
     if remainTime > 0 {
       remainTime -= 1
       timerLabel.text = String(remainTime)
-      print(remainTime)
     } else {
       // Timeout
       print("Timeout")

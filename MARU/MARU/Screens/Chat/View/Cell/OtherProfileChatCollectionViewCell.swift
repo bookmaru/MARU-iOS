@@ -34,10 +34,10 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
     $0.layer.borderColor = UIColor.ligthGray.cgColor
   }
 
-  fileprivate var data: ChatDTO = .init(profileImage: nil, name: nil, message: nil) {
+  fileprivate var data: RealmChat = RealmChat() {
     didSet {
-      nameLabel.text = data.name
-      chatLabel.text = data.message
+      nameLabel.text = data.userName
+      chatLabel.text = data.content
     }
   }
 
@@ -84,7 +84,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: OtherProfileChatCollectionViewCell {
-  var dataBinder: Binder<ChatDTO> {
+  var dataBinder: Binder<RealmChat> {
     return Binder(base) { base, data in
       base.data = data
     }

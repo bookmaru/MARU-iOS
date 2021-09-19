@@ -14,7 +14,7 @@ protocol BookServiceType {
 }
 
 final class BookService: BookServiceType {
-  private let router = MoyaProvider<BookRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+  private let router = MoyaProvider<BookRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
   func bookList() -> Observable<BaseReponseType<BookCaseModel>> {
     return router.rx

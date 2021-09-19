@@ -179,7 +179,7 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
       let viewController = ChatViewController(roomIndex: 1)
       navigationController?.pushViewController(viewController, animated: true)
     case .meet(let group):
-      let viewController = ChatViewController(roomIndex: group.discussionGroupId)
+      let viewController = ChatViewController(roomIndex: group.discussionGroupID)
       navigationController?.pushViewController(viewController, animated: true)
     }
   }

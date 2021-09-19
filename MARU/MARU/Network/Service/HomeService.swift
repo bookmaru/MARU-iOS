@@ -16,7 +16,7 @@ protocol HomeServiceType {
 }
 
 final class HomeService: HomeServiceType {
-  private let router = MoyaProvider<HomeRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+  private let router = MoyaProvider<HomeRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
   func getPopular() -> Observable<BaseReponseType<Books>> {
     return router.rx
