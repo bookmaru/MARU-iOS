@@ -11,7 +11,10 @@ final class RealmService {
   static var shared = RealmService()
 
   private let realm: Realm = {
-    let realm = try! Realm()
+    var configuration = Realm.Configuration()
+    configuration.schemaVersion = 2
+    configuration.deleteRealmIfMigrationNeeded = true
+    let realm = try! Realm(configuration: configuration)
     return realm
   }()
 

@@ -49,8 +49,10 @@ final class ChatService {
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
       guard let self = self else { return }
-      let chat = [
+      let chat: [String: Any] = [
+        "chatID": self.chatID,
         "roomID": self.roomIndex?.string,
+        "userID": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
         "sender": self.userName
@@ -105,10 +107,11 @@ extension ChatService: StompClientLibDelegate {
     withDestination destination: String
   ) {
     guard let json = jsonBody as? [String: Any] else { return }
-
+    print(json)
     let realm = RealmChat(
       chatID: chatID,
-      roomID: json["id"] as? Int ?? 0,
+      roomID: json["id"] as? Int ?? -1,
+      userID: json["userId"] as? Int ?? -1,
       type: json["type"] as? String ?? "",
       userName: json["sender"] as? String ?? "",
       userImageURL: json["user_image_url"] as? String ?? "",
