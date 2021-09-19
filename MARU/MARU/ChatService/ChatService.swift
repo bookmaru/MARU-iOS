@@ -54,7 +54,7 @@ final class ChatService {
       else { return }
       let chat: [String: Any] = [
         "chatID": self.chatID,
-        "roomID": roomID,
+        "id": roomID,
         "userID": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
@@ -120,11 +120,11 @@ extension ChatService: StompClientLibDelegate {
     withDestination destination: String
   ) {
     guard let json = jsonBody as? [String: Any] else { return }
-    print(json)
+
     let realm = RealmChat(
       chatID: chatID,
-      roomID: json["id"] as? Int ?? -1,
-      userID: json["userId"] as? Int ?? -1,
+      roomID: json["id"] as? Int ?? 0,
+      userID: json["userId"] as? Int ?? 1,
       type: json["type"] as? String ?? "",
       userName: json["sender"] as? String ?? "",
       userImageURL: json["user_image_url"] as? String ?? "",
