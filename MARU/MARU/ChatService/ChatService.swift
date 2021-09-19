@@ -48,14 +48,18 @@ final class ChatService {
 
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
-      guard let self = self else { return }
+      guard let self = self,
+            let roomID = self.roomIndex,
+            let userName = self.userName
+      else { return }
       let chat: [String: Any] = [
         "chatID": self.chatID,
-        "roomID": self.roomIndex?.string,
+        "roomID": roomID,
         "userID": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
-        "sender": self.userName
+        "sender": userName,
+        "time": self.time()
       ]
       self.socket.sendJSONForDict(
         dict: chat as AnyObject,
@@ -95,6 +99,15 @@ final class ChatService {
 
   func clearMessageDisposeBag() {
     messageDisposeBag = DisposeBag()
+  }
+
+  func time() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let day = dateFormatter.string(from: Date())
+    dateFormatter.dateFormat = "HH:mm:ss"
+    let time = dateFormatter.string(from: Date())
+    return "\(day)T\(time).000+00:00"
   }
 }
 
