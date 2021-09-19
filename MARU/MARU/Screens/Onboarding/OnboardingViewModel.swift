@@ -46,6 +46,7 @@ final class OnboardingViewModel: ViewModelType {
           KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
           KeychainHandler.shared.refreshToken = refreshToken
           KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
+          KeychainHandler.shared.userID = response.data?.token?.userID ?? -1
           UserDefaultHandler.shared.userName = response.data?.token?.nickname
           UserDefaultHandler.shared.userImageURL = response.data?.token?.profileURL
         }
