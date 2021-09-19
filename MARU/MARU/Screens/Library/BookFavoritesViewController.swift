@@ -31,7 +31,8 @@ final class BookFavoritesViewController: BaseViewController {
     layout.scrollDirection = .vertical
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(cell: BookFavoritesShelfCell.self, forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
+    collectionView.register(cell: BookFavoritesShelfCell.self,
+                            forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
     return collectionView
   }()
   private let viewModel = BookFavoritesViewModel()
@@ -88,7 +89,6 @@ extension BookFavoritesViewController {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = BookFavoritesViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
     let output = viewModel.transfrom(input: input)
-    
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
@@ -113,17 +113,18 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if data?.bookcase.count ?? 0 % 3 == 0 {
       shelf = data?.bookcase.count ?? 0 / 3
-    } else {
+    } else if data?.bookcase.count ?? 0 >= 3 {
       shelf = (data?.bookcase.count ?? 0 / 3) + 1
+    } else {
+      shelf = 1
     }
     return shelf ?? 0
   }
-  
-  
 }
 
 extension BookFavoritesViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: ScreenSize.width-40, height: 180)
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

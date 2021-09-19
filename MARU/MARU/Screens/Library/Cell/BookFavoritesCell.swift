@@ -12,6 +12,7 @@ import RxSwift
 final class BookFavoritesCell: UICollectionViewCell {
   let bookImageView = UIImageView().then {
     $0.layer.cornerRadius = 5
+    $0.image = Image.image120
   }
   let bookTitleLabel = UILabel().then {
     $0.font = UIFont.systemFont(ofSize: 13, weight: .bold)

@@ -28,9 +28,7 @@ final class BookFavoritesShelfCell: UICollectionViewCell {
   var disposeBag = DisposeBag()
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
   }
-  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -64,16 +62,15 @@ extension Reactive where Base: BookFavoritesShelfCell {
 }
 
 extension BookFavoritesShelfCell: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: 87, height: 170)
   }
 }
-
 extension BookFavoritesShelfCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 3
   }
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
   -> UICollectionViewCell {
     let cell: BookFavoritesCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
