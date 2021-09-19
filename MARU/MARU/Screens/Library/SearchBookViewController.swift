@@ -28,7 +28,7 @@ class SearchBookViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setSearchBar()
-    //setNavigationBar(isHidden: true)
+    // setNavigationBar(isHidden: true)
   }
 }
 

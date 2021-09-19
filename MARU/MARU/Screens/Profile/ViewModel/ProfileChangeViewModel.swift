@@ -9,12 +9,9 @@ import RxCocoa
 import RxSwift
 
 final class ProfileChangeViewModel {
-  
   struct Input {
-    
   }
   struct Output {
-    
   }
   
 }

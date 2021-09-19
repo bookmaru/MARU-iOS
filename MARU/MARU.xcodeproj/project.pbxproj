@@ -142,6 +142,9 @@
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
+		F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */; };
+		F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */; };
+		F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */; };
 		F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */; };
 		F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */; };
 		F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */; };
@@ -315,6 +318,9 @@
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewModel.swift; sourceTree = "<group>"; };
+		F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesCell.swift; sourceTree = "<group>"; };
+		F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesShelfCell.swift; sourceTree = "<group>"; };
 		F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewController.swift; sourceTree = "<group>"; };
 		F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewModel.swift; sourceTree = "<group>"; };
 		F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingCell.swift; sourceTree = "<group>"; };
@@ -846,6 +852,8 @@
 				F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */,
 				F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */,
 				F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */,
+				F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */,
+				F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -928,6 +936,7 @@
 				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 				F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */,
 				F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */,
+				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1340,6 +1349,7 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
+				F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */,
 				F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
@@ -1394,6 +1404,7 @@
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				F223E3C826C8F8320039919A /* UserInformation.swift in Sources */,
+				F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */,
 				C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */,
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
@@ -1407,6 +1418,7 @@
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
 				C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */,
+				F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */,
 				77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */,

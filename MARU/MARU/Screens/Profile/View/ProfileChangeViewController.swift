@@ -16,13 +16,9 @@ final class ProfileChangeViewController: BaseViewController {
     super.viewDidLoad()
     render()
   }
-  
   private func render() {
-    
   }
-  
 }
 
 extension ProfileChangeViewController {
-  
 }
