@@ -37,7 +37,7 @@ final class ChatService {
   }
   private var destination: String = ""
   private var topic: String = ""
-  var messageDisposeBag = DisposeBag()
+  private var messageDisposeBag = DisposeBag()
 
   private func register() {
     socket.openSocketWithURLRequest(
@@ -50,7 +50,7 @@ final class ChatService {
     message.subscribe(onNext: { [weak self] message in
       guard let self = self else { return }
       let chat = [
-        "id": self.roomIndex?.string,
+        "roomID": self.roomIndex?.string,
         "type": "CHAT",
         "content": message,
         "sender": self.userName
