@@ -58,6 +58,9 @@ extension SearchBookViewController {
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
   @objc func didTapCancelButton() {
-    self.navigationController?.popViewController(animated: false)
+    // self.navigationController?.popViewController(animated: false)
+    // MARK: - 지금 임시로 화면 전환만 push로 걸어놓겠음
+    let viewController = ResultBookViewController()
+    self.navigationController?.pushViewController(viewController, animated: false)
   }
 }

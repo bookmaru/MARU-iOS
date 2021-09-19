@@ -134,7 +134,6 @@
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
 		F228F3CE26EE061600215B76 /* BookFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */; };
-		F22AB7C826CA962A006CD9C0 /* CreateQuiz1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */; };
 		F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */; };
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
 		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
@@ -150,6 +149,7 @@
 		F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */; };
 		F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */; };
 		F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */; };
+		F2CDD3F226F7B0CB0019EDEB /* ResultBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */; };
 		F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */; };
 		F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */; };
 		F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */; };
@@ -314,7 +314,6 @@
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
 		F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewController.swift; sourceTree = "<group>"; };
-		F22AB7C726CA962A006CD9C0 /* CreateQuiz1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuiz1Cell.swift; sourceTree = "<group>"; };
 		F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizCell.swift; sourceTree = "<group>"; };
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
 		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +329,7 @@
 		F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewModel.swift; sourceTree = "<group>"; };
 		F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesCell.swift; sourceTree = "<group>"; };
 		F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesShelfCell.swift; sourceTree = "<group>"; };
+		F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookViewController.swift; sourceTree = "<group>"; };
 		F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewController.swift; sourceTree = "<group>"; };
 		F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewModel.swift; sourceTree = "<group>"; };
 		F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingCell.swift; sourceTree = "<group>"; };
@@ -964,6 +964,7 @@
 				F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */,
 				F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */,
 				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
+				F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1379,6 +1380,7 @@
 				F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */,
 				F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
+				F2CDD3F226F7B0CB0019EDEB /* ResultBookViewController.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
 				F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */,
