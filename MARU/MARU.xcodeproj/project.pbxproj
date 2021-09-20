@@ -133,20 +133,28 @@
 		F223E3C826C8F8320039919A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C726C8F8320039919A /* UserInformation.swift */; };
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
+		F228F3CE26EE061600215B76 /* BookFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */; };
 		F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */; };
 		F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */; };
 		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
+		F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */; };
 		F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCaseModel.swift */; };
 		F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */; };
 		F29FF4F026D26CFD00336AD5 /* MyLibraryBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */; };
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
+		F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */; };
+		F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */; };
+		F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */; };
+		F2CDD3F226F7B0CB0019EDEB /* ResultBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */; };
 		F2E974EE26DA9F6700B3FC87 /* PastMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */; };
 		F2E974F026DAA22800B3FC87 /* PastMeetingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */; };
 		F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */; };
+		F2EA49DB26E88DEF0091C75A /* ProfileChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */; };
+		F2EA49DE26E88E7A0091C75A /* ProfileChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */; };
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
@@ -305,20 +313,28 @@
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
+		F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewController.swift; sourceTree = "<group>"; };
 		F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizCell.swift; sourceTree = "<group>"; };
 		F22AB7C926CA976F006CD9C0 /* CreateQuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewModel.swift; sourceTree = "<group>"; };
 		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		F28E550726C8EFB900F083BD /* BookCaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCaseModel.swift; sourceTree = "<group>"; };
 		F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookCaseCell.swift; sourceTree = "<group>"; };
 		F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryBookCell.swift; sourceTree = "<group>"; };
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewModel.swift; sourceTree = "<group>"; };
+		F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesCell.swift; sourceTree = "<group>"; };
+		F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesShelfCell.swift; sourceTree = "<group>"; };
+		F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookViewController.swift; sourceTree = "<group>"; };
 		F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewController.swift; sourceTree = "<group>"; };
 		F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingViewModel.swift; sourceTree = "<group>"; };
 		F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastMeetingCell.swift; sourceTree = "<group>"; };
+		F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewController.swift; sourceTree = "<group>"; };
+		F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewModel.swift; sourceTree = "<group>"; };
 		F2F0C6562680767500F8061A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		F2F0C65A2680C32600F8061A /* JoinContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinContentView.swift; sourceTree = "<group>"; };
 		F3B29AA8C2CEB6171D37AFFC /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -853,6 +869,8 @@
 				F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */,
 				F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */,
 				F2E974F126DAA5EF00B3FC87 /* PastMeetingCell.swift */,
+				F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */,
+				F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -900,7 +918,7 @@
 				C55E21BD266B615100D5D953 /* Onboarding */,
 				C52E7828260F27760087570E /* Base */,
 				F2F0C6582680767C00F8061A /* Join */,
-				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
+				F2EA49DC26E88E560091C75A /* Profile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -938,10 +956,13 @@
 				C5ACA4B926B662F50089C50C /* Cell */,
 				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
-				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
+				F2BEFB2126F87511009E2E7C /* ViewModel */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
-				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
+				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
+				F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */,
+				F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */,
+				F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -997,6 +1018,41 @@
 				F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F2BEFB2126F87511009E2E7C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
+				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
+				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2EA49DC26E88E560091C75A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DF26E88EA90091C75A /* View */,
+				F2EA49E026E88EAF0091C75A /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F2EA49DF26E88EA90091C75A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DA26E88DEF0091C75A /* ProfileChangeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2EA49E026E88EAF0091C75A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F2F0C6582680767C00F8061A /* Join */ = {
@@ -1282,6 +1338,7 @@
 				C5B9B9A426B6906100D07974 /* BookService.swift in Sources */,
 				77E150FE262328D3007BEBBF /* QuizViewController.swift in Sources */,
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
+				F2EA49DB26E88DEF0091C75A /* ProfileChangeViewController.swift in Sources */,
 				C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */,
 				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
 				C52E6C5426CA8F0C00279FB2 /* ChatDAO.swift in Sources */,
@@ -1297,6 +1354,7 @@
 				771A6FF826D077E100381DC3 /* QuizService.swift in Sources */,
 				F22AB7CA26CA976F006CD9C0 /* CreateQuizViewModel.swift in Sources */,
 				776AF4F62641BADF0020D2D8 /* MeetingListCell.swift in Sources */,
+				F2EA49DE26E88E7A0091C75A /* ProfileChangeViewModel.swift in Sources */,
 				E22306EB262AC6E400B25CEA /* Image.swift in Sources */,
 				C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */,
 				C50056AF26F4C5BF00078FBF /* GeneratedGroup.swift in Sources */,
@@ -1327,8 +1385,10 @@
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
+				F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */,
 				F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
+				F2CDD3F226F7B0CB0019EDEB /* ResultBookViewController.swift in Sources */,
 				C5ED1D8126188A2900F670EC /* LibraryViewController.swift in Sources */,
 				776FB8CA2687086300F024F1 /* RecentSearchViewController.swift in Sources */,
 				F22AB7C826CA962A006CD9C0 /* CreateQuizCell.swift in Sources */,
@@ -1353,6 +1413,7 @@
 				7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */,
 				77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
+				F228F3CE26EE061600215B76 /* BookFavoritesViewController.swift in Sources */,
 				C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */,
 				C52B34AD268211040053FE45 /* UserDefaultHandler.swift in Sources */,
 				776E525926B1254500D2C5FA /* SearchRouter.swift in Sources */,
@@ -1382,12 +1443,14 @@
 				C55F153C260F3FC8003D99D0 /* UICollectionView+.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				F223E3C826C8F8320039919A /* UserInformation.swift in Sources */,
+				F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */,
 				C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */,
 				773E22DD26A01BBC002B9F52 /* Group.swift in Sources */,
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */,
 				C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
+				F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,
 				F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */,
 				E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */,
@@ -1395,6 +1458,7 @@
 				C55F1741260F449A003D99D0 /* Enviroment.swift in Sources */,
 				F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */,
 				C5B9B99A26B687CE00D07974 /* MyLibraryViewModel.swift in Sources */,
+				F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */,
 				C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */,
 				773E22DF26A01E4E002B9F52 /* MeetingModel.swift in Sources */,
 				77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */,
