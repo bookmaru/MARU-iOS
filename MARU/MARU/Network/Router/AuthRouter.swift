@@ -47,8 +47,8 @@ extension AuthRouter: TargetType {
       return "token/refresh"
     case .user:
       return "user"
-    case .changeProfile(let profileImage):
-      return "user/profile/\(profileImage)"
+    case .changeProfile(let nickname):
+      return "user/profile/\(nickname)"
     }
   }
 
@@ -83,7 +83,6 @@ extension AuthRouter: TargetType {
         bodyEncoding: JSONEncoding.default,
         urlParameters: .init()
       )
-    
     default:
       return .requestPlain
     }

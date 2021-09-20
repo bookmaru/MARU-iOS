@@ -61,6 +61,7 @@ final class PastMeetingCell: UICollectionViewCell {
     didSet {
       bookTitleLabel.text = data?.title
       bookAuthorLabel.text = data?.author
+      // TODO: - 이미지 전달 변경하기
       bookImageView.image = UIImage(named: data?.image ?? "group1015")
       // id 정보 전달 방안 생각하기
       explanationLabel.text = data?.description

@@ -10,13 +10,15 @@ import RxSwift
 import RxCocoa
 
 final class BookFavoritesViewController: BaseViewController {
-  let emptyView = UIView().then {
+  private let emptyView = UIView().then {
     $0.backgroundColor = .white
     $0.isHidden = true
   }
-  let bookImage = UIImageView().then {
+  
+  private let bookImage = UIImageView().then {
     $0.image = Image.autoStories
   }
+  
   let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = .subText
@@ -26,6 +28,7 @@ final class BookFavoritesViewController: BaseViewController {
     + 버튼을 눌러 서재를 채워주세요!
     """
   }
+  
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -35,9 +38,11 @@ final class BookFavoritesViewController: BaseViewController {
                             forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
     return collectionView
   }()
+  
   private let viewModel = BookFavoritesViewModel()
   var shelf: Int?
   fileprivate var data: BookCaseModel?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
@@ -45,7 +50,7 @@ final class BookFavoritesViewController: BaseViewController {
   }
   // TODO: - 분명히 네비게이션 처리 다른 방법이 있었던 것 같지만 급한 관계로 원래 알던 방식대로 처리를 진행합니다. 여유생기면 고치기
   override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(false)
+    super.viewWillAppear(animated)
     setNavigationBar(isHidden: false)
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
@@ -58,34 +63,40 @@ final class BookFavoritesViewController: BaseViewController {
 }
 
 extension BookFavoritesViewController {
-  func render() {
-    view.add(emptyView) { make in
-      make.snp.makeConstraints {
-        $0.edges.equalToSuperview()
-      }
+  private func render() {
+    view.adds([
+      emptyView,
+      collectionView
+    ])
+    
+    emptyView.adds([
+      bookImage,
+      emptyLabel
+    ])
+    
+    emptyView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
     }
-    emptyView.add(bookImage) { make in
-      make.snp.makeConstraints {
-        $0.size.equalTo(16)
-        $0.centerX.equalTo(self.emptyView)
-        $0.centerY.equalTo(self.emptyView)
-      }
+    
+    collectionView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
     }
-    emptyView.add(emptyLabel) { make in
-      make.snp.makeConstraints {
-        $0.top.equalTo(self.bookImage.snp.bottom).offset(4)
-        $0.centerX.equalTo(self.emptyView)
-      }
+    
+    bookImage.snp.makeConstraints { make in
+      make.size.equalTo(16)
+      make.centerX.equalTo(self.emptyView)
+      make.centerY.equalTo(self.emptyView)
     }
-    view.add(collectionView) { view in
-      view.snp.makeConstraints {
-        $0.edges.equalToSuperview()
-      }
+    
+    emptyLabel.snp.makeConstraints { make in
+      make.top.equalTo(self.bookImage.snp.bottom).offset(4)
+      make.centerX.equalTo(self.emptyView)
     }
+    
     collectionView.delegate = self
     collectionView.dataSource = self
   }
-  func bind() {
+  private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = BookFavoritesViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
     let output = viewModel.transfrom(input: input)
@@ -97,35 +108,45 @@ extension BookFavoritesViewController {
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
   }
+  
   @objc func didTapAddBookButton() {
     let viewController = SearchBookViewController()
-    self.navigationController?.pushViewController(viewController, animated: false)
+    navigationController?.pushViewController(viewController, animated: false)
   }
 }
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.rx.binder.onNext((data!))
     return cell
   }
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if data?.bookcase.count ?? 0 % 3 == 0 {
-      shelf = data?.bookcase.count ?? 0 / 3
-    } else if data?.bookcase.count ?? 0 >= 3 {
-      shelf = (data?.bookcase.count ?? 0 / 3) + 1
-    } else {
-      shelf = 1
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
+    guard let count = data?.bookcase.count else { return 0 }
+    if count % 3 == 0 {
+      return count / 3
     }
-    return shelf ?? 0
+    if count >= 3 {
+      return count / 3 + 1
+    }
+    return 1
   }
 }
 
 extension BookFavoritesViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ScreenSize.width-40, height: 180)
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    return CGSize(width: ScreenSize.width - 40, height: 180)
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     // cell Tap Action

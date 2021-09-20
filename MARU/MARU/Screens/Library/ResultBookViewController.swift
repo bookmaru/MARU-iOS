@@ -14,27 +14,30 @@ class ResultBookViewController: BaseViewController {
   }
   override func viewDidLoad() {
     super.viewDidLoad()
-    setLayout()
+    render()
   }
   override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(false)
+    super.viewWillAppear(animated)
     setSearchBar()
   }
 }
 
 extension ResultBookViewController {
-  func setLayout() {
+  func render() {
   }
   func setSearchBar() {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
     navigationItem.titleView = searchBar
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "취소",
-                                                        style: .plain,
-                                                        target: self,
-                                                        action: #selector(didTapCancelButton))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      title: "취소",
+      style: .plain,
+      target: self,
+      action: #selector(didTapCancelButton)
+    )
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
+  
   @objc func didTapCancelButton() {
     self.navigationController?.popViewController(animated: false)
   }
