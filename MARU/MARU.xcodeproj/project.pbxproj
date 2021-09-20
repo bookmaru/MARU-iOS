@@ -956,14 +956,12 @@
 				C5ACA4B926B662F50089C50C /* Cell */,
 				774262EF26899C48008F9CAE /* Model */,
 				C5ED1D732618899D00F670EC /* View */,
-				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
+				F2BEFB2126F87511009E2E7C /* ViewModel */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
-				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
 				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 				F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */,
 				F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */,
-				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
 				F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */,
 			);
 			path = Library;
@@ -1020,6 +1018,16 @@
 				F22AB7C726CA962A006CD9C0 /* CreateQuizCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F2BEFB2126F87511009E2E7C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5B9B99926B687CE00D07974 /* MyLibraryViewModel.swift */,
+				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
+				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F2EA49DC26E88E560091C75A /* Profile */ = {

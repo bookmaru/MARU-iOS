@@ -184,6 +184,12 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
         self.navigationController?.pushViewController(viewController, animated: true)
       }
       .disposed(by: headerView.disposeBag)
+    headerView.changeProfileButton.rx.tap
+      .bind {
+        let viewController = ProfileChangeViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+      }
+      .disposed(by: headerView.disposeBag)
     return headerView
   }
 
