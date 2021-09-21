@@ -17,7 +17,7 @@ struct GeneratedGroup {
   let message: String
 
   init(group: Group, message: RealmChat) {
-    discussionGroupID = group.discussionGroupId
+    discussionGroupID = group.discussionGroupID
     description = group.description
     createdAt = group.createdAt
     title = group.title
