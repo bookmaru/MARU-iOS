@@ -39,8 +39,7 @@ final class MeetViewModel {
       .map { [weak self] chat -> [RealmChat] in
         guard let self = self else { return [] }
         self.initialize = self.initialize.map { groupChat -> RealmChat in
-          if groupChat.roomID == chat?.roomID,
-             groupChat.chatID < chat?.chatID ?? 0 {
+          if groupChat.roomID == chat?.roomID {
             return chat ?? RealmChat()
           }
           return groupChat
@@ -54,7 +53,7 @@ final class MeetViewModel {
         var generatedGroup: [GeneratedGroup] = []
         group.forEach { group in
           chat.forEach { chat in
-            if group.discussionGroupId == chat.chatID {
+            if group.discussionGroupId == chat.roomID {
               generatedGroup.append(GeneratedGroup(group: group, message: chat))
             }
           }
