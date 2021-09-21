@@ -43,14 +43,14 @@ final class ChatViewController: BaseViewController {
   private let viewModel: ChatViewModel
   private let roomIndex: Int
 
-  init(roomIndex: Int) {
+  init(roomIndex: Int, title: String) {
     self.viewModel = ChatViewModel(
       roomIndex: roomIndex,
       sendPublisher: bottomView.rx.didTapSendButton
     )
     self.roomIndex = roomIndex
-
     super.init()
+    self.title = title
   }
 
   required init?(coder: NSCoder) {
@@ -78,7 +78,6 @@ final class ChatViewController: BaseViewController {
   }
 
   private func setNavigation() {
-    title = "책이름"
     navigationController?.navigationBar.isHidden = false
     navigationController?.interactivePopGestureRecognizer?.delegate = self
     guard let navigationBar = navigationController?.navigationBar else { return }

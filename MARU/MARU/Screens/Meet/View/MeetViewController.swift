@@ -176,10 +176,10 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch data[indexPath.section] {
     case .empty:
-      let viewController = ChatViewController(roomIndex: 1)
+      let viewController = ChatViewController(roomIndex: 1, title: "")
       navigationController?.pushViewController(viewController, animated: true)
     case .meet(let group):
-      let viewController = ChatViewController(roomIndex: group.discussionGroupID)
+      let viewController = ChatViewController(roomIndex: group.discussionGroupID, title: group.title)
       navigationController?.pushViewController(viewController, animated: true)
     }
   }
