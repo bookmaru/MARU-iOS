@@ -14,7 +14,7 @@ final class MyLibraryViewController: BaseViewController {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    //  layout.headerReferenceSize 사용해서도 headerview size 조정 가능
+    // MARK: layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.register(
@@ -111,6 +111,14 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       }
       if titleText == "모임하고 싶은 책" {
         cell.addButton.setImage(Image.group1038, for: .normal)
+        cell.rx.didTapAddButton
+          .subscribe(onNext: {
+            let viewController = BookFavoritesViewController()
+
+            viewController.navigationItem.title = titleText
+            self.navigationController?.pushViewController(viewController, animated: true)
+          })
+          .disposed(by: cell.disposeBag)
         // 이후에 완성한 뷰로 연결시켜주기
       }
       if titleText == "내 일기장" {
@@ -169,11 +177,19 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     let user = user
     else { return UICollectionReusableView() }
     headerView.rx.profileBinder.onNext(user)
-    // 강제 옵셔널 처리 해결방법 고민해야함
+    // TODO: 강제 옵셔널 처리 해결방법 고민해야함
     headerView.changeSettingButton.rx.tap
       .bind {
         let viewController = SettingViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+      }
+      .disposed(by: headerView.disposeBag)
+    headerView.changeProfileButton.rx.tap
+      .bind {
+        let viewController = ProfileChangeViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: false, completion: nil)
       }
       .disposed(by: headerView.disposeBag)
     return headerView

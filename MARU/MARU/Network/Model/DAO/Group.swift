@@ -8,7 +8,7 @@
 import Foundation
 
 struct Group: Codable {
-  let discussionGroupId: Int
+  let discussionGroupID: Int
   let description: String
   let createdAt: String
   let title: String

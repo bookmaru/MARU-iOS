@@ -19,7 +19,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     $0.layer.cornerRadius = 38
   }
 
-  private let changeProfileButton = UIButton().then {
+  let changeProfileButton = UIButton().then {
     $0.setImage(Image.group1015, for: .normal)
     $0.layer.cornerRadius = 20/2
   }

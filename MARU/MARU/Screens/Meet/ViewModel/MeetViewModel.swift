@@ -53,7 +53,7 @@ final class MeetViewModel {
         var generatedGroup: [GeneratedGroup] = []
         group.forEach { group in
           chat.forEach { chat in
-            if group.discussionGroupId == chat.roomID {
+            if group.discussionGroupID == chat.chatID {
               generatedGroup.append(GeneratedGroup(group: group, message: chat))
             }
           }

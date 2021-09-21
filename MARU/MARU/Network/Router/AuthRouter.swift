@@ -27,6 +27,7 @@ enum AuthRouter {
   case information(information: UserInformation)
   case refresh
   case user
+  case changeProfile(String)
 }
 
 extension AuthRouter: TargetType {
@@ -46,6 +47,8 @@ extension AuthRouter: TargetType {
       return "token/refresh"
     case .user:
       return "user"
+    case .changeProfile(let nickname):
+      return "user/profile/\(nickname)"
     }
   }
 
@@ -53,6 +56,8 @@ extension AuthRouter: TargetType {
     switch self {
     case .auth, .information, .refresh:
       return .post
+    case .changeProfile:
+      return .patch
     default:
       return .get
     }

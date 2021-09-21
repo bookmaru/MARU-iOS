@@ -12,3 +12,7 @@ struct UserInformation: Codable {
   var socialID: String
   var socialType: String
 }
+
+struct ChangeProfile: Codable {
+  var profileImage: String?
+}

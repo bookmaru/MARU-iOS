@@ -19,7 +19,7 @@ struct MeetingModel: Hashable, Equatable {
   let category: String
 
   init(_ group: Group, _ category: String = "") {
-    self.discussionGroupID = group.discussionGroupId
+    self.discussionGroupID = group.discussionGroupID
     self.description = group.description
     self.createdAt = group.createdAt
     self.remainingDay = group.remainingDay
