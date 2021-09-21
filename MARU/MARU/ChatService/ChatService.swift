@@ -23,10 +23,8 @@ final class ChatService {
   private let baseURL = Enviroment.socketURL
   private let socket = StompClientLib()
   private let message = PublishSubject<String>()
-  private let receive = PublishSubject<ChatDAO>()
   private let disposeBag = DisposeBag()
   private let userName = UserDefaultHandler.shared.userName
-  var chatID = 1
 
   private var roomIndex: Int? {
     didSet {
@@ -49,16 +47,14 @@ final class ChatService {
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
       guard let self = self,
-            let roomID = self.roomIndex,
-            let userName = self.userName
+            let roomID = self.roomIndex
       else { return }
       let chat: [String: Any] = [
-        "chatID": self.chatID,
-        "id": roomID,
-        "userID": KeychainHandler.shared.userID,
+        "roomId": roomID,
+        "userId": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
-        "sender": userName,
+        "sender": self.userName ?? "",
         "time": self.time()
       ]
       self.socket.sendJSONForDict(
@@ -103,11 +99,8 @@ final class ChatService {
 
   func time() -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let day = dateFormatter.string(from: Date())
-    dateFormatter.dateFormat = "HH:mm:ss"
-    let time = dateFormatter.string(from: Date())
-    return "\(day)T\(time).000+00:00"
+    dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
+    return dateFormatter.string(from: Date())
   }
 }
 
@@ -122,16 +115,15 @@ extension ChatService: StompClientLibDelegate {
     guard let json = jsonBody as? [String: Any] else { return }
 
     let realm = RealmChat(
-      chatID: chatID,
-      roomID: json["id"] as? Int ?? 0,
+      chatID: UUID(uuidString: json["chatId"] as? String ?? "") ?? UUID(),
+      roomID: json["roomId"] as? Int ?? 0,
       userID: json["userId"] as? Int ?? 1,
       type: json["type"] as? String ?? "",
       userName: json["sender"] as? String ?? "",
-      userImageURL: json["user_image_url"] as? String ?? "",
+      userImageURL: json["userImageUrl"] as? String ?? "",
       content: json["content"] as? String ?? "",
       time: json["time"] as? String ?? ""
     )
-    chatID += 1
     RealmService.shared.write(realm)
   }
 
@@ -147,7 +139,9 @@ extension ChatService: StompClientLibDelegate {
     client: StompClientLib!,
     withErrorMessage description: String,
     detailedErrorMessage message: String?
-  ) { }
+  ) {
+    print("error", description)
+  }
 
   func serverDidSendPing() { }
 }
