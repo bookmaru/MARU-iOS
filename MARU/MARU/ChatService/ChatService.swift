@@ -87,7 +87,6 @@ final class ChatService {
     } else {
       roomIDList.forEach {
         subscribeRoom(roomID: $0)
-        saveChatListRealmPublisher.onNext($0)
       }
     }
   }

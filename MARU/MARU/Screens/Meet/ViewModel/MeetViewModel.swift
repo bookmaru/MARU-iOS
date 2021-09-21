@@ -30,7 +30,6 @@ final class MeetViewModel {
     chatPublisher = realm.fetchChatRooms()
 
     let group = input.viewDidLoadPublisher
-      .debug()
       .flatMap { NetworkService.shared.group.participateList() }
       .map { $0.data.map { $0.groups } }
       .compactMap { $0 }

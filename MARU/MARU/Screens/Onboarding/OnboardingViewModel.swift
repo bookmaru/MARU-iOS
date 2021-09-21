@@ -16,21 +16,10 @@ final class OnboardingViewModel: ViewModelType {
   }
 
   struct Output {
-    let isInitialUser: Driver<Bool>
     let didLogin: Driver<UIViewController?>
   }
 
   func transform(input: Input) -> Output {
-    let isInitialUser = input.viewDidLoad
-      .map { _ -> Bool in
-        if UserDefaultHandler.shared.isInitalUserKey {
-          return true
-        }
-        UserDefaultHandler.shared.isInitalUserKey = true
-        return false
-      }
-      .asDriver(onErrorJustReturn: false)
-
     let loginService = input.didTapLoginButton
       .flatMap { NetworkService.shared.auth.auth(type: $0.0, token: $0.1) }
 
@@ -61,7 +50,7 @@ final class OnboardingViewModel: ViewModelType {
       }
       .asDriver(onErrorJustReturn: nil)
 
-    return Output(isInitialUser: isInitialUser, didLogin: didLogin)
+    return Output(didLogin: didLogin)
   }
 
 }
