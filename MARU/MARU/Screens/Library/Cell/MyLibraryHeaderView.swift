@@ -15,8 +15,9 @@ import RxCocoa
 final class MyLibraryHeaderView: UICollectionReusableView {
   static let registerId = "headerView"
   private let profileImageView = UIImageView().then {
-    $0.image = Image.appIcon
+    $0.image = Image.group1029
     $0.layer.cornerRadius = 38
+    $0.layer.masksToBounds = true
   }
 
   let changeProfileButton = UIButton().then {
@@ -78,7 +79,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     add(changeProfileButton) { button in
       button.snp.makeConstraints {
         $0.size.equalTo(20)
-        $0.trailing.bottom.equalTo(self.profileImageView).inset(-5)
+        $0.trailing.bottom.equalTo(self.profileImageView).inset(-1)
       }
     }
     add(usernameLabel) { label in
