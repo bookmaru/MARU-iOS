@@ -41,14 +41,14 @@ final class ChatViewController: BaseViewController {
   private let bottomView = InputView()
 
   private let viewModel: ChatViewModel
-  private let roomIndex: Int
+  private let roomID: Int
 
-  init(roomIndex: Int, title: String) {
+  init(roomID: Int, title: String) {
     self.viewModel = ChatViewModel(
-      roomIndex: roomIndex,
+      roomID: roomID,
       sendPublisher: bottomView.rx.didTapSendButton
     )
-    self.roomIndex = roomIndex
+    self.roomID = roomID
     super.init()
     self.title = title
   }

@@ -28,8 +28,5 @@ final class GroupService: GroupServiceType {
       .request(.chatList(roomID: roomID))
       .asObservable()
       .map([RealmChat].self)
-      .catchError { error -> Observable<[RealmChat]> in
-        return .just([])
-      }
   }
 }

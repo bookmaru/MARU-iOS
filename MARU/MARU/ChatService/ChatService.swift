@@ -28,11 +28,11 @@ final class ChatService {
   private let userName = UserDefaultHandler.shared.userName
   private let saveChatListRealmPublisher = PublishSubject<Int>()
 
-  private var roomIndex: Int? {
+  private var roomID: Int? {
     didSet {
-      guard let roomIndex = roomIndex else { return }
-      topic = "/topic/public/\(roomIndex)"
-      destination = "/app/chat.sendMessage/\(roomIndex)"
+      guard let roomID = roomID else { return }
+      topic = "/topic/public/\(roomID)"
+      destination = "/app/chat.sendMessage/\(roomID)"
     }
   }
   private var destination: String = ""
@@ -49,7 +49,7 @@ final class ChatService {
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
       guard let self = self,
-            let roomID = self.roomIndex
+            let roomID = self.roomID
       else { return }
       let chat: [String: Any] = [
         "chatId": UUID().uuidString,
@@ -83,29 +83,34 @@ final class ChatService {
     // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정
     // TODO: 요 룸 없으면 구독하는것 지우기
     if roomIDList.isEmpty {
-      subscribeRoom(roomIndex: 1)
+      subscribeRoom(roomID: 1)
     } else {
       roomIDList.forEach {
-        subscribeRoom(roomIndex: $0)
+        subscribeRoom(roomID: $0)
         saveChatListRealmPublisher.onNext($0)
       }
     }
   }
 
   func bind(
-    roomIndex: Int,
+    roomID: Int,
     sendPublisher: Observable<String>
   ) {
-    self.roomIndex = roomIndex
+    self.roomID = roomID
 
     sendPublisher
       .bind(to: message)
       .disposed(by: messageDisposeBag)
   }
 
-  func subscribeRoom(roomIndex: Int) {
-    socket.subscribe(destination: "/topic/public/\(roomIndex)")
-    saveChatListRealmPublisher.onNext(roomIndex)
+  func subscribeRoom(roomID: Int) {
+    socket.subscribe(destination: "/topic/public/\(roomID)")
+    saveChatListRealmPublisher.onNext(roomID)
+  }
+
+  func unsubscribeRoom(roomID: Int) {
+    socket.unsubscribe(destination: "/topic/public/\(roomID)")
+    RealmService.shared.deleteRoom(roomID: roomID)
   }
 
   func clearMessageDisposeBag() {
