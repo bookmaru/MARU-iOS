@@ -15,7 +15,7 @@ class RealmChat: Object, Codable {
   @objc dynamic var userName: String = ""
   @objc dynamic var userImageURL: String = ""
   @objc dynamic var content: String = ""
-  @objc dynamic var time: String = ""
+  @objc dynamic var time: Date = Date()
 
   override static func primaryKey() -> String? {
     return "chatID"
@@ -29,7 +29,7 @@ class RealmChat: Object, Codable {
     userName: String = "",
     userImageURL: String = "",
     content: String = "",
-    time: String = ""
+    time: Date = Date()
   ) {
     self.init()
     self.chatID = chatID

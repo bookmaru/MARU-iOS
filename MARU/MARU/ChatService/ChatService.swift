@@ -122,9 +122,15 @@ extension ChatService: StompClientLibDelegate {
       userName: json["sender"] as? String ?? "",
       userImageURL: json["userImageUrl"] as? String ?? "",
       content: json["content"] as? String ?? "",
-      time: json["time"] as? String ?? ""
+      time: timeConvertor(string: json["time"] as? String ?? "")
     )
     RealmService.shared.write(realm)
+  }
+
+  private func timeConvertor(string: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
+    return dateFormatter.date(from: string) ?? Date()
   }
 
   func stompClientDidDisconnect(client: StompClientLib!) { }
