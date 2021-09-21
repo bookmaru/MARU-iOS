@@ -112,9 +112,9 @@ extension MorePopularViewController: UICollectionViewDelegate {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else {
-      return
-    }
+//    guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else {
+//      return
+//    }
     // TODO: 여기에 화면전환
   }
 }

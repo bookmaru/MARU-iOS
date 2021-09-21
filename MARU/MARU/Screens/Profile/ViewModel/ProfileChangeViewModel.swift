@@ -13,5 +13,5 @@ final class ProfileChangeViewModel {
   }
   struct Output {
   }
-  
+
 }

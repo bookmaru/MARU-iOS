@@ -76,7 +76,7 @@ extension BookFavoritesShelfCell: UICollectionViewDataSource {
     numberOfItemsInSection section: Int) -> Int {
     return 3
   }
-  
+
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath

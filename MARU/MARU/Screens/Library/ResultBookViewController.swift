@@ -37,7 +37,7 @@ extension ResultBookViewController {
     )
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
-  
+
   @objc func didTapCancelButton() {
     self.navigationController?.popViewController(animated: false)
   }

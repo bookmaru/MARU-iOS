@@ -9,7 +9,7 @@ import RxCocoa
 import RxSwift
 
 final class BookFavoritesViewModel {
-  
+
   struct Input {
     let viewDidLoadPublisher: PublishSubject<Void>
   }

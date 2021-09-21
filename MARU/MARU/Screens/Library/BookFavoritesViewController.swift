@@ -14,11 +14,11 @@ final class BookFavoritesViewController: BaseViewController {
     $0.backgroundColor = .white
     $0.isHidden = true
   }
-  
+
   private let bookImage = UIImageView().then {
     $0.image = Image.autoStories
   }
-  
+
   let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = .subText
@@ -28,7 +28,7 @@ final class BookFavoritesViewController: BaseViewController {
     + 버튼을 눌러 서재를 채워주세요!
     """
   }
-  
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -38,11 +38,11 @@ final class BookFavoritesViewController: BaseViewController {
                             forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
     return collectionView
   }()
-  
+
   private let viewModel = BookFavoritesViewModel()
   var shelf: Int?
   fileprivate var data: BookCaseModel?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
@@ -68,31 +68,31 @@ extension BookFavoritesViewController {
       emptyView,
       collectionView
     ])
-    
+
     emptyView.adds([
       bookImage,
       emptyLabel
     ])
-    
+
     emptyView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-    
+
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-    
+
     bookImage.snp.makeConstraints { make in
       make.size.equalTo(16)
       make.centerX.equalTo(self.emptyView)
       make.centerY.equalTo(self.emptyView)
     }
-    
+
     emptyLabel.snp.makeConstraints { make in
       make.top.equalTo(self.bookImage.snp.bottom).offset(4)
       make.centerX.equalTo(self.emptyView)
     }
-    
+
     collectionView.delegate = self
     collectionView.dataSource = self
   }
@@ -108,7 +108,7 @@ extension BookFavoritesViewController {
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
   }
-  
+
   @objc func didTapAddBookButton() {
     let viewController = SearchBookViewController()
     navigationController?.pushViewController(viewController, animated: false)
@@ -124,7 +124,7 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     cell.rx.binder.onNext((data!))
     return cell
   }
-  
+
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int

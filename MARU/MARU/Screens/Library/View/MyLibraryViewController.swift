@@ -14,7 +14,7 @@ final class MyLibraryViewController: BaseViewController {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    // MARK: -  layout.headerReferenceSize 사용해서도 headerview size 조정 가능
+    // MARK: layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.register(
