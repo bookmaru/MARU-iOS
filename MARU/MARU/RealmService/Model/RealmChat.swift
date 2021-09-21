@@ -8,7 +8,7 @@
 import RealmSwift
 
 class RealmChat: Object, Codable {
-  @objc dynamic var chatID: Int = 0
+  @objc dynamic var chatID: UUID = UUID()
   @objc dynamic var roomID: Int = 0
   @objc dynamic var userID: Int = 0
   @objc dynamic var type: String = ""
@@ -22,7 +22,7 @@ class RealmChat: Object, Codable {
   }
 
   convenience init(
-    chatID: Int = 0,
+    chatID: UUID = UUID(),
     roomID: Int = 0,
     userID: Int = 0,
     type: String = "CHAT",
