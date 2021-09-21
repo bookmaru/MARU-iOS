@@ -46,13 +46,15 @@ final class ProfileChangeViewController: UIViewController {
 
   private let nicknameTextField  = UITextField().then {
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
+    $0.borderStyle = .roundedRect
     $0.placeholder = "닉네임을 입력하세요."
   }
 
   private let nicknameCheckLabel = UILabel().then {
     $0.textColor = .subText
     $0.font = .systemFont(ofSize: 13, weight: .medium)
-    $0.isHidden = true
+    $0.text = "사용 가능한 닉네임입니다."
+    $0.isHidden = false
   }
 
   override func viewDidLoad() {
@@ -93,6 +95,37 @@ final class ProfileChangeViewController: UIViewController {
       make.top.equalTo(exitButton.snp.bottom).offset(0)
       make.centerX.equalToSuperview()
       make.size.equalTo(75)
+    }
+
+    changeProfileButton.snp.makeConstraints { make in
+      make.top.equalTo(profileImageView.snp.bottom).offset(15)
+      make.centerX.equalToSuperview()
+      make.height.equalTo(14)
+    }
+
+    nicknameGuideLabel.snp.makeConstraints { make in
+      make.leading.equalTo(exitButton.snp.leading)
+      make.top.equalTo(changeProfileButton.snp.bottom).offset(49)
+      make.height.equalTo(17)
+    }
+
+    asteriskLabel.snp.makeConstraints { make in
+      make.leading.equalTo(nicknameGuideLabel.snp.trailing).offset(3)
+      make.top.equalTo(changeProfileButton.snp.bottom).offset(45)
+      make.size.equalTo(7)
+    }
+
+    nicknameTextField.snp.makeConstraints { make in
+      make.leading.equalTo(nicknameGuideLabel.snp.leading)
+      make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
+      make.top.equalTo(nicknameGuideLabel.snp.bottom).offset(10)
+      make.height.equalTo(37)
+    }
+
+    nicknameCheckLabel.snp.makeConstraints { make in
+      make.top.equalTo(nicknameTextField.snp.bottom).offset(10)
+      make.leading.equalTo(view.safeAreaLayoutGuide).offset(32)
+      make.height.equalTo(13)
     }
   }
 }
