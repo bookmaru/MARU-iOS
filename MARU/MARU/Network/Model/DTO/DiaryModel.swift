@@ -10,7 +10,7 @@ struct Diaries: Codable {
 }
 
 struct Diary: Codable {
-  let diaryId: Int
+  let diaryID: Int
   let diaryTitle: String
   let createdAt: String
   let bookTitle: String
