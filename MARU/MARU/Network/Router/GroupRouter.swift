@@ -9,22 +9,33 @@ import Moya
 
 enum GroupRouter {
   case participate
+  case chatList(roomID: Int)
 }
 
 extension GroupRouter: TargetType {
   var baseURL: URL {
-    return Enviroment.baseURL
+    switch self {
+    case .chatList:
+      let url = URL(string: "http://3.36.251.65:8082/")!
+      return url
+    default:
+      return Enviroment.baseURL
+    }
   }
   var path: String {
     switch self {
     case .participate:
       return "group/doing"
+    case .chatList(let roomID):
+      return "chat/group/\(roomID)"
     }
   }
 
   var method: Method {
     switch self {
     case .participate:
+      return .get
+    case .chatList:
       return .get
     }
   }
@@ -34,6 +45,8 @@ extension GroupRouter: TargetType {
   var task: Task {
     switch self {
     case .participate:
+      return .requestPlain
+    case .chatList:
       return .requestPlain
     }
   }

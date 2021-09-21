@@ -12,7 +12,7 @@ final class RealmService {
 
   private let realm: Realm = {
     var configuration = Realm.Configuration()
-    configuration.schemaVersion = 4
+    configuration.schemaVersion = 6
     configuration.deleteRealmIfMigrationNeeded = true
     let realm = try! Realm(configuration: configuration)
     return realm
