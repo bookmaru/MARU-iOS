@@ -46,11 +46,11 @@ final class SearchBookViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+    bind()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setSearchBar()
-    bind()
     // setNavigationBar(isHidden: true)
   }
 }
@@ -92,7 +92,7 @@ extension SearchBookViewController {
     }
   }
 
-  func setSearchBar() {
+  private func setSearchBar() {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
     navigationItem.titleView = searchBar
