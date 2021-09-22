@@ -53,9 +53,11 @@ final class ResultSearchViewModel: ViewModelType {
     let reSearch = input.tapTextField
       .asDriver()
 
-    return Output(result: result,
-                  cancel: cancel,
-                  reSearch: reSearch,
-                  errorMessage: errorMessage)
+    return Output(
+      result: result,
+      cancel: cancel,
+      reSearch: reSearch,
+      errorMessage: errorMessage
+    )
   }
 }

@@ -32,6 +32,7 @@ final class MainViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+    navigationController?.tabBarController?.tabBar.isHidden = false
   }
 }
 
@@ -210,6 +211,12 @@ extension MainViewController: UICollectionViewDelegate {
       let targetViewController = MorePopularViewController()
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
+    case 2:
+      guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
+            let groupID = Int(cell.getDiscussionGroupID()) else { return }
+      let targetViewController = QuizViewController(groupID: groupID)
+      targetViewController.modalPresentationStyle = .fullScreen
+      present(targetViewController, animated: true, completion: nil)
     default:
       break
     }

@@ -94,9 +94,17 @@ final class QuizResultViewController: BaseViewController {
       .drive()
       .disposed(by: disposeBag)
 
+    // MARK: - 채팅방으로 이동하는 거 같은데, 마지막에 채팅 다 연결되면 연결할게요.
     output.goMain
-      .drive(onNext: {
-        print("go Main or Chatting Room")
+      .drive(onNext: { [weak self] in
+        guard let self = self else { return }
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+          let tabbarViewController = TabBarController()
+          tabbarViewController.modalPresentationStyle = .fullScreen
+          if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController?.present(tabbarViewController, animated: true, completion: nil)
+          }
+        })
       })
       .disposed(by: disposeBag)
   }

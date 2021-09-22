@@ -112,9 +112,9 @@ extension MorePopularViewController: UICollectionViewDelegate {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-//    guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else {
-//      return
-//    }
-    // TODO: 여기에 화면전환
+    guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else { return }
+    let targetVC = QuizViewController(groupID: meetingModel.discussionGroupID)
+    targetVC.modalPresentationStyle = .fullScreen
+    present(targetVC, animated: false, completion: nil)
   }
 }
