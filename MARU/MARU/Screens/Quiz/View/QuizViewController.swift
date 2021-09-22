@@ -52,7 +52,7 @@ final class QuizViewController: BaseViewController {
     fourthMarkImageView,
     fifthMarkImageView
   ]
-  private var groupID: Int
+  private let groupID: Int
   private let viewModel = QuizViewModel()
   private var quizsContent: [String] = []
   private let timeoutTrigger = PublishSubject<Void>()
@@ -72,7 +72,6 @@ final class QuizViewController: BaseViewController {
   init(groupID: Int) {
     self.groupID = groupID
     super.init()
-    print(groupID)
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

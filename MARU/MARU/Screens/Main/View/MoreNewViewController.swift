@@ -427,8 +427,8 @@ extension MoreNewViewController: UICollectionViewDelegateFlowLayout {
 
 extension MoreNewViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell else { return }
-    guard let groupID = Int(cell.getDiscussionGroupID()) else { return }
+    guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
+          let groupID = Int(cell.getDiscussionGroupID()) else { return }
     let targetViewController = QuizViewController(groupID: groupID)
     targetViewController.modalPresentationStyle = .fullScreen
     present(targetViewController, animated: true, completion: nil)

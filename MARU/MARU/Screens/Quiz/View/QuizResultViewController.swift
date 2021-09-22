@@ -104,17 +104,10 @@ final class QuizResultViewController: BaseViewController {
           if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.window?.rootViewController?.present(tabbarViewController, animated: true, completion: nil)
           }
-          print("go Main or Chatting Room")
         })
       })
       .disposed(by: disposeBag)
   }
-//  let viewController = tokenCalculate()
-//  viewController.modalPresentationStyle = .fullScreen
-//  if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-//    delegate.window?.rootViewController = viewController
-//  }
-//  present(viewController, animated: false)
 }
 
 extension QuizResultViewController {

@@ -212,8 +212,8 @@ extension MainViewController: UICollectionViewDelegate {
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
     case 2:
-      guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell else { return }
-      guard let groupID = Int(cell.getDiscussionGroupID()) else { return }
+      guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
+            let groupID = Int(cell.getDiscussionGroupID()) else { return }
       let targetViewController = QuizViewController(groupID: groupID)
       targetViewController.modalPresentationStyle = .fullScreen
       present(targetViewController, animated: true, completion: nil)
