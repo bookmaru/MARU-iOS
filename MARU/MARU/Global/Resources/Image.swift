@@ -69,4 +69,6 @@ enum Image {
   static let group1029 = UIImage(named:"group1029")
   static let group1036 = UIImage(named: "group1036")
   static let coolicon = UIImage(named: "coolicon")
+  static let validName = UIImage(named: "validName")
+  static let invalidName3 = UIImage(named: "invalidName3")
 }
