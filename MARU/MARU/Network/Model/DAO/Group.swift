@@ -16,6 +16,17 @@ struct Group: Codable {
   let image: String
   let author: String
   let nickname: String
+
+  enum CodingKeys: String, CodingKey {
+    case discussionGroupID = "discussionGroupId"
+    case description
+    case createdAt
+    case title
+    case remainingDay
+    case image
+    case author
+    case nickname
+  }
 }
 
 struct Groups: Codable {

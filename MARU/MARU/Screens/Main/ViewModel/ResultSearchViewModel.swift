@@ -56,6 +56,7 @@ final class ResultSearchViewModel: ViewModelType {
     return Output(result: result,
                   cancel: cancel,
                   reSearch: reSearch,
-                  errorMessage: errorMessage)
+                  errorMessage: errorMessage
+    )
   }
 }

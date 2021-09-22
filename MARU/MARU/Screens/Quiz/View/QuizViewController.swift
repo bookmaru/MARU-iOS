@@ -52,9 +52,7 @@ final class QuizViewController: BaseViewController {
     fourthMarkImageView,
     fifthMarkImageView
   ]
-  // 임시 설정
-  // 연결 때 바꿔주면 됨
-  private var groupID: Int = 200
+  private var groupID: Int
   private let viewModel = QuizViewModel()
   private var quizsContent: [String] = []
   private let timeoutTrigger = PublishSubject<Void>()
@@ -70,6 +68,14 @@ final class QuizViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
+  }
+  init(groupID: Int) {
+    self.groupID = groupID
+    super.init()
+    print(groupID)
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   private func bind() {
     let viewWillAppear = Observable

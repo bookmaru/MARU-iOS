@@ -183,8 +183,10 @@ extension ResultSearchViewController {
 }
 extension ResultSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
-    // TODO: 여기에 화면전환
+    guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
+    let targetVC = QuizViewController(groupID: meetingModel.discussionGroupID)
+    targetVC.modalPresentationStyle = .fullScreen
+    present(targetVC, animated: true, completion: nil)
   }
 }
 
