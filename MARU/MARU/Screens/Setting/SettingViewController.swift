@@ -98,7 +98,12 @@ extension SettingViewController: UICollectionViewDelegate {
         self.logout()
       })
       alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-      present(alert, animated: true)
+      present(alert, animated: true) {
+        let roomIDList = RealmService.shared.findRoomID()
+        roomIDList.forEach {
+          ChatService.shared.unsubscribeRoom(roomID: $0)
+        }
+      }
     default:
       break
     }

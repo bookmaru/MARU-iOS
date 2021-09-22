@@ -30,7 +30,6 @@ final class MeetViewModel {
     chatPublisher = realm.fetchChatRooms()
 
     let group = input.viewDidLoadPublisher
-      .debug()
       .flatMap { NetworkService.shared.group.participateList() }
       .map { $0.data.map { $0.groups } }
       .compactMap { $0 }
@@ -39,8 +38,7 @@ final class MeetViewModel {
       .map { [weak self] chat -> [RealmChat] in
         guard let self = self else { return [] }
         self.initialize = self.initialize.map { groupChat -> RealmChat in
-          if groupChat.roomID == chat?.roomID,
-             groupChat.chatID < chat?.chatID ?? 0 {
+          if groupChat.roomID == chat?.roomID {
             return chat ?? RealmChat()
           }
           return groupChat
@@ -54,7 +52,7 @@ final class MeetViewModel {
         var generatedGroup: [GeneratedGroup] = []
         group.forEach { group in
           chat.forEach { chat in
-            if group.discussionGroupID == chat.chatID {
+            if group.discussionGroupID == chat.roomID {
               generatedGroup.append(GeneratedGroup(group: group, message: chat))
             }
           }

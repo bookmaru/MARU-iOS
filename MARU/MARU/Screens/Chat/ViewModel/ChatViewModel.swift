@@ -46,7 +46,7 @@ enum Chat {
 }
 
 final class ChatViewModel {
-  private let roomIndex: Int
+  private let roomID: Int
   private let recivePublisher = BehaviorSubject<[RealmChat]>(value: [])
   private let sendPublisher: Observable<String>
 
@@ -63,8 +63,8 @@ final class ChatViewModel {
 
   private let realm: RealmNotification = .init()
 
-  init(roomIndex: Int, sendPublisher: Observable<String>) {
-    self.roomIndex = roomIndex
+  init(roomID: Int, sendPublisher: Observable<String>) {
+    self.roomID = roomID
     self.sendPublisher = sendPublisher
 
     realm.fetchObjectFromRealm(roomID: 1)
@@ -72,7 +72,7 @@ final class ChatViewModel {
       .disposed(by: disposeBag)
 
     ChatService.shared.bind(
-      roomIndex: roomIndex,
+      roomID: roomID,
       sendPublisher: sendPublisher
     )
   }
@@ -86,7 +86,7 @@ final class ChatViewModel {
       .flatMap { self.chatModelGenerator(chat: $0) }
       .asDriver(onErrorJustReturn: [])
 
-    recivePublisher.onNext(RealmService.shared.oneTimeRead(roomIndex))
+    recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))
 
     return Output(chat: chat)
   }

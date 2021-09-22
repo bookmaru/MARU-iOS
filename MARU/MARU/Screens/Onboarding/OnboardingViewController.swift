@@ -21,12 +21,10 @@ final class OnboardingViewController: BaseViewController {
   typealias ViewModel = OnboardingViewModel
 
   private let collectionView: UICollectionView = {
-    let size = UIScreen.main.bounds
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 0
     layout.minimumInteritemSpacing = 0
-    layout.itemSize = CGSize(width: size.width, height: size.height - 174)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .clear
     collectionView.isPagingEnabled = true
@@ -63,6 +61,7 @@ final class OnboardingViewController: BaseViewController {
     책과 사람이 이어지는 공간
     """
   ]
+
   private let subGuide: [String] = [
     """
     국내 최초 온라인 독서 토론 플랫폼으로써
@@ -73,15 +72,30 @@ final class OnboardingViewController: BaseViewController {
     진정한 자아를 찾아보세요.
     """
   ]
+
   private let image: [UIImage?] = [
     Image.illustMainBigIos01,
     Image.illustMainBigIos02
   ]
 
+  override init() {
+    super.init()
+    setupCollectionView()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
+  }
+
+  private func setupCollectionView() {
+    collectionView.delegate = self
+    collectionView.dataSource = self
   }
 }
 
@@ -91,15 +105,13 @@ extension OnboardingViewController {
     collectionView.snp.makeConstraints {
       $0.top.equalToSuperview().offset(78)
       $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-      $0.bottom.equalToSuperview().offset(-96.calculatedHeight)
+      $0.bottom.equalToSuperview().offset(-96)
     }
     view.add(pageControl)
     pageControl.snp.makeConstraints {
       $0.top.equalTo(collectionView.snp.bottom)
       $0.centerX.equalToSuperview()
     }
-    collectionView.delegate = self
-    collectionView.dataSource = self
   }
 
   private func bind() {
@@ -109,6 +121,7 @@ extension OnboardingViewController {
       didTapLoginButton: didTapLoginButton,
       authType: authType
     )
+
     let output = viewModel.transform(input: input)
 
     output.didLogin
@@ -120,16 +133,6 @@ extension OnboardingViewController {
         viewController.modalPresentationStyle = .fullScreen
         delegate.window?.rootViewController = viewController
         self.present(viewController, animated: false)
-      })
-      .disposed(by: disposeBag)
-
-    output.isInitialUser
-      .drive(onNext: { [weak self] isInitialUser in
-        guard let self = self,
-              isInitialUser
-        else { return }
-        let index = IndexPath(item: 2, section: 0)
-        self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
       })
       .disposed(by: disposeBag)
 
@@ -155,7 +158,15 @@ extension OnboardingViewController: UIScrollViewDelegate {
   }
 }
 
-extension OnboardingViewController: UICollectionViewDelegateFlowLayout {}
+extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    return CGSize(width: view.frame.width, height: view.frame.height - 174)
+  }
+}
 
 extension OnboardingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
@@ -166,6 +177,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let item = indexPath.item
+
     if item == 2 {
       let cell: LoginCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
 
@@ -189,11 +201,11 @@ extension OnboardingViewController: UICollectionViewDataSource {
         .disposed(by: cell.disposeBag)
 
       return cell
-    } else {
-      let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.bind(guide: guide[item], subGuide: subGuide[item], image: image[item])
-      return cell
     }
+
+    let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.bind(guide: guide[item], subGuide: subGuide[item], image: image[item])
+    return cell
   }
 }
 

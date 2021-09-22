@@ -30,7 +30,9 @@ final class RealmNotification {
 
   func fetchChatRooms() -> BehaviorSubject<RealmChat?> {
     let chatPublisher = BehaviorSubject<RealmChat?>(value: .init())
-    token = RealmService.shared.getChatRoomsLast().observe { chages in
+    token = RealmService.shared
+      .getChatRoomsLast()
+      .observe { chages in
       switch chages {
       case let .update(chats, _, _, _):
         let chatList = chats.map { $0 }.last

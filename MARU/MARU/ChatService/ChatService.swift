@@ -11,28 +11,28 @@ import RxSwift
 final class ChatService {
   static var shared = ChatService()
 
-  private init() {
-    register()
-    bindMessage()
-  }
+  private init() { }
 
   deinit { }
 
-  func start() { }
+  func start() {
+    register()
+    bindMessage()
+    bindChatList()
+  }
 
   private let baseURL = Enviroment.socketURL
   private let socket = StompClientLib()
   private let message = PublishSubject<String>()
-  private let receive = PublishSubject<ChatDAO>()
   private let disposeBag = DisposeBag()
   private let userName = UserDefaultHandler.shared.userName
-  var chatID = 1
+  private let saveChatListRealmPublisher = PublishSubject<Int>()
 
-  private var roomIndex: Int? {
+  private var roomID: Int? {
     didSet {
-      guard let roomIndex = roomIndex else { return }
-      topic = "/topic/public/\(roomIndex)"
-      destination = "/app/chat.sendMessage/\(roomIndex)"
+      guard let roomID = roomID else { return }
+      topic = "/topic/public/\(roomID)"
+      destination = "/app/chat.sendMessage/\(roomID)"
     }
   }
   private var destination: String = ""
@@ -49,16 +49,15 @@ final class ChatService {
   private func bindMessage() {
     message.subscribe(onNext: { [weak self] message in
       guard let self = self,
-            let roomID = self.roomIndex,
-            let userName = self.userName
+            let roomID = self.roomID
       else { return }
       let chat: [String: Any] = [
-        "chatID": self.chatID,
-        "id": roomID,
-        "userID": KeychainHandler.shared.userID,
+        "chatId": UUID().uuidString,
+        "roomId": roomID,
+        "userId": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
-        "sender": userName,
+        "sender": self.userName ?? "",
         "time": self.time()
       ]
       self.socket.sendJSONForDict(
@@ -69,45 +68,70 @@ final class ChatService {
     .disposed(by: disposeBag)
   }
 
+  private func bindChatList() {
+    saveChatListRealmPublisher
+      .flatMap { NetworkService.shared.group.chatList(roomID: $0) }
+      .subscribe(onNext: { [weak self] in
+        guard let self = self else { return }
+        self.saveChatRealm(chatList: $0)
+      })
+      .disposed(by: disposeBag)
+  }
+
   private func enrolledRoomSubcribe() {
     let roomIDList = RealmService.shared.findRoomID()
     // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정
     // TODO: 요 룸 없으면 구독하는것 지우기
     if roomIDList.isEmpty {
-      subscribeRoom(roomIndex: 1)
+      subscribeRoom(roomID: 1)
     } else {
       roomIDList.forEach {
-        subscribeRoom(roomIndex: $0)
+        subscribeRoom(roomID: $0)
       }
     }
   }
 
   func bind(
-    roomIndex: Int,
+    roomID: Int,
     sendPublisher: Observable<String>
   ) {
-    self.roomIndex = roomIndex
+    self.roomID = roomID
 
     sendPublisher
       .bind(to: message)
       .disposed(by: messageDisposeBag)
   }
 
-  func subscribeRoom(roomIndex: Int) {
-    socket.subscribe(destination: "/topic/public/\(roomIndex)")
+  func subscribeRoom(roomID: Int) {
+    socket.subscribe(destination: "/topic/public/\(roomID)")
+    saveChatListRealmPublisher.onNext(roomID)
+  }
+
+  func unsubscribeRoom(roomID: Int) {
+    socket.unsubscribe(destination: "/topic/public/\(roomID)")
+    RealmService.shared.deleteRoom(roomID: roomID)
   }
 
   func clearMessageDisposeBag() {
     messageDisposeBag = DisposeBag()
   }
 
-  func time() -> String {
+  private func saveChatRealm(chatList: [RealmChat]) {
+    chatList.forEach {
+      RealmService.shared.write($0)
+    }
+  }
+
+  private func time() -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let day = dateFormatter.string(from: Date())
-    dateFormatter.dateFormat = "HH:mm:ss"
-    let time = dateFormatter.string(from: Date())
-    return "\(day)T\(time).000+00:00"
+    dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
+    return dateFormatter.string(from: Date())
+  }
+
+  private func timeConvertor(string: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
+    return dateFormatter.date(from: string) ?? Date()
   }
 }
 
@@ -120,18 +144,16 @@ extension ChatService: StompClientLibDelegate {
     withDestination destination: String
   ) {
     guard let json = jsonBody as? [String: Any] else { return }
-
     let realm = RealmChat(
-      chatID: chatID,
-      roomID: json["id"] as? Int ?? 0,
-      userID: json["userId"] as? Int ?? 1,
+      chatID: json["chatId"] as? String ?? "",
+      roomID: json["roomId"] as? Int ?? 0,
+      userID: json["userId"] as? Int ?? 0,
       type: json["type"] as? String ?? "",
       userName: json["sender"] as? String ?? "",
-      userImageURL: json["user_image_url"] as? String ?? "",
+      userImageURL: json["userImageUrl"] as? String ?? "",
       content: json["content"] as? String ?? "",
-      time: json["time"] as? String ?? ""
+      time: timeConvertor(string: json["time"] as? String ?? "")
     )
-    chatID += 1
     RealmService.shared.write(realm)
   }
 
@@ -147,7 +169,9 @@ extension ChatService: StompClientLibDelegate {
     client: StompClientLib!,
     withErrorMessage description: String,
     detailedErrorMessage message: String?
-  ) { }
+  ) {
+    print("error", description)
+  }
 
   func serverDidSendPing() { }
 }
