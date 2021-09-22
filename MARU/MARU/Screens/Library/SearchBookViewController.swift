@@ -56,19 +56,32 @@ final class SearchBookViewController: BaseViewController {
 }
 
 extension SearchBookViewController {
+  private func createListLayout() -> UICollectionViewLayout {
+    var config = UICollectionLayoutListConfiguration(appearance: .plain)
+    config.showsSeparators = false
+    return UICollectionViewCompositionalLayout.list(using: config)
+  }
   func render() {
+    searchListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
+    searchListCollectionView.delegate = self
+    searchListCollectionView.contentInsetAdjustmentBehavior = .never
+    searchListCollectionView.backgroundColor = .white
+    searchListCollectionView.isHidden = false
+
     view.add(recentSearchLabel) {
       $0.snp.makeConstraints { make in
         make.top.equalTo(self.view.safeAreaLayoutGuide).offset(17)
         make.leading.equalToSuperview().offset(20)
       }
     }
+
     view.add(deleteButton) {
       $0.snp.makeConstraints { make in
         make.top.equalTo(self.view.safeAreaLayoutGuide).offset(17)
         make.trailing.equalToSuperview().offset(-20)
       }
     }
+
     view.add(searchListCollectionView) {
       $0.snp.makeConstraints { make in
         make.top.equalTo(self.view.safeAreaLayoutGuide).offset(49)
@@ -78,6 +91,7 @@ extension SearchBookViewController {
       }
     }
   }
+
   func setSearchBar() {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
@@ -85,6 +99,7 @@ extension SearchBookViewController {
     navigationItem.rightBarButtonItem = cancelButton
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
+
   func bind() {
     let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
       .map { _ in () }
@@ -131,7 +146,7 @@ extension SearchBookViewController {
         guard let self = self else { return }
         self.searchBar.text = ""
         let resultSearchViewController = ResultBookViewController()
-        //resultSearchViewController.transferKeyword(keyword: $0)
+        resultSearchViewController.transferKeyword(keyword: $0)
         self.navigationController?.pushViewController(resultSearchViewController, animated: false)
       }
       .disposed(by: disposeBag)
