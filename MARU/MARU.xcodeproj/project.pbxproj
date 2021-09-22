@@ -148,6 +148,7 @@
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
 		F2BEFB2326FAFEAE009E2E7C /* ResultBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEFB2226FAFEAE009E2E7C /* ResultBookViewModel.swift */; };
 		F2BEFB2526FB225D009E2E7C /* ResultBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEFB2426FB225D009E2E7C /* ResultBookCell.swift */; };
+		F2BEFB2826FB6AA7009E2E7C /* BookAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */; };
 		F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */; };
 		F2CDD3EE26F7422C0019EDEB /* BookFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */; };
 		F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */; };
@@ -330,6 +331,7 @@
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		F2BEFB2226FAFEAE009E2E7C /* ResultBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookViewModel.swift; sourceTree = "<group>"; };
 		F2BEFB2426FB225D009E2E7C /* ResultBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultBookCell.swift; path = /Users/profitjean/Desktop/MARU_iOS/MARU/MARU/Network/Model/DAO/ResultBookCell.swift; sourceTree = "<absolute>"; };
+		F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAlertViewController.swift; sourceTree = "<group>"; };
 		F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesViewModel.swift; sourceTree = "<group>"; };
 		F2CDD3ED26F7422C0019EDEB /* BookFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesCell.swift; sourceTree = "<group>"; };
 		F2CDD3EF26F74AD00019EDEB /* BookFavoritesShelfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFavoritesShelfCell.swift; sourceTree = "<group>"; };
@@ -912,6 +914,7 @@
 		C5DB34DA260F256A00F29FE1 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F2BEFB2626FB69CC009E2E7C /* Popup */,
 				C50DBC6F26BD77DE00B5585A /* Setting */,
 				776AF4F12641B0620020D2D8 /* Component */,
 				C5436FAE262F1FBD00C2E1D3 /* Chat */,
@@ -964,7 +967,6 @@
 				F2BEFB2126F87511009E2E7C /* ViewModel */,
 				F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */,
 				F2E974ED26DA9F6700B3FC87 /* PastMeetingViewController.swift */,
-				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 				F228F3CD26EE061600215B76 /* BookFavoritesViewController.swift */,
 				F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */,
 				F2CDD3F126F7B0CB0019EDEB /* ResultBookViewController.swift */,
@@ -1034,6 +1036,15 @@
 				F2BEFB2226FAFEAE009E2E7C /* ResultBookViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2BEFB2626FB69CC009E2E7C /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
+				F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		F2EA49DC26E88E560091C75A /* Profile */ = {
@@ -1414,6 +1425,7 @@
 				C5B00F1E261887FF00911788 /* TabBarController.swift in Sources */,
 				774262F126899C95008F9CAE /* LibraryModel.swift in Sources */,
 				F2BEFB2326FAFEAE009E2E7C /* ResultBookViewModel.swift in Sources */,
+				F2BEFB2826FB6AA7009E2E7C /* BookAlertViewController.swift in Sources */,
 				7712E438269889D80076F8E5 /* HomeRouter.swift in Sources */,
 				77CB3A0E26B068B100E03E7D /* ResultSearchViewController.swift in Sources */,
 				C55F1540260F3FDF003D99D0 /* ReusableView.swift in Sources */,
