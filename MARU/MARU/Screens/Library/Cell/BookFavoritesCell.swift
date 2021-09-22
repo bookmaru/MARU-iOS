@@ -32,7 +32,6 @@ final class BookFavoritesCell: UICollectionViewCell {
       bookTitleLabel.text = data?.title
       bookAuthorLabel.text = data?.author
       bookImageView.imageFromUrl(data?.imageURL, defaultImgPath: "")
-      bookImageView.image = UIImage(named: data?.imageURL ?? "group1015")
     }
   }
 

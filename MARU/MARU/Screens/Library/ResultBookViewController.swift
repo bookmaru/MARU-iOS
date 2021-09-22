@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class ResultBookViewController: BaseViewController, UISearchBarDelegate {
 
   enum Section {
@@ -28,14 +31,15 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
   }
 
   private var resultCollectionView: UICollectionView! = nil
-  private var resultDataSource: UICollectionViewDiffableDataSource<Section, MeetingModel>!
+  private var resultDataSource: UICollectionViewDiffableDataSource<Section, BookModel>!
   private var searchedKeyword: String! = nil
   // TODO: - 책 검색하는 서버 연결
-  private var viewModel =  ResultSearchViewModel()
+  private var viewModel =  ResultBookViewModel()
   private var keyword: String! = nil
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    bind()
     render()
   }
   override func viewWillAppear(_ animated: Bool) {
@@ -45,8 +49,65 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
 }
 
 extension ResultBookViewController {
-  func render() {
+  private func bind() {
+    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+      .map { _ in () }
+
+    let input = ResultBookViewModel.Input(
+      viewTrigger: viewWillAppear,
+      keyword: keyword,
+      tapCancelButton: cancelButton.rx.tap.asDriver(),
+      tapTextField: Driver.merge(
+        searchBar.searchTextField.rx.controlEvent(.touchDown).asDriver(),
+        searchBar.rx.textDidBeginEditing.asDriver())
+    )
+    let output = viewModel.transform(input: input)
+
+    output.result
+      .drive { [self = self] in
+        configureResultDataSource($0)
+        activatorView.stopAnimating()
+      }
+      .disposed(by: disposeBag)
+
+    output.cancel
+      .drive(onNext: { [self = self] in
+        navigationController?.popToRootViewController(animated: true)
+      })
+      .disposed(by: disposeBag)
+
+    output.reSearch
+      .drive(onNext: { [self = self] in
+        navigationController?.popViewController(animated: false)
+      })
+      .disposed(by: disposeBag)
+
   }
+  private func render() {
+    resultCollectionView = UICollectionView(frame: .zero,
+                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+    resultCollectionView.contentInsetAdjustmentBehavior = .never
+    resultCollectionView.delegate = self
+    resultCollectionView.backgroundColor = .white
+    activatorView.isHidden = false
+
+    view.adds([
+      activatorView,
+      resultCollectionView
+    ])
+
+    activatorView.snp.makeConstraints { make in
+      make.center.equalTo(self.view.snp.center)
+    }
+
+    resultCollectionView.snp.makeConstraints { make in
+      make.top.equalTo(self.view.safeAreaLayoutGuide).offset(16)
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.bottom.equalToSuperview()
+    }
+  }
+
   func setSearchBar() {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
@@ -58,4 +119,37 @@ extension ResultBookViewController {
   @objc func didTapCancelButton() {
     self.navigationController?.popViewController(animated: false)
   }
+
+  func transferKeyword(keyword: String) {
+    searchedKeyword = keyword
+    searchBar.searchTextField.text = keyword
+    self.keyword = keyword
+  }
+
+  private func configureResultDataSource(_ items: [BookModel]) {
+    let cellRegistration = UICollectionView
+      .CellRegistration<ResultBookCell, BookModel> { cell, _, bookModel in
+        cell.bind(bookModel)
+      }
+
+    resultDataSource = UICollectionViewDiffableDataSource<Section, BookModel>(
+      collectionView: resultCollectionView
+    ) { collectionView, indexPath, identifier -> UICollectionViewCell? in
+      return collectionView.dequeueConfiguredReusableCell(
+        using: cellRegistration,
+        for: indexPath,
+        item: identifier
+      )
+    }
+
+    var snapshot = NSDiffableDataSourceSnapshot<Section, BookModel>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(items)
+    resultDataSource.apply(snapshot, animatingDifferences: false)
+  }
+
+}
+
+extension ResultBookViewController: UICollectionViewDelegate {
+
 }
