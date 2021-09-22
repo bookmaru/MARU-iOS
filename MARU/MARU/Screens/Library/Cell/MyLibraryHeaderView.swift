@@ -47,8 +47,10 @@ final class MyLibraryHeaderView: UICollectionReusableView {
   fileprivate var data: User? {
     didSet {
       usernameLabel.text = data?.user?.nickname
-      profileImageView.imageFromUrl(data?.user?.profileImage, defaultImgPath: "")
-      // TODO: - 기본이미지 세팅해주어야함
+      if data?.user?.profileImage != "" {
+        profileImageView.imageFromUrl(data?.user?.profileImage, defaultImgPath: "")
+      }
+      profileImageView.image = Image.group1029
     }
   }
   override init(frame: CGRect) {
