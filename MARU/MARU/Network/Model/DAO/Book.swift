@@ -11,7 +11,7 @@ struct Book: Codable {
   let isbn: Int
   let title: String
   let author: String
-  let imageUrl: String
+  let imageURL: String
   let category: String
 }
 struct Books: Codable {

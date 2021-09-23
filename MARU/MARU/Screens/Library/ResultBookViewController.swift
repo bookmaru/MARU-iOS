@@ -30,10 +30,17 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
     $0.hidesWhenStopped = true
   }
 
-  private var resultCollectionView: UICollectionView! = nil
+  //private var resultCollectionView: UICollectionView! = nil
+  private var resultCollectionView: UICollectionView = {
+    let layout = UICollectionViewFlowLayout()
+    let resultCollectionView = UICollectionView(frame: .zero,
+                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+    resultCollectionView.contentInsetAdjustmentBehavior = .never
+    resultCollectionView.backgroundColor = .white
+    return resultCollectionView
+  }()
   private var resultDataSource: UICollectionViewDiffableDataSource<Section, BookModel>!
   private var searchedKeyword: String! = nil
-  // TODO: - 책 검색하는 서버 연결
   private var viewModel =  ResultBookViewModel()
   private var keyword: String! = nil
 
@@ -84,24 +91,25 @@ extension ResultBookViewController {
 
   }
   private func render() {
-    resultCollectionView = UICollectionView(frame: .zero,
-                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
-    resultCollectionView.contentInsetAdjustmentBehavior = .never
-    resultCollectionView.delegate = self
-    resultCollectionView.backgroundColor = .white
-    activatorView.isHidden = false
+//    resultCollectionView = UICollectionView(frame: .zero,
+//                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+//    resultCollectionView.contentInsetAdjustmentBehavior = .never
+//    resultCollectionView.delegate = self
+//    resultCollectionView.backgroundColor = .white
+//    activatorView.isHidden = false
 
     view.adds([
       activatorView,
       resultCollectionView
     ])
+    resultCollectionView.delegate = self
 
     activatorView.snp.makeConstraints { make in
-      make.center.equalTo(self.view.snp.center)
+      make.center.equalTo(view.snp.center)
     }
 
     resultCollectionView.snp.makeConstraints { make in
-      make.top.equalTo(self.view.safeAreaLayoutGuide).offset(16)
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
       make.bottom.equalToSuperview()

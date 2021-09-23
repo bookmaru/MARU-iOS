@@ -8,8 +8,9 @@
 import UIKit
 
 import RealmSwift
-import RxSwift
 import RxCocoa
+import RxSwift
+
 
 final class SearchBookViewController: BaseViewController {
 
@@ -61,7 +62,7 @@ extension SearchBookViewController {
     config.showsSeparators = false
     return UICollectionViewCompositionalLayout.list(using: config)
   }
-  func render() {
+  private func render() {
     searchListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createListLayout())
     searchListCollectionView.delegate = self
     searchListCollectionView.contentInsetAdjustmentBehavior = .never
@@ -100,7 +101,7 @@ extension SearchBookViewController {
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
 
-  func bind() {
+  private func bind() {
     let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
@@ -153,13 +154,6 @@ extension SearchBookViewController {
 
   }
 
-  @objc func didTapCancelButton() {
-    // self.navigationController?.popViewController(animated: false)
-    // MARK: - 지금 임시로 화면 전환만 push로 걸어놓겠음
-    //    let viewController = ResultBookViewController()
-    //    navigationController?.pushViewController(viewController, animated: false)
-  }
-
   private func configureSearchListDataSource(_ items: [String]) {
     let cellRegistration = UICollectionView
       .CellRegistration<UICollectionViewListCell, String> { cell, _, item in
@@ -191,9 +185,7 @@ extension SearchBookViewController: UICollectionViewDelegate {
     didSelectItemAt indexPath: IndexPath
   ) {
     collectionView.deselectItem(at: indexPath, animated: true)
-    guard let searchKeyword = searchListDataSource.itemIdentifier(for: indexPath) else {
-      return
-    }
+    guard let searchKeyword = searchListDataSource.itemIdentifier(for: indexPath) else { return }
     tapListCell.onNext(searchKeyword)
   }
 }

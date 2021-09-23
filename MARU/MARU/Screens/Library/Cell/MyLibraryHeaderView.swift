@@ -13,7 +13,6 @@ import RxSwift
 import RxCocoa
 
 final class MyLibraryHeaderView: UICollectionReusableView {
-  static let registerId = "headerView"
   private let profileImageView = UIImageView().then {
     $0.image = Image.group1029
     $0.layer.cornerRadius = 38
@@ -40,10 +39,13 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
     $0.attributedText = attributeString
   }
+
   let changeSettingButton = UIButton().then {
     $0.setImage(Image.group962, for: .normal)
   }
+
   var disposeBag = DisposeBag()
+
   fileprivate var data: User? {
     didSet {
       usernameLabel.text = data?.user?.nickname
@@ -53,6 +55,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
       profileImageView.image = Image.group1029
     }
   }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -61,10 +64,12 @@ final class MyLibraryHeaderView: UICollectionReusableView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     add(changeSettingButton) { button in
       button.snp.makeConstraints {

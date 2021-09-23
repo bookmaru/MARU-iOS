@@ -74,7 +74,7 @@ extension BookAlertViewController {
     // MARK: - 확인버튼 탭 -> dismiss처리
     submitButton.rx.tap.subscribe( onNext: { [weak self] _ in
       self?.dismiss(animated: true, completion: nil)
-    }).disposed(by:disposeBag)
+    }).disposed(by: disposeBag)
 
     popUpView.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
