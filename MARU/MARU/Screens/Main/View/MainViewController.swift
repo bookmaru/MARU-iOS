@@ -47,15 +47,17 @@ extension MainViewController {
     let output = viewModel.transform(input: input)
 
     output.allPopularMeetings
-      .subscribe(onNext: {
-        self.popularBooks = $0
+      .subscribe(onNext: { [weak self] popularBooks in
+        guard let self = self else { return }
+        self.popularBooks = popularBooks
         self.collectionView.reloadSections(IndexSet(integer: 1))
       })
       .disposed(by: disposeBag)
 
     output.allNewMeetings
-      .subscribe(onNext: {
-        self.newMeetings = $0
+      .subscribe(onNext: { [weak self] newMeetings in
+        guard let self = self else { return }
+        self.newMeetings = newMeetings
         self.collectionView.reloadSections(IndexSet(integer: 2))
       })
       .disposed(by: disposBag)

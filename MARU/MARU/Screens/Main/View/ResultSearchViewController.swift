@@ -85,29 +85,30 @@ extension ResultSearchViewController {
     let output = viewModel.transform(input: input)
 
     output.result
-      .drive { [self = self] in
-        if $0.isEmpty == true {
-          resultCollectionView.isHidden = true
-          emptyView.isHidden = false
+      .drive { [weak self] meetingModels in
+        guard let self = self else { return }
+        if meetingModels.isEmpty == true {
+          self.resultCollectionView.isHidden = true
+          self.emptyView.isHidden = false
         }
 
-        if $0.isEmpty == false {
-          resultCollectionView.isHidden = false
-          configureResultDataSource($0)
+        if meetingModels.isEmpty == false {
+          self.resultCollectionView.isHidden = false
+          self.configureResultDataSource(meetingModels)
         }
-        activatorView.stopAnimating()
+        self.activatorView.stopAnimating()
       }
       .disposed(by: disposeBag)
 
     output.cancel
-      .drive(onNext: { [self] _ in
-        navigationController?.popToRootViewController(animated: true)
+      .drive(onNext: { [weak self] _ in
+        self?.navigationController?.popToRootViewController(animated: true)
       })
       .disposed(by: disposeBag)
 
     output.reSearch
-      .drive(onNext: { [self] _ in
-        navigationController?.popViewController(animated: false)
+      .drive(onNext: { [weak self] _ in
+        self?.navigationController?.popViewController(animated: false)
       })
       .disposed(by: disposeBag)
   }
