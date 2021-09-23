@@ -85,7 +85,7 @@ final class RecentSearchViewController: BaseViewController {
 
     let output = viewModel.transform(input: input)
 
-    output.load
+    output.save
       .drive { [weak self] in
         guard let self = self else { return }
         var recentKeywords: [String] = []
