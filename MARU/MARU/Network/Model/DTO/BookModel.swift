@@ -11,7 +11,7 @@ struct BookModel: Hashable, Codable {
   let isbn: Int
   let title: String
   let author: String
-  let imageUrl: String
+  let imageURL: String
   let category: String
 
   init(_ book: Book) {
@@ -32,7 +32,7 @@ struct BookModel: Hashable, Codable {
     self.isbn = isbn
     self.title = title
     self.author = author
-    self.imageUrl = imageUrl
+    self.imageURL = imageURL
     self.category = category
   }
 

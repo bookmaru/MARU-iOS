@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 import RxCocoa
 import RxSwift
@@ -173,17 +174,15 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
         withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier,
         for: indexPath
     ) as? MyLibraryHeaderView,
-    // MARK: 이런식으로 옵셔널 처리를 하면... 될거에요
+    // MARK: 옵셔널처리 예시
     let user = user
     else { return UICollectionReusableView() }
     headerView.rx.profileBinder.onNext(user)
-    // TODO: 강제 옵셔널 처리 해결방법 고민해야함
-    headerView.changeSettingButton.rx.tap
-      .bind {
-        let viewController = SettingViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
-      }
-      .disposed(by: headerView.disposeBag)
+    headerView.changeSettingButton.rx.tap.subscribe(onNext: {[ weak self] _ in
+      let viewController = SettingViewController()
+      self?.navigationController?.pushViewController(viewController, animated: true)
+    }).disposed(by: headerView.disposeBag)
+
     headerView.changeProfileButton.rx.tap
       .bind {
         let viewController = ProfileChangeViewController()

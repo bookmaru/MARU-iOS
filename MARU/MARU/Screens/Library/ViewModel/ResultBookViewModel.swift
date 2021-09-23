@@ -5,10 +5,10 @@
 //  Created by 이윤진 on 2021/09/22.
 //
 
-import Foundation
+import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class ResultBookViewModel: ViewModelType {
   struct Input {
