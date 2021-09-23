@@ -9,7 +9,7 @@ import Moya
 import RxSwift
 
 protocol AuthServiceType {
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Token>>
+  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<LoginDAO>>
   func nickname(name: String) -> Observable<BaseReponseType<Int>>
   func information(information: UserInformation) -> Observable<BaseReponseType<SignupToken>>
   func refresh() -> Observable<BaseReponseType<Token>>
@@ -17,13 +17,13 @@ protocol AuthServiceType {
 }
 
 final class AuthService: AuthServiceType {
-  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<Token>> {
+  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<LoginDAO>> {
     return router.rx
       .request(.auth(type: type, token: token))
       .asObservable()
-      .map(BaseReponseType<Token>.self)
+      .map(BaseReponseType<LoginDAO>.self)
   }
 
   func nickname(name: String) -> Observable<BaseReponseType<Int>> {

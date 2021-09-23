@@ -179,7 +179,7 @@ final class CertificationViewController: BaseViewController {
     submitButton.rx.tap
       .flatMap { NetworkService.shared.auth.information(information: self.userInformation) }
       .subscribe(onNext: { response in
-        let token = response.data?.token
+        let token = response.data?.token.tokens
         if let accessToken = token?.accessToken,
            let accessTokenExpiredAt = token?.accessTokenExpiredAt,
            let refreshToken = token?.refreshToken,
@@ -188,6 +188,7 @@ final class CertificationViewController: BaseViewController {
           KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
           KeychainHandler.shared.refreshToken = refreshToken
           KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt
+          KeychainHandler.shared.userID = response.data?.token.userID ?? -1
           UserDefaultHandler.shared.userName = self.userInformation.nickname
         }
         if response.status == 201 {
