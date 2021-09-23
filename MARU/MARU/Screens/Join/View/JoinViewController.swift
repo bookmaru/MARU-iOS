@@ -8,8 +8,8 @@
 import UIKit
 
 import Then
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class JoinViewController: BaseViewController {
   private let bookImageView = UIImageView().then {
@@ -95,7 +95,10 @@ final class JoinViewController: BaseViewController {
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
     $0.setTitle("참여하기", for: .normal)
     $0.setTitleColor(.white, for: .normal)
+    // MARK: 임시 연결
+    $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
   }
+  private let groupID: Int
   override func viewDidLoad() {
     super.viewDidLoad()
     setLayout()
@@ -104,7 +107,22 @@ final class JoinViewController: BaseViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
-    setNavigationBar(isHidden: true)
+    tabBarController?.tabBar.isHidden = true
+    setNavigationBar(isHidden: false)
+  }
+
+  init(groupID: Int) {
+    self.groupID = groupID
+    super.init()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  @objc
+  private func didTapButton() {
+    let targetViewController = QuizViewController(groupID: groupID)
+    targetViewController.modalPresentationStyle = .fullScreen
+    present(targetViewController, animated: true, completion: nil)
   }
 }
 

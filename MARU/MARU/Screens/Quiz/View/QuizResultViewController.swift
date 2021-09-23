@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class QuizResultViewController: BaseViewController {
 
@@ -98,11 +98,11 @@ final class QuizResultViewController: BaseViewController {
     output.goMain
       .drive(onNext: { [weak self] in
         guard let self = self else { return }
-        self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: {
           let tabbarViewController = TabBarController()
           tabbarViewController.modalPresentationStyle = .fullScreen
           if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.window?.rootViewController?.present(tabbarViewController, animated: true, completion: nil)
+            sceneDelegate.window?.rootViewController?.present(tabbarViewController, animated: false, completion: nil)
           }
         })
       })

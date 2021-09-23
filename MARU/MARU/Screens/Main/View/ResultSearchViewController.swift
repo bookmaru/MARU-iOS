@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 protocol OpenButtonDelegate: AnyObject {
   func didTapOpenButton()
@@ -184,9 +184,8 @@ extension ResultSearchViewController {
 extension ResultSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
-    let targetVC = QuizViewController(groupID: meetingModel.discussionGroupID)
-    targetVC.modalPresentationStyle = .fullScreen
-    present(targetVC, animated: true, completion: nil)
+    let targetVC = JoinViewController(groupID: meetingModel.discussionGroupID)
+    navigationController?.pushViewController(targetVC, animated: true)
   }
 }
 

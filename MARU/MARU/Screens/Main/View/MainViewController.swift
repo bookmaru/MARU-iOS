@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class MainViewController: BaseViewController {
 
@@ -32,7 +32,7 @@ final class MainViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
-    navigationController?.tabBarController?.tabBar.isHidden = false
+    tabBarController?.tabBar.isHidden = false
   }
 }
 
@@ -214,9 +214,8 @@ extension MainViewController: UICollectionViewDelegate {
     case 2:
       guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
             let groupID = Int(cell.getDiscussionGroupID()) else { return }
-      let targetViewController = QuizViewController(groupID: groupID)
-      targetViewController.modalPresentationStyle = .fullScreen
-      present(targetViewController, animated: true, completion: nil)
+      let targetViewController = JoinViewController(groupID: groupID)
+      navigationController?.pushViewController(targetViewController, animated: true)
     default:
       break
     }
