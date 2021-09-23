@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class MorePopularViewController: BaseViewController {
+final class MorePopularViewController: BaseViewController {
 
   enum Section {
     case main
@@ -18,6 +18,14 @@ class MorePopularViewController: BaseViewController {
 
   private var collectionView: UICollectionView! = nil
   private var dataSource: UICollectionViewDiffableDataSource<Section, MeetingModel>! = nil
+  private var meetingModel: [MeetingModel] = [] {
+    didSet {
+      configureDataSource(meetingModel)
+    }
+  }
+  private let isbn: Int
+  private var pageNumber: Int = 1
+  private let triggerMoreData = PublishSubject<Int>()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,17 +40,20 @@ class MorePopularViewController: BaseViewController {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
   }
-
+  init(isbn: Int) {
+    self.isbn = isbn
+    super.init()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   private func bind() {
-    let viewTrigger = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
-      .map { _ in () }
-
-    _ = viewTrigger
-      .flatMap { [weak self] _ in
-        NetworkService.shared.search.search(
-          queryString: self?.navigationItem.title ?? ""
-        )
+    let viewAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
+      .map { [weak self ] _ in
+        self?.pageNumber ?? 1
       }
+    Observable.merge(viewAppear, triggerMoreData)
+      .flatMap { NetworkService.shared.search.meetingSearchByISBN(isbn: self.isbn, page: $0) }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(domain: "Detect Error in Fetching Search meetings",
@@ -56,9 +67,12 @@ class MorePopularViewController: BaseViewController {
         return meetingModel
       }
       .asDriver(onErrorJustReturn: [])
-      .drive { [weak self] in
+      .drive { [weak self] meetingModel in
         guard let self = self else { return }
-        self.configureDataSource($0)
+        if !meetingModel.isEmpty {
+          self.pageNumber += 1
+          self.meetingModel.append(contentsOf: meetingModel)
+        }
       }
       .disposed(by: disposeBag)
   }
@@ -113,8 +127,16 @@ extension MorePopularViewController: UICollectionViewDelegate {
     didSelectItemAt indexPath: IndexPath
   ) {
     guard let meetingModel = dataSource.itemIdentifier(for: indexPath) else { return }
-    let targetVC = QuizViewController(groupID: meetingModel.discussionGroupID)
-    targetVC.modalPresentationStyle = .fullScreen
-    present(targetVC, animated: false, completion: nil)
+    let targetViewController = JoinViewController(groupID: meetingModel.discussionGroupID)
+    navigationController?.pushViewController(targetViewController, animated: true)
+  }
+  func collectionView(
+    _ collectionView: UICollectionView,
+    willDisplay cell: UICollectionViewCell,
+    forItemAt indexPath: IndexPath
+  ) {
+    if indexPath.item == meetingModel.endIndex - 1 {
+      triggerMoreData.onNext(pageNumber)
+    }
   }
 }
