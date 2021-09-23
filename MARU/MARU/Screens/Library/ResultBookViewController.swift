@@ -29,7 +29,6 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
     $0.startAnimating()
     $0.hidesWhenStopped = true
   }
-
   //private var resultCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -49,9 +48,21 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
     bind()
     render()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setSearchBar()
+  }
+
+  init(keyword: String) {
+    super.init()
+    searchedKeyword = keyword
+    searchBar.searchTextField.text = keyword
+    self.keyword = keyword
+  }
+
+  required init?(coder: NSCoder) {
+      fatalError("init(coder:) has not been implemented")
   }
 }
 
@@ -90,6 +101,7 @@ extension ResultBookViewController {
       .disposed(by: disposeBag)
 
   }
+
   private func render() {
 //    resultCollectionView = UICollectionView(frame: .zero,
 //                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())

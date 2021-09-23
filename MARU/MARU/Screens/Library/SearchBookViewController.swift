@@ -11,7 +11,6 @@ import RealmSwift
 import RxCocoa
 import RxSwift
 
-
 final class SearchBookViewController: BaseViewController {
 
   enum Section {
@@ -117,7 +116,7 @@ extension SearchBookViewController {
 
     let output = viewModel.transform(input: input)
 
-    output.load
+    output.save
       .drive { [weak self] in
         guard let self = self else { return }
         var recentKeywords: [String] = []
@@ -146,8 +145,8 @@ extension SearchBookViewController {
       .drive { [weak self] in
         guard let self = self else { return }
         self.searchBar.text = ""
-        let resultSearchViewController = ResultBookViewController()
-        resultSearchViewController.transferKeyword(keyword: $0)
+        let resultSearchViewController = ResultBookViewController(keyword: $0)
+        //resultSearchViewController.transferKeyword(keyword: $0)
         self.navigationController?.pushViewController(resultSearchViewController, animated: false)
       }
       .disposed(by: disposeBag)

@@ -24,7 +24,7 @@ final class RecentSearchViewModel: ViewModelType {
   }
 
   struct Output {
-    let load: Driver<Results<RecentSearchKeyword>>
+    let save: Driver<Results<RecentSearchKeyword>>
     let cancel: Driver<Bool>
     let delete: Driver<Void>
     let keyword: Driver<String>
@@ -40,7 +40,7 @@ final class RecentSearchViewModel: ViewModelType {
 
   func transform(input: Input) -> Output {
 
-    let load = Driver.merge(input.viewTrigger)
+    let save = Driver.merge(input.viewTrigger)
       .map { [weak self] _ -> Results<RecentSearchKeyword> in
         return self!.realm.objects(RecentSearchKeyword.self)
           .sorted(byKeyPath: "created", ascending: false)
@@ -83,7 +83,7 @@ final class RecentSearchViewModel: ViewModelType {
     })
     .asDriver()
 
-    return Output(load: load,
+    return Output(save: save,
                   cancel: cancel,
                   delete: delete,
                   keyword: keyword)

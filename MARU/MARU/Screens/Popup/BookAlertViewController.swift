@@ -45,23 +45,32 @@ final class BookAlertViewController: UIViewController {
   let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
+    bind()
+    render()
   }
 
   init(_ image: UIImage,
        _ guideText: String,
        _ subGuideText: String) {
-      super.init(nibName: nil, bundle: nil)
+    super.init(nibName: nil, bundle: nil)
     stateImageView.image = image
     titleLabel.text = guideText
     stateLabel.text = subGuideText
   }
 
   required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
 }
 
 extension BookAlertViewController {
+  private func bind() {
+    // MARK: - 확인버튼 탭 -> dismiss처리
+    submitButton.rx.tap.subscribe( onNext: { [weak self] _ in
+      self?.dismiss(animated: true, completion: nil)
+    }).disposed(by: disposeBag)
+
+  }
   private func render() {
     view.backgroundColor = .black.withAlphaComponent(0.2)
     view.add(popUpView)
@@ -71,10 +80,6 @@ extension BookAlertViewController {
       stateLabel,
       submitButton
     ])
-    // MARK: - 확인버튼 탭 -> dismiss처리
-    submitButton.rx.tap.subscribe( onNext: { [weak self] _ in
-      self?.dismiss(animated: true, completion: nil)
-    }).disposed(by: disposeBag)
 
     popUpView.snp.makeConstraints { make in
       make.centerX.equalToSuperview()

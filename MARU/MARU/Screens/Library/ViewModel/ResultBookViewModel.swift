@@ -43,10 +43,11 @@ final class ResultBookViewModel: ViewModelType {
         return response
       }
       .map { $0.data?.books.map { BookModel($0)} }
-      .map { bookModel -> [BookModel] in
-        guard let bookModel = bookModel else { return [] }
-        return bookModel
-      }
+      .compactMap { $0 }
+//      .map { bookModel -> [BookModel] in
+//        guard let bookModel = bookModel else { return [] }
+//        return bookModel
+//      }
       .asDriver(onErrorJustReturn: [])
 
     let cancel = input.tapCancelButton
