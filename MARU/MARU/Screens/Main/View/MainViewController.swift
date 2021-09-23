@@ -210,8 +210,7 @@ extension MainViewController: UICollectionViewDelegate {
     switch indexPath.section {
     case 1:
       guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell,
-            let isbn = cell.getISBN()
-      else { return }
+            let isbn = cell.getISBN() else { return }
       let targetViewController = MorePopularViewController(isbn: isbn)
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)

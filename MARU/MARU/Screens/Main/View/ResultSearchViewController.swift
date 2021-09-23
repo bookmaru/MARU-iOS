@@ -87,13 +87,9 @@ extension ResultSearchViewController {
     output.result
       .drive { [weak self] meetingModels in
         guard let self = self else { return }
-        if meetingModels.isEmpty == true {
-          self.resultCollectionView.isHidden = true
-          self.emptyView.isHidden = false
-        }
-
-        if meetingModels.isEmpty == false {
-          self.resultCollectionView.isHidden = false
+        self.resultCollectionView.isHidden = meetingModels.isEmpty
+        self.emptyView.isHidden = !meetingModels.isEmpty
+        if !meetingModels.isEmpty {
           self.configureResultDataSource(meetingModels)
         }
         self.activatorView.stopAnimating()
