@@ -58,7 +58,7 @@ final class ChatService {
         "type": "CHAT",
         "content": message,
         "sender": self.userName ?? "",
-        "time": self.time()
+        "time": self.realTime()
       ]
       self.socket.sendJSONForDict(
         dict: chat as AnyObject,
@@ -123,13 +123,13 @@ final class ChatService {
     }
   }
 
-  private func time() -> String {
+  private func realTime() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
     return dateFormatter.string(from: Date())
   }
 
-  private func timeConvertor(string: String) -> Date {
+  private func stringToTimeConvertor(string: String) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
     return dateFormatter.date(from: string) ?? Date()
@@ -153,7 +153,7 @@ extension ChatService: StompClientLibDelegate {
       userName: json["sender"] as? String ?? "",
       userImageURL: json["userImageUrl"] as? String ?? "",
       content: json["content"] as? String ?? "",
-      time: timeConvertor(string: json["time"] as? String ?? "")
+      time: stringToTimeConvertor(string: json["time"] as? String ?? "")
     )
     RealmService.shared.write(realm)
   }
