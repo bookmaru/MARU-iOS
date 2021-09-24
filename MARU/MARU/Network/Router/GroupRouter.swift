@@ -10,6 +10,7 @@ import Moya
 enum GroupRouter {
   case participate
   case chatList(roomID: Int)
+  case diaryList
 }
 
 extension GroupRouter: TargetType {
@@ -28,6 +29,8 @@ extension GroupRouter: TargetType {
       return "group/doing"
     case .chatList(let roomID):
       return "chat/group/\(roomID)"
+    case .diaryList:
+      return "group/diary"
     }
   }
 
@@ -36,6 +39,8 @@ extension GroupRouter: TargetType {
     case .participate:
       return .get
     case .chatList:
+      return .get
+    case .diaryList:
       return .get
     }
   }
@@ -47,6 +52,8 @@ extension GroupRouter: TargetType {
     case .participate:
       return .requestPlain
     case .chatList:
+      return .requestPlain
+    case .diaryList:
       return .requestPlain
     }
   }

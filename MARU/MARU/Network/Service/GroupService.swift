@@ -11,6 +11,7 @@ import RxSwift
 protocol GroupServiceType {
   func participateList() -> Observable<BaseReponseType<Groups>>
   func chatList(roomID: Int) -> Observable<[RealmChat]>
+  func diaryList() -> Observable<BaseReponseType<Groups>>
 }
 
 final class GroupService: GroupServiceType {
@@ -28,5 +29,12 @@ final class GroupService: GroupServiceType {
       .request(.chatList(roomID: roomID))
       .asObservable()
       .map([RealmChat].self)
+  }
+
+  func diaryList() -> Observable<BaseReponseType<Groups>> {
+    return router.rx
+      .request(.diaryList)
+      .asObservable()
+      .map(BaseReponseType<Groups>.self)
   }
 }

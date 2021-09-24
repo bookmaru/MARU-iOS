@@ -19,13 +19,21 @@ final class MyDiaryViewController: BaseViewController {
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 16
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .clear
+    collectionView.contentInset.top = 10
+    collectionView.alwaysBounceVertical = true
     collectionView.register(cell: MyDiaryCell.self)
     return collectionView
   }()
 
   private let viewModel = MyDiaryViewModel()
+  private var diaryList: [Group] = [] {
+    didSet {
+      collectionView.reloadData()
+    }
+  }
 
   override init() {
     super.init()
@@ -39,6 +47,13 @@ final class MyDiaryViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+    bind()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setNavigationBar(isHidden: false)
+    setupNavigation()
   }
 
   private func setupCollectionView() {
@@ -52,7 +67,36 @@ final class MyDiaryViewController: BaseViewController {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
+
+  private func bind() {
+    let viewDidLoadPublisher = PublishSubject<Void>()
+    let input = MyDiaryViewModel.Input(viewDidLoad: viewDidLoadPublisher)
+    let output = viewModel.transform(input: input)
+
+    output.groupList
+      .drive(onNext: { [weak self] list in
+        guard let self = self,
+              !list.isEmpty
+        else { return }
+        self.diaryList = list
+      })
+      .disposed(by: disposeBag)
+
+    viewDidLoadPublisher.onNext(())
+  }
+
+  private func setupNavigation() {
+    title = "내 일기장"
+    navigationController?.navigationBar.isHidden = false
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.shadowImage = UIImage()
+    navigationBar.isTranslucent = true
+  }
 }
+
+extension MyDiaryViewController: UIGestureRecognizerDelegate { }
 
 extension MyDiaryViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(
@@ -60,7 +104,7 @@ extension MyDiaryViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return .zero
+    return CGSize(width: view.frame.width - 40, height: 142)
   }
 }
 
@@ -70,6 +114,7 @@ extension MyDiaryViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: MyDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.rx.dataBinder.onNext(diaryList[indexPath.item])
     return cell
   }
 
@@ -77,6 +122,6 @@ extension MyDiaryViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    return 0
+    return diaryList.count
   }
 }
