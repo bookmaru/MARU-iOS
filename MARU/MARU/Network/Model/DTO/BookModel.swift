@@ -18,17 +18,14 @@ struct BookModel: Hashable, Codable {
     self.isbn = book.isbn
     self.title = book.title
     self.author = book.author
-    self.imageUrl = book.imageURL
+    self.imageURL = book.imageURL
     self.category = book.category
   }
-
-  init(
-    isbn: Int,
-    title: String,
-    author: String,
-    imageUrl: String,
-    category: String
-  ) {
+  init(isbn: Int,
+       title: String,
+       author: String,
+       imageURL: String,
+       category: String) {
     self.isbn = isbn
     self.title = title
     self.author = author
