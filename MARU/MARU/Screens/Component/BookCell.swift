@@ -25,8 +25,8 @@ final class BookCell: UICollectionViewCell {
       bookImageView.image = bookImage
     }
   }
+  private var isbn: Int?
   // MARK: - Override Init
-
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
@@ -44,6 +44,7 @@ final class BookCell: UICollectionViewCell {
   func bind(_ bookModel: BookModel) {
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
+    isbn = bookModel.isbn
     let url = URL(string: bookModel.imageUrl)
 
     do {
@@ -83,5 +84,8 @@ final class BookCell: UICollectionViewCell {
   }
   func name() -> String? {
     return bookTitleLabel.text
+  }
+  func getISBN() -> Int? {
+    return isbn ?? -1
   }
 }

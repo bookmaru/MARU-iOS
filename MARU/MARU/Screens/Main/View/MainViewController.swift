@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class MainViewController: BaseViewController {
 
@@ -32,7 +32,7 @@ final class MainViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
-    navigationController?.tabBarController?.tabBar.isHidden = false
+    tabBarController?.tabBar.isHidden = false
   }
 }
 
@@ -47,15 +47,17 @@ extension MainViewController {
     let output = viewModel.transform(input: input)
 
     output.allPopularMeetings
-      .subscribe(onNext: {
-        self.popularBooks = $0
+      .subscribe(onNext: { [weak self] popularBooks in
+        guard let self = self else { return }
+        self.popularBooks = popularBooks
         self.collectionView.reloadSections(IndexSet(integer: 1))
       })
       .disposed(by: disposeBag)
 
     output.allNewMeetings
-      .subscribe(onNext: {
-        self.newMeetings = $0
+      .subscribe(onNext: { [weak self] newMeetings in
+        guard let self = self else { return }
+        self.newMeetings = newMeetings
         self.collectionView.reloadSections(IndexSet(integer: 2))
       })
       .disposed(by: disposBag)
@@ -207,16 +209,16 @@ extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch indexPath.section {
     case 1:
-      guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell else { return }
-      let targetViewController = MorePopularViewController()
+      guard let cell = collectionView.cellForItem(at: indexPath) as? BookCell,
+            let isbn = cell.getISBN() else { return }
+      let targetViewController = MorePopularViewController(isbn: isbn)
       targetViewController.navigationItem.title = cell.name()
       navigationController?.pushViewController(targetViewController, animated: true)
     case 2:
       guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
             let groupID = Int(cell.getDiscussionGroupID()) else { return }
-      let targetViewController = QuizViewController(groupID: groupID)
-      targetViewController.modalPresentationStyle = .fullScreen
-      present(targetViewController, animated: true, completion: nil)
+      let targetViewController = JoinViewController(groupID: groupID)
+      navigationController?.pushViewController(targetViewController, animated: true)
     default:
       break
     }
