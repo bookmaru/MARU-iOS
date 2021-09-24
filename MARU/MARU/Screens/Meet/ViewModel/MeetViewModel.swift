@@ -20,14 +20,12 @@ final class MeetViewModel {
 
   private let realm = RealmNotification()
   private var chatPublisher = BehaviorSubject<RealmChat?>(value: .init())
-  private var initialize: [RealmChat]
-
-  init() {
-    initialize = RealmService.shared.getChatRoom()
-  }
+  private var initialize: [RealmChat] = []
 
   func transform(input: Input) -> Output {
     chatPublisher = realm.fetchChatRooms()
+
+    initialize = RealmService.shared.getChatRoom()
 
     let group = input.viewDidLoadPublisher
       .flatMap { NetworkService.shared.group.participateList() }

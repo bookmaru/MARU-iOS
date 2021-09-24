@@ -106,6 +106,7 @@ final class ChatService {
   func subscribeRoom(roomID: Int) {
     socket.subscribe(destination: "/topic/public/\(roomID)")
     saveChatListRealmPublisher.onNext(roomID)
+    _ = RealmService.shared.findRoomID()
   }
 
   func unsubscribeRoom(roomID: Int) {
