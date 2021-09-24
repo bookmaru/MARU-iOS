@@ -7,9 +7,9 @@
 
 import UIKit
 
-import Then
-import RxSwift
 import RxCocoa
+import RxSwift
+import Then
 
 final class MeetViewController: BaseViewController {
   typealias ViewModel = MeetViewModel
@@ -136,9 +136,11 @@ extension MeetViewController: UIScrollViewDelegate {
     pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
   }
 
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-                                 withVelocity velocity: CGPoint,
-                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  func scrollViewWillEndDragging(
+    _ scrollView: UIScrollView,
+    withVelocity velocity: CGPoint,
+    targetContentOffset: UnsafeMutablePointer<CGPoint>
+  ) {
     let cellWidthIncludeSpacing = view.frame.width - 54
     var offset = targetContentOffset.pointee
     let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludeSpacing
@@ -155,7 +157,7 @@ extension MeetViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    switch data[indexPath.section] {
+    switch data[indexPath.item] {
 
     case .empty:
       let cell: EmptyMeetCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -183,9 +185,11 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
       navigationController?.pushViewController(viewController, animated: true)
     }
   }
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     return CGSize(width: view.frame.width - 82, height: collectionView.frame.height)
   }
 }

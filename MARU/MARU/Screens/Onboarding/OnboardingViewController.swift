@@ -149,6 +149,12 @@ extension OnboardingViewController {
       self.authType.onNext(.kakao)
     }
   }
+
+  private func saveChatRealm(chatList: [RealmChat]) {
+    chatList.forEach {
+      RealmService.shared.write($0)
+    }
+  }
 }
 
 extension OnboardingViewController: UIScrollViewDelegate {

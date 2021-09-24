@@ -73,6 +73,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   private let chatCountContainerView = UIView().then {
     $0.backgroundColor = .mainBlue
     $0.layer.cornerRadius = 8
+    $0.isHidden = true
   }
   private let chatCountLabel = UILabel().then {
     $0.font = .boldSystemFont(ofSize: 10)
@@ -80,6 +81,8 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   }
   fileprivate var data: GeneratedGroup? {
     didSet {
+      let isMyGroup = data?.nickname == UserDefaultHandler.shared.userName
+      bookMarkImageView.isHidden = !isMyGroup
       posterImageView.setImage(from: data?.image ?? "", UIImage())
       bookTitleLabel.text = data?.title
       authorNameLabel.text = data?.author

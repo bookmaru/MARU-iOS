@@ -20,14 +20,12 @@ final class MeetViewModel {
 
   private let realm = RealmNotification()
   private var chatPublisher = BehaviorSubject<RealmChat?>(value: .init())
-  private var initialize: [RealmChat]
-
-  init() {
-    initialize = RealmService.shared.getChatRoom()
-  }
+  private var initialize: [RealmChat] = []
 
   func transform(input: Input) -> Output {
     chatPublisher = realm.fetchChatRooms()
+
+    initialize = RealmService.shared.getChatRoom()
 
     let group = input.viewDidLoadPublisher
       .flatMap { NetworkService.shared.group.participateList() }
@@ -48,15 +46,19 @@ final class MeetViewModel {
 
     let generatedGroup = BehaviorSubject
       .combineLatest(group, generatedChat)
-      .map { group, chat -> [GeneratedGroup] in
-        var generatedGroup: [GeneratedGroup] = []
-        group.forEach { group in
-          chat.forEach { chat in
-            if group.discussionGroupID == chat.roomID {
-              generatedGroup.append(GeneratedGroup(group: group, message: chat))
+      .map { group, chatList -> [GeneratedGroup] in
+        let generatedGroup: [GeneratedGroup] = group
+          .compactMap { group -> GeneratedGroup in
+            if chatList.isEmpty {
+              return GeneratedGroup(group: group, message: RealmChat())
             }
+            let roomID = group.discussionGroupID
+            var index = 0
+            for (chatIndex, chat) in chatList.enumerated() where chat.roomID == roomID {
+              index = chatIndex
+            }
+            return GeneratedGroup(group: group, message: chatList[index])
           }
-        }
         return generatedGroup
       }
 

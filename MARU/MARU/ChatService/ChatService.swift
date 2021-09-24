@@ -58,7 +58,7 @@ final class ChatService {
         "type": "CHAT",
         "content": message,
         "sender": self.userName ?? "",
-        "time": self.time()
+        "time": self.realTime()
       ]
       self.socket.sendJSONForDict(
         dict: chat as AnyObject,
@@ -78,16 +78,17 @@ final class ChatService {
       .disposed(by: disposeBag)
   }
 
+  func userRoomFinder(rooms: [Int]?) {
+    guard let rooms = rooms else { return }
+    rooms.forEach {
+      subscribeRoom(roomID: $0)
+    }
+  }
+
   private func enrolledRoomSubcribe() {
     let roomIDList = RealmService.shared.findRoomID()
-    // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정
-    // TODO: 요 룸 없으면 구독하는것 지우기
-    if roomIDList.isEmpty {
-      subscribeRoom(roomID: 1)
-    } else {
-      roomIDList.forEach {
-        subscribeRoom(roomID: $0)
-      }
+    roomIDList.forEach {
+      subscribeRoom(roomID: $0)
     }
   }
 
@@ -105,6 +106,7 @@ final class ChatService {
   func subscribeRoom(roomID: Int) {
     socket.subscribe(destination: "/topic/public/\(roomID)")
     saveChatListRealmPublisher.onNext(roomID)
+    _ = RealmService.shared.findRoomID()
   }
 
   func unsubscribeRoom(roomID: Int) {
@@ -122,13 +124,13 @@ final class ChatService {
     }
   }
 
-  private func time() -> String {
+  private func realTime() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
     return dateFormatter.string(from: Date())
   }
 
-  private func timeConvertor(string: String) -> Date {
+  private func stringToTimeConvertor(string: String) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"
     return dateFormatter.date(from: string) ?? Date()
@@ -152,7 +154,7 @@ extension ChatService: StompClientLibDelegate {
       userName: json["sender"] as? String ?? "",
       userImageURL: json["userImageUrl"] as? String ?? "",
       content: json["content"] as? String ?? "",
-      time: timeConvertor(string: json["time"] as? String ?? "")
+      time: stringToTimeConvertor(string: json["time"] as? String ?? "")
     )
     RealmService.shared.write(realm)
   }

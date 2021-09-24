@@ -5,6 +5,32 @@
 //  Created by 오준현 on 2021/06/25.
 //
 
+struct LoginDAO: Codable {
+  let login: LoginInfoDAO?
+  let socialID: String?
+
+  enum CodingKeys: String, CodingKey {
+    case login
+    case socialID = "socialId"
+  }
+}
+
+struct LoginInfoDAO: Codable {
+  let userID: Int
+  let nickname: String?
+  let profileURL: String?
+  let userGroupNumbers: [Int]?
+  let tokens: Auth?
+
+  enum CodingKeys: String, CodingKey {
+    case userID = "userId"
+    case nickname
+    case profileURL = "profileUrl"
+    case userGroupNumbers
+    case tokens
+  }
+}
+
 struct Token: Codable {
   let token: TokenDTO?
   let socialID: String?
@@ -30,7 +56,7 @@ struct TokenDTO: Codable {
 }
 
 struct SignupToken: Codable {
-  let token: Auth
+  let token: LoginInfoDAO
 }
 
 struct Auth: Codable {

@@ -74,12 +74,11 @@ final class RealmService {
 
   func getChatRoom() -> [RealmChat] {
     var roomsChat: [RealmChat] = []
-
-    rooms.forEach {
+    for index in 0 ..< rooms.count {
       guard let chat = realm.objects(RealmChat.self)
-        .filter("roomID == \($0)")
+        .filter("roomID == \(rooms[index])")
         .last
-      else { return }
+      else { continue }
       roomsChat += [chat]
     }
 
