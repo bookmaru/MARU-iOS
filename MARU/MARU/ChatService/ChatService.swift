@@ -87,14 +87,8 @@ final class ChatService {
 
   private func enrolledRoomSubcribe() {
     let roomIDList = RealmService.shared.findRoomID()
-    // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정
-    // TODO: 요 룸 없으면 구독하는것 지우기
-    if roomIDList.isEmpty {
-      subscribeRoom(roomID: 1)
-    } else {
-      roomIDList.forEach {
-        subscribeRoom(roomID: $0)
-      }
+    roomIDList.forEach {
+      subscribeRoom(roomID: $0)
     }
   }
 
