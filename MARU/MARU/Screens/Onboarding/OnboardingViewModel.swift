@@ -16,7 +16,7 @@ final class OnboardingViewModel: ViewModelType {
   }
 
   struct Output {
-    let didLogin: Driver<UIViewController?>
+    let didLogin: Driver<(UIViewController?)>
   }
 
   func transform(input: Input) -> Output {
@@ -39,6 +39,7 @@ final class OnboardingViewModel: ViewModelType {
           UserDefaultHandler.shared.userName = response.data?.login?.nickname
           UserDefaultHandler.shared.userImageURL = response.data?.login?.profileURL
         }
+        ChatService.shared.userRoomFinder(rooms: response.data?.login?.userGroupNumbers)
         if response.status == 200 {
           return TabBarController()
         }

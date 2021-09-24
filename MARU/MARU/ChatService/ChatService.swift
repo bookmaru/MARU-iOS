@@ -78,6 +78,13 @@ final class ChatService {
       .disposed(by: disposeBag)
   }
 
+  func userRoomFinder(rooms: [Int]?) {
+    guard let rooms = rooms else { return }
+    rooms.forEach {
+      saveChatListRealmPublisher.onNext($0)
+    }
+  }
+
   private func enrolledRoomSubcribe() {
     let roomIDList = RealmService.shared.findRoomID()
     // MARK: 현재 테스트가 불가해서 저장된 roomID가 없으면 1번 방으로 배정

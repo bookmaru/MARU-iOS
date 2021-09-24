@@ -14,7 +14,6 @@ final class RealmNotification {
   init() { }
 
   func fetchObjectFromRealm(roomID: Int) -> PublishSubject<[RealmChat]> {
-    token?.invalidate()
     let chatPublisher = PublishSubject<[RealmChat]>()
     token = RealmService.shared.read(roomID).observe { chages in
       switch chages {
