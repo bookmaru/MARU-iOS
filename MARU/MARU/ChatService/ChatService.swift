@@ -81,7 +81,7 @@ final class ChatService {
   func userRoomFinder(rooms: [Int]?) {
     guard let rooms = rooms else { return }
     rooms.forEach {
-      saveChatListRealmPublisher.onNext($0)
+      subscribeRoom(roomID: $0)
     }
   }
 
