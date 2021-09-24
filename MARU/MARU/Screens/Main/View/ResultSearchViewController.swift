@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 protocol OpenButtonDelegate: AnyObject {
   func didTapOpenButton()
@@ -85,29 +85,26 @@ extension ResultSearchViewController {
     let output = viewModel.transform(input: input)
 
     output.result
-      .drive { [self = self] in
-        if $0.isEmpty == true {
-          resultCollectionView.isHidden = true
-          emptyView.isHidden = false
+      .drive { [weak self] meetingModels in
+        guard let self = self else { return }
+        self.resultCollectionView.isHidden = meetingModels.isEmpty
+        self.emptyView.isHidden = !meetingModels.isEmpty
+        if !meetingModels.isEmpty {
+          self.configureResultDataSource(meetingModels)
         }
-
-        if $0.isEmpty == false {
-          resultCollectionView.isHidden = false
-          configureResultDataSource($0)
-        }
-        activatorView.stopAnimating()
+        self.activatorView.stopAnimating()
       }
       .disposed(by: disposeBag)
 
     output.cancel
-      .drive(onNext: { [self] _ in
-        navigationController?.popToRootViewController(animated: true)
+      .drive(onNext: { [weak self] _ in
+        self?.navigationController?.popToRootViewController(animated: true)
       })
       .disposed(by: disposeBag)
 
     output.reSearch
-      .drive(onNext: { [self] _ in
-        navigationController?.popViewController(animated: false)
+      .drive(onNext: { [weak self] _ in
+        self?.navigationController?.popViewController(animated: false)
       })
       .disposed(by: disposeBag)
   }
@@ -184,9 +181,8 @@ extension ResultSearchViewController {
 extension ResultSearchViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let meetingModel = resultDataSource.itemIdentifier(for: indexPath) else { return }
-    let targetVC = QuizViewController(groupID: meetingModel.discussionGroupID)
-    targetVC.modalPresentationStyle = .fullScreen
-    present(targetVC, animated: true, completion: nil)
+    let targetVC = JoinViewController(groupID: meetingModel.discussionGroupID)
+    navigationController?.pushViewController(targetVC, animated: true)
   }
 }
 

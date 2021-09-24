@@ -7,8 +7,8 @@
 
 import UIKit
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class MoreNewViewController: BaseViewController {
 
@@ -429,8 +429,7 @@ extension MoreNewViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let cell = collectionView.cellForItem(at: indexPath) as? MeetingListCell,
           let groupID = Int(cell.getDiscussionGroupID()) else { return }
-    let targetViewController = QuizViewController(groupID: groupID)
-    targetViewController.modalPresentationStyle = .fullScreen
-    present(targetViewController, animated: true, completion: nil)
+    let targetViewController = JoinViewController(groupID: groupID)
+    navigationController?.pushViewController(targetViewController, animated: true)
   }
 }

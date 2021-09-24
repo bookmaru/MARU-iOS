@@ -8,8 +8,8 @@
 import UIKit
 
 import RealmSwift
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class RecentSearchViewController: BaseViewController {
 
@@ -66,6 +66,7 @@ final class RecentSearchViewController: BaseViewController {
     super.viewWillAppear(false)
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.isTranslucent = false
+    tabBarController?.tabBar.isHidden = true
     configureSearchBar()
   }
 

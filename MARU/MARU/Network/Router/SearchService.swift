@@ -11,6 +11,7 @@ import RxSwift
 protocol SearchServiceType {
   func search(queryString: String) -> Observable<BaseReponseType<Groups>>
   func bookSearch(queryString: String, page: Int) -> Observable<BaseReponseType<Books>>
+  func meetingSearchByISBN(isbn: Int, page: Int) -> Observable<BaseReponseType<Groups>>
 }
 
 final class SearchService: SearchServiceType {
@@ -37,4 +38,11 @@ final class SearchService: SearchServiceType {
 //      .asObservable()
 //      .map(BaseReponseType<Books>.self)
 //  }
+
+  func meetingSearchByISBN(isbn: Int, page: Int) -> Observable<BaseReponseType<Groups>> {
+    return router.rx
+      .request(.meetingSearchByISBN(isbn: isbn.string, page: page))
+      .asObservable()
+      .map(BaseReponseType<Groups>.self)
+  }
 }

@@ -69,9 +69,13 @@ final class QuizViewController: BaseViewController {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
   }
+
   init(groupID: Int) {
     self.groupID = groupID
     super.init()
+  }
+  deinit {
+    quizContentView.stopTimer()
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -147,7 +151,6 @@ final class QuizViewController: BaseViewController {
         }
         if $0 == false {
           resultViewController.result = .failure
-          self.quizContentView.stopTimer()
           self.present(resultViewController, animated: false, completion: nil)
         }
       })
