@@ -11,28 +11,25 @@ struct BookModel: Hashable, Codable {
   let isbn: Int
   let title: String
   let author: String
-  let imageUrl: String
+  let imageURL: String
   let category: String
 
   init(_ book: Book) {
     self.isbn = book.isbn
     self.title = book.title
     self.author = book.author
-    self.imageUrl = book.imageURL
+    self.imageURL = book.imageURL
     self.category = book.category
   }
-
-  init(
-    isbn: Int,
-    title: String,
-    author: String,
-    imageUrl: String,
-    category: String
-  ) {
+  init(isbn: Int,
+       title: String,
+       author: String,
+       imageURL: String,
+       category: String) {
     self.isbn = isbn
     self.title = title
     self.author = author
-    self.imageUrl = imageUrl
+    self.imageURL = imageURL
     self.category = category
   }
 

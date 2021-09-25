@@ -13,10 +13,10 @@ import RxSwift
 import RxCocoa
 
 final class MyLibraryHeaderView: UICollectionReusableView {
-  static let registerId = "headerView"
   private let profileImageView = UIImageView().then {
-    $0.image = Image.appIcon
+    $0.image = Image.group1029
     $0.layer.cornerRadius = 38
+    $0.layer.masksToBounds = true
   }
 
   let changeProfileButton = UIButton().then {
@@ -39,15 +39,23 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     attributeString.addAttributes(multipleAttribute, range: NSRange(location: 6, length: 3))
     $0.attributedText = attributeString
   }
+
   let changeSettingButton = UIButton().then {
     $0.setImage(Image.group962, for: .normal)
   }
+
   var disposeBag = DisposeBag()
+
   fileprivate var data: User? {
     didSet {
       usernameLabel.text = data?.user?.nickname
+      if data?.user?.profileImage != "" {
+        profileImageView.imageFromUrl(data?.user?.profileImage, defaultImgPath: "")
+      }
+      profileImageView.image = Image.group1029
     }
   }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -56,10 +64,12 @@ final class MyLibraryHeaderView: UICollectionReusableView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     add(changeSettingButton) { button in
       button.snp.makeConstraints {
@@ -78,7 +88,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     add(changeProfileButton) { button in
       button.snp.makeConstraints {
         $0.size.equalTo(20)
-        $0.trailing.bottom.equalTo(self.profileImageView).inset(-5)
+        $0.trailing.bottom.equalTo(self.profileImageView).inset(-1)
       }
     }
     add(usernameLabel) { label in
