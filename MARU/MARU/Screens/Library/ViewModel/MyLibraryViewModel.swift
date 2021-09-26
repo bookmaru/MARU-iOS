@@ -19,6 +19,7 @@ final class MyLibraryViewModel {
     let data: Driver<[Library]>
   }
 
+  // TODO: - 서버 연결 상태 분기처리 할 것
   func transform(input: Input) -> Output {
 
     let viewDidLoad = input.viewDidLoadPublisher.share()

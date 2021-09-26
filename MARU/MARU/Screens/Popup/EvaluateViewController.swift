@@ -137,7 +137,8 @@ extension EvaluateViewController {
   }
   @objc func submitButtonDidTap() {
     // MARK: - 방장 평가 통신 진행
-    self.dismiss(animated: true, completion: nil)
+    // TODO: - 생각해보니 아렉스니까 이렇게 해줄 필요가 없을듯. 이건 화면 전환용이니 나중에 적용해서 변경
+    dismiss(animated: true, completion: nil)
   }
   // MARK: - 버튼 값(방장 평가 점수) 컨트롤
   @objc func scoreButtonDidTap(sender: UIButton) {

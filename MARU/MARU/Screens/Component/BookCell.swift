@@ -25,8 +25,8 @@ final class BookCell: UICollectionViewCell {
       bookImageView.image = bookImage
     }
   }
+  private var isbn: Int?
   // MARK: - Override Init
-
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
@@ -44,7 +44,9 @@ final class BookCell: UICollectionViewCell {
   func bind(_ bookModel: BookModel) {
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
-    let url = URL(string: bookModel.imageUrl)
+    // MARK: - 윤진: 여기 데이터 변수명 url 바뀌는 것 때문에 파일 변경했으니 참고!
+    let url = URL(string: bookModel.imageURL)
+    isbn = bookModel.isbn
 
     do {
       if let url = url {
@@ -83,5 +85,8 @@ final class BookCell: UICollectionViewCell {
   }
   func name() -> String? {
     return bookTitleLabel.text
+  }
+  func getISBN() -> Int? {
+    return isbn ?? -1
   }
 }
