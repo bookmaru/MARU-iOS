@@ -51,6 +51,7 @@ final class ChatViewController: BaseViewController {
     self.roomID = roomID
     super.init()
     self.title = title
+    touchEvent()
   }
 
   required init?(coder: NSCoder) {
@@ -70,6 +71,7 @@ final class ChatViewController: BaseViewController {
   }
 
   private func scrollToBottom(_ animated: Bool = false) {
+    guard !data.isEmpty else { return }
     DispatchQueue.main.async {
       let lastItem = self.data.count - 1
       let indexPath = IndexPath(row: 0, section: lastItem)
@@ -78,12 +80,23 @@ final class ChatViewController: BaseViewController {
   }
 
   private func setNavigation() {
-    navigationController?.navigationBar.isHidden = false
     navigationController?.interactivePopGestureRecognizer?.delegate = self
     guard let navigationBar = navigationController?.navigationBar else { return }
     navigationBar.setBackgroundImage(UIImage(), for: .default)
     navigationBar.shadowImage = UIImage()
     navigationBar.isTranslucent = true
+    navigationBar.tintColor = .black
+  }
+
+  private func touchEvent() {
+    collectionView.rx
+      .tapGesture { _, delegate in
+        delegate.simultaneousRecognitionPolicy = .never
+      }
+      .subscribe(onNext: { [weak self] _ in
+        self?.view.endEditing(true)
+      })
+      .disposed(by: disposeBag)
   }
 }
 
@@ -127,9 +140,11 @@ extension ChatViewController {
 }
 
 extension ChatViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     return CGSize(width: view.frame.width, height: data[indexPath.section].cellHeight)
   }
 
@@ -138,19 +153,19 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     insetForSectionAt section: Int
   ) -> UIEdgeInsets {
-    if section != 0 {
-      let prevSection = data[section - 1]
-      let currentSection = data[section]
-      switch currentSection {
-      case .message:
-        return calculateMessage(prevMessage: prevSection)
-      case .otherMessage:
-        return calculateOtherMessage(prevMessage: prevSection)
-      case .otherProfile:
-        return calculateOtherProfile(prevMessage: prevSection)
-      }
+    if section == 0 {
+      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
-    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    let prevSection = data[section - 1]
+    let currentSection = data[section]
+    switch currentSection {
+    case .message:
+      return calculateMessage(prevMessage: prevSection)
+    case .otherMessage:
+      return calculateOtherMessage(prevMessage: prevSection)
+    case .otherProfile:
+      return calculateOtherProfile(prevMessage: prevSection)
+    }
   }
 }
 
@@ -160,8 +175,10 @@ extension ChatViewController: UICollectionViewDataSource {
     return data.count
   }
 
-  func collectionView(_ collectionView: UICollectionView,
-                      numberOfItemsInSection section: Int) -> Int {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return 1
   }
 
@@ -203,6 +220,11 @@ extension ChatViewController {
               let height = self.keyboradHeight(notification: notification),
               let bottomPadding = self.bottomPadding()
         else { return }
+        let cov = self.collectionView
+        let offset = cov.contentSize.height - (cov.contentOffset.y + cov.frame.height)
+        if offset < 30 {
+          self.scrollToBottom(true)
+        }
         self.bottomView.snp.updateConstraints {
           $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(height - bottomPadding)
         }
