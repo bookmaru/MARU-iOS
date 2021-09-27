@@ -29,7 +29,6 @@ final class EvaluateWarningViewController: UIViewController {
   }
 
   private let stateLabel = UILabel().then {
-    // 11~15
     let text = "내가 개설한 모임은 자체 평가할 수 없어요."
     let attributeString = NSMutableAttributedString(string: text)
     let font = UIFont.systemFont(ofSize: 13, weight: .bold)
@@ -72,13 +71,11 @@ extension EvaluateWarningViewController {
       make.width.equalTo(252)
     }
     warningLabel.snp.makeConstraints { make in
-      make.centerX.equalTo(popUpView)
       make.leading.equalTo(popUpView).offset(56)
       make.top.equalTo(popUpView).offset(20)
     }
     stateImageView.snp.makeConstraints { make in
       make.leading.equalTo(popUpView).offset(108)
-      make.centerX.equalTo(popUpView)
       make.top.equalTo(warningLabel.snp.bottom).offset(20)
       make.size.equalTo(40)
     }
@@ -89,12 +86,10 @@ extension EvaluateWarningViewController {
     }
     submitButton.snp.makeConstraints { make in
       make.height.equalTo(50)
-      make.bottom.equalToSuperview()
-      make.leading.equalToSuperview()
-      make.trailing.equalToSuperview()
+      make.leading.trailing.bottom.equalToSuperview()
     }
   }
-  @objc func didTapSubmitButton() {
+  @objc private func didTapSubmitButton() {
     dismiss(animated: true, completion: nil)
   }
 }

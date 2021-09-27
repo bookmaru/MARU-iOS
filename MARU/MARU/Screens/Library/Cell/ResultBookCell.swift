@@ -33,7 +33,7 @@ final class ResultBookCell: UICollectionViewCell {
     $0.text = "이이이리리리"
   }
 
-  var addBookButton = UIButton().then {
+  fileprivate var addBookButton = UIButton().then {
     $0.setImage(Image.validName, for: .normal)
   }
 
@@ -110,10 +110,10 @@ final class ResultBookCell: UICollectionViewCell {
   }
 }
 
-//extension Reactive where Base: ResultBookCell {
-//  var didTapAddBookButton: Observable<Void> {
-//    return base.addBookButton.rx.tap
-//      .map { return }
-//      .asObservable()
-//  }
-//}
+extension Reactive where Base: ResultBookCell {
+  var didTapAddBookButton: Observable<Void> {
+    return base.addBookButton.rx.tap
+      .map { return }
+      .asObservable()
+  }
+}

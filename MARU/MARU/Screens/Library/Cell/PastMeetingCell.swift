@@ -144,9 +144,14 @@ final class PastMeetingCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: PastMeetingCell {
-  var didTapEvaluateButton: Observable<Void> {
+  var didTapEvaluateButton: Observable<UIViewController> {
     return base.evaluateButton.rx.tap
-      .map { return }
+      .map { _ -> UIViewController in
+        if base.data?.isLeader == true {
+          return EvaluateWarningViewController()
+        }
+        return EvaluateViewController()
+      }
       .asObservable()
   }
   var dataBinder: Binder<KeepGroup?> {

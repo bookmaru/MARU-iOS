@@ -143,12 +143,13 @@ extension ResultBookViewController {
       .CellRegistration<ResultBookCell, BookModel> { cell, _, bookModel in
         cell.bind(bookModel)
         // TODO: POST 통신 방법 고민해보기
-        cell.addBookButton.rx.tap
+        cell.rx.didTapAddBookButton
           .subscribe(onNext: {
             let viewController = BookAlertViewController(
               Image.coolicon ?? UIImage(),
               "\(bookModel.title)이",
-              "성공적으로 서재에 담겼습니다.")
+              "성공적으로 서재에 담겼습니다."
+            )
             viewController.modalPresentationStyle = .overCurrentContext
             viewController.modalTransitionStyle = .crossDissolve
             self.present(viewController, animated: true)
