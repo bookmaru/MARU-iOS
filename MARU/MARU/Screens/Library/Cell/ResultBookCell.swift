@@ -110,10 +110,10 @@ final class ResultBookCell: UICollectionViewCell {
   }
 }
 
-extension Reactive where Base: ResultBookCell {
-  var didTapAddBookButton: Observable<Void> {
-    return base.addBookButton.rx.tap
-      .map { return }
-      .asObservable()
-  }
-}
+//extension Reactive where Base: ResultBookCell {
+//  var didTapAddBookButton: Observable<Void> {
+//    return base.addBookButton.rx.tap
+//      .map { return }
+//      .asObservable()
+//  }
+//}

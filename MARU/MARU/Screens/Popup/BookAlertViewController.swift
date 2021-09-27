@@ -74,7 +74,7 @@ extension BookAlertViewController {
 
   }
   private func render() {
-    view.backgroundColor = .black.withAlphaComponent(0.2)
+    view.backgroundColor = .black.withAlphaComponent(0.7)
     view.add(popUpView)
     popUpView.adds([
       stateImageView,

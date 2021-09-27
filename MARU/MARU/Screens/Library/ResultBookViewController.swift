@@ -29,7 +29,7 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
     $0.startAnimating()
     $0.hidesWhenStopped = true
   }
-  //private var resultCollectionView: UICollectionView! = nil
+
   private var resultCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let resultCollectionView = UICollectionView(frame: .zero,
@@ -108,7 +108,6 @@ extension ResultBookViewController {
       resultCollectionView
     ])
     resultCollectionView.delegate = self
-    //resultCollectionView.dataSource = self
     activatorView.snp.makeConstraints { make in
       make.center.equalTo(view.snp.center)
     }
@@ -144,9 +143,12 @@ extension ResultBookViewController {
       .CellRegistration<ResultBookCell, BookModel> { cell, _, bookModel in
         cell.bind(bookModel)
         // TODO: POST 통신 방법 고민해보기
-        cell.rx.didTapAddBookButton
+        cell.addBookButton.rx.tap
           .subscribe(onNext: {
-            let viewController = BookAlertViewController(Image.coolicon ?? UIImage(), "\(bookModel.title)이", "성공적으로 서재에 담겼습니다.")
+            let viewController = BookAlertViewController(
+              Image.coolicon ?? UIImage(),
+              "\(bookModel.title)이",
+              "성공적으로 서재에 담겼습니다.")
             viewController.modalPresentationStyle = .overCurrentContext
             viewController.modalTransitionStyle = .crossDissolve
             self.present(viewController, animated: true)
@@ -168,13 +170,9 @@ extension ResultBookViewController {
     snapshot.appendSections([.main])
     snapshot.appendItems(items)
     resultDataSource.apply(snapshot, animatingDifferences: false)
-
-
   }
-
 }
 
 extension ResultBookViewController: UICollectionViewDelegate {
-
+  // MARK: - configure부분에서 버튼처리 안되면 여기서라도 해야함
 }
-
