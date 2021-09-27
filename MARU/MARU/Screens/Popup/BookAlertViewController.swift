@@ -48,7 +48,8 @@ final class BookAlertViewController: UIViewController {
     bind()
     render()
   }
-
+  // coolicon : 서재에 담아두기 성공
+  // group1036 : 이미 서재에 담겨있음
   init(_ image: UIImage,
        _ guideText: String,
        _ subGuideText: String) {
