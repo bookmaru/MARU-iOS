@@ -72,12 +72,15 @@ extension PastMeetingViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+    // 방장인 경우에는 평가 금지 팝업 화면 등장
     if cell.isLeader == true {
       cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
-
+          let viewController = EvaluateWarningViewController()
+          viewController.modalTransitionStyle = .crossDissolve
+          viewController.modalPresentationStyle = .overCurrentContext
+          self.present(viewController, animated: false, completion: nil)
         })
         .disposed(by: cell.disposeBag)
     } else {
