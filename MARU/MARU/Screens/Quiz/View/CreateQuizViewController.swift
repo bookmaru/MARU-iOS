@@ -68,13 +68,6 @@ final class CreateQuizViewController: BaseViewController {
   private func configureNavigationBar() {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.isTranslucent = false
-
-    // MARK: - 이 두개는 왜 안되는 지 궁금해서, 뷰 전환 수정 할 때, 찾아보고 지우겠습니다.
-    /*
-     navigationController?.navigationItem.leftBarButtonItem = cancelButton
-     navigationController?.navigationItem.rightBarButtonItem = completeButton
-     */
-
     navigationItem.leftBarButtonItem = cancelButton
     navigationItem.rightBarButtonItem = completeButton
   }
