@@ -55,7 +55,7 @@ extension SearchRouter: TargetType {
           "page": page
         ],
         encoding: URLEncoding.queryString
-      )  
+      )
     case let .meetingSearchByISBN(isbn, page):
       return .requestParameters(
         parameters: [
