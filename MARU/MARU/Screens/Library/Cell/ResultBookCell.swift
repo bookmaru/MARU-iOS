@@ -38,7 +38,7 @@ final class ResultBookCell: UICollectionViewCell {
   }
 
   var disposeBag = DisposeBag()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()

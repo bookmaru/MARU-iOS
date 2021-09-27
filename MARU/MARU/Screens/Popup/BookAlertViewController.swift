@@ -50,6 +50,7 @@ final class BookAlertViewController: UIViewController {
   }
   // coolicon : 서재에 담아두기 성공
   // group1036 : 이미 서재에 담겨있음
+  // 모임개수 초과 경고 이미지도 넣기
   init(_ image: UIImage,
        _ guideText: String,
        _ subGuideText: String) {

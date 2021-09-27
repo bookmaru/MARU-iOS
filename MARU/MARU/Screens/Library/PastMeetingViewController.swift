@@ -72,12 +72,12 @@ extension PastMeetingViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    // MARK: 준현 - 여기서 isLeader값을 cell 안으로 넣어줘서 처리해도 좋을거같아요!
-    if data?.keepGroup[indexPath.item].isLeader == true {
+
+    if cell.isLeader == true {
       cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
       cell.rx.didTapEvaluateButton
         .subscribe(onNext: {
-          // 방장이 아닌 경우에는 방장 평가하도록 처리
+
         })
         .disposed(by: cell.disposeBag)
     } else {
