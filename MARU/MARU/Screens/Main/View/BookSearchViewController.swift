@@ -28,9 +28,11 @@ final class BookSearchViewController: BaseViewController {
   private let keyword: String
   private let viewModel = BookSearchViewModel()
   private let triggerMoreData = PublishSubject<Void>()
+  private var canLoadMore: Bool = true
   private var bookModel: [BookModel] = [] {
     didSet {
       collectionView.reloadData()
+      canLoadMore = true
     }
   }
 
@@ -165,7 +167,8 @@ extension BookSearchViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
-    minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    minimumLineSpacingForSectionAt section: Int
+  ) -> CGFloat {
     return 20
   }
 }
@@ -176,7 +179,8 @@ extension BookSearchViewController: UICollectionViewDelegate {
     willDisplay cell: UICollectionViewCell,
     forItemAt indexPath: IndexPath
   ) {
-    if indexPath.item == bookModel.endIndex - 1 {
+    if indexPath.item == bookModel.endIndex - 1 && canLoadMore {
+      canLoadMore = false
       triggerMoreData.onNext(())
     }
   }
