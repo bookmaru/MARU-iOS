@@ -188,8 +188,9 @@ extension ResultSearchViewController: UICollectionViewDelegate {
 
 extension ResultSearchViewController: OpenButtonDelegate {
   func didTapOpenButton() {
-    print("tapped Open Button")
-    // 여기에 화면 전환
+    /// - TAG: 모임열기 버튼 클릭
+    let targetVC = BookSearchViewController(keyword: keyword)
+    navigationController?.pushViewController(targetVC, animated: true)
   }
 }
 

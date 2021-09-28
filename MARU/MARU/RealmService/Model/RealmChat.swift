@@ -63,10 +63,10 @@ class RealmChat: Object, Codable {
     chatID = try container.decode(String.self, forKey: .chatID)
     roomID = try container.decode(Int.self, forKey: .roomID)
     userID = try container.decode(Int.self, forKey: .userID)
-    type = try container.decode(String.self, forKey: .type)
-    userName = try container.decode(String.self, forKey: .userName)
-    userImageURL = try container.decode(String.self, forKey: .userImageURL)
-    content = try container.decode(String.self, forKey: .content)
+    type = try container.decodeIfPresent(String.self, forKey: .type) ?? ""
+    userName = try container.decodeIfPresent(String.self, forKey: .userName) ?? ""
+    userImageURL = try container.decodeIfPresent(String.self, forKey: .userImageURL) ?? ""
+    content = try container.decodeIfPresent(String.self, forKey: .content) ?? ""
     let timeString = try container.decode(String.self, forKey: .time)
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd.HH:mm:ss"

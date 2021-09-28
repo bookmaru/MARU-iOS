@@ -32,13 +32,6 @@ final class SearchService: SearchServiceType {
       .map(BaseReponseType<Books>.self)
   }
 
-//  func getPopular() -> Observable<BaseReponseType<Books>> {
-//    return router.rx
-//      .request(.getPopular)
-//      .asObservable()
-//      .map(BaseReponseType<Books>.self)
-//  }
-
   func meetingSearchByISBN(isbn: Int, page: Int) -> Observable<BaseReponseType<Groups>> {
     return router.rx
       .request(.meetingSearchByISBN(isbn: isbn.string, page: page))
