@@ -86,7 +86,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
       posterImageView.setImage(from: data?.image ?? "", UIImage())
       bookTitleLabel.text = data?.title
       authorNameLabel.text = data?.author
-      nameLabel.text = data?.nickname
+      nameLabel.text = data?.chatUserName
       contentLabel.text = data?.description
       chatLabel.text = data?.message
     }

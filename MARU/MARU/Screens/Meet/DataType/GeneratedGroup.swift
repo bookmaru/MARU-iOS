@@ -15,6 +15,7 @@ struct GeneratedGroup {
   let author: String
   let nickname: String
   let message: String
+  let chatUserName: String
 
   init(group: Group, message: RealmChat) {
     discussionGroupID = group.discussionGroupID
@@ -26,5 +27,6 @@ struct GeneratedGroup {
     author = group.author
     nickname = group.nickname
     self.message = message.content
+    chatUserName = message.userName
   }
 }

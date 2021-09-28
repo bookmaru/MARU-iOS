@@ -29,7 +29,7 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
     $0.startAnimating()
     $0.hidesWhenStopped = true
   }
-  //private var resultCollectionView: UICollectionView! = nil
+//  private var resultCollectionView: UICollectionView! = nil
   private var resultCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let resultCollectionView = UICollectionView(frame: .zero,

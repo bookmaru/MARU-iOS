@@ -146,7 +146,7 @@ extension SearchBookViewController {
         guard let self = self else { return }
         self.searchBar.text = ""
         let resultSearchViewController = ResultBookViewController(keyword: $0)
-        //resultSearchViewController.transferKeyword(keyword: $0)
+//        resultSearchViewController.transferKeyword(keyword: $0)
         self.navigationController?.pushViewController(resultSearchViewController, animated: false)
       }
       .disposed(by: disposeBag)

@@ -25,7 +25,6 @@ final class ChatService {
   private let socket = StompClientLib()
   private let message = PublishSubject<String>()
   private let disposeBag = DisposeBag()
-  private let userName = UserDefaultHandler.shared.userName
   private let saveChatListRealmPublisher = PublishSubject<Int>()
 
   private var roomID: Int? {
@@ -57,7 +56,7 @@ final class ChatService {
         "userId": KeychainHandler.shared.userID,
         "type": "CHAT",
         "content": message,
-        "sender": self.userName ?? "",
+        "sender": UserDefaultHandler.shared.userName ?? "",
         "time": self.realTime()
       ]
       self.socket.sendJSONForDict(
