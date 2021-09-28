@@ -72,4 +72,6 @@ enum Image {
   static let coolicon = UIImage(named: "coolicon")
   static let validName = UIImage(named: "validName")
   static let invalidName3 = UIImage(named: "invalidName3")
+  static let uSick = UIImage(named: "uSick")
+  static let uCommentAltExclamation = UIImage(named: "uCommentAltExclamation")
 }

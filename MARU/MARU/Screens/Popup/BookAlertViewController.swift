@@ -48,7 +48,9 @@ final class BookAlertViewController: UIViewController {
     bind()
     render()
   }
-
+  // MARK: - 서재에 담아두기 성공이미지(Image.coolicon)
+  // MARK: - 이미 서재에 담겨있음(Image.group1036)
+  // 모임개수 초과 경고 이미지도 넣기
   init(_ image: UIImage,
        _ guideText: String,
        _ subGuideText: String) {
@@ -72,7 +74,7 @@ extension BookAlertViewController {
 
   }
   private func render() {
-    view.backgroundColor = .black.withAlphaComponent(0.2)
+    view.backgroundColor = .black.withAlphaComponent(0.7)
     view.add(popUpView)
     popUpView.adds([
       stateImageView,

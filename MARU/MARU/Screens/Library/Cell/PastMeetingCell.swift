@@ -56,6 +56,7 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.setImage(Image.invalidName, for: .normal)
     $0.isHidden = true
   }
+  var isLeader: Bool?
   var disposeBag = DisposeBag()
   fileprivate var data: KeepGroup? {
     didSet {
@@ -63,8 +64,9 @@ final class PastMeetingCell: UICollectionViewCell {
       bookAuthorLabel.text = data?.author
       // TODO: - 이미지 전달 변경하기
       bookImageView.image = UIImage(named: data?.image ?? "group1015")
-      // id 정보 전달 방안 생각하기
+      // TODO : - id 평가화면 init으로 넘겨주기
       explanationLabel.text = data?.description
+      isLeader = data?.isLeader
     }
   }
   override init(frame: CGRect) {
@@ -142,9 +144,14 @@ final class PastMeetingCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: PastMeetingCell {
-  var didTapEvaluateButton: Observable<Void> {
+  var didTapEvaluateButton: Observable<UIViewController> {
     return base.evaluateButton.rx.tap
-      .map { return }
+      .map { _ -> UIViewController in
+        if base.data?.isLeader == true {
+          return EvaluateWarningViewController()
+        }
+        return EvaluateViewController()
+      }
       .asObservable()
   }
   var dataBinder: Binder<KeepGroup?> {

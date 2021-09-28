@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class ResultBookCell: UICollectionViewCell {
   private let shadowView = UIView().then {
     $0.backgroundColor = .white
@@ -30,9 +33,12 @@ final class ResultBookCell: UICollectionViewCell {
     $0.text = "이이이리리리"
   }
 
-  private let addBookButton = UIButton().then {
+  fileprivate var addBookButton = UIButton().then {
     $0.setImage(Image.validName, for: .normal)
   }
+
+  var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
@@ -44,6 +50,7 @@ final class ResultBookCell: UICollectionViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
+    disposeBag = DisposeBag()
     bookTitleLabel.text = nil
     bookAuthorLabel.text = nil
     bookImageView.image  = nil
@@ -100,5 +107,13 @@ final class ResultBookCell: UICollectionViewCell {
       make.bottom.equalTo(shadowView.snp.bottom).offset(-12)
       make.height.equalTo(22)
     }
+  }
+}
+
+extension Reactive where Base: ResultBookCell {
+  var didTapAddBookButton: Observable<Void> {
+    return base.addBookButton.rx.tap
+      .map { return }
+      .asObservable()
   }
 }
