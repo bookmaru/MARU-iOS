@@ -25,10 +25,6 @@ final class DiaryView: UIView {
     $0.font = .systemFont(ofSize: 10, weight: .semibold)
   }
 
-  private let editButton = UIButton().then {
-    $0.setImage(Image.group1027, for: .normal)
-  }
-
   private let contentContainerView = UIView()
 
   private let leftQuotationImageView = UIImageView(image: Image.quotationMarkLeft)
@@ -71,7 +67,6 @@ final class DiaryView: UIView {
     add(imageView)
     add(titleLabel)
     add(authorLabel)
-    add(editButton)
     add(contentContainerView)
     contentContainerView.add(contentLabel)
     contentContainerView.add(leftQuotationImageView)
@@ -89,10 +84,6 @@ final class DiaryView: UIView {
     authorLabel.snp.makeConstraints {
       $0.leading.equalTo(titleLabel)
       $0.top.equalTo(titleLabel.snp.bottom).offset(3)
-    }
-    editButton.snp.makeConstraints {
-      $0.top.trailing.equalToSuperview().inset(7)
-      $0.size.equalTo(24)
     }
     contentContainerView.snp.makeConstraints {
       let inset = UIEdgeInsets(top: 50, left: 109, bottom: 31, right: 13)

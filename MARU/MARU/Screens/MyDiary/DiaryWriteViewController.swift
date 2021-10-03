@@ -12,21 +12,29 @@ import RxSwift
 
 final class DiaryWriteViewController: BaseViewController {
 
+  override var hidesBottomBarWhenPushed: Bool {
+    get { navigationController?.topViewController == self }
+    set { super.hidesBottomBarWhenPushed = newValue }
+  }
+
   private let scrollView = UIScrollView()
   private let diaryView = DiaryView()
   private let titleContainerView = UIView().then {
     $0.layer.cornerRadius = 12
     $0.layer.borderWidth = 1
     $0.layer.borderColor = UIColor(red: 239, green: 239, blue: 239).cgColor
+    $0.backgroundColor = .white
   }
   private let titleTextView = UITextView().then {
     $0.text = "제목"
     $0.font = .systemFont(ofSize: 12, weight: .semibold)
+    $0.textContainerInset = .zero
   }
   private let diaryTextContainerView = UIView().then {
     $0.layer.cornerRadius = 12
     $0.layer.borderWidth = 1
     $0.layer.borderColor = UIColor(red: 239, green: 239, blue: 239).cgColor
+    $0.backgroundColor = .white
   }
   private let diaryTextView = UITextView().then {
     $0.text = "일기쓰기"
@@ -36,14 +44,13 @@ final class DiaryWriteViewController: BaseViewController {
     $0.title = "완료"
     $0.tintColor = .mainBlue
     $0.style = .done
-    $0.setTitleTextAttributes(
-      [.font: UIFont.systemFont(ofSize: 12, weight: .bold)],
-      for: .normal
-    )
     $0.isEnabled = false
   }
 
+  private let viewModel: DiaryWriteViewModel
   init(diary: Group) {
+    viewModel = DiaryWriteViewModel(groupID: diary.discussionGroupID)
+
     super.init()
 
     diaryView.rx.dataBinder.onNext(diary)
@@ -57,17 +64,30 @@ final class DiaryWriteViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+    bind()
   }
 
   private func render() {
+    title = "독서일기 쓰기"
+
+    navigationItem.rightBarButtonItem = doneButton
+
     view.add(scrollView)
-    scrollView.add(diaryView)
-    scrollView.add(titleContainerView)
+    let contentView = UIView()
+    scrollView.add(contentView)
+    contentView.add(diaryView)
+    contentView.add(titleContainerView)
     titleContainerView.add(titleTextView)
-    scrollView.add(diaryTextContainerView)
+    contentView.add(diaryTextContainerView)
     diaryTextContainerView.add(diaryTextView)
     scrollView.snp.makeConstraints {
-      $0.edges.equalTo(view.safeAreaLayoutGuide)
+      $0.top.equalTo(view.safeAreaLayoutGuide)
+      $0.leading.trailing.bottom.equalToSuperview()
+    }
+    contentView.snp.makeConstraints {
+      $0.edges.equalTo(scrollView.snp.edges)
+      $0.height.greaterThanOrEqualTo(scrollView)
+      $0.width.equalTo(scrollView)
     }
     diaryView.snp.makeConstraints {
       $0.top.equalToSuperview().offset(20)
@@ -80,8 +100,9 @@ final class DiaryWriteViewController: BaseViewController {
       $0.height.equalTo(40)
     }
     titleTextView.snp.makeConstraints {
+      $0.top.equalToSuperview().inset(14)
+      $0.bottom.equalToSuperview().inset(13)
       $0.leading.trailing.equalToSuperview().inset(20)
-      $0.centerY.equalToSuperview()
     }
     diaryTextContainerView.snp.makeConstraints {
       $0.top.equalTo(titleContainerView.snp.bottom).offset(16)
@@ -101,7 +122,7 @@ final class DiaryWriteViewController: BaseViewController {
       .subscribe(onNext: { [weak self] text in
         guard let self = self else { return }
         if text == nil || text == "" {
-          self.diaryTextView.text = "제목"
+          self.titleTextView.text = "제목"
         }
       })
       .disposed(by: disposeBag)
@@ -111,7 +132,7 @@ final class DiaryWriteViewController: BaseViewController {
       .subscribe(onNext: { [weak self] text in
         guard let self = self else { return }
         if text == "제목" {
-          self.diaryTextView.text = ""
+          self.titleTextView.text = ""
         }
       })
       .disposed(by: disposeBag)
@@ -146,7 +167,27 @@ final class DiaryWriteViewController: BaseViewController {
   }
 
   private func bind() {
+    let didTapDoneButton = doneButton.rx.tap
+      .map { [weak self] _ -> (title: String, content: String) in
+        guard let self = self,
+              let title = self.titleTextView.text,
+              let content = self.diaryTextView.text
+        else { return (title: "", content: "") }
+        return (title: title, content: content)
+      }
 
+    let input = DiaryWriteViewModel.Input(didTapDoneButton: didTapDoneButton)
+    let output = viewModel.transform(input: input)
+
+    output.isSuccess
+      .subscribe(onNext: { [weak self] isSuccess in
+        guard let self = self else { return }
+        if !isSuccess {
+          self.showToast("에러가 발생했습니다.")
+          return
+        }
+        self.navigationController?.popViewController(animated: true)
+      })
+      .disposed(by: disposeBag)
   }
-
 }

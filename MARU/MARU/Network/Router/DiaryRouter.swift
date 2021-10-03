@@ -9,10 +9,10 @@ import Moya
 
 enum DiaryRouter {
   case list
-  case post
-  case get(diaryId: Int)
-  case edit(diaryId: Int)
-  case delete(diaryId: Int)
+  case post(groupID: Int, title: String, content: String)
+  case get(diaryID: Int)
+  case edit(diaryID: Int)
+  case delete(diaryID: Int)
 }
 
 extension DiaryRouter: TargetType {
@@ -25,12 +25,12 @@ extension DiaryRouter: TargetType {
       return "diary"
     case .post:
       return "diary"
-    case .get(let diaryId):
-      return "diary/\(diaryId)"
-    case .edit(let diaryId):
-      return "diary/\(diaryId)"
-    case .delete(let diaryId):
-      return "diary/\(diaryId)"
+    case .get(let diaryID):
+      return "diary/\(diaryID)"
+    case .edit(let diaryID):
+      return "diary/\(diaryID)"
+    case .delete(let diaryID):
+      return "diary/\(diaryID)"
     }
   }
 
@@ -55,8 +55,13 @@ extension DiaryRouter: TargetType {
     switch self {
     case .list:
       return .requestPlain
-    case .post:
-      return .requestPlain
+    case let .post(groupID, title, content):
+      let parameter: [String: Any] = [
+        "discussionGroupId": groupID,
+        "title": title,
+        "content": content
+      ]
+      return .requestParameters(parameters: parameter, encoding: JSONEncoding.default)
     case .get:
       return .requestPlain
     case .edit:

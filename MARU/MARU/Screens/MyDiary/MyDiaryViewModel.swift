@@ -19,11 +19,10 @@ final class MyDiaryViewModel {
   }
 
   func transform(input: Input) -> Output {
-
     let groupList = input.viewDidLoad
-      .flatMap { NetworkService.shared.group.diaryList() }
-      .compactMap { $0.data?.groups }
-      .asDriver(onErrorJustReturn: [])
+        .flatMap { NetworkService.shared.group.diaryList() }
+        .compactMap { $0.data?.groups }
+        .asDriver(onErrorJustReturn: [])
 
     return Output(groupList: groupList)
   }

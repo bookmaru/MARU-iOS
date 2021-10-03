@@ -124,8 +124,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       }
       if titleText == "내 일기장" {
         cell.rx.didTapAddButton
-          .subscribe(onNext: {
-            // 화면 전환 영역
+          .subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let viewController = MyDiaryViewController()
+            self.navigationController?.pushViewController(viewController, animated: true)
           })
           .disposed(by: cell.disposeBag)
       }

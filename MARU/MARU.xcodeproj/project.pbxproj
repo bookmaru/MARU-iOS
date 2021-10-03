@@ -100,6 +100,7 @@
 		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
 		C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37126EBA609001A2B54 /* RealmChat.swift */; };
 		C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */; };
+		C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -290,6 +291,7 @@
 		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
 		C57ED37126EBA609001A2B54 /* RealmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChat.swift; sourceTree = "<group>"; };
 		C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotification.swift; sourceTree = "<group>"; };
+		C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWriteViewModel.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 				C5209DF826F73B5B00CBFABD /* MyDiaryViewModel.swift */,
 				C5209DFA26F73C9000CBFABD /* MyDiaryCell.swift */,
 				C5209DFC26F782F300CBFABD /* DiaryWriteViewController.swift */,
+				C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */,
 				C557E60427019F8200C60923 /* DiaryView.swift */,
 			);
 			path = MyDiary;
@@ -1455,6 +1458,7 @@
 				C5B0C43D26FA05570000B4C0 /* BookModel.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
+				C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */,
 				C5B9B9A026B68DEA00D07974 /* User.swift in Sources */,
