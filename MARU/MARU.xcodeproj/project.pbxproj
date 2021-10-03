@@ -74,6 +74,7 @@
 		C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332ACA260F50EC007D7797 /* KeychainHandler.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
+		C557E60527019F8200C60923 /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C557E60427019F8200C60923 /* DiaryView.swift */; };
 		C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B6FDF26A80CF5009ACE85 /* GradientView.swift */; };
 		C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21BE266B616900D5D953 /* OnboardingViewController.swift */; };
 		C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */; };
@@ -259,6 +260,7 @@
 		C5332ACA260F50EC007D7797 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C557E60427019F8200C60923 /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		C55B6FDF26A80CF5009ACE85 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		C55E21BE266B616900D5D953 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				C5209DF826F73B5B00CBFABD /* MyDiaryViewModel.swift */,
 				C5209DFA26F73C9000CBFABD /* MyDiaryCell.swift */,
 				C5209DFC26F782F300CBFABD /* DiaryWriteViewController.swift */,
+				C557E60427019F8200C60923 /* DiaryView.swift */,
 			);
 			path = MyDiary;
 			sourceTree = "<group>";
@@ -1467,6 +1470,7 @@
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */,
 				C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */,
+				C557E60527019F8200C60923 /* DiaryView.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,

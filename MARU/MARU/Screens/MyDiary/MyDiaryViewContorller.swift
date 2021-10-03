@@ -86,7 +86,7 @@ final class MyDiaryViewController: BaseViewController {
   }
 
   private func setupNavigation() {
-    title = "내 일기장"
+    title = "작성할 수 있는 일기"
     navigationController?.navigationBar.isHidden = false
     navigationController?.interactivePopGestureRecognizer?.delegate = self
     guard let navigationBar = navigationController?.navigationBar else { return }
