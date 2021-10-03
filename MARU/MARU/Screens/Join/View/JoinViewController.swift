@@ -14,16 +14,19 @@ import RxSwift
 final class JoinViewController: BaseViewController {
   private let bookImageView = UIImageView().then {
     $0.image = Image.testImage
-  }
+  } // TODO: - 이미지 URL 연결하기
+
   private let gradientImageView = UIImageView().then {
     $0.image = Image.gradientImage
   }
+
   private let bookTitleLabel = UILabel().then {
-    $0.text = "엄성용교수가만안도"
+    $0.text = "책 제목 들어가는 곳"
     $0.numberOfLines = 2
     $0.font = .boldSystemFont(ofSize: 16)
     $0.textColor = .white
   }
+
   private let leftTimeLabel = UILabel().then {
     $0.textColor = .white
     let text = "토론이 1일 남았습니다."
@@ -34,62 +37,75 @@ final class JoinViewController: BaseViewController {
     $0.attributedText = attributedString
     $0.font = .boldSystemFont(ofSize: 15)
   }
+
   private let contentView = UIView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 10
     $0.applyShadow(color: .black, alpha: 0.16, shadowX: 0, shadowY: 0, blur: 10)
   }
+
   private let leadNameLabel = UILabel().then {
     $0.text = "방장 이름"
     $0.font = .systemFont(ofSize: 14, weight: .bold)
   }
+
   private let bookIconImageView = UIImageView().then {
     $0.image = Image.searchIcScore
   }
+
   private let partyImageView = UIImageView().then {
     $0.image = Image.searchIcMember
   }
+
   private let leadScoreLabel = UILabel().then {
     $0.text = "방장 평점"
     $0.font = .systemFont(ofSize: 10, weight: .medium)
     $0.textAlignment = .left
     $0.textColor = .mainBlue
   }
+
   private let scoreStateLabel = UILabel().then {
     $0.text = "5.0"
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.textAlignment = .left
     $0.textColor = .mainBlue
   }
+
   private let participantLabel = UILabel().then {
     $0.text = "현재 인원"
     $0.font = .systemFont(ofSize: 10, weight: .medium)
     $0.textAlignment = .left
     $0.textColor = .mainBlue
   }
+
   private let partyStateLabel = UILabel().then {
     $0.textColor = .mainBlue
     let text = "3/5"
-    let attributedString = NSMutableAttributedString(string: text)
-    attributedString.addAttribute(
-      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
-    )
-    $0.attributedText = attributedString
+    // MARK: - 폰트 색상 범위 재수정 할 예정
+    //    let attributedString = NSMutableAttributedString(string: text)
+    //    attributedString.addAttribute(
+    //      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
+    //    )
+    //    $0.attributedText = attributedString
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.textAlignment = .left
   }
+
   private let leftQuoteImageView = UIImageView().then {
     $0.image = Image.quotationMarkLeft
   }
+
   private let contentLabel = VerticalAlignLabel().then {
     $0.font = RIDIBatangFont.medium.of(size: 12)
     $0.textAlignment = .center
     $0.numberOfLines = 3
     $0.text = "식물책표지가되게예쁘네네네네네네무슨내용일까까까가가가가가가가가와랄랄라와랄랄라와랄랄라와랄라라"
   }
+
   private let rightQuoteImageView = UIImageView().then {
     $0.image = Image.quotationMarkRight
   }
+
   private let entryButton = UIButton().then {
     $0.backgroundColor = .mainBlue
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
@@ -98,13 +114,30 @@ final class JoinViewController: BaseViewController {
     // MARK: 임시 연결
     $0.addTarget(self, action: #selector(didTapEntryButton), for: .touchUpInside)
   }
+
+  private let viewModel = JoinViewModel()
+  fileprivate var data: GroupInformation? {
+    didSet {
+      if data?.image != "" {
+        bookImageView.imageFromUrl(data?.image, defaultImgPath: "")
+      }
+      bookTitleLabel.text = data?.title
+      leftTimeLabel.text = "토론이 \(data?.remainingDay)일 남았습니다."
+      leadNameLabel.text = data?.nickname
+      leadScoreLabel.text = "\(data?.leaderScore)/5"
+      partyStateLabel.text = "\(data?.userCount)/5"
+      contentLabel.text = data?.description
+    }
+  }
   private let groupID: Int
   override func viewDidLoad() {
     super.viewDidLoad()
     setLayout()
     setGradientViewLayout()
+    bind()
     // Do any additional setup after loading the view.
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     tabBarController?.tabBar.isHidden = true
@@ -172,6 +205,7 @@ extension JoinViewController {
       make.bottom.equalTo(gradientImageView).offset(-16)
     }
   }
+
   private func setGradientViewLayout() {
     contentView.adds([
       leadNameLabel,
@@ -235,6 +269,32 @@ extension JoinViewController {
       $0.width.equalTo(7)
       $0.height.equalTo(7)
       $0.top.equalTo(partyStateLabel.snp.bottom).offset(70)
+    }
+  }
+
+  private func bind() {
+    let viewDidLoadPublisher = PublishSubject<Void>()
+    let input = JoinViewModel.Input(
+      viewDidLoadPublisher: viewDidLoadPublisher,
+      groupID: groupID
+    )
+    let output = viewModel.transform(input: input)
+
+    output.data
+      .drive(onNext: {[weak self] data in
+        guard let self = self else { return }
+        self.data = data
+      })
+      .disposed(by: disposeBag)
+
+    viewDidLoadPublisher.onNext(())
+  }
+}
+
+extension Reactive where Base: JoinViewController {
+  var dataBinder: Binder<GroupInformation?> {
+    return Binder(base) { base, data in
+      base.data = data
     }
   }
 }
