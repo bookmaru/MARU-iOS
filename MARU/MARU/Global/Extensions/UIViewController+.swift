@@ -78,4 +78,20 @@ extension UIViewController {
     navigationBar.shadowImage = UIImage()
   }
 
+  func simpleAlertWithHandler(
+    title: String,
+    message: String?,
+    left: String,
+    right: String,
+    handler: ((UIAlertAction) -> Void)?
+  ) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let okAction = UIAlertAction(title: left, style: .default)
+    let noAction = UIAlertAction(title: right, style: .default, handler: handler)
+
+    alert.addAction(okAction)
+    alert.addAction(noAction)
+
+    present(alert, animated: true)
+  }
 }
