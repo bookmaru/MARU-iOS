@@ -116,6 +116,7 @@ final class JoinViewController: BaseViewController {
   }
 
   private let viewModel = JoinViewModel()
+  //MARK: - didSet/reactive binder 활용해서 받아오는건가?
   fileprivate var data: GroupInformation? {
     didSet {
       if data?.image != "" {
@@ -170,7 +171,7 @@ extension JoinViewController {
     ])
     bookImageView.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalTo(view).offset(130)
+      make.top.equalTo(view).offset(150)
       make.width.equalTo(208)
       make.height.equalTo(270)
     }
@@ -279,14 +280,12 @@ extension JoinViewController {
       groupID: groupID
     )
     let output = viewModel.transform(input: input)
-
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
         self.data = data
       })
       .disposed(by: disposeBag)
-
     viewDidLoadPublisher.onNext(())
   }
 }
