@@ -18,6 +18,7 @@ final class MyLibraryViewController: BaseViewController {
     // MARK: layout.headerReferenceSize 사용해서도 headerview size 조정 가능
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    collectionView.alwaysBounceVertical = true
     collectionView.register(
       MyLibraryHeaderView.self,
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
