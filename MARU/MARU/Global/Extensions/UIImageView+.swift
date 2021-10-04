@@ -19,6 +19,7 @@ extension UIImageView {
     kf.indicatorType = .activity
     guard let url = URL(string: url) else {
       image = defaultImage
+      backgroundColor = .black.withAlphaComponent(0.05)
       return
     }
     kf.setImage(
