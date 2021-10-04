@@ -27,7 +27,13 @@ final class MyDiaryViewController: BaseViewController {
     collectionView.register(cell: MyDiaryCell.self)
     return collectionView
   }()
-
+  private let emptyView = EmptyView(
+    image: Image.group1027?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    content: """
+    작성 할수있는 일기장이
+    존재하지 않아요 :(
+    """
+  )
   private let viewModel = MyDiaryViewModel()
   private var diaryList: [Group] = [] {
     didSet {
@@ -63,16 +69,17 @@ final class MyDiaryViewController: BaseViewController {
 
   private func render() {
     view.add(collectionView)
+    view.add(emptyView)
     collectionView.snp.makeConstraints {
       $0.edges.equalTo(view.safeAreaLayoutGuide)
+    }
+    emptyView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
     }
   }
 
   private func bind() {
     let viewWillAppearPublisher = rx.methodInvoked(#selector(UIViewController.viewWillAppear))
-      .do(onNext: { _ in
-        print("asdasd viewWill")
-      })
       .map { _ in }
 
     let input = MyDiaryViewModel.Input(viewDidLoad: viewWillAppearPublisher)
@@ -80,9 +87,12 @@ final class MyDiaryViewController: BaseViewController {
 
     output.groupList
       .drive(onNext: { [weak self] list in
+        self?.emptyView.isHidden = !list.isEmpty
+
         guard let self = self,
               !list.isEmpty
         else { return }
+
         self.diaryList = list
       })
       .disposed(by: disposeBag)
