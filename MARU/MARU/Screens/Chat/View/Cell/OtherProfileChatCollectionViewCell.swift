@@ -27,7 +27,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
     $0.numberOfLines = 0
   }
 
-  private let chatBubbleView = UIView().then {
+  fileprivate let chatBubbleView = UIView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 16
     $0.layer.borderWidth = 1
@@ -88,5 +88,11 @@ extension Reactive where Base: OtherProfileChatCollectionViewCell {
     return Binder(base) { base, data in
       base.data = data
     }
+  }
+
+  var didLongTapBubble: Observable<Void> {
+    return base.chatBubbleView.rx.longPressGesture()
+      .when(.recognized)
+      .map { _ in }
   }
 }
