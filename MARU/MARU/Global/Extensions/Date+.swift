@@ -16,11 +16,12 @@ extension Date {
     let calendar = Calendar.current
     let now = Date() // 서버시간이 9시간 밀려서 뺌
     let unitFlags: NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfYear, .month, .year]
-    let components = (calendar as NSCalendar).components(unitFlags,
-                                                         from: self,
-                                                         to: now,
-                                                         options: [])
-
+    let components = (calendar as NSCalendar).components(
+      unitFlags,
+      from: self,
+      to: now,
+      options: []
+    )
 
     // 남은 일수 계산
     if let day = components.day, day >= 1 {

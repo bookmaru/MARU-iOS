@@ -80,7 +80,12 @@ final class SettingViewController: BaseViewController {
     if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
       delegate.window?.rootViewController = viewController
     }
-    present(viewController, animated: false)
+    present(viewController, animated: false) {
+      let roomIDList = RealmService.shared.findRoomID()
+      roomIDList.forEach {
+        ChatService.shared.unsubscribeRoom(roomID: $0)
+      }
+    }
   }
 }
 
@@ -98,12 +103,7 @@ extension SettingViewController: UICollectionViewDelegate {
         self.logout()
       })
       alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-      present(alert, animated: true) {
-        let roomIDList = RealmService.shared.findRoomID()
-        roomIDList.forEach {
-          ChatService.shared.unsubscribeRoom(roomID: $0)
-        }
-      }
+      present(alert, animated: true)
     default:
       break
     }

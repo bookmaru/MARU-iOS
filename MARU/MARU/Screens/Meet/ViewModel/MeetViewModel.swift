@@ -11,7 +11,7 @@ import RxSwift
 final class MeetViewModel {
 
   struct Input {
-    let viewDidLoadPublisher: PublishSubject<Void>
+    let viewDidLoadPublisher: Observable<Void>
   }
 
   struct Output {
@@ -20,12 +20,11 @@ final class MeetViewModel {
 
   private let realm = RealmNotification()
   private var chatPublisher = BehaviorSubject<RealmChat?>(value: .init())
-  private var initialize: [RealmChat] = []
 
   func transform(input: Input) -> Output {
-    chatPublisher = realm.fetchChatRooms()
+    _ = RealmService.shared.findRoomID()
 
-    initialize = RealmService.shared.getChatRoom()
+    chatPublisher = realm.fetchChatRooms()
 
     let group = input.viewDidLoadPublisher
       .flatMap { NetworkService.shared.group.participateList() }
@@ -33,15 +32,15 @@ final class MeetViewModel {
       .compactMap { $0 }
 
     let generatedChat = chatPublisher
-      .map { [weak self] chat -> [RealmChat] in
-        guard let self = self else { return [] }
-        self.initialize = self.initialize.map { groupChat -> RealmChat in
+      .map { chat -> [RealmChat] in
+        var initialize = RealmService.shared.getChatRoom()
+        initialize = initialize.map { groupChat -> RealmChat in
           if groupChat.roomID == chat?.roomID {
             return chat ?? RealmChat()
           }
           return groupChat
         }
-        return self.initialize
+        return initialize
       }
 
     let generatedGroup = BehaviorSubject

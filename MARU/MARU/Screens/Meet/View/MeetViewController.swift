@@ -116,7 +116,8 @@ extension MeetViewController {
   }
 
   private func bind() {
-    let viewDidLoad = PublishSubject<Void>()
+    let viewDidLoad = rx.methodInvoked(#selector(UIViewController.viewWillAppear))
+      .map { _ in }
     let input = ViewModel.Input(viewDidLoadPublisher: viewDidLoad)
     let output = viewModel.transform(input: input)
 
@@ -126,8 +127,6 @@ extension MeetViewController {
         self.data = response
       })
       .disposed(by: disposeBag)
-
-    viewDidLoad.onNext(())
   }
 
   private func setupCollectionView() {
