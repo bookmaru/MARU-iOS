@@ -234,7 +234,7 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.didLongTapBubble
         .map { data }
         .bind(to: didLongTapBubblePubblisher)
-        .disposed(by: disposeBag)
+        .disposed(by: cell.disposeBag)
 
       return cell
 
@@ -244,7 +244,7 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.didLongTapBubble
         .map { data }
         .bind(to: didLongTapBubblePubblisher)
-        .disposed(by: disposeBag)
+        .disposed(by: cell.disposeBag)
 
       return cell
     }

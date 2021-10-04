@@ -12,6 +12,12 @@ import RxSwift
 
 final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
 
+  override var isHighlighted: Bool {
+    didSet {
+      chatBubbleView.backgroundColor = isHighlighted ? .black.withAlphaComponent(0.02) : .white
+    }
+  }
+
   private let profileImageView = UIImageView().then {
     $0.backgroundColor = .red.withAlphaComponent(0.1)
     $0.layer.cornerRadius = 15
@@ -41,6 +47,8 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
     }
   }
 
+  var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -52,6 +60,7 @@ final class OtherProfileChatCollectionViewCell: UICollectionViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
+    disposeBag = DisposeBag()
   }
 
   private func render() {

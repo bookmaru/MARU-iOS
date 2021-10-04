@@ -41,7 +41,6 @@ final class OtherChatCollectionViewCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
-    bind()
   }
 
   required init?(coder: NSCoder) {
@@ -66,10 +65,6 @@ final class OtherChatCollectionViewCell: UICollectionViewCell {
       let inset = UIEdgeInsets(top: -9, left: -11, bottom: -9, right: -11)
       $0.edges.equalTo(chatLabel).inset(inset)
     }
-  }
-
-  private func bind() {
-
   }
 
 }
