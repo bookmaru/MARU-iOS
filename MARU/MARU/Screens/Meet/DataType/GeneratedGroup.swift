@@ -5,6 +5,8 @@
 //  Created by 오준현 on 2021/09/17.
 //
 
+import Foundation
+
 struct GeneratedGroup {
   let discussionGroupID: Int
   let description: String
@@ -16,6 +18,7 @@ struct GeneratedGroup {
   let nickname: String
   let message: String
   let chatUserName: String
+  let chatTime: Date
 
   init(group: Group, message: RealmChat) {
     discussionGroupID = group.discussionGroupID
@@ -28,5 +31,6 @@ struct GeneratedGroup {
     nickname = group.nickname
     self.message = message.content
     chatUserName = message.userName
+    chatTime = message.time
   }
 }
