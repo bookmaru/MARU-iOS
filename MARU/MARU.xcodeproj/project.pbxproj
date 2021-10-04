@@ -74,6 +74,7 @@
 		C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5332ACA260F50EC007D7797 /* KeychainHandler.swift */; };
 		C5436FB3262F1FFE00C2E1D3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */; };
 		C5436FBB262F201B00C2E1D3 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */; };
+		C557E60527019F8200C60923 /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C557E60427019F8200C60923 /* DiaryView.swift */; };
 		C55B6FE026A80CF5009ACE85 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55B6FDF26A80CF5009ACE85 /* GradientView.swift */; };
 		C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21BE266B616900D5D953 /* OnboardingViewController.swift */; };
 		C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */; };
@@ -99,6 +100,7 @@
 		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
 		C57ED37226EBA609001A2B54 /* RealmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37126EBA609001A2B54 /* RealmChat.swift */; };
 		C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */; };
+		C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */; };
 		C58F6A4F2646CFB000D8AA7C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A4E2646CFB000D8AA7C /* Int+.swift */; };
 		C58F6A512646D05A00D8AA7C /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A502646D05A00D8AA7C /* String+.swift */; };
 		C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58F6A532646E9D600D8AA7C /* NetworkService.swift */; };
@@ -259,6 +261,7 @@
 		C5332ACA260F50EC007D7797 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C5436FBA262F201B00C2E1D3 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C557E60427019F8200C60923 /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		C55B6FDF26A80CF5009ACE85 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		C55E21BE266B616900D5D953 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		C55E21C0266B7A9400D5D953 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -288,6 +291,7 @@
 		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
 		C57ED37126EBA609001A2B54 /* RealmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChat.swift; sourceTree = "<group>"; };
 		C57ED37326EBBC5B001A2B54 /* RealmNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotification.swift; sourceTree = "<group>"; };
+		C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWriteViewModel.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
 		C58F6A4E2646CFB000D8AA7C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		C58F6A502646D05A00D8AA7C /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C58F6A532646E9D600D8AA7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 				C5209DF826F73B5B00CBFABD /* MyDiaryViewModel.swift */,
 				C5209DFA26F73C9000CBFABD /* MyDiaryCell.swift */,
 				C5209DFC26F782F300CBFABD /* DiaryWriteViewController.swift */,
+				C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */,
+				C557E60427019F8200C60923 /* DiaryView.swift */,
 			);
 			path = MyDiary;
 			sourceTree = "<group>";
@@ -1452,6 +1458,7 @@
 				C5B0C43D26FA05570000B4C0 /* BookModel.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
+				C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */,
 				C55F173B260F4418003D99D0 /* UIView+.swift in Sources */,
 				C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */,
 				C5B9B9A026B68DEA00D07974 /* User.swift in Sources */,
@@ -1467,6 +1474,7 @@
 				776E525B26B1255600D2C5FA /* SearchService.swift in Sources */,
 				77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */,
 				C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */,
+				C557E60527019F8200C60923 /* DiaryView.swift in Sources */,
 				C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */,
 				F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */,
 				C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */,

@@ -16,6 +16,15 @@ struct Diary: Codable {
   let bookTitle: String
   let bookAuthor: String
   let bookImage: String
+
+  enum CodingKeys: String, CodingKey {
+    case diaryID = "diaryId"
+    case diaryTitle
+    case createdAt
+    case bookTitle
+    case bookAuthor
+    case bookImage
+  }
 }
 // MARK: - 일기 1개에 대한 자세한 정보 get
 struct DiaryInfo: Codable {

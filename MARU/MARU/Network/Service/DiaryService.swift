@@ -10,11 +10,12 @@ import RxSwift
 
 protocol DiaryServiceType {
   func getDiaryList() -> Observable<BaseReponseType<Diaries>>
-  func getDiary(diaryId: Int) -> Observable<BaseReponseType<DiaryInfo>>
+  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryInfo>>
+  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
 }
 
 final class DiaryService: DiaryServiceType {
-  private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func getDiaryList() -> Observable<BaseReponseType<Diaries>> {
     router.rx
@@ -23,10 +24,18 @@ final class DiaryService: DiaryServiceType {
       .map(BaseReponseType<Diaries>.self)
   }
 
-  func getDiary(diaryId: Int) -> Observable<BaseReponseType<DiaryInfo>> {
+  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryInfo>> {
     return router.rx
-      .request(.get(diaryId: diaryId))
+      .request(.get(diaryID: diaryID))
       .asObservable()
       .map(BaseReponseType<DiaryInfo>.self)
   }
+
+  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
+    return router.rx
+      .request(.post(groupID: groupID, title: title, content: content))
+      .asObservable()
+      .map(BaseReponseType<Int>.self)
+  }
+
 }

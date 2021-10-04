@@ -69,8 +69,13 @@ final class MyDiaryViewController: BaseViewController {
   }
 
   private func bind() {
-    let viewDidLoadPublisher = PublishSubject<Void>()
-    let input = MyDiaryViewModel.Input(viewDidLoad: viewDidLoadPublisher)
+    let viewWillAppearPublisher = rx.methodInvoked(#selector(UIViewController.viewWillAppear))
+      .do(onNext: { _ in
+        print("asdasd viewWill")
+      })
+      .map { _ in }
+
+    let input = MyDiaryViewModel.Input(viewDidLoad: viewWillAppearPublisher)
     let output = viewModel.transform(input: input)
 
     output.groupList
@@ -82,11 +87,10 @@ final class MyDiaryViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
 
-    viewDidLoadPublisher.onNext(())
   }
 
   private func setupNavigation() {
-    title = "내 일기장"
+    title = "작성할 수 있는 일기"
     navigationController?.navigationBar.isHidden = false
     navigationController?.interactivePopGestureRecognizer?.delegate = self
     guard let navigationBar = navigationController?.navigationBar else { return }
@@ -105,6 +109,12 @@ extension MyDiaryViewController: UICollectionViewDelegateFlowLayout {
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     return CGSize(width: view.frame.width - 40, height: 142)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let item = diaryList[indexPath.item]
+    let viewController = DiaryWriteViewController(diary: item)
+    navigationController?.pushViewController(viewController, animated: true)
   }
 }
 
