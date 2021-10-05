@@ -14,7 +14,7 @@ import RxSwift
 final class JoinViewController: BaseViewController {
   private let bookImageView = UIImageView().then {
     $0.image = Image.testImage
-  } // TODO: - 이미지 URL 연결하기
+  }
 
   private let gradientImageView = UIImageView().then {
     $0.image = Image.gradientImage
@@ -80,13 +80,12 @@ final class JoinViewController: BaseViewController {
 
   private let partyStateLabel = UILabel().then {
     $0.textColor = .mainBlue
-    let text = "3/5"
-    // MARK: - 폰트 색상 범위 재수정 할 예정
-    //    let attributedString = NSMutableAttributedString(string: text)
-    //    attributedString.addAttribute(
-    //      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
-    //    )
-    //    $0.attributedText = attributedString
+//    let text = "3/5"
+//    let attributedString = NSMutableAttributedString(string: text)
+//    attributedString.addAttribute(
+//      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
+//    )
+//    $0.attributedText = attributedString
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.textAlignment = .left
   }
@@ -116,17 +115,22 @@ final class JoinViewController: BaseViewController {
   }
 
   private let viewModel = JoinViewModel()
-  fileprivate var data: GroupInformation?
-  {
+  fileprivate var data: GroupInformation? {
     didSet {
       if data?.groups?.image != "" {
         bookImageView.imageFromUrl(data?.groups?.image, defaultImgPath: "")
       }
       bookTitleLabel.text = data?.groups?.title
-      leftTimeLabel.text = "토론이 \(String(describing: data?.groups?.remainingDay))일 남았습니다."
+      let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
+      let attributedString = NSMutableAttributedString(string: text)
+      attributedString.addAttribute(
+        .foregroundColor,
+        value: UIColor.cornFlowerBlue,
+        range: (text as NSString).range(of: "\(data?.groups?.remainingDay ?? -1)"))
+      leftTimeLabel.attributedText = attributedString
       leadNameLabel.text = data?.groups?.nickname
-      leadScoreLabel.text = "\(String(describing: data?.groups?.leaderScore))/5"
-      partyStateLabel.text = "\(String(describing: data?.groups?.userCount))/5"
+      scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
+      partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
       contentLabel.text = data?.groups?.description
     }
   }
@@ -143,6 +147,8 @@ final class JoinViewController: BaseViewController {
     super.viewWillAppear(false)
     tabBarController?.tabBar.isHidden = true
     setNavigationBar(isHidden: false)
+    navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
+    navigationController?.navigationBar.barTintColor = .white
   }
 
   init(groupID: Int) {
@@ -188,7 +194,6 @@ extension JoinViewController {
       make.leading.equalTo(view.safeAreaLayoutGuide)
       make.trailing.equalTo(view.safeAreaLayoutGuide)
       make.bottom.equalTo(view.safeAreaLayoutGuide)
-      //  make.top.equalTo(contentView.snp.bottom).offset(90)
       make.height.equalTo(49)
     }
     gradientImageView.adds([
@@ -226,6 +231,7 @@ extension JoinViewController {
     }
     bookIconImageView.snp.makeConstraints {
       $0.top.equalTo(leadNameLabel)
+      $0.trailing.lessThanOrEqualTo(70)
       $0.width.equalTo(9)
       $0.height.equalTo(9)
     }
@@ -236,10 +242,10 @@ extension JoinViewController {
     scoreStateLabel.snp.makeConstraints {
       $0.top.equalTo(bookIconImageView)
       $0.leading.equalTo(leadScoreLabel.snp.trailing).offset(4)
-      $0.trailing.equalToSuperview().offset(-17)
     }
     partyImageView.snp.makeConstraints {
-      $0.top.equalTo(bookIconImageView.snp.bottom).offset(4)
+      $0.top.equalTo(bookIconImageView.snp.bottom).offset(6)
+      $0.trailing.lessThanOrEqualTo(bookIconImageView.snp.trailing)
       $0.width.equalTo(9)
       $0.height.equalTo(9)
     }
@@ -250,7 +256,6 @@ extension JoinViewController {
     partyStateLabel.snp.makeConstraints {
       $0.top.equalTo(partyImageView)
       $0.leading.equalTo(participantLabel.snp.trailing).offset(4)
-      $0.trailing.equalToSuperview().offset(-17)
     }
     leftQuoteImageView.snp.makeConstraints {
       $0.top.equalTo(leadNameLabel.snp.bottom).offset(44)
@@ -259,7 +264,7 @@ extension JoinViewController {
       $0.height.equalTo(7)
     }
     contentLabel.snp.makeConstraints {
-      $0.top.equalTo(partyImageView.snp.bottom).offset(39)
+      $0.top.equalTo(partyImageView.snp.bottom).offset(45)
       $0.leading.equalTo(leftQuoteImageView.snp.trailing).offset(20)
       $0.width.equalTo(185)
       $0.height.equalTo(60)
@@ -284,7 +289,6 @@ extension JoinViewController {
       .drive(onNext: { [weak self] data in
         guard let self = self else { return }
         self.data = data
-        print("아오\(self.data)")
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
