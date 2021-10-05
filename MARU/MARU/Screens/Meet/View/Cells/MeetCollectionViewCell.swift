@@ -89,6 +89,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
       nameLabel.text = data?.chatUserName
       contentLabel.text = data?.description
       chatLabel.text = data?.message
+      timeLabel.text = data?.chatTime.chatTime
     }
   }
   override init(frame: CGRect) {

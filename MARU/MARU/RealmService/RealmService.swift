@@ -57,11 +57,23 @@ final class RealmService {
   }
 
   func deleteRoom(roomID: Int) {
+    let realm = try! Realm()
+
     let room = realm.objects(RealmChat.self)
       .filter("roomID == \(roomID)")
 
     try! realm.write {
       realm.delete(room)
+    }
+  }
+
+  func deleteAll() {
+    do {
+      try realm.write {
+        realm.deleteAll()
+      }
+    } catch {
+      print("asdasd", error)
     }
   }
 

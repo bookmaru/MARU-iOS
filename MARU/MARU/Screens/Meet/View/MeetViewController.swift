@@ -67,6 +67,7 @@ final class MeetViewController: BaseViewController {
     layout()
     bind()
     setupCollectionView()
+    setNavigation()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +75,14 @@ final class MeetViewController: BaseViewController {
 
     tabBarController?.tabBar.isHidden = false
     navigationItem.title = ""
+  }
+
+  private func setNavigation() {
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.shadowImage = UIImage()
+    navigationBar.isTranslucent = true
+    navigationBar.tintColor = .black
   }
 }
 
@@ -88,7 +97,7 @@ extension MeetViewController {
     view.add(pageControl)
     guideImageView.snp.makeConstraints {
       $0.leading.equalTo(view.safeAreaLayoutGuide).offset(40)
-      $0.top.equalTo(view.safeAreaLayoutGuide).offset(62.9)
+      $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
       $0.width.height.equalTo(28)
     }
     guideLabel.snp.makeConstraints {
@@ -107,7 +116,8 @@ extension MeetViewController {
   }
 
   private func bind() {
-    let viewDidLoad = PublishSubject<Void>()
+    let viewDidLoad = rx.methodInvoked(#selector(UIViewController.viewWillAppear))
+      .map { _ in }
     let input = ViewModel.Input(viewDidLoadPublisher: viewDidLoad)
     let output = viewModel.transform(input: input)
 
@@ -117,8 +127,6 @@ extension MeetViewController {
         self.data = response
       })
       .disposed(by: disposeBag)
-
-    viewDidLoad.onNext(())
   }
 
   private func setupCollectionView() {
