@@ -11,6 +11,7 @@ enum GroupRouter {
   case participate
   case chatList(roomID: Int)
   case diaryList
+  case groupInfo(groupID: Int)
 }
 
 extension GroupRouter: TargetType {
@@ -31,6 +32,8 @@ extension GroupRouter: TargetType {
       return "chat/group/\(roomID)"
     case .diaryList:
       return "group/diary"
+    case .groupInfo(let groupID):
+      return "group/\(groupID)/intro"
     }
   }
 
@@ -41,6 +44,8 @@ extension GroupRouter: TargetType {
     case .chatList:
       return .get
     case .diaryList:
+      return .get
+    case .groupInfo:
       return .get
     }
   }
@@ -54,6 +59,8 @@ extension GroupRouter: TargetType {
     case .chatList:
       return .requestPlain
     case .diaryList:
+      return .requestPlain
+    case .groupInfo:
       return .requestPlain
     }
   }

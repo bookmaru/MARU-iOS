@@ -12,10 +12,12 @@ protocol GroupServiceType {
   func participateList() -> Observable<BaseReponseType<Groups>>
   func chatList(roomID: Int) -> Observable<[RealmChat]>
   func diaryList() -> Observable<BaseReponseType<Groups>>
+  func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>>
 }
 
 final class GroupService: GroupServiceType {
-  private let router = MoyaProvider<GroupRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+
+  private let router = MoyaProvider<GroupRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func participateList() -> Observable<BaseReponseType<Groups>> {
     return router.rx
@@ -36,5 +38,12 @@ final class GroupService: GroupServiceType {
       .request(.diaryList)
       .asObservable()
       .map(BaseReponseType<Groups>.self)
+  }
+
+  func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>> {
+    return router.rx
+      .request(.groupInfo(groupID: groupID))
+      .asObservable()
+      .map(BaseReponseType<GroupInformation>.self)
   }
 }

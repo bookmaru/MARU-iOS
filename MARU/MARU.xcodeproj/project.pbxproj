@@ -151,6 +151,8 @@
 		F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */; };
 		F276305326FE2A4D0043DB42 /* ResultBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276305226FE2A4D0043DB42 /* ResultBookCell.swift */; };
 		F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCaseModel.swift */; };
+		F28FF224270A01FE0026FF8A /* GroupInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28FF223270A01FE0026FF8A /* GroupInformation.swift */; };
+		F28FF226270A04590026FF8A /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28FF225270A04590026FF8A /* JoinViewModel.swift */; };
 		F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */; };
 		F29FF4F026D26CFD00336AD5 /* MyLibraryBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */; };
 		F2A70D262701D24700560099 /* EvaluateWarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */; };
@@ -344,6 +346,8 @@
 		F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		F276305226FE2A4D0043DB42 /* ResultBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookCell.swift; sourceTree = "<group>"; };
 		F28E550726C8EFB900F083BD /* BookCaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCaseModel.swift; sourceTree = "<group>"; };
+		F28FF223270A01FE0026FF8A /* GroupInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInformation.swift; sourceTree = "<group>"; };
+		F28FF225270A04590026FF8A /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookCaseCell.swift; sourceTree = "<group>"; };
 		F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryBookCell.swift; sourceTree = "<group>"; };
 		F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateWarningViewController.swift; sourceTree = "<group>"; };
@@ -840,6 +844,7 @@
 				F223E3C726C8F8320039919A /* UserInformation.swift */,
 				F223E3C926C97A180039919A /* DiaryModel.swift */,
 				77DB3BE426EF4E9600E63050 /* MakeGroup.swift */,
+				F28FF223270A01FE0026FF8A /* GroupInformation.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1082,6 +1087,7 @@
 			isa = PBXGroup;
 			children = (
 				F2F0C6592680769800F8061A /* View */,
+				F28FF225270A04590026FF8A /* JoinViewModel.swift */,
 			);
 			path = Join;
 			sourceTree = "<group>";
@@ -1385,6 +1391,7 @@
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
 				77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
+				F28FF226270A04590026FF8A /* JoinViewModel.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
 				77847E8226D353420054742F /* Category.swift in Sources */,
@@ -1409,6 +1416,7 @@
 				77E1510426232938007BEBBF /* QuizContentView.swift in Sources */,
 				C55E21C1266B7A9400D5D953 /* OnboardingCollectionViewCell.swift in Sources */,
 				F2CDD3F026F74AD00019EDEB /* BookFavoritesShelfCell.swift in Sources */,
+				F28FF224270A01FE0026FF8A /* GroupInformation.swift in Sources */,
 				F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */,
 				C52F9F72264271BE007C73B7 /* OtherChatCollectionViewCell.swift in Sources */,
 				F2CDD3F226F7B0CB0019EDEB /* ResultBookViewController.swift in Sources */,
