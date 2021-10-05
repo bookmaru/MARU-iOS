@@ -116,18 +116,18 @@ final class JoinViewController: BaseViewController {
   }
 
   private let viewModel = JoinViewModel()
-  //MARK: - didSet/reactive binder 활용해서 받아오는건가?
-  fileprivate var data: GroupInformation? {
+  fileprivate var data: GroupInformation?
+  {
     didSet {
-      if data?.image != "" {
-        bookImageView.imageFromUrl(data?.image, defaultImgPath: "")
+      if data?.groups?.image != "" {
+        bookImageView.imageFromUrl(data?.groups?.image, defaultImgPath: "")
       }
-      bookTitleLabel.text = data?.title
-      leftTimeLabel.text = "토론이 \(data?.remainingDay)일 남았습니다."
-      leadNameLabel.text = data?.nickname
-      leadScoreLabel.text = "\(data?.leaderScore)/5"
-      partyStateLabel.text = "\(data?.userCount)/5"
-      contentLabel.text = data?.description
+      bookTitleLabel.text = data?.groups?.title
+      leftTimeLabel.text = "토론이 \(String(describing: data?.groups?.remainingDay))일 남았습니다."
+      leadNameLabel.text = data?.groups?.nickname
+      leadScoreLabel.text = "\(String(describing: data?.groups?.leaderScore))/5"
+      partyStateLabel.text = "\(String(describing: data?.groups?.userCount))/5"
+      contentLabel.text = data?.groups?.description
     }
   }
   private let groupID: Int
@@ -281,12 +281,14 @@ extension JoinViewController {
     )
     let output = viewModel.transform(input: input)
     output.data
-      .drive(onNext: {[weak self] data in
+      .drive(onNext: { [weak self] data in
         guard let self = self else { return }
         self.data = data
+        print("아오\(self.data)")
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
+    self.rx.dataBinder.onNext(self.data)
   }
 }
 
