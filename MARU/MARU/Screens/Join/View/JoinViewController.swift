@@ -80,12 +80,6 @@ final class JoinViewController: BaseViewController {
 
   private let partyStateLabel = UILabel().then {
     $0.textColor = .mainBlue
-//    let text = "3/5"
-//    let attributedString = NSMutableAttributedString(string: text)
-//    attributedString.addAttribute(
-//      .foregroundColor, value: UIColor.cornFlowerBlue, range: (text as NSString).range(of: "3")
-//    )
-//    $0.attributedText = attributedString
     $0.font = .systemFont(ofSize: 13, weight: .semibold)
     $0.textAlignment = .left
   }
