@@ -16,7 +16,9 @@ final class MeetingListCell: UICollectionViewCell {
   }
 
   private let bookImageView = UIImageView().then {
-    $0.backgroundColor = .clear
+    $0.backgroundColor = .white
+    $0.layer.masksToBounds = true
+    $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     $0.layer.cornerRadius = 5
     $0.image = Image.testImage
   }
@@ -72,6 +74,7 @@ final class MeetingListCell: UICollectionViewCell {
 
   override init(frame: CGRect) {
       super.init(frame: frame)
+    backgroundColor = .white
     applyLayout()
     applyShadow()
   }
@@ -136,7 +139,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookTitleLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(shadowView.snp.top).inset(10)
       make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
-      make.width.lessThanOrEqualTo(shadowView.snp.width)
+      make.width.equalToSuperview().multipliedBy(0.403)
       make.height.equalTo(13)
     }
     remainPeriodLabel.snp.makeConstraints { (make) in
@@ -187,10 +190,12 @@ final class MeetingListCell: UICollectionViewCell {
   }
 
   private func applyShadow() {
-    shadowView.applyShadow(color: .black,
-                           alpha: 0.28,
-                           shadowX: 0,
-                           shadowY: 0,
-                           blur: 15/2)
+    shadowView.applyShadow(
+      color: .black,
+      alpha: 0.1,
+      shadowX: 0,
+      shadowY: 0,
+      blur: 15
+    )
   }
 }

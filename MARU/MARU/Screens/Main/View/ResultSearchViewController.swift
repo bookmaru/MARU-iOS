@@ -138,7 +138,7 @@ extension ResultSearchViewController {
 
     view.add(resultCollectionView) {
       $0.snp.makeConstraints { make in
-        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(16)
+        make.top.equalTo(self.view.safeAreaLayoutGuide).inset(1)
         make.leading.equalToSuperview()
         make.trailing.equalToSuperview()
         make.bottom.equalToSuperview()

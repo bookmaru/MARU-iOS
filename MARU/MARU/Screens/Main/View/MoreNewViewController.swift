@@ -342,7 +342,7 @@ extension MoreNewViewController {
       make.leading.equalTo(religionButton.snp.trailing).inset(-5)
     }
     collectionView.snp.makeConstraints { (make) in
-      make.top.equalTo(buttonScrollView.snp.bottom).inset(-15)
+      make.top.equalTo(buttonScrollView.snp.bottom).inset(-1)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
       make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
@@ -412,7 +412,7 @@ extension MoreNewViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     insetForSectionAt section: Int
   ) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    return UIEdgeInsets(top: 15, left: 15, bottom: 0, right: 15)
   }
 
   func collectionView(
