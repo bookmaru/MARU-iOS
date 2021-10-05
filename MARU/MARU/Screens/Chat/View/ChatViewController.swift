@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 final class ChatViewController: BaseViewController {
   typealias ViewModel = ChatViewModel
   typealias MyChatCell = MyChatCollectionViewCell
@@ -38,6 +41,8 @@ final class ChatViewController: BaseViewController {
     }
   }
 
+  private let didLongTapBubblePubblisher = PublishSubject<RealmChat>()
+  private let reportPublisher = PublishSubject<RealmChat>()
   private let bottomView = InputView()
 
   private let viewModel: ChatViewModel
@@ -123,7 +128,26 @@ extension ChatViewController {
   private func bind() {
     bindKeyboardNotification()
 
-    let input = ViewModel.Input()
+    didLongTapBubblePubblisher
+      .subscribe(onNext: { [weak self] chat in
+        guard let self = self else { return }
+        let title = "신고하기"
+        let message = """
+        부적적한 채팅인 경우 신고해주세요.
+        관리자가 검토하고 조치합니다.
+        """
+        self.simpleAlertWithHandler(
+          title: title,
+          message: message,
+          left: "아니요",
+          right: "신고하기"
+        ) { _ in
+          self.reportPublisher.onNext(chat)
+        }
+      })
+      .disposed(by: disposeBag)
+
+    let input = ViewModel.Input(didLongTap: reportPublisher)
     let ouput = viewModel.transform(input: input)
 
     ouput.chat
@@ -134,6 +158,17 @@ extension ChatViewController {
         if offset < 30 {
           self.scrollToBottom(true)
         }
+      })
+      .disposed(by: disposeBag)
+
+    ouput.isReportSuccess
+      .drive(onNext: { [weak self] isSuccess in
+        guard let self = self else { return }
+        if isSuccess {
+          self.showToast("신고가 완료되었습니다.")
+          return
+        }
+        self.showToast("오류로 인해 신고하지 못했습니다.")
       })
       .disposed(by: disposeBag)
   }
@@ -196,12 +231,20 @@ extension ChatViewController: UICollectionViewDataSource {
     case .otherMessage(let data):
       let cell: OtherChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.dataBinder.onNext(data)
+      cell.rx.didLongTapBubble
+        .map { data }
+        .bind(to: didLongTapBubblePubblisher)
+        .disposed(by: cell.disposeBag)
 
       return cell
 
     case .otherProfile(let data):
       let cell: OtherProfileChatCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.dataBinder.onNext(data)
+      cell.rx.didLongTapBubble
+        .map { data }
+        .bind(to: didLongTapBubblePubblisher)
+        .disposed(by: cell.disposeBag)
 
       return cell
     }

@@ -28,6 +28,7 @@ enum AuthRouter {
   case refresh
   case user
   case changeProfile(String)
+  case report(chat: RealmChat)
 }
 
 extension AuthRouter: TargetType {
@@ -49,12 +50,14 @@ extension AuthRouter: TargetType {
       return "user"
     case .changeProfile(let nickname):
       return "user/profile/\(nickname)"
+    case .report:
+      return "users/report"
     }
   }
 
   var method: Method {
     switch self {
-    case .auth, .information, .refresh:
+    case .auth, .information, .refresh, .report:
       return .post
     case .changeProfile:
       return .patch
@@ -83,6 +86,12 @@ extension AuthRouter: TargetType {
         bodyEncoding: JSONEncoding.default,
         urlParameters: .init()
       )
+    case .report(let chat):
+      let parameters: [String: Any] = [
+        "chatId": chat.chatID,
+        "reportedUserId": chat.userID
+      ]
+      return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     default:
       return .requestPlain
     }
@@ -100,7 +109,7 @@ extension AuthRouter: TargetType {
         "Content-Type": "application/json",
         "RefreshToken": KeychainHandler.shared.refreshToken
       ]
-    case .user:
+    case .user, .report:
       return [
         "Content-Type": "application/json",
         "accessToken": KeychainHandler.shared.accessToken

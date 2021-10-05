@@ -12,12 +12,18 @@ import RxSwift
 
 final class OtherChatCollectionViewCell: UICollectionViewCell {
 
+  override var isHighlighted: Bool {
+    didSet {
+      chatBubbleView.backgroundColor = isHighlighted ? .black.withAlphaComponent(0.02) : .white
+    }
+  }
+
   private let chatLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 13, weight: .regular)
     $0.numberOfLines = 0
   }
 
-  private let chatBubbleView = UIView().then {
+  fileprivate let chatBubbleView = UIView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 16
     $0.layer.borderWidth = 1
@@ -30,6 +36,8 @@ final class OtherChatCollectionViewCell: UICollectionViewCell {
     }
   }
 
+  var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -41,6 +49,7 @@ final class OtherChatCollectionViewCell: UICollectionViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
+    disposeBag = DisposeBag()
   }
 
   private func render() {
@@ -65,5 +74,11 @@ extension Reactive where Base: OtherChatCollectionViewCell {
     return Binder(base) { base, data in
       base.data = data
     }
+  }
+
+  var didLongTapBubble: Observable<Void> {
+    return base.chatBubbleView.rx.longPressGesture()
+      .when(.recognized)
+      .map { _ in }
   }
 }
