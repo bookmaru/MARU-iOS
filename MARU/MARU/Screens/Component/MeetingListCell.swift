@@ -70,12 +70,6 @@ final class MeetingListCell: UICollectionViewCell {
   }
   private var discussionGroupID = Int.min
 
-  private var bookImage: UIImage? {
-    didSet {
-      bookImageView.image = bookImage
-    }
-  }
-
   override init(frame: CGRect) {
       super.init(frame: frame)
     applyLayout()
@@ -93,7 +87,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookTitleLabel.text = nil
     bookMeetingChiefLabel.text = nil
     remainPeriodLabel.text = nil
-    bookImage = nil
+    bookImageView.image = nil
   }
 
   func bind(_ meetingModel: MeetingModel) {
@@ -103,17 +97,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookMeetingChiefLabel.text = meetingModel.nickname
     remainPeriodLabel.text = "\(meetingModel.remainingDay)" + "일 남음"
     discussionGroupID = meetingModel.discussionGroupID
-
-    let url = URL(string: meetingModel.image)
-
-    do {
-      if let url = url {
-        let data = try Data(contentsOf: url)
-        bookImage = UIImage(data: data)
-      }
-    } catch _ {
-      bookImage = Image.testImage
-    }
+    bookImageView.image(url: meetingModel.image, defaultImage: Image.testImage ?? UIImage())
   }
   private func applyLayout() {
 

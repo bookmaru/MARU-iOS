@@ -20,42 +20,28 @@ final class BookCell: UICollectionViewCell {
     $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
     $0.text = "이이이리리리"
   }
-  private var bookImage: UIImage? {
-    didSet {
-      bookImageView.image = bookImage
-    }
-  }
   private var isbn: Int?
-  // MARK: - Override Init
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     applyLayout()
   }
   required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
   override func prepareForReuse() {
     super.prepareForReuse()
     bookTitleLabel.text = nil
     bookAuthorLabel.text = nil
-    bookImage = nil
+    bookImageView.image = nil
   }
 
   func bind(_ bookModel: BookModel) {
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
     // MARK: - 윤진: 여기 데이터 변수명 url 바뀌는 것 때문에 파일 변경했으니 참고!
-    let url = URL(string: bookModel.imageURL)
     isbn = bookModel.isbn
-
-    do {
-      if let url = url {
-        let data = try Data(contentsOf: url)
-        bookImage = UIImage(data: data)
-      }
-    } catch _ {
-      bookImage = Image.testImage
-    }
+    bookImageView.image(url: bookModel.imageURL, defaultImage: Image.testImage ?? UIImage())
   }
   private func applyLayout() {
     add(bookImageView)
