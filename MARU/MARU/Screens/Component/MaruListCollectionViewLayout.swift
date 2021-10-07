@@ -22,7 +22,7 @@ final class MaruListCollectionViewLayout: NSObject {
     group.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil, top: nil, trailing: nil, bottom: .fixed(15))
 
     let section = NSCollectionLayoutSection(group: group)
-    section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+    section.contentInsets = NSDirectionalEdgeInsets(top: 15,
                                                     leading: 20,
                                                     bottom: 0,
                                                     trailing: 20)

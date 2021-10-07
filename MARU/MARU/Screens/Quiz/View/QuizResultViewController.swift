@@ -187,7 +187,7 @@ extension QuizResultViewController {
       make.bottom.equalToSuperview()
     }
     popupView.snp.makeConstraints { make in
-      make.size.equalTo(CGSize(width: 308.calculatedWidth, height: 283.calculatedHeight))
+      make.size.equalTo(CGSize(width: 308.calculatedWidth, height: 283))
       make.centerX.equalToSuperview()
       make.top.equalToSuperview().offset(+ScreenSize.height)
     }
