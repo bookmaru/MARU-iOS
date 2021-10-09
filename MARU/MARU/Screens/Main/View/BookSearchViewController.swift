@@ -106,7 +106,6 @@ extension BookSearchViewController {
     collectionView.register(cell: BookListCell.self, forCellWithReuseIdentifier: BookListCell.reuseIdentifier)
     collectionView.delegate = self
     collectionView.dataSource = self
-    collectionView.allowsSelection = false
     view.add(collectionView)
     collectionView.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)

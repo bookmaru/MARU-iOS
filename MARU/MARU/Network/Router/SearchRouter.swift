@@ -67,6 +67,9 @@ extension SearchRouter: TargetType {
     }
   }
   var headers: [String: String]? {
-    return ["Content-Type": "application/json"]
+    return [
+      "Content-Type": "application/json",
+      "accessToken": KeychainHandler.shared.accessToken
+    ]
   }
 }

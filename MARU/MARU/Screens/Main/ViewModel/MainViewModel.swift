@@ -61,8 +61,10 @@ final class MainViewModel: ViewModelType {
       }
       .catchErrorJustReturn([])
 
-    return Output(allPopularMeetings: allPopularMeetings,
-                  allNewMeetings: allNewMeetings,
-                  errorMessage: errorMessage)
+    return Output(
+      allPopularMeetings: allPopularMeetings,
+      allNewMeetings: allNewMeetings,
+      errorMessage: errorMessage
+    )
   }
 }

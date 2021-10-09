@@ -58,12 +58,12 @@ final class CreateQuizViewController: BaseViewController {
     super.viewDidLoad()
     configureComponent()
     configureLayout()
+    configureNavigationBar()
     bind()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
-    configureNavigationBar()
   }
   private func configureNavigationBar() {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
@@ -98,7 +98,9 @@ final class CreateQuizViewController: BaseViewController {
       .disposed(by: disposeBag)
     // TO DO: Cancle button 클릭시 dismiss
     output.didTapCancle
-      .drive()
+      .drive { [weak self] _ in
+        self?.navigationController?.popViewController(animated: true)
+      }
       .disposed(by: disposeBag)
     // To do: Complement Click 채팅 화면으로 이동
     output.didTapComplement

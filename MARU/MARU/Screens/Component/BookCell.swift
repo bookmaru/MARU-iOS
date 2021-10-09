@@ -21,6 +21,7 @@ final class BookCell: UICollectionViewCell {
     $0.text = "이이이리리리"
   }
   private var isbn: Int?
+  private var hasMyBookcase: Bool?
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -41,6 +42,7 @@ final class BookCell: UICollectionViewCell {
     bookAuthorLabel.text = bookModel.author
     // MARK: - 윤진: 여기 데이터 변수명 url 바뀌는 것 때문에 파일 변경했으니 참고!
     isbn = bookModel.isbn
+    hasMyBookcase = bookModel.hasMyBookcase
     bookImageView.image(url: bookModel.imageURL, defaultImage: Image.testImage ?? UIImage())
   }
   private func applyLayout() {

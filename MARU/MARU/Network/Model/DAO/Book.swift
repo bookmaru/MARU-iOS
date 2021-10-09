@@ -9,10 +9,11 @@ import Foundation
 
 struct Book: Codable {
   let isbn: Int
-  let title: String
-  let author: String
-  let imageURL: String
+  let title: String?
+  let author: String?
+  let imageURL: String?
   let category: String
+  let hasMyBookcase: Bool
 
   enum CodingKeys: String, CodingKey {
     case isbn
@@ -20,6 +21,7 @@ struct Book: Codable {
     case author
     case imageURL = "imageUrl"
     case category
+    case hasMyBookcase
   }
 }
 
