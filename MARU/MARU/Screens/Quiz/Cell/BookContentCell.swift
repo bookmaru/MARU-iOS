@@ -17,11 +17,13 @@ final class BookContentCell: UITableViewCell {
   private let authorLabel = UILabel()
   private let oneLineIntroLabel = UILabel()
   fileprivate let oneLineTextView = UITextView()
+  private let placeholder: String = "토론에 대한 소개를 50자 이내로 입력해주세요."
   var disposeBag = DisposeBag()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     backgroundColor = .white
+    oneLineTextView.delegate = self
     configureComponent()
     configureLayout()
   }
@@ -46,9 +48,7 @@ extension BookContentCell {
       shadowY: 0,
       blur: 6
     )
-    // ImageView Defaulut
-    bookImageView.backgroundColor = .red
-
+    bookImageView.backgroundColor = .white
     bookNameLabel.text = "Default"
     authorLabel.text = "defalut"
 
@@ -57,9 +57,11 @@ extension BookContentCell {
     authorLabel.textColor = .brownGreyTwo
 
     oneLineIntroLabel.font = .systemFont(ofSize: 13, weight: .bold)
-    oneLineIntroLabel.text = "한 줄 소개"
+    oneLineIntroLabel.text = "한 줄 주제"
 
     oneLineTextView.font = .systemFont(ofSize: 13, weight: .bold)
+    oneLineTextView.textColor = .lightGray
+    oneLineTextView.text = placeholder
     oneLineTextView.backgroundColor = .white
     oneLineTextView.layer.cornerRadius = 8
     oneLineTextView.layer.borderWidth = 1
@@ -106,6 +108,27 @@ extension BookContentCell {
       make.top.equalTo(oneLineIntroLabel.snp.bottom).offset(7)
     }
   }
+}
+extension BookContentCell {
+  func bind(bookModel: BookModel) {
+    bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
+    bookNameLabel.text = bookModel.title
+    authorLabel.text = bookModel.author
+  }
+}
+extension BookContentCell: UITextViewDelegate {
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    if textView.text == placeholder {
+      textView.text = ""
+      textView.textColor = .black
+    }
+  }
+  func textViewDidChange(_ textView: UITextView) {
+    if textView.text.count >= 51 {
+      textView.deleteBackward()
+    }
+  }
+
 }
 extension Reactive where Base: BookContentCell {
   var changeText: Observable<String> {

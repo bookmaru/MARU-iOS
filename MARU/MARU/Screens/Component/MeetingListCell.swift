@@ -20,7 +20,6 @@ final class MeetingListCell: UICollectionViewCell {
     $0.layer.masksToBounds = true
     $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     $0.layer.cornerRadius = 5
-    $0.image = Image.testImage
   }
 
   private let bookTitleLabel = UILabel().then {
@@ -100,7 +99,7 @@ final class MeetingListCell: UICollectionViewCell {
     bookMeetingChiefLabel.text = meetingModel.nickname
     remainPeriodLabel.text = "\(meetingModel.remainingDay)" + "일 남음"
     discussionGroupID = meetingModel.discussionGroupID
-    bookImageView.image(url: meetingModel.image, defaultImage: Image.testImage ?? UIImage())
+    bookImageView.image(url: meetingModel.image, defaultImage: Image.defalutImage ?? UIImage())
   }
   private func applyLayout() {
 

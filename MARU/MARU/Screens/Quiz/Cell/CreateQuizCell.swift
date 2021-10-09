@@ -18,9 +18,12 @@ final class CreateQuizCell: UITableViewCell {
   fileprivate let quizTextView = UITextView()
   fileprivate let oButton = UIButton()
   fileprivate let xButton = UIButton()
+  private let placeholder: String = "퀴즈를 70자 이내로 입력해주세요."
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    backgroundColor = .white
+    quizTextView.delegate = self
     configureComponent()
     configureLayout()
   }
@@ -41,6 +44,8 @@ extension CreateQuizCell {
     maskingView.clipsToBounds = false
 
     quizTextView.font = .systemFont(ofSize: 13, weight: .bold)
+    quizTextView.textColor = .lightGray
+    quizTextView.text = placeholder
     quizTextView.backgroundColor = .white
     quizTextView.layer.cornerRadius = 8
     quizTextView.layer.borderWidth = 1
@@ -90,16 +95,26 @@ extension CreateQuizCell {
     }
   }
 }
-extension CreateQuizCell: UITextViewDelegate {
-}
 extension CreateQuizCell {
   func placeTextInQuizLabel(order: Int) {
     quizLabel.text = "Quiz " + "\(order + 1)"
   }
 }
+extension CreateQuizCell: UITextViewDelegate {
+  func textViewDidBeginEditing(_ textView: UITextView) {
+    if textView.text == placeholder {
+      textView.text = ""
+      textView.textColor = .black
+    }
+  }
+  func textViewDidChange(_ textView: UITextView) {
+    if textView.text.count >= 71 {
+      textView.deleteBackward()
+    }
+  }
+}
 
 extension Reactive where Base: CreateQuizCell {
-
   enum QuizAction {
     case tapO
     case tapX

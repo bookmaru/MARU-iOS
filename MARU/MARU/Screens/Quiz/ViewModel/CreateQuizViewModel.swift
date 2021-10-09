@@ -28,6 +28,8 @@ final class CreateQuizViewModel: ViewModelType {
     let quizAnswer: Driver<Void>
     let didTapCancle: Driver<Void>
     let didTapComplement: Driver<Void>
+    let tappableComplement: Driver<Bool>
+    let errorMessage: Observable<Error>
   }
   init(dependency: Dependency) {
     self.bookModel = dependency.bookModel
@@ -39,10 +41,17 @@ final class CreateQuizViewModel: ViewModelType {
     var quizzes = [String](repeating: "", count: 5)
     var answers = [String](repeating: "", count: 5)
     var description: String = ""
+    let tappableComplement = PublishSubject<Bool>()
+    let errorMessage = PublishSubject<Error>()
 
     let quizProblem = input.quizProblem
       .do(onNext: { quiz, number in
         quizzes[number] = quiz
+      })
+      .do(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        tappableComplement.onNext(
+          self.checkComplement(description: description, quizzes: quizzes, answers: answers))
       })
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
@@ -51,6 +60,11 @@ final class CreateQuizViewModel: ViewModelType {
       .do(onNext: { answer, number in
         answers[number] = answer
       })
+      .do(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        tappableComplement.onNext(
+          self.checkComplement(description: description, quizzes: quizzes, answers: answers))
+      })
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
 
@@ -58,17 +72,15 @@ final class CreateQuizViewModel: ViewModelType {
       .do(onNext: {
         description = $0
       })
+      .do(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        tappableComplement.onNext(
+          self.checkComplement(description: description, quizzes: quizzes, answers: answers))
+      })
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
 
     let didTapCancle = input.tapCancleButton
-      // MARK: Test용으로 일단 남겨놓을게요.
-//      .do(onNext: {
-//        debugPrint(self.bookModel)
-//        debugPrint(description)
-//        debugPrint(quizzes)
-//        debugPrint(answers)
-//      })
       .asDriver(onErrorJustReturn: ())
 
     let didTapComplement = input.tapCompleteButton
@@ -78,10 +90,16 @@ final class CreateQuizViewModel: ViewModelType {
           group: .init(isbn: self.bookModel.isbn, description: description),
           question: Question.init(answer: answers, quiz: quizzes)
         )
-      )
+      )}
+      .map { response -> BaseReponseType<ResultMakeGroup> in
+        guard 200 ..< 300 ~= response.status else {
+          errorMessage.onNext(
+            MaruError.serverError(response.status)
+          )
+          return response
+        }
+        return response
       }
-      // MARK: - 여기서 화면전환 -> GroupID
-      .map { $0 }
       .map { _ in () }
       .asDriver(onErrorJustReturn: ())
 
@@ -90,7 +108,21 @@ final class CreateQuizViewModel: ViewModelType {
       quizProblem: quizProblem,
       quizAnswer: quizAnswer,
       didTapCancle: didTapCancle,
-      didTapComplement: didTapComplement
+      didTapComplement: didTapComplement,
+      tappableComplement: tappableComplement.asDriver(onErrorJustReturn: false),
+      errorMessage: errorMessage
     )
+  }
+}
+extension CreateQuizViewModel {
+  func checkComplement(
+    description: String,
+    quizzes: [String],
+    answers: [String]
+  ) -> Bool {
+    guard !description.isEmpty else { return false }
+    guard quizzes.filter({ $0.isEmpty }).count == 0 else { return false }
+    guard answers.filter({ $0.isEmpty }).count == 0 else { return false }
+    return true
   }
 }

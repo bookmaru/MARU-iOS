@@ -40,10 +40,9 @@ final class BookCell: UICollectionViewCell {
   func bind(_ bookModel: BookModel) {
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
-    // MARK: - 윤진: 여기 데이터 변수명 url 바뀌는 것 때문에 파일 변경했으니 참고!
     isbn = bookModel.isbn
     hasMyBookcase = bookModel.hasMyBookcase
-    bookImageView.image(url: bookModel.imageURL, defaultImage: Image.testImage ?? UIImage())
+    bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
   }
   private func applyLayout() {
     add(bookImageView)
