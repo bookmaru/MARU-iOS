@@ -13,17 +13,17 @@ import RxSwift
 final class MoreNewViewController: BaseViewController {
 
   private let buttonScrollView: UIScrollView = UIScrollView()
-  private let allButton: UIButton = UIButton()
-  private let artButton: UIButton = UIButton()
-  private let literalButton: UIButton = UIButton()
-  private let languageButton: UIButton = UIButton()
-  private let philosophyButton: UIButton = UIButton()
-  private let socialScienceButton: UIButton = UIButton()
-  private let pureScienceButton: UIButton = UIButton()
-  private let technicalScienceButton: UIButton = UIButton()
-  private let historyButton: UIButton = UIButton()
-  private let religionButton: UIButton = UIButton()
-  private let etcButton: UIButton = UIButton()
+  fileprivate let allButton: UIButton = UIButton()
+  fileprivate let artButton: UIButton = UIButton()
+  fileprivate let literalButton: UIButton = UIButton()
+  fileprivate let languageButton: UIButton = UIButton()
+  fileprivate let philosophyButton: UIButton = UIButton()
+  fileprivate let socialScienceButton: UIButton = UIButton()
+  fileprivate let pureScienceButton: UIButton = UIButton()
+  fileprivate let technicalScienceButton: UIButton = UIButton()
+  fileprivate let historyButton: UIButton = UIButton()
+  fileprivate let religionButton: UIButton = UIButton()
+  fileprivate let etcButton: UIButton = UIButton()
   private let activatorView: UIActivityIndicatorView = UIActivityIndicatorView()
   private var collectionView: UICollectionView! = nil
   private let screenSize = UIScreen.main.bounds.size
@@ -64,61 +64,10 @@ final class MoreNewViewController: BaseViewController {
   private func bind() {
     let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_: )))
       .map { _ in () }
-    let category = Category.self
-
-    let firstTapCategory = Observable.merge([
-      Observable.combineLatest(
-        allButton.rx.tap.asObservable(),
-        Observable.just(category.all.simpleDescription())
-      ),
-      Observable.combineLatest(
-        artButton.rx.tap.asObservable(),
-        Observable.just(category.art.simpleDescription())
-      ),
-      Observable.combineLatest(
-        literalButton.rx.tap.asObservable(),
-        Observable.just(category.literal.simpleDescription())
-      ),
-      Observable.combineLatest(
-        languageButton.rx.tap.asObservable(),
-        Observable.just(category.language.simpleDescription())
-      ),
-      Observable.combineLatest(
-        philosophyButton.rx.tap.asObservable(),
-        Observable.just(category.philosophy.simpleDescription())
-      )
-    ])
-    let secondTapCategory = Observable.merge([
-      Observable.combineLatest(
-        socialScienceButton.rx.tap.asObservable(),
-        Observable.just(category.socialScience.simpleDescription())
-      ),
-      Observable.combineLatest(
-        pureScienceButton.rx.tap.asObservable(),
-        Observable.just(category.pureScience.simpleDescription())
-      ),
-      Observable.combineLatest(
-        technicalScienceButton.rx.tap.asObservable(),
-        Observable.just(category.technicalScience.simpleDescription())
-      ),
-      Observable.combineLatest(
-        historyButton.rx.tap.asObservable(),
-        Observable.just(category.history.simpleDescription())
-      ),
-      Observable.combineLatest(
-        religionButton.rx.tap.asObservable(),
-        Observable.just(category.religion.simpleDescription())
-      ),
-      Observable.combineLatest(
-        etcButton.rx.tap.asObservable(),
-        Observable.just(category.etc.simpleDescription())
-      )
-    ])
-    let tapCategoryButton = Observable.merge(firstTapCategory, secondTapCategory)
 
     let input = MoreNewViewModel.Input(
       viewTrigger: viewWillAppear,
-      tapCategoryButton: tapCategoryButton,
+      tapCategoryButton: rx.didTapButton,
       didScrollBottom: didScrollBottom.asObservable()
     )
 
@@ -135,7 +84,7 @@ final class MoreNewViewController: BaseViewController {
       }
       .disposed(by: disposeBag)
 
-    output.filter
+    output.tapCategoryButton
       .drive(onNext: { [weak self]  in
         guard let self = self else { return }
         self.meetingList = $0
@@ -150,20 +99,23 @@ final class MoreNewViewController: BaseViewController {
         self.showFooter = true
         self.stopUserInteraction()
         self.collectionView.collectionViewLayout.invalidateLayout()
-        self.collectionView.scrollToSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
-                                                       at: IndexPath(item: 0, section: 0),
-                                                       at: .bottom,
-                                                       animated: true)
-        self.meetingList = $0
-        self.currentGroupCount = $0.count
+        self.collectionView.scrollToSupplementaryView(
+          ofKind: UICollectionView.elementKindSectionFooter,
+          at: IndexPath(item: 0, section: 0),
+          at: .bottom,
+          animated: true
+        )
+        self.meetingList.append(contentsOf: $0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
           self.showFooter = false
+          self.currentGroupCount = self.meetingList.count
           self.collectionView.isUserInteractionEnabled = true
           self.collectionView.reloadData()
           self.startUserInteraction()
         }
       })
       .disposed(by: disposeBag)
+
     output.errorMessage
       .subscribe {
         debugPrint("error: \($0)")
@@ -431,5 +383,27 @@ extension MoreNewViewController: UICollectionViewDelegate {
           let groupID = Int(cell.getDiscussionGroupID()) else { return }
     let targetViewController = JoinViewController(groupID: groupID)
     navigationController?.pushViewController(targetViewController, animated: true)
+  }
+}
+extension Reactive where Base: MoreNewViewController {
+
+  var didTapButton: Observable<String> {
+    return Observable.merge(
+      base.allButton.rx.tap.map { Category.all },
+      base.artButton.rx.tap.map { Category.art },
+      base.literalButton.rx.tap.map { Category.literal },
+      base.languageButton.rx.tap.map { Category.language },
+      base.philosophyButton.rx.tap.map { Category.philosophy },
+      base.socialScienceButton.rx.tap.map { Category.socialScience },
+      base.pureScienceButton.rx.tap.map { Category.pureScience },
+      base.technicalScienceButton.rx.tap.map { Category.technicalScience },
+      base.historyButton.rx.tap.map { Category.history },
+      base.religionButton.rx.tap.map { Category.religion },
+      base.etcButton.rx.tap.map { Category.etc }
+    )
+
+    .flatMapLatest({ action -> Observable<String> in
+      return Observable.just(action.simpleDescription())
+    })
   }
 }

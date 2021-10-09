@@ -42,7 +42,7 @@ final class MainViewModel: ViewModelType {
       .catchErrorJustReturn([])
 
     let allNewMeetings = input.fetch
-      .flatMap(NetworkService.shared.home.getNew)
+      .flatMap { NetworkService.shared.home.getNew(page: 1) }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(
