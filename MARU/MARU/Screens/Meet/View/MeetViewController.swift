@@ -184,7 +184,7 @@ extension MeetViewController: UICollectionViewDataSource {
 
 extension MeetViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    switch data[indexPath.section] {
+    switch data[indexPath.item] {
     case .empty:
       let viewController = ChatViewController(roomID: 1, title: "")
       navigationController?.pushViewController(viewController, animated: true)
