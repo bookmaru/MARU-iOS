@@ -117,6 +117,31 @@ final class ChatService {
     messageDisposeBag = DisposeBag()
   }
 
+  func joinRoom(roomID: Int) {
+    socket.subscribe(destination: "/topic/public/\(roomID)")
+    saveChatListRealmPublisher.onNext(roomID)
+    _ = RealmService.shared.findRoomID()
+
+    let chat: [String: Any] = [
+      "chatId": UUID().uuidString,
+      "roomId": roomID,
+      "userId": KeychainHandler.shared.userID,
+      "type": "JOIN",
+      "content": "",
+      "sender": UserDefaultHandler.shared.userName ?? "",
+      "time": self.realTime()
+    ]
+
+    let destination = "/app/chat.sendMessage/\(roomID)"
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      self.socket.sendJSONForDict(
+        dict: chat as AnyObject,
+        toDestination: destination
+      )
+    }
+  }
+
   func createRoom(roomID: Int) {
     socket.subscribe(destination: "/topic/public/\(roomID)")
     let chat: [String: Any] = [
@@ -128,10 +153,16 @@ final class ChatService {
       "sender": UserDefaultHandler.shared.userName ?? "",
       "time": self.realTime()
     ]
-    self.socket.sendJSONForDict(
-      dict: chat as AnyObject,
-      toDestination: self.destination
-    )
+
+    let destination = "/app/chat.sendMessage/\(roomID)"
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      self.socket.sendJSONForDict(
+        dict: chat as AnyObject,
+        toDestination: destination
+      )
+    }
+
   }
 
   private func saveChatRealm(chatList: [RealmChat]) {
