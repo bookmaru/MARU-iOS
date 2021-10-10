@@ -86,8 +86,14 @@ final class CreateQuizViewModel: ViewModelType {
     let didTapComplement = input.tapCompleteButton
       .flatMap { NetworkService.shared.quiz.createQuiz(
         makeGroup: MakeGroup.init(
-          book: self.bookModel,
-          group: .init(isbn: self.bookModel.isbn, description: description),
+          book: MakeBook.init(
+            isbn: (self.bookModel.isbn).string,
+            title: self.bookModel.title,
+            author: self.bookModel.author,
+            imageUrl: self.bookModel.imageURL,
+            category: self.bookModel.category
+          ),
+          group: .init(isbn: (self.bookModel.isbn).string, description: description),
           question: Question.init(answer: answers, quiz: quizzes)
         )
       )}
