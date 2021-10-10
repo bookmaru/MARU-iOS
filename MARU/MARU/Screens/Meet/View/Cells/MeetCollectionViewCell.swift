@@ -83,7 +83,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
     didSet {
       let isMyGroup = data?.nickname == UserDefaultHandler.shared.userName
       bookMarkImageView.isHidden = !isMyGroup
-      posterImageView.setImage(from: data?.image ?? "", UIImage())
+      posterImageView.image(url: data?.image ?? "", defaultImage: UIImage())
       bookTitleLabel.text = data?.title
       authorNameLabel.text = data?.author
       nameLabel.text = data?.chatUserName
