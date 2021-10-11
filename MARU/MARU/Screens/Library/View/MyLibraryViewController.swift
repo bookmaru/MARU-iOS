@@ -103,7 +103,7 @@ final class MyLibraryViewController: BaseViewController {
     navigationItem.rightBarButtonItem = changeSettingButton
     navigationController?.navigationBar.isHidden = false
     guard let navigationBar = navigationController?.navigationBar else { return }
-    navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationBar.barTintColor = .white
     navigationBar.shadowImage = UIImage()
     navigationBar.isTranslucent = true
 
