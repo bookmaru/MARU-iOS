@@ -10,6 +10,7 @@ import Moya
 enum BookRouter {
   case get
   case group
+  case addGroup(groupID: Int)
 }
 
 extension BookRouter: TargetType {
@@ -22,6 +23,8 @@ extension BookRouter: TargetType {
       return "bookcase"
     case .group: // 모임하고 싶은 책
       return "bookcase/group"
+    case .addGroup(let groupID):
+      return "bookcase/group/\(groupID)"
     }
   }
   var method: Method {
@@ -30,6 +33,8 @@ extension BookRouter: TargetType {
       return .get
     case .group:
       return .get
+    case .addGroup:
+      return .post
     }
   }
   var sampleData: Data { Data() }
@@ -38,6 +43,8 @@ extension BookRouter: TargetType {
     case .get:
       return .requestPlain
     case .group:
+      return .requestPlain
+    case .addGroup:
       return .requestPlain
     }
   }

@@ -58,6 +58,7 @@ final class ChatViewModel {
   struct Input {
     let viewWillAppear: Observable<Void>
     let didLongTap: Observable<RealmChat>
+    let didTapGroupButton: Observable<Void>
   }
 
   struct Output {
@@ -100,6 +101,13 @@ final class ChatViewModel {
       .flatMap { NetworkService.shared.auth.report(chat: $0) }
       .map { $0.status == 201 }
       .asDriver(onErrorJustReturn: false)
+
+    _ = input.didTapGroupButton
+      .flatMap { NetworkService.shared.book.addGroup(groupID: self.roomID) }
+      .subscribe(onNext: { _ in
+
+      })
+      .disposed(by: disposeBag)
 
     recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))
 

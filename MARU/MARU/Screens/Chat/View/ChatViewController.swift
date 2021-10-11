@@ -41,9 +41,18 @@ final class ChatViewController: BaseViewController {
     }
   }
 
-  private let didLongTapBubblePubblisher = PublishSubject<RealmChat>()
+  private let didLongTapBubblePublisher = PublishSubject<RealmChat>()
+  private let didTapGroupButtonPublisher = PublishSubject<Void>()
   private let reportPublisher = PublishSubject<RealmChat>()
   private let bottomView = InputView()
+  private let rightBarButton = UIBarButtonItem(
+    image: Image.group841?.withRenderingMode(.alwaysTemplate),
+    style: .plain,
+    target: self,
+    action: nil
+  ).then {
+    $0.tintColor = .mainBlue
+  }
 
   private let viewModel: ChatViewModel
   private let roomID: Int
@@ -85,6 +94,7 @@ final class ChatViewController: BaseViewController {
   }
 
   private func setNavigation() {
+    navigationItem.rightBarButtonItem = rightBarButton
     navigationController?.interactivePopGestureRecognizer?.delegate = self
     guard let navigationBar = navigationController?.navigationBar else { return }
     navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -128,7 +138,7 @@ extension ChatViewController {
   private func bind() {
     bindKeyboardNotification()
 
-    didLongTapBubblePubblisher
+    didLongTapBubblePublisher
       .subscribe(onNext: { [weak self] chat in
         guard let self = self else { return }
         let title = "신고하기"
@@ -147,9 +157,42 @@ extension ChatViewController {
       })
       .disposed(by: disposeBag)
 
+    rightBarButton.rx.tap.map { _ in }
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        let optionMenu = UIAlertController(
+          title: "토론방을 저장하여 내 서재에 담아두세요 !",
+          message: "내가 참여했던 토론방을 확인할 수 있으며, 방장 평가를 통해 토론의 질을 높일 수 있습니다.",
+          preferredStyle: .actionSheet
+        )
+
+        let saveAction = UIAlertAction(
+          title: "저장",
+          style: .default,
+          handler: { _ -> Void in
+            self.didTapGroupButtonPublisher.onNext(())
+          })
+
+        let cancelAction = UIAlertAction(
+          title: "닫기",
+          style: .cancel,
+          handler: nil
+        )
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+
+        self.present(optionMenu, animated: true, completion: nil)
+      })
+      .disposed(by: disposeBag)
+
     let viewWillAppear = rx.viewWillAppear
 
-    let input = ViewModel.Input(viewWillAppear: viewWillAppear, didLongTap: reportPublisher)
+    let input = ViewModel.Input(
+      viewWillAppear: viewWillAppear,
+      didLongTap: reportPublisher,
+      didTapGroupButton: didTapGroupButtonPublisher
+    )
+
     let ouput = viewModel.transform(input: input)
 
     ouput.chat
@@ -243,7 +286,7 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.dataBinder.onNext(data)
       cell.rx.didLongTapBubble
         .map { data }
-        .bind(to: didLongTapBubblePubblisher)
+        .bind(to: didLongTapBubblePublisher)
         .disposed(by: cell.disposeBag)
 
       return cell
@@ -253,7 +296,7 @@ extension ChatViewController: UICollectionViewDataSource {
       cell.rx.dataBinder.onNext(data)
       cell.rx.didLongTapBubble
         .map { data }
-        .bind(to: didLongTapBubblePubblisher)
+        .bind(to: didLongTapBubblePublisher)
         .disposed(by: cell.disposeBag)
 
       return cell
