@@ -104,7 +104,7 @@ final class ChatViewModel {
   }
 
   private func generator(chat: RealmChat) -> Chat? {
-    if chat.type == "JOIN" {
+    if chat.type != "CHAT" {
       return nil
     }
     if chat.userName == userName {
