@@ -63,7 +63,7 @@ final class ChatViewModel {
   struct Output {
     let chat: Driver<[Chat]>
     let isReportSuccess: Driver<Bool>
-    let isShowNotice: Driver<Bool>
+    let isCheckNotice: Driver<Bool>
   }
 
   private let realm = RealmNotification()
@@ -88,7 +88,7 @@ final class ChatViewModel {
 
   func transform(input: Input) -> Output {
 
-    let isShowNotice = input.viewWillAppear
+    let isCheckNotice = input.viewWillAppear
       .map { UserDefaults.standard.bool(forKey: "room\(self.roomID)") }
       .asDriver(onErrorJustReturn: false)
 
@@ -103,7 +103,7 @@ final class ChatViewModel {
 
     recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))
 
-    return Output(chat: chat, isReportSuccess: isReportSuccess, isShowNotice: isShowNotice)
+    return Output(chat: chat, isReportSuccess: isReportSuccess, isCheckNotice: isCheckNotice)
   }
 
   private func chatModelGenerator(chat: [RealmChat]) -> Observable<[Chat]> {

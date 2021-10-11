@@ -174,7 +174,7 @@ extension ChatViewController {
       })
       .disposed(by: disposeBag)
 
-    ouput.isShowNotice
+    ouput.isCheckNotice
       .filter { !$0 }
       .drive(onNext: { [weak self] _ in
         guard let self = self else { return }
