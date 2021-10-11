@@ -147,7 +147,9 @@ extension ChatViewController {
       })
       .disposed(by: disposeBag)
 
-    let input = ViewModel.Input(didLongTap: reportPublisher)
+    let viewWillAppear = rx.viewWillAppear
+
+    let input = ViewModel.Input(viewWillAppear: viewWillAppear, didLongTap: reportPublisher)
     let ouput = viewModel.transform(input: input)
 
     ouput.chat
@@ -169,6 +171,14 @@ extension ChatViewController {
           return
         }
         self.showToast("오류로 인해 신고하지 못했습니다.")
+      })
+      .disposed(by: disposeBag)
+
+    ouput.isShowNotice
+      .filter { !$0 }
+      .drive(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        self.notice(roomID: self.roomID)
       })
       .disposed(by: disposeBag)
   }

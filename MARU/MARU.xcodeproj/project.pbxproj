@@ -130,6 +130,8 @@
 		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
 		C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD9AB826E7905E00E9233A /* RealmService.swift */; };
 		C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */; };
+		C5CE01932714839E00CE4E4A /* ChatViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */; };
+		C5CE01952714855600CE4E4A /* RxViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE01942714855600CE4E4A /* RxViewController+.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -326,6 +328,8 @@
 		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		C5CD9AB826E7905E00E9233A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+Notice.swift"; sourceTree = "<group>"; };
+		C5CE01942714855600CE4E4A /* RxViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxViewController+.swift"; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -675,6 +679,7 @@
 			children = (
 				C54428292635ACAA00826E4F /* Cell */,
 				C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */,
+				C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -732,6 +737,7 @@
 				F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */,
 				C50DBC7426BD881B00B5585A /* Date+.swift */,
 				776EE52D26C43B1000A50A3E /* UIButton+.swift */,
+				C5CE01942714855600CE4E4A /* RxViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1414,6 +1420,7 @@
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */,
+				C5CE01952714855600CE4E4A /* RxViewController+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
@@ -1472,6 +1479,7 @@
 				C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */,
 				C5B0C43D26FA05570000B4C0 /* BookModel.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
+				C5CE01932714839E00CE4E4A /* ChatViewController+Notice.swift in Sources */,
 				C5AE438F270AE835005D18CA /* EmptyView.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */,

@@ -56,12 +56,14 @@ final class ChatViewModel {
   let disposeBag = DisposeBag()
 
   struct Input {
+    let viewWillAppear: Observable<Void>
     let didLongTap: Observable<RealmChat>
   }
 
   struct Output {
     let chat: Driver<[Chat]>
     let isReportSuccess: Driver<Bool>
+    let isShowNotice: Driver<Bool>
   }
 
   private let realm = RealmNotification()
@@ -85,6 +87,11 @@ final class ChatViewModel {
   }
 
   func transform(input: Input) -> Output {
+
+    let isShowNotice = input.viewWillAppear
+      .map { UserDefaults.standard.bool(forKey: "room\(self.roomID)") }
+      .asDriver(onErrorJustReturn: false)
+
     let chat = recivePublisher
       .flatMap { self.chatModelGenerator(chat: $0) }
       .asDriver(onErrorJustReturn: [])
@@ -96,7 +103,7 @@ final class ChatViewModel {
 
     recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))
 
-    return Output(chat: chat, isReportSuccess: isReportSuccess)
+    return Output(chat: chat, isReportSuccess: isReportSuccess, isShowNotice: isShowNotice)
   }
 
   private func chatModelGenerator(chat: [RealmChat]) -> Observable<[Chat]> {
