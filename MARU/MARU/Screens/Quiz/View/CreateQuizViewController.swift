@@ -271,7 +271,6 @@ extension CreateQuizViewController {
   @objc
   func didTapTableView() {
     view.endEditing(true)
-    print()
   }
   private func registerKeyboardNotification() {
     NotificationCenter.default.addObserver(

@@ -57,9 +57,8 @@ final class MoreNewViewModel: ViewModelType {
         if category == "전체" {
           pageIndex = 1
           return NetworkService.shared.home.getNew(page: 1)
-        } else {
-          return NetworkService.shared.home.getNewCategory(category: category, currentGroupCount: 1)
         }
+        return NetworkService.shared.home.getNewCategory(category: category, currentGroupCount: 1)
       }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
@@ -86,12 +85,11 @@ final class MoreNewViewModel: ViewModelType {
         if categoryString == "전체" {
           pageIndex += 1
           return NetworkService.shared.home.getNew(page: pageIndex)
-        } else {
-          return NetworkService.shared.home.getNewCategory(
-            category: categoryString,
-            currentGroupCount: categoryGroupCount ?? 0
-          )
         }
+        return NetworkService.shared.home.getNewCategory(
+          category: categoryString,
+          currentGroupCount: categoryGroupCount ?? 0
+        )
       }
       .map { response -> BaseReponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {

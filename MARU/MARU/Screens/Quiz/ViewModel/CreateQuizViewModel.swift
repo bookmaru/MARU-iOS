@@ -126,9 +126,9 @@ extension CreateQuizViewModel {
     quizzes: [String],
     answers: [String]
   ) -> Bool {
-    guard !description.isEmpty else { return false }
-    guard quizzes.filter({ $0.isEmpty }).count == 0 else { return false }
-    guard answers.filter({ $0.isEmpty }).count == 0 else { return false }
+    guard !description.isEmpty,
+          quizzes.filter({ $0.isEmpty }).count == 0,
+          answers.filter({ $0.isEmpty }).count == 0 else { return false }
     return true
   }
 }
