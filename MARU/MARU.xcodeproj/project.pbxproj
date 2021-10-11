@@ -130,6 +130,7 @@
 		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
 		C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD9AB826E7905E00E9233A /* RealmService.swift */; };
 		C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */; };
+		C5CE018F2713E50C00CE4E4A /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018E2713E50C00CE4E4A /* DiaryViewController.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -326,6 +327,7 @@
 		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		C5CD9AB826E7905E00E9233A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5CE018E2713E50C00CE4E4A /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				C5209DFC26F782F300CBFABD /* DiaryWriteViewController.swift */,
 				C58D430C2709878200C152BF /* DiaryWriteViewModel.swift */,
 				C557E60427019F8200C60923 /* DiaryView.swift */,
+				C5CE018E2713E50C00CE4E4A /* DiaryViewController.swift */,
 			);
 			path = MyDiary;
 			sourceTree = "<group>";
@@ -1461,6 +1464,7 @@
 				7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */,
 				C5ED5ADC263E73C100BA7D47 /* InputView.swift in Sources */,
 				C59BCBC126C81F3A00C84163 /* ChatService.swift in Sources */,
+				C5CE018F2713E50C00CE4E4A /* DiaryViewController.swift in Sources */,
 				771C688626DDDDB30001AC49 /* BookContentCell.swift in Sources */,
 				E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */,
 				C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */,
