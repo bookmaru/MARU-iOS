@@ -13,24 +13,29 @@ struct BookModel: Hashable, Codable {
   let author: String
   let imageURL: String
   let category: String
+  let hasMyBookcase: Bool
 
   init(_ book: Book) {
     self.isbn = book.isbn
-    self.title = book.title
-    self.author = book.author
-    self.imageURL = book.imageURL
+    self.title = book.title ?? ""
+    self.author = book.author ?? ""
+    self.imageURL = book.imageURL ?? ""
     self.category = book.category
+    self.hasMyBookcase = book.hasMyBookcase
   }
   init(isbn: Int,
        title: String,
        author: String,
        imageURL: String,
-       category: String) {
+       category: String,
+       hasMyBookcase: Bool
+  ) {
     self.isbn = isbn
     self.title = title
     self.author = author
     self.imageURL = imageURL
     self.category = category
+    self.hasMyBookcase = hasMyBookcase
   }
 
   func hash(into hasher: inout Hasher) {
@@ -40,14 +45,4 @@ struct BookModel: Hashable, Codable {
   static func == (lhs: BookModel, rhs: BookModel) -> Bool {
     lhs.isbn == rhs.isbn
   }
-}
-
-extension BookModel {
-  static var initMainData: [BookModel] = [
-    BookModel.init(Book.init(isbn: 1,
-                             title: "test",
-                             author: "test",
-                             imageURL: "test",
-                             category: "test"))
-  ]
 }

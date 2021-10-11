@@ -93,8 +93,6 @@ final class QuizResultViewController: BaseViewController {
     output.response
       .drive()
       .disposed(by: disposeBag)
-
-    // MARK: - 채팅방으로 이동하는 거 같은데, 마지막에 채팅 다 연결되면 연결할게요.
     output.goMain
       .drive(onNext: { [weak self] in
         guard let self = self else { return }

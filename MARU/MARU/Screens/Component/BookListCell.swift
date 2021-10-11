@@ -17,7 +17,6 @@ final class BookListCell: UICollectionViewCell {
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 5
-    $0.image = Image.testImage
   }
 
   private let bookTitleLabel = UILabel().then {
@@ -56,7 +55,7 @@ final class BookListCell: UICollectionViewCell {
   func bind(_ bookModel: BookModel) {
     bookAuthorLabel.text = bookModel.author
     bookTitleLabel.text = bookModel.title
-    bookImageView.imageFromUrl(bookModel.imageURL, defaultImgPath: "")
+    bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
   }
   private func applyLayout() {
     add(shadowView)
@@ -83,7 +82,7 @@ final class BookListCell: UICollectionViewCell {
     bookTitleLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(shadowView.snp.top).inset(10)
       make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
-      make.width.lessThanOrEqualTo(shadowView.snp.width)
+      make.width.equalToSuperview().multipliedBy(0.403)
       make.height.equalTo(13)
     }
     bookAuthorLabel.snp.makeConstraints { ( make ) in

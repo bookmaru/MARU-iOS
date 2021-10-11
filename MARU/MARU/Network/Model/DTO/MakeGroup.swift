@@ -7,13 +7,20 @@
 
 import Foundation
 struct MakeGroup: Codable {
-  let book: BookModel
+  let book: MakeBook
   let group: GroupDescription
   let question: Question
 }
 
+struct MakeBook: Codable {
+  let isbn: String
+  let title: String
+  let author: String
+  let imageUrl: String
+  let category: String
+}
 struct GroupDescription: Codable {
-  let isbn: Int
+  let isbn: String
   let description: String
 }
 struct Question: Codable {

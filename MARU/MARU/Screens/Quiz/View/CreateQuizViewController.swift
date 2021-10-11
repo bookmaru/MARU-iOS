@@ -34,9 +34,7 @@ final class CreateQuizViewController: BaseViewController {
     ]
     completeButton.setTitleTextAttributes(normalAttributes, for: .normal)
     completeButton.setTitleTextAttributes(disabledAttributes, for: .disabled)
-
-    // TO DO: false로 바꾸고 모든 빈칸이 채워졌을 때, true로 바꾸는 거 추후에 구현
-    completeButton.isEnabled = true
+    completeButton.isEnabled = false
     return completeButton
   }()
   private let oneLinePlaceholder = "토론에 대한 소개를 70자 이내로 입력해주세요."
@@ -58,12 +56,18 @@ final class CreateQuizViewController: BaseViewController {
     super.viewDidLoad()
     configureComponent()
     configureLayout()
+    configureNavigationBar()
     bind()
+    addTapGestureOnTableView()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
-    configureNavigationBar()
+    registerKeyboardNotification()
+  }
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(false)
+    unregisterKeyboardNotification()
   }
   private func configureNavigationBar() {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
@@ -96,13 +100,26 @@ final class CreateQuizViewController: BaseViewController {
     output.quizAnswer
       .drive()
       .disposed(by: disposeBag)
-    // TO DO: Cancle button 클릭시 dismiss
     output.didTapCancle
-      .drive()
+      .drive { [weak self] _ in
+        self?.navigationController?.popViewController(animated: true)
+      }
       .disposed(by: disposeBag)
-    // To do: Complement Click 채팅 화면으로 이동
+    output.tappableComplement
+      .drive(onNext: { [weak self] enabled in
+        self?.completeButton.isEnabled = enabled
+      })
+      .disposed(by: disposeBag)
     output.didTapComplement
-      .drive()
+      .drive(onNext: {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: {
+          let tabbarViewController = TabBarController()
+          tabbarViewController.modalPresentationStyle = .fullScreen
+          if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController?.present(tabbarViewController, animated: false, completion: nil)
+          }
+        })
+      })
       .disposed(by: disposeBag)
   }
 }
@@ -121,7 +138,8 @@ extension CreateQuizViewController {
     tableView.separatorStyle = .none
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.allowsSelection = false
+    tableView.keyboardDismissMode = .interactive
+    tableView.contentInsetAdjustmentBehavior = .never
   }
   private func configureLayout() {
     view.add(tableView)
@@ -159,7 +177,8 @@ extension CreateQuizViewController: UITableViewDataSource {
               withIdentifier: BookContentCell.reuseIdentifier,
               for: indexPath
       ) as? BookContentCell else { return UITableViewCell() }
-
+      cell.selectionStyle = .none
+      cell.bind(bookModel: bookModel)
       cell.rx.changeText
         .subscribe(onNext: { [weak self] oneLineDescription in
           self?.triggerDescription.onNext(oneLineDescription)
@@ -171,8 +190,8 @@ extension CreateQuizViewController: UITableViewDataSource {
               withIdentifier: CreateQuizCell.reuseIdentifier,
               for: indexPath
       ) as? CreateQuizCell else { return UITableViewCell() }
+      cell.selectionStyle = .none
       cell.placeTextInQuizLabel(order: indexPath.item)
-
       cell.rx.changeText
         .subscribe(onNext: { [weak self] quizProblem in
           self?.triggerQuizProblem.onNext((quizProblem, indexPath.item))
@@ -243,4 +262,50 @@ extension CreateQuizViewController: UITableViewDataSource {
   }
 }
 
-extension CreateQuizViewController: UITextViewDelegate { }
+extension CreateQuizViewController {
+
+  func addTapGestureOnTableView() {
+    let taps = UITapGestureRecognizer(target: self, action: #selector(didTapTableView))
+    tableView.addGestureRecognizer(taps)
+  }
+  @objc
+  func didTapTableView() {
+    view.endEditing(true)
+  }
+  private func registerKeyboardNotification() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillShow),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillHide),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
+  }
+  private func unregisterKeyboardNotification() {
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
+  }
+  @objc
+  func keyboardWillShow(_ notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+      tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+    }
+  }
+  @objc
+  func keyboardWillHide(_ notification: Notification) {
+    tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  }
+}

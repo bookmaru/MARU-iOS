@@ -419,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				77569B652620CDF4008BF77B /* ViewModel */,
+				F22AB7C626CA82ED006CD9C0 /* Cell */,
 				77E150FC262328B5007BEBBF /* View */,
 			);
 			path = Quiz;
@@ -510,7 +511,6 @@
 				77E150FD262328D3007BEBBF /* QuizViewController.swift */,
 				77847E7E26D339920054742F /* QuizResultViewController.swift */,
 				F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */,
-				F22AB7C626CA82ED006CD9C0 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";

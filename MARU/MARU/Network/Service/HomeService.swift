@@ -10,23 +10,22 @@ import RxSwift
 
 protocol HomeServiceType {
   func getPopular() -> Observable<BaseReponseType<Books>>
-  func getNew() -> Observable<BaseReponseType<Groups>>
+  func getNew(page: Int) -> Observable<BaseReponseType<Groups>>
   func getNewAllCategory() -> Observable<BaseReponseType<GroupsByCategories>>
   func getNewCategory(category: String, currentGroupCount: Int)-> Observable<BaseReponseType<Groups>>
 }
 
 final class HomeService: HomeServiceType {
   private let router = MoyaProvider<HomeRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
-
   func getPopular() -> Observable<BaseReponseType<Books>> {
     return router.rx
       .request(.getPopular)
       .asObservable()
       .map(BaseReponseType<Books>.self)
   }
-  func getNew() -> Observable<BaseReponseType<Groups>> {
+  func getNew(page: Int) -> Observable<BaseReponseType<Groups>> {
     return router.rx
-      .request(.getNew)
+      .request(.getNew(page: page))
       .asObservable()
       .map(BaseReponseType<Groups>.self)
   }

@@ -9,7 +9,7 @@ import Moya
 
 enum HomeRouter {
   case getPopular
-  case getNew
+  case getNew(page: Int)
   case getNewAllCategory
   case getNewCategory(category: String, currentGroupCount: Int)
 }
@@ -50,8 +50,13 @@ extension HomeRouter: TargetType {
     switch self {
     case .getPopular:
       return .requestPlain
-    case .getNew:
-      return .requestPlain
+    case .getNew(let page):
+      return .requestParameters(
+        parameters: [
+          "page": page
+        ],
+        encoding: URLEncoding.queryString
+      )
     case .getNewAllCategory:
       return .requestPlain
     case .getNewCategory(let category, let currentGroupCount):
@@ -65,6 +70,8 @@ extension HomeRouter: TargetType {
     }
   }
   var headers: [String: String]? {
-    return ["Content-Type": "application/json"]
+    return [
+      "Content-Type": "application/json"
+    ]
   }
 }
