@@ -28,7 +28,19 @@ struct KeepGroup: Codable {
   let author: String
   let description: String
   let userID: Int
-  let nickName: String
+  let nickname: String
   let leaderScore: Int
   let isLeader: Bool
+
+  enum CodingKeys: String, CodingKey {
+    case groupID = "groupId"
+    case image
+    case title
+    case author
+    case description
+    case userID = "userId"
+    case nickname
+    case leaderScore
+    case isLeader = "meLeader"
+  }
 }
