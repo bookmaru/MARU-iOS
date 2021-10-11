@@ -40,19 +40,15 @@ final class MyLibraryHeaderView: UICollectionReusableView {
     $0.attributedText = attributeString
   }
 
-  let changeSettingButton = UIButton().then {
-    $0.setImage(Image.group962, for: .normal)
-  }
+  private let changeSettingButton = UIButton()
 
   var disposeBag = DisposeBag()
 
   fileprivate var data: User? {
     didSet {
       usernameLabel.text = data?.user?.nickname
-      if data?.user?.profileImage != "" {
-        profileImageView.imageFromUrl(data?.user?.profileImage, defaultImgPath: "")
-      }
-      profileImageView.image = Image.group1029
+      let imageURL = data?.user?.profileImage
+      profileImageView.image(url: imageURL ?? "", defaultImage: Image.group1029 ?? UIImage())
     }
   }
 
@@ -82,7 +78,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
       view.snp.makeConstraints {
         $0.size.equalTo(75)
         $0.centerX.equalToSuperview()
-        $0.top.equalTo(self.changeSettingButton.snp.bottom).offset(0)
+        $0.top.equalToSuperview()
       }
     }
     add(changeProfileButton) { button in

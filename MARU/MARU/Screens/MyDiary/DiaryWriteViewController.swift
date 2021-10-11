@@ -48,6 +48,7 @@ final class DiaryWriteViewController: BaseViewController {
   }
 
   private let viewModel: DiaryWriteViewModel
+
   init(diary: Group) {
     viewModel = DiaryWriteViewModel(groupID: diary.discussionGroupID)
 
