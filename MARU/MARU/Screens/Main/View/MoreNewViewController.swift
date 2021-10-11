@@ -90,6 +90,7 @@ final class MoreNewViewController: BaseViewController {
         self.meetingList = $0
         self.currentGroupCount = $0.count
         self.collectionView.reloadData()
+        self.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
       })
       .disposed(by: disposeBag)
 
