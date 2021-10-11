@@ -100,10 +100,13 @@ final class ChatViewModel {
   }
 
   private func chatModelGenerator(chat: [RealmChat]) -> Observable<[Chat]> {
-    return .just(chat.map { generator(chat: $0) })
+    return .just(chat.compactMap { generator(chat: $0) })
   }
 
-  private func generator(chat: RealmChat) -> Chat {
+  private func generator(chat: RealmChat) -> Chat? {
+    if chat.type != "CHAT" {
+      return nil
+    }
     if chat.userName == userName {
       prevChatSender = chat.userName
       return .message(data: chat)

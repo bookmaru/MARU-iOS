@@ -129,6 +129,7 @@
 		C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A126B6902E00D07974 /* BookRouter.swift */; };
 		C5B9B9A426B6906100D07974 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B9B9A326B6906100D07974 /* BookService.swift */; };
 		C5CD9AB926E7905E00E9233A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD9AB826E7905E00E9233A /* RealmService.swift */; };
+		C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -324,6 +325,7 @@
 		C5B9B9A126B6902E00D07974 /* BookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRouter.swift; sourceTree = "<group>"; };
 		C5B9B9A326B6906100D07974 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		C5CD9AB826E7905E00E9233A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 		C54428292635ACAA00826E4F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */,
 				C52F9F6F2642719E007C73B7 /* MyChatCollectionViewCell.swift */,
 				C52F9F71264271BE007C73B7 /* OtherChatCollectionViewCell.swift */,
 				C59BCBC226C8398600C84163 /* OtherProfileChatCollectionViewCell.swift */,
@@ -1391,6 +1394,7 @@
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
 				77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
+				C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */,
 				F28FF226270A04590026FF8A /* JoinViewModel.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,

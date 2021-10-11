@@ -38,10 +38,8 @@ final class MeetViewController: BaseViewController {
     collectionView.isPagingEnabled = false
     collectionView.contentInsetAdjustmentBehavior = .never
     collectionView.showsHorizontalScrollIndicator = false
-    collectionView.register(MeetCollectionViewCell.self,
-                            forCellWithReuseIdentifier: MeetCollectionViewCell.reuseIdentifier)
-    collectionView.register(EmptyMeetCollectionViewCell.self,
-                            forCellWithReuseIdentifier: EmptyMeetCollectionViewCell.reuseIdentifier)
+    collectionView.register(cell: MeetCollectionViewCell.self)
+    collectionView.register(cell: EmptyMeetCollectionViewCell.self)
     collectionView.layer.masksToBounds = false
     return collectionView
   }()
