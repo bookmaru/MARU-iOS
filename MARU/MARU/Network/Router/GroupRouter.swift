@@ -12,6 +12,7 @@ enum GroupRouter {
   case chatList(roomID: Int)
   case diaryList
   case groupInfo(groupID: Int)
+  case keep(groupID: Int)
 }
 
 extension GroupRouter: TargetType {
@@ -34,35 +35,19 @@ extension GroupRouter: TargetType {
       return "group/diary"
     case .groupInfo(let groupID):
       return "group/\(groupID)/intro"
+    case .keep(let groupID):
+      return "group/\(groupID)/keep"
     }
   }
 
   var method: Method {
-    switch self {
-    case .participate:
-      return .get
-    case .chatList:
-      return .get
-    case .diaryList:
-      return .get
-    case .groupInfo:
-      return .get
-    }
+    return .get
   }
 
   var sampleData: Data { Data() }
 
   var task: Task {
-    switch self {
-    case .participate:
-      return .requestPlain
-    case .chatList:
-      return .requestPlain
-    case .diaryList:
-      return .requestPlain
-    case .groupInfo:
-      return .requestPlain
-    }
+    return .requestPlain
   }
 
   var headers: [String: String]? {

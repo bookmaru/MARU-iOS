@@ -224,6 +224,31 @@ extension ChatViewController {
         self.notice(roomID: self.roomID)
       })
       .disposed(by: disposeBag)
+
+    ouput.isKeepGroup
+      .drive(onNext: { [weak self] isKeep in
+        let image = isKeep
+          ? Image.savedButtonActive?.withRenderingMode(.alwaysTemplate)
+          : Image.group841?.withRenderingMode(.alwaysTemplate)
+        self?.rightBarButton.image = image
+        self?.rightBarButton.isEnabled = !isKeep
+      })
+      .disposed(by: disposeBag)
+
+    ouput.isSuccessKeepGroup
+      .drive(onNext: { [weak self] isSuccess in
+        let image = isSuccess
+          ? Image.savedButtonActive?.withRenderingMode(.alwaysTemplate)
+          : Image.group841?.withRenderingMode(.alwaysTemplate)
+        self?.rightBarButton.image = image
+        self?.rightBarButton.isEnabled = !isSuccess
+
+        let message = isSuccess
+          ? "성공적으로 서재에 담아두었습니다."
+          : "에러로 담지 못했습니다."
+        self?.showToast(message)
+      })
+      .disposed(by: disposeBag)
   }
 }
 

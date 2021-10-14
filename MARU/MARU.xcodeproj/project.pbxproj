@@ -57,6 +57,7 @@
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
 		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
+		C50F5B0427187856007A6FDD /* HasGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F5B0327187856007A6FDD /* HasGroup.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -248,6 +249,7 @@
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		C50F5B0327187856007A6FDD /* HasGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasGroup.swift; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 			isa = PBXGroup;
 			children = (
 				C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */,
+				C50F5B0327187856007A6FDD /* HasGroup.swift */,
 				C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */,
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
@@ -1367,6 +1370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */,
+				C50F5B0427187856007A6FDD /* HasGroup.swift in Sources */,
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
