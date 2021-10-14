@@ -61,6 +61,7 @@ final class QuizViewController: BaseViewController {
     super.viewDidLoad()
     view.backgroundColor = .quizBackgroundColor
     quizContentView.timerView.delegate = self
+    registerNotification()
     configureImageView()
     configureLayout()
     bind()
@@ -69,16 +70,21 @@ final class QuizViewController: BaseViewController {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
   }
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewWillAppear(false)
+    unregisterNotification()
+  }
 
   init(groupID: Int) {
     self.groupID = groupID
     super.init()
   }
-  deinit {
-    quizContentView.stopTimer()
-  }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  deinit {
+    quizContentView.stopTimer()
+    NotificationCenter.default.removeObserver(self)
   }
   private func bind() {
     let viewWillAppear = Observable
@@ -146,6 +152,7 @@ final class QuizViewController: BaseViewController {
         self.quizContentView.stopTimer()
 
         if $0 == true {
+          ChatService.shared.joinRoom(roomID: self.groupID)
           resultViewController.result = .success
           self.present(resultViewController, animated: false, completion: nil)
         }
@@ -177,7 +184,6 @@ extension QuizViewController {
     quizContentView.placeQuizSequence(numberString: (index + 1).string)
     quizContentView.placeQuizNumberLabelText(numberString: (index + 1).string)
   }
-
   @objc
   private func tapButton(_ sender: UIButton) {
     sender.isSelected = true
@@ -255,6 +261,50 @@ extension QuizViewController {
       make.centerY.equalTo(thirdMarkImageView.snp.centerY)
       make.leading.equalTo(fourthMarkImageView.snp.trailing).inset(-2)
     }
+  }
+}
+extension QuizViewController {
+  private func registerNotification() {
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(appDidEnterBackgroundNotification(_:)),
+      name: UIApplication.didEnterBackgroundNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(appWillEnterForegroundNotification(_:)),
+      name: UIApplication.willEnterForegroundNotification,
+      object: nil
+    )
+  }
+  private func unregisterNotification() {
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIApplication.didEnterBackgroundNotification,
+      object: nil
+    )
+    NotificationCenter.default.removeObserver(
+      self,
+      name: UIApplication.willEnterForegroundNotification,
+      object: nil
+    )
+  }
+  @objc
+  func appDidEnterBackgroundNotification(_: Notification) {
+    _ = NetworkService.shared.quiz.checkQuiz(groupID: groupID, isEnter: String(false))
+      .subscribe()
+      .disposed(by: disposeBag)
+  }
+  @objc
+  func appWillEnterForegroundNotification(_: Notification) {
+    let resultViewController = QuizResultViewController()
+    resultViewController.modalPresentationStyle = .fullScreen
+    resultViewController.backgroundImage = self.view.asImage()
+    resultViewController.groupID = self.groupID
+    quizContentView.stopTimer()
+    resultViewController.result = .failure
+    self.present(resultViewController, animated: false, completion: nil)
   }
 }
 extension QuizViewController: Timeout {
