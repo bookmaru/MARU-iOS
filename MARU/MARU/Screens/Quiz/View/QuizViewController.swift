@@ -304,7 +304,7 @@ extension QuizViewController {
     resultViewController.groupID = self.groupID
     quizContentView.stopTimer()
     resultViewController.result = .failure
-    self.present(resultViewController, animated: false, completion: nil)
+    present(resultViewController, animated: false, completion: nil)
   }
 }
 extension QuizViewController: Timeout {
