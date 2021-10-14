@@ -76,4 +76,6 @@ enum Image {
   static let uCommentAltExclamation = UIImage(named: "uCommentAltExclamation")
   static let defalutImage = UIImage(named: "defalutImage")
   static let defalutLogo = UIImage(named: "defalutLogo")
+  static let group841 = UIImage(named: "Group 841")
+  static let savedButtonActive = UIImage(named: "savedButtonActive")
 }

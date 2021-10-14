@@ -11,10 +11,11 @@ import RxSwift
 protocol BookServiceType {
   func bookList() -> Observable<BaseReponseType<BookCaseModel>>
   func getGroup() -> Observable<BaseReponseType<KeepGroupModel>>
+  func addGroup(groupID: Int) -> Observable<BaseReponseType<Int>>
 }
 
 final class BookService: BookServiceType {
-  private let router = MoyaProvider<BookRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<BookRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func bookList() -> Observable<BaseReponseType<BookCaseModel>> {
     return router.rx
@@ -27,5 +28,11 @@ final class BookService: BookServiceType {
       .request(.group)
       .asObservable()
       .map(BaseReponseType<KeepGroupModel>.self)
+  }
+  func addGroup(groupID: Int) -> Observable<BaseReponseType<Int>> {
+    return router.rx
+      .request(.addGroup(groupID: groupID))
+      .asObservable()
+      .map(BaseReponseType<Int>.self)
   }
 }

@@ -81,8 +81,7 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   }
   fileprivate var data: GeneratedGroup? {
     didSet {
-      let isMyGroup = data?.nickname == UserDefaultHandler.shared.userName
-      bookMarkImageView.isHidden = !isMyGroup
+      bookMarkImageView.isHidden = !(data?.isLeader ?? false)
       posterImageView.image(url: data?.image ?? "", defaultImage: UIImage())
       bookTitleLabel.text = data?.title
       authorNameLabel.text = data?.author

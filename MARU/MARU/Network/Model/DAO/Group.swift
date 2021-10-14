@@ -16,6 +16,7 @@ struct Group: Codable {
   let image: String
   let author: String
   let nickname: String
+  let classes: String?
 
   enum CodingKeys: String, CodingKey {
     case discussionGroupID = "discussionGroupId"
@@ -26,6 +27,7 @@ struct Group: Codable {
     case image
     case author
     case nickname
+    case classes
   }
 }
 
