@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryViewController: BaseViewController {
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -38,6 +39,16 @@ final class MyLibraryViewController: BaseViewController {
     )
     return collectionView
   }()
+
+  private let changeSettingButton = UIBarButtonItem(
+    image: Image.group962,
+    style: .plain,
+    target: self,
+    action: nil
+  ).then {
+    $0.tintColor = .veryLightPink
+  }
+
   private let viewModel = MyLibraryViewModel()
   private var user: User?
   private var data: [Library] = [] {
@@ -49,10 +60,10 @@ final class MyLibraryViewController: BaseViewController {
     super.viewDidLoad()
     render()
     bind()
+    setupNavigation()
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
-    setNavigationBar(isHidden: true)
     tabBarController?.tabBar.isHidden = false
   }
 
@@ -87,6 +98,23 @@ final class MyLibraryViewController: BaseViewController {
 
     viewDidLoadPublisher.onNext(())
   }
+
+  private func setupNavigation() {
+    navigationItem.rightBarButtonItem = changeSettingButton
+    navigationController?.navigationBar.isHidden = false
+    guard let navigationBar = navigationController?.navigationBar else { return }
+    navigationBar.barTintColor = .white
+    navigationBar.shadowImage = UIImage()
+    navigationBar.isTranslucent = true
+
+    changeSettingButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        let viewController = SettingViewController()
+        self?.navigationController?.pushViewController(viewController, animated: true)
+      })
+      .disposed(by: disposeBag)
+  }
+
 }
 
 extension MyLibraryViewController: UICollectionViewDataSource {
@@ -152,8 +180,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .diary(data):
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.didTapContentView
-        .subscribe(onNext: {
-          // 일기 선택 후 -> 화면 전환 영역
+        .subscribe(onNext: { [weak self] _ in
+          guard let self = self else { return }
+          let viewController = DiaryViewController(diaryID: data.diaries[indexPath.item].diaryID)
+          self.navigationController?.pushViewController(viewController, animated: true)
         })
         .disposed(by: cell.disposeBag)
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
@@ -173,26 +203,23 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
     guard let headerView = collectionView.dequeueReusableSupplementaryView(
-        ofKind: UICollectionView.elementKindSectionHeader,
-        withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier,
-        for: indexPath
+      ofKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier,
+      for: indexPath
     ) as? MyLibraryHeaderView,
-    // MARK: 옵셔널처리 예시
     let user = user
     else { return UICollectionReusableView() }
-    headerView.rx.profileBinder.onNext(user)
-    headerView.changeSettingButton.rx.tap.subscribe(onNext: {[ weak self] _ in
-      let viewController = SettingViewController()
-      self?.navigationController?.pushViewController(viewController, animated: true)
-    }).disposed(by: headerView.disposeBag)
 
+    headerView.rx.profileBinder.onNext(user)
     headerView.changeProfileButton.rx.tap
-      .bind {
+      .subscribe { [weak self] _ in
+        guard let self = self else { return }
         let viewController = ProfileChangeViewController()
         viewController.modalPresentationStyle = .overFullScreen
         self.present(viewController, animated: true, completion: nil)
       }
       .disposed(by: headerView.disposeBag)
+
     return headerView
   }
 

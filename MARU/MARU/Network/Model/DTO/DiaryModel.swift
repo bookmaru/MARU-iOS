@@ -35,6 +35,22 @@ struct DiaryInfo: Codable {
   let bookTitle: String
   let bookAuthor: String
   let bookImage: String
-  let nickName: String
+  let nickname: String
   let profileImage: String
+
+  enum CodingKeys: String, CodingKey {
+    case diaryID = "diaryId"
+    case diaryTitle
+    case content
+    case createdAt
+    case bookTitle
+    case bookAuthor
+    case bookImage
+    case nickname
+    case profileImage
+  }
+}
+
+struct DiaryObject: Codable {
+  let diary: DiaryInfo
 }

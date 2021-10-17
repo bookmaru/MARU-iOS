@@ -10,7 +10,7 @@ import RxSwift
 
 protocol DiaryServiceType {
   func getDiaryList() -> Observable<BaseReponseType<Diaries>>
-  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryInfo>>
+  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryObject>>
   func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
 }
 
@@ -24,11 +24,11 @@ final class DiaryService: DiaryServiceType {
       .map(BaseReponseType<Diaries>.self)
   }
 
-  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryInfo>> {
+  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryObject>> {
     return router.rx
       .request(.get(diaryID: diaryID))
       .asObservable()
-      .map(BaseReponseType<DiaryInfo>.self)
+      .map(BaseReponseType<DiaryObject>.self)
   }
 
   func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
