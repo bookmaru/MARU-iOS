@@ -56,12 +56,17 @@ final class ChatViewModel {
   let disposeBag = DisposeBag()
 
   struct Input {
+    let viewWillAppear: Observable<Void>
     let didLongTap: Observable<RealmChat>
+    let didTapGroupButton: Observable<Void>
   }
 
   struct Output {
     let chat: Driver<[Chat]>
     let isReportSuccess: Driver<Bool>
+    let isCheckNotice: Driver<Bool>
+    let isKeepGroup: Driver<Bool>
+    let isSuccessKeepGroup: Driver<Bool>
   }
 
   private let realm = RealmNotification()
@@ -85,6 +90,16 @@ final class ChatViewModel {
   }
 
   func transform(input: Input) -> Output {
+    let viewWillAppear = input.viewWillAppear.share()
+    let isCheckNotice = viewWillAppear
+      .map { UserDefaults.standard.bool(forKey: "room\(self.roomID)") }
+      .asDriver(onErrorJustReturn: false)
+
+    let isKeepGroup = viewWillAppear
+      .flatMap { NetworkService.shared.group.keep(groupID: self.roomID) }
+      .compactMap { $0.data?.hasGroup }
+      .asDriver(onErrorJustReturn: false)
+
     let chat = recivePublisher
       .flatMap { self.chatModelGenerator(chat: $0) }
       .asDriver(onErrorJustReturn: [])
@@ -94,9 +109,20 @@ final class ChatViewModel {
       .map { $0.status == 201 }
       .asDriver(onErrorJustReturn: false)
 
+    let isSuccessKeepGroup = input.didTapGroupButton
+      .flatMap { NetworkService.shared.book.addGroup(groupID: self.roomID) }
+      .map { $0.status == 200 }
+      .asDriver(onErrorJustReturn: false)
+
     recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))
 
-    return Output(chat: chat, isReportSuccess: isReportSuccess)
+    return Output(
+      chat: chat,
+      isReportSuccess: isReportSuccess,
+      isCheckNotice: isCheckNotice,
+      isKeepGroup: isKeepGroup,
+      isSuccessKeepGroup: isSuccessKeepGroup
+    )
   }
 
   private func chatModelGenerator(chat: [RealmChat]) -> Observable<[Chat]> {

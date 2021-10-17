@@ -97,7 +97,6 @@ final class QuizResultViewController: BaseViewController {
       .drive(onNext: { [weak self] in
         guard let self = self else { return }
         self.view.window?.rootViewController?.dismiss(animated: true, completion: {
-          ChatService.shared.joinRoom(roomID: self.groupID)
           let tabbarViewController = TabBarController()
           tabbarViewController.modalPresentationStyle = .fullScreen
           if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {

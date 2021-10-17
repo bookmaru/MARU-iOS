@@ -57,6 +57,7 @@
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
 		C50DBC7526BD881B00B5585A /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7426BD881B00B5585A /* Date+.swift */; };
+		C50F5B0427187856007A6FDD /* HasGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F5B0327187856007A6FDD /* HasGroup.swift */; };
 		C510367826201B4C00285A44 /* MeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */; };
 		C51CA7F3260D964E00CE4804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F2260D964E00CE4804 /* AppDelegate.swift */; };
 		C51CA7F5260D964E00CE4804 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CA7F4260D964E00CE4804 /* SceneDelegate.swift */; };
@@ -132,6 +133,8 @@
 		C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */; };
 		C5CE018F2713E50C00CE4E4A /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE018E2713E50C00CE4E4A /* DiaryViewController.swift */; };
 		C5CE019127145B9500CE4E4A /* DiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE019027145B9500CE4E4A /* DiaryViewModel.swift */; };
+		C5CE01932714839E00CE4E4A /* ChatViewController+Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */; };
+		C5CE01952714855600CE4E4A /* RxViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CE01942714855600CE4E4A /* RxViewController+.swift */; };
 		C5E6E788261B33F000500370 /* MeetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E6E787261B33F000500370 /* MeetViewModel.swift */; };
 		C5ED1D77261889AC00F670EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D76261889AC00F670EC /* MainViewController.swift */; };
 		C5ED1D7C261889C000F670EC /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED1D7B261889C000F670EC /* MeetViewController.swift */; };
@@ -248,6 +251,7 @@
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7426BD881B00B5585A /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		C50F5B0327187856007A6FDD /* HasGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasGroup.swift; sourceTree = "<group>"; };
 		C510367726201B4C00285A44 /* MeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51CA7EF260D964E00CE4804 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CA7F2260D964E00CE4804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 		C5CE018C2713D81F00CE4E4A /* JoinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5CE018E2713E50C00CE4E4A /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		C5CE019027145B9500CE4E4A /* DiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewModel.swift; sourceTree = "<group>"; };
+		C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+Notice.swift"; sourceTree = "<group>"; };
+		C5CE01942714855600CE4E4A /* RxViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxViewController+.swift"; sourceTree = "<group>"; };
 		C5E6E787261B33F000500370 /* MeetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewModel.swift; sourceTree = "<group>"; };
 		C5ED1D76261889AC00F670EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5ED1D7B261889C000F670EC /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +687,7 @@
 			children = (
 				C54428292635ACAA00826E4F /* Cell */,
 				C5436FB2262F1FFE00C2E1D3 /* ChatViewController.swift */,
+				C5CE01922714839E00CE4E4A /* ChatViewController+Notice.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -738,6 +745,7 @@
 				F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */,
 				C50DBC7426BD881B00B5585A /* Date+.swift */,
 				776EE52D26C43B1000A50A3E /* UIButton+.swift */,
+				C5CE01942714855600CE4E4A /* RxViewController+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -862,6 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */,
+				C50F5B0327187856007A6FDD /* HasGroup.swift */,
 				C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */,
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
@@ -1367,6 +1376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */,
+				C50F5B0427187856007A6FDD /* HasGroup.swift in Sources */,
 				C5B16BA1268735E200F01C26 /* ScreenSize.swift in Sources */,
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
@@ -1420,6 +1430,7 @@
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,
 				77CCB35F26C1987800D9EAE8 /* MoreNewViewModel.swift in Sources */,
+				C5CE01952714855600CE4E4A /* RxViewController+.swift in Sources */,
 				C55F1538260F3FA4003D99D0 /* UIViewController+.swift in Sources */,
 				F2E974F226DAA5EF00B3FC87 /* PastMeetingCell.swift in Sources */,
 				C55F173E260F4443003D99D0 /* CALayer+.swift in Sources */,
@@ -1480,6 +1491,7 @@
 				C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */,
 				C5B0C43D26FA05570000B4C0 /* BookModel.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
+				C5CE01932714839E00CE4E4A /* ChatViewController+Notice.swift in Sources */,
 				C5AE438F270AE835005D18CA /* EmptyView.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */,

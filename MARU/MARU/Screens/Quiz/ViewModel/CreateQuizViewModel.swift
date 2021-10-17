@@ -27,7 +27,7 @@ final class CreateQuizViewModel: ViewModelType {
     let quizProblem: Driver<Void>
     let quizAnswer: Driver<Void>
     let didTapCancle: Driver<Void>
-    let didTapComplement: Driver<Void>
+    let didTapComplement: Driver<Int>
     let tappableComplement: Driver<Bool>
     let errorMessage: Observable<Error>
   }
@@ -106,8 +106,9 @@ final class CreateQuizViewModel: ViewModelType {
         }
         return response
       }
-      .map { _ in () }
-      .asDriver(onErrorJustReturn: ())
+      .map { $0.data?.makeGroup ?? -1 }
+      .map { $0 }
+      .asDriver(onErrorJustReturn: -1)
 
     return Output(
       description: descript,

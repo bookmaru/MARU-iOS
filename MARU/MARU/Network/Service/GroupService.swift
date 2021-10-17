@@ -13,6 +13,7 @@ protocol GroupServiceType {
   func chatList(roomID: Int) -> Observable<[RealmChat]>
   func diaryList() -> Observable<BaseReponseType<Groups>>
   func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>>
+  func keep(groupID: Int) -> Observable<BaseReponseType<HasGroup>>
 }
 
 final class GroupService: GroupServiceType {
@@ -45,5 +46,12 @@ final class GroupService: GroupServiceType {
       .request(.groupInfo(groupID: groupID))
       .asObservable()
       .map(BaseReponseType<GroupInformation>.self)
+  }
+
+  func keep(groupID: Int) -> Observable<BaseReponseType<HasGroup>> {
+    return router.rx
+      .request(.keep(groupID: groupID))
+      .asObservable()
+      .map(BaseReponseType<HasGroup>.self)
   }
 }

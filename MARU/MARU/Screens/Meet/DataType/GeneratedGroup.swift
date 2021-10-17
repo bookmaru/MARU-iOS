@@ -19,6 +19,7 @@ struct GeneratedGroup {
   let message: String
   let chatUserName: String
   let chatTime: Date
+  let isLeader: Bool
 
   init(group: Group, message: RealmChat) {
     discussionGroupID = group.discussionGroupID
@@ -32,5 +33,6 @@ struct GeneratedGroup {
     self.message = message.content
     chatUserName = message.userName
     chatTime = message.time
+    isLeader = group.classes == "LEADER"
   }
 }
