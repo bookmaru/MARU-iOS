@@ -111,8 +111,9 @@ final class CreateQuizViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
     output.didTapComplement
-      .drive(onNext: {
+      .drive(onNext: { groupID in
         self.view.window?.rootViewController?.dismiss(animated: true, completion: {
+          ChatService.shared.createRoom(roomID: groupID)
           let tabbarViewController = TabBarController()
           tabbarViewController.modalPresentationStyle = .fullScreen
           if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
