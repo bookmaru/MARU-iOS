@@ -53,7 +53,11 @@ final class MyLibraryCell: UICollectionViewCell {
   private func render() {
     contentView.add(collectionView) { view in
       view.snp.makeConstraints {
-        $0.edges.equalToSuperview()
+//        $0.edges.equalToSuperview()
+        $0.top.equalToSuperview()
+        $0.leading.equalToSuperview().offset(15)
+        $0.trailing.equalToSuperview().offset(-15)
+        $0.bottom.equalToSuperview()
       }
     }
     collectionView.add(noResultImageView) { imageView in
@@ -83,13 +87,13 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 30, height: 70)
+    return CGSize(width: 70, height: 187)
   }
 }
 extension MyLibraryCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return 1
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
