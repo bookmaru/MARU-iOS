@@ -21,6 +21,8 @@ final class LibraryDiaryCell: UICollectionViewCell {
 
   private let bookImageView = UIImageView().then {
     $0.image = Image.union
+    $0.layer.cornerRadius = 5
+    $0.layer.masksToBounds = true
   }
 
   private let shadowView = GradientView(startColor: .brownGrey, endColor: .veryLightPink)
@@ -55,7 +57,12 @@ final class LibraryDiaryCell: UICollectionViewCell {
   var disposeBag = DisposeBag()
   fileprivate var data: Diary? {
     didSet {
-      diaryDateLabel.text = data?.createdAt
+      guard let data = data else { return }
+      diaryDateLabel.text = data.createdAt
+      bookImageView.imageFromUrl(data.bookImage, defaultImgPath: "")
+      bookTitleLabel.text = data.bookTitle
+      bookAuthorLabel.text = data.bookAuthor
+      diaryTitleLabel.text = data.diaryTitle
       // 데이터 받아오는대로 값 넣어주기
     }
   }
@@ -97,7 +104,7 @@ final class LibraryDiaryCell: UICollectionViewCell {
       make.height.equalTo(135)
     }
     diaryTitleLabel.snp.makeConstraints { make in
-      make.top.equalTo(bookImageView.snp.bottom).offset(15)
+      make.top.equalTo(bookImageView.snp.bottom).offset(9)
       make.leading.equalTo(bookImageView).offset(14)
     }
     diaryDateLabel.snp.makeConstraints { make in

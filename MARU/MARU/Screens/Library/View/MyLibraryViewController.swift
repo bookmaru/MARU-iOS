@@ -164,8 +164,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      let titleCell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false
+        titleCell.addButton.isHidden = true
       } else {
         cell.noResultImageView.isHidden = true
         cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
@@ -174,7 +176,12 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      if data.bookcase.count == 0 {
+        cell.noResultImageView.isHidden = false
+      } else {
+        cell.noResultImageView.isHidden = true
+        cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      }
       return cell
     // MARK: - 내 일기장
     case let .diary(data):
