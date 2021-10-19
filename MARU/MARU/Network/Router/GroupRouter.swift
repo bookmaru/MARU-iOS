@@ -13,6 +13,7 @@ enum GroupRouter {
   case diaryList
   case groupInfo(groupID: Int)
   case keep(groupID: Int)
+  case evaluate(groupID: Int, leaderID: Int, score: Int)
 }
 
 extension GroupRouter: BaseTargetType {
@@ -39,14 +40,34 @@ extension GroupRouter: BaseTargetType {
       return "group/\(groupID)/intro"
     case .keep(let groupID):
       return "group/\(groupID)/keep"
+    case .evaluate(let groupID, let leaderID, let score):
+      return "group/\(groupID)/leader/\(leaderID)"
     }
   }
 
   var method: Method {
-    return .get
+    switch self {
+    case .evaluate:
+      return .post
+    default:
+      return .get
+    }
   }
 
   var task: Task {
-    return .requestPlain
+    switch self {
+    case let .evaluate(groupID, leaderID, score):
+      return .requestParameters(
+        parameters: [
+          "groupId": groupID,
+          "leaderId": leaderID,
+          "score": score
+        ],
+        encoding: URLEncoding.queryString
+      )
+    default:
+      return .requestPlain
+    }
+
   }
 }

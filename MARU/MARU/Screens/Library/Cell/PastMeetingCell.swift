@@ -147,10 +147,11 @@ extension Reactive where Base: PastMeetingCell {
   var didTapEvaluateButton: Observable<UIViewController> {
     return base.evaluateButton.rx.tap
       .map { _ -> UIViewController in
+        
         if base.data?.isLeader == true {
           return EvaluateWarningViewController()
         }
-        return EvaluateViewController()
+        return EvaluateViewController(groupID: base.data?.groupID ?? -1, leaderID: base.data?.userID ?? -1)
       }
       .asObservable()
   }

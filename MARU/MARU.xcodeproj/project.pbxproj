@@ -163,6 +163,7 @@
 		F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */; };
 		F29FF4F026D26CFD00336AD5 /* MyLibraryBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */; };
 		F2A70D262701D24700560099 /* EvaluateWarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */; };
+		F2B16A95271EF8D200AAC194 /* EvaluateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B16A94271EF8D200AAC194 /* EvaluateViewModel.swift */; };
 		F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */; };
 		F2B4A09026B6683000F02FB5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */; };
 		F2B4A09226B67AC000F02FB5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B4A09126B67AC000F02FB5 /* Library.swift */; };
@@ -365,6 +366,7 @@
 		F29FF4ED26D26C5E00336AD5 /* MyBookCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookCaseCell.swift; sourceTree = "<group>"; };
 		F29FF4EF26D26CFD00336AD5 /* MyLibraryBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryBookCell.swift; sourceTree = "<group>"; };
 		F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateWarningViewController.swift; sourceTree = "<group>"; };
+		F2B16A94271EF8D200AAC194 /* EvaluateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewModel.swift; sourceTree = "<group>"; };
 		F2B4A08D26B6603300F02FB5 /* MyLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyLibraryViewController.swift; path = View/MyLibraryViewController.swift; sourceTree = "<group>"; };
 		F2B4A08F26B6683000F02FB5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "MARU/Global/Extensions/UIImageView+.swift"; sourceTree = SOURCE_ROOT; };
 		F2B4A09126B67AC000F02FB5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -1075,6 +1077,7 @@
 				F231C40626E2801C00642130 /* EvaluateViewController.swift */,
 				F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */,
 				F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */,
+				F2B16A94271EF8D200AAC194 /* EvaluateViewModel.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1532,6 +1535,7 @@
 				C5209DF726F73B5400CBFABD /* MyDiaryViewContorller.swift in Sources */,
 				770D14972700D6530053285F /* BookSearchViewModel.swift in Sources */,
 				C5A3DB142684E43E007355D1 /* Auth.swift in Sources */,
+				F2B16A95271EF8D200AAC194 /* EvaluateViewModel.swift in Sources */,
 				C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */,
 				C5209DFD26F782F300CBFABD /* DiaryWriteViewController.swift in Sources */,
 				F29FF4EE26D26C5E00336AD5 /* MyBookCaseCell.swift in Sources */,
