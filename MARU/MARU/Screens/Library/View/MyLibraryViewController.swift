@@ -149,7 +149,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
             self.navigationController?.pushViewController(viewController, animated: true)
           })
           .disposed(by: cell.disposeBag)
-        // 이후에 완성한 뷰로 연결시켜주기
       }
       if titleText == "내 일기장" {
         cell.rx.didTapAddButton
@@ -177,6 +176,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       if data.bookcase.count == 0 {
+        print("aaaaa")
         cell.noResultImageView.isHidden = false
       } else {
         cell.noResultImageView.isHidden = true

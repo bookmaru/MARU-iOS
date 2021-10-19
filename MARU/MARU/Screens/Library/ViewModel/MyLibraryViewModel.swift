@@ -58,10 +58,6 @@ final class MyLibraryViewModel {
         library.append(.title(title: "담아둔 모임", isHidden: false))
         guard let bookGroup = bookGroup else { return library }
         library.append(.meeting(meeting: bookGroup))
-        // 임시 데이터 넣은 코드, 지우지 말아주세요.
-        /* library.append(.meeting(meeting: .init(keepGroup: [.init(groupID: 3,
-            image: "image120", title: "aaa", author: "aaa", description: "aaa",
-            userID: 3, nickName: "aaa", leaderScore: 2, isLeader: false)]))) */
         library.append(.title(title: "모임하고 싶은 책", isHidden: false))
         guard let bookList = bookList else { return library }
         library.append(.book(book: bookList))
