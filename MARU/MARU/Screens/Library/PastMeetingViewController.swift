@@ -22,7 +22,11 @@ final class PastMeetingViewController: BaseViewController {
 
   private let viewModel = PastMeetingViewModel()
 
-  private var data: KeepGroupModel?
+  private var data: KeepGroupModel? {
+    didSet {
+      collectionView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()

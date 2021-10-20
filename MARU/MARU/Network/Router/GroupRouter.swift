@@ -59,8 +59,6 @@ extension GroupRouter: TargetType {
     case let .evaluate(groupID, leaderID, score):
       return .requestParameters(
         parameters: [
-          "groupId": groupID,
-          "leaderId": leaderID,
           "score": score
         ],
         encoding: URLEncoding.queryString

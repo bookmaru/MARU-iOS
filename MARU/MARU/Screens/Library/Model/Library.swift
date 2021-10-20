@@ -38,7 +38,10 @@ enum Library {
     switch self {
     case .title:
       return CGSize(width: ScreenSize.width, height: 60)
-    case .meeting:
+    case .meeting(let data):
+      if data.keepGroup.count > 0 {
+        return CGSize(width: ScreenSize.width / 4, height: 134)
+      }
       return CGSize(width: ScreenSize.width, height: 134)
     case .book:
       return CGSize(width: ScreenSize.width, height: 134)
