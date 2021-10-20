@@ -91,16 +91,15 @@ final class EvaluateViewController: UIViewController {
 extension EvaluateViewController {
   private func bind() {
     let didTapEvaluateButton = submitButton.rx.tap
-      .map { [weak self] _ -> (groupID: Int, leaderID: Int, score: Int) in
+      .map { [weak self] _ -> (groupID: Int, leaderID: Int) in
         guard let self = self,
               let groupID = self.groupID,
-              let leaderID = self.leaderID,
-              let score = self.score
-        else { return (groupID: -1, leaderID: -1, score: -1)}
-        return (groupID: groupID, leaderID: leaderID, score: score)
+              let leaderID = self.leaderID
+        else { return (groupID: -1, leaderID: -1)}
+        return (groupID: groupID, leaderID: leaderID)
       }
-
-    let input = EvaluateViewModel.Input(didTapSubmitButton: didTapEvaluateButton)
+    guard let score = score else { return }
+    let input = EvaluateViewModel.Input(didTapSubmitButton: didTapEvaluateButton, score: score)
     let output = viewModel.transform(input: input)
 
     output.isConnected

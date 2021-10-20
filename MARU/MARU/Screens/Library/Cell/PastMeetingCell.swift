@@ -62,9 +62,7 @@ final class PastMeetingCell: UICollectionViewCell {
     didSet {
       bookTitleLabel.text = data?.title
       bookAuthorLabel.text = data?.author
-      // TODO: - 이미지 전달 변경하기
-      bookImageView.image = UIImage(named: data?.image ?? "group1015")
-      // TODO : - id 평가화면 init으로 넘겨주기
+      bookImageView.imageFromUrl(data?.image, defaultImgPath: "")
       explanationLabel.text = data?.description
       isLeader = data?.isLeader
     }
@@ -147,7 +145,6 @@ extension Reactive where Base: PastMeetingCell {
   var didTapEvaluateButton: Observable<UIViewController> {
     return base.evaluateButton.rx.tap
       .map { _ -> UIViewController in
-        
         if base.data?.isLeader == true {
           return EvaluateWarningViewController()
         }
