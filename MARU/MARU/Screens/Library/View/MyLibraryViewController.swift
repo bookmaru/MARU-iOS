@@ -206,6 +206,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
+
     return data[indexPath.section].size
   }
   // MARK: - headerview section 처리해주기. size 지정도 필수이다.

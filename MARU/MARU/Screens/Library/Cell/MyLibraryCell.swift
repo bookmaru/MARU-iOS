@@ -13,9 +13,10 @@ final class MyLibraryCell: UICollectionViewCell {
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MeetingCell.self, forCellWithReuseIdentifier: MeetingCell.reuseIdentifier)
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = .blue
     return collectionView
   }()
   let noResultImageView = UIImageView().then {
@@ -55,8 +56,8 @@ final class MyLibraryCell: UICollectionViewCell {
       view.snp.makeConstraints {
 //        $0.edges.equalToSuperview()
         $0.top.equalToSuperview()
-        $0.leading.equalToSuperview().offset(15)
-        $0.trailing.equalToSuperview().offset(-15)
+        $0.leading.equalToSuperview().offset(3)
+        $0.trailing.equalToSuperview().offset(-3)
         $0.bottom.equalToSuperview()
       }
     }
@@ -87,7 +88,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 70, height: 187)
+    return CGSize(width: 70, height: 134)
   }
 }
 extension MyLibraryCell: UICollectionViewDataSource {

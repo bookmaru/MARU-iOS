@@ -54,17 +54,25 @@ final class PastMeetingCell: UICollectionViewCell {
   }
   let evaluateButton = UIButton().then {
     $0.setImage(Image.invalidName, for: .normal)
-    $0.isHidden = true
+    $0.isHidden = false
   }
   var isLeader: Bool?
   var disposeBag = DisposeBag()
   fileprivate var data: KeepGroup? {
     didSet {
-      bookTitleLabel.text = data?.title
-      bookAuthorLabel.text = data?.author
-      bookImageView.imageFromUrl(data?.image, defaultImgPath: "")
-      explanationLabel.text = data?.description
-      isLeader = data?.isLeader
+      guard let data = data else { return }
+      bookTitleLabel.text = data.title
+      bookAuthorLabel.text = data.author
+      meetingLeaderLabel.text = data.nickname
+      bookImageView.imageFromUrl(data.image, defaultImgPath: "")
+      explanationLabel.text = data.description
+      isLeader = data.isLeader
+      if data.leaderScore > 0 {
+        evaluateButton.isHidden = true
+      }
+      if data.isLeader == true {
+        evaluateButton.setImage(Image.invalidName4, for: .normal)
+      }
     }
   }
   override init(frame: CGRect) {
@@ -148,7 +156,11 @@ extension Reactive where Base: PastMeetingCell {
         if base.data?.isLeader == true {
           return EvaluateWarningViewController()
         }
-        return EvaluateViewController(groupID: base.data?.groupID ?? -1, leaderID: base.data?.userID ?? -1)
+        return EvaluateViewController(
+          groupID: base.data?.groupID ?? -1,
+          leaderID: base.data?.userID ?? -1,
+          leaderName: base.data?.nickname ?? ""
+        )
       }
       .asObservable()
   }

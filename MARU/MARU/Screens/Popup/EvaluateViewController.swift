@@ -54,8 +54,6 @@ final class EvaluateViewController: UIViewController {
     $0.text = "뫄뫄뫄님의 별점을 평가해주세요."
     $0.textAlignment = .center
     $0.font = .systemFont(ofSize: 13, weight: .regular)
-    // 사용자 이름만 bold처리 해줄 것
-    // 나머지 브랜치랑 머지되면 이런 주석은 todo로 바꿔서 넣겠음
   }
   private let submitButton = UIButton().then {
     $0.backgroundColor = .lightGray
@@ -75,12 +73,15 @@ final class EvaluateViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
+    bind()
   }
 
-  init(groupID: Int, leaderID: Int) {
+  init(groupID: Int, leaderID: Int, leaderName: String) {
     self.groupID = groupID
     self.leaderID = leaderID
-    super.init()
+    self.leaderName = leaderName
+    subTitleLabel.text = "\(leaderName)의 별점을 평가해주세요."
+    super.init(nibName: nil, bundle: nil)
   }
 
   required init?(coder: NSCoder) {
@@ -91,15 +92,15 @@ final class EvaluateViewController: UIViewController {
 extension EvaluateViewController {
   private func bind() {
     let didTapEvaluateButton = submitButton.rx.tap
-      .map { [weak self] _ -> (groupID: Int, leaderID: Int) in
+      .map { [weak self] _ -> (groupID: Int, leaderID: Int, score: Int) in
         guard let self = self,
               let groupID = self.groupID,
-              let leaderID = self.leaderID
-        else { return (groupID: -1, leaderID: -1)}
-        return (groupID: groupID, leaderID: leaderID)
+              let leaderID = self.leaderID,
+              let score = self.score
+        else { return (groupID: -1, leaderID: -1, score: -1)}
+        return (groupID: groupID, leaderID: leaderID, score: score)
       }
-    guard let score = score else { return }
-    let input = EvaluateViewModel.Input(didTapSubmitButton: didTapEvaluateButton, score: score)
+    let input = EvaluateViewModel.Input(didTapSubmitButton: didTapEvaluateButton)
     let output = viewModel.transform(input: input)
 
     output.isConnected
@@ -108,11 +109,14 @@ extension EvaluateViewController {
         if !isConnected {
           self.showToast("에러")
         }
-        self.dismiss(animated: false, completion: nil)
-        self.navigationController?.popViewController(animated: false)
+        let presentingVC = self.presentingViewController
+        self.dismiss(animated: false) {
+        presentingVC?.navigationController?.popViewController(animated: false)
+        }
       })
       .disposed(by: disposeBag)
   }
+
   private func render() {
     view.backgroundColor = .black.withAlphaComponent(0.7)
     view.add(popUpView)
@@ -189,7 +193,7 @@ extension EvaluateViewController {
       fifthScoreButton.isSelected = false
       submitButton.backgroundColor = .mainBlue
       submitButton.isEnabled = true
-      score = 1
+      self.score = 1
     case 2:
       sender.isSelected = true
       firstScoreButton.isSelected = true
@@ -198,7 +202,7 @@ extension EvaluateViewController {
       fifthScoreButton.isSelected = false
       submitButton.backgroundColor = .mainBlue
       submitButton.isEnabled = true
-      score = 2
+      self.score = 2
     case 3:
       sender.isSelected = true
       firstScoreButton.isSelected = true
@@ -207,7 +211,7 @@ extension EvaluateViewController {
       fifthScoreButton.isSelected = false
       submitButton.backgroundColor = .mainBlue
       submitButton.isEnabled = true
-      score = 3
+      self.score = 3
     case 4:
       sender.isSelected = true
       firstScoreButton.isSelected = true
@@ -216,7 +220,7 @@ extension EvaluateViewController {
       fifthScoreButton.isSelected = false
       submitButton.backgroundColor = .mainBlue
       submitButton.isEnabled = true
-      score = 4
+      self.score = 4
     case 5:
       sender.isSelected = true
       firstScoreButton.isSelected = true
@@ -225,7 +229,7 @@ extension EvaluateViewController {
       fourthScoreButton.isSelected = true
       submitButton.backgroundColor = .mainBlue
       submitButton.isEnabled = true
-      score = 5
+      self.score = 5
     default:
       break
     }
