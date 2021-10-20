@@ -13,6 +13,8 @@ final class MyBookCaseCell: UICollectionViewCell {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.register(cell: MyLibraryBookCell.self, forCellWithReuseIdentifier: MyLibraryBookCell.reuseIdentifier)
+    collectionView.backgroundColor = .white
     return collectionView
   }()
   let noResultImageView = UIImageView().then {
@@ -90,10 +92,11 @@ extension MyBookCaseCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.awakeFromNib()
     if bookData == nil {
       return cell
     } else {
-      cell.rx.binder.onNext(bookData?.imageURL ?? "")
+    cell.rx.binder.onNext(bookData?.imageURL ?? "")
     }
     return cell
   }

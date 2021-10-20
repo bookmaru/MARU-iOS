@@ -34,6 +34,10 @@ final class MyLibraryViewController: BaseViewController {
       forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier
     )
     collectionView.register(
+      cell: MyBookCaseCell.self,
+      forCellWithReuseIdentifier: MyBookCaseCell.reuseIdentifier
+    )
+    collectionView.register(
       cell: LibraryDiaryCell.self,
       forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier
     )
@@ -144,7 +148,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         cell.rx.didTapAddButton
           .subscribe(onNext: {
             let viewController = BookFavoritesViewController()
-
             viewController.navigationItem.title = titleText
             self.navigationController?.pushViewController(viewController, animated: true)
           })

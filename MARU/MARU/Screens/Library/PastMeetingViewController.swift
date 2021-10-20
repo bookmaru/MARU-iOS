@@ -82,30 +82,6 @@ extension PastMeetingViewController: UICollectionViewDataSource {
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
-    //    if cell.isLeader == true {
-    //      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
-    //      cell.rx.didTapEvaluateButton
-    //        .subscribe(onNext: {_ in
-    //          let viewController = EvaluateWarningViewController()
-    //          viewController.modalTransitionStyle = .crossDissolve
-    //          viewController.modalPresentationStyle = .overCurrentContext
-    //          self.present(viewController, animated: false, completion: nil)
-    //        })
-    //        .disposed(by: cell.disposeBag)
-    //    } else {
-    //      cell.evaluateButton.isHidden = false
-    //      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
-    //      cell.rx.didTapEvaluateButton
-    //        .subscribe(onNext: {
-    //          // 방장이 아닌 경우에는 방장 평가하도록 처리
-    //          let viewController = EvaluateViewController()
-    //          viewController.modalTransitionStyle = .crossDissolve
-    //          viewController.modalPresentationStyle = .overCurrentContext
-    //          // currentContext로 하면 배경 투명효과 안들어감. 작동원리는 동일
-    //          self.present(viewController, animated: false, completion: nil)
-    //        })
-    //        .disposed(by: cell.disposeBag)
-    //    }
     return cell
   }
 }
