@@ -19,8 +19,11 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.register(cell: PastMeetingCell.self, forCellWithReuseIdentifier: PastMeetingCell.reuseIdentifier)
     return collectionView
   }()
+
   private let viewModel = PastMeetingViewModel()
+
   private var data: KeepGroupModel?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
@@ -51,6 +54,7 @@ final class PastMeetingViewController: BaseViewController {
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
         self.data = data
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
 
