@@ -11,8 +11,13 @@ import RxSwift
 
 final class MeetingCell: UICollectionViewCell {
 
-  fileprivate let imageView = UIImageView()
+  fileprivate let imageView = UIImageView().then {
+    $0.layer.cornerRadius = 5
+    $0.layer.masksToBounds = true
+  }
+
   var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -21,10 +26,12 @@ final class MeetingCell: UICollectionViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     contentView.add(imageView) { view in
       view.snp.makeConstraints {

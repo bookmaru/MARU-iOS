@@ -60,9 +60,9 @@ final class ResultBookCell: UICollectionViewCell {
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
     // TODO: - 책 이미지 없는 경우 처리
-    bookImageView.image = Image.group1029
+    bookImageView.image = Image.defalutImage
     if bookModel.imageURL != "" {
-      bookImageView.imageFromUrl(bookModel.imageURL, defaultImgPath: "")
+      bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
     }
   }
 

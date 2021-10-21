@@ -55,10 +55,10 @@ final class MyLibraryCell: UICollectionViewCell {
     contentView.add(collectionView) { view in
       view.snp.makeConstraints {
 //        $0.edges.equalToSuperview()
-        $0.top.equalToSuperview()
-        $0.leading.equalToSuperview().offset(3)
-        $0.trailing.equalToSuperview().offset(-3)
-        $0.bottom.equalToSuperview()
+        $0.top.equalTo(self.contentView).offset(3)
+        $0.leading.equalTo(self.contentView).offset(3)
+        $0.trailing.equalTo(self.contentView).offset(-3)
+        $0.bottom.equalTo(self.contentView).offset(-3)
       }
     }
     collectionView.add(noResultImageView) { imageView in
@@ -88,7 +88,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 70, height: 134)
+    return CGSize(width: ScreenSize.width / 4, height: 134)
   }
 }
 extension MyLibraryCell: UICollectionViewDataSource {

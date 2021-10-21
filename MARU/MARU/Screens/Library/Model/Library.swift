@@ -40,7 +40,7 @@ enum Library {
       return CGSize(width: ScreenSize.width, height: 60)
     case .meeting(let data):
       if data.keepGroup.count > 0 {
-        return CGSize(width: ScreenSize.width / 4, height: 134)
+        return CGSize(width: (ScreenSize.width - 40) / 4, height: 134)
       }
       return CGSize(width: ScreenSize.width, height: 134)
     case .book:
