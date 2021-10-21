@@ -110,8 +110,8 @@ extension EvaluateViewController {
           self.showToast("에러")
         }
         let presentingVC = self.presentingViewController
-        self.dismiss(animated: false) {
-        presentingVC?.navigationController?.popViewController(animated: false)
+        self.dismiss(animated: true) {
+        presentingVC?.navigationController?.popViewController(animated: true)
         }
       })
       .disposed(by: disposeBag)

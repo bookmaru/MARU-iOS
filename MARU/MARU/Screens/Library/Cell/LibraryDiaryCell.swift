@@ -79,6 +79,7 @@ final class LibraryDiaryCell: UICollectionViewCell {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     contentView.add(diaryCellView)
     diaryCellView.adds([

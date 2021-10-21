@@ -64,7 +64,7 @@ final class PastMeetingCell: UICollectionViewCell {
       bookTitleLabel.text = data.title
       bookAuthorLabel.text = data.author
       meetingLeaderLabel.text = data.nickname
-      bookImageView.imageFromUrl(data.image, defaultImgPath: "")
+      bookImageView.image(url:data.image, defaultImage: Image.defalutImage ?? UIImage())
       explanationLabel.text = data.description
       isLeader = data.isLeader
       if data.leaderScore > 0 {
