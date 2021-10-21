@@ -63,9 +63,9 @@ final class LibraryDiaryCell: UICollectionViewCell {
       bookTitleLabel.text = data.bookTitle
       bookAuthorLabel.text = data.bookAuthor
       diaryTitleLabel.text = data.diaryTitle
-      // 데이터 받아오는대로 값 넣어주기
     }
   }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()

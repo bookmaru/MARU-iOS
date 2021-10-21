@@ -17,26 +17,32 @@ final class MyBookCaseCell: UICollectionViewCell {
     collectionView.backgroundColor = .white
     return collectionView
   }()
+
   let noResultImageView = UIImageView().then {
     $0.backgroundColor = .none
     $0.image = Image.vector21
     $0.isHidden = true
   }
+
   let bookImage = UIImageView().then {
     $0.image = Image.autoStories
   }
+
   let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = .subText
     $0.textAlignment = .center
     $0.text = "서재를 채워주세요 :)"
   }
+
   fileprivate var bookData: BookCase? {
     didSet {
       collectionView.reloadData()
     }
   }
+
   var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
@@ -45,10 +51,12 @@ final class MyBookCaseCell: UICollectionViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     contentView.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -77,6 +85,7 @@ final class MyBookCaseCell: UICollectionViewCell {
     collectionView.dataSource = self
   }
 }
+
 extension MyBookCaseCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
@@ -84,6 +93,7 @@ extension MyBookCaseCell: UICollectionViewDelegateFlowLayout {
     return CGSize(width: 30, height: 70)
   }
 }
+
 extension MyBookCaseCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {

@@ -33,6 +33,7 @@ final class PastMeetingViewController: BaseViewController {
     render()
     bind()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
@@ -40,6 +41,7 @@ final class PastMeetingViewController: BaseViewController {
     navigationController?.navigationBar.barTintColor = .white
     tabBarController?.tabBar.isHidden = true
   }
+
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -49,6 +51,7 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
+
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = PastMeetingViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
