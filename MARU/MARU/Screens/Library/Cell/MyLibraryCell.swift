@@ -16,37 +16,45 @@ final class MyLibraryCell: UICollectionViewCell {
     layout.scrollDirection = .horizontal
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MeetingCell.self, forCellWithReuseIdentifier: MeetingCell.reuseIdentifier)
-    collectionView.backgroundColor = .blue
+    collectionView.backgroundColor = .white
     return collectionView
   }()
+
   let noResultImageView = UIImageView().then {
     $0.backgroundColor = .none
     $0.image = Image.vector21
     $0.isHidden = true
   }
+
   let bookImage = UIImageView().then {
     $0.image = Image.autoStories
   }
+
   let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = .subText
     $0.textAlignment = .center
     $0.text = "서재를 채워주세요 :)"
   }
+
   fileprivate var groupData: KeepGroup? {
     didSet {
       collectionView.reloadData()
     }
   }
+
   var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -54,7 +62,6 @@ final class MyLibraryCell: UICollectionViewCell {
   private func render() {
     contentView.add(collectionView) { view in
       view.snp.makeConstraints {
-//        $0.edges.equalToSuperview()
         $0.top.equalTo(self.contentView).offset(3)
         $0.leading.equalTo(self.contentView).offset(3)
         $0.trailing.equalTo(self.contentView).offset(-3)
@@ -91,6 +98,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
     return CGSize(width: ScreenSize.width / 4, height: 134)
   }
 }
+
 extension MyLibraryCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {

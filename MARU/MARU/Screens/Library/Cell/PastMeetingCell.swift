@@ -15,56 +15,67 @@ final class PastMeetingCell: UICollectionViewCell {
     $0.applyShadow(color: .black, alpha: 0.15, shadowX: 0, shadowY: 2, blur: 5/2)
     $0.layer.cornerRadius = 5
   }
+
   private let bookTitleLabel = UILabel().then {
     $0.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
     $0.text = "책 제목"
   }
+
   private let bookAuthorLabel = UILabel().then {
     $0.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
     $0.text = "저자라벨"
     $0.textColor = .subText
   }
+
   private var bookImageView = UIImageView().then {
     $0.backgroundColor = .white
     $0.layer.cornerRadius = 5
     $0.image = Image.gradientImage
   }
+
   private var meetingLeaderLabel = UILabel().then {
     $0.text = "방장 이름"
     $0.textColor = .brownishGrey // 수정 필.
     $0.textAlignment = .right
     $0.font = .systemFont(ofSize: 10, weight: .semibold)
   }
+
   private let explanationLabel = UILabel().then {
     $0.text = """
-    식물책표지가되게예쁘네네네네네네
-    무슨내용일까까까가가가가가가가가
-    와랄랄라와랄랄라와랄랄라와랄라라
+    채팅방 한줄 설명
     """
     $0.textAlignment = .center
     $0.textColor = UIColor.black
     $0.font = .systemFont(ofSize: 12, weight: .regular)
     $0.numberOfLines = 3
   }
+
   private let leftQuotataionImageView = UIImageView().then {
     $0.image = Image.quotationMarkLeft
   }
+
   private let rightQuotataionImageView = UIImageView().then {
     $0.image = Image.quotationMarkRight
   }
+
   let evaluateButton = UIButton().then {
     $0.setImage(Image.invalidName, for: .normal)
     $0.isHidden = false
   }
+
   var isLeader: Bool?
   var disposeBag = DisposeBag()
+
   fileprivate var data: KeepGroup? {
     didSet {
       guard let data = data else { return }
       bookTitleLabel.text = data.title
       bookAuthorLabel.text = data.author
       meetingLeaderLabel.text = data.nickname
-      bookImageView.image(url:data.image, defaultImage: Image.defalutImage ?? UIImage())
+      bookImageView.image(
+        url:data.image,
+        defaultImage: Image.defalutImage ?? UIImage()
+      )
       explanationLabel.text = data.description
       isLeader = data.isLeader
       if data.leaderScore > 0 {
@@ -75,17 +86,21 @@ final class PastMeetingCell: UICollectionViewCell {
       }
     }
   }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
     contentView.add(shadowView)
     shadowView.adds([
@@ -164,6 +179,7 @@ extension Reactive where Base: PastMeetingCell {
       }
       .asObservable()
   }
+
   var dataBinder: Binder<KeepGroup?> {
     return Binder(base) { base, data in
       base.data = data

@@ -14,7 +14,6 @@ final class EvaluateViewModel {
       (groupID: Int,
        leaderID: Int,
        score: Int)
-    >
   }
 
   struct Output {
