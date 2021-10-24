@@ -50,6 +50,19 @@ final class DiaryViewController: BaseViewController {
 
   private let viewModel: DiaryViewModel
 
+  private var info: DiaryInfo? {
+    didSet {
+      guard let info = info else { return }
+      imageView.image(url: info.bookImage)
+      bookTitleLabel.text = "\(info.bookTitle) / \(info.bookAuthor)"
+      dateLabel.text = info.createdAt
+      titleLabel.text = info.diaryTitle
+      contentLabel.text = info.content
+    }
+  }
+
+  private var group: Group?
+
   init(diaryID: Int) {
     viewModel = DiaryViewModel(diaryID: diaryID)
     super.init()
@@ -78,21 +91,27 @@ final class DiaryViewController: BaseViewController {
     output.info
       .subscribe(onNext: { [weak self] info in
         guard let self = self else { return }
-        self.imageView.image(url: info.bookImage)
-        self.bookTitleLabel.text = "\(info.bookTitle) / \(info.bookAuthor)"
-        self.dateLabel.text = info.createdAt
-        self.titleLabel.text = info.diaryTitle
-        self.contentLabel.text = info.content
+        self.info = info
+      })
+      .disposed(by: disposeBag)
+
+    output.group
+      .subscribe(onNext: { [weak self] group in
+        guard let self = self else { return }
+        self.group = group
       })
       .disposed(by: disposeBag)
   }
 
   private func buttonBind() {
     editButton.rx.tap
-      .subscribe(onNext: { _ in
-//        guard let self = self else { return }
-//        let viewController = DiaryWriteViewController(diary: )
-//        self.navigationController?.pushViewController(viewController, animated: true)
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self,
+              let info = self.info,
+              let group = self.group
+        else { return }
+        let viewController = DiaryWriteViewController(diary: group, info: info)
+        self.navigationController?.pushViewController(viewController, animated: true)
       })
       .disposed(by: disposeBag)
   }
