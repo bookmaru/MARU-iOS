@@ -35,29 +35,28 @@ final class BookAlertViewController: UIViewController {
   }
 
   private let submitButton = UIButton().then {
-    $0.backgroundColor = .lightGray
+    $0.backgroundColor = .mainBlue
     $0.isEnabled = false
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
     $0.setTitle("확인", for: .normal)
     $0.setTitleColor(.white, for: .normal)
   }
-
+  private var data: BookModel?
   let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
     bind()
     render()
   }
-  // MARK: - 서재에 담아두기 성공이미지(Image.coolicon)
-  // MARK: - 이미 서재에 담겨있음(Image.group1036)
-  // 모임개수 초과 경고 이미지도 넣기
   init(_ image: UIImage,
        _ guideText: String,
-       _ subGuideText: String) {
+       _ subGuideText: String,
+       _ bookModel: BookModel) {
     super.init(nibName: nil, bundle: nil)
     stateImageView.image = image
     titleLabel.text = guideText
     stateLabel.text = subGuideText
+    data = bookModel
   }
 
   required init?(coder: NSCoder) {
@@ -92,19 +91,19 @@ extension BookAlertViewController {
 
     stateImageView.snp.makeConstraints { make in
       make.centerX.equalTo(popUpView)
-      make.leading.equalTo(popUpView).offset(56)
+      make.leading.equalTo(popUpView).offset(100)
       make.top.equalTo(popUpView).offset(20)
+      make.size.equalTo(45)
     }
 
     titleLabel.snp.makeConstraints { make in
-      make.centerX.equalTo(popUpView)
-      make.leading.equalTo(popUpView).offset(56)
-      make.top.equalTo(stateImageView).offset(20)
+      make.centerX.equalTo(stateImageView)
+      make.leading.equalTo(popUpView).offset(30)
+      make.top.equalTo(stateImageView.snp.bottom).offset(20)
     }
 
     stateLabel.snp.makeConstraints { make in
-      make.centerX.equalTo(popUpView)
-      make.top.equalTo(stateLabel).offset(6)
+      make.top.equalTo(titleLabel.snp.bottom).offset(6)
       make.leading.equalTo(popUpView).offset(48)
     }
 
