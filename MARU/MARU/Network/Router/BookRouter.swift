@@ -11,6 +11,7 @@ enum BookRouter {
   case get
   case group
   case addGroup(groupID: Int)
+  case addBook(author: String, category: String, imageURL: String, isbn: Int, title: String)
 }
 
 extension BookRouter: TargetType {
@@ -25,6 +26,8 @@ extension BookRouter: TargetType {
       return "bookcase/group"
     case .addGroup(let groupID):
       return "bookcase/group/\(groupID)"
+    case .addBook:
+      return "bookcase"
     }
   }
   var method: Method {
@@ -34,6 +37,8 @@ extension BookRouter: TargetType {
     case .group:
       return .get
     case .addGroup:
+      return .post
+    case .addBook:
       return .post
     }
   }
@@ -46,6 +51,15 @@ extension BookRouter: TargetType {
       return .requestPlain
     case .addGroup:
       return .requestPlain
+    case let .addBook(author,category,imageURL,isbn,title):
+      let parameter: [String: Any] = [
+        "author": author,
+        "category": category,
+        "imageURL": imageURL,
+        "isbn": isbn,
+        "title": title
+      ]
+      return .requestParameters(parameters: parameter, encoding: JSONEncoding.default)
     }
   }
   var headers: [String: String]? {

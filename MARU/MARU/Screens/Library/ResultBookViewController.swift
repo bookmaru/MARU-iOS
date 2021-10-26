@@ -33,7 +33,7 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
   private var resultCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     let resultCollectionView = UICollectionView(frame: .zero,
-                                            collectionViewLayout: MaruListCollectionViewLayout.createLayout())
+                                                collectionViewLayout: MaruListCollectionViewLayout.createLayout())
     resultCollectionView.contentInsetAdjustmentBehavior = .never
     resultCollectionView.backgroundColor = .white
     return resultCollectionView
@@ -62,7 +62,7 @@ class ResultBookViewController: BaseViewController, UISearchBarDelegate {
   }
 
   required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
 }
 
@@ -142,19 +142,6 @@ extension ResultBookViewController {
     let cellRegistration = UICollectionView
       .CellRegistration<ResultBookCell, BookModel> { cell, _, bookModel in
         cell.bind(bookModel)
-        // TODO: POST 통신 방법 고민해보기
-        cell.rx.didTapAddBookButton
-          .subscribe(onNext: {
-            let viewController = BookAlertViewController(
-              Image.coolicon ?? UIImage(),
-              "\(bookModel.title)이",
-              "성공적으로 서재에 담겼습니다."
-            )
-            viewController.modalPresentationStyle = .overCurrentContext
-            viewController.modalTransitionStyle = .crossDissolve
-            self.present(viewController, animated: true)
-          })
-          .disposed(by: cell.disposeBag )
       }
 
     resultDataSource = UICollectionViewDiffableDataSource<Section, BookModel>(
@@ -175,5 +162,30 @@ extension ResultBookViewController {
 }
 
 extension ResultBookViewController: UICollectionViewDelegate {
-  // MARK: - configure부분에서 버튼처리 안되면 여기서라도 해야함
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? ResultBookCell else { return }
+    guard let data = cell.bookcase else { return }
+    let title = data.title
+    if data.hasMyBookcase == false {
+      let viewController = BookAlertViewController(
+        Image.coolicon ?? UIImage(),
+        "\(title)이",
+        "성공적으로 서재에 담겼습니다.",
+        data
+      )
+      viewController.modalPresentationStyle = .overCurrentContext
+      viewController.modalTransitionStyle = .crossDissolve
+      self.present(viewController, animated: true)
+    } else {
+      let viewController = BookAlertViewController(
+        Image.group1036 ?? UIImage(),
+        "\(title)이",
+        "이미 담겨있습니다.",
+        data
+      )
+      viewController.modalPresentationStyle = .overCurrentContext
+      viewController.modalTransitionStyle = .crossDissolve
+      self.present(viewController, animated: true)
+    }
+  }
 }
