@@ -28,5 +28,9 @@ struct Question: Codable {
   let quiz: [String]
 }
 struct ResultMakeGroup: Codable {
-  let makeGroup: Int
+  let groupID: Int
+
+  enum CodingKeys: String, CodingKey {
+    case groupID = "groupId"
+  }
 }

@@ -15,12 +15,12 @@ struct Quizzes: Codable {
 
   init(from decoder: Decoder) throws {
        let keyMap = [
-         "quizzes": ["getQuiz"]
+         "quizzes": ["quizAndAnswer"]
        ]
        let container = try decoder.container(keyedBy: AnyKey.self)
        self.quizzes = try container.decode([Quiz].self, forMappedKey: "quizzes", in: keyMap)
      }
 }
 struct CheckQuiz: Codable {
-  let checkQuiz: Bool
+  let isEnterGroup: Bool
 }

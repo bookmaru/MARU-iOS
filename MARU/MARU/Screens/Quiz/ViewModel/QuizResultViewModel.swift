@@ -22,7 +22,7 @@ final class QuizResultViewModel: ViewModelType {
     let response = input.viewTrigger
       .withLatestFrom(input.resultValue)
       .flatMap { NetworkService.shared.quiz.checkQuiz(groupID: $0.0, isEnter: $0.1) }
-      .map { $0.data?.checkQuiz }
+      .map { $0.data?.isEnterGroup }
       .map { checkQuiz -> Bool in
         guard let checkQuiz = checkQuiz else { return false }
         return checkQuiz
