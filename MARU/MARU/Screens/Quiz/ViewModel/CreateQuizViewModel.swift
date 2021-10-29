@@ -106,7 +106,7 @@ final class CreateQuizViewModel: ViewModelType {
         }
         return response
       }
-      .map { $0.data?.makeGroup ?? -1 }
+      .map { $0.data?.groupID ?? -1 }
       .map { $0 }
       .asDriver(onErrorJustReturn: -1)
 

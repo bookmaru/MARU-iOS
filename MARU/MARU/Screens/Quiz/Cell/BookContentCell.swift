@@ -92,6 +92,7 @@ extension BookContentCell {
     }
     bookNameLabel.snp.makeConstraints { make in
       make.leading.equalTo(bookImageView.snp.trailing).offset(14)
+      make.trailing.lessThanOrEqualToSuperview()
       make.top.equalToSuperview().inset(13)
     }
     authorLabel.snp.makeConstraints { make in
