@@ -15,6 +15,7 @@ final class DiaryViewModel {
 
   struct Output {
     let info: Observable<DiaryInfo>
+    let group: Observable<Group>
   }
 
   private let diaryID: Int
@@ -24,10 +25,16 @@ final class DiaryViewModel {
   }
 
   func transform(input: Input) -> Output {
-    let info = input.viewDidLoad
+    let response = input.viewDidLoad
       .flatMap { NetworkService.shared.diary.getDiary(diaryID: self.diaryID) }
+      .share()
+
+    let info = response
       .compactMap { $0.data?.diary }
 
-    return Output(info: info)
+    let group = response
+      .compactMap { $0.data?.group }
+
+    return Output(info: info, group: group)
   }
 }

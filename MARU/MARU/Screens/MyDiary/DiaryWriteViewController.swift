@@ -49,6 +49,14 @@ final class DiaryWriteViewController: BaseViewController {
 
   private let viewModel: DiaryWriteViewModel
 
+  private var isDiaryEdit: Bool = false
+  private var info: DiaryInfo? {
+    didSet {
+      guard let _ = info, isDiaryEdit else { return }
+      // TODO: 에딧 부분 설정
+    }
+  }
+
   init(diary: Group) {
     viewModel = DiaryWriteViewModel(groupID: diary.discussionGroupID)
 
@@ -56,6 +64,12 @@ final class DiaryWriteViewController: BaseViewController {
 
     diaryView.rx.dataBinder.onNext(diary)
     textBinder()
+  }
+
+  convenience init(diary: Group, info: DiaryInfo) {
+    self.init(diary: diary)
+    self.info = info
+    self.isDiaryEdit = true
   }
 
   required init?(coder: NSCoder) {

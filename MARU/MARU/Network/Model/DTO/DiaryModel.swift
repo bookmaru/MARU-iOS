@@ -53,4 +53,5 @@ struct DiaryInfo: Codable {
 
 struct DiaryObject: Codable {
   let diary: DiaryInfo
+  let group: Group
 }
