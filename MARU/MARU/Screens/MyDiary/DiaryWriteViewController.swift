@@ -52,8 +52,9 @@ final class DiaryWriteViewController: BaseViewController {
   private var isDiaryEdit: Bool = false
   private var info: DiaryInfo? {
     didSet {
-      guard let _ = info, isDiaryEdit else { return }
+      guard let info = info, isDiaryEdit else { return }
       // TODO: 에딧 부분 설정
+      print("asdasd", info)
     }
   }
 

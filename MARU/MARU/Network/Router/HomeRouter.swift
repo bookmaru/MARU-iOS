@@ -14,10 +14,7 @@ enum HomeRouter {
   case getNewCategory(category: String, currentGroupCount: Int)
 }
 
-extension HomeRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
+extension HomeRouter: BaseTargetType {
   var path: String {
     switch self {
     case .getPopular:
@@ -44,8 +41,6 @@ extension HomeRouter: TargetType {
     }
   }
 
-  var sampleData: Data { Data() }
-
   var task: Task {
     switch self {
     case .getPopular:
@@ -68,10 +63,5 @@ extension HomeRouter: TargetType {
         encoding: URLEncoding.queryString
       )
     }
-  }
-  var headers: [String: String]? {
-    return [
-      "Content-Type": "application/json"
-    ]
   }
 }
