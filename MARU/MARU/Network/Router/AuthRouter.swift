@@ -31,11 +31,7 @@ enum AuthRouter {
   case report(chat: RealmChat)
 }
 
-extension AuthRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
-
+extension AuthRouter: BaseTargetType {
   var path: String {
     switch self {
     case .auth(let type, _):
@@ -65,8 +61,6 @@ extension AuthRouter: TargetType {
       return .get
     }
   }
-
-  var sampleData: Data { Data() }
 
   var task: Task {
     switch self {

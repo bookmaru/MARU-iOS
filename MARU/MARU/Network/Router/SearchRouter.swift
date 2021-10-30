@@ -13,10 +13,7 @@ enum SearchRouter {
   case meetingSearchByISBN(isbn: String, page: Int)
 }
 
-extension SearchRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
+extension SearchRouter: BaseTargetType {
   var path: String {
     switch self {
     case .search:
@@ -38,8 +35,6 @@ extension SearchRouter: TargetType {
       return .get
     }
   }
-
-  var sampleData: Data { Data() }
 
   var task: Task {
     switch self {
@@ -65,11 +60,5 @@ extension SearchRouter: TargetType {
         encoding: URLEncoding.queryString
       )
     }
-  }
-  var headers: [String: String]? {
-    return [
-      "Content-Type": "application/json",
-      "accessToken": KeychainHandler.shared.accessToken
-    ]
   }
 }

@@ -15,10 +15,7 @@ enum DiaryRouter {
   case delete(diaryID: Int)
 }
 
-extension DiaryRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
+extension DiaryRouter: BaseTargetType {
   var path: String {
     switch self {
     case .list:
@@ -49,8 +46,6 @@ extension DiaryRouter: TargetType {
     }
   }
 
-  var sampleData: Data { Data() }
-
   var task: Task {
     switch self {
     case .list:
@@ -69,12 +64,5 @@ extension DiaryRouter: TargetType {
     case .delete:
       return .requestPlain
     }
-  }
-
-  var headers: [String: String]? {
-    return [
-      "Content-Type": "application/json",
-      "accessToken": KeychainHandler.shared.accessToken
-    ]
   }
 }

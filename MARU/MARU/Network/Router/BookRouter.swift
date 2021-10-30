@@ -13,10 +13,7 @@ enum BookRouter {
   case addGroup(groupID: Int)
 }
 
-extension BookRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
+extension BookRouter: BaseTargetType {
   var path: String {
     switch self {
     case .get: // 담아둔 모임
@@ -27,6 +24,7 @@ extension BookRouter: TargetType {
       return "bookcase/group/\(groupID)"
     }
   }
+
   var method: Method {
     switch self {
     case .get:
@@ -37,7 +35,7 @@ extension BookRouter: TargetType {
       return .post
     }
   }
-  var sampleData: Data { Data() }
+
   var task: Task {
     switch self {
     case .get:
@@ -47,11 +45,5 @@ extension BookRouter: TargetType {
     case .addGroup:
       return .requestPlain
     }
-  }
-  var headers: [String: String]? {
-    return [
-      "Content-Type": "application/json",
-      "accessToken": KeychainHandler.shared.accessToken
-    ]
   }
 }

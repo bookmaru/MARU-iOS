@@ -13,10 +13,7 @@ enum QuizRouter {
   case checkQuiz(groupID: Int, isEnter: String)
 }
 
-extension QuizRouter: TargetType {
-  var baseURL: URL {
-    return Enviroment.baseURL
-  }
+extension QuizRouter: BaseTargetType {
   var path: String {
     switch self {
     case .createQuiz:
@@ -39,8 +36,6 @@ extension QuizRouter: TargetType {
     }
   }
 
-  var sampleData: Data { Data() }
-
   var task: Task {
     switch self {
     case .createQuiz(let makeGroup):
@@ -51,11 +46,5 @@ extension QuizRouter: TargetType {
     case .checkQuiz:
       return .requestPlain
     }
-  }
-  var headers: [String: String]? {
-    return [
-      "Content-Type": "application/json",
-      "accessToken": KeychainHandler.shared.accessToken
-    ]
   }
 }
