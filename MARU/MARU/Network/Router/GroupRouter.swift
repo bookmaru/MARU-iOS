@@ -66,6 +66,5 @@ extension GroupRouter: BaseTargetType {
     default:
       return .requestPlain
     }
-
   }
 }
