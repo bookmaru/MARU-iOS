@@ -8,7 +8,6 @@
 import RxSwift
 
 final class EvaluateViewModel {
-  // groupID, leaderID, score
   struct Input {
     let didTapSubmitButton: Observable<(groupID: Int, leaderID: Int, score: Int)>
   }
