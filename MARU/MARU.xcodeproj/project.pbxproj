@@ -146,6 +146,7 @@
 		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
+		F210311B272E575A00FC58EC /* BookAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210311A272E575A00FC58EC /* BookAlertViewModel.swift */; };
 		F223E3C826C8F8320039919A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C726C8F8320039919A /* UserInformation.swift */; };
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
@@ -349,6 +350,7 @@
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F210311A272E575A00FC58EC /* BookAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAlertViewModel.swift; sourceTree = "<group>"; };
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
@@ -1078,6 +1080,7 @@
 				F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */,
 				F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */,
 				F2B16A94271EF8D200AAC194 /* EvaluateViewModel.swift */,
+				F210311A272E575A00FC58EC /* BookAlertViewModel.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1510,6 +1513,7 @@
 				C5209DF926F73B5B00CBFABD /* MyDiaryViewModel.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				F223E3C826C8F8320039919A /* UserInformation.swift in Sources */,
+				F210311B272E575A00FC58EC /* BookAlertViewModel.swift in Sources */,
 				F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */,
 				C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */,
 				770D14932700D05C0053285F /* BookSearchViewController.swift in Sources */,

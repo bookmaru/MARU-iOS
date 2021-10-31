@@ -42,7 +42,9 @@ final class BookAlertViewController: UIViewController {
     $0.setTitleColor(.white, for: .normal)
   }
   private var data: BookModel?
+  private let viewModel = BookAlertViewModel()
   let disposeBag = DisposeBag()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     bind()
@@ -71,6 +73,30 @@ extension BookAlertViewController {
       self?.dismiss(animated: true, completion: nil)
     }).disposed(by: disposeBag)
 
+    let didTapSubmitButton = submitButton.rx.tap
+      .map{ [weak self] _ -> AlertButtonDTO in
+        guard let self = self,
+              let author = self.data?.author,
+              let category = self.data?.category,
+              let imageURL = self.data?.imageURL,
+              let isbn = self.data?.isbn,
+              let title = self.data?.title
+        else { return AlertButtonDTO(author: "", category: "", imageURL: "", isbn: 0, title: "") }
+        return AlertButtonDTO(author: author, category: category, imageURL: imageURL, isbn: isbn, title: title)
+      }
+
+    let input = BookAlertViewModel.Input(didTapSubmitButton: didTapSubmitButton)
+    let output = viewModel.transform(input: input)
+
+    output.isSuccess
+      .subscribe(onNext: { [weak self] isSuccess in
+        guard let self = self else { return }
+        let presentingVC = self.presentingViewController
+        self.dismiss(animated: true) {
+          presentingVC?.navigationController?.popViewController(animated: true)
+        }
+      })
+      .disposed(by: disposeBag)
   }
   private func render() {
     view.backgroundColor = .black.withAlphaComponent(0.7)
