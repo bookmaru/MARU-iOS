@@ -14,6 +14,7 @@ protocol GroupServiceType {
   func diaryList() -> Observable<BaseReponseType<Groups>>
   func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>>
   func keep(groupID: Int) -> Observable<BaseReponseType<HasGroup>>
+  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseReponseType<Int>>
 }
 
 final class GroupService: GroupServiceType {
@@ -53,5 +54,13 @@ final class GroupService: GroupServiceType {
       .request(.keep(groupID: groupID))
       .asObservable()
       .map(BaseReponseType<HasGroup>.self)
+  }
+
+  // /api/v2/group/1/leader/1?score=4.5
+  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseReponseType<Int>> {
+    return router.rx
+      .request(.evaluate(groupID: groupID, leaderID: leaderID, score: score))
+      .asObservable()
+      .map(BaseReponseType<Int>.self)
   }
 }

@@ -19,13 +19,21 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.register(cell: PastMeetingCell.self, forCellWithReuseIdentifier: PastMeetingCell.reuseIdentifier)
     return collectionView
   }()
+
   private let viewModel = PastMeetingViewModel()
-  private var data: KeepGroupModel?
+
+  private var data: KeepGroupModel? {
+    didSet {
+      collectionView.reloadData()
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
@@ -33,6 +41,7 @@ final class PastMeetingViewController: BaseViewController {
     navigationController?.navigationBar.barTintColor = .white
     tabBarController?.tabBar.isHidden = true
   }
+
   private func render() {
     view.add(collectionView) { view in
       view.snp.makeConstraints {
@@ -42,6 +51,7 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
   }
+
   private func bind() {
     let viewDidLoadPublisher = PublishSubject<Void>()
     let input = PastMeetingViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
@@ -51,6 +61,7 @@ final class PastMeetingViewController: BaseViewController {
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
         self.data = data
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
 
@@ -82,30 +93,6 @@ extension PastMeetingViewController: UICollectionViewDataSource {
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
-    //    if cell.isLeader == true {
-    //      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
-    //      cell.rx.didTapEvaluateButton
-    //        .subscribe(onNext: {_ in
-    //          let viewController = EvaluateWarningViewController()
-    //          viewController.modalTransitionStyle = .crossDissolve
-    //          viewController.modalPresentationStyle = .overCurrentContext
-    //          self.present(viewController, animated: false, completion: nil)
-    //        })
-    //        .disposed(by: cell.disposeBag)
-    //    } else {
-    //      cell.evaluateButton.isHidden = false
-    //      cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item])!)
-    //      cell.rx.didTapEvaluateButton
-    //        .subscribe(onNext: {
-    //          // 방장이 아닌 경우에는 방장 평가하도록 처리
-    //          let viewController = EvaluateViewController()
-    //          viewController.modalTransitionStyle = .crossDissolve
-    //          viewController.modalPresentationStyle = .overCurrentContext
-    //          // currentContext로 하면 배경 투명효과 안들어감. 작동원리는 동일
-    //          self.present(viewController, animated: false, completion: nil)
-    //        })
-    //        .disposed(by: cell.disposeBag)
-    //    }
     return cell
   }
 }

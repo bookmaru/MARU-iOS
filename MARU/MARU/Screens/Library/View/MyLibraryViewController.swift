@@ -34,6 +34,10 @@ final class MyLibraryViewController: BaseViewController {
       forCellWithReuseIdentifier: MyLibraryCell.reuseIdentifier
     )
     collectionView.register(
+      cell: MyBookCaseCell.self,
+      forCellWithReuseIdentifier: MyBookCaseCell.reuseIdentifier
+    )
+    collectionView.register(
       cell: LibraryDiaryCell.self,
       forCellWithReuseIdentifier: LibraryDiaryCell.reuseIdentifier
     )
@@ -144,12 +148,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
         cell.rx.didTapAddButton
           .subscribe(onNext: {
             let viewController = BookFavoritesViewController()
-
             viewController.navigationItem.title = titleText
             self.navigationController?.pushViewController(viewController, animated: true)
           })
           .disposed(by: cell.disposeBag)
-        // 이후에 완성한 뷰로 연결시켜주기
       }
       if titleText == "내 일기장" {
         cell.rx.didTapAddButton
@@ -164,8 +166,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+      let titleCell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       if keepGroupModel.keepGroup.count == 0 {
         cell.noResultImageView.isHidden = false
+        titleCell.addButton.isHidden = true
       } else {
         cell.noResultImageView.isHidden = true
         cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
@@ -174,7 +178,13 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      if data.bookcase.count == 0 {
+        print("aaaaa")
+        cell.noResultImageView.isHidden = false
+      } else {
+        cell.noResultImageView.isHidden = true
+        cell.rx.binder.onNext(data.bookcase[indexPath.item])
+      }
       return cell
     // MARK: - 내 일기장
     case let .diary(data):

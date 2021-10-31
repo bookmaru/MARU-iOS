@@ -16,23 +16,11 @@ final class PastMeetingViewModel {
     let data: Driver<KeepGroupModel?>
   }
   func transfrom(input: Input) -> Output {
-    let viewDidLoad = input.viewDidLoadPublisher.share()
-    let meetingList = viewDidLoad
-      .flatMap { NetworkService.shared.book.getGroup() }
-      .map { response -> KeepGroupModel? in
-        return response.data
-      }
-      .asDriver(onErrorJustReturn: nil) // nil로 반환해주니까 옵셔널처리 Ouput에서 해줘야
-//    let meetingList = viewDidLoad
-//      .map {
-//        KeepGroupModel(keepGroup: [.init(groupID: 1, image: "", title: "sample",
-//    author: "sample", description: "sample", userID: 2,
-//    nickName: "sample", leaderScore: 3, isLeader: true),
-//                                   .init(groupID: 1, image: "", title: "sample",
-//    author: "sample", description: "sample", userID: 4,
-//    nickName: "sample", leaderScore: 2, isLeader: false)])
-//      }
-      .asDriver(onErrorJustReturn: nil)
+    let meetingList = input.viewDidLoadPublisher
+      .flatMap(NetworkService.shared.book.getGroup)
+      .compactMap { $0.data }
+      .asDriver(onErrorJustReturn: nil) // nil로 반환해주니까 옵셔널처리 Ouput에서
+
     return Output(data: meetingList)
   }
 }

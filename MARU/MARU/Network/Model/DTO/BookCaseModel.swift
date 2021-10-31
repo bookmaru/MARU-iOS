@@ -38,7 +38,7 @@ struct KeepGroup: Codable {
     case title
     case author
     case description
-    case userID = "userId"
+    case userID = "leaderId"
     case nickname
     case leaderScore
     case isLeader = "meLeader"

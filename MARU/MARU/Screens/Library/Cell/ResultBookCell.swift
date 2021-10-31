@@ -33,10 +33,11 @@ final class ResultBookCell: UICollectionViewCell {
     $0.text = "이이이리리리"
   }
 
-  fileprivate var addBookButton = UIButton().then {
+  var addBookButton = UIButton().then {
     $0.setImage(Image.validName, for: .normal)
   }
 
+  var bookcase: BookModel?
   var disposeBag = DisposeBag()
 
   override init(frame: CGRect) {
@@ -57,12 +58,12 @@ final class ResultBookCell: UICollectionViewCell {
   }
 
   func bind(_ bookModel: BookModel) {
+    bookcase = bookModel
     bookTitleLabel.text = bookModel.title
     bookAuthorLabel.text = bookModel.author
-    // TODO: - 책 이미지 없는 경우 처리
-    bookImageView.image = Image.group1029
+    bookImageView.image = Image.defalutImage
     if bookModel.imageURL != "" {
-      bookImageView.imageFromUrl(bookModel.imageURL, defaultImgPath: "")
+      bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
     }
   }
 
@@ -107,13 +108,5 @@ final class ResultBookCell: UICollectionViewCell {
       make.bottom.equalTo(shadowView.snp.bottom).offset(-12)
       make.height.equalTo(22)
     }
-  }
-}
-
-extension Reactive where Base: ResultBookCell {
-  var didTapAddBookButton: Observable<Void> {
-    return base.addBookButton.rx.tap
-      .map { return }
-      .asObservable()
   }
 }
