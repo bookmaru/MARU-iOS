@@ -11,10 +11,18 @@ struct BookCaseModel: Codable {
 
 struct BookCase: Codable {
   let bookcaseID: Int
-  let isbn: String
+  let isbn: Int
   let title: String
   let author: String
   let imageURL: String
+
+  enum CodingKeys: String, CodingKey {
+    case bookcaseID = "bookcaseId"
+    case isbn
+    case title
+    case author
+    case imageURL = "imageUrl"
+  }
 }
 
 struct KeepGroupModel: Codable {

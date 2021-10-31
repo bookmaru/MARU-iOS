@@ -49,11 +49,11 @@ extension BookRouter: BaseTargetType {
       return .requestPlain
     case .addGroup:
       return .requestPlain
-    case let .addBook(author,category,imageURL,isbn,title):
+    case let .addBook(author, category, imageURL, isbn, title):
       let parameter: [String: Any] = [
         "author": author,
         "category": category,
-        "imageURL": imageURL,
+        "imageUrl": imageURL,
         "isbn": isbn,
         "title": title
       ]
