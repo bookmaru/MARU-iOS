@@ -10,11 +10,16 @@ import RxCocoa
 import RxSwift
 
 final class MyLibraryBookCell: UICollectionViewCell {
-  fileprivate let imageView = UIImageView()
+  fileprivate let imageView = UIImageView().then {
+    $0.layer.cornerRadius = 5
+    $0.layer.masksToBounds = true
+  }
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     render()
   }
+
   var disposeBag = DisposeBag()
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")

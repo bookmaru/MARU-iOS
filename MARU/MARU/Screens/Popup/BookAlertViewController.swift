@@ -36,7 +36,6 @@ final class BookAlertViewController: UIViewController {
 
   private let submitButton = UIButton().then {
     $0.backgroundColor = .mainBlue
-    $0.isEnabled = false
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
     $0.setTitle("확인", for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -69,12 +68,14 @@ final class BookAlertViewController: UIViewController {
 extension BookAlertViewController {
   private func bind() {
     // MARK: - 확인버튼 탭 -> dismiss처리
-    submitButton.rx.tap.subscribe( onNext: { [weak self] _ in
-      self?.dismiss(animated: true, completion: nil)
-    }).disposed(by: disposeBag)
+    submitButton.rx.tap
+      .subscribe( onNext: { [weak self] _ in
+        self?.dismiss(animated: true, completion: nil)
+      })
+      .disposed(by: disposeBag)
 
     let didTapSubmitButton = submitButton.rx.tap
-      .map{ [weak self] _ -> AlertButtonDTO in
+      .map { [weak self] _ -> AlertButtonDTO in
         guard let self = self,
               let author = self.data?.author,
               let category = self.data?.category,
@@ -91,10 +92,10 @@ extension BookAlertViewController {
     output.isSuccess
       .subscribe(onNext: { [weak self] isSuccess in
         guard let self = self else { return }
-        let presentingVC = self.presentingViewController
-        self.dismiss(animated: true) {
-          presentingVC?.navigationController?.popViewController(animated: true)
+        if !isSuccess {
+          self.showToast("error")
         }
+        self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
   }

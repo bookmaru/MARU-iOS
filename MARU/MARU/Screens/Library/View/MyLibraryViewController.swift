@@ -179,7 +179,6 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       if data.bookcase.count == 0 {
-        print("aaaaa")
         cell.noResultImageView.isHidden = false
       } else {
         cell.noResultImageView.isHidden = true
