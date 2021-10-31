@@ -48,7 +48,7 @@ final class DiaryView: UIView {
       authorLabel.text = data.author
       contentLabel.text = data.description
       ownerLabel.text = "By \(data.nickname)"
-      imageView.imageFromUrl(data.image, defaultImgPath: "")
+      imageView.image(url: data.image)
     }
   }
 

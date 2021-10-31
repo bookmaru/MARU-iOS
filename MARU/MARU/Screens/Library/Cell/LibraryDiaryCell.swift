@@ -59,7 +59,7 @@ final class LibraryDiaryCell: UICollectionViewCell {
     didSet {
       guard let data = data else { return }
       diaryDateLabel.text = data.createdAt
-      bookImageView.imageFromUrl(data.bookImage, defaultImgPath: "")
+      bookImageView.image(url: data.bookImage, defaultImage: UIImage())
       bookTitleLabel.text = data.bookTitle
       bookAuthorLabel.text = data.bookAuthor
       diaryTitleLabel.text = data.diaryTitle

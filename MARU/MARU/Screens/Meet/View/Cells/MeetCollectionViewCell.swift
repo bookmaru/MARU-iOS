@@ -32,12 +32,6 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   }
   private let leftTimeLabel = UILabel().then {
     $0.textColor = .white
-    let text = "토론이 6일 남았습니다."
-    let attributedString = NSMutableAttributedString(string: text)
-    attributedString.addAttribute(
-      .foregroundColor, value: UIColor.mainBlue, range: (text as NSString).range(of: "6")
-    )
-    $0.attributedText = attributedString
     $0.font = .boldSystemFont(ofSize: 15)
   }
   private let bottomContainerView = UIView().then {
@@ -81,14 +75,16 @@ final class MeetCollectionViewCell: UICollectionViewCell {
   }
   fileprivate var data: GeneratedGroup? {
     didSet {
-      bookMarkImageView.isHidden = !(data?.isLeader ?? false)
-      posterImageView.image(url: data?.image ?? "", defaultImage: UIImage())
-      bookTitleLabel.text = data?.title
-      authorNameLabel.text = data?.author
-      nameLabel.text = data?.chatUserName
-      contentLabel.text = data?.description
-      chatLabel.text = data?.message
-      timeLabel.text = data?.chatTime.chatTime
+      guard let data = data else { return }
+      bookMarkImageView.isHidden = !(data.isLeader)
+      posterImageView.image(url: data.image, defaultImage: UIImage())
+      bookTitleLabel.text = data.title
+      authorNameLabel.text = data.author
+      nameLabel.text = data.chatUserName
+      contentLabel.text = data.description
+      chatLabel.text = data.message
+      timeLabel.text = data.chatTime.chatTime
+      leftTimeLabel.attributedText = setRemainDate(remainDay: data.remainingDay)
     }
   }
   override init(frame: CGRect) {
@@ -103,9 +99,15 @@ final class MeetCollectionViewCell: UICollectionViewCell {
 
 }
 
-// MARK: - Logic
 extension MeetCollectionViewCell {
-
+  private func setRemainDate(remainDay: Int) -> NSMutableAttributedString {
+    let text = "토론이 \(remainDay)일 남았습니다."
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttribute(
+      .foregroundColor, value: UIColor.mainBlue, range: (text as NSString).range(of: "6")
+    )
+    return attributedString
+  }
 }
 
 // MARK: - Layout

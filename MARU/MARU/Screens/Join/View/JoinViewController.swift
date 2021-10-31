@@ -111,8 +111,8 @@ final class JoinViewController: BaseViewController {
   private let viewModel = JoinViewModel()
   fileprivate var data: GroupInformation? {
     didSet {
-      if data?.groups?.image != "" {
-        bookImageView.imageFromUrl(data?.groups?.image, defaultImgPath: "")
+      if let imageURL = data?.groups?.image{
+        bookImageView.image(url: imageURL)
       }
       bookTitleLabel.text = data?.groups?.title
       let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."

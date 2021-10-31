@@ -44,7 +44,7 @@ final class MeetingCell: UICollectionViewCell {
 extension Reactive where Base: MeetingCell {
   var binder: Binder<String> {
     return Binder(base) { base, string in
-      base.imageView.setImage(from: string, UIImage())
+      base.imageView.image(url: string)
     }
   }
 }
