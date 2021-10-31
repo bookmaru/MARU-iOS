@@ -20,7 +20,6 @@ final class ProfileChangeViewController: UIViewController {
     $0.setTitle("완료", for: .normal)
     $0.setTitleColor(.subText, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-    // MARK: - 완료버튼 누르면 어디로?
   }
   private let profileImageView = UIImageView().then {
     $0.image = Image.group1029
@@ -56,6 +55,7 @@ final class ProfileChangeViewController: UIViewController {
     $0.text = "사용 가능한 닉네임입니다."
     $0.isHidden = false
   }
+  private let viewModel = ProfileChangeViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
