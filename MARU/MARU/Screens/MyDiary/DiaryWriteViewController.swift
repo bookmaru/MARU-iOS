@@ -49,28 +49,20 @@ final class DiaryWriteViewController: BaseViewController {
 
   private let viewModel: DiaryWriteViewModel
 
-  private var isDiaryEdit: Bool = false
-  private var info: DiaryInfo? {
-    didSet {
-      guard let info = info, isDiaryEdit else { return }
-      // TODO: 에딧 부분 설정
-      print("asdasd", info)
-    }
-  }
+  private let isDiaryEdit: Bool
 
-  init(diary: Group) {
-    viewModel = DiaryWriteViewModel(groupID: diary.discussionGroupID)
-
+  init(diary: Group, isDiaryEdit: Bool = false, info: DiaryInfo? = nil) {
+    viewModel = DiaryWriteViewModel(groupID: diary.discussionGroupID, info: info, isDiaryEdit: isDiaryEdit)
+    self.isDiaryEdit = isDiaryEdit
     super.init()
 
     diaryView.rx.dataBinder.onNext(diary)
     textBinder()
+    setInfo(info: info)
   }
 
   convenience init(diary: Group, info: DiaryInfo) {
-    self.init(diary: diary)
-    self.info = info
-    self.isDiaryEdit = true
+    self.init(diary: diary, isDiaryEdit: true, info: info)
   }
 
   required init?(coder: NSCoder) {
@@ -81,6 +73,12 @@ final class DiaryWriteViewController: BaseViewController {
     super.viewDidLoad()
     render()
     bind()
+  }
+
+  private func setInfo(info: DiaryInfo?) {
+    guard let info = info, isDiaryEdit else { return }
+    titleTextView.text = info.diaryTitle
+    diaryTextView.text = info.content
   }
 
   private func render() {
