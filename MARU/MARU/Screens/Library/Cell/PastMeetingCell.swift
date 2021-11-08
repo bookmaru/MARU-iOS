@@ -73,7 +73,7 @@ final class PastMeetingCell: UICollectionViewCell {
       bookAuthorLabel.text = data.author
       meetingLeaderLabel.text = data.nickname
       bookImageView.image(
-        url:data.image,
+        url: data.image,
         defaultImage: Image.defalutImage ?? UIImage()
       )
       explanationLabel.text = data.description
@@ -99,6 +99,12 @@ final class PastMeetingCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
+    bookTitleLabel.text = nil
+    bookAuthorLabel.text = nil
+    bookImageView.image = nil
+    meetingLeaderLabel.text = nil
+    explanationLabel.text = nil
+
   }
 
   private func render() {
