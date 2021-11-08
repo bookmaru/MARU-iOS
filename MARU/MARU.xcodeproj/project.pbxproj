@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54D8C75F2998858DB08CF431 /* Pods_MARUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AD29A4EBA21D1F76A737B6 /* Pods_MARUTests.framework */; };
 		77013C27268C0BFC004271E6 /* MorePopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C26268C0BFC004271E6 /* MorePopularViewController.swift */; };
 		77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77013C28268C0C93004271E6 /* MaruListCollectionViewLayout.swift */; };
 		770D14932700D05C0053285F /* BookSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D14922700D05C0053285F /* BookSearchViewController.swift */; };
@@ -93,8 +92,6 @@
 		C55F1780260F46A5003D99D0 /* RIDIBatang.otf in Resources */ = {isa = PBXBuildFile; fileRef = C55F177F260F469E003D99D0 /* RIDIBatang.otf */; };
 		C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1785260F4727003D99D0 /* ViewModelType.swift */; };
 		C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F17EA260F48C5003D99D0 /* ViewController.swift */; };
-		C55F1816260F4DC5003D99D0 /* MARUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1815260F4DC5003D99D0 /* MARUUITests.swift */; };
-		C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1825260F4DD1003D99D0 /* MARUTests.swift */; };
 		C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568A67D268637FA00CEF5AD /* CertificationViewController.swift */; };
 		C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1426D4CDD000D930BA /* GroupRouter.swift */; };
 		C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1626D4CDDA00D930BA /* GroupService.swift */; };
@@ -181,23 +178,6 @@
 		F2F0C6572680767500F8061A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C6562680767500F8061A /* JoinViewController.swift */; };
 		F2F0C65B2680C32600F8061A /* JoinContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F0C65A2680C32600F8061A /* JoinContentView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C55F1818260F4DC5003D99D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C51CA7E7260D964E00CE4804 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CA7EE260D964E00CE4804;
-			remoteInfo = MARU;
-		};
-		C55F1828260F4DD1003D99D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C51CA7E7260D964E00CE4804 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C51CA7EE260D964E00CE4804;
-			remoteInfo = MARU;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		40AD29A4EBA21D1F76A737B6 /* Pods_MARUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,12 +271,6 @@
 		C55F177F260F469E003D99D0 /* RIDIBatang.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RIDIBatang.otf; sourceTree = "<group>"; };
 		C55F1785260F4727003D99D0 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C55F17EA260F48C5003D99D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C55F1813260F4DC5003D99D0 /* MARUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C55F1815260F4DC5003D99D0 /* MARUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUUITests.swift; sourceTree = "<group>"; };
-		C55F1817260F4DC5003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C55F1823260F4DD1003D99D0 /* MARUTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MARUTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C55F1825260F4DD1003D99D0 /* MARUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MARUTests.swift; sourceTree = "<group>"; };
-		C55F1827260F4DD1003D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C568A67D268637FA00CEF5AD /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		C56CBC1426D4CDD000D930BA /* GroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRouter.swift; sourceTree = "<group>"; };
 		C56CBC1626D4CDDA00D930BA /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
@@ -392,21 +366,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C76A5C510B9FD9D5162098C9 /* Pods_MARU.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55F1810260F4DC5003D99D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55F1820260F4DD1003D99D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				54D8C75F2998858DB08CF431 /* Pods_MARUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,8 +524,6 @@
 			children = (
 				C55F1523260F3B74003D99D0 /* .swiftlint.yml */,
 				C51CA7F1260D964E00CE4804 /* MARU */,
-				C55F1824260F4DD1003D99D0 /* MARUTests */,
-				C55F1814260F4DC5003D99D0 /* MARUUITests */,
 				C51CA7F0260D964E00CE4804 /* Products */,
 				8DCB7E7F0E109E2724345950 /* Pods */,
 				1E595436BBEBC5D7FACCC735 /* Frameworks */,
@@ -579,8 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				C51CA7EF260D964E00CE4804 /* MARU.app */,
-				C55F1813260F4DC5003D99D0 /* MARUUITests.xctest */,
-				C55F1823260F4DD1003D99D0 /* MARUTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -770,24 +725,6 @@
 				C55F177F260F469E003D99D0 /* RIDIBatang.otf */,
 			);
 			path = Font;
-			sourceTree = "<group>";
-		};
-		C55F1814260F4DC5003D99D0 /* MARUUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C55F1815260F4DC5003D99D0 /* MARUUITests.swift */,
-				C55F1817260F4DC5003D99D0 /* Info.plist */,
-			);
-			path = MARUUITests;
-			sourceTree = "<group>";
-		};
-		C55F1824260F4DD1003D99D0 /* MARUTests */ = {
-			isa = PBXGroup;
-			children = (
-				C55F1825260F4DD1003D99D0 /* MARUTests.swift */,
-				C55F1827260F4DD1003D99D0 /* Info.plist */,
-			);
-			path = MARUTests;
 			sourceTree = "<group>";
 		};
 		C56CBC1826D4E1FE00D930BA /* DataType */ = {
@@ -1149,44 +1086,6 @@
 			productReference = C51CA7EF260D964E00CE4804 /* MARU.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C55F1812260F4DC5003D99D0 /* MARUUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C55F181C260F4DC5003D99D0 /* Build configuration list for PBXNativeTarget "MARUUITests" */;
-			buildPhases = (
-				C55F180F260F4DC5003D99D0 /* Sources */,
-				C55F1810260F4DC5003D99D0 /* Frameworks */,
-				C55F1811260F4DC5003D99D0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C55F1819260F4DC5003D99D0 /* PBXTargetDependency */,
-			);
-			name = MARUUITests;
-			productName = MARUUITests;
-			productReference = C55F1813260F4DC5003D99D0 /* MARUUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		C55F1822260F4DD1003D99D0 /* MARUTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C55F182A260F4DD1003D99D0 /* Build configuration list for PBXNativeTarget "MARUTests" */;
-			buildPhases = (
-				6ED252F8AC43F4D38411B050 /* [CP] Check Pods Manifest.lock */,
-				C55F181F260F4DD1003D99D0 /* Sources */,
-				C55F1820260F4DD1003D99D0 /* Frameworks */,
-				C55F1821260F4DD1003D99D0 /* Resources */,
-				C807F37C2E791F76BA3FC16D /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C55F1829260F4DD1003D99D0 /* PBXTargetDependency */,
-			);
-			name = MARUTests;
-			productName = MARUTests;
-			productReference = C55F1823260F4DD1003D99D0 /* MARUTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1198,14 +1097,6 @@
 				TargetAttributes = {
 					C51CA7EE260D964E00CE4804 = {
 						CreatedOnToolsVersion = 12.4;
-					};
-					C55F1812260F4DC5003D99D0 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = C51CA7EE260D964E00CE4804;
-					};
-					C55F1822260F4DD1003D99D0 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = C51CA7EE260D964E00CE4804;
 					};
 				};
 			};
@@ -1223,8 +1114,6 @@
 			projectRoot = "";
 			targets = (
 				C51CA7EE260D964E00CE4804 /* MARU */,
-				C55F1812260F4DC5003D99D0 /* MARUUITests */,
-				C55F1822260F4DD1003D99D0 /* MARUTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1240,20 +1129,6 @@
 				C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */,
 				C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */,
 				C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55F1811260F4DC5003D99D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55F1821260F4DD1003D99D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,28 +1174,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6ED252F8AC43F4D38411B050 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MARUTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C55F1526260F3BA9003D99D0 /* Lint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1356,23 +1209,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist -p ios ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\nfi\n";
-		};
-		C807F37C2E791F76BA3FC16D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MARUTests/Pods-MARUTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1547,36 +1383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C55F180F260F4DC5003D99D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C55F1816260F4DC5003D99D0 /* MARUUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55F181F260F4DD1003D99D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C55F1826260F4DD1003D99D0 /* MARUTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C55F1819260F4DC5003D99D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CA7EE260D964E00CE4804 /* MARU */;
-			targetProxy = C55F1818260F4DC5003D99D0 /* PBXContainerItemProxy */;
-		};
-		C55F1829260F4DD1003D99D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C51CA7EE260D964E00CE4804 /* MARU */;
-			targetProxy = C55F1828260F4DD1003D99D0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C51CA7FD260D966000CE4804 /* LaunchScreen.storyboard */ = {
@@ -1772,90 +1579,6 @@
 			};
 			name = Release;
 		};
-		C55F181A260F4DC5003D99D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MARU;
-			};
-			name = Debug;
-		};
-		C55F181B260F4DC5003D99D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MARU;
-			};
-			name = Release;
-		};
-		C55F182B260F4DD1003D99D0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MARU.app/MARU";
-			};
-			name = Debug;
-		};
-		C55F182C260F4DD1003D99D0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 36BC59Q598;
-				INFOPLIST_FILE = MARUTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.maru.MARUTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MARU.app/MARU";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1873,24 +1596,6 @@
 			buildConfigurations = (
 				C51CA81A260D966000CE4804 /* Debug */,
 				C51CA81B260D966000CE4804 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C55F181C260F4DC5003D99D0 /* Build configuration list for PBXNativeTarget "MARUUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C55F181A260F4DC5003D99D0 /* Debug */,
-				C55F181B260F4DC5003D99D0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C55F182A260F4DD1003D99D0 /* Build configuration list for PBXNativeTarget "MARUTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C55F182B260F4DD1003D99D0 /* Debug */,
-				C55F182C260F4DD1003D99D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
