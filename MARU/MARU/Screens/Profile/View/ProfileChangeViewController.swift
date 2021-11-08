@@ -53,7 +53,7 @@ final class ProfileChangeViewController: UIViewController {
   private let nicknameCheckLabel = UILabel().then {
     $0.textColor = .subText
     $0.font = .systemFont(ofSize: 13, weight: .medium)
-    $0.text = "사용 가능한 닉네임입니다."
+    $0.text = ""
     $0.isHidden = false
   }
   private let viewModel = ProfileChangeViewModel()
@@ -62,6 +62,7 @@ final class ProfileChangeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     picker.delegate = self
+    nicknameTextField.delegate = self
     render()
   }
 
@@ -156,12 +157,24 @@ extension ProfileChangeViewController {
 extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(
     _ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey:Any]
   ) {
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       profileImageView.contentMode = .scaleAspectFit
       profileImageView.image = image
     }
     dismiss(animated: true, completion: nil)
+  }
+}
+
+extension ProfileChangeViewController: UITextFieldDelegate {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    // TODO: 닉네임 변경 서버 연결하기
+    textField.resignFirstResponder()
+    return true
   }
 }

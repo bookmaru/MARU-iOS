@@ -39,7 +39,7 @@ final class AuthService: AuthServiceType {
     return router.rx
       .request(.nicknameCheck(name))
       .asObservable()
-      .map(BaseReponseType.self)
+      .map(BaseReponseType<Int>.self)
   }
 
   func information(information: UserInformation) -> Observable<BaseReponseType<SignupToken>> {
