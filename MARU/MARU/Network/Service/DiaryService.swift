@@ -12,13 +12,14 @@ protocol DiaryServiceType {
   func getDiaryList() -> Observable<BaseReponseType<Diaries>>
   func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryObject>>
   func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
+  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
 }
 
 final class DiaryService: DiaryServiceType {
   private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
   func getDiaryList() -> Observable<BaseReponseType<Diaries>> {
-    router.rx
+    return router.rx
       .request(.list)
       .asObservable()
       .map(BaseReponseType<Diaries>.self)
@@ -34,6 +35,12 @@ final class DiaryService: DiaryServiceType {
   func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
     return router.rx
       .request(.post(groupID: groupID, title: title, content: content))
+      .asObservable()
+      .map(BaseReponseType<Int>.self)
+  }
+
+  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
+    return router.rx.request(.edit(diaryID: groupID, title: title, content: content))
       .asObservable()
       .map(BaseReponseType<Int>.self)
   }

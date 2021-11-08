@@ -11,7 +11,7 @@ enum DiaryRouter {
   case list
   case post(groupID: Int, title: String, content: String)
   case get(diaryID: Int)
-  case edit(diaryID: Int)
+  case edit(diaryID: Int, title: String, content: String)
   case delete(diaryID: Int)
 }
 
@@ -24,8 +24,8 @@ extension DiaryRouter: BaseTargetType {
       return "diary"
     case .get(let diaryID):
       return "diary/\(diaryID)"
-    case .edit(let diaryID):
-      return "diary/\(diaryID)"
+    case .edit(let diaryId, _, _):
+      return "diary/\(diaryId)"
     case .delete(let diaryID):
       return "diary/\(diaryID)"
     }
@@ -59,8 +59,12 @@ extension DiaryRouter: BaseTargetType {
       return .requestParameters(parameters: parameter, encoding: JSONEncoding.default)
     case .get:
       return .requestPlain
-    case .edit:
-      return .requestPlain
+    case let .edit(_, title, content):
+      let parameter: [String: Any] = [
+        "title": title,
+        "content": content
+      ]
+      return .requestParameters(parameters: parameter, encoding: JSONEncoding.default)
     case .delete:
       return .requestPlain
     }
