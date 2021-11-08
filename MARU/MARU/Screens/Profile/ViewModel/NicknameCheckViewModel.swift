@@ -10,20 +10,20 @@ import RxSwift
 
 final class NicknameCheckViewModel {
   struct Input {
-    let ChangeNickname: PublishSubject<Void>
+    let changeNickname: PublishSubject<Void>
     let nickname: String
   }
 
   struct Output {
-    let isSuccess: Observable<Bool>
+    let isSuccess: Observable<Int>
   }
 
   func transform(input: Input) -> Output {
     let nickname = input.nickname
-    let isSuccess = input.ChangeNickname.share()
+    let isSuccess = input.changeNickname.share()
       .flatMap {
         NetworkService.shared.auth.nickname(name: nickname)}
-      .map { $0.status == 200 }
+      .map { return $0.status}
     return Output(isSuccess: isSuccess)
   }
 }

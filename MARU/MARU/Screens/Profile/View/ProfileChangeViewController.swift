@@ -57,8 +57,9 @@ final class ProfileChangeViewController: UIViewController {
     $0.isHidden = false
   }
   private let viewModel = ProfileChangeViewModel()
-
+  private let nicknameViewModel = NicknameCheckViewModel()
   let picker = UIImagePickerController()
+  let disposeBag = DisposeBag()
   override func viewDidLoad() {
     super.viewDidLoad()
     picker.delegate = self
@@ -152,6 +153,26 @@ extension ProfileChangeViewController {
     picker.sourceType = .photoLibrary
     present(picker, animated: false, completion: nil)
   }
+
+  func bind() {
+    let changeNickname = PublishSubject<Void>()
+    let input = NicknameCheckViewModel.Input(
+      changeNickname: changeNickname,
+      nickname: nicknameTextField.text ?? ""
+    )
+    let output = nicknameViewModel.transform(input: input)
+    output.isSuccess
+      .subscribe(onNext: { [weak self] isSuccess in
+        guard let self = self else { return }
+        if isSuccess == 200 {
+          self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
+        }
+        if isSuccess == 400 {
+          self.nicknameCheckLabel.text = "이미 존재하는 닉네임입니다."
+        }
+      })
+      .disposed(by: disposeBag)
+  }
 }
 
 extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -173,8 +194,12 @@ extension ProfileChangeViewController: UITextFieldDelegate {
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    // TODO: 닉네임 변경 서버 연결하기
-    textField.resignFirstResponder()
+    // TODO: 닉네임 변경 서버 연결하기 200이면 성공, 400이면 중복
+    var nickname = nicknameTextField.text
+    if nickname?.count != 0 {
+      bind()
+      textField.resignFirstResponder()
+    }
     return true
   }
 }

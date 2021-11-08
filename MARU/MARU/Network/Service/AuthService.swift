@@ -19,7 +19,7 @@ protocol AuthServiceType {
 }
 
 final class AuthService: AuthServiceType {
-  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>> {
     return router.rx
