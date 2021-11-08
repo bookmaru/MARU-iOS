@@ -106,14 +106,13 @@ extension SettingViewController: UICollectionViewDelegate {
       present(safariViewController, animated: true, completion: nil)
     case .info:
       guard
-        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/db7a9624b8364f72a2bb47c203c3776b")
+        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/a65e7e0cacff4209964ddb7024b32d7d")
       else { return }
       let safariViewController = SFSafariViewController(url: url)
       present(safariViewController, animated: true, completion: nil)
     case .opensource:
-      let url = "https://vivacious-ankle-6c4.notion.site/iOS-Open-Source-1ecb7f1e1aa84848b54765239c6795b7"
       guard
-        let url = URL(string: url)
+        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/ca14737d291b4fdeb0ae51ebbf82ec2b")
       else { return }
       let safariViewController = SFSafariViewController(url: url)
       present(safariViewController, animated: true, completion: nil)
