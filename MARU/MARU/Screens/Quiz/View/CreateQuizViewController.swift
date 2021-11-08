@@ -12,6 +12,11 @@ import RxCocoa
 
 final class CreateQuizViewController: BaseViewController {
 
+  override var hidesBottomBarWhenPushed: Bool {
+    get { navigationController?.topViewController == self }
+    set { super.hidesBottomBarWhenPushed = newValue }
+  }
+
   private let bookModel: BookModel
   private var tableView: UITableView! = nil
   private let cancelButton: UIBarButtonItem = {
@@ -42,12 +47,14 @@ final class CreateQuizViewController: BaseViewController {
   private let triggerQuizProblem = PublishSubject<(String, Int)>()
   private let triggerQuizAnswer = PublishSubject<(String, Int)>()
   private let triggerDescription = PublishSubject<String>()
+
   lazy var viewModel = CreateQuizViewModel(dependency: .init(bookModel: bookModel))
 
   init(bookModel: BookModel) {
     self.bookModel = bookModel
     super.init()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -60,21 +67,25 @@ final class CreateQuizViewController: BaseViewController {
     bind()
     addTapGestureOnTableView()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: false)
     registerKeyboardNotification()
   }
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(false)
     unregisterKeyboardNotification()
   }
+
   private func configureNavigationBar() {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.isTranslucent = false
     navigationItem.leftBarButtonItem = cancelButton
     navigationItem.rightBarButtonItem = completeButton
   }
+
   private func bind() {
     let viewTrigger = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
       .map { _ in }
@@ -124,7 +135,9 @@ final class CreateQuizViewController: BaseViewController {
       .disposed(by: disposeBag)
   }
 }
+
 extension CreateQuizViewController {
+
   private func configureComponent() {
     tableView = UITableView(frame: .zero, style: .grouped)
     tableView.backgroundColor = .white
@@ -142,7 +155,9 @@ extension CreateQuizViewController {
     tableView.keyboardDismissMode = .interactive
     tableView.contentInsetAdjustmentBehavior = .never
   }
+
   private func configureLayout() {
+    extendedLayoutIncludesOpaqueBars = true
     view.add(tableView)
     tableView.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -151,6 +166,7 @@ extension CreateQuizViewController {
       make.bottom.equalTo(view.safeAreaInsets.bottom).inset(5)
     }
   }
+
 }
 
 extension CreateQuizViewController: UITableViewDelegate { }

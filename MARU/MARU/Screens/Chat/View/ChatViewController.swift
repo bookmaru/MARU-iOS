@@ -32,6 +32,7 @@ final class ChatViewController: BaseViewController {
     collectionView.backgroundColor = .bgLightgray
     collectionView.contentInset.top = 10
     collectionView.contentInset.bottom = 10
+    collectionView.alwaysBounceVertical = true
     return collectionView
   }()
 

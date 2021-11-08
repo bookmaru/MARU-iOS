@@ -33,7 +33,7 @@ final class MeetViewController: BaseViewController {
     layout.sectionInset = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 42)
     layout.minimumLineSpacing = 28
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.backgroundColor = .clear
+    collectionView.backgroundColor = .white
     collectionView.decelerationRate = .fast
     collectionView.isPagingEnabled = false
     collectionView.contentInsetAdjustmentBehavior = .never
@@ -86,6 +86,8 @@ final class MeetViewController: BaseViewController {
 
 extension MeetViewController {
   private func layout() {
+    extendedLayoutIncludesOpaqueBars = true
+    view.backgroundColor = .white
     view.add(collectionView) {
       $0.rx.setDelegate(self)
         .disposed(by: self.disposeBag)
@@ -184,7 +186,7 @@ extension MeetViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch data[indexPath.item] {
     case .empty:
-      let viewController = ChatViewController(roomID: 1, title: "")
+      let viewController = BookSearchViewController(keyword: "")
       navigationController?.pushViewController(viewController, animated: true)
     case .meet(let group):
       let viewController = ChatViewController(roomID: group.discussionGroupID, title: group.title)

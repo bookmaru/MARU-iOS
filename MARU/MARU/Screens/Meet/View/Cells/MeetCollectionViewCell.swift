@@ -104,7 +104,7 @@ extension MeetCollectionViewCell {
     let text = "토론이 \(remainDay)일 남았습니다."
     let attributedString = NSMutableAttributedString(string: text)
     attributedString.addAttribute(
-      .foregroundColor, value: UIColor.mainBlue, range: (text as NSString).range(of: "6")
+      .foregroundColor, value: UIColor.mainBlue, range: (text as NSString).range(of: remainDay.string)
     )
     return attributedString
   }
@@ -145,7 +145,7 @@ extension MeetCollectionViewCell {
     bookTitleLabel.snp.makeConstraints {
       $0.top.equalToSuperview().offset(18 / 421 * frame.height)
       $0.leading.equalToSuperview().offset(18 / 375 * frame.width)
-      $0.trailing.equalToSuperview().offset(10 / 375 * frame.width)
+      $0.trailing.equalToSuperview().offset(-10 / 375 * frame.width)
     }
     authorNameLabel.snp.makeConstraints {
       $0.top.equalTo(bookTitleLabel.snp.bottom).offset(5.8 / 421 * frame.height)
