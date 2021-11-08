@@ -44,7 +44,7 @@ extension AuthRouter: BaseTargetType {
       return "token/refresh"
     case .user:
       return "user"
-    case .changeProfile(let nickname, let image):
+    case .changeProfile(let nickname, _):
       return "user/profile/\(nickname)"
     case .report:
       return "users/report"
@@ -86,7 +86,7 @@ extension AuthRouter: BaseTargetType {
         "reportedUserId": chat.userID
       ]
       return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-    case let .changeProfile(nickname, image):
+    case let .changeProfile(_, image):
       var multipartData: [MultipartFormData] = []
 
       if image != UIImage() {

@@ -111,7 +111,7 @@ final class JoinViewController: BaseViewController {
   private let viewModel = JoinViewModel()
   fileprivate var data: GroupInformation? {
     didSet {
-      if let imageURL = data?.groups?.image{
+      if let imageURL = data?.groups?.image {
         bookImageView.image(url: imageURL)
       }
       bookTitleLabel.text = data?.groups?.title
