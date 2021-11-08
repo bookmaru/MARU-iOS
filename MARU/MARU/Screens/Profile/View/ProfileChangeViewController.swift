@@ -31,6 +31,7 @@ final class ProfileChangeViewController: UIViewController {
     $0.setTitle("프로필 사진 변경하기", for: .normal)
     $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 12, weight: .medium)
+    $0.addTarget(self, action: #selector(didTapChangeProfileButton), for: .touchUpInside)
   }
 
   private let nicknameGuideLabel = UILabel().then {
@@ -57,8 +58,10 @@ final class ProfileChangeViewController: UIViewController {
   }
   private let viewModel = ProfileChangeViewModel()
 
+  let picker = UIImagePickerController()
   override func viewDidLoad() {
     super.viewDidLoad()
+    picker.delegate = self
     render()
   }
 
@@ -133,5 +136,32 @@ final class ProfileChangeViewController: UIViewController {
 extension ProfileChangeViewController {
   @objc func didTapExitButton() {
     self.dismiss(animated: true, completion: nil)
+  }
+
+  @objc func didTapChangeProfileButton() {
+    let alert = UIAlertController()
+    let library = UIAlertAction(title: "앨범에서 가져오기", style: .default) { (action) in self.openLibrary() }
+    let cancel = UIAlertAction(title: "취소하기", style: .cancel, handler: nil)
+    alert.addAction(library)
+    alert.addAction(cancel)
+    present(alert, animated: true, completion: nil)
+  }
+
+  func openLibrary() {
+    picker.sourceType = .photoLibrary
+    present(picker, animated: false, completion: nil)
+  }
+}
+
+extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerController(
+    _ picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+  ) {
+    if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      profileImageView.contentMode = .scaleAspectFit
+      profileImageView.image = image
+    }
+    dismiss(animated: true, completion: nil)
   }
 }
