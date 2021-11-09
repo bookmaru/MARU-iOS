@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxCocoa
 import RxSwift
+import simd
 
 final class ProfileChangeViewController: UIViewController {
   private let exitButton = UIButton().then {
@@ -155,20 +156,35 @@ extension ProfileChangeViewController {
   }
 
   func bind() {
-    let changeNickname = PublishSubject<Void>()
-    let input = NicknameCheckViewModel.Input(
-      changeNickname: changeNickname,
-      nickname: nicknameTextField.text ?? ""
-    )
-    let output = nicknameViewModel.transform(input: input)
-    output.isSuccess
-      .subscribe(onNext: { [weak self] isSuccess in
-        guard let self = self else { return }
-        if isSuccess == 200 {
-          self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
+    nicknameTextField.rx.text
+      .do { [weak self] text in
+        guard let self = self,
+              let text = text
+        else { return }
+        if text.count == 0 {
+          self.nicknameCheckLabel.isHidden = true
         }
-        if isSuccess == 400 {
-          self.nicknameCheckLabel.text = "이미 존재하는 닉네임입니다."
+        if text.count > 13 {
+          self.nicknameCheckLabel.isHidden = false
+          self.nicknameCheckLabel.textColor = .negative
+          self.nicknameCheckLabel.text = "13자리 이하의 닉네임만 설정가능합니다."
+        }
+        self.nicknameCheckLabel.isHidden = false
+      }
+      .filter { text -> Bool in
+        guard let count = text?.count else { return false}
+        if count != 0 && count < 13 { return true }
+        return false
+      }
+      .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map{ $0.status} }
+      .subscribe(onNext: { [weak self] statusCode in
+        guard let self = self else { return }
+        if statusCode == 200 {
+          self.nicknameCheckLabel.textColor = .subText
+          self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
+        } else {
+          self.nicknameCheckLabel.textColor = .negative
+          self.nicknameCheckLabel.text = "이미 존재하는 이름입니다."
         }
       })
       .disposed(by: disposeBag)
@@ -178,7 +194,7 @@ extension ProfileChangeViewController {
 extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(
     _ picker: UIImagePickerController,
-    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey:Any]
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       profileImageView.contentMode = .scaleAspectFit
@@ -194,8 +210,7 @@ extension ProfileChangeViewController: UITextFieldDelegate {
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    // TODO: 닉네임 변경 서버 연결하기 200이면 성공, 400이면 중복
-    var nickname = nicknameTextField.text
+    let nickname = nicknameTextField.text
     if nickname?.count != 0 {
       bind()
       textField.resignFirstResponder()
