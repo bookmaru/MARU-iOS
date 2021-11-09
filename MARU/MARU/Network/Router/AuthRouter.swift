@@ -29,6 +29,8 @@ enum AuthRouter {
   case user
   case changeProfile(nickname: String, image: UIImage)
   case report(chat: RealmChat)
+  // MARK: - 서버한테 물어봐야할듯. user/profile? user 차이가 뭐람..
+  case userProfile
 }
 
 extension AuthRouter: BaseTargetType {
@@ -48,6 +50,8 @@ extension AuthRouter: BaseTargetType {
       return "user/profile/\(nickname)"
     case .report:
       return "users/report"
+    case .userProfile:
+      return "user/profile"
     }
   }
 
@@ -92,9 +96,9 @@ extension AuthRouter: BaseTargetType {
       if image != UIImage() {
         let imageData = MultipartFormData(
           provider: .data(image.pngData() ?? Data()),
-          name: "group1029",
-          fileName: "group1029.png",
-          mimeType: "group1029/png")
+          name: "image",
+          fileName: "image.png",
+          mimeType: "image/png")
         multipartData.append(imageData)
       } else {
         multipartData.append(.init(provider: .data(Data()),
@@ -119,7 +123,7 @@ extension AuthRouter: BaseTargetType {
         "Content-Type": "application/json",
         "RefreshToken": KeychainHandler.shared.refreshToken
       ]
-    case .user, .report:
+    case .user, .report, .userProfile:
       return [
         "Content-Type": "application/json",
         "accessToken": KeychainHandler.shared.accessToken

@@ -66,6 +66,7 @@ final class ProfileChangeViewController: UIViewController {
     picker.delegate = self
     nicknameTextField.delegate = self
     render()
+    profileBind()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -143,19 +144,25 @@ extension ProfileChangeViewController {
 
   @objc func didTapChangeProfileButton() {
     let alert = UIAlertController()
-    let library = UIAlertAction(title: "앨범에서 가져오기", style: .default) { (action) in self.openLibrary() }
+    let library = UIAlertAction(title: "앨범에서 가져오기", style: .default) { _ in self.openLibrary() }
+    let delete = UIAlertAction(title: "프로필 사진 삭제", style: .default) { _ in self.deletePhoto() }
     let cancel = UIAlertAction(title: "취소하기", style: .cancel, handler: nil)
     alert.addAction(library)
+    alert.addAction(delete)
     alert.addAction(cancel)
     present(alert, animated: true, completion: nil)
   }
 
-  func openLibrary() {
+  private func deletePhoto() {
+    profileImageView.image = Image.group1029
+    submitButton.setTitleColor(.subText, for: .normal)
+  }
+  private func openLibrary() {
     picker.sourceType = .photoLibrary
     present(picker, animated: false, completion: nil)
   }
 
-  func bind() {
+  private func bind() {
     nicknameTextField.rx.text
       .do { [weak self] text in
         guard let self = self,
@@ -189,6 +196,30 @@ extension ProfileChangeViewController {
       })
       .disposed(by: disposeBag)
   }
+
+  private func profileBind() {
+    let didTapSubmitButton = submitButton.rx.tap
+      .map { [weak self] _ -> (nickname: String, image: UIImage) in
+        guard let self = self,
+              let nickname = self.nicknameTextField.text,
+              let image = self.profileImageView.image
+        else { return (nickname: "", image: UIImage())}
+        return (nickname: nickname, image: image)
+      }
+    let input = ProfileChangeViewModel.Input(didTapSubmitButton: didTapSubmitButton)
+    let output = viewModel.transform(input: input)
+
+    output.isConnected
+      .subscribe(onNext: {[weak self] isConnected in
+        guard let self = self else { return }
+        if !isConnected {
+          print("error occured")
+          return
+        }
+        self.dismiss(animated: true)
+      })
+      .disposed(by: disposeBag)
+  }
 }
 
 extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -199,6 +230,7 @@ extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINaviga
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
       profileImageView.contentMode = .scaleAspectFit
       profileImageView.image = image
+      submitButton.setTitleColor(.mainBlue, for: .normal)
     }
     dismiss(animated: true, completion: nil)
   }

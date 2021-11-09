@@ -6,11 +6,17 @@
 //
 
 struct User: Codable {
-  let user: UserData?
+  let userProfile: UserData?
 }
 
 struct UserData: Codable {
   let nickname: String
-  let profileImage: String?
+  let profileURL: String?
   let leaderScore: Int
+
+  enum CodingKeys: String, CodingKey {
+    case nickname
+    case profileURL = "profileUrl"
+    case leaderScore
+  }
 }

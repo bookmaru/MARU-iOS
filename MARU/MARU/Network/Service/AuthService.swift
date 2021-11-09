@@ -16,6 +16,7 @@ protocol AuthServiceType {
   func user() -> Observable<BaseReponseType<User>>
   func report(chat: RealmChat) -> Observable<BaseReponseType<Int>>
   func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>>
+  func libraryUser() -> Observable<BaseReponseType<User>>
 }
 
 final class AuthService: AuthServiceType {
@@ -68,5 +69,12 @@ final class AuthService: AuthServiceType {
       .request(.report(chat: chat))
       .asObservable()
       .map(BaseReponseType<Int>.self)
+  }
+
+  func libraryUser() -> Observable<BaseReponseType<User>> {
+    return router.rx
+      .request(.userProfile)
+      .asObservable()
+      .map(BaseReponseType<User>.self)
   }
 }
