@@ -26,17 +26,6 @@ target 'MARU' do
   pod 'Then', '~> 2.7.0'
   pod 'RealmSwift'
 
-  
-  target 'MARUTests' do
-	inherit! :search_paths
-	pod 'Firebase'
-#  target 'MARUUITests' do
-
-#    pod 'RxBlocking', '5.0.0'
-#    pod 'RxTest', '5.0.0'
-  end
-#  end
-
 end
 
 post_install do |pi|

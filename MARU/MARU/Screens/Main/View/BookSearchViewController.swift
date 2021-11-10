@@ -11,6 +11,12 @@ import RxCocoa
 import RxSwift
 
 final class BookSearchViewController: BaseViewController {
+
+  override var hidesBottomBarWhenPushed: Bool {
+    get { navigationController?.topViewController == self }
+    set { super.hidesBottomBarWhenPushed = newValue }
+  }
+
   private let searchBar: UISearchBar = {
     let searchBar = UISearchBar()
     searchBar.placeholder = "검색을 해주세요"
@@ -29,6 +35,7 @@ final class BookSearchViewController: BaseViewController {
   private let viewModel = BookSearchViewModel()
   private let triggerMoreData = PublishSubject<Void>()
   private var canLoadMore: Bool = true
+
   private var bookModel: [BookModel] = [] {
     didSet {
       collectionView.reloadData()
@@ -36,10 +43,20 @@ final class BookSearchViewController: BaseViewController {
     }
   }
 
+  init(keyword: String) {
+    self.keyword = keyword
+    super.init()
+    configureLayout()
+    configureSearchBar()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .bgLightgray
-    configureLayout()
     bind()
   }
 
@@ -48,16 +65,8 @@ final class BookSearchViewController: BaseViewController {
     setNavigationBar(isHidden: false)
     navigationController?.navigationBar.shadowImage = UIColor.bgLightgray.as1ptImage()
     navigationController?.navigationBar.isTranslucent = false
-    configureSearchBar()
-  }
-  init(keyword: String) {
-    self.keyword = keyword
-    super.init()
   }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
   private func bind() {
     let viewTrigger = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
       .map { _ in self.keyword }
@@ -98,6 +107,7 @@ final class BookSearchViewController: BaseViewController {
   }
 }
 extension BookSearchViewController {
+
   private func configureLayout() {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -114,14 +124,20 @@ extension BookSearchViewController {
       make.bottom.equalTo(view.snp.bottom)
     }
   }
+
   private func configureSearchBar() {
     navigationItem.leftBarButtonItem = nil
     navigationItem.hidesBackButton = true
     navigationItem.titleView = searchBar
     navigationItem.rightBarButtonItem = cancelButton
+    searchBar.backgroundImage = UIImage()
+    searchBar.searchTextField.backgroundColor = .white
     searchBar.searchTextField.text = keyword
+    extendedLayoutIncludesOpaqueBars = true
   }
+
 }
+
 extension BookSearchViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1

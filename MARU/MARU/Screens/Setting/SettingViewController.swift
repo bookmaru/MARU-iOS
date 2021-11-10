@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class SettingViewController: BaseViewController {
 
@@ -97,6 +98,24 @@ extension SettingViewController: UICollectionViewDelegate {
     didSelectItemAt indexPath: IndexPath
   ) {
     switch row[indexPath.item] {
+    case .notice:
+      guard
+        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/ca14737d291b4fdeb0ae51ebbf82ec2b")
+      else { return }
+      let safariViewController = SFSafariViewController(url: url)
+      present(safariViewController, animated: true, completion: nil)
+    case .info:
+      guard
+        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/a65e7e0cacff4209964ddb7024b32d7d")
+      else { return }
+      let safariViewController = SFSafariViewController(url: url)
+      present(safariViewController, animated: true, completion: nil)
+    case .opensource:
+      guard
+        let url = URL(string: "https://vivacious-ankle-6c4.notion.site/ca14737d291b4fdeb0ae51ebbf82ec2b")
+      else { return }
+      let safariViewController = SFSafariViewController(url: url)
+      present(safariViewController, animated: true, completion: nil)
     case .logout:
       let alert = UIAlertController(title: "로그아웃을 하시겠나요...? 😥", message: "", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
@@ -104,7 +123,7 @@ extension SettingViewController: UICollectionViewDelegate {
       })
       alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
       present(alert, animated: true)
-    default:
+    case .resign:
       break
     }
   }
