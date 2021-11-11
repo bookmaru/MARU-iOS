@@ -57,6 +57,7 @@ final class ProfileChangeViewController: UIViewController {
     $0.text = ""
     $0.isHidden = false
   }
+  private let imageURL: String
   private let viewModel = ProfileChangeViewModel()
   private let nicknameViewModel = NicknameCheckViewModel()
   let picker = UIImagePickerController()
@@ -73,6 +74,14 @@ final class ProfileChangeViewController: UIViewController {
     super.viewWillAppear(animated)
   }
 
+  init(imageURL: String) {
+    self.imageURL = imageURL
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   private func render() {
     view.backgroundColor = .white
     view.adds([
@@ -198,6 +207,7 @@ extension ProfileChangeViewController {
   }
 
   private func profileBind() {
+    profileImageView.image(url: imageURL)
     let didTapSubmitButton = submitButton.rx.tap
       .map { [weak self] _ -> (nickname: String, image: UIImage) in
         guard let self = self,

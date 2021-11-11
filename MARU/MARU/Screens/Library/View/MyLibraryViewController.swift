@@ -223,7 +223,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     headerView.changeProfileButton.rx.tap
       .subscribe { [weak self] _ in
         guard let self = self else { return }
-        let viewController = ProfileChangeViewController()
+        let viewController = ProfileChangeViewController(imageURL: user.userProfile?.profileURL ?? "")
         viewController.modalPresentationStyle = .overFullScreen
         self.present(viewController, animated: true, completion: nil)
       }
