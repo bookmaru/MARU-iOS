@@ -125,10 +125,18 @@ extension MyLibraryViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return data.count
   }
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return data[section].count
   }
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     switch data[indexPath.section] {
     case let .title(titleText, isHidden):
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -178,7 +186,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      if data.bookcase.count == 0 {
+      if data.bookcase.isEmpty {
         cell.noResultImageView.isHidden = false
       } else {
         cell.noResultImageView.isHidden = true
@@ -202,15 +210,19 @@ extension MyLibraryViewController: UICollectionViewDataSource {
 }
 
 extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     return data[indexPath.section].size
   }
   // MARK: - headerview section 처리해주기. size 지정도 필수이다.
-  func collectionView(_ collectionView: UICollectionView,
-                      viewForSupplementaryElementOfKind kind: String,
-                      at indexPath: IndexPath) -> UICollectionReusableView {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    viewForSupplementaryElementOfKind kind: String,
+    at indexPath: IndexPath
+  ) -> UICollectionReusableView {
     guard let headerView = collectionView.dequeueReusableSupplementaryView(
       ofKind: UICollectionView.elementKindSectionHeader,
       withReuseIdentifier: MyLibraryHeaderView.reuseIdentifier,
@@ -232,9 +244,11 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     return headerView
   }
 
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      referenceSizeForHeaderInSection section: Int) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForHeaderInSection section: Int
+  ) -> CGSize {
     guard section == 0 else { return .zero }
     return CGSize(width: ScreenSize.width, height: 187)
   }

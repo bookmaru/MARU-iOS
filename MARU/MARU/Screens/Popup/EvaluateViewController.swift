@@ -97,7 +97,7 @@ extension EvaluateViewController {
               let groupID = self.groupID,
               let leaderID = self.leaderID,
               let score = self.score
-        else { return (groupID: -1, leaderID: -1, score: -1)}
+        else { return (groupID: -1, leaderID: -1, score: -1) }
         return (groupID: groupID, leaderID: leaderID, score: score)
       }
     let input = EvaluateViewModel.Input(didTapSubmitButton: didTapEvaluateButton)
@@ -106,12 +106,9 @@ extension EvaluateViewController {
     output.isConnected
       .subscribe(onNext: { [weak self] isConnected in
         guard let self = self else { return }
-        if !isConnected {
-          self.showToast("에러")
-        }
         let presentingVC = self.presentingViewController
         self.dismiss(animated: true) {
-        presentingVC?.navigationController?.popViewController(animated: true)
+          presentingVC?.navigationController?.popViewController(animated: true)
         }
       })
       .disposed(by: disposeBag)

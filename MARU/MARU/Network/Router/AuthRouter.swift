@@ -29,7 +29,6 @@ enum AuthRouter {
   case user
   case changeProfile(nickname: String, image: UIImage)
   case report(chat: RealmChat)
-  // MARK: - 서버한테 물어봐야할듯. user/profile? user 차이가 뭐람..
   case userProfile
 }
 

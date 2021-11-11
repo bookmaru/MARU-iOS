@@ -192,7 +192,7 @@ extension ProfileChangeViewController {
         if count != 0 && count < 13 { return true }
         return false
       }
-      .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map{ $0.status} }
+      .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status} }
       .subscribe(onNext: { [weak self] statusCode in
         guard let self = self else { return }
         if statusCode == 200 {
