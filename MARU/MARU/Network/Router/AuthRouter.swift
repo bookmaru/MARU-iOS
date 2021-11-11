@@ -75,6 +75,7 @@ extension AuthRouter: BaseTargetType {
       body["socialId"] = information.socialID
       body["socialType"] = information.socialType
       body["nickname"] = information.nickname
+      body["deviceToken"] = KeychainHandler.shared.apnsToken
       return .requestCompositeParameters(
         bodyParameters: body,
         bodyEncoding: JSONEncoding.default,
@@ -96,7 +97,8 @@ extension AuthRouter: BaseTargetType {
     case let .auth(_, token):
       return [
         "Content-Type": "application/json",
-        "accessToken": token
+        "accessToken": token,
+        "deviceToken": KeychainHandler.shared.apnsToken
       ]
     case .refresh:
       return [

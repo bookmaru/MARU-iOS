@@ -17,6 +17,7 @@ struct KeychainHandler {
   private let accessTokenExpiredAtKey = "accessTokenExpiredAt"
   private let refreshTokenKey = "refreshToken"
   private let refreshTokenExpiredAtKey = "refreshTokenExpiredAt"
+  private let apnsTokenKey = "apnsToken"
 
   var userID: Int {
     get {
@@ -60,6 +61,15 @@ struct KeychainHandler {
     }
     set {
       keychain.set(newValue, forKey: refreshTokenExpiredAtKey)
+    }
+  }
+
+  var apnsToken: String {
+    get {
+      return keychain.string(forKey: apnsTokenKey) ?? "Key is empty"
+    }
+    set {
+      keychain.set(newValue, forKey: apnsTokenKey)
     }
   }
 

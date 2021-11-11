@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 import RxCocoa
 import RxSwift
@@ -77,6 +78,7 @@ final class ChatViewController: BaseViewController {
     super.viewDidLoad()
     layout()
     bind()
+    setAleart()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +115,15 @@ final class ChatViewController: BaseViewController {
         self?.view.endEditing(true)
       })
       .disposed(by: disposeBag)
+  }
+
+}
+
+extension ChatViewController: UNUserNotificationCenterDelegate {
+  private func setAleart() {
+    UNUserNotificationCenter.current().delegate = self
+    let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
   }
 }
 

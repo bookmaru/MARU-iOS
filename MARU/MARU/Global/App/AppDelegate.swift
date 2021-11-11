@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 import Firebase
 import KakaoSDKCommon
@@ -26,11 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Gedatsu.open()
     filePath = Bundle.main.path(forResource: "GoogleService-Info-Dev", ofType: "plist")
     #endif
-    guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
-      else { return true }
+    guard let fileopts = FirebaseOptions(contentsOfFile: filePath!) else { return true }
     FirebaseApp.configure(options: fileopts)
     KakaoSDKCommon.initSDK(appKey: "887e05e96dc176857e11b18c6bf97969")
     ChatService.shared.start()
+    Messaging.messaging().delegate = self
 
     return true
   }
@@ -53,4 +54,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   }
 
+}
+
+extension AppDelegate: MessagingDelegate {
+  func messaging(
+    _ messaging: Messaging,
+    didReceiveRegistrationToken fcmToken: String?
+  ) {
+    guard let token = fcmToken else { return }
+    KeychainHandler.shared.apnsToken = token
+    let dataDict: [String: String] = ["token": token]
+    NotificationCenter.default.post(
+      name: Notification.Name("FCMToken"),
+      object: nil,
+      userInfo: dataDict
+    )
+  }
+
+  func application(
+    _ application: UIApplication,
+    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+  ) {
+    Messaging.messaging().apnsToken = deviceToken
+  }
+
+  func application(
+    _ application: UIApplication,
+    didReceiveRemoteNotification userInfo: [AnyHashable: Any]
+  ) {
+
+  }
+
+  func application(
+    _ application: UIApplication,
+    didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult
+    ) -> Void) {
+    completionHandler(UIBackgroundFetchResult.newData)
+  }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+  ) {
+    let userInfo = notification.request.content.userInfo
+    completionHandler([[.sound, .badge]])
+  }
+
+  func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    didReceive response: UNNotificationResponse,
+    withCompletionHandler completionHandler: @escaping () -> Void
+  ) {
+    completionHandler()
+  }
 }
