@@ -56,7 +56,7 @@ struct TokenDTO: Codable {
 }
 
 struct SignupToken: Codable {
-  let token: LoginInfoDAO
+  let signup: LoginInfoDAO
 }
 
 struct Auth: Codable {
