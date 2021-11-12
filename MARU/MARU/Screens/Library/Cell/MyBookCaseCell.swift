@@ -19,7 +19,7 @@ final class MyBookCaseCell: UICollectionViewCell {
   }()
 
   let noResultImageView = UIImageView().then {
-    $0.backgroundColor = .none
+    $0.backgroundColor = .white
     $0.image = Image.vector21
     $0.isHidden = true
   }
@@ -90,23 +90,23 @@ extension MyBookCaseCell: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: 30, height: 70)
+    return CGSize(width: ScreenSize.width / 4, height: 134)
   }
 }
 
 extension MyBookCaseCell: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return 1
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.awakeFromNib()
     if bookData == nil {
       return cell
-    } else {
-    cell.rx.binder.onNext(bookData?.imageURL ?? "")
+    }
+    if bookData != nil {
+      cell.rx.binder.onNext(bookData?.imageURL ?? "")
     }
     return cell
   }

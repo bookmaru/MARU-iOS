@@ -52,6 +52,7 @@
 		77E3C83F26D522BD00CBF32D /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */; };
 		77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C84026D6AE1600CBF32D /* TimerView.swift */; };
 		C50056AF26F4C5BF00078FBF /* GeneratedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */; };
+		C501387B273E005400082398 /* Notice.txt in Resources */ = {isa = PBXBuildFile; fileRef = C501387A273E005400082398 /* Notice.txt */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
@@ -143,6 +144,7 @@
 		E22306F0262AC92000B25CEA /* RIDIBatangFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306EF262AC92000B25CEA /* RIDIBatangFont.swift */; };
 		E22306F8262ACEBC00B25CEA /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306F7262ACEBC00B25CEA /* UIColor+.swift */; };
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
+		F210311B272E575A00FC58EC /* BookAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210311A272E575A00FC58EC /* BookAlertViewModel.swift */; };
 		F223E3C826C8F8320039919A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C726C8F8320039919A /* UserInformation.swift */; };
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
@@ -152,6 +154,7 @@
 		F231C40726E2801C00642130 /* EvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231C40626E2801C00642130 /* EvaluateViewController.swift */; };
 		F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */; };
 		F2377D2B26A586CE00F1FAA4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */; };
+		F24E335A27397986001E3F5B /* NicknameCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E335927397986001E3F5B /* NicknameCheckViewModel.swift */; };
 		F25A7E1C26F0DA10002F15DD /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */; };
 		F276305326FE2A4D0043DB42 /* ResultBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276305226FE2A4D0043DB42 /* ResultBookCell.swift */; };
 		F28E550826C8EFB900F083BD /* BookCaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E550726C8EFB900F083BD /* BookCaseModel.swift */; };
@@ -229,6 +232,7 @@
 		A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3FCF08063A4739DEBC2AE00 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedGroup.swift; sourceTree = "<group>"; };
+		C501387A273E005400082398 /* Notice.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notice.txt; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 		E22306F7262ACEBC00B25CEA /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignLabel.swift; sourceTree = "<group>"; };
 		EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F210311A272E575A00FC58EC /* BookAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAlertViewModel.swift; sourceTree = "<group>"; };
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +337,7 @@
 		F231C40626E2801C00642130 /* EvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateViewController.swift; sourceTree = "<group>"; };
 		F2377D2826A567E300F1FAA4 /* LibraryDiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDiaryCell.swift; sourceTree = "<group>"; };
 		F2377D2A26A586CE00F1FAA4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		F24E335927397986001E3F5B /* NicknameCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameCheckViewModel.swift; sourceTree = "<group>"; };
 		F25A7E1B26F0DA10002F15DD /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		F276305226FE2A4D0043DB42 /* ResultBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookCell.swift; sourceTree = "<group>"; };
 		F28E550726C8EFB900F083BD /* BookCaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCaseModel.swift; sourceTree = "<group>"; };
@@ -875,6 +881,7 @@
 				C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */,
 				C51CA800260D966000CE4804 /* Info.plist */,
 				C55F1740260F449A003D99D0 /* Enviroment.swift */,
+				C501387A273E005400082398 /* Notice.txt */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1015,6 +1022,7 @@
 				F2BEFB2726FB6AA7009E2E7C /* BookAlertViewController.swift */,
 				F2A70D252701D24700560099 /* EvaluateWarningViewController.swift */,
 				F2B16A94271EF8D200AAC194 /* EvaluateViewModel.swift */,
+				F210311A272E575A00FC58EC /* BookAlertViewModel.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1040,6 +1048,7 @@
 			isa = PBXGroup;
 			children = (
 				F2EA49DD26E88E7A0091C75A /* ProfileChangeViewModel.swift */,
+				F24E335927397986001E3F5B /* NicknameCheckViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1126,6 +1135,7 @@
 				C55F1780260F46A5003D99D0 /* RIDIBatang.otf in Resources */,
 				C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */,
 				C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */,
+				C501387B273E005400082398 /* Notice.txt in Resources */,
 				C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */,
 				C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */,
 				C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */,
@@ -1223,6 +1233,7 @@
 				F2377D2926A567E300F1FAA4 /* LibraryDiaryCell.swift in Sources */,
 				F2B4A08E26B6603300F02FB5 /* MyLibraryViewController.swift in Sources */,
 				C57ED37426EBBC5B001A2B54 /* RealmNotification.swift in Sources */,
+				F24E335A27397986001E3F5B /* NicknameCheckViewModel.swift in Sources */,
 				7717EC9426A437E200888826 /* RecentSearchViewModel.swift in Sources */,
 				C5209DFB26F73C9000CBFABD /* MyDiaryCell.swift in Sources */,
 				77847E7F26D339920054742F /* QuizResultViewController.swift in Sources */,
@@ -1346,6 +1357,7 @@
 				C5209DF926F73B5B00CBFABD /* MyDiaryViewModel.swift in Sources */,
 				C55F1533260F3F2F003D99D0 /* SplashViewController.swift in Sources */,
 				F223E3C826C8F8320039919A /* UserInformation.swift in Sources */,
+				F210311B272E575A00FC58EC /* BookAlertViewModel.swift in Sources */,
 				F2CDD3EC26F740C30019EDEB /* BookFavoritesViewModel.swift in Sources */,
 				C5ACA4BD26B663760089C50C /* MyLibraryHeaderView.swift in Sources */,
 				770D14932700D05C0053285F /* BookSearchViewController.swift in Sources */,

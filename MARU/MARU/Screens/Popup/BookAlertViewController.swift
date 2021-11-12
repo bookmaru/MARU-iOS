@@ -36,13 +36,14 @@ final class BookAlertViewController: UIViewController {
 
   private let submitButton = UIButton().then {
     $0.backgroundColor = .mainBlue
-    $0.isEnabled = false
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
     $0.setTitle("확인", for: .normal)
     $0.setTitleColor(.white, for: .normal)
   }
   private var data: BookModel?
+  private let viewModel = BookAlertViewModel()
   let disposeBag = DisposeBag()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     bind()
@@ -67,10 +68,36 @@ final class BookAlertViewController: UIViewController {
 extension BookAlertViewController {
   private func bind() {
     // MARK: - 확인버튼 탭 -> dismiss처리
-    submitButton.rx.tap.subscribe( onNext: { [weak self] _ in
-      self?.dismiss(animated: true, completion: nil)
-    }).disposed(by: disposeBag)
+    submitButton.rx.tap
+      .subscribe( onNext: { [weak self] _ in
+        self?.dismiss(animated: true, completion: nil)
+      })
+      .disposed(by: disposeBag)
 
+    let didTapSubmitButton = submitButton.rx.tap
+      .map { [weak self] _ -> AlertButtonDTO in
+        guard let self = self,
+              let author = self.data?.author,
+              let category = self.data?.category,
+              let imageURL = self.data?.imageURL,
+              let isbn = self.data?.isbn,
+              let title = self.data?.title
+        else { return AlertButtonDTO(author: "", category: "", imageURL: "", isbn: 0, title: "") }
+        return AlertButtonDTO(author: author, category: category, imageURL: imageURL, isbn: isbn, title: title)
+      }
+
+    let input = BookAlertViewModel.Input(didTapSubmitButton: didTapSubmitButton)
+    let output = viewModel.transform(input: input)
+
+    output.isSuccess
+      .subscribe(onNext: { [weak self] isSuccess in
+        guard let self = self else { return }
+        if !isSuccess {
+          self.showToast("에러가 발생했습니다.")
+        }
+        self.dismiss(animated: true)
+      })
+      .disposed(by: disposeBag)
   }
   private func render() {
     view.backgroundColor = .black.withAlphaComponent(0.7)

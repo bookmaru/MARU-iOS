@@ -15,10 +15,19 @@ protocol AuthServiceType {
   func refresh() -> Observable<BaseReponseType<Token>>
   func user() -> Observable<BaseReponseType<User>>
   func report(chat: RealmChat) -> Observable<BaseReponseType<Int>>
+  func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>>
+  func libraryUser() -> Observable<BaseReponseType<User>>
 }
 
 final class AuthService: AuthServiceType {
-  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+
+  func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>> {
+    return router.rx
+      .request(.changeProfile(nickname: nickname, image: image))
+      .asObservable()
+      .map(BaseReponseType<ChangeProfile>.self)
+  }
 
   func auth(type: AuthType, token: String) -> Observable<BaseReponseType<LoginDAO>> {
     return router.rx
@@ -31,7 +40,7 @@ final class AuthService: AuthServiceType {
     return router.rx
       .request(.nicknameCheck(name))
       .asObservable()
-      .map(BaseReponseType.self)
+      .map(BaseReponseType<Int>.self)
   }
 
   func information(information: UserInformation) -> Observable<BaseReponseType<SignupToken>> {
@@ -60,5 +69,12 @@ final class AuthService: AuthServiceType {
       .request(.report(chat: chat))
       .asObservable()
       .map(BaseReponseType<Int>.self)
+  }
+
+  func libraryUser() -> Observable<BaseReponseType<User>> {
+    return router.rx
+      .request(.userProfile)
+      .asObservable()
+      .map(BaseReponseType<User>.self)
   }
 }

@@ -51,7 +51,6 @@ final class WasDebateCell: UICollectionViewCell {
                                             left: 9,
                                             bottom: 5,
                                             right: 9)
-    button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
     button.isEnabled = true
     button.isUserInteractionEnabled = true
     return button
@@ -62,7 +61,6 @@ final class WasDebateCell: UICollectionViewCell {
 
   var libraryBook: LibraryModel? {
     didSet {
-//      bookImageView.image = libraryBook?.bookImage
       bookTitleLabel.text = libraryBook?.bookTitle
       bookAuthorLabel.text = libraryBook?.bookAuthor
     }
@@ -71,15 +69,21 @@ final class WasDebateCell: UICollectionViewCell {
     super.init(frame: frame)
     configureHierarchy()
     applyShadow()
+    addTarget()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
+  private func addTarget() {
+    evaluateButton.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+  }
+
   @objc func didTapButton(_ sender: UIButton) {
     buttonDelegate?.didPressButtonInHeader(sender.tag)
   }
+
   func setupButtonTag(itemNumber: Int) {
     evaluateButton.tag = itemNumber
   }

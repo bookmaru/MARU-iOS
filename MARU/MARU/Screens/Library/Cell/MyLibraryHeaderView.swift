@@ -46,8 +46,8 @@ final class MyLibraryHeaderView: UICollectionReusableView {
 
   fileprivate var data: User? {
     didSet {
-      usernameLabel.text = data?.user?.nickname
-      let imageURL = data?.user?.profileImage
+      usernameLabel.text = data?.userProfile?.nickname
+      let imageURL = data?.userProfile?.profileURL
       profileImageView.image(url: imageURL ?? "", defaultImage: Image.group1029 ?? UIImage())
     }
   }

@@ -84,6 +84,7 @@ extension ResultBookViewController {
     output.result
       .drive { [self = self] in
         configureResultDataSource($0)
+        self.resultCollectionView.reloadData()
         activatorView.stopAnimating()
       }
       .disposed(by: disposeBag)

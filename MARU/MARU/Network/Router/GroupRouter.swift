@@ -40,7 +40,7 @@ extension GroupRouter: BaseTargetType {
       return "group/\(groupID)/intro"
     case .keep(let groupID):
       return "group/\(groupID)/keep"
-    case .evaluate(let groupID, let leaderID, let score):
+    case .evaluate(let groupID, let leaderID, _):
       return "group/\(groupID)/leader/\(leaderID)"
     }
   }
@@ -56,7 +56,7 @@ extension GroupRouter: BaseTargetType {
 
   var task: Task {
     switch self {
-    case let .evaluate(groupID, leaderID, score):
+    case let .evaluate(_, _, score):
       return .requestParameters(
         parameters: [
           "score": score

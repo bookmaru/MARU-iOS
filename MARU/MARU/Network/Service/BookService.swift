@@ -12,7 +12,13 @@ protocol BookServiceType {
   func bookList() -> Observable<BaseReponseType<BookCaseModel>>
   func getGroup() -> Observable<BaseReponseType<KeepGroupModel>>
   func addGroup(groupID: Int) -> Observable<BaseReponseType<Int>>
-  func addBook(author: String, category: String, imageURL: String, isbn: Int, title: String) -> Observable<BaseReponseType<Int>>
+  func addBook(
+    author: String,
+    category: String,
+    imageURL: String,
+    isbn: Int,
+    title: String
+  ) -> Observable<BaseReponseType<Int>>
 }
 
 final class BookService: BookServiceType {
@@ -36,7 +42,13 @@ final class BookService: BookServiceType {
       .asObservable()
       .map(BaseReponseType<Int>.self)
   }
-  func addBook(author: String, category: String, imageURL: String, isbn: Int, title: String) -> Observable<BaseReponseType<Int>> {
+  func addBook(
+    author: String,
+    category: String,
+    imageURL: String,
+    isbn: Int,
+    title: String
+  ) -> Observable<BaseReponseType<Int>> {
     return router.rx
       .request(.addBook(author: author, category: category, imageURL: imageURL, isbn: isbn, title: title))
       .asObservable()

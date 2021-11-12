@@ -27,8 +27,9 @@ enum AuthRouter {
   case information(information: UserInformation)
   case refresh
   case user
-  case changeProfile(String)
+  case changeProfile(nickname: String, image: UIImage)
   case report(chat: RealmChat)
+  case userProfile
 }
 
 extension AuthRouter: BaseTargetType {
@@ -44,10 +45,12 @@ extension AuthRouter: BaseTargetType {
       return "token/refresh"
     case .user:
       return "user"
-    case .changeProfile(let nickname):
+    case .changeProfile(let nickname, _):
       return "user/profile/\(nickname)"
     case .report:
       return "users/report"
+    case .userProfile:
+      return "user/profile"
     }
   }
 
@@ -87,6 +90,22 @@ extension AuthRouter: BaseTargetType {
         "reportedUserId": chat.userID
       ]
       return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+    case let .changeProfile(_, image):
+      var multipartData: [MultipartFormData] = []
+
+      if image != UIImage() {
+        let imageData = MultipartFormData(
+          provider: .data(image.pngData() ?? Data()),
+          name: "image",
+          fileName: "image.png",
+          mimeType: "image/png")
+        multipartData.append(imageData)
+      } else {
+        multipartData.append(.init(provider: .data(Data()),
+                                   name: "image",
+                                   fileName: "image.png"))
+      }
+      return .uploadMultipart(multipartData)
     default:
       return .requestPlain
     }
@@ -105,9 +124,14 @@ extension AuthRouter: BaseTargetType {
         "Content-Type": "application/json",
         "RefreshToken": KeychainHandler.shared.refreshToken
       ]
-    case .user, .report:
+    case .user, .report, .userProfile:
       return [
         "Content-Type": "application/json",
+        "accessToken": KeychainHandler.shared.accessToken
+      ]
+    case .changeProfile:
+      return [
+        "Content-Type": "multipart/form-data",
         "accessToken": KeychainHandler.shared.accessToken
       ]
     default:
