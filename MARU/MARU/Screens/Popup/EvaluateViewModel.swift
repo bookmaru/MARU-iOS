@@ -8,8 +8,14 @@
 import RxSwift
 
 final class EvaluateViewModel {
+  struct Submit {
+    let groupID: Int
+    let leaderID: Int
+    let score: Int
+  }
+
   struct Input {
-    let didTapSubmitButton: Observable<(groupID: Int, leaderID: Int, score: Int)>
+    let didTapSubmitButton: Observable<Submit>
   }
 
   struct Output {
@@ -19,7 +25,7 @@ final class EvaluateViewModel {
   func transform(input: Input) -> Output {
     let isConnected = input.didTapSubmitButton
       .flatMap {
-        NetworkService.shared.group.postEvaluate(groupID: $0, leaderID: $1, score: $2)}
+        NetworkService.shared.group.postEvaluate(groupID: $0.groupID, leaderID: $0.leaderID, score: $0.score)}
       .map { $0.status == 201 }
 
     return Output(isConnected: isConnected)
