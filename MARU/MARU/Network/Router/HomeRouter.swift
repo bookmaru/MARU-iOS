@@ -23,7 +23,7 @@ extension HomeRouter: BaseTargetType {
       return "group/new"
     case .getNewAllCategory:
       return "group/new/category"
-    case .getNewCategory(_, _):
+    case .getNewCategory:
       return "group/new/specific-category"
     }
   }

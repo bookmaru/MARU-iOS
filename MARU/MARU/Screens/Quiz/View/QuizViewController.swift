@@ -22,7 +22,7 @@ final class QuizViewController: BaseViewController {
                      blur: 6)
     return view
   }()
-  private let correctButton: UIButton = {
+  private lazy var correctButton: UIButton = {
     let button = UIButton()
     button.setImage(Image.normalO, for: .normal)
     button.setImage(Image.tapO, for: .selected)
@@ -31,7 +31,7 @@ final class QuizViewController: BaseViewController {
     button.tag = 0
     return button
   }()
-  private let incorrectButton: UIButton = {
+  private lazy var incorrectButton: UIButton = {
     let button = UIButton()
     button.setImage(Image.normalX, for: .normal)
     button.setImage(Image.tapX, for: .selected)

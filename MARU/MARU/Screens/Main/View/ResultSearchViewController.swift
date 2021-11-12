@@ -211,7 +211,7 @@ final class EmptytMeetingView: UIView {
     return label
   }()
 
-  let openMeetingButton: UIButton = {
+  lazy var openMeetingButton: UIButton = {
     let button = UIButton()
     button.contentEdgeInsets = UIEdgeInsets(top: 5,
                                             left: 10,
