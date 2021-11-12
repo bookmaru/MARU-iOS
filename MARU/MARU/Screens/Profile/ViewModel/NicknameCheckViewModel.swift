@@ -21,9 +21,8 @@ final class NicknameCheckViewModel {
   func transform(input: Input) -> Output {
     let nickname = input.nickname
     let isSuccess = input.changeNickname.share()
-      .flatMap {
-        NetworkService.shared.auth.nickname(name: nickname)}
-      .map { return $0.status}
+      .flatMap { NetworkService.shared.auth.nickname(name: nickname) }
+      .map { return $0.status }
     return Output(isSuccess: isSuccess)
   }
 }

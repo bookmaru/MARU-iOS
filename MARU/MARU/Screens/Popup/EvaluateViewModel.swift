@@ -25,7 +25,7 @@ final class EvaluateViewModel {
   func transform(input: Input) -> Output {
     let isConnected = input.didTapSubmitButton
       .flatMap {
-        NetworkService.shared.group.postEvaluate(groupID: $0.groupID, leaderID: $0.leaderID, score: $0.score)}
+        NetworkService.shared.group.postEvaluate(groupID: $0.groupID, leaderID: $0.leaderID, score: $0.score) }
       .map { $0.status == 201 }
 
     return Output(isConnected: isConnected)
