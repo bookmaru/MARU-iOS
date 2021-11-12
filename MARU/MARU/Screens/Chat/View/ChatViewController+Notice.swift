@@ -14,9 +14,7 @@ extension ChatViewController {
         $0.alpha = 0.6
     }
 
-    // swiftlint:disable:next line_length
     let noticeLabel = UILabel().then {
-      $0.text = "토론방의 유지기간은 1주일입니다. 1주일 후 방에 입장하실 수 없습니다. 비속어 및 욕설, 상대방에 대한 인신공격은 금지합니다. 스팸, 광고성 홍보글은 금지합니다. 토론방의 목적에 맞게 토론합니다."
       $0.numberOfLines = 0
       $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
       $0.textAlignment = .justified
@@ -56,5 +54,14 @@ extension ChatViewController {
         noticeView.removeFromSuperview()
       })
       .disposed(by: disposeBag)
+
+    if let notice = Bundle.main.path(forResource: "Notice", ofType: "txt") {
+      do {
+        let contents = try String(contentsOfFile: notice)
+        noticeLabel.text = contents
+      } catch {
+        print(error.localizedDescription)
+      }
+    }
   }
 }

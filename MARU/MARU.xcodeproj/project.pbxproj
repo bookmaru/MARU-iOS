@@ -53,6 +53,7 @@
 		77E3C83F26D522BD00CBF32D /* QuizResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C83E26D522BD00CBF32D /* QuizResultViewModel.swift */; };
 		77E3C84126D6AE1600CBF32D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E3C84026D6AE1600CBF32D /* TimerView.swift */; };
 		C50056AF26F4C5BF00078FBF /* GeneratedGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */; };
+		C501387B273E005400082398 /* Notice.txt in Resources */ = {isa = PBXBuildFile; fileRef = C501387A273E005400082398 /* Notice.txt */; };
 		C5038202262B0394002706C3 /* EmptyMeetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */; };
 		C50DBC7126BD77F500B5585A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7026BD77F500B5585A /* SettingViewController.swift */; };
 		C50DBC7326BD78B600B5585A /* SettingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */; };
@@ -251,6 +252,7 @@
 		A366F6D7FBB260404F5B5DF0 /* Pods-MARUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.release.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3FCF08063A4739DEBC2AE00 /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		C50056AE26F4C5BF00078FBF /* GeneratedGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedGroup.swift; sourceTree = "<group>"; };
+		C501387A273E005400082398 /* Notice.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notice.txt; sourceTree = "<group>"; };
 		C5038201262B0394002706C3 /* EmptyMeetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMeetCollectionViewCell.swift; sourceTree = "<group>"; };
 		C50DBC7026BD77F500B5585A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		C50DBC7226BD78B600B5585A /* SettingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 				C55F14DA260F31C4003D99D0 /* GoogleService-Info.plist */,
 				C51CA800260D966000CE4804 /* Info.plist */,
 				C55F1740260F449A003D99D0 /* Enviroment.swift */,
+				C501387A273E005400082398 /* Notice.txt */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1243,6 +1246,7 @@
 				C55F1780260F46A5003D99D0 /* RIDIBatang.otf in Resources */,
 				C55F1524260F3B74003D99D0 /* .swiftlint.yml in Resources */,
 				C51CA7FF260D966000CE4804 /* LaunchScreen.storyboard in Resources */,
+				C501387B273E005400082398 /* Notice.txt in Resources */,
 				C55F152C260F3E52003D99D0 /* GoogleService-Info-Dev.plist in Resources */,
 				C51CA7FC260D966000CE4804 /* Assets.xcassets in Resources */,
 				C55F14DB260F31C4003D99D0 /* GoogleService-Info.plist in Resources */,

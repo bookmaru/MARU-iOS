@@ -22,21 +22,19 @@ final class QuizViewController: BaseViewController {
                      blur: 6)
     return view
   }()
-  private lazy var correctButton: UIButton = {
+  private let correctButton: UIButton = {
     let button = UIButton()
     button.setImage(Image.normalO, for: .normal)
     button.setImage(Image.tapO, for: .selected)
     button.setImage(Image.tapO, for: .highlighted)
-    button.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
     button.tag = 0
     return button
   }()
-  private lazy var incorrectButton: UIButton = {
+  private let incorrectButton: UIButton = {
     let button = UIButton()
     button.setImage(Image.normalX, for: .normal)
     button.setImage(Image.tapX, for: .selected)
     button.setImage(Image.tapX, for: .highlighted)
-    button.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
     button.tag = 1
     return button
   }()
@@ -57,6 +55,20 @@ final class QuizViewController: BaseViewController {
   private var quizsContent: [String] = []
   private let timeoutTrigger = PublishSubject<Void>()
 
+  init(groupID: Int) {
+    self.groupID = groupID
+    super.init()
+    addTarget()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  deinit {
+    quizContentView.stopTimer()
+    NotificationCenter.default.removeObserver(self)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .quizBackgroundColor
@@ -66,26 +78,22 @@ final class QuizViewController: BaseViewController {
     configureLayout()
     bind()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     setNavigationBar(isHidden: true)
   }
+
   override func viewDidDisappear(_ animated: Bool) {
     super.viewWillAppear(false)
     unregisterNotification()
   }
 
-  init(groupID: Int) {
-    self.groupID = groupID
-    super.init()
+  private func addTarget() {
+    correctButton.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
+    incorrectButton.addTarget(self, action: #selector(tapButton(_ :)), for: .touchUpInside)
   }
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  deinit {
-    quizContentView.stopTimer()
-    NotificationCenter.default.removeObserver(self)
-  }
+
   private func bind() {
     let viewWillAppear = Observable
       .combineLatest(
