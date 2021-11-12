@@ -93,7 +93,7 @@ extension BookAlertViewController {
       .subscribe(onNext: { [weak self] isSuccess in
         guard let self = self else { return }
         if !isSuccess {
-          self.showToast("error")
+          self.showToast("에러가 발생했습니다.")
         }
         self.dismiss(animated: true)
       })

@@ -213,7 +213,7 @@ extension ProfileChangeViewController {
         guard let self = self,
               let nickname = self.nicknameTextField.text,
               let image = self.profileImageView.image
-        else { return (nickname: "", image: UIImage())}
+        else { return (nickname: "", image: UIImage()) }
         return (nickname: nickname, image: image)
       }
     let input = ProfileChangeViewModel.Input(didTapSubmitButton: didTapSubmitButton)
@@ -222,10 +222,6 @@ extension ProfileChangeViewController {
     output.isConnected
       .subscribe(onNext: {[weak self] isConnected in
         guard let self = self else { return }
-        if !isConnected {
-          print("error occured")
-          return
-        }
         self.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
