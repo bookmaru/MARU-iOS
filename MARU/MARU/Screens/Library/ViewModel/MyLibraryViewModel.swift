@@ -11,48 +11,45 @@ import RxSwift
 final class MyLibraryViewModel {
 
   struct Input {
-    let viewDidLoadPublisher: PublishSubject<Void>
+    let viewWillApper: Observable<Void>
   }
 
   struct Output {
-    let user: Driver<User?>
-    let data: Driver<[Library]>
+    let data: Driver<(user: User, library: [Library])?>
   }
 
   // TODO: - 서버 연결 상태 분기처리 할 것
   func transform(input: Input) -> Output {
 
-    let viewDidLoad = input.viewDidLoadPublisher.share()
-    // 프로필 정보에 해당하는 부분
-    let user = viewDidLoad
-      // map 사용하지 않는 이유 -> observable type으로 리턴되므로 이중으로 감싸진 형태
-      // 따라서 flatmap 사용
+    let viewWillApper = input.viewWillApper.share()
+
+    let user = viewWillApper
       .flatMap(NetworkService.shared.auth.libraryUser)
-      .map { response -> User? in
-        return response.data
+      .compactMap { $0.data }
+      .map { response -> User in
+        return response
       }
-      .asDriver(onErrorJustReturn: nil)
 
     // 모임하고 싶은 책 리스트
-    let bookList = viewDidLoad
+    let bookList = viewWillApper
       .flatMap(NetworkService.shared.book.bookList)
       .map { response -> BookCaseModel? in
         return response.data
       }
     // 일기 리스트
-    let diaryList = viewDidLoad
+    let diaryList = viewWillApper
       .flatMap(NetworkService.shared.diary.getDiaryList)
       .map { response -> Diaries? in
         return response.data
       }
     // 모임 리스트
-    let bookGroup = viewDidLoad
+    let bookGroup = viewWillApper
       .flatMap(NetworkService.shared.book.getGroup)
       .map { response -> KeepGroupModel? in
         return response.data
       }
 
-    let data = Observable.combineLatest(bookList, diaryList, bookGroup)
+    let library = Observable.combineLatest(bookList, diaryList, bookGroup)
       .map { bookList, diary, bookGroup -> [Library] in
         var library: [Library] = []
         library.append(.title(title: "담아둔 모임", isHidden: false))
@@ -66,8 +63,13 @@ final class MyLibraryViewModel {
         library.append(.diary(diary: diary))
         return library
       }
-      .asDriver(onErrorJustReturn: [])
 
-    return Output(user: user, data: data)
+    let data = Observable.combineLatest(user, library)
+      .map { user, library -> (user: User, library: [Library])? in
+        return (user: user, library: library)
+      }
+      .asDriver(onErrorJustReturn: nil)
+
+    return Output(data: data)
   }
 }

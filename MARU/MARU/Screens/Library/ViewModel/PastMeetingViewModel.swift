@@ -9,13 +9,17 @@ import RxCocoa
 import RxSwift
 
 final class PastMeetingViewModel {
+
   struct Input {
     let viewDidLoadPublisher: PublishSubject<Void>
   }
+
   struct Output {
     let data: Driver<KeepGroupModel?>
   }
+
   func transfrom(input: Input) -> Output {
+
     let meetingList = input.viewDidLoadPublisher
       .flatMap(NetworkService.shared.book.getGroup)
       .compactMap { $0.data }
