@@ -100,7 +100,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
   ) {
-    let userInfo = notification.request.content.userInfo
+    _ = notification.request.content.userInfo
     completionHandler([[.sound, .badge]])
   }
 

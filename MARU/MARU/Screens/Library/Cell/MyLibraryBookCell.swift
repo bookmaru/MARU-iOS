@@ -38,9 +38,9 @@ final class MyLibraryBookCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: MyLibraryBookCell {
-  var binder: Binder<String> {
-    return Binder(base) { base, string in
-      base.imageView.image(url: string)
+  var imageURLBinder: Binder<String> {
+    return Binder(base) { base, imageURL in
+      base.imageView.image(url: imageURL)
     }
   }
 }

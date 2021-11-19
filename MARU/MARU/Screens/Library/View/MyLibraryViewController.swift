@@ -20,6 +20,7 @@ final class MyLibraryViewController: BaseViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
     collectionView.alwaysBounceVertical = true
+    collectionView.contentInset.bottom = 40
     collectionView.register(
       MyLibraryHeaderView.self,
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -60,12 +61,14 @@ final class MyLibraryViewController: BaseViewController {
       collectionView.reloadData()
     }
   }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
     setupNavigation()
   }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(false)
     tabBarController?.tabBar.isHidden = false
@@ -82,25 +85,17 @@ final class MyLibraryViewController: BaseViewController {
   }
 
   private func bind() {
-    let viewDidLoadPublisher = PublishSubject<Void>()
-    let input = MyLibraryViewModel.Input(viewDidLoadPublisher: viewDidLoadPublisher)
+    let viewWillApper = rx.viewWillAppear.map { _ in }
+    let input = MyLibraryViewModel.Input(viewWillApper: viewWillApper)
     let output = viewModel.transform(input: input)
 
     output.data
       .drive(onNext: { [weak self] data in
         guard let self = self else { return }
-        self.data = data
+        self.user = data?.user
+        self.data = data?.library ?? []
       })
       .disposed(by: disposeBag)
-
-    output.user
-      .drive(onNext: { [weak self] user in
-        guard let self = self else { return }
-        self.user = user
-      })
-      .disposed(by: disposeBag)
-
-    viewDidLoadPublisher.onNext(())
   }
 
   private func setupNavigation() {
@@ -142,60 +137,54 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       let cell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
-      if titleText == "담아둔 모임" {
-        cell.rx.didTapAddButton
-          .subscribe(onNext: {
-            let viewController = PastMeetingViewController()
-            viewController.navigationItem.title = titleText
-            self.navigationController?.pushViewController(viewController, animated: true)
-          })
-          .disposed(by: cell.disposeBag)
-      }
-      if titleText == "모임하고 싶은 책" {
+
+      if titleText == "" {
         cell.addButton.setImage(Image.group1038, for: .normal)
-        cell.rx.didTapAddButton
-          .subscribe(onNext: {
-            let viewController = BookFavoritesViewController()
-            viewController.navigationItem.title = titleText
-            self.navigationController?.pushViewController(viewController, animated: true)
-          })
-          .disposed(by: cell.disposeBag)
       }
-      if titleText == "내 일기장" {
-        cell.rx.didTapAddButton
-          .subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            let viewController = MyDiaryViewController()
-            self.navigationController?.pushViewController(viewController, animated: true)
-          })
-          .disposed(by: cell.disposeBag)
-      }
+
+      cell.rx.didTapAddButton
+        .map { _ -> UIViewController in
+          if titleText == "담아둔 모임" {
+            return PastMeetingViewController()
+          }
+          if titleText == "모임하고 싶은 책" {
+            return BookFavoritesViewController()
+          }
+          return MyDiaryViewController()
+        }
+        .subscribe(onNext: { [weak self] viewController in
+          guard let self = self else { return }
+          viewController.navigationItem.title = titleText
+          self.navigationController?.pushViewController(viewController, animated: true)
+        })
+        .disposed(by: disposeBag)
+
       return cell
+
     // MARK: - 담아둔 모임
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       let titleCell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      if keepGroupModel.keepGroup.count == 0 {
-        cell.noResultImageView.isHidden = false
-        titleCell.addButton.isHidden = true
-      } else {
-        cell.noResultImageView.isHidden = true
-        cell.rx.binder.onNext(keepGroupModel.keepGroup[indexPath.item])
-      }
+
+      cell.rx.binder.onNext(keepGroupModel.keepGroup)
+      cell.noResultImageView.isHidden = !keepGroupModel.keepGroup.isEmpty
+      titleCell.addButton.isHidden = keepGroupModel.keepGroup.isEmpty
+
       return cell
+
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      if data.bookcase.isEmpty {
-        cell.noResultImageView.isHidden = false
-      } else {
-        cell.noResultImageView.isHidden = true
-        cell.rx.binder.onNext(data.bookcase[indexPath.item])
-      }
+
+      cell.noResultImageView.isHidden = !data.bookcase.isEmpty
+      cell.rx.binder.onNext(data.bookcase)
+
       return cell
+
     // MARK: - 내 일기장
     case let .diary(data):
       let cell: LibraryDiaryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+
       cell.rx.didTapContentView
         .subscribe(onNext: { [weak self] _ in
           guard let self = self else { return }
@@ -203,7 +192,9 @@ extension MyLibraryViewController: UICollectionViewDataSource {
           self.navigationController?.pushViewController(viewController, animated: true)
         })
         .disposed(by: cell.disposeBag)
+
       cell.rx.dataBinder.onNext(data.diaries[indexPath.item])
+
       return cell
     }
   }
@@ -217,6 +208,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
   ) -> CGSize {
     return data[indexPath.section].size
   }
+
   // MARK: - headerview section 처리해주기. size 지정도 필수이다.
   func collectionView(
     _ collectionView: UICollectionView,
@@ -249,7 +241,7 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     referenceSizeForHeaderInSection section: Int
   ) -> CGSize {
-    guard section == 0 else { return .zero }
+    guard section == 0, user != nil else { return .zero }
     return CGSize(width: ScreenSize.width, height: 187)
   }
 }

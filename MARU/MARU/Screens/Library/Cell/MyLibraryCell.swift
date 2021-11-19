@@ -13,7 +13,9 @@ final class MyLibraryCell: UICollectionViewCell {
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
     layout.scrollDirection = .horizontal
+    layout.minimumLineSpacing = 10
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MeetingCell.self, forCellWithReuseIdentifier: MeetingCell.reuseIdentifier)
     collectionView.backgroundColor = .white
@@ -37,7 +39,7 @@ final class MyLibraryCell: UICollectionViewCell {
     $0.text = "서재를 채워주세요 :)"
   }
 
-  fileprivate var groupData: KeepGroup? {
+  fileprivate var groupData: [KeepGroup] = [] {
     didSet {
       collectionView.reloadData()
     }
@@ -62,10 +64,7 @@ final class MyLibraryCell: UICollectionViewCell {
   private func render() {
     contentView.add(collectionView) { view in
       view.snp.makeConstraints {
-        $0.top.equalTo(self.contentView).offset(3)
-        $0.leading.equalTo(self.contentView).offset(3)
-        $0.trailing.equalTo(self.contentView).offset(-3)
-        $0.bottom.equalTo(self.contentView).offset(-3)
+        $0.edges.equalToSuperview()
       }
     }
     collectionView.add(noResultImageView) { imageView in
@@ -97,7 +96,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: ScreenSize.width / 4, height: 134)
+    return CGSize(width: (ScreenSize.width - 60 - 30) / 4, height: 106)
   }
 }
 
@@ -106,7 +105,7 @@ extension MyLibraryCell: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    return 1
+    return groupData.count
   }
 
   func collectionView(
@@ -114,17 +113,15 @@ extension MyLibraryCell: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: MeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    if groupData == nil {
-      return cell
-    } else {
-      cell.rx.binder.onNext(groupData?.image ?? "")
-    }
+
+    cell.rx.imageURLBinder.onNext(groupData[indexPath.item].image)
+
     return cell
   }
 }
 
 extension Reactive where Base: MyLibraryCell {
-  var binder: Binder<KeepGroup> {
+  var binder: Binder<[KeepGroup]> {
     return Binder(base) { base, data in
       base.groupData = data
     }

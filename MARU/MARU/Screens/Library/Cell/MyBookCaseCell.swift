@@ -10,8 +10,12 @@ import RxSwift
 import RxCocoa
 
 final class MyBookCaseCell: UICollectionViewCell {
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
+    layout.scrollDirection = .horizontal
+    layout.minimumLineSpacing = 10
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cell: MyLibraryBookCell.self, forCellWithReuseIdentifier: MyLibraryBookCell.reuseIdentifier)
     collectionView.backgroundColor = .white
@@ -35,7 +39,7 @@ final class MyBookCaseCell: UICollectionViewCell {
     $0.text = "서재를 채워주세요 :)"
   }
 
-  fileprivate var bookData: BookCase? {
+  fileprivate var bookData: [BookCase] = [] {
     didSet {
       collectionView.reloadData()
     }
@@ -87,32 +91,36 @@ final class MyBookCaseCell: UICollectionViewCell {
 }
 
 extension MyBookCaseCell: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: ScreenSize.width / 4, height: 134)
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    return CGSize(width: (ScreenSize.width - 60 - 30) / 4, height: 106)
   }
 }
 
 extension MyBookCaseCell: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView,
-                      numberOfItemsInSection section: Int) -> Int {
-    return 1
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
+    return bookData.count
   }
 
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    if bookData == nil {
-      return cell
-    }
-    if bookData != nil {
-      cell.rx.binder.onNext(bookData?.imageURL ?? "")
-    }
+
+    cell.rx.imageURLBinder.onNext(bookData[indexPath.item].imageURL)
+
     return cell
   }
 }
 extension Reactive where Base: MyBookCaseCell {
-  var binder: Binder<BookCase> {
+  var binder: Binder<[BookCase]> {
     return Binder(base) { base, data in
       base.bookData = data
     }
