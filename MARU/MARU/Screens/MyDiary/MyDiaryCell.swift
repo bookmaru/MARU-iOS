@@ -92,6 +92,8 @@ final class MyDiaryCell: UICollectionViewCell {
     }
     contentLabel.snp.makeConstraints {
       $0.centerX.centerY.equalToSuperview()
+      $0.leading.equalTo(leftQuotationImageView.snp.trailing)
+      $0.trailing.equalTo(rightQuotationImageView.snp.leading)
     }
     leftQuotationImageView.snp.makeConstraints {
       $0.leading.top.equalToSuperview()

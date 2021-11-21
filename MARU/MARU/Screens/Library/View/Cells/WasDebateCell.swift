@@ -112,7 +112,6 @@ final class WasDebateCell: UICollectionViewCell {
     bookTitleLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(shadowView.snp.top).inset(10)
       make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
-//      make.width.lessThanOrEqualTo(shadowView.snp.width)
       make.height.equalTo(13)
     }
     bookAuthorLabel.snp.makeConstraints { ( make ) in

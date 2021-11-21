@@ -68,9 +68,9 @@ final class LibraryTitleCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: LibraryTitleCell {
-  var didTapAddButton: Observable<Void> {
+  var didTapAddButton: Observable<String> {
     return base.addButton.rx.tap
-      .map { return }
+      .map { return base.title ?? "" }
       .asObservable()
   }
 

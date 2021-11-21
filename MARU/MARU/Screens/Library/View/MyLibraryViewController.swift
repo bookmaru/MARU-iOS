@@ -143,11 +143,11 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       }
 
       cell.rx.didTapAddButton
-        .map { _ -> UIViewController in
-          if titleText == "담아둔 모임" {
+        .map { headerTitle -> UIViewController in
+          if headerTitle == "담아둔 모임" {
             return PastMeetingViewController()
           }
-          if titleText == "모임하고 싶은 책" {
+          if headerTitle == "모임하고 싶은 책" {
             return BookFavoritesViewController()
           }
           return MyDiaryViewController()
@@ -157,7 +157,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
           viewController.navigationItem.title = titleText
           self.navigationController?.pushViewController(viewController, animated: true)
         })
-        .disposed(by: disposeBag)
+        .disposed(by: cell.disposeBag)
 
       return cell
 
