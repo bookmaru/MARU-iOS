@@ -29,7 +29,7 @@ final class DiaryWriteViewModel {
 
   func transform(input: Input) -> Output {
 		let isSuccess = input.didTapDoneButton
-			.flatMap { [weak self] title, content -> Observable<BaseReponseType<Int>> in
+			.flatMap { [weak self] title, content -> Observable<BaseResponseType<Int>> in
 				guard let self = self else { return .empty() }
 				if self.isDiaryEdit {
 					return NetworkService.shared.diary.editDiary(groupID: self.info?.diaryID ?? 0, title: title, content: content)

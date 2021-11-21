@@ -54,7 +54,7 @@ final class MorePopularViewController: BaseViewController {
       }
     Observable.merge(viewAppear, triggerMoreData)
       .flatMap { NetworkService.shared.search.meetingSearchByISBN(isbn: self.isbn, page: $0) }
-      .map { response -> BaseReponseType<Groups> in
+      .map { response -> BaseResponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(domain: "Detect Error in Fetching Search meetings",
                              code: -1, userInfo: nil)

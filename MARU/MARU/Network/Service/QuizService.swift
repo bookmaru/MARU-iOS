@@ -9,29 +9,29 @@ import Moya
 import RxSwift
 
 protocol QuizServiceType {
-  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseReponseType<ResultMakeGroup>>
-  func getQuiz(groupID: Int) -> Observable<BaseReponseType<Quizzes>>
-  func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseReponseType<CheckQuiz>>
+  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<ResultMakeGroup>>
+  func getQuiz(groupID: Int) -> Observable<BaseResponseType<Quizzes>>
+  func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseResponseType<CheckQuiz>>
 }
 
 final class QuizService: QuizServiceType {
   private let router = MoyaProvider<QuizRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
-  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseReponseType<ResultMakeGroup>> {
+  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<ResultMakeGroup>> {
     return router.rx
       .request(.createQuiz(makeGroup: makeGroup))
       .asObservable()
-      .map(BaseReponseType<ResultMakeGroup>.self)
+      .map(BaseResponseType<ResultMakeGroup>.self)
   }
-  func getQuiz(groupID: Int) -> Observable<BaseReponseType<Quizzes>> {
+  func getQuiz(groupID: Int) -> Observable<BaseResponseType<Quizzes>> {
     return router.rx
       .request(.getQuiz(groupID: groupID))
       .asObservable()
-      .map(BaseReponseType<Quizzes>.self)
+      .map(BaseResponseType<Quizzes>.self)
   }
-  func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseReponseType<CheckQuiz>> {
+  func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseResponseType<CheckQuiz>> {
     return router.rx
       .request(.checkQuiz(groupID: groupID, isEnter: isEnter))
       .asObservable()
-      .map(BaseReponseType<CheckQuiz>.self)
+      .map(BaseResponseType<CheckQuiz>.self)
   }
 }

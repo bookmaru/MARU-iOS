@@ -21,7 +21,7 @@ final class BookSearchViewModel: ViewModelType {
         currentKeyword = $0
       })
       .flatMap { NetworkService.shared.search.bookSearch(queryString: $0, page: 1) }
-      .map { response -> BaseReponseType<Books> in
+      .map { response -> BaseResponseType<Books> in
 
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
@@ -45,7 +45,7 @@ final class BookSearchViewModel: ViewModelType {
 
     let fetchMore = input.fetchMore
       .flatMap { NetworkService.shared.search.bookSearch(queryString: currentKeyword, page: pageNumber) }
-      .map { response -> BaseReponseType<Books> in
+      .map { response -> BaseResponseType<Books> in
 
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(

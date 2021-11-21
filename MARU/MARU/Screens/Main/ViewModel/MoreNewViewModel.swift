@@ -33,7 +33,7 @@ final class MoreNewViewModel: ViewModelType {
     let load = input.viewTrigger
       .take(1)
       .flatMap { NetworkService.shared.home.getNew(page: 1) }
-      .map { response -> BaseReponseType<Groups> in
+      .map { response -> BaseResponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)
@@ -52,7 +52,7 @@ final class MoreNewViewModel: ViewModelType {
     let tapCategoryButton = input.tapCategoryButton
       .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
       .distinctUntilChanged()
-      .flatMap { category -> Observable<BaseReponseType<Groups>> in
+      .flatMap { category -> Observable<BaseResponseType<Groups>> in
         categoryString = category
         if category == "전체" {
           pageIndex = 1
@@ -60,7 +60,7 @@ final class MoreNewViewModel: ViewModelType {
         }
         return NetworkService.shared.home.getNewCategory(category: category, currentGroupCount: 1)
       }
-      .map { response -> BaseReponseType<Groups> in
+      .map { response -> BaseResponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)
@@ -81,7 +81,7 @@ final class MoreNewViewModel: ViewModelType {
       .filter { $0.0 }
       .map { $0.1 }
       .debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
-      .flatMap { categoryGroupCount -> Observable<BaseReponseType<Groups>> in
+      .flatMap { categoryGroupCount -> Observable<BaseResponseType<Groups>> in
         if categoryString == "전체" {
           pageIndex += 1
           return NetworkService.shared.home.getNew(page: pageIndex)
@@ -91,7 +91,7 @@ final class MoreNewViewModel: ViewModelType {
           currentGroupCount: categoryGroupCount ?? 0
         )
       }
-      .map { response -> BaseReponseType<Groups> in
+      .map { response -> BaseResponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)

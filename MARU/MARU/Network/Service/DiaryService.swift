@@ -9,40 +9,40 @@ import Moya
 import RxSwift
 
 protocol DiaryServiceType {
-  func getDiaryList() -> Observable<BaseReponseType<Diaries>>
-  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryObject>>
-  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
-  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>>
+  func getDiaryList() -> Observable<BaseResponseType<Diaries>>
+  func getDiary(diaryID: Int) -> Observable<BaseResponseType<DiaryObject>>
+  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>>
+  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>>
 }
 
 final class DiaryService: DiaryServiceType {
   private let router = MoyaProvider<DiaryRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
-  func getDiaryList() -> Observable<BaseReponseType<Diaries>> {
+  func getDiaryList() -> Observable<BaseResponseType<Diaries>> {
     return router.rx
       .request(.list)
       .asObservable()
-      .map(BaseReponseType<Diaries>.self)
+      .map(BaseResponseType<Diaries>.self)
   }
 
-  func getDiary(diaryID: Int) -> Observable<BaseReponseType<DiaryObject>> {
+  func getDiary(diaryID: Int) -> Observable<BaseResponseType<DiaryObject>> {
     return router.rx
       .request(.get(diaryID: diaryID))
       .asObservable()
-      .map(BaseReponseType<DiaryObject>.self)
+      .map(BaseResponseType<DiaryObject>.self)
   }
 
-  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
+  func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.post(groupID: groupID, title: title, content: content))
       .asObservable()
-      .map(BaseReponseType<Int>.self)
+      .map(BaseResponseType<Int>.self)
   }
 
-  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseReponseType<Int>> {
+  func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>> {
     return router.rx.request(.edit(diaryID: groupID, title: title, content: content))
       .asObservable()
-      .map(BaseReponseType<Int>.self)
+      .map(BaseResponseType<Int>.self)
   }
 
 }
