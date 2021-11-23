@@ -97,7 +97,7 @@ final class CreateQuizViewModel: ViewModelType {
           question: Question.init(answer: answers, quiz: quizzes)
         )
       )}
-      .map { response -> BaseReponseType<ResultMakeGroup> in
+      .map { response -> BaseResponseType<ResultMakeGroup> in
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)

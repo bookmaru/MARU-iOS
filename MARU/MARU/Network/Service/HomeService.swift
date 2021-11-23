@@ -9,36 +9,36 @@ import Moya
 import RxSwift
 
 protocol HomeServiceType {
-  func getPopular() -> Observable<BaseReponseType<Books>>
-  func getNew(page: Int) -> Observable<BaseReponseType<Groups>>
-  func getNewAllCategory() -> Observable<BaseReponseType<GroupsByCategories>>
-  func getNewCategory(category: String, currentGroupCount: Int)-> Observable<BaseReponseType<Groups>>
+  func getPopular() -> Observable<BaseResponseType<Books>>
+  func getNew(page: Int) -> Observable<BaseResponseType<Groups>>
+  func getNewAllCategory() -> Observable<BaseResponseType<GroupsByCategories>>
+  func getNewCategory(category: String, currentGroupCount: Int)-> Observable<BaseResponseType<Groups>>
 }
 
 final class HomeService: HomeServiceType {
   private let router = MoyaProvider<HomeRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
-  func getPopular() -> Observable<BaseReponseType<Books>> {
+  func getPopular() -> Observable<BaseResponseType<Books>> {
     return router.rx
       .request(.getPopular)
       .asObservable()
-      .map(BaseReponseType<Books>.self)
+      .map(BaseResponseType<Books>.self)
   }
-  func getNew(page: Int) -> Observable<BaseReponseType<Groups>> {
+  func getNew(page: Int) -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.getNew(page: page))
       .asObservable()
-      .map(BaseReponseType<Groups>.self)
+      .map(BaseResponseType<Groups>.self)
   }
-  func getNewAllCategory() -> Observable<BaseReponseType<GroupsByCategories>> {
+  func getNewAllCategory() -> Observable<BaseResponseType<GroupsByCategories>> {
     return router.rx
       .request(.getNewAllCategory)
       .asObservable()
-      .map(BaseReponseType<GroupsByCategories>.self)
+      .map(BaseResponseType<GroupsByCategories>.self)
   }
-  func getNewCategory(category: String, currentGroupCount: Int) -> Observable<BaseReponseType<Groups>> {
+  func getNewCategory(category: String, currentGroupCount: Int) -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.getNewCategory(category: category, currentGroupCount: currentGroupCount))
       .asObservable()
-      .map(BaseReponseType<Groups>.self)
+      .map(BaseResponseType<Groups>.self)
   }
 }

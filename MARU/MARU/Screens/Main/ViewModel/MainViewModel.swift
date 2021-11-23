@@ -25,7 +25,7 @@ final class MainViewModel: ViewModelType {
 
     let allPopularMeetings = input.fetch
       .flatMap(NetworkService.shared.home.getPopular)
-      .map { response -> BaseReponseType<Books> in
+      .map { response -> BaseResponseType<Books> in
         guard 200 ..< 300 ~= response.status else {
           errorMessage.onNext(
             MaruError.serverError(response.status)
@@ -43,7 +43,7 @@ final class MainViewModel: ViewModelType {
 
     let allNewMeetings = input.fetch
       .flatMap { NetworkService.shared.home.getNew(page: 1) }
-      .map { response -> BaseReponseType<Groups> in
+      .map { response -> BaseResponseType<Groups> in
         guard 200 ..< 300 ~= response.status else {
           throw NSError.init(
             domain: "Detect Error in Fetching New meetings",

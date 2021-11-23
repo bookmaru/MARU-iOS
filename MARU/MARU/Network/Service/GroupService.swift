@@ -9,23 +9,23 @@ import Moya
 import RxSwift
 
 protocol GroupServiceType {
-  func participateList() -> Observable<BaseReponseType<Groups>>
+  func participateList() -> Observable<BaseResponseType<Groups>>
   func chatList(roomID: Int) -> Observable<[RealmChat]>
-  func diaryList() -> Observable<BaseReponseType<Groups>>
-  func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>>
-  func keep(groupID: Int) -> Observable<BaseReponseType<HasGroup>>
-  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseReponseType<Int>>
+  func diaryList() -> Observable<BaseResponseType<Groups>>
+  func groupInfo(groupID: Int) -> Observable<BaseResponseType<GroupInformation>>
+  func keep(groupID: Int) -> Observable<BaseResponseType<HasGroup>>
+  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseResponseType<Int>>
 }
 
 final class GroupService: GroupServiceType {
 
   private let router = MoyaProvider<GroupRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
 
-  func participateList() -> Observable<BaseReponseType<Groups>> {
+  func participateList() -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.participate)
       .asObservable()
-      .map(BaseReponseType<Groups>.self)
+      .map(BaseResponseType<Groups>.self)
   }
 
   func chatList(roomID: Int) -> Observable<[RealmChat]> {
@@ -35,31 +35,31 @@ final class GroupService: GroupServiceType {
       .map([RealmChat].self)
   }
 
-  func diaryList() -> Observable<BaseReponseType<Groups>> {
+  func diaryList() -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.diaryList)
       .asObservable()
-      .map(BaseReponseType<Groups>.self)
+      .map(BaseResponseType<Groups>.self)
   }
 
-  func groupInfo(groupID: Int) -> Observable<BaseReponseType<GroupInformation>> {
+  func groupInfo(groupID: Int) -> Observable<BaseResponseType<GroupInformation>> {
     return router.rx
       .request(.groupInfo(groupID: groupID))
       .asObservable()
-      .map(BaseReponseType<GroupInformation>.self)
+      .map(BaseResponseType<GroupInformation>.self)
   }
 
-  func keep(groupID: Int) -> Observable<BaseReponseType<HasGroup>> {
+  func keep(groupID: Int) -> Observable<BaseResponseType<HasGroup>> {
     return router.rx
       .request(.keep(groupID: groupID))
       .asObservable()
-      .map(BaseReponseType<HasGroup>.self)
+      .map(BaseResponseType<HasGroup>.self)
   }
 
-  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseReponseType<Int>> {
+  func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.evaluate(groupID: groupID, leaderID: leaderID, score: score))
       .asObservable()
-      .map(BaseReponseType<Int>.self)
+      .map(BaseResponseType<Int>.self)
   }
 }

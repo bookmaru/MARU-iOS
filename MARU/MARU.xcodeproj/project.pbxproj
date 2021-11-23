@@ -107,7 +107,7 @@
 		C59BCBC326C8398600C84163 /* OtherProfileChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59BCBC226C8398600C84163 /* OtherProfileChatCollectionViewCell.swift */; };
 		C5A3DB082684D966007355D1 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB072684D966007355D1 /* AuthRouter.swift */; };
 		C5A3DB0C2684DA0F007355D1 /* FailResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */; };
-		C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */; };
+		C5A3DB0E2684DC84007355D1 /* BaseResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0D2684DC84007355D1 /* BaseResponseType.swift */; };
 		C5A3DB102684DCEE007355D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB0F2684DCEE007355D1 /* AuthService.swift */; };
 		C5A3DB142684E43E007355D1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB132684E43E007355D1 /* Auth.swift */; };
 		C5A3DB162684E5FB007355D1 /* MoyaNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */; };
@@ -290,7 +290,7 @@
 		C5A3DAFF2684CD58007355D1 /* MARU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MARU.entitlements; sourceTree = "<group>"; };
 		C5A3DB072684D966007355D1 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailResponseType.swift; sourceTree = "<group>"; };
-		C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReponseType.swift; sourceTree = "<group>"; };
+		C5A3DB0D2684DC84007355D1 /* BaseResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseType.swift; sourceTree = "<group>"; };
 		C5A3DB0F2684DCEE007355D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C5A3DB132684E43E007355D1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C5A3DB152684E5FB007355D1 /* MoyaNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaNetworkLogger.swift; sourceTree = "<group>"; };
@@ -819,7 +819,7 @@
 			children = (
 				C5A3DB0B2684DA0F007355D1 /* FailResponseType.swift */,
 				C50F5B0327187856007A6FDD /* HasGroup.swift */,
-				C5A3DB0D2684DC84007355D1 /* BaseReponseType.swift */,
+				C5A3DB0D2684DC84007355D1 /* BaseResponseType.swift */,
 				C5A3DB132684E43E007355D1 /* Auth.swift */,
 				776320442646B35900293D1C /* Book.swift */,
 				773E22DC26A01BBC002B9F52 /* Group.swift */,
@@ -1242,7 +1242,7 @@
 				77013C29268C0C93004271E6 /* MaruListCollectionViewLayout.swift in Sources */,
 				F2EA49DB26E88DEF0091C75A /* ProfileChangeViewController.swift in Sources */,
 				C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */,
-				C5A3DB0E2684DC84007355D1 /* BaseReponseType.swift in Sources */,
+				C5A3DB0E2684DC84007355D1 /* BaseResponseType.swift in Sources */,
 				774262EE26899825008F9CAE /* MeetingHeldViewController.swift in Sources */,
 				C5B16BA32687361600F01C26 /* CGFloat+.swift in Sources */,
 				C52E782A260F277F0087570E /* BaseViewController.swift in Sources */,
@@ -1536,7 +1536,7 @@
 				BUNDLE_NAME = "마루_dev";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_WARN_PEDANTIC = NO;
@@ -1568,8 +1568,9 @@
 				BASE_URL = "http://베이스유아르엘";
 				BUNDLE_NAME = "마루";
 				CODE_SIGN_ENTITLEMENTS = MARU/MARU.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				ENABLE_TESTABILITY = NO;
 				GCC_WARN_PEDANTIC = NO;
@@ -1585,6 +1586,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.maru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_CFLAGS = "";

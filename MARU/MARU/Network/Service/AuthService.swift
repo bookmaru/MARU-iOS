@@ -9,72 +9,72 @@ import Moya
 import RxSwift
 
 protocol AuthServiceType {
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<LoginDAO>>
-  func nickname(name: String) -> Observable<BaseReponseType<Int>>
-  func information(information: UserInformation) -> Observable<BaseReponseType<SignupToken>>
-  func refresh() -> Observable<BaseReponseType<Token>>
-  func user() -> Observable<BaseReponseType<User>>
-  func report(chat: RealmChat) -> Observable<BaseReponseType<Int>>
-  func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>>
-  func libraryUser() -> Observable<BaseReponseType<User>>
+  func auth(type: AuthType, token: String) -> Observable<BaseResponseType<LoginDAO>>
+  func nickname(name: String) -> Observable<BaseResponseType<Int>>
+  func information(information: UserInformation) -> Observable<BaseResponseType<SignupToken>>
+  func refresh() -> Observable<BaseResponseType<Token>>
+  func user() -> Observable<BaseResponseType<User>>
+  func report(chat: RealmChat) -> Observable<BaseResponseType<Int>>
+  func change(nickname: String, image: UIImage) -> Observable<BaseResponseType<ChangeProfile>>
+  func libraryUser() -> Observable<BaseResponseType<User>>
 }
 
 final class AuthService: AuthServiceType {
   private let router = MoyaProvider<AuthRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
-  func change(nickname: String, image: UIImage) -> Observable<BaseReponseType<ChangeProfile>> {
+  func change(nickname: String, image: UIImage) -> Observable<BaseResponseType<ChangeProfile>> {
     return router.rx
       .request(.changeProfile(nickname: nickname, image: image))
       .asObservable()
-      .map(BaseReponseType<ChangeProfile>.self)
+      .map(BaseResponseType<ChangeProfile>.self)
   }
 
-  func auth(type: AuthType, token: String) -> Observable<BaseReponseType<LoginDAO>> {
+  func auth(type: AuthType, token: String) -> Observable<BaseResponseType<LoginDAO>> {
     return router.rx
       .request(.auth(type: type, token: token))
       .asObservable()
-      .map(BaseReponseType<LoginDAO>.self)
+      .map(BaseResponseType<LoginDAO>.self)
   }
 
-  func nickname(name: String) -> Observable<BaseReponseType<Int>> {
+  func nickname(name: String) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.nicknameCheck(name))
       .asObservable()
-      .map(BaseReponseType<Int>.self)
+      .map(BaseResponseType<Int>.self)
   }
 
-  func information(information: UserInformation) -> Observable<BaseReponseType<SignupToken>> {
+  func information(information: UserInformation) -> Observable<BaseResponseType<SignupToken>> {
     return router.rx
       .request(.information(information: information))
       .asObservable()
-      .map(BaseReponseType<SignupToken>.self)
+      .map(BaseResponseType<SignupToken>.self)
   }
 
-  func refresh() -> Observable<BaseReponseType<Token>> {
+  func refresh() -> Observable<BaseResponseType<Token>> {
     return router.rx
       .request(.refresh)
       .asObservable()
-      .map(BaseReponseType<Token>.self)
+      .map(BaseResponseType<Token>.self)
   }
 
-  func user() -> Observable<BaseReponseType<User>> {
+  func user() -> Observable<BaseResponseType<User>> {
     return router.rx
       .request(.user)
       .asObservable()
-      .map(BaseReponseType<User>.self)
+      .map(BaseResponseType<User>.self)
   }
 
-  func report(chat: RealmChat) -> Observable<BaseReponseType<Int>> {
+  func report(chat: RealmChat) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.report(chat: chat))
       .asObservable()
-      .map(BaseReponseType<Int>.self)
+      .map(BaseResponseType<Int>.self)
   }
 
-  func libraryUser() -> Observable<BaseReponseType<User>> {
+  func libraryUser() -> Observable<BaseResponseType<User>> {
     return router.rx
       .request(.userProfile)
       .asObservable()
-      .map(BaseReponseType<User>.self)
+      .map(BaseResponseType<User>.self)
   }
 }

@@ -104,7 +104,7 @@ final class MyLibraryViewController: BaseViewController {
     guard let navigationBar = navigationController?.navigationBar else { return }
     navigationBar.barTintColor = .white
     navigationBar.shadowImage = UIImage()
-    navigationBar.isTranslucent = true
+    navigationBar.isTranslucent = false
 
     changeSettingButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
@@ -113,7 +113,6 @@ final class MyLibraryViewController: BaseViewController {
       })
       .disposed(by: disposeBag)
   }
-
 }
 
 extension MyLibraryViewController: UICollectionViewDataSource {
@@ -143,11 +142,11 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       }
 
       cell.rx.didTapAddButton
-        .map { _ -> UIViewController in
-          if titleText == "담아둔 모임" {
+        .map { headerTitle -> UIViewController in
+          if headerTitle == "담아둔 모임" {
             return PastMeetingViewController()
           }
-          if titleText == "모임하고 싶은 책" {
+          if headerTitle == "모임하고 싶은 책" {
             return BookFavoritesViewController()
           }
           return MyDiaryViewController()
@@ -157,7 +156,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
           viewController.navigationItem.title = titleText
           self.navigationController?.pushViewController(viewController, animated: true)
         })
-        .disposed(by: disposeBag)
+        .disposed(by: cell.disposeBag)
 
       return cell
 
@@ -209,7 +208,6 @@ extension MyLibraryViewController: UICollectionViewDelegateFlowLayout {
     return data[indexPath.section].size
   }
 
-  // MARK: - headerview section 처리해주기. size 지정도 필수이다.
   func collectionView(
     _ collectionView: UICollectionView,
     viewForSupplementaryElementOfKind kind: String,

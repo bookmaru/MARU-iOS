@@ -29,6 +29,8 @@ struct LibraryModel: Hashable {
     lhs.identifier == rhs.identifier
   }
 }
+
+// 이거 삭제하고 처리해주세요 :pray: @psychehose
   // MARK: - 임시데이터 생성
 extension LibraryModel {
   static var initData: [LibraryModel] = [
