@@ -39,10 +39,10 @@ final class EvaluateWarningViewController: UIViewController {
   }
 
   private let submitButton = UIButton().then {
-    $0.backgroundColor = .lightGray
-    $0.isEnabled = false
+    $0.backgroundColor = .mainBlue
+    $0.isEnabled = true
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
-    $0.setTitle("확인", for: .normal)
+    $0.setTitle("취소", for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
   }
@@ -66,12 +66,12 @@ extension EvaluateWarningViewController {
     ])
     popUpView.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
-      make.top.equalToSuperview()
+      make.centerY.equalToSuperview()
       make.height.equalTo(220)
       make.width.equalTo(252)
     }
     warningLabel.snp.makeConstraints { make in
-      make.leading.equalTo(popUpView).offset(56)
+      make.centerX.equalTo(popUpView)
       make.top.equalTo(popUpView).offset(20)
     }
     stateImageView.snp.makeConstraints { make in
@@ -80,7 +80,6 @@ extension EvaluateWarningViewController {
       make.size.equalTo(40)
     }
     stateLabel.snp.makeConstraints { make in
-      make.leading.equalTo(popUpView).offset(18)
       make.centerX.equalTo(popUpView)
       make.top.equalTo(stateImageView.snp.bottom).offset(17)
     }
@@ -90,6 +89,6 @@ extension EvaluateWarningViewController {
     }
   }
   @objc private func didTapSubmitButton() {
-    dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true, completion: nil)
   }
 }
