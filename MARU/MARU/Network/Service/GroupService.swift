@@ -26,6 +26,7 @@ final class GroupService: GroupServiceType {
       .request(.participate)
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
 
   func chatList(roomID: Int) -> Observable<[RealmChat]> {
@@ -33,6 +34,7 @@ final class GroupService: GroupServiceType {
       .request(.chatList(roomID: roomID))
       .asObservable()
       .map([RealmChat].self)
+      .catchError()
   }
 
   func diaryList() -> Observable<BaseResponseType<Groups>> {
@@ -40,6 +42,7 @@ final class GroupService: GroupServiceType {
       .request(.diaryList)
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
 
   func groupInfo(groupID: Int) -> Observable<BaseResponseType<GroupInformation>> {
@@ -47,6 +50,7 @@ final class GroupService: GroupServiceType {
       .request(.groupInfo(groupID: groupID))
       .asObservable()
       .map(BaseResponseType<GroupInformation>.self)
+      .catchError()
   }
 
   func keep(groupID: Int) -> Observable<BaseResponseType<HasGroup>> {
@@ -54,6 +58,7 @@ final class GroupService: GroupServiceType {
       .request(.keep(groupID: groupID))
       .asObservable()
       .map(BaseResponseType<HasGroup>.self)
+      .catchError()
   }
 
   func postEvaluate(groupID: Int, leaderID: Int, score: Int) -> Observable<BaseResponseType<Int>> {
@@ -61,5 +66,6 @@ final class GroupService: GroupServiceType {
       .request(.evaluate(groupID: groupID, leaderID: leaderID, score: score))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 }

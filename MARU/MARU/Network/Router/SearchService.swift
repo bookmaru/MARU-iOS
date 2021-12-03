@@ -23,6 +23,7 @@ final class SearchService: SearchServiceType {
       .request(.search(queryString: queryString))
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
 
   func bookSearch(queryString: String, page: Int) -> Observable<BaseResponseType<Books>> {
@@ -30,6 +31,7 @@ final class SearchService: SearchServiceType {
       .request(.bookSearch(queryString: queryString, page: page))
       .asObservable()
       .map(BaseResponseType<Books>.self)
+      .catchError()
   }
 
   func meetingSearchByISBN(isbn: Int, page: Int) -> Observable<BaseResponseType<Groups>> {
@@ -37,5 +39,6 @@ final class SearchService: SearchServiceType {
       .request(.meetingSearchByISBN(isbn: isbn.string, page: page))
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
 }

@@ -27,6 +27,7 @@ final class AuthService: AuthServiceType {
       .request(.changeProfile(nickname: nickname, image: image))
       .asObservable()
       .map(BaseResponseType<ChangeProfile>.self)
+      .catchError()
   }
 
   func auth(type: AuthType, token: String) -> Observable<BaseResponseType<LoginDAO>> {
@@ -34,6 +35,7 @@ final class AuthService: AuthServiceType {
       .request(.auth(type: type, token: token))
       .asObservable()
       .map(BaseResponseType<LoginDAO>.self)
+      .catchError()
   }
 
   func nickname(name: String) -> Observable<BaseResponseType<Int>> {
@@ -41,6 +43,7 @@ final class AuthService: AuthServiceType {
       .request(.nicknameCheck(name))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 
   func information(information: UserInformation) -> Observable<BaseResponseType<SignupToken>> {
@@ -48,6 +51,7 @@ final class AuthService: AuthServiceType {
       .request(.information(information: information))
       .asObservable()
       .map(BaseResponseType<SignupToken>.self)
+      .catchError()
   }
 
   func refresh() -> Observable<BaseResponseType<Token>> {
@@ -55,6 +59,7 @@ final class AuthService: AuthServiceType {
       .request(.refresh)
       .asObservable()
       .map(BaseResponseType<Token>.self)
+      .catchError()
   }
 
   func user() -> Observable<BaseResponseType<User>> {
@@ -62,6 +67,7 @@ final class AuthService: AuthServiceType {
       .request(.user)
       .asObservable()
       .map(BaseResponseType<User>.self)
+      .catchError()
   }
 
   func report(chat: RealmChat) -> Observable<BaseResponseType<Int>> {
@@ -69,6 +75,7 @@ final class AuthService: AuthServiceType {
       .request(.report(chat: chat))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 
   func libraryUser() -> Observable<BaseResponseType<User>> {
@@ -76,5 +83,6 @@ final class AuthService: AuthServiceType {
       .request(.userProfile)
       .asObservable()
       .map(BaseResponseType<User>.self)
+      .catchError()
   }
 }

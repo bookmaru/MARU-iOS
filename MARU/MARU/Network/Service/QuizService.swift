@@ -21,17 +21,20 @@ final class QuizService: QuizServiceType {
       .request(.createQuiz(makeGroup: makeGroup))
       .asObservable()
       .map(BaseResponseType<ResultMakeGroup>.self)
+      .catchError()
   }
   func getQuiz(groupID: Int) -> Observable<BaseResponseType<Quizzes>> {
     return router.rx
       .request(.getQuiz(groupID: groupID))
       .asObservable()
       .map(BaseResponseType<Quizzes>.self)
+      .catchError()
   }
   func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseResponseType<CheckQuiz>> {
     return router.rx
       .request(.checkQuiz(groupID: groupID, isEnter: isEnter))
       .asObservable()
       .map(BaseResponseType<CheckQuiz>.self)
+      .catchError()
   }
 }
