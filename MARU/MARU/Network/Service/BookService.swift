@@ -29,18 +29,21 @@ final class BookService: BookServiceType {
       .request(.get)
       .asObservable()
       .map(BaseResponseType<BookCaseModel>.self)
+      .catchError()
   }
   func getGroup() -> Observable<BaseResponseType<KeepGroupModel>> {
     return router.rx
       .request(.group)
       .asObservable()
       .map(BaseResponseType<KeepGroupModel>.self)
+      .catchError()
   }
   func addGroup(groupID: Int) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.addGroup(groupID: groupID))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
   func addBook(
     author: String,
@@ -53,5 +56,6 @@ final class BookService: BookServiceType {
       .request(.addBook(author: author, category: category, imageURL: imageURL, isbn: isbn, title: title))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 }

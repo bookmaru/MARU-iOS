@@ -7,11 +7,29 @@
 
 struct LoginDAO: Codable {
   let login: LoginInfoDAO?
-  let socialID: String?
+  let socialID: SocialID?
 
   enum CodingKeys: String, CodingKey {
     case login
     case socialID = "socialId"
+  }
+}
+
+struct SocialID: Codable {
+  let userID: Int?
+  let socialID: String
+  let nickname: String?
+  let profileURL: String?
+  let userGroupNumbers: Int?
+  let tokens: String?
+
+  enum CodingKeys: String, CodingKey {
+    case userID = "userId"
+    case socialID = "socialId"
+    case nickname
+    case profileURL = "profileUrl"
+    case userGroupNumbers
+    case tokens
   }
 }
 

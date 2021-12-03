@@ -23,6 +23,7 @@ final class DiaryService: DiaryServiceType {
       .request(.list)
       .asObservable()
       .map(BaseResponseType<Diaries>.self)
+      .catchError()
   }
 
   func getDiary(diaryID: Int) -> Observable<BaseResponseType<DiaryObject>> {
@@ -30,6 +31,7 @@ final class DiaryService: DiaryServiceType {
       .request(.get(diaryID: diaryID))
       .asObservable()
       .map(BaseResponseType<DiaryObject>.self)
+      .catchError()
   }
 
   func postDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>> {
@@ -37,12 +39,14 @@ final class DiaryService: DiaryServiceType {
       .request(.post(groupID: groupID, title: title, content: content))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 
   func editDiary(groupID: Int, title: String, content: String) -> Observable<BaseResponseType<Int>> {
     return router.rx.request(.edit(diaryID: groupID, title: title, content: content))
       .asObservable()
       .map(BaseResponseType<Int>.self)
+      .catchError()
   }
 
 }

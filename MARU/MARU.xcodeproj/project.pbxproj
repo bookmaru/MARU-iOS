@@ -94,6 +94,7 @@
 		C55F1786260F4727003D99D0 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F1785260F4727003D99D0 /* ViewModelType.swift */; };
 		C55F17EB260F48C5003D99D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F17EA260F48C5003D99D0 /* ViewController.swift */; };
 		C568A67E268637FA00CEF5AD /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C568A67D268637FA00CEF5AD /* CertificationViewController.swift */; };
+		C56C1CF4275A6568009B6403 /* Observable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C1CF3275A6568009B6403 /* Observable+.swift */; };
 		C56CBC1526D4CDD000D930BA /* GroupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1426D4CDD000D930BA /* GroupRouter.swift */; };
 		C56CBC1726D4CDDA00D930BA /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1626D4CDDA00D930BA /* GroupService.swift */; };
 		C56CBC1A26D4E20500D930BA /* MeetCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56CBC1926D4E20500D930BA /* MeetCase.swift */; };
@@ -276,6 +277,7 @@
 		C55F1785260F4727003D99D0 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C55F17EA260F48C5003D99D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C568A67D268637FA00CEF5AD /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
+		C56C1CF3275A6568009B6403 /* Observable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+.swift"; sourceTree = "<group>"; };
 		C56CBC1426D4CDD000D930BA /* GroupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRouter.swift; sourceTree = "<group>"; };
 		C56CBC1626D4CDDA00D930BA /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		C56CBC1926D4E20500D930BA /* MeetCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCase.swift; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 				C50DBC7426BD881B00B5585A /* Date+.swift */,
 				776EE52D26C43B1000A50A3E /* UIButton+.swift */,
 				C5CE01942714855600CE4E4A /* RxViewController+.swift */,
+				C56C1CF3275A6568009B6403 /* Observable+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1279,6 +1282,7 @@
 				C5332ACB260F50EC007D7797 /* KeychainHandler.swift in Sources */,
 				C58F6A542646E9D600D8AA7C /* NetworkService.swift in Sources */,
 				771A6FF426D072EA00381DC3 /* Quiz.swift in Sources */,
+				C56C1CF4275A6568009B6403 /* Observable+.swift in Sources */,
 				C59BCBC326C8398600C84163 /* OtherProfileChatCollectionViewCell.swift in Sources */,
 				C5B9B9A226B6902E00D07974 /* BookRouter.swift in Sources */,
 				C58F6A512646D05A00D8AA7C /* String+.swift in Sources */,

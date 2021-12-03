@@ -22,23 +22,27 @@ final class HomeService: HomeServiceType {
       .request(.getPopular)
       .asObservable()
       .map(BaseResponseType<Books>.self)
+      .catchError()
   }
   func getNew(page: Int) -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.getNew(page: page))
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
   func getNewAllCategory() -> Observable<BaseResponseType<GroupsByCategories>> {
     return router.rx
       .request(.getNewAllCategory)
       .asObservable()
       .map(BaseResponseType<GroupsByCategories>.self)
+      .catchError()
   }
   func getNewCategory(category: String, currentGroupCount: Int) -> Observable<BaseResponseType<Groups>> {
     return router.rx
       .request(.getNewCategory(category: category, currentGroupCount: currentGroupCount))
       .asObservable()
       .map(BaseResponseType<Groups>.self)
+      .catchError()
   }
 }

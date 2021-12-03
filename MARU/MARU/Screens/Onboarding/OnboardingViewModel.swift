@@ -44,7 +44,7 @@ final class OnboardingViewModel: ViewModelType {
           return TabBarController()
         }
         if response.status == 201 {
-          guard let socialID = response.data?.socialID else { return nil }
+          guard let socialID = response.data?.socialID?.socialID else { return nil }
           return CertificationViewController(socialID: socialID, socialType: auth.description)
         }
         return nil
