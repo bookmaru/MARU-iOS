@@ -23,9 +23,10 @@ final class LibraryDiaryCell: UICollectionViewCell {
     $0.image = Image.union
     $0.layer.cornerRadius = 5
     $0.layer.masksToBounds = true
+    $0.contentMode = .scaleAspectFill
   }
 
-  private let shadowView = GradientView(startColor: .brownGrey, endColor: .veryLightPink)
+  private let shadowView = UIView()
 
   private let bookTitleLabel = UILabel().then {
     $0.text = "보건교사안은영"

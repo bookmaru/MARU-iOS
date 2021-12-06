@@ -47,6 +47,7 @@ final class MyLibraryHeaderView: UICollectionReusableView {
   fileprivate var data: User? {
     didSet {
       usernameLabel.text = data?.userProfile?.nickname
+      gradeLabel.text = "방장평점 \(data?.userProfile?.leaderScore ?? -1)"
       let imageURL = data?.userProfile?.profileURL
       profileImageView.image(url: imageURL ?? "", defaultImage: Image.group1029 ?? UIImage())
     }
