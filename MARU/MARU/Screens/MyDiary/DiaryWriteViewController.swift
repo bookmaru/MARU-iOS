@@ -25,10 +25,9 @@ final class DiaryWriteViewController: BaseViewController {
     $0.layer.borderColor = UIColor(red: 239, green: 239, blue: 239).cgColor
     $0.backgroundColor = .white
   }
-  private let titleTextView = UITextView().then {
-    $0.text = "제목"
+  private let titleTextView = UITextField().then {
+    $0.placeholder = "제목"
     $0.font = .systemFont(ofSize: 12, weight: .semibold)
-    $0.textContainerInset = .zero
   }
   private let diaryTextContainerView = UIView().then {
     $0.layer.cornerRadius = 12
@@ -39,6 +38,7 @@ final class DiaryWriteViewController: BaseViewController {
   private let diaryTextView = UITextView().then {
     $0.text = "일기쓰기"
     $0.font = .systemFont(ofSize: 12, weight: .semibold)
+    $0.textColor = .veryLightPink
   }
   private let doneButton = UIBarButtonItem().then {
     $0.title = "완료"
@@ -131,32 +131,13 @@ final class DiaryWriteViewController: BaseViewController {
   }
 
   private func textBinder() {
-    titleTextView.rx.didEndEditing
-      .map { self.titleTextView.text }
-      .subscribe(onNext: { [weak self] text in
-        guard let self = self else { return }
-        if text == nil || text == "" {
-          self.titleTextView.text = "제목"
-        }
-      })
-      .disposed(by: disposeBag)
-
-    titleTextView.rx.didBeginEditing
-      .map { self.titleTextView.text }
-      .subscribe(onNext: { [weak self] text in
-        guard let self = self else { return }
-        if text == "제목" {
-          self.titleTextView.text = ""
-        }
-      })
-      .disposed(by: disposeBag)
-
     diaryTextView.rx.didEndEditing
       .map { self.diaryTextView.text }
       .subscribe(onNext: { [weak self] text in
         guard let self = self else { return }
         if text == nil || text == "" {
           self.diaryTextView.text = "일기쓰기"
+          self.diaryTextView.textColor = .veryLightPink
         }
       })
       .disposed(by: disposeBag)
@@ -167,6 +148,7 @@ final class DiaryWriteViewController: BaseViewController {
         guard let self = self else { return }
         if text == "일기쓰기" {
           self.diaryTextView.text = ""
+          self.diaryTextView.textColor = .black
         }
       })
       .disposed(by: disposeBag)
@@ -174,8 +156,15 @@ final class DiaryWriteViewController: BaseViewController {
     Observable.combineLatest(titleTextView.rx.text, diaryTextView.rx.text)
       .subscribe(onNext: { [weak self] title, diary in
         guard let self = self else { return }
-        let canDone = title != "제목" && title != "" && diary != "일기쓰기" && diary != ""
+        let canDone = title != "" && diary != "일기쓰기" && diary != ""
         self.doneButton.isEnabled = canDone
+      })
+      .disposed(by: disposeBag)
+
+    scrollView.rx.tapGesture()
+      .when(.recognized)
+      .subscribe(onNext: { _ in
+        self.view.endEditing(true)
       })
       .disposed(by: disposeBag)
   }
