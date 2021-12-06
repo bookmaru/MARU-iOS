@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 final class MyLibraryCell: UICollectionViewCell {
-
-  private let collectionView: UICollectionView = {
+  // 담아둔 모임 cell
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
     layout.scrollDirection = .horizontal

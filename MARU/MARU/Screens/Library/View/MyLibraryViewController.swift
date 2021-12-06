@@ -54,6 +54,11 @@ final class MyLibraryViewController: BaseViewController {
     $0.tintColor = .veryLightPink
   }
 
+  private let bookShelfImageView = UIImageView().then {
+    $0.image = Image.vector22
+    $0.contentMode = .bottom
+  }
+
   private let viewModel = MyLibraryViewModel()
   private var user: User?
   private var data: [Library] = [] {
@@ -137,7 +142,11 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
 
-      if titleText == "" {
+      if titleText == "담아둔 모임" {
+        cell.addButton.setImage(Image.group1038, for: .normal)
+      }
+
+      if titleText == "모임하고 싶은 책" {
         cell.addButton.setImage(Image.group1038, for: .normal)
       }
 
@@ -164,7 +173,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       let titleCell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+      cell.collectionView.backgroundView = bookShelfImageView
       cell.rx.binder.onNext(keepGroupModel.keepGroup)
       cell.noResultImageView.isHidden = !keepGroupModel.keepGroup.isEmpty
       titleCell.addButton.isHidden = keepGroupModel.keepGroup.isEmpty
@@ -174,7 +183,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+      cell.collectionView.backgroundView = bookShelfImageView
       cell.noResultImageView.isHidden = !data.bookcase.isEmpty
       cell.rx.binder.onNext(data.bookcase)
 
