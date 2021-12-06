@@ -29,6 +29,7 @@ final class MorePopularViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    applyBackGesture()
     configureHierarchy()
     bind()
   }
@@ -75,6 +76,17 @@ final class MorePopularViewController: BaseViewController {
         }
       }
       .disposed(by: disposeBag)
+  }
+}
+extension MorePopularViewController: UIGestureRecognizerDelegate {
+  private func applyBackGesture() {
+    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+  }
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
+  ) -> Bool {
+    return true
   }
 }
 
