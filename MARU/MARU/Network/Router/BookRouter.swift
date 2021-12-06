@@ -17,9 +17,9 @@ enum BookRouter {
 extension BookRouter: BaseTargetType {
   var path: String {
     switch self {
-    case .get: // 담아둔 모임
+    case .get: 
       return "bookcase"
-    case .group: // 모임하고 싶은 책
+    case .group:
       return "bookcase/group"
     case .addGroup(let groupID):
       return "bookcase/group/\(groupID)"
