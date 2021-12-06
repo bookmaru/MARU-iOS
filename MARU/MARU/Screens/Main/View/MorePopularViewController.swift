@@ -29,7 +29,6 @@ final class MorePopularViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    applyBackGesture()
     configureHierarchy()
     bind()
   }
@@ -41,10 +40,12 @@ final class MorePopularViewController: BaseViewController {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
   }
+
   init(isbn: Int) {
     self.isbn = isbn
     super.init()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -76,17 +77,6 @@ final class MorePopularViewController: BaseViewController {
         }
       }
       .disposed(by: disposeBag)
-  }
-}
-extension MorePopularViewController: UIGestureRecognizerDelegate {
-  private func applyBackGesture() {
-    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    navigationController?.interactivePopGestureRecognizer?.delegate = self
-  }
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
-  ) -> Bool {
-    return true
   }
 }
 

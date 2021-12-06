@@ -48,7 +48,6 @@ final class MoreNewViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    applyBackGesture()
     setupIndicatorView()
     setupButton()
     configureHierarchy()
@@ -123,19 +122,6 @@ final class MoreNewViewController: BaseViewController {
         debugPrint("error: \($0)")
       }
       .disposed(by: disposeBag)
-  }
-}
-
-  /// - Tag: Apply Back Gesture
-extension MoreNewViewController: UIGestureRecognizerDelegate {
-  private func applyBackGesture() {
-    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-    navigationController?.interactivePopGestureRecognizer?.delegate = self
-  }
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
-  ) -> Bool {
-    return true
   }
 }
 
