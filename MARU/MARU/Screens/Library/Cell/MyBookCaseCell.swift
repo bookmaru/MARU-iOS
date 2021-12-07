@@ -11,7 +11,7 @@ import RxCocoa
 
 final class MyBookCaseCell: UICollectionViewCell {
 
-  private let collectionView: UICollectionView = {
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
     layout.scrollDirection = .horizontal

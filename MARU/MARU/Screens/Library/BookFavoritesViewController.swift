@@ -39,16 +39,25 @@ final class BookFavoritesViewController: BaseViewController {
     return collectionView
   }()
 
+  private let bookShelfImageView = UIImageView().then {
+    $0.image = Image.vector22
+    $0.contentMode = .bottom
+  }
+
   private let viewModel = BookFavoritesViewModel()
-  var shelf: Int?
-  fileprivate var data: BookCaseModel?
+  var count = 0
+  private var data: BookCaseModel? {
+    didSet {
+      collectionView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
   }
-  // TODO: - 분명히 네비게이션 처리 다른 방법이 있었던 것 같지만 급한 관계로 원래 알던 방식대로 처리를 진행합니다. 여유생기면 고치기
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setNavigationBar(isHidden: false)
@@ -116,12 +125,22 @@ extension BookFavoritesViewController {
 }
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    if data?.bookcase.count ?? 0 % 3 == 0 {
+      return data?.bookcase.count ?? 0 / 3
+    } else if data?.bookcase.count ?? 0 > 3 {
+      return data?.bookcase.count ?? 0 / 3 + 1
+    }
+    return 1
+  }
+
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.rx.binder.onNext((data!))
+    cell.collectionView.backgroundView = bookShelfImageView
+    cell.rx.binder.onNext(data?.bookcase ?? [])
     return cell
   }
 
@@ -129,13 +148,6 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    guard let count = data?.bookcase.count else { return 0 }
-    if count % 3 == 0 {
-      return count / 3
-    }
-    if count >= 3 {
-      return count / 3 + 1
-    }
     return 1
   }
 }
@@ -146,9 +158,6 @@ extension BookFavoritesViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: ScreenSize.width - 40, height: 180)
-  }
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    // cell Tap Action
+    return CGSize(width: ScreenSize.width, height: 180)
   }
 }

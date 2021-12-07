@@ -54,6 +54,10 @@ final class MyLibraryViewController: BaseViewController {
     $0.tintColor = .veryLightPink
   }
 
+  private let bookShelfImageView = UIImageView().then {
+    $0.image = Image.vector22
+    $0.contentMode = .bottom
+  }
   private let viewModel = MyLibraryViewModel()
   private var user: User?
   private var data: [Library] = [] {
@@ -174,7 +178,7 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
+      cell.collectionView.backgroundView = bookShelfImageView
       cell.noResultImageView.isHidden = !data.bookcase.isEmpty
       cell.rx.binder.onNext(data.bookcase)
 
