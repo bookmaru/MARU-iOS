@@ -147,7 +147,10 @@ extension MyLibraryViewController: UICollectionViewDataSource {
       cell.rx.addButtonIsHiddenBinder.onNext(isHidden)
       cell.rx.titleBinder.onNext(titleText)
 
-      if titleText == "" {
+      if titleText == "담아둔 모임" {
+        cell.addButton.setImage(Image.group1038, for: .normal)
+      }
+      if titleText == "모임하고 싶은 책" {
         cell.addButton.setImage(Image.group1038, for: .normal)
       }
 
