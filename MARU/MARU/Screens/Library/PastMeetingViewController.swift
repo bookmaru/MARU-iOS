@@ -19,7 +19,13 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.register(cell: PastMeetingCell.self, forCellWithReuseIdentifier: PastMeetingCell.reuseIdentifier)
     return collectionView
   }()
-
+  private let emptyView = EmptyView(
+    image: Image.group841?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    content: """
+    담아둔 모임이 아직 없어요.
+    모임을 진행하고 담아보세요.
+    """
+  )
   private let viewModel = PastMeetingViewModel()
 
   private var data: KeepGroupModel? {
@@ -48,6 +54,11 @@ final class PastMeetingViewController: BaseViewController {
         $0.edges.equalToSuperview()
       }
     }
+    view.add(emptyView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
+    }
     collectionView.delegate = self
     collectionView.dataSource = self
   }
@@ -60,6 +71,9 @@ final class PastMeetingViewController: BaseViewController {
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
+        if data?.keepGroup.count ?? 0 > 0 {
+          self.emptyView.isHidden = true
+        }
         self.data = data
         self.collectionView.reloadData()
       })

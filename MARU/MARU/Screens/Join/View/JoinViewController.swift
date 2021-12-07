@@ -154,9 +154,9 @@ final class JoinViewController: BaseViewController {
 
   @objc
   private func didTapEntryButton() {
-    let targetViewController = QuizViewController(groupID: groupID)
-    targetViewController.modalPresentationStyle = .fullScreen
-    present(targetViewController, animated: true, completion: nil)
+//    let targetViewController = QuizViewController(groupID: groupID)
+//    targetViewController.modalPresentationStyle = .fullScreen
+//    present(targetViewController, animated: true, completion: nil)
   }
 }
 
@@ -287,6 +287,20 @@ extension JoinViewController {
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
     self.rx.dataBinder.onNext(self.data)
+
+    entryButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self else { return }
+
+        if self.data?.groups?.isFailedGroupQuiz==false && self.data?.groups?.canJoinGroup == true {
+          let viewController = QuizViewController(groupID: self.groupID)
+          viewController.modalPresentationStyle = .fullScreen
+          self.present(viewController, animated: true, completion: nil)
+        } else {
+          self.showToast("참여가 불가한 토론방입니다.")
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }
 

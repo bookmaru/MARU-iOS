@@ -13,51 +13,48 @@ final class BookFavoritesShelfCell: UICollectionViewCell {
   private let shelfImageView = UIImageView().then {
     $0.image = Image.vector21
   }
-  private let collectionView: UICollectionView = {
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
+    layout.scrollDirection = .horizontal
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView.backgroundColor = UIColor.clear
+    collectionView.backgroundColor = .white
     collectionView.register(cell: BookFavoritesCell.self, forCellWithReuseIdentifier: BookFavoritesCell.reuseIdentifier)
     return collectionView
   }()
-  fileprivate var bookData: BookCaseModel? {
+
+  fileprivate var bookData: [BookCase] = [] {
     didSet {
       collectionView.reloadData()
     }
   }
+
   var disposeBag = DisposeBag()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
+    render()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func prepareForReuse() {
     super.prepareForReuse()
     disposeBag = DisposeBag()
   }
+
   private func render() {
-    contentView.add(shelfImageView)
     contentView.add(collectionView)
-    shelfImageView.snp.makeConstraints { make in
-      make.height.equalTo(80)
-      make.leading.equalTo(contentView).offset(0)
-      make.trailing.equalTo(contentView).offset(0)
-      make.bottom.equalTo(contentView).offset(0)
-    }
     collectionView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.leading.equalToSuperview().offset(10)
+      make.trailing.equalToSuperview()
+      make.top.equalToSuperview()
+      make.bottom.equalToSuperview()
     }
     collectionView.delegate = self
     collectionView.dataSource = self
-  }
-}
-
-extension Reactive where Base: BookFavoritesShelfCell {
-  var binder: Binder<BookCaseModel> {
-    return Binder(base) { base, data in
-      base.bookData = data
-    }
   }
 }
 
@@ -67,14 +64,15 @@ extension BookFavoritesShelfCell: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: 87, height: 170)
+    return CGSize(width: 87, height: 100)
   }
 }
 extension BookFavoritesShelfCell: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
-    numberOfItemsInSection section: Int) -> Int {
-    return 3
+    numberOfItemsInSection section: Int
+  ) -> Int {
+    return bookData.count
   }
 
   func collectionView(
@@ -82,7 +80,15 @@ extension BookFavoritesShelfCell: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: BookFavoritesCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.rx.dataBinder.onNext((bookData?.bookcase[indexPath.item]))
+    cell.rx.dataBinder.onNext((bookData[indexPath.item]))
     return cell
+  }
+}
+
+extension Reactive where Base: BookFavoritesShelfCell {
+  var binder: Binder<[BookCase]> {
+    return Binder(base) { base, data in
+      base.bookData = data
+    }
   }
 }

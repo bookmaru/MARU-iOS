@@ -12,12 +12,14 @@ import RxSwift
 final class BookFavoritesCell: UICollectionViewCell {
   private let bookImageView = UIImageView().then {
     $0.layer.cornerRadius = 5
+    $0.layer.masksToBounds = true
     $0.image = Image.image120
   }
 
   private let bookTitleLabel = UILabel().then {
     $0.font = UIFont.systemFont(ofSize: 13, weight: .bold)
     $0.text = "책 제목"
+    $0.numberOfLines = 2
   }
 
   private let bookAuthorLabel = UILabel().then {
@@ -57,14 +59,13 @@ final class BookFavoritesCell: UICollectionViewCell {
     ])
 
     bookImageView.snp.makeConstraints { make in
-      make.top.equalToSuperview().offset(0)
-      make.leading.equalToSuperview().offset(0)
-      make.trailing.equalToSuperview().offset(0)
+      make.edges.equalToSuperview()
     }
 
     bookTitleLabel.snp.makeConstraints { make in
       make.top.equalTo(bookImageView.snp.bottom).offset(5)
       make.leading.equalTo(bookImageView.snp.leading)
+      make.trailing.equalTo(bookImageView.snp.trailing)
       make.height.equalTo(15)
     }
 
@@ -77,7 +78,7 @@ final class BookFavoritesCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: BookFavoritesCell {
-  var dataBinder: Binder<BookCase?> {
+  var dataBinder: Binder<BookCase> {
     return Binder(base) { base, data in
       base.data = data
     }
