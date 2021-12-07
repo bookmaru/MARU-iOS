@@ -104,7 +104,6 @@ final class JoinViewController: BaseViewController {
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
     $0.setTitle("참여하기", for: .normal)
     $0.setTitleColor(.white, for: .normal)
-    $0.addTarget(self, action: #selector(didTapEntryButton), for: .touchUpInside)
   }
 
   private let viewModel = JoinViewModel()
@@ -150,13 +149,6 @@ final class JoinViewController: BaseViewController {
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  @objc
-  private func didTapEntryButton() {
-//    let targetViewController = QuizViewController(groupID: groupID)
-//    targetViewController.modalPresentationStyle = .fullScreen
-//    present(targetViewController, animated: true, completion: nil)
   }
 }
 
@@ -291,7 +283,6 @@ extension JoinViewController {
     entryButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-
         if self.data?.groups?.isFailedGroupQuiz==false && self.data?.groups?.canJoinGroup == true {
           let viewController = QuizViewController(groupID: self.groupID)
           viewController.modalPresentationStyle = .fullScreen
