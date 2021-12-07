@@ -10,24 +10,13 @@ import RxSwift
 import RxCocoa
 
 final class BookFavoritesViewController: BaseViewController {
-  private let emptyView = UIView().then {
-    $0.backgroundColor = .white
-    $0.isHidden = true
-  }
-
-  private let bookImage = UIImageView().then {
-    $0.image = Image.autoStories
-  }
-
-  let emptyLabel = UILabel().then {
-    $0.font = .systemFont(ofSize: 14, weight: .medium)
-    $0.textColor = .subText
-    $0.textAlignment = .center
-    $0.text = """
+  private let emptyView = EmptyView(
+    image: Image.group841?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    content: """
     모임하고 싶은 책이 아직 없어요.
-    + 버튼을 눌러 서재를 채워주세요!
+    +버튼을 눌러 서재를 채워주세요.
     """
-  }
+  )
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -78,28 +67,12 @@ extension BookFavoritesViewController {
       collectionView
     ])
 
-    emptyView.adds([
-      bookImage,
-      emptyLabel
-    ])
-
     emptyView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
 
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
-    }
-
-    bookImage.snp.makeConstraints { make in
-      make.size.equalTo(16)
-      make.centerX.equalTo(self.emptyView)
-      make.centerY.equalTo(self.emptyView)
-    }
-
-    emptyLabel.snp.makeConstraints { make in
-      make.top.equalTo(self.bookImage.snp.bottom).offset(4)
-      make.centerX.equalTo(self.emptyView)
     }
 
     collectionView.delegate = self
@@ -112,6 +85,9 @@ extension BookFavoritesViewController {
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
+        if data?.bookcase.count ?? 0 > 0 {
+          self.emptyView.isHidden = true
+        }
         self.data = data
       })
       .disposed(by: disposeBag)
