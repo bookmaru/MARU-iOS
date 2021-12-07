@@ -58,6 +58,12 @@ final class MyLibraryViewController: BaseViewController {
     $0.image = Image.vector22
     $0.contentMode = .bottom
   }
+
+  private let bookShelfImageView2 = UIImageView().then {
+    $0.image = Image.vector22
+    $0.contentMode = .bottom
+  }
+
   private let viewModel = MyLibraryViewModel()
   private var user: User?
   private var data: [Library] = [] {
@@ -168,17 +174,16 @@ extension MyLibraryViewController: UICollectionViewDataSource {
     case let .meeting(keepGroupModel):
       let cell: MyLibraryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
       let titleCell: LibraryTitleCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
-      cell.rx.binder.onNext(keepGroupModel.keepGroup)
+      cell.collectionView.backgroundView = bookShelfImageView
       cell.noResultImageView.isHidden = !keepGroupModel.keepGroup.isEmpty
       titleCell.addButton.isHidden = keepGroupModel.keepGroup.isEmpty
-
+      cell.rx.binder.onNext(keepGroupModel.keepGroup)
       return cell
 
     // MARK: - 모임하고 싶은 책
     case let .book(data):
       let cell: MyBookCaseCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-      cell.collectionView.backgroundView = bookShelfImageView
+      cell.collectionView.backgroundView = bookShelfImageView2
       cell.noResultImageView.isHidden = !data.bookcase.isEmpty
       cell.rx.binder.onNext(data.bookcase)
 

@@ -11,7 +11,7 @@ import RxCocoa
 
 final class MyLibraryCell: UICollectionViewCell {
 
-  private let collectionView: UICollectionView = {
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
     layout.scrollDirection = .horizontal
@@ -76,7 +76,7 @@ final class MyLibraryCell: UICollectionViewCell {
       image.snp.makeConstraints {
         $0.size.equalTo(16)
         $0.centerX.equalTo(self.noResultImageView)
-        $0.top.equalTo(self.noResultImageView).offset(20)
+        $0.top.equalTo(self.noResultImageView).offset(30)
       }
     }
     noResultImageView.add(emptyLabel) { label in

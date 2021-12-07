@@ -48,8 +48,8 @@ final class BookFavoritesShelfCell: UICollectionViewCell {
   private func render() {
     contentView.add(collectionView)
     collectionView.snp.makeConstraints { make in
-      make.leading.equalToSuperview().offset(10)
-      make.trailing.equalToSuperview()
+      make.leading.equalToSuperview().offset(12)
+      make.trailing.equalToSuperview().offset(-12)
       make.top.equalToSuperview()
       make.bottom.equalToSuperview()
     }
