@@ -36,7 +36,7 @@ struct DiaryInfo: Codable {
   let bookAuthor: String
   let bookImage: String
   let nickname: String
-  let profileImage: String
+  let profileImage: String?
 
   enum CodingKeys: String, CodingKey {
     case diaryID = "diaryId"
