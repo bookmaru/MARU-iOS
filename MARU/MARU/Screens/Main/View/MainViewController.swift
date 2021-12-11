@@ -26,6 +26,7 @@ final class MainViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    applyBackGesture()
     configureHirarchy()
     bind()
   }
@@ -35,7 +36,18 @@ final class MainViewController: BaseViewController {
     tabBarController?.tabBar.isHidden = false
   }
 }
-
+/// - Tag: Apply Back Gesture
+extension MainViewController: UIGestureRecognizerDelegate {
+  private func applyBackGesture() {
+    navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    navigationController?.interactivePopGestureRecognizer?.delegate = self
+  }
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                         shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer
+  ) -> Bool {
+    return true
+  }
+}
 extension MainViewController {
 
   private func bind() {

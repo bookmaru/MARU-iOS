@@ -40,10 +40,12 @@ final class MorePopularViewController: BaseViewController {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
   }
+
   init(isbn: Int) {
     self.isbn = isbn
     super.init()
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

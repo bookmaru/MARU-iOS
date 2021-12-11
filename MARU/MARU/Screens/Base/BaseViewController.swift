@@ -54,7 +54,7 @@ extension BaseViewController {
   }
 
   func setNavigationBar(isHidden: Bool) {
-    navigationController?.setNavigationBarHidden(isHidden, animated: false)
+    navigationController?.setNavigationBarHidden(isHidden, animated: true)
   }
 
   @objc func didBack() {
