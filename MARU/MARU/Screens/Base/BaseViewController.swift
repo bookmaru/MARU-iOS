@@ -40,8 +40,7 @@ extension BaseViewController {
   }
   private func setNavigationItems() {
     if navigationController?.children.count ?? 0 > 1 {
-      let backImage = UIImage(systemName:
-                                "chevron.backward")?
+      let backImage = UIImage(systemName: "chevron.backward")?
         .withTintColor(.black)
         .withRenderingMode(.alwaysOriginal)
 
