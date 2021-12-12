@@ -88,6 +88,22 @@ final class SettingViewController: BaseViewController {
       }
     }
   }
+
+  private func signOut() {
+    KeychainHandler.shared.logout()
+    let viewController = OnboardingViewController()
+    viewController.modalPresentationStyle = .fullScreen
+    if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+      delegate.window?.rootViewController = viewController
+    }
+    present(viewController, animated: false) {
+      let roomIDList = RealmService.shared.findRoomID()
+      roomIDList.forEach {
+        ChatService.shared.unsubscribeRoom(roomID: $0)
+      }
+    }
+  }
+
 }
 
 extension SettingViewController: UIGestureRecognizerDelegate { }
@@ -124,7 +140,20 @@ extension SettingViewController: UICollectionViewDelegate {
       alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
       present(alert, animated: true)
     case .resign:
-      break
+      let alert = UIAlertController(title: "회원탈퇴를 하시겠나요...? 😥", message: "", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+        NetworkService.shared.auth.signOut()
+          .map { $0.status }
+          .subscribe(onNext: { [weak self] status in
+            guard let self = self else { return }
+            if status == 200 || status == 201 || status == 204 {
+              self.signOut()
+            }
+          })
+          .disposed(by: self.disposeBag)
+      })
+      alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+      present(alert, animated: true)
     }
   }
 }
