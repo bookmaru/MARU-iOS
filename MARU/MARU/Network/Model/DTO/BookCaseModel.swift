@@ -15,6 +15,8 @@ struct BookCase: Codable {
   let title: String
   let author: String
   let imageURL: String
+  let category: String
+  let canMakeGroup: Bool
 
   enum CodingKeys: String, CodingKey {
     case bookcaseID = "bookcaseId"
@@ -22,6 +24,8 @@ struct BookCase: Codable {
     case title
     case author
     case imageURL = "imageUrl"
+    case category
+    case canMakeGroup
   }
 }
 

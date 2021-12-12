@@ -91,4 +91,11 @@ extension Reactive where Base: BookFavoritesShelfCell {
       base.bookData = data
     }
   }
+
+  var didTapContentView: Observable<Void> {
+    return base.contentView.rx.tapGesture()
+      .when(.recognized)
+      .map { _ in return }
+      .asObservable()
+  }
 }
