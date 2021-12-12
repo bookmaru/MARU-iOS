@@ -117,6 +117,21 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.collectionView.backgroundView = bookShelfImageView
     cell.rx.binder.onNext(data?.bookcase ?? [])
+    cell.rx.didTapContentView
+      .subscribe( onNext: { [weak self] _ in
+        guard let self = self else { return }
+        let viewController = CreateQuizViewController(
+          bookModel: BookModel.init(
+            isbn: self.data?.bookcase[indexPath.item].isbn ?? 0,
+            title: self.data?.bookcase[indexPath.item].title ?? "",
+            author: self.data?.bookcase[indexPath.item].author ?? "",
+            imageURL: self.data?.bookcase[indexPath.item].imageURL ?? "",
+            category: self.data?.bookcase[indexPath.item].category ?? "",
+            hasMyBookcase: true)
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+      })
+      .disposed(by: cell.disposeBag)
     return cell
   }
 
