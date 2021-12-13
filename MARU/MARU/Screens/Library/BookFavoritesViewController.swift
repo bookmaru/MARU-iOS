@@ -129,7 +129,16 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
             category: self.data?.bookcase[indexPath.item].category ?? "",
             hasMyBookcase: true)
         )
-        self.navigationController?.pushViewController(viewController, animated: true)
+        if self.data?.bookcase[indexPath.item].canMakeGroup == true {
+          self.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+          // TODO: - 모임열수없음 팝업 추가
+          let targetViewController = JoinLimitViewController()
+          targetViewController.modalPresentationStyle = .overCurrentContext
+          targetViewController.modalTransitionStyle = .crossDissolve
+          self.present(targetViewController, animated: true)
+        }
+
       })
       .disposed(by: cell.disposeBag)
     return cell
