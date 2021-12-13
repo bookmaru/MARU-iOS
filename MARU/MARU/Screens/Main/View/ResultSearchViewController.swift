@@ -107,6 +107,14 @@ extension ResultSearchViewController {
         self?.navigationController?.popViewController(animated: false)
       })
       .disposed(by: disposeBag)
+
+    output.canMakeGroup
+      .drive(onNext: { [weak self] in
+        guard let self = self else { return }
+        self.emptyView.openMeetingButton.isEnabled = $0
+        self.showToast("이미 방을 2개 만들었습니다.")
+      })
+      .disposed(by: disposeBag)
   }
 }
 extension ResultSearchViewController {
@@ -232,7 +240,6 @@ final class EmptytMeetingView: UIView {
     attributeString.append(NSAttributedString(string: text,
                                               attributes: multipleAttributes))
     button.setAttributedTitle(attributeString, for: .normal)
-
     button.layer.borderWidth = 1
     button.layer.borderColor = UIColor.mainBlue.cgColor
     button.layer.cornerRadius = 13

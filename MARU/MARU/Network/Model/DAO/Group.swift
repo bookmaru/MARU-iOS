@@ -51,3 +51,21 @@ struct GroupsByCategory: Codable {
 struct GroupsByCategories: Codable {
   let groupsByCategory: [GroupsByCategory]
 }
+
+struct MyGroup: Codable {
+  let discussionGroupID: Int
+  let description: String
+  let createdAt: String
+  let isbn: Int
+
+  enum CodingKeys: String, CodingKey {
+    case discussionGroupID = "discussionGroupId"
+    case description
+    case createdAt
+    case isbn
+  }
+}
+
+struct MyGroups: Codable {
+  let myGroups: [MyGroup]
+}

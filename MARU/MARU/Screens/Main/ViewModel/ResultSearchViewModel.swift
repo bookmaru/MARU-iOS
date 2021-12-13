@@ -22,11 +22,13 @@ final class ResultSearchViewModel: ViewModelType {
     let result: Driver<[MeetingModel]>
     let cancel: Driver<Void>
     let reSearch: Driver<Void>
+    let canMakeGroup: Driver<Bool>
     let errorMessage: Observable<Error>
   }
 
   func transform(input: Input) -> Output {
     let errorMessage = PublishSubject<Error>()
+    let canMakeGroupPublishSubject = PublishSubject<Void>()
 
     let result = input.viewTrigger
       .flatMap { NetworkService.shared.search.search(queryString: input.keyword ?? "") }
@@ -45,6 +47,11 @@ final class ResultSearchViewModel: ViewModelType {
         guard let meetingModel = meetingModel else { return [] }
         return meetingModel
       }
+      .do { meetingModels in
+        if meetingModels.isEmpty {
+          canMakeGroupPublishSubject.onNext(())
+        }
+      }
       .asDriver(onErrorJustReturn: [])
 
     let cancel = input.tapCancelButton
@@ -53,10 +60,21 @@ final class ResultSearchViewModel: ViewModelType {
     let reSearch = input.tapTextField
       .asDriver()
 
+    let canMakeGroup = canMakeGroupPublishSubject
+      .flatMap { _ in NetworkService.shared.auth.myGroup()}
+      .map { $0.data?.myGroups.count ?? -1 }
+      .map { count in
+        if count > 0 && count < 2 {
+          return  true
+        } else { return false }
+      }
+      .asDriver(onErrorJustReturn: false)
+
     return Output(
       result: result,
       cancel: cancel,
       reSearch: reSearch,
+      canMakeGroup: canMakeGroup,
       errorMessage: errorMessage
     )
   }
