@@ -72,6 +72,7 @@ final class BookFavoritesCell: UICollectionViewCell {
     bookAuthorLabel.snp.makeConstraints { make in
       make.top.equalTo(bookTitleLabel.snp.bottom).offset(1)
       make.leading.equalTo(bookTitleLabel.snp.leading)
+      make.trailing.equalTo(bookTitleLabel.snp.trailing)
       make.height.equalTo(15)
     }
   }

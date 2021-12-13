@@ -15,7 +15,7 @@ final class BookFavoritesShelfCell: UICollectionViewCell {
   }
   let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
+    layout.sectionInset = UIEdgeInsets(top: 14, left: 40, bottom: 14, right: 40)
     layout.scrollDirection = .horizontal
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
