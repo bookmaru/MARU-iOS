@@ -42,6 +42,7 @@
 		7784BB3826622B5D00B636EE /* MoreNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784BB3726622B5D00B636EE /* MoreNewViewController.swift */; };
 		779319C326A40519005F359E /* RecentSearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779319C226A40519005F359E /* RecentSearchKeyword.swift */; };
 		77B27BC42664C16B008E315C /* LibraryDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B27BC32664C16B008E315C /* LibraryDebateCell.swift */; };
+		77B346D82768D42D00454A67 /* DefalutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B346D72768D42D00454A67 /* DefalutButton.swift */; };
 		77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */; };
 		77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD85F326DBC3FB00A0C585 /* KeyMapper.swift */; };
 		77C6DD7D26989ABE004F06ED /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C6DD7C26989ABE004F06ED /* HomeService.swift */; };
@@ -218,6 +219,7 @@
 		7784BB3726622B5D00B636EE /* MoreNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNewViewController.swift; sourceTree = "<group>"; };
 		779319C226A40519005F359E /* RecentSearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeyword.swift; sourceTree = "<group>"; };
 		77B27BC32664C16B008E315C /* LibraryDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDebateCell.swift; sourceTree = "<group>"; };
+		77B346D72768D42D00454A67 /* DefalutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefalutButton.swift; sourceTree = "<group>"; };
 		77B509F226C5350B00B0CC07 /* IndicatorFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorFooter.swift; sourceTree = "<group>"; };
 		77BD85F326DBC3FB00A0C585 /* KeyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyMapper.swift; sourceTree = "<group>"; };
 		77C6DD7C26989ABE004F06ED /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 			children = (
 				C52E7829260F277F0087570E /* BaseViewController.swift */,
 				C5B00F1D261887FF00911788 /* TabBarController.swift */,
+				77B346D72768D42D00454A67 /* DefalutButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				C5B0C43D26FA05570000B4C0 /* BookModel.swift in Sources */,
 				C55E21BF266B616900D5D953 /* OnboardingViewController.swift in Sources */,
 				C5CE01932714839E00CE4E4A /* ChatViewController+Notice.swift in Sources */,
+				77B346D82768D42D00454A67 /* DefalutButton.swift in Sources */,
 				C5AE438F270AE835005D18CA /* EmptyView.swift in Sources */,
 				774262F3268A6699008F9CAE /* WasDebateCell.swift in Sources */,
 				C58D430D2709878200C152BF /* DiaryWriteViewModel.swift in Sources */,
