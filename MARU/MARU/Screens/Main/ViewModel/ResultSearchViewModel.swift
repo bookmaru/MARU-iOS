@@ -66,7 +66,8 @@ final class ResultSearchViewModel: ViewModelType {
       .map { count in
         if count >= 0 && count < 2 {
           return  true
-        } else { return false }
+        } 
+        return false
       }
       .asDriver(onErrorJustReturn: false)
 
