@@ -107,6 +107,16 @@ extension ResultSearchViewController {
         self?.navigationController?.popViewController(animated: false)
       })
       .disposed(by: disposeBag)
+
+    output.canMakeGroup
+      .drive(onNext: { [weak self] in
+        guard let self = self else { return }
+        self.emptyView.openMeetingButton.isEnabled = $0
+        if !$0 {
+          self.showToast("이미 방을 2개 만들었습니다.")
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }
 extension ResultSearchViewController {
@@ -211,31 +221,49 @@ final class EmptytMeetingView: UIView {
     return label
   }()
 
-  lazy var openMeetingButton: UIButton = {
-    let button = UIButton()
+  lazy var openMeetingButton: DefalutButton = {
+    let button = DefalutButton()
     button.contentEdgeInsets = UIEdgeInsets(top: 5,
                                             left: 10,
                                             bottom: 5,
                                             right: 10)
     let text = " 모임 열기"
-    let imageAttachment = NSTextAttachment()
-    imageAttachment.image = UIImage(systemName: "plus")?
+
+    let normalImageAttachment = NSTextAttachment()
+    normalImageAttachment.image = UIImage(systemName: "plus")?
       .withTintColor(.mainBlue)
       .withRenderingMode(.alwaysOriginal)
 
-    let multipleAttributes: [NSAttributedString.Key: Any] = [
+    let normalAttributes: [NSAttributedString.Key: Any] = [
       .font: UIFont.systemFont(ofSize: 13, weight: .bold),
       .foregroundColor: UIColor.mainBlue
     ]
 
-    let attributeString =  NSMutableAttributedString(attachment: imageAttachment)
-    attributeString.append(NSAttributedString(string: text,
-                                              attributes: multipleAttributes))
-    button.setAttributedTitle(attributeString, for: .normal)
+    let disabledImageAttachment = NSTextAttachment()
+    disabledImageAttachment.image = UIImage(systemName: "plus")?
+      .withTintColor(.veryLightGray)
+      .withRenderingMode(.alwaysOriginal)
 
-    button.layer.borderWidth = 1
-    button.layer.borderColor = UIColor.mainBlue.cgColor
-    button.layer.cornerRadius = 13
+    let disabledAttributes: [NSAttributedString.Key: Any] = [
+      .font: UIFont.systemFont(ofSize: 13, weight: .bold),
+      .foregroundColor: UIColor.veryLightGray
+    ]
+
+    let normalAttributeString =  NSMutableAttributedString(attachment: normalImageAttachment)
+    normalAttributeString.append(NSAttributedString(
+      string: text,
+      attributes: normalAttributes
+    ))
+
+    let disabledAttributeString =  NSMutableAttributedString(attachment: disabledImageAttachment)
+    disabledAttributeString.append(NSAttributedString(
+      string: text,
+      attributes: disabledAttributes
+    ))
+
+    button.setAttributedTitle(normalAttributeString, for: .normal)
+    button.setAttributedTitle(disabledAttributeString, for: .disabled)
+
     button.addTarget(self, action: #selector(didTapOpenButton), for: .touchUpInside)
     return button
   }()
