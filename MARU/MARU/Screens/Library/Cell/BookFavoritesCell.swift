@@ -59,7 +59,10 @@ final class BookFavoritesCell: UICollectionViewCell {
     ])
 
     bookImageView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.equalTo(contentView)
+      make.leading.equalTo(contentView).offset(10)
+      make.trailing.equalTo(contentView).offset(-10)
+      make.height.equalTo(130)
     }
 
     bookTitleLabel.snp.makeConstraints { make in
@@ -79,9 +82,16 @@ final class BookFavoritesCell: UICollectionViewCell {
 }
 
 extension Reactive where Base: BookFavoritesCell {
-  var dataBinder: Binder<BookCase> {
+  var dataBinder: Binder<BookCase?> {
     return Binder(base) { base, data in
       base.data = data
     }
+  }
+
+  var didTapContentView: Observable<Void> {
+    return base.contentView.rx.tapGesture()
+      .when(.recognized)
+      .map { _ in return }
+      .asObservable()
   }
 }
