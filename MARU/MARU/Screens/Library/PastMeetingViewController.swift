@@ -46,6 +46,7 @@ final class PastMeetingViewController: BaseViewController {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
     tabBarController?.tabBar.isHidden = true
+    bind()
   }
 
   private func render() {
@@ -107,6 +108,9 @@ extension PastMeetingViewController: UICollectionViewDataSource {
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
+    if data?.keepGroup[indexPath.item].leaderScore ?? -1 > 0 {
+      cell.evaluateButton.isHidden = true
+    }
     return cell
   }
 }
