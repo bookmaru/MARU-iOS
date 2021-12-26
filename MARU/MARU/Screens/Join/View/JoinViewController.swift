@@ -283,7 +283,7 @@ extension JoinViewController {
     entryButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-        if self.data?.groups?.isFailedGroupQuiz==false && self.data?.groups?.canJoinGroup == true {
+        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == true {
           let viewController = QuizViewController(groupID: self.groupID)
           viewController.modalPresentationStyle = .fullScreen
           self.present(viewController, animated: true, completion: nil)

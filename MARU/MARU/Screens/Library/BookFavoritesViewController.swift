@@ -102,10 +102,12 @@ extension BookFavoritesViewController {
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    if data?.bookcase.count ?? 0 % 3 == 0 {
-      return data?.bookcase.count ?? 0 / 3
-    } else if data?.bookcase.count ?? 0 > 3 {
-      return data?.bookcase.count ?? 0 / 3 + 1
+    guard let count = data?.bookcase.count else { return 1 }
+    if count == 0 {
+      return count / 3
+    }
+    if count > 3 {
+      return count + 1
     }
     return 1
   }
@@ -119,26 +121,28 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     cell.rx.binder.onNext(data?.bookcase ?? [])
     cell.rx.didTapContentView
       .subscribe( onNext: { [weak self] _ in
-        guard let self = self else { return }
+        guard
+          let self = self,
+          let bookcase = self.data?.bookcase[indexPath.item]
+        else { return }
         let viewController = CreateQuizViewController(
           bookModel: BookModel.init(
-            isbn: self.data?.bookcase[indexPath.item].isbn ?? 0,
-            title: self.data?.bookcase[indexPath.item].title ?? "",
-            author: self.data?.bookcase[indexPath.item].author ?? "",
-            imageURL: self.data?.bookcase[indexPath.item].imageURL ?? "",
-            category: self.data?.bookcase[indexPath.item].category ?? "",
+            isbn: bookcase.isbn,
+            title: bookcase.title,
+            author: bookcase.author,
+            imageURL: bookcase.imageURL,
+            category: bookcase.category,
             hasMyBookcase: true)
         )
-        if self.data?.bookcase[indexPath.item].canMakeGroup == true {
+        if bookcase.canMakeGroup == true {
           self.navigationController?.pushViewController(viewController, animated: true)
-        } else {
-          // TODO: - 모임열수없음 팝업 추가
-          let targetViewController = JoinLimitViewController()
-          targetViewController.modalPresentationStyle = .overCurrentContext
-          targetViewController.modalTransitionStyle = .crossDissolve
-          self.present(targetViewController, animated: true)
+          return
         }
-
+        // TODO: - 모임열수없음 팝업 추가
+        let targetViewController = JoinLimitViewController()
+        targetViewController.modalPresentationStyle = .overCurrentContext
+        targetViewController.modalTransitionStyle = .crossDissolve
+        self.present(targetViewController, animated: true)
       })
       .disposed(by: cell.disposeBag)
     return cell
