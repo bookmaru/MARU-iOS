@@ -21,10 +21,12 @@ final class BookFavoritesViewController: BaseViewController {
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    layout.minimumInteritemSpacing = 0
+    layout.sectionInset = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(cell: BookFavoritesShelfCell.self,
-                            forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
+    collectionView.register(cell: BookFavoritesCell.self,
+                            forCellWithReuseIdentifier: BookFavoritesCell.reuseIdentifier)
     return collectionView
   }()
 
@@ -101,25 +103,27 @@ extension BookFavoritesViewController {
 }
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
-  func numberOfSections(in collectionView: UICollectionView) -> Int {
-    guard let count = data?.bookcase.count else { return 1 }
-    print("ccc", count)
-    if count % 3 == 0 {
-      return count / 3
-    } else if count > 3 {
-      return count / 3 + 1
-    }
-    return 1
-  }
+//  func numberOfSections(in collectionView: UICollectionView) -> Int {
+//    guard let count = data?.bookcase.count else { return 1 }
+//    print("ccc", count)
+//    if count % 3 == 0 {
+//      return count / 3
+//    } else if count > 3 {
+//      return count / 3 + 1
+//    }
+//    return 1
+//  }
 
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.collectionView.backgroundView = bookShelfImageView
-    cell.rx.binder.onNext(data?.bookcase ?? [])
-    // TODO: - 이 부분 고쳐야함
+    let cell: BookFavoritesCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.rx.dataBinder.onNext(data?.bookcase[indexPath.item])
+//    let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+//    cell.collectionView.backgroundView = bookShelfImageView
+//    cell.rx.binder.onNext(data?.bookcase ?? [])
+//    // TODO: - 이 부분 고쳐야함
     cell.rx.didTapContentView
       .subscribe( onNext: { [weak self] _ in
         guard
@@ -153,7 +157,7 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    return 1
+    return data?.bookcase.count ?? 0
   }
 }
 
@@ -163,6 +167,6 @@ extension BookFavoritesViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: ScreenSize.width, height: 180)
+    return CGSize(width: (ScreenSize.width - 60) / 3, height: 170)
   }
 }
