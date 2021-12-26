@@ -34,7 +34,7 @@ final class BookFavoritesViewController: BaseViewController {
   }
 
   private let viewModel = BookFavoritesViewModel()
-  var count = 0
+  var shelfCount = 0
   private var data: BookCaseModel? {
     didSet {
       collectionView.reloadData()
@@ -103,11 +103,11 @@ extension BookFavoritesViewController {
 extension BookFavoritesViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     guard let count = data?.bookcase.count else { return 1 }
-    if count == 0 {
+    print("ccc", count)
+    if count % 3 == 0 {
       return count / 3
-    }
-    if count > 3 {
-      return count + 1
+    } else if count > 3 {
+      return count / 3 + 1
     }
     return 1
   }
@@ -119,6 +119,7 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.collectionView.backgroundView = bookShelfImageView
     cell.rx.binder.onNext(data?.bookcase ?? [])
+    // TODO: - 이 부분 고쳐야함
     cell.rx.didTapContentView
       .subscribe( onNext: { [weak self] _ in
         guard
