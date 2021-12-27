@@ -87,7 +87,7 @@ extension AuthRouter: BaseTargetType {
       body["socialType"] = information.socialType
       body["nickname"] = information.nickname
       body["deviceToken"] = KeychainHandler.shared.apnsToken
-      body["userRole"] = "USER"
+
       return .requestCompositeParameters(
         bodyParameters: body,
         bodyEncoding: JSONEncoding.default,
