@@ -87,6 +87,7 @@ extension AuthRouter: BaseTargetType {
       body["socialType"] = information.socialType
       body["nickname"] = information.nickname
       body["deviceToken"] = KeychainHandler.shared.apnsToken
+
       return .requestCompositeParameters(
         bodyParameters: body,
         bodyEncoding: JSONEncoding.default,
@@ -136,12 +137,12 @@ extension AuthRouter: BaseTargetType {
     case .user, .report, .userProfile, .signOut, .myGroup:
       return [
         "Content-Type": "application/json",
-        "accessToken": KeychainHandler.shared.accessToken
+        "Authorization": KeychainHandler.shared.accessToken
       ]
     case .changeProfile:
       return [
         "Content-Type": "multipart/form-data",
-        "accessToken": KeychainHandler.shared.accessToken
+        "Authorization": KeychainHandler.shared.accessToken
       ]
     default:
       return [

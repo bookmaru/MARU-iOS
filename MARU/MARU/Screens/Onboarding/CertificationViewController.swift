@@ -184,7 +184,7 @@ final class CertificationViewController: BaseViewController {
            let accessTokenExpiredAt = token?.accessTokenExpiredAt,
            let refreshToken = token?.refreshToken,
            let refreshTokenExpiredAt = token?.refreshTokenExpiredAt {
-          KeychainHandler.shared.accessToken = accessToken
+          KeychainHandler.shared.accessToken = "Bearer \(accessToken)"
           KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
           KeychainHandler.shared.refreshToken = refreshToken
           KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt

@@ -66,7 +66,7 @@ extension SplashViewController {
              let refreshToken = token?.tokenResponseDTO.refreshToken,
              let refreshTokenExpiredAt = token?.tokenResponseDTO.refreshTokenExpiredAt,
              accessToken != "" {
-            KeychainHandler.shared.accessToken = accessToken
+            KeychainHandler.shared.accessToken = "Bearer \(accessToken)"
             KeychainHandler.shared.accessTokenExpiredAt = accessTokenExpiredAt
             KeychainHandler.shared.refreshToken = refreshToken
             KeychainHandler.shared.refreshTokenExpiredAt = refreshTokenExpiredAt

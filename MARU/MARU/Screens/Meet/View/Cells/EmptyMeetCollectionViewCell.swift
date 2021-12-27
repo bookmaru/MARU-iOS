@@ -27,6 +27,7 @@ final class EmptyMeetCollectionViewCell: UICollectionViewCell {
     $0.setTitle("   모임 열기", for: .normal)
     $0.setTitleColor(.mainBlue, for: .normal)
     $0.titleLabel?.font = .boldSystemFont(ofSize: 13)
+    $0.isUserInteractionEnabled = false
   }
 
   override init(frame: CGRect) {
