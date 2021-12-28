@@ -147,6 +147,8 @@
 		E22306FE262AD93B00B25CEA /* VerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22306FD262AD93B00B25CEA /* VerticalAlignLabel.swift */; };
 		F210311B272E575A00FC58EC /* BookAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210311A272E575A00FC58EC /* BookAlertViewModel.swift */; };
 		F214D054276736FF00F8E685 /* JoinLimitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F214D053276736FF00F8E685 /* JoinLimitViewController.swift */; };
+		F22333CC277B6E0200C7C2F4 /* BookShelfModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22333CB277B6E0200C7C2F4 /* BookShelfModel.swift */; };
+		F22333CE277B7C0700C7C2F4 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22333CD277B7C0700C7C2F4 /* Array+.swift */; };
 		F223E3C826C8F8320039919A /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C726C8F8320039919A /* UserInformation.swift */; };
 		F223E3CA26C97A180039919A /* DiaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F223E3C926C97A180039919A /* DiaryModel.swift */; };
 		F2249F1A26C12E3C00F2C91F /* CreateQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */; };
@@ -332,6 +334,8 @@
 		EF996A46AFCDFC2DD2578480 /* Pods-MARUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARUTests.debug.xcconfig"; path = "Target Support Files/Pods-MARUTests/Pods-MARUTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F210311A272E575A00FC58EC /* BookAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAlertViewModel.swift; sourceTree = "<group>"; };
 		F214D053276736FF00F8E685 /* JoinLimitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinLimitViewController.swift; sourceTree = "<group>"; };
+		F22333CB277B6E0200C7C2F4 /* BookShelfModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfModel.swift; sourceTree = "<group>"; };
+		F22333CD277B7C0700C7C2F4 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		F223E3C726C8F8320039919A /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		F223E3C926C97A180039919A /* DiaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryModel.swift; sourceTree = "<group>"; };
 		F2249F1926C12E3C00F2C91F /* CreateQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizViewController.swift; sourceTree = "<group>"; };
@@ -716,6 +720,7 @@
 				776EE52D26C43B1000A50A3E /* UIButton+.swift */,
 				C5CE01942714855600CE4E4A /* RxViewController+.swift */,
 				C56C1CF3275A6568009B6403 /* Observable+.swift */,
+				F22333CD277B7C0700C7C2F4 /* Array+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1016,6 +1021,7 @@
 				F2E974EF26DAA22800B3FC87 /* PastMeetingViewModel.swift */,
 				F2CDD3EB26F740C30019EDEB /* BookFavoritesViewModel.swift */,
 				F2BEFB2226FAFEAE009E2E7C /* ResultBookViewModel.swift */,
+				F22333CB277B6E0200C7C2F4 /* BookShelfModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1269,8 +1275,10 @@
 				77B509F326C5350B00B0CC07 /* IndicatorFooter.swift in Sources */,
 				77BD85F426DBC3FB00A0C585 /* KeyMapper.swift in Sources */,
 				776320452646B35900293D1C /* Book.swift in Sources */,
+				F22333CC277B6E0200C7C2F4 /* BookShelfModel.swift in Sources */,
 				C5CE018D2713D81F00CE4E4A /* JoinCollectionViewCell.swift in Sources */,
 				F28FF226270A04590026FF8A /* JoinViewModel.swift in Sources */,
+				F22333CE277B7C0700C7C2F4 /* Array+.swift in Sources */,
 				776AF4F32641B0BE0020D2D8 /* MaruSearchView.swift in Sources */,
 				C5ACA4C126B673640089C50C /* LibraryTitleCell.swift in Sources */,
 				77847E8226D353420054742F /* Category.swift in Sources */,

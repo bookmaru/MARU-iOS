@@ -37,6 +37,7 @@ final class BookFavoritesViewController: BaseViewController {
 
   private let viewModel = BookFavoritesViewModel()
   var shelfCount = 0
+  private var bookShelfData: [BookShelfModel]?
   private var data: BookCaseModel? {
     didSet {
       collectionView.reloadData()
@@ -94,6 +95,7 @@ extension BookFavoritesViewController {
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
+    let result = data?.bookcase.chunked(into: 3)
   }
 
   @objc func didTapAddBookButton() {
