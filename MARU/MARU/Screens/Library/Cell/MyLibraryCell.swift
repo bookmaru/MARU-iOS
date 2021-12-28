@@ -113,9 +113,10 @@ extension MyLibraryCell: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: MeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
     cell.rx.imageURLBinder.onNext(groupData[indexPath.item].image)
-
+    if indexPath.item > 3 {
+      cell.isHidden = true
+    }
     return cell
   }
 }

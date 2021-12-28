@@ -113,9 +113,10 @@ extension MyBookCaseCell: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: MyLibraryBookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
     cell.rx.imageURLBinder.onNext(bookData[indexPath.item].imageURL)
-
+    if indexPath.item > 3 {
+      cell.isHidden = true
+    }
     return cell
   }
 }
