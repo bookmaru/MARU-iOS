@@ -95,7 +95,6 @@ extension BookFavoritesViewController {
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
-    let result = data?.bookcase.chunked(into: 3)
   }
 
   @objc func didTapAddBookButton() {

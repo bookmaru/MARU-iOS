@@ -7,6 +7,6 @@
 
 import UIKit
 
-struct BookShelfModel {
- 
+enum BookShelfModel {
+  case book(book: BookCase)
 }
