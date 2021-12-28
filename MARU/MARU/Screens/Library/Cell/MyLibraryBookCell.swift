@@ -40,7 +40,10 @@ final class MyLibraryBookCell: UICollectionViewCell {
 extension Reactive where Base: MyLibraryBookCell {
   var imageURLBinder: Binder<String> {
     return Binder(base) { base, imageURL in
-      base.imageView.image(url: imageURL)
+      base.imageView.image(
+        url: imageURL,
+        defaultImage: Image.defalutImage ?? UIImage()
+      )
     }
   }
 }

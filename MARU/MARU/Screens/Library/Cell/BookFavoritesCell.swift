@@ -33,7 +33,10 @@ final class BookFavoritesCell: UICollectionViewCell {
     didSet {
       bookTitleLabel.text = data?.title
       bookAuthorLabel.text = data?.author
-      bookImageView.image(url: data?.imageURL ?? "")
+      bookImageView.image(
+        url: data?.imageURL ?? "",
+        defaultImage: Image.defalutImage ?? UIImage()
+      )
     }
   }
 
