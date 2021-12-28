@@ -110,7 +110,8 @@ final class JoinViewController: BaseViewController {
   fileprivate var data: GroupInformation? {
     didSet {
       if let imageURL = data?.groups?.image {
-        bookImageView.image(url: imageURL)
+        bookImageView.image(url: imageURL,
+                            defaultImage: Image.defalutImage ?? UIImage())
       }
       bookTitleLabel.text = data?.groups?.title
       let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
