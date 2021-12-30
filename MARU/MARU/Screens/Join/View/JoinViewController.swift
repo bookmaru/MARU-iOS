@@ -104,14 +104,14 @@ final class JoinViewController: BaseViewController {
     $0.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
     $0.setTitle("참여하기", for: .normal)
     $0.setTitleColor(.white, for: .normal)
-    $0.addTarget(self, action: #selector(didTapEntryButton), for: .touchUpInside)
   }
 
   private let viewModel = JoinViewModel()
   fileprivate var data: GroupInformation? {
     didSet {
       if let imageURL = data?.groups?.image {
-        bookImageView.image(url: imageURL)
+        bookImageView.image(url: imageURL,
+                            defaultImage: Image.defalutImage ?? UIImage())
       }
       bookTitleLabel.text = data?.groups?.title
       let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
@@ -150,13 +150,6 @@ final class JoinViewController: BaseViewController {
   }
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  @objc
-  private func didTapEntryButton() {
-    let targetViewController = QuizViewController(groupID: groupID)
-    targetViewController.modalPresentationStyle = .fullScreen
-    present(targetViewController, animated: true, completion: nil)
   }
 }
 
@@ -287,6 +280,19 @@ extension JoinViewController {
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
     self.rx.dataBinder.onNext(self.data)
+
+    entryButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        guard let self = self else { return }
+        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == true {
+          let viewController = QuizViewController(groupID: self.groupID)
+          viewController.modalPresentationStyle = .fullScreen
+          self.present(viewController, animated: true, completion: nil)
+        } else {
+          self.showToast("참여가 불가한 토론방입니다.")
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }
 

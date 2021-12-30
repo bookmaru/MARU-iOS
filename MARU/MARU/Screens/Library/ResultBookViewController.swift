@@ -170,7 +170,7 @@ extension ResultBookViewController: UICollectionViewDelegate {
     if data.hasMyBookcase == false {
       let viewController = BookAlertViewController(
         Image.coolicon ?? UIImage(),
-        "\(title)이",
+        "\(title)이(가)",
         "성공적으로 서재에 담겼습니다.",
         data
       )
@@ -180,7 +180,7 @@ extension ResultBookViewController: UICollectionViewDelegate {
     } else {
       let viewController = BookAlertViewController(
         Image.group1036 ?? UIImage(),
-        "\(title)이",
+        "\(title)이(가)",
         "이미 담겨있습니다.",
         data
       )

@@ -19,7 +19,13 @@ final class PastMeetingViewController: BaseViewController {
     collectionView.register(cell: PastMeetingCell.self, forCellWithReuseIdentifier: PastMeetingCell.reuseIdentifier)
     return collectionView
   }()
-
+  private let emptyView = EmptyView(
+    image: Image.group841?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    content: """
+    담아둔 모임이 아직 없어요.
+    모임을 진행하고 담아보세요.
+    """
+  )
   private let viewModel = PastMeetingViewModel()
 
   private var data: KeepGroupModel? {
@@ -40,10 +46,16 @@ final class PastMeetingViewController: BaseViewController {
     navigationController?.navigationBar.shadowImage = UIColor.white.as1ptImage()
     navigationController?.navigationBar.barTintColor = .white
     tabBarController?.tabBar.isHidden = true
+    bind()
   }
 
   private func render() {
     view.add(collectionView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
+    }
+    view.add(emptyView) { view in
       view.snp.makeConstraints {
         $0.edges.equalToSuperview()
       }
@@ -60,6 +72,9 @@ final class PastMeetingViewController: BaseViewController {
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
+        if data?.keepGroup.count ?? 0 > 0 {
+          self.emptyView.isHidden = true
+        }
         self.data = data
         self.collectionView.reloadData()
       })
@@ -93,6 +108,9 @@ extension PastMeetingViewController: UICollectionViewDataSource {
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
+    if data?.keepGroup[indexPath.item].leaderScore ?? -1 > 0 {
+      cell.evaluateButton.isHidden = true
+    }
     return cell
   }
 }

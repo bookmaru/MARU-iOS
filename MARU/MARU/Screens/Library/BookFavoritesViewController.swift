@@ -10,45 +10,46 @@ import RxSwift
 import RxCocoa
 
 final class BookFavoritesViewController: BaseViewController {
-  private let emptyView = UIView().then {
-    $0.backgroundColor = .white
-    $0.isHidden = true
-  }
-
-  private let bookImage = UIImageView().then {
-    $0.image = Image.autoStories
-  }
-
-  let emptyLabel = UILabel().then {
-    $0.font = .systemFont(ofSize: 14, weight: .medium)
-    $0.textColor = .subText
-    $0.textAlignment = .center
-    $0.text = """
+  private let emptyView = EmptyView(
+    image: Image.group841?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    content: """
     모임하고 싶은 책이 아직 없어요.
-    + 버튼을 눌러 서재를 채워주세요!
+    +버튼을 눌러 서재를 채워주세요.
     """
-  }
+  )
 
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
+    layout.minimumInteritemSpacing = 0
+    layout.sectionInset = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.backgroundColor = .white
-    collectionView.register(cell: BookFavoritesShelfCell.self,
-                            forCellWithReuseIdentifier: BookFavoritesShelfCell.reuseIdentifier)
+    collectionView.register(cell: BookFavoritesCell.self,
+                            forCellWithReuseIdentifier: BookFavoritesCell.reuseIdentifier)
     return collectionView
   }()
 
+  private let bookShelfImageView = UIImageView().then {
+    $0.image = Image.vector22
+    $0.contentMode = .bottom
+  }
+
   private let viewModel = BookFavoritesViewModel()
-  var shelf: Int?
-  fileprivate var data: BookCaseModel?
+  var shelfCount = 0
+  private var bookShelfData: [BookShelfModel]?
+  private var data: BookCaseModel? {
+    didSet {
+      collectionView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     render()
     bind()
   }
-  // TODO: - 분명히 네비게이션 처리 다른 방법이 있었던 것 같지만 급한 관계로 원래 알던 방식대로 처리를 진행합니다. 여유생기면 고치기
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setNavigationBar(isHidden: false)
@@ -69,28 +70,12 @@ extension BookFavoritesViewController {
       collectionView
     ])
 
-    emptyView.adds([
-      bookImage,
-      emptyLabel
-    ])
-
     emptyView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
 
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
-    }
-
-    bookImage.snp.makeConstraints { make in
-      make.size.equalTo(16)
-      make.centerX.equalTo(self.emptyView)
-      make.centerY.equalTo(self.emptyView)
-    }
-
-    emptyLabel.snp.makeConstraints { make in
-      make.top.equalTo(self.bookImage.snp.bottom).offset(4)
-      make.centerX.equalTo(self.emptyView)
     }
 
     collectionView.delegate = self
@@ -103,6 +88,9 @@ extension BookFavoritesViewController {
     output.data
       .drive(onNext: {[weak self] data in
         guard let self = self else { return }
+        if data?.bookcase.count ?? 0 > 0 {
+          self.emptyView.isHidden = true
+        }
         self.data = data
       })
       .disposed(by: disposeBag)
@@ -116,12 +104,53 @@ extension BookFavoritesViewController {
 }
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
+//  func numberOfSections(in collectionView: UICollectionView) -> Int {
+//    guard let count = data?.bookcase.count else { return 1 }
+//    print("ccc", count)
+//    if count % 3 == 0 {
+//      return count / 3
+//    } else if count > 3 {
+//      return count / 3 + 1
+//    }
+//    return 1
+//  }
+
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    cell.rx.binder.onNext((data!))
+    let cell: BookFavoritesCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    cell.rx.dataBinder.onNext(data?.bookcase[indexPath.item])
+//    let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+//    cell.collectionView.backgroundView = bookShelfImageView
+//    cell.rx.binder.onNext(data?.bookcase ?? [])
+//    // TODO: - 이 부분 고쳐야함
+    cell.rx.didTapContentView
+      .subscribe( onNext: { [weak self] _ in
+        guard
+          let self = self,
+          let bookcase = self.data?.bookcase[indexPath.item]
+        else { return }
+        let viewController = CreateQuizViewController(
+          bookModel: BookModel.init(
+            isbn: bookcase.isbn,
+            title: bookcase.title,
+            author: bookcase.author,
+            imageURL: bookcase.imageURL,
+            category: bookcase.category,
+            hasMyBookcase: true)
+        )
+        if bookcase.canMakeGroup == true {
+          self.navigationController?.pushViewController(viewController, animated: true)
+          return
+        }
+        // TODO: - 모임열수없음 팝업 추가
+        let targetViewController = JoinLimitViewController()
+        targetViewController.modalPresentationStyle = .overCurrentContext
+        targetViewController.modalTransitionStyle = .crossDissolve
+        self.present(targetViewController, animated: true)
+      })
+      .disposed(by: cell.disposeBag)
     return cell
   }
 
@@ -129,14 +158,7 @@ extension BookFavoritesViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    guard let count = data?.bookcase.count else { return 0 }
-    if count % 3 == 0 {
-      return count / 3
-    }
-    if count >= 3 {
-      return count / 3 + 1
-    }
-    return 1
+    return data?.bookcase.count ?? 0
   }
 }
 
@@ -146,9 +168,6 @@ extension BookFavoritesViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: ScreenSize.width - 40, height: 180)
-  }
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    // cell Tap Action
+    return CGSize(width: (ScreenSize.width - 60) / 3, height: 170)
   }
 }

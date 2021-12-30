@@ -11,9 +11,9 @@ import RxCocoa
 
 final class MyLibraryCell: UICollectionViewCell {
 
-  private let collectionView: UICollectionView = {
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(top: 14, left: 30, bottom: 14, right: 30)
+    layout.sectionInset = UIEdgeInsets(top: 14, left: 40, bottom: 14, right: 40)
     layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 10
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -76,7 +76,7 @@ final class MyLibraryCell: UICollectionViewCell {
       image.snp.makeConstraints {
         $0.size.equalTo(16)
         $0.centerX.equalTo(self.noResultImageView)
-        $0.top.equalTo(self.noResultImageView).offset(20)
+        $0.top.equalTo(self.noResultImageView).offset(30)
       }
     }
     noResultImageView.add(emptyLabel) { label in
@@ -96,7 +96,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: (ScreenSize.width - 60 - 30) / 4, height: 106)
+    return CGSize(width: (ScreenSize.width - 80 - 40) / 4, height: 106)
   }
 }
 
@@ -113,9 +113,10 @@ extension MyLibraryCell: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: MeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
     cell.rx.imageURLBinder.onNext(groupData[indexPath.item].image)
-
+    if indexPath.item > 3 {
+      cell.isHidden = true
+    }
     return cell
   }
 }

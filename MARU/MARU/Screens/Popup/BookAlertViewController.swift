@@ -119,7 +119,7 @@ extension BookAlertViewController {
     stateImageView.snp.makeConstraints { make in
       make.centerX.equalTo(popUpView)
       make.leading.equalTo(popUpView).offset(100)
-      make.top.equalTo(popUpView).offset(20)
+      make.top.equalTo(popUpView).offset(40)
       make.size.equalTo(45)
     }
 
@@ -131,7 +131,8 @@ extension BookAlertViewController {
 
     stateLabel.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom).offset(6)
-      make.leading.equalTo(popUpView).offset(48)
+      make.leading.equalTo(popUpView).offset(40)
+      make.centerX.equalTo(titleLabel)
     }
 
     submitButton.snp.makeConstraints { make in
