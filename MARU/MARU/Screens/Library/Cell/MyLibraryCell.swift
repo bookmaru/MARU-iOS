@@ -96,7 +96,7 @@ extension MyLibraryCell: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    return CGSize(width: (ScreenSize.width - 60 - 30) / 4, height: 106)
+    return CGSize(width: (ScreenSize.width - 80 - 40) / 4, height: 106)
   }
 }
 
