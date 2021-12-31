@@ -17,9 +17,9 @@ extension SearchRouter: BaseTargetType {
   var path: String {
     switch self {
     case .search:
-      return "group/search/"
+      return "search/group/"
     case .bookSearch:
-      return "book/search/library/"
+      return "search/book/library/"
     case .meetingSearchByISBN:
       return "group/book"
     }

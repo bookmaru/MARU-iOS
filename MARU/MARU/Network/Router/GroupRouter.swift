@@ -35,7 +35,7 @@ extension GroupRouter: BaseTargetType {
     case .chatList(let roomID):
       return "chat/group/\(roomID)"
     case .diaryList:
-      return "group/diary"
+      return "search/diary/writable"
     case .groupInfo(let groupID):
       return "group/\(groupID)/intro"
     case .keep(let groupID):
