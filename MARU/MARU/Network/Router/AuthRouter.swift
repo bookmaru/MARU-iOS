@@ -52,11 +52,11 @@ extension AuthRouter: BaseTargetType {
     case .changeProfile(let nickname, _):
       return "user/profile/\(nickname)"
     case .report:
-      return "users/report"
+      return "report/user"
     case .userProfile:
       return "user/profile"
     case .myGroup:
-      return "user/groups"
+      return "group/mine"
     }
   }
 
