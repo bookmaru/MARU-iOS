@@ -19,7 +19,7 @@ protocol GroupServiceType {
 
 final class GroupService: GroupServiceType {
 
-  private let router = MoyaProvider<GroupRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<GroupRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func participateList() -> Observable<BaseResponseType<Groups>> {
     return router.rx
