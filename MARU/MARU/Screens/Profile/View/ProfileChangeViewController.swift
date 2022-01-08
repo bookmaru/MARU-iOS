@@ -68,6 +68,7 @@ final class ProfileChangeViewController: UIViewController {
     nicknameTextField.delegate = self
     render()
     profileBind()
+    bind()
   }
 
   override func viewWillAppear(_ animated: Bool) {
