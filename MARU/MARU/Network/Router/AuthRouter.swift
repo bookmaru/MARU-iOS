@@ -14,9 +14,9 @@ enum AuthType {
   var description: String {
     switch self {
     case .apple:
-      return "apple"
+      return "APPLE"
     case .kakao:
-      return "kakao"
+      return "KAKAO"
     }
   }
 }
