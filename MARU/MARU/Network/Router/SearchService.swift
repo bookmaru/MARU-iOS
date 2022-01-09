@@ -16,7 +16,7 @@ protocol SearchServiceType {
 
 final class SearchService: SearchServiceType {
 
-  private let router = MoyaProvider<SearchRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<SearchRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
   func search(queryString: String) -> Observable<BaseResponseType<Groups>> {
     return router.rx

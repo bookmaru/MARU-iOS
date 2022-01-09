@@ -52,6 +52,7 @@ final class ChatViewModel {
 
   private var prevChatSender: String?
   private let userName = UserDefaultHandler.shared.userName
+  private let userID = KeychainHandler.shared.userID
 
   let disposeBag = DisposeBag()
 
@@ -133,14 +134,14 @@ final class ChatViewModel {
     if chat.type != "CHAT" {
       return nil
     }
-    if chat.userName == userName {
-      prevChatSender = chat.userName
+    if chat.userID == userID {
+      prevChatSender = chat.userID.string
       return .message(data: chat)
     }
-    if prevChatSender == chat.userName {
+    if prevChatSender == chat.userID.string {
       return .otherMessage(data: chat)
     }
-    prevChatSender = chat.userName
+    prevChatSender = chat.userID.string
     return .otherProfile(data: chat)
   }
 }

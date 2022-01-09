@@ -15,7 +15,7 @@ protocol QuizServiceType {
 }
 
 final class QuizService: QuizServiceType {
-  private let router = MoyaProvider<QuizRouter>(plugins: [NetworkLoggerPlugin(verbose: false)])
+  private let router = MoyaProvider<QuizRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
   func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<ResultMakeGroup>> {
     return router.rx
       .request(.createQuiz(makeGroup: makeGroup))
