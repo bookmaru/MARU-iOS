@@ -221,7 +221,7 @@ extension ProfileChangeViewController {
     let output = viewModel.transform(input: input)
 
     output.isConnected
-      .subscribe(onNext: {[weak self] _ in
+      .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
         self.dismiss(animated: true)
       })
