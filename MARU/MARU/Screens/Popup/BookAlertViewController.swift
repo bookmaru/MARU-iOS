@@ -23,9 +23,11 @@ final class BookAlertViewController: UIViewController {
   }
 
   private let titleLabel = UILabel().then {
-    $0.text = "(책 제목) 책이"
+    $0.text = "(책 제목)이(가)"
     $0.textAlignment = .center
-    $0.font = .systemFont(ofSize: 13, weight: .regular)
+    $0.font = .systemFont(ofSize: 13, weight: .bold)
+    $0.attributedText = NSMutableAttributedString()
+      .regular(string: "이(가)", fontSize: 13)
   }
 
   private let stateLabel = UILabel().then {
