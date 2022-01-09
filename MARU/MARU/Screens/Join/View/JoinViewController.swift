@@ -125,6 +125,7 @@ final class JoinViewController: BaseViewController {
       scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
       partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
       contentLabel.text = data?.groups?.description
+      // TODO: - 이 부분 좀 더 수정 필요해보임
       if UserDefaultHandler.shared.userName != self.data?.groups?.nickname {
         if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == false {
           self.entryButton.backgroundColor = .lightGray
