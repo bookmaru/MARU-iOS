@@ -21,6 +21,7 @@ final class ProfileChangeViewController: UIViewController {
     $0.setTitle("완료", for: .normal)
     $0.setTitleColor(.subText, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
+    $0.isEnabled = false
   }
   private let profileImageView = UIImageView().then {
     $0.image = Image.group1029
@@ -73,6 +74,8 @@ final class ProfileChangeViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    profileBind()
+    bind()
   }
 
   init(imageURL: String) {
@@ -208,7 +211,7 @@ extension ProfileChangeViewController {
   }
 
   private func profileBind() {
-    profileImageView.image(url: imageURL)
+    profileImageView.image(url: imageURL, defaultImage: Image.group1029 ?? UIImage())
     let didTapSubmitButton = submitButton.rx.tap
       .map { [weak self] _ -> (nickname: String, image: UIImage) in
         guard let self = self,

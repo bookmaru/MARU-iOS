@@ -125,6 +125,20 @@ final class JoinViewController: BaseViewController {
       scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
       partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
       contentLabel.text = data?.groups?.description
+      if UserDefaultHandler.shared.userName != self.data?.groups?.nickname {
+        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == false {
+          self.entryButton.backgroundColor = .lightGray
+        }
+        if self.data?.groups?.isFailedGroupQuiz == true && self.data?.groups?.canJoinGroup == false {
+          self.entryButton.backgroundColor = .lightGray
+        }
+        if self.data?.groups?.isFailedGroupQuiz == true && self.data?.groups?.canJoinGroup == true {
+          self.entryButton.backgroundColor = .lightGray
+        }
+      }
+      if UserDefaultHandler.shared.userName == self.data?.groups?.nickname {
+        self.entryButton.backgroundColor = .lightGray
+      }
     }
   }
   private let groupID: Int
@@ -179,7 +193,7 @@ extension JoinViewController {
     entryButton.snp.makeConstraints { (make) in
       make.leading.equalTo(view.safeAreaLayoutGuide)
       make.trailing.equalTo(view.safeAreaLayoutGuide)
-      make.bottom.equalTo(view.safeAreaLayoutGuide)
+      make.bottom.equalTo(view)
       make.height.equalTo(49)
     }
     gradientImageView.adds([
@@ -284,12 +298,37 @@ extension JoinViewController {
     entryButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == true {
-          let viewController = QuizViewController(groupID: self.groupID)
-          viewController.modalPresentationStyle = .fullScreen
-          self.present(viewController, animated: true, completion: nil)
+        let savedNickname = UserDefaultHandler.shared.userName
+        let nickname = self.data?.groups?.nickname
+        let isFailedGroupQuiz = self.data?.groups?.isFailedGroupQuiz
+        let canJoinGroup = self.data?.groups?.canJoinGroup
+        if savedNickname != nickname {
+          if isFailedGroupQuiz == false && canJoinGroup == true {
+            let viewController = QuizViewController(groupID: self.groupID)
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true, completion: nil)
+          }
+          if isFailedGroupQuiz == true && canJoinGroup == true {
+            self.showToast(
+              """
+              5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
+              기회는 단 한 번입니다! 재입장은 불가합니다.
+              """
+            )
+          }
+          if isFailedGroupQuiz == false && canJoinGroup == false {
+            self.showToast("인원이 꽉 찼어요:( 직접 모임을 개설해보세요🤓")
+          }
+          if isFailedGroupQuiz == true && canJoinGroup == false {
+            self.showToast(
+              """
+              5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
+              기회는 단 한 번입니다! 재입장은 불가합니다.
+              """
+            )
+          }
         } else {
-          self.showToast("참여가 불가한 토론방입니다.")
+          self.showToast("유저 본인이 개설한 모임에는 참여할 수 없습니다.")
         }
       })
       .disposed(by: disposeBag)
