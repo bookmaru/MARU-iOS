@@ -168,7 +168,6 @@ extension ProfileChangeViewController {
 
   private func deletePhoto() {
     profileImageView.image = Image.group1029
-    submitButton.setTitleColor(.subText, for: .normal)
   }
   private func openLibrary() {
     picker.sourceType = .photoLibrary
@@ -202,9 +201,15 @@ extension ProfileChangeViewController {
         if statusCode == 200 {
           self.nicknameCheckLabel.textColor = .subText
           self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
-        } else {
+          self.submitButton.setTitleColor(.mainBlue, for: .normal)
+          self.submitButton.isEnabled = true
+        }
+        if statusCode == 400 {
           self.nicknameCheckLabel.textColor = .negative
           self.nicknameCheckLabel.text = "이미 존재하는 이름입니다."
+          self.submitButton.setTitleColor(.subText, for: .normal)
+          self.submitButton.isEnabled = true
+
         }
       })
       .disposed(by: disposeBag)
@@ -238,9 +243,10 @@ extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINaviga
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      profileImageView.contentMode = .scaleAspectFit
+      profileImageView.contentMode = .scaleAspectFill
       profileImageView.image = image
       submitButton.setTitleColor(.mainBlue, for: .normal)
+      submitButton.isEnabled = true
     }
     dismiss(animated: true, completion: nil)
   }
