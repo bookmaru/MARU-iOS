@@ -146,7 +146,7 @@ extension MainViewController: UICollectionViewDataSource {
               withReuseIdentifier: SectionHeader.reuseIdentifier,
               for: indexPath
       ) as? SectionHeader else { break }
-      header.setupText(text: "지금 가장 인기 많은 모임은?")
+      header.setupText(text: "가장 모임이 많은 책은?")
       header.hideMoveButton(isHidden: true)
       return header
 

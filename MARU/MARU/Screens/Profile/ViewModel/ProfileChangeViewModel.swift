@@ -19,9 +19,8 @@ final class ProfileChangeViewModel {
 
   func transform(input: Input) -> Output {
     let isConnected = input.didTapSubmitButton
-      .flatMap {
-        NetworkService.shared.auth.change(nickname: $0, image: $1)}
-      .map {$0.status == 200 }
+      .flatMap { NetworkService.shared.auth.change(nickname: $0, image: $1) }
+      .map { $0.status == 200 }
     return Output(isConnected: isConnected)
   }
 }
