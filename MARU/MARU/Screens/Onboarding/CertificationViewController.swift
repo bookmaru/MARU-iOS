@@ -191,7 +191,7 @@ final class CertificationViewController: BaseViewController {
           KeychainHandler.shared.userID = response.data?.signup.userID ?? -1
           UserDefaultHandler.shared.userName = self.userInformation.nickname
         }
-        if response.status == 200 {
+        if response.status == 200 || response.status == 201 {
           let viewController = TabBarController()
           viewController.modalPresentationStyle = .fullScreen
           if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
