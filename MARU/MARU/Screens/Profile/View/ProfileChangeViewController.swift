@@ -77,8 +77,6 @@ final class ProfileChangeViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    profileBind()
-    bind()
   }
 
   init(imageURL: String) {
