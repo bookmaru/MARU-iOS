@@ -65,6 +65,7 @@ final class ProfileChangeViewController: UIViewController {
   let picker = UIImagePickerController()
   let disposeBag = DisposeBag()
   private var savedNickname: String?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     picker.delegate = self
@@ -88,6 +89,7 @@ final class ProfileChangeViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   private func render() {
     view.backgroundColor = .white
     view.adds([
@@ -171,6 +173,7 @@ extension ProfileChangeViewController {
   private func deletePhoto() {
     profileImageView.image = Image.group1029
   }
+
   private func openLibrary() {
     picker.sourceType = .photoLibrary
     present(picker, animated: false, completion: nil)
@@ -201,7 +204,6 @@ extension ProfileChangeViewController {
       .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status} }
       .subscribe(onNext: { [weak self] statusCode in
         guard let self = self else { return }
-        // TODO: - 서버 변경하는 대로 반영할 예정입니다.
         if statusCode == 200 {
           self.nicknameCheckLabel.textColor = .subText
           self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."

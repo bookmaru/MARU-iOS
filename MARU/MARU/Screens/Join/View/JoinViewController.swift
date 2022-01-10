@@ -110,8 +110,10 @@ final class JoinViewController: BaseViewController {
   fileprivate var data: GroupInformation? {
     didSet {
       if let imageURL = data?.groups?.image {
-        bookImageView.image(url: imageURL,
-                            defaultImage: Image.defalutImage ?? UIImage())
+        bookImageView.image(
+          url: imageURL,
+          defaultImage: Image.defalutImage ?? UIImage()
+        )
       }
       bookTitleLabel.text = data?.groups?.title
       let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
@@ -125,7 +127,7 @@ final class JoinViewController: BaseViewController {
       scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
       partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
       contentLabel.text = data?.groups?.description
-      // TODO: - 이 부분 좀 더 수정 필요해보임
+      // TODO: - 이 부분 좀 더 수정 하고 싶음
       if UserDefaultHandler.shared.userName != self.data?.groups?.nickname {
         if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == false {
           self.entryButton.backgroundColor = .lightGray
@@ -143,12 +145,12 @@ final class JoinViewController: BaseViewController {
     }
   }
   private let groupID: Int
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setLayout()
     setGradientViewLayout()
     bind()
-    // Do any additional setup after loading the view.
   }
 
   override func viewWillAppear(_ animated: Bool) {
