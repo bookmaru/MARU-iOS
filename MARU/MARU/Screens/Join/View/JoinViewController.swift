@@ -109,37 +109,34 @@ final class JoinViewController: BaseViewController {
   private let viewModel = JoinViewModel()
   fileprivate var data: GroupInformation? {
     didSet {
-      if let imageURL = data?.groups?.image {
-        bookImageView.image(
-          url: imageURL,
-          defaultImage: Image.defalutImage ?? UIImage()
-        )
-      }
-      bookTitleLabel.text = data?.groups?.title
-      let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
+      guard let groups = data?.groups else { return }
+      let imageURL = groups.image
+      bookImageView.image(url: imageURL, defaultImage: Image.defalutImage ?? UIImage())
+      bookTitleLabel.text = groups.title
+      let text = "토론이\(groups.remainingDay)일 남았습니다."
       let attributedString = NSMutableAttributedString(string: text)
       attributedString.addAttribute(
         .foregroundColor,
         value: UIColor.cornFlowerBlue,
-        range: (text as NSString).range(of: "\(data?.groups?.remainingDay ?? -1)"))
+        range: (text as NSString).range(of: "\(groups.remainingDay)"))
       leftTimeLabel.attributedText = attributedString
-      leadNameLabel.text = data?.groups?.nickname
-      scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
-      partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
-      contentLabel.text = data?.groups?.description
+      leadNameLabel.text = groups.nickname
+      scoreStateLabel.text = "\(groups.leaderScore)"
+      partyStateLabel.text = "\(groups.userCount)/5"
+      contentLabel.text = groups.description
       // TODO: - 이 부분 좀 더 수정 하고 싶음
-      if UserDefaultHandler.shared.userName != self.data?.groups?.nickname {
-        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == false {
+      if UserDefaultHandler.shared.userName != groups.nickname {
+        if groups.isFailedGroupQuiz == false && groups.canJoinGroup == false {
           self.entryButton.backgroundColor = .lightGray
         }
-        if self.data?.groups?.isFailedGroupQuiz == true && self.data?.groups?.canJoinGroup == false {
+        if groups.isFailedGroupQuiz == true && groups.canJoinGroup == false {
           self.entryButton.backgroundColor = .lightGray
         }
-        if self.data?.groups?.isFailedGroupQuiz == true && self.data?.groups?.canJoinGroup == true {
+        if groups.isFailedGroupQuiz == true && groups.canJoinGroup == true {
           self.entryButton.backgroundColor = .lightGray
         }
       }
-      if UserDefaultHandler.shared.userName == self.data?.groups?.nickname {
+      if UserDefaultHandler.shared.userName == groups.nickname {
         self.entryButton.backgroundColor = .lightGray
       }
     }
@@ -197,7 +194,7 @@ extension JoinViewController {
       make.leading.equalTo(view.safeAreaLayoutGuide)
       make.trailing.equalTo(view.safeAreaLayoutGuide)
       make.bottom.equalTo(view)
-      make.height.equalTo(49)
+      make.height.equalTo(60)
     }
     gradientImageView.adds([
       bookTitleLabel,

@@ -202,7 +202,7 @@ extension ProfileChangeViewController {
       .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status} }
       .subscribe(onNext: { [weak self] statusCode in
         guard let self = self else { return }
-        if statusCode == 200 {
+        if statusCode == 200 || statusCode == 201 {
           self.nicknameCheckLabel.textColor = .subText
           self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
           self.submitButton.setTitleColor(.mainBlue, for: .normal)
