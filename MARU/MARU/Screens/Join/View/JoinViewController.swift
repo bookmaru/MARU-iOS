@@ -300,12 +300,12 @@ extension JoinViewController {
           self.showToast("유저 본인이 개설한 모임에는 참여할 수 없습니다.")
           return
         }
-        if isFailedGroupQuiz == false && canJoinGroup == true {
+        if !isFailedGroupQuiz && canJoinGroup {
           let viewController = QuizViewController(groupID: self.groupID)
           viewController.modalPresentationStyle = .fullScreen
           self.present(viewController, animated: true, completion: nil)
         }
-        if isFailedGroupQuiz == true && canJoinGroup == true {
+        if isFailedGroupQuiz && canJoinGroup {
           self.showToast(
             """
             5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
@@ -313,10 +313,10 @@ extension JoinViewController {
             """
           )
         }
-        if isFailedGroupQuiz == false && canJoinGroup == false {
+        if !isFailedGroupQuiz && !canJoinGroup {
           self.showToast("인원이 꽉 찼어요:( 직접 모임을 개설해보세요🤓")
         }
-        if isFailedGroupQuiz == true && canJoinGroup == false {
+        if isFailedGroupQuiz && !canJoinGroup {
           self.showToast(
             """
             5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
