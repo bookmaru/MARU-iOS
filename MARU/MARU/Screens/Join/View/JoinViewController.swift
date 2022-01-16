@@ -109,31 +109,38 @@ final class JoinViewController: BaseViewController {
   private let viewModel = JoinViewModel()
   fileprivate var data: GroupInformation? {
     didSet {
-      if let imageURL = data?.groups?.image {
-        bookImageView.image(url: imageURL,
-                            defaultImage: Image.defalutImage ?? UIImage())
-      }
-      bookTitleLabel.text = data?.groups?.title
-      let text = "토론이\(data?.groups?.remainingDay ?? -1)일 남았습니다."
+      guard let groups = data?.groups else { return }
+      let imageURL = groups.image
+      bookImageView.image(url: imageURL, defaultImage: Image.defalutImage ?? UIImage())
+      bookTitleLabel.text = groups.title
+      let text = "토론이\(groups.remainingDay)일 남았습니다."
       let attributedString = NSMutableAttributedString(string: text)
       attributedString.addAttribute(
         .foregroundColor,
         value: UIColor.cornFlowerBlue,
-        range: (text as NSString).range(of: "\(data?.groups?.remainingDay ?? -1)"))
+        range: (text as NSString).range(of: "\(groups.remainingDay)"))
       leftTimeLabel.attributedText = attributedString
-      leadNameLabel.text = data?.groups?.nickname
-      scoreStateLabel.text = "\(data?.groups?.leaderScore ?? -1)"
-      partyStateLabel.text = "\(data?.groups?.userCount ?? -1)/5"
-      contentLabel.text = data?.groups?.description
+      leadNameLabel.text = groups.nickname
+      scoreStateLabel.text = "\(groups.leaderScore)"
+      partyStateLabel.text = "\(groups.userCount)/5"
+      contentLabel.text = groups.description
+      guard UserDefaultHandler.shared.userName != groups.nickname else {
+        self.entryButton.backgroundColor = .lightGray
+        return
+      }
+      guard groups.isFailedGroupQuiz == false, groups.canJoinGroup == true else {
+        self.entryButton.backgroundColor = .lightGray
+        return
+      }
     }
   }
   private let groupID: Int
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setLayout()
     setGradientViewLayout()
     bind()
-    // Do any additional setup after loading the view.
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -179,8 +186,8 @@ extension JoinViewController {
     entryButton.snp.makeConstraints { (make) in
       make.leading.equalTo(view.safeAreaLayoutGuide)
       make.trailing.equalTo(view.safeAreaLayoutGuide)
-      make.bottom.equalTo(view.safeAreaLayoutGuide)
-      make.height.equalTo(49)
+      make.bottom.equalTo(view)
+      make.height.equalTo(60)
     }
     gradientImageView.adds([
       bookTitleLabel,
@@ -284,12 +291,38 @@ extension JoinViewController {
     entryButton.rx.tap
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
-        if self.data?.groups?.isFailedGroupQuiz == false && self.data?.groups?.canJoinGroup == true {
+        guard let groups = self.data?.groups else { return }
+        let savedNickname = UserDefaultHandler.shared.userName
+        let nickname = groups.nickname
+        let isFailedGroupQuiz = groups.isFailedGroupQuiz
+        let canJoinGroup = groups.canJoinGroup
+        guard savedNickname != nickname else {
+          self.showToast("유저 본인이 개설한 모임에는 참여할 수 없습니다.")
+          return
+        }
+        if !isFailedGroupQuiz && canJoinGroup {
           let viewController = QuizViewController(groupID: self.groupID)
           viewController.modalPresentationStyle = .fullScreen
           self.present(viewController, animated: true, completion: nil)
-        } else {
-          self.showToast("참여가 불가한 토론방입니다.")
+        }
+        if isFailedGroupQuiz && canJoinGroup {
+          self.showToast(
+            """
+            5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
+            기회는 단 한 번입니다! 재입장은 불가합니다.
+            """
+          )
+        }
+        if !isFailedGroupQuiz && !canJoinGroup {
+          self.showToast("인원이 꽉 찼어요:( 직접 모임을 개설해보세요🤓")
+        }
+        if isFailedGroupQuiz && !canJoinGroup {
+          self.showToast(
+            """
+            5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
+            기회는 단 한 번입니다! 재입장은 불가합니다.
+            """
+          )
         }
       })
       .disposed(by: disposeBag)

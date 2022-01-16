@@ -21,6 +21,8 @@ final class ProfileChangeViewController: UIViewController {
     $0.setTitle("완료", for: .normal)
     $0.setTitleColor(.subText, for: .normal)
     $0.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
+    $0.isEnabled = false
+    $0.isSelected = false
   }
   private let profileImageView = UIImageView().then {
     $0.image = Image.group1029
@@ -62,6 +64,8 @@ final class ProfileChangeViewController: UIViewController {
   private let nicknameViewModel = NicknameCheckViewModel()
   let picker = UIImagePickerController()
   let disposeBag = DisposeBag()
+  private var savedNickname: String?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     picker.delegate = self
@@ -83,6 +87,7 @@ final class ProfileChangeViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   private func render() {
     view.backgroundColor = .white
     view.adds([
@@ -165,8 +170,8 @@ extension ProfileChangeViewController {
 
   private func deletePhoto() {
     profileImageView.image = Image.group1029
-    submitButton.setTitleColor(.subText, for: .normal)
   }
+
   private func openLibrary() {
     picker.sourceType = .photoLibrary
     present(picker, animated: false, completion: nil)
@@ -180,6 +185,7 @@ extension ProfileChangeViewController {
         else { return }
         if text.count == 0 {
           self.nicknameCheckLabel.isHidden = true
+          self.savedNickname = UserDefaultHandler.shared.userName
         }
         if text.count > 13 {
           self.nicknameCheckLabel.isHidden = false
@@ -189,32 +195,42 @@ extension ProfileChangeViewController {
         self.nicknameCheckLabel.isHidden = false
       }
       .filter { text -> Bool in
-        guard let count = text?.count else { return false}
+        guard let count = text?.count else { return false }
         if count != 0 && count < 13 { return true }
         return false
       }
       .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status} }
       .subscribe(onNext: { [weak self] statusCode in
         guard let self = self else { return }
-        if statusCode == 200 {
+        if statusCode == 200 || statusCode == 201 {
           self.nicknameCheckLabel.textColor = .subText
           self.nicknameCheckLabel.text = "사용 가능한 닉네임입니다."
-        } else {
+          self.submitButton.setTitleColor(.mainBlue, for: .normal)
+          self.submitButton.isEnabled = true
+          self.submitButton.isSelected = true
+          self.savedNickname = self.nicknameTextField.text
+        }
+        if statusCode == 400 {
           self.nicknameCheckLabel.textColor = .negative
           self.nicknameCheckLabel.text = "이미 존재하는 이름입니다."
+          self.submitButton.setTitleColor(.subText, for: .normal)
+          self.submitButton.isEnabled = false
+          self.submitButton.isSelected = false
         }
       })
       .disposed(by: disposeBag)
   }
 
   private func profileBind() {
-    profileImageView.image(url: imageURL)
+    profileImageView.image(url: imageURL, defaultImage: Image.group1029 ?? UIImage())
     let didTapSubmitButton = submitButton.rx.tap
       .map { [weak self] _ -> (nickname: String, image: UIImage) in
         guard let self = self,
-              let nickname = self.nicknameTextField.text,
+              let nickname = self.savedNickname,
               let image = self.profileImageView.image
         else { return (nickname: "", image: UIImage()) }
+        UserDefaultHandler.shared.userName = self.savedNickname
+        UserDefaultHandler.shared.userImageURL = self.imageURL
         return (nickname: nickname, image: image)
       }
     let input = ProfileChangeViewModel.Input(didTapSubmitButton: didTapSubmitButton)
@@ -235,9 +251,10 @@ extension ProfileChangeViewController: UIImagePickerControllerDelegate, UINaviga
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
     if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      profileImageView.contentMode = .scaleAspectFit
+      profileImageView.contentMode = .scaleAspectFill
       profileImageView.image = image
       submitButton.setTitleColor(.mainBlue, for: .normal)
+      submitButton.isEnabled = true
     }
     dismiss(animated: true, completion: nil)
   }
