@@ -104,27 +104,12 @@ extension BookFavoritesViewController {
 }
 
 extension BookFavoritesViewController: UICollectionViewDataSource {
-//  func numberOfSections(in collectionView: UICollectionView) -> Int {
-//    guard let count = data?.bookcase.count else { return 1 }
-//    print("ccc", count)
-//    if count % 3 == 0 {
-//      return count / 3
-//    } else if count > 3 {
-//      return count / 3 + 1
-//    }
-//    return 1
-//  }
-
   func collectionView(
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: BookFavoritesCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
     cell.rx.dataBinder.onNext(data?.bookcase[indexPath.item])
-//    let cell: BookFavoritesShelfCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-//    cell.collectionView.backgroundView = bookShelfImageView
-//    cell.rx.binder.onNext(data?.bookcase ?? [])
-//    // TODO: - 이 부분 고쳐야함
     cell.rx.didTapContentView
       .subscribe( onNext: { [weak self] _ in
         guard
