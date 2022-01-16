@@ -23,7 +23,7 @@ final class MyBookCaseCell: UICollectionViewCell {
   }()
 
   let noResultImageView = UIImageView().then {
-    $0.backgroundColor = .white
+    $0.backgroundColor = .none
     $0.image = Image.vector21
     $0.isHidden = true
   }

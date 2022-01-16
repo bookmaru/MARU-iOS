@@ -65,19 +65,19 @@ final class BookFavoritesViewController: BaseViewController {
 
 extension BookFavoritesViewController {
   private func render() {
-    view.adds([
-      emptyView,
-      collectionView
-    ])
-
-    emptyView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+    view.add(collectionView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
     }
-
+    view.add(emptyView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
+    }
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-
     collectionView.delegate = self
     collectionView.dataSource = self
   }
@@ -92,6 +92,7 @@ extension BookFavoritesViewController {
           self.emptyView.isHidden = true
         }
         self.data = data
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())
