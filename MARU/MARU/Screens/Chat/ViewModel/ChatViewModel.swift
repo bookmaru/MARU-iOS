@@ -107,12 +107,12 @@ final class ChatViewModel {
 
     let isReportSuccess = input.didLongTap
       .flatMap { NetworkService.shared.auth.report(chat: $0) }
-      .map { $0.status == 201 }
+      .map { $0.status == 200 || $0.status == 201 }
       .asDriver(onErrorJustReturn: false)
 
     let isSuccessKeepGroup = input.didTapGroupButton
       .flatMap { NetworkService.shared.book.addGroup(groupID: self.roomID) }
-      .map { $0.status == 200 }
+      .map { $0.status == 200 || $0.status == 201 }
       .asDriver(onErrorJustReturn: false)
 
     recivePublisher.onNext(RealmService.shared.oneTimeRead(roomID))

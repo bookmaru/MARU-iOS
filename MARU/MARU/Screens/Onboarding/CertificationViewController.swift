@@ -141,7 +141,7 @@ final class CertificationViewController: BaseViewController {
       .flatMap { NetworkService.shared.auth.nickname(name: $0 ?? "").map { $0.status } }
       .subscribe(onNext: { [weak self] statusCode in
         guard let self = self else { return }
-        if statusCode == 200 {
+        if statusCode == 200 || statusCode == 201 {
           self.nicknameResponseLabel.textColor = .subText
           self.nicknameResponseLabel.text = "사용 가능한 닉네임입니다."
           self.submitButton.isSelected = true
@@ -191,7 +191,7 @@ final class CertificationViewController: BaseViewController {
           KeychainHandler.shared.userID = response.data?.signup.userID ?? -1
           UserDefaultHandler.shared.userName = self.userInformation.nickname
         }
-        if response.status == 200 {
+        if response.status == 200 || response.status == 201 {
           let viewController = TabBarController()
           viewController.modalPresentationStyle = .fullScreen
           if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
