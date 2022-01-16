@@ -135,7 +135,15 @@ extension SettingViewController: UICollectionViewDelegate {
     case .logout:
       let alert = UIAlertController(title: "로그아웃을 하시겠나요...? 😥", message: "", preferredStyle: .alert)
       alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-        self.logout()
+        NetworkService.shared.auth.logout()
+          .map { $0.status }
+          .subscribe(onNext: { [weak self] status in
+            guard let self = self else { return }
+            if status == 200 || status == 201 || status == 204 {
+              self.logout()
+            }
+          })
+          .disposed(by: self.disposeBag)
       })
       alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
       present(alert, animated: true)

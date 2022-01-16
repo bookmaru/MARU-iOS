@@ -28,6 +28,7 @@ enum AuthRouter {
   case refresh
   case user
   case signOut
+  case logout
   case changeProfile(nickname: String, image: UIImage)
   case report(chat: RealmChat)
   case userProfile
@@ -49,6 +50,8 @@ extension AuthRouter: BaseTargetType {
       return "user"
     case .signOut:
       return "user"
+    case .logout:
+      return "logout"
     case .changeProfile(let nickname, _):
       return "user/profile/\(nickname)"
     case .report:
@@ -62,7 +65,7 @@ extension AuthRouter: BaseTargetType {
 
   var method: Method {
     switch self {
-    case .auth, .information, .refresh, .report:
+    case .auth, .information, .refresh, .report, .logout:
       return .post
     case .changeProfile:
       return .patch
@@ -115,6 +118,13 @@ extension AuthRouter: BaseTargetType {
                                    fileName: "image.png"))
       }
       return .uploadMultipart(multipartData)
+    case .logout:
+      return .requestParameters(
+        parameters: [
+          "userId": KeychainHandler.shared.userID
+        ],
+        encoding: JSONEncoding.default
+      )
     default:
       return .requestPlain
     }
@@ -134,7 +144,7 @@ extension AuthRouter: BaseTargetType {
         "RefreshToken": KeychainHandler.shared.refreshToken
       ]
 
-    case .user, .report, .userProfile, .signOut, .myGroup:
+    case .user, .report, .userProfile, .signOut, .myGroup, .logout:
       return [
         "Content-Type": "application/json",
         "Authorization": KeychainHandler.shared.accessToken
