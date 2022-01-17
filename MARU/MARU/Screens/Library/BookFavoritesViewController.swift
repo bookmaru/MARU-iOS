@@ -11,7 +11,7 @@ import RxCocoa
 
 final class BookFavoritesViewController: BaseViewController {
   private let emptyView = EmptyView(
-    image: Image.group841?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+    image: Image.autoStories?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
     content: """
     모임하고 싶은 책이 아직 없어요.
     +버튼을 눌러 서재를 채워주세요.
@@ -65,19 +65,19 @@ final class BookFavoritesViewController: BaseViewController {
 
 extension BookFavoritesViewController {
   private func render() {
-    view.adds([
-      emptyView,
-      collectionView
-    ])
-
-    emptyView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+    view.add(collectionView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
     }
-
+    view.add(emptyView) { view in
+      view.snp.makeConstraints {
+        $0.edges.equalToSuperview()
+      }
+    }
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-
     collectionView.delegate = self
     collectionView.dataSource = self
   }
@@ -92,6 +92,7 @@ extension BookFavoritesViewController {
           self.emptyView.isHidden = true
         }
         self.data = data
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
     viewDidLoadPublisher.onNext(())

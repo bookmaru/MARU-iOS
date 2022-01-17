@@ -29,14 +29,21 @@ final class MyLibraryCell: UICollectionViewCell {
   }
 
   let bookImage = UIImageView().then {
-    $0.image = Image.autoStories
+    $0.image = Image.group841gray
   }
 
   let emptyLabel = UILabel().then {
     $0.font = .systemFont(ofSize: 14, weight: .medium)
     $0.textColor = .subText
     $0.textAlignment = .center
-    $0.text = "서재를 채워주세요 :)"
+    $0.text = "채팅방 속 버튼을 통해"
+  }
+
+  let emptySubLabel = UILabel().then {
+    $0.font = .systemFont(ofSize: 14, weight: .medium)
+    $0.textColor = .subText
+    $0.textAlignment = .center
+    $0.text = "모임을 담아볼까요?"
   }
 
   fileprivate var groupData: [KeepGroup] = [] {
@@ -83,6 +90,12 @@ final class MyLibraryCell: UICollectionViewCell {
       label.snp.makeConstraints {
         $0.centerX.equalTo(self.noResultImageView)
         $0.top.equalTo(self.bookImage.snp.bottom).offset(4)
+      }
+    }
+    noResultImageView.add(emptySubLabel) { label in
+      label.snp.makeConstraints {
+        $0.centerX.equalTo(self.emptyLabel)
+        $0.top.equalTo(self.emptyLabel.snp.bottom).offset(1)
       }
     }
     collectionView.delegate = self

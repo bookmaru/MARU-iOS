@@ -26,8 +26,12 @@ final class BookAlertViewController: UIViewController {
     $0.text = "(책 제목)이(가)"
     $0.textAlignment = .center
     $0.font = .systemFont(ofSize: 13, weight: .bold)
-    $0.attributedText = NSMutableAttributedString()
-      .regular(string: "이(가)", fontSize: 13)
+  }
+
+  private let guideLabel = UILabel().then {
+    $0.text = "이(가)"
+    $0.textAlignment = .left
+    $0.font = .systemFont(ofSize: 13, weight: .regular)
   }
 
   private let stateLabel = UILabel().then {
@@ -52,12 +56,12 @@ final class BookAlertViewController: UIViewController {
     render()
   }
   init(_ image: UIImage,
-       _ guideText: String,
+       _ titleText: String,
        _ subGuideText: String,
        _ bookModel: BookModel) {
     super.init(nibName: nil, bundle: nil)
     stateImageView.image = image
-    titleLabel.text = guideText
+    titleLabel.text = titleText
     stateLabel.text = subGuideText
     data = bookModel
   }
@@ -107,6 +111,7 @@ extension BookAlertViewController {
     popUpView.adds([
       stateImageView,
       titleLabel,
+      guideLabel,
       stateLabel,
       submitButton
     ])
@@ -126,15 +131,20 @@ extension BookAlertViewController {
     }
 
     titleLabel.snp.makeConstraints { make in
-      make.centerX.equalTo(stateImageView)
-      make.leading.equalTo(popUpView).offset(30)
+      make.leading.lessThanOrEqualTo(popUpView).offset(55)
+      make.top.equalTo(stateImageView.snp.bottom).offset(20)
+    }
+
+    guideLabel.snp.makeConstraints { make in
+      make.trailing.equalTo(popUpView).offset(-55)
+      make.leading.equalTo(titleLabel.snp.trailing).offset(3)
       make.top.equalTo(stateImageView.snp.bottom).offset(20)
     }
 
     stateLabel.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom).offset(6)
       make.leading.equalTo(popUpView).offset(40)
-      make.centerX.equalTo(titleLabel)
+      make.centerX.equalTo(stateImageView)
     }
 
     submitButton.snp.makeConstraints { make in
