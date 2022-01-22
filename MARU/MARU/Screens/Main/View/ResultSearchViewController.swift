@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import SnapKit
 
 protocol OpenButtonDelegate: AnyObject {
   func didTapOpenButton()

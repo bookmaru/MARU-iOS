@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class BookCell: UICollectionViewCell {
   private let bookImageView = UIImageView().then {
     $0.backgroundColor = .white

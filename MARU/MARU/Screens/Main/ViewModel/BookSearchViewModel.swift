@@ -12,14 +12,14 @@ final class BookSearchViewModel: ViewModelType {
 
   func transform(input: Input) -> Output {
     let errorMessage = PublishSubject<Error>()
+		let reSearchFlag = PublishSubject<Void>()
     let otherKeywordSearch = PublishSubject<String>()
     var currentKeyword: String = ""
     var pageNumber: Int = 1
 
     let firstSearch = Observable.merge(input.viewTrigger, otherKeywordSearch)
-      .do(onNext: {
-        currentKeyword = $0
-      })
+			.take(1)
+      .do(onNext: { currentKeyword = $0} )
       .flatMap { NetworkService.shared.search.bookSearch(queryString: $0, page: 1) }
       .map { response -> BaseResponseType<Books> in
 
@@ -67,23 +67,50 @@ final class BookSearchViewModel: ViewModelType {
       })
       .asDriver(onErrorJustReturn: [])
 
-    let result = Driver.merge(firstSearch, fetchMore)
-
     let cancel = input.tapCancelButton
       .asDriver(onErrorJustReturn: ())
 
     let reSearch = input.tapSearchButton
       .withLatestFrom(input.writeText)
-      .do(onNext: {
-        otherKeywordSearch.onNext($0)
-      })
-      .map { _ in ()}
-      .asDriver(onErrorJustReturn: ())
+				.do(onNext: {
+					currentKeyword = $0
+					reSearchFlag.onNext(())
+				})
+				.flatMap { NetworkService.shared.search.bookSearch(queryString: $0, page: 1) }
+				.map { response -> BaseResponseType<Books> in
+
+					guard 200 ..< 300 ~= response.status else {
+						errorMessage.onNext(
+							MaruError.serverError(response.status)
+						)
+						return response
+					}
+					return response
+				}
+				.map { $0.data?.books.map { BookModel($0) }}
+				.map { bookModel -> [BookModel] in
+					guard let bookModel = bookModel else { return [] }
+					return bookModel
+				}
+				.do(onNext: {
+					if !$0.isEmpty {
+						pageNumber = 2
+					}
+				})
+				.asDriver(onErrorJustReturn: [])
+
+		let result = Driver.merge(firstSearch, fetchMore, reSearch)
+
+//      .do(onNext: {
+//        otherKeywordSearch.onNext($0)
+//      })
+//      .map { _ in ()}
+//      .asDriver(onErrorJustReturn: ())
 
     return Output(
       result: result,
       cancel: cancel,
-      reSearch: reSearch,
+			reSearch: reSearchFlag.asDriver(onErrorJustReturn: ()),
       errorMessage: errorMessage
     )
   }

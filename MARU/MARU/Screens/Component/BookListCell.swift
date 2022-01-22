@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class BookListCell: UICollectionViewCell {
 
   private let shadowView = UIView().then {
@@ -88,6 +90,7 @@ final class BookListCell: UICollectionViewCell {
     bookAuthorLabel.snp.makeConstraints { ( make ) in
       make.top.equalTo(bookTitleLabel.snp.bottom).inset(-3)
       make.leading.equalTo(bookImageView.snp.trailing).inset(-10)
+      make.trailing.equalToSuperview().inset(10)
       make.height.equalTo(12)
     }
   }

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+
+import SnapKit
+
 protocol ButtonDelegate: AnyObject {
   func didPressButtonInHeader(_ tag: Int)
 }

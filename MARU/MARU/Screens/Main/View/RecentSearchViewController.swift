@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import RxCocoa
 import RxSwift
+import SnapKit
 
 final class RecentSearchViewController: BaseViewController {
 

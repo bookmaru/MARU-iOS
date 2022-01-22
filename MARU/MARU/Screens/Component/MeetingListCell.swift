@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 
+import SnapKit
+
 final class MeetingListCell: UICollectionViewCell {
 
   private let shadowView = UIView().then {

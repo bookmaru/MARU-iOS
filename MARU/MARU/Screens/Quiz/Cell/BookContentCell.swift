@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import SnapKit
 
 final class BookContentCell: UITableViewCell {
 
@@ -97,6 +98,7 @@ extension BookContentCell {
     }
     authorLabel.snp.makeConstraints { make in
       make.leading.equalTo(bookImageView.snp.trailing).offset(14)
+      make.trailing.lessThanOrEqualToSuperview()
       make.top.equalToSuperview().inset(36)
     }
     oneLineIntroLabel.snp.makeConstraints { make in
