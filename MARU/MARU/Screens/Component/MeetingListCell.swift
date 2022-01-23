@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-
 import SnapKit
 
 final class MeetingListCell: UICollectionViewCell {
