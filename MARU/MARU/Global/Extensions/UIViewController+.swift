@@ -38,6 +38,7 @@ extension UIViewController {
     label.text = message
     label.alpha = 1.0
     label.clipsToBounds  =  true
+    label.numberOfLines = 2
 
     view.addSubview(backgroundView)
     view.addSubview(label)
