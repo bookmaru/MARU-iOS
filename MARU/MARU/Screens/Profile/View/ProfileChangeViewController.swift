@@ -108,9 +108,9 @@ final class ProfileChangeViewController: UIViewController {
     }
 
     submitButton.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide).offset(4)
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(6)
       make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-      make.width.equalTo(21)
+      make.width.equalTo(30)
     }
 
     profileImageView.snp.makeConstraints { make in
