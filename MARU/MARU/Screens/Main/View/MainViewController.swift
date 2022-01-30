@@ -53,7 +53,6 @@ extension MainViewController {
 
   private func bind() {
     let firstLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .take(1)
       .map { _ in () }
 
     let input = MainViewModel.Input(fetch: firstLoad)

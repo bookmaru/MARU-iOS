@@ -47,9 +47,9 @@ final class BookCell: UICollectionViewCell {
     bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
   }
   private func applyLayout() {
-    add(bookImageView)
-    add(bookTitleLabel)
-    add(bookAuthorLabel)
+    contentView.add(bookImageView)
+    contentView.add(bookTitleLabel)
+    contentView.add(bookAuthorLabel)
 
     bookImageView.snp.makeConstraints { (make) in
       make.top.equalTo(contentView.snp.top).inset(0)

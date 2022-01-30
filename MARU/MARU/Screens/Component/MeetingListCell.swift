@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import RxSwift
 import SnapKit
 
@@ -104,7 +105,8 @@ final class MeetingListCell: UICollectionViewCell {
   }
   private func applyLayout() {
 
-    add(shadowView)
+    contentView.add(shadowView)
+
     shadowView.adds([
       bookImageView,
       bookTitleLabel,

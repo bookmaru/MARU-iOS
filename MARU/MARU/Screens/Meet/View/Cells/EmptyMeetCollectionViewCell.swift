@@ -44,7 +44,7 @@ final class EmptyMeetCollectionViewCell: UICollectionViewCell {
 
 extension EmptyMeetCollectionViewCell {
   private func layoutSuperView() {
-    adds([
+    contentView.adds([
       emptyView,
       emptyImageView,
       bottomContainerView,

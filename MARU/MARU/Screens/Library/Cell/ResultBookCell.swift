@@ -68,7 +68,7 @@ final class ResultBookCell: UICollectionViewCell {
   }
 
   private func applyLayout() {
-    add(shadowView)
+    contentView.add(shadowView)
     shadowView.adds([
       bookImageView,
       bookTitleLabel,

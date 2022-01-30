@@ -113,7 +113,7 @@ extension MeetCollectionViewCell {
 // MARK: - Layout
 extension MeetCollectionViewCell {
   private func layoutSuperView() {
-    adds([
+    contentView.adds([
       posterImageView,
       gradientImageView,
       bottomContainerView

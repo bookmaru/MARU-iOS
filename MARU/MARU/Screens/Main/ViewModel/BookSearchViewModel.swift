@@ -19,7 +19,7 @@ final class BookSearchViewModel: ViewModelType {
 
     let firstSearch = Observable.merge(input.viewTrigger, otherKeywordSearch)
 			.take(1)
-      .do(onNext: { currentKeyword = $0} )
+      .do(onNext: { currentKeyword = $0 })
       .flatMap { NetworkService.shared.search.bookSearch(queryString: $0, page: 1) }
       .map { response -> BaseResponseType<Books> in
 
@@ -100,12 +100,6 @@ final class BookSearchViewModel: ViewModelType {
 				.asDriver(onErrorJustReturn: [])
 
 		let result = Driver.merge(firstSearch, fetchMore, reSearch)
-
-//      .do(onNext: {
-//        otherKeywordSearch.onNext($0)
-//      })
-//      .map { _ in ()}
-//      .asDriver(onErrorJustReturn: ())
 
     return Output(
       result: result,

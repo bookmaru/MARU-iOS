@@ -60,7 +60,7 @@ final class BookListCell: UICollectionViewCell {
     bookImageView.image(url: bookModel.imageURL, defaultImage: Image.defalutImage ?? UIImage())
   }
   private func applyLayout() {
-    add(shadowView)
+    contentView.add(shadowView)
     shadowView.adds([
       bookImageView,
       bookTitleLabel,
