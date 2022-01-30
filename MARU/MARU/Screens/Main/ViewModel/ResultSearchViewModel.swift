@@ -62,7 +62,7 @@ final class ResultSearchViewModel: ViewModelType {
 
     let canMakeGroup = canMakeGroupPublishSubject
       .flatMap(NetworkService.shared.auth.myGroup)
-      .map { $0.data?.myGroups.count ?? -1 }
+      .map { $0.data?.groups.count ?? -1 }
       .map { count in
         if count >= 0 && count < 2 {
           return  true

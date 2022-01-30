@@ -89,7 +89,7 @@ final class WasDebateCell: UICollectionViewCell {
   }
 
   private func configureHierarchy() {
-    add(shadowView)
+    contentView.add(shadowView)
     shadowView.adds([
       bookImageView,
       bookTitleLabel,

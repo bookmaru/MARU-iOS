@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class IndicatorFooter: UICollectionReusableView {
   let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 

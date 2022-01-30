@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import SnapKit
 
 final class MainViewController: BaseViewController {
 
@@ -52,7 +53,6 @@ extension MainViewController {
 
   private func bind() {
     let firstLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .take(1)
       .map { _ in () }
 
     let input = MainViewModel.Input(fetch: firstLoad)

@@ -67,5 +67,5 @@ struct MyGroup: Codable {
 }
 
 struct MyGroups: Codable {
-  let myGroups: [MyGroup]
+  let groups: [MyGroup]
 }

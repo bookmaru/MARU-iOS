@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class EmptyView: UIView {
 
   private let imageView = UIImageView().then {

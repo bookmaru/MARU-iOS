@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import SnapKit
 
 final class BookContentCell: UITableViewCell {
 
@@ -23,6 +24,7 @@ final class BookContentCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     backgroundColor = .white
+    contentView.backgroundColor = .white
     oneLineTextView.delegate = self
     configureComponent()
     configureLayout()
@@ -55,6 +57,7 @@ extension BookContentCell {
     bookNameLabel.font = .systemFont(ofSize: 13, weight: .bold)
     authorLabel.font = .systemFont(ofSize: 10, weight: .medium)
     authorLabel.textColor = .brownGreyTwo
+    authorLabel.numberOfLines = 2
 
     oneLineIntroLabel.font = .systemFont(ofSize: 13, weight: .bold)
     oneLineIntroLabel.text = "한 줄 주제"
@@ -80,7 +83,7 @@ extension BookContentCell {
     ])
 
     bookContentView.snp.makeConstraints { make in
-      make.top.equalToSuperview().inset(3)
+      make.top.equalToSuperview().inset(10)
       make.size.equalTo(CGSize(width: 269.calculatedWidth, height: 170.calculatedHeight))
       make.centerX.equalToSuperview()
     }
@@ -97,6 +100,7 @@ extension BookContentCell {
     }
     authorLabel.snp.makeConstraints { make in
       make.leading.equalTo(bookImageView.snp.trailing).offset(14)
+      make.trailing.lessThanOrEqualToSuperview()
       make.top.equalToSuperview().inset(36)
     }
     oneLineIntroLabel.snp.makeConstraints { make in

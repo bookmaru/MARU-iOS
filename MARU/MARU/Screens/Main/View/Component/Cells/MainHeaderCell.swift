@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 final class MainHeaderCell: UICollectionViewCell {
   private let backImageView = UIImageView().then {
     $0.image = Image.picture

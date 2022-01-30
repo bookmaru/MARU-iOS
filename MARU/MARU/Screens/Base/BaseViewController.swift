@@ -23,9 +23,9 @@ class BaseViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     defaultUI()
     setNavigationItems()
+    setupAppearance()
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,5 +58,15 @@ extension BaseViewController {
 
   @objc func didBack() {
     navigationController?.popViewController(animated: true)
+  }
+}
+extension BaseViewController: UINavigationBarDelegate {
+  private func setupAppearance() {
+    let appearance = UINavigationBarAppearance()
+    appearance.backgroundColor = .white
+    appearance.shadowColor = .white
+    navigationController?.navigationBar.standardAppearance = appearance
+    navigationController?.navigationBar.compactAppearance = appearance
+    navigationController?.navigationBar.scrollEdgeAppearance = appearance
   }
 }
