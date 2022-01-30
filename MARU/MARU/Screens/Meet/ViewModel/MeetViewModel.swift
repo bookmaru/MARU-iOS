@@ -63,11 +63,17 @@ final class MeetViewModel {
 
     let output = generatedGroup
       .map { groups -> [MeetCase] in
+        var count: Int = 0
+        groups.forEach {
+          if $0.isLeader {
+            count += 1
+          }
+        }
         if groups.isEmpty {
           return [.empty]
         }
         let meet = groups.map { MeetCase.meet($0) }
-        if meet.count < 3 {
+        if count < 3 {
           return meet + [.empty]
         }
         return meet

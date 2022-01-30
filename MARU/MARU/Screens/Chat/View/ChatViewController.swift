@@ -173,8 +173,8 @@ extension ChatViewController {
       .subscribe(onNext: { [weak self] _ in
         guard let self = self else { return }
         let optionMenu = UIAlertController(
-          title: "토론방을 저장하여 내 서재에 담아두세요 !",
-          message: "내가 참여했던 토론방을 확인할 수 있으며, 방장 평가를 통해 토론의 질을 높일 수 있습니다.",
+          title: "모임을 저장하여 내 서재에 담아두세요 !",
+          message: "내가 참여했던 모임을 확인할 수 있으며, 방장 평가를 통해 모임의 질을 높일 수 있습니다.",
           preferredStyle: .actionSheet
         )
 
