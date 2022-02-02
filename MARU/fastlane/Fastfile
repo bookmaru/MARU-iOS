@@ -22,4 +22,16 @@ platform :ios do
     build_app(workspace: "MARU.xcworkspace", scheme: "MARU")
     upload_to_testflight
   end
+
+	desc "Match development profile"
+  lane :match_local do
+    match(
+      username: ENV["USERNAME"],
+      type: "development",
+      git_url: ENV["MATCH_GIT_URL"],
+      app_identifier: "kr.maru",
+      clone_branch_directly: true
+    )
+  end
+
 end
