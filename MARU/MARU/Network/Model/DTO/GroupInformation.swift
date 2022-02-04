@@ -22,6 +22,7 @@ struct GroupModel: Codable {
   let userCount: Int
   let isFailedGroupQuiz: Bool
   let canJoinGroup: Bool
+  let isParticipated: Bool
 
   enum CodingKeys: String, CodingKey {
     case discussionGroupID = "discussionGroupId"
@@ -36,5 +37,6 @@ struct GroupModel: Codable {
     case userCount
     case isFailedGroupQuiz
     case canJoinGroup
+    case isParticipated
   }
 }
