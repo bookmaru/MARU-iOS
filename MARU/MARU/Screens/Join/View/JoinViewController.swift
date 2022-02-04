@@ -296,33 +296,38 @@ extension JoinViewController {
         let nickname = groups.nickname
         let isFailedGroupQuiz = groups.isFailedGroupQuiz
         let canJoinGroup = groups.canJoinGroup
+        let isParticipated = groups.isParticipated
         guard savedNickname != nickname else {
           self.showToast("유저 본인이 개설한 모임에는 참여할 수 없습니다.")
           return
         }
-        if !isFailedGroupQuiz && canJoinGroup {
-          let viewController = QuizViewController(groupID: self.groupID)
-          viewController.modalPresentationStyle = .fullScreen
-          self.present(viewController, animated: true, completion: nil)
+        guard !isParticipated else {
+          self.showToast("현재 참여하고 있는 모임입니다.")
+          return
         }
-        if isFailedGroupQuiz && canJoinGroup {
+        if !isFailedGroupQuiz && canJoinGroup {
           self.showToast(
             """
-            5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
-            기회는 단 한 번입니다! 재입장은 불가합니다.
+            5문제 중 3문제 이상 맞춰야 모임 입장 가능해요.
+            기회는 단 한번! 재입장은 불가해요.
+            """
+          )
+          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2), execute: {
+            let viewController = QuizViewController(groupID: self.groupID)
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true, completion: nil)
+          })
+        }
+        if isFailedGroupQuiz {
+          self.showToast(
+            """
+            2문제 이상 틀리셨어요🥺 재입장은 불가해요.
+            직접 모임을 개설해 보세요:)
             """
           )
         }
         if !isFailedGroupQuiz && !canJoinGroup {
           self.showToast("인원이 꽉 찼어요:( 직접 모임을 개설해보세요🤓")
-        }
-        if isFailedGroupQuiz && !canJoinGroup {
-          self.showToast(
-            """
-            5문제중 3문제 이상 맞춰야 모임 입장이 가능합니다.
-            기회는 단 한 번입니다! 재입장은 불가합니다.
-            """
-          )
         }
       })
       .disposed(by: disposeBag)
