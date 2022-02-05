@@ -124,11 +124,19 @@ final class JoinViewController: BaseViewController {
       scoreStateLabel.text = "\(groups.leaderScore)"
       partyStateLabel.text = "\(groups.userCount)/5"
       contentLabel.text = groups.description
+      guard !groups.isOverEnterGroup else {
+        self.entryButton.backgroundColor = .lightGray
+        return
+      }
       guard UserDefaultHandler.shared.userName != groups.nickname else {
         self.entryButton.backgroundColor = .lightGray
         return
       }
-      guard groups.isFailedGroupQuiz == false, groups.canJoinGroup == true else {
+      guard !groups.isFailedGroupQuiz, !groups.isOverGroupPeopleCount else {
+        self.entryButton.backgroundColor = .lightGray
+        return
+      }
+      guard !groups.isParticipated else {
         self.entryButton.backgroundColor = .lightGray
         return
       }
@@ -295,17 +303,22 @@ extension JoinViewController {
         let savedNickname = UserDefaultHandler.shared.userName
         let nickname = groups.nickname
         let isFailedGroupQuiz = groups.isFailedGroupQuiz
-        let canJoinGroup = groups.canJoinGroup
+        let isOverGroupPeopleCount = groups.isOverGroupPeopleCount
         let isParticipated = groups.isParticipated
+        let isOverEnterGroup = groups.isOverEnterGroup
         guard savedNickname != nickname else {
           self.showToast("유저 본인이 개설한 모임에는 참여할 수 없습니다.")
+          return
+        }
+        guard !isOverEnterGroup else {
+          self.showToast("참여 가능한 모임은 총 5개입니다🥺")
           return
         }
         guard !isParticipated else {
           self.showToast("현재 참여하고 있는 모임입니다.")
           return
         }
-        if !isFailedGroupQuiz && canJoinGroup {
+        if !isFailedGroupQuiz && !isOverGroupPeopleCount {
           self.showToast(
             """
             5문제 중 3문제 이상 맞춰야 모임 입장 가능해요.
@@ -326,7 +339,7 @@ extension JoinViewController {
             """
           )
         }
-        if !isFailedGroupQuiz && !canJoinGroup {
+        if !isFailedGroupQuiz && isOverGroupPeopleCount {
           self.showToast("인원이 꽉 찼어요:( 직접 모임을 개설해보세요🤓")
         }
       })
