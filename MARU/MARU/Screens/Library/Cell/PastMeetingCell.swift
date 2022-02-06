@@ -78,7 +78,7 @@ final class PastMeetingCell: UICollectionViewCell {
       )
       explanationLabel.text = data.description
       isLeader = data.isLeader
-      if data.leaderScore > 0 {
+      if data.isEvaluateLeader {
         evaluateButton.isHidden = true
       }
       if data.isLeader == true {

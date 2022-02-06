@@ -71,8 +71,11 @@ final class PastMeetingViewController: BaseViewController {
 
     output.data
       .drive(onNext: {[weak self] data in
-        guard let self = self else { return }
-        if data?.keepGroup.count ?? 0 > 0 {
+        guard let self = self,
+              let keepGroup = data?.keepGroup,
+              let data = data
+        else { return }
+        if keepGroup.count > 0 {
           self.emptyView.isHidden = true
         }
         self.data = data
@@ -98,8 +101,8 @@ extension PastMeetingViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    // 방장인 경우에는 평가 금지 팝업 화면 등장
-    cell.rx.dataBinder.onNext((data?.keepGroup[indexPath.item]))
+    guard let data = data else { return UICollectionViewCell() }
+    cell.rx.dataBinder.onNext((data.keepGroup[indexPath.item]))
     cell.rx.didTapEvaluateButton
       .subscribe(onNext: {  viewController in
         let viewController = viewController
@@ -108,7 +111,7 @@ extension PastMeetingViewController: UICollectionViewDataSource {
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
-    if data?.keepGroup[indexPath.item].leaderScore ?? -1 > 0 {
+    if data.keepGroup[indexPath.item].isEvaluateLeader {
       cell.evaluateButton.isHidden = true
     }
     return cell
@@ -122,12 +125,5 @@ extension PastMeetingViewController: UICollectionViewDelegateFlowLayout {
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     return CGSize(width: ScreenSize.width-40, height: 145)
-  }
-
-  func collectionView(
-    _ collectionView: UICollectionView,
-    didSelectItemAt indexPath: IndexPath
-  ) {
-    // cell tap action
   }
 }
