@@ -21,7 +21,7 @@ struct GroupModel: Codable {
   let leaderScore: Int
   let userCount: Int
   let isFailedGroupQuiz: Bool
-  let isOverGroupPeopleCount: Bool 
+  let isOverGroupPeopleCount: Bool
   let isParticipated: Bool
   let isOverEnterGroup: Bool
 

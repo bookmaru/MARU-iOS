@@ -113,6 +113,8 @@ extension PastMeetingViewController: UICollectionViewDataSource {
       .disposed(by: cell.disposeBag)
     if data.keepGroup[indexPath.item].isEvaluateLeader {
       cell.evaluateButton.isHidden = true
+    } else {
+      cell.evaluateButton.isHidden = false
     }
     return cell
   }

@@ -78,11 +78,13 @@ final class PastMeetingCell: UICollectionViewCell {
       )
       explanationLabel.text = data.description
       isLeader = data.isLeader
+      if data.isLeader {
+        evaluateButton.setImage(Image.invalidName4, for: .normal)
+      } else {
+        evaluateButton.setImage(Image.invalidName, for: .normal)
+      }
       if data.isEvaluateLeader {
         evaluateButton.isHidden = true
-      }
-      if data.isLeader == true {
-        evaluateButton.setImage(Image.invalidName4, for: .normal)
       }
     }
   }
