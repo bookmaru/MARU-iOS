@@ -19,6 +19,7 @@ class JoinLimitViewController: UIViewController {
 
   private let stateImageView = UIImageView().then {
     $0.layer.masksToBounds = true
+    $0.image = Image.uCommentAltExclamation
   }
 
   private let mainTextLabel = UILabel().then {
@@ -75,19 +76,20 @@ class JoinLimitViewController: UIViewController {
     stateImageView.snp.makeConstraints { make in
       make.centerX.equalTo(popUpView)
       make.leading.equalTo(popUpView).offset(100)
-      make.top.equalTo(popUpView).offset(20)
+      make.top.equalTo(popUpView).offset(30)
       make.size.equalTo(45)
     }
 
     mainTextLabel.snp.makeConstraints { make in
       make.centerX.equalTo(stateImageView)
-      make.leading.equalTo(popUpView).offset(30)
+      make.leading.equalTo(popUpView).offset(6)
       make.top.equalTo(stateImageView.snp.bottom).offset(20)
     }
 
     stateLabel.snp.makeConstraints { make in
+      make.centerX.equalTo(mainTextLabel)
       make.top.equalTo(mainTextLabel.snp.bottom).offset(6)
-      make.leading.equalTo(popUpView).offset(48)
+      make.leading.equalTo(popUpView).offset(42)
     }
 
     submitButton.snp.makeConstraints { make in
