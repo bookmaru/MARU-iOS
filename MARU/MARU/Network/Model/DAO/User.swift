@@ -12,7 +12,7 @@ struct User: Codable {
 struct UserData: Codable {
   let nickname: String
   let profileURL: String?
-  let leaderScore: Int
+  let leaderScore: Double
 
   enum CodingKeys: String, CodingKey {
     case nickname
