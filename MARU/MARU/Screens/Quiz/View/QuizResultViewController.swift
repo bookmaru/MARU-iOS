@@ -173,10 +173,7 @@ extension QuizResultViewController {
     ])
 
     backgroundImageView.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide)
-      make.leading.equalTo(view.safeAreaLayoutGuide)
-      make.trailing.equalTo(view.safeAreaLayoutGuide)
-      make.bottom.equalTo(view.safeAreaLayoutGuide)
+      make.edges.equalToSuperview()
     }
     dimmerView.snp.makeConstraints { make in
       make.top.equalTo(view.snp.top)
