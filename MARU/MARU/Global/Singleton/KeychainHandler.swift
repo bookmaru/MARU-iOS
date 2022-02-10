@@ -11,7 +11,7 @@ struct KeychainHandler {
   static var shared = KeychainHandler()
   private init() {}
 
-  private let keychain = KeychainWrapper.standard
+  private let keychain = UserDefaults.standard
   private let userIDKey = "userID"
   private let accessTokenKey = "accessToken"
   private let accessTokenExpiredAtKey = "accessTokenExpiredAt"
@@ -21,7 +21,7 @@ struct KeychainHandler {
 
   var userID: Int {
     get {
-      return keychain.integer(forKey: userIDKey) ?? -1
+      return keychain.integer(forKey: userIDKey)
     }
     set {
       keychain.set(newValue, forKey: userIDKey)
@@ -74,16 +74,15 @@ struct KeychainHandler {
   }
 
   func logout() {
-    keychain.remove(forKey: KeychainWrapper.Key(rawValue: accessTokenKey))
-    keychain.remove(forKey: KeychainWrapper.Key(rawValue: accessTokenExpiredAtKey))
-    keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenKey))
-    keychain.remove(forKey: KeychainWrapper.Key(rawValue: refreshTokenExpiredAtKey))
-    UserDefaultHandler.shared.userName = nil
-    UserDefaultHandler.shared.userImageURL = nil
+    removeAllKeys()
   }
 
   func removeAllKeys() {
-    keychain.removeAllKeys()
+    let defaults = UserDefaults.standard
+    let dictionary = defaults.dictionaryRepresentation()
+    dictionary.keys.forEach { key in
+        defaults.removeObject(forKey: key)
+    }
   }
 
 }

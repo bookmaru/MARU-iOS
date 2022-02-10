@@ -92,7 +92,6 @@ final class JoinViewController: BaseViewController {
     $0.font = RIDIBatangFont.medium.of(size: 12)
     $0.textAlignment = .center
     $0.numberOfLines = 3
-    $0.text = "식물책표지가되게예쁘네네네네네네무슨내용일까까까가가가가가가가가와랄랄라와랄랄라와랄랄라와랄라라"
   }
 
   private let rightQuoteImageView = UIImageView().then {
@@ -118,7 +117,8 @@ final class JoinViewController: BaseViewController {
       attributedString.addAttribute(
         .foregroundColor,
         value: UIColor.cornFlowerBlue,
-        range: (text as NSString).range(of: "\(groups.remainingDay)"))
+        range: (text as NSString).range(of: "\(groups.remainingDay)")
+      )
       leftTimeLabel.attributedText = attributedString
       leadNameLabel.text = groups.nickname
       scoreStateLabel.text = "\(groups.leaderScore)"

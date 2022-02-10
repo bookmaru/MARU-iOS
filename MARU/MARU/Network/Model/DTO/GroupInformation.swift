@@ -18,7 +18,7 @@ struct GroupModel: Codable {
   let image: String
   let author: String
   let nickname: String
-  let leaderScore: Int
+  let leaderScore: Double
   let userCount: Int
   let isFailedGroupQuiz: Bool
   let isOverGroupPeopleCount: Bool

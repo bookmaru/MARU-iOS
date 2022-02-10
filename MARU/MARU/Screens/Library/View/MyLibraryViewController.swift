@@ -66,11 +66,7 @@ final class MyLibraryViewController: BaseViewController {
 
   private let viewModel = MyLibraryViewModel()
   private var user: User?
-  private var data: [Library] = [] {
-    didSet {
-      collectionView.reloadData()
-    }
-  }
+  private var data: [Library] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -104,6 +100,7 @@ final class MyLibraryViewController: BaseViewController {
         guard let self = self else { return }
         self.user = data?.user
         self.data = data?.library ?? []
+        self.collectionView.reloadData()
       })
       .disposed(by: disposeBag)
   }
