@@ -107,10 +107,11 @@ extension AuthRouter: BaseTargetType {
 
       if image != UIImage() {
         let imageData = MultipartFormData(
-          provider: .data(image.pngData() ?? Data()),
+          provider: .data(image.jpegData(compressionQuality: 0.2) ?? Data()),
           name: "image",
           fileName: "image.png",
-          mimeType: "image/png")
+          mimeType: "image/png"
+        )
         multipartData.append(imageData)
       } else {
         multipartData.append(.init(provider: .data(Data()),

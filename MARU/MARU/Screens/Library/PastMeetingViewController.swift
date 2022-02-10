@@ -100,17 +100,24 @@ extension PastMeetingViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
+    guard
+      let data = data
+    else {
+      return UICollectionViewCell()
+    }
     let cell: PastMeetingCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-    guard let data = data else { return UICollectionViewCell() }
+
     cell.rx.dataBinder.onNext((data.keepGroup[indexPath.item]))
+
     cell.rx.didTapEvaluateButton
-      .subscribe(onNext: {  viewController in
+      .subscribe(onNext: { viewController in
         let viewController = viewController
         viewController.modalTransitionStyle = .crossDissolve
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: false, completion: nil)
       })
       .disposed(by: cell.disposeBag)
+
     if data.keepGroup[indexPath.item].isEvaluateLeader {
       cell.evaluateButton.isHidden = true
     } else {

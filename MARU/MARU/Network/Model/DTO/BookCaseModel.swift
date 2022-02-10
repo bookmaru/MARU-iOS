@@ -41,7 +41,7 @@ struct KeepGroup: Codable {
   let description: String
   let userID: Int
   let nickname: String
-  let isEvaluateLeader: Bool
+  var isEvaluateLeader: Bool
   let isLeader: Bool
 
   enum CodingKeys: String, CodingKey {
