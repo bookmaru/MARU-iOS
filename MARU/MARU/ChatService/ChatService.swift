@@ -11,11 +11,17 @@ import RxSwift
 final class ChatService {
   static var shared = ChatService()
 
-  private init() { }
+  private init() {
+    #if DEBUG
+    self.baseURL = Enviroment.devSocketURL
+    #else
+    self.baseURL = Enviroment.socketURL
+    #endif
+  }
 
   deinit { }
 
-  private let baseURL = Enviroment.socketURL
+  private let baseURL: URL
   private let socket = StompClientLib()
   private let message = PublishSubject<String>()
   private var disposeBag = DisposeBag()

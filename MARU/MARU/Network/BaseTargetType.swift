@@ -11,7 +11,11 @@ protocol BaseTargetType: TargetType { }
 
 extension BaseTargetType {
   var baseURL: URL {
+    #if DEBUG
+    return Enviroment.devBaseURL
+    #else
     return Enviroment.baseURL
+    #endif
   }
 
   var sampleData: Data {

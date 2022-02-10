@@ -9,18 +9,18 @@ import Moya
 import RxSwift
 
 protocol QuizServiceType {
-  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<ResultMakeGroup>>
+  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<Int>>
   func getQuiz(groupID: Int) -> Observable<BaseResponseType<Quizzes>>
   func checkQuiz(groupID: Int, isEnter: String) -> Observable<BaseResponseType<CheckQuiz>>
 }
 
 final class QuizService: QuizServiceType {
   private let router = MoyaProvider<QuizRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
-  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<ResultMakeGroup>> {
+  func createQuiz(makeGroup: MakeGroup) -> Observable<BaseResponseType<Int>> {
     return router.rx
       .request(.createQuiz(makeGroup: makeGroup))
       .asObservable()
-      .map(BaseResponseType<ResultMakeGroup>.self)
+      .map(BaseResponseType<Int>.self)
       .catchError()
   }
   func getQuiz(groupID: Int) -> Observable<BaseResponseType<Quizzes>> {

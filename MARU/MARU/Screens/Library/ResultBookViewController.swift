@@ -163,10 +163,19 @@ extension ResultBookViewController {
 }
 
 extension ResultBookViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let cell = collectionView.cellForItem(at: indexPath) as? ResultBookCell else { return }
-    guard let data = cell.bookcase else { return }
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    guard
+      let cell = collectionView.cellForItem(at: indexPath) as? ResultBookCell,
+      let data = cell.bookcase
+    else {
+      return
+    }
+
     let title = data.title
+
     if data.hasMyBookcase == false {
       let viewController = BookAlertViewController(
         Image.coolicon ?? UIImage(),
