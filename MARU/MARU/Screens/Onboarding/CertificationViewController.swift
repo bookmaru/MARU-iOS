@@ -57,16 +57,16 @@ final class CertificationViewController: BaseViewController {
   }
   private let maleButton: GenderRadioButton = GenderRadioButton(title: "남자")
   private let femaleButton: GenderRadioButton = GenderRadioButton(title: "여자")
-  private let bornYearLabel: UILabel = UILabel().then {
-    $0.font = .systemFont(ofSize: 14, weight: .bold)
-    $0.text = "태어난 년도"
-  }
-  private let bornYearChoiceLabel: UILabel = UILabel().then {
-    $0.font = .systemFont(ofSize: 10, weight: .semibold)
-    $0.text = "(선택)"
-    $0.textColor = .subText
-  }
-  private let bornYearPicker: UIPickerView = UIPickerView()
+//  private let bornYearLabel: UILabel = UILabel().then {
+//    $0.font = .systemFont(ofSize: 14, weight: .bold)
+//    $0.text = "태어난 년도"
+//  }
+//  private let bornYearChoiceLabel: UILabel = UILabel().then {
+//    $0.font = .systemFont(ofSize: 10, weight: .semibold)
+//    $0.text = "(선택)"
+//    $0.textColor = .subText
+//  }
+//  private let bornYearPicker: UIPickerView = UIPickerView()
   private let submitButton: SubmitButton = SubmitButton(title: "회원가입").then {
     $0.backgroundColor = .subText
     $0.setTitleColor(.white, for: .normal)
@@ -80,7 +80,7 @@ final class CertificationViewController: BaseViewController {
 
   init(socialID: String, socialType: String) {
     self.userInformation = UserInformation(
-      birth: nil,
+      birth: 1900,
       gender: nil,
       nickname: "",
       socialID: socialID,
@@ -106,9 +106,9 @@ final class CertificationViewController: BaseViewController {
   }
 
   private func pickerView() {
-    bornYearPicker.delegate = self
-    bornYearPicker.dataSource = self
-    bornYearPicker.selectRow(calculateYear() - 1900 - 24, inComponent: 0, animated: false)
+//    bornYearPicker.delegate = self
+//    bornYearPicker.dataSource = self
+//    bornYearPicker.selectRow(calculateYear() - 1900 - 24, inComponent: 0, animated: false)
   }
 
   private func bind() {
@@ -225,9 +225,9 @@ extension CertificationViewController {
       genderChoiceLabel,
       maleButton,
       femaleButton,
-      bornYearLabel,
-      bornYearChoiceLabel,
-      bornYearPicker,
+//      bornYearLabel,
+//      bornYearChoiceLabel,
+//      bornYearPicker,
       submitButton
     ])
     maruLogoImageView.snp.makeConstraints {
@@ -286,19 +286,19 @@ extension CertificationViewController {
       $0.leading.equalTo(maleButton.snp.trailing).offset(4)
       $0.top.bottom.width.equalTo(maleButton)
     }
-    bornYearLabel.snp.makeConstraints {
-      $0.leading.equalToSuperview().offset(20)
-      $0.top.equalTo(maleButton.snp.bottom).offset(38)
-    }
-    bornYearChoiceLabel.snp.makeConstraints {
-      $0.leading.equalTo(bornYearLabel.snp.trailing)
-      $0.bottom.equalTo(bornYearLabel)
-    }
-    bornYearPicker.snp.makeConstraints {
-      $0.top.equalTo(bornYearLabel.snp.bottom)
-      $0.leading.trailing.equalToSuperview().inset(20)
-      $0.height.equalTo(200)
-    }
+//    bornYearLabel.snp.makeConstraints {
+//      $0.leading.equalToSuperview().offset(20)
+//      $0.top.equalTo(maleButton.snp.bottom).offset(38)
+//    }
+//    bornYearChoiceLabel.snp.makeConstraints {
+//      $0.leading.equalTo(bornYearLabel.snp.trailing)
+//      $0.bottom.equalTo(bornYearLabel)
+//    }
+//    bornYearPicker.snp.makeConstraints {
+//      $0.top.equalTo(bornYearLabel.snp.bottom)
+//      $0.leading.trailing.equalToSuperview().inset(20)
+//      $0.height.equalTo(200)
+//    }
     submitButton.snp.makeConstraints {
       $0.height.equalTo(60)
       $0.leading.trailing.bottom.equalToSuperview()
@@ -306,22 +306,22 @@ extension CertificationViewController {
   }
 }
 
-extension CertificationViewController: UIPickerViewDelegate { }
+// extension CertificationViewController: UIPickerViewDelegate { }
 
-extension CertificationViewController: UIPickerViewDataSource {
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return years.count
-  }
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return years[row].string
-  }
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    userInformation.birth = years[row]
-  }
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
-    return 1
-  }
-}
+// extension CertificationViewController: UIPickerViewDataSource {
+//  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//    return years.count
+//  }
+//  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//    return years[row].string
+//  }
+//  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//    userInformation.birth = years[row]
+//  }
+//  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//    return 1
+//  }
+// }
 
 private class GenderRadioButton: UIButton {
 
